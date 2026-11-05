@@ -2,4 +2,5 @@ d4dbf855b5c8135c63327b36e4d485b6df916c7ef3183b1f5b3e9a7d51401323  WanryoTalk-MyP
 24d2fdf08965c2e3b3613ce5d1c0cfdf4e6ebb3fdc495d10137c95b8dce1df1a  WanryoTalk-MyPC-Windows-x64-v2.1.0.zip
 2f16275cf082961d950e5471a58c35a85d8f1dfa841492594c07b34d4fc9b0aa  WanryoTalk-MyPC-Windows-x64-v2.2.0.zip
 1a036e5df045a05277a987d151aa19377ba7089bbb0517837734da5933ac1d8e  WanryoTalk-MyPC-Windows-x64-v2.3.0.zip
-1a036e5df045a05277a987d151aa19377ba7089bbb0517837734da5933ac1d8e  WanryoTalk-MyPC-Windows-x64.zip
+e15524ec222e4043ebc757ef42e038d32feb3b2e4401740bb5e56133a8028dda  WanryoTalk-MyPC-Windows-x64-v2.4.0.zip
+e15524ec222e4043ebc757ef42e038d32feb3b2e4401740bb5e56133a8028dda  WanryoTalk-MyPC-Windows-x64.zip
