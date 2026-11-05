@@ -1,8 +1,12 @@
-# 알파작업완료확인 프로그램 v2.16.0
+# 알파작업완료확인 프로그램 v2.17.0
 
-**[v2.16.0 프로그램 ZIP 다운로드](https://github.com/swsgood79-beep/Tool/raw/refs/heads/main/releases/AlphaWorkComplete-Windows-x64-v2.16.0.zip)**
+**[v2.17.0 프로그램 ZIP 다운로드](https://github.com/swsgood79-beep/Tool/raw/refs/heads/main/releases/AlphaWorkComplete-Windows-x64-v2.17.0.zip)**
 
 Windows 10/11 x64용입니다. 기존 프로그램의 **종료** 버튼을 누르고 새 ZIP의 `AlphaWorkComplete.exe`를 실행하세요. 기존 수주·검사 기록·Excel 자동 저장은 유지됩니다.
+
+## 넓어진 수주 등록 화면
+
+관리자 화면 왼쪽의 **＋ 수주 등록**을 누르면 수정 화면과 같은 넓은 등록 페이지가 열립니다. 수주번호·프로젝트명, 담당자 선택·명단 등록, 업체 특이사항 불러오기, 사진 첨부를 입력하고 저장하면 관리자 목록으로 돌아옵니다. 돌아가기를 누르면 등록하지 않고 목록으로 이동합니다. 기존 QR과 연결·백업 설정은 유지됩니다.
 
 ## 고정 QR은 어떻게 동작하나요?
 
