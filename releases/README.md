@@ -1,6 +1,6 @@
-# 알파작업완료확인 프로그램 v2.5.2
+# 알파작업완료확인 프로그램 v2.5.3
 
-**[v2.5.2 프로그램 ZIP 다운로드](https://github.com/swsgood79-beep/Tool/raw/refs/heads/main/releases/AlphaWorkComplete-Windows-x64-v2.5.2.zip)**
+**[v2.5.3 프로그램 ZIP 다운로드](https://github.com/swsgood79-beep/Tool/raw/refs/heads/main/releases/AlphaWorkComplete-Windows-x64-v2.5.3.zip)**
 
 Windows 10/11 x64용입니다. 기존 프로그램의 **종료** 버튼을 누르고 새 ZIP의 `AlphaWorkComplete.exe`를 실행하세요. 기존 수주·검사 기록·Excel 자동 저장은 유지됩니다.
 
@@ -45,6 +45,10 @@ ngrok 계정이나 유료 도메인은 필요하지 않습니다. 대신 아래�
 세팅검사를 먼저 완료한 뒤 출하검사가 활성화됩니다. 검사별 작업자·시각을 별도로 저장합니다. 두 검사 모두 끝나면 작업자 목록에서 사라지고 관리자 기록은 남습니다.
 
 문서 폴더 **완료톡/작업완료기록.xlsx** 하나에 한국 날짜별 시트를 추가합니다. EXE의 **엑셀 폴더**로 위치를 엽니다. 완료일자·완료시각·작업자·수주번호·프로젝트명·검사구분·기록번호를 저장합니다. Excel 파일이 잠겨 있으면 PC 원본에 먼저 기록하고 파일을 닫으면 자동 재시도합니다. 브라우저 Excel 다운로드는 사본입니다.
+
+## 완료한 작업자 표시
+
+세팅검사 완료 후에도 작업자 화면 왼쪽 검사명 아래에 작업자 이름을 표시합니다. 다른 작업자 화면에도 자동 반영됩니다.
 
 ## 수주번호별 엑셀 정렬
 
