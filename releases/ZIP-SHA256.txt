@@ -1,3 +1,4 @@
+76551256173766cae062977ab9671518e6c9b1877cf5b8c6f3366286c54e79ae  AlphaWorkComplete-Windows-x64-v2.10.0.zip
 9090d6d22ac5a6cce76afc817a6a3920f639e831c63896f8ce96a16bdf30954f  AlphaWorkComplete-Windows-x64-v2.5.0.zip
 968fc146f6711bd3f02276c44fbc1c610fa478b362f5dc5fe2faf7ed97de03d8  AlphaWorkComplete-Windows-x64-v2.5.1.zip
 ed6069f3403fb731b86935dff631e64f46752d170ff57c7b3621f4b0d6841d13  AlphaWorkComplete-Windows-x64-v2.5.2.zip
@@ -14,5 +15,5 @@ d4dbf855b5c8135c63327b36e4d485b6df916c7ef3183b1f5b3e9a7d51401323  WanryoTalk-MyP
 2f16275cf082961d950e5471a58c35a85d8f1dfa841492594c07b34d4fc9b0aa  WanryoTalk-MyPC-Windows-x64-v2.2.0.zip
 1a036e5df045a05277a987d151aa19377ba7089bbb0517837734da5933ac1d8e  WanryoTalk-MyPC-Windows-x64-v2.3.0.zip
 e15524ec222e4043ebc757ef42e038d32feb3b2e4401740bb5e56133a8028dda  WanryoTalk-MyPC-Windows-x64-v2.4.0.zip
-95a9cc89456a21c2517f8faf36ac982197d6f11d5ec9a20b9a8cd788bf290ecd  WanryoTalk-MyPC-Windows-x64.zip
-95a9cc89456a21c2517f8faf36ac982197d6f11d5ec9a20b9a8cd788bf290ecd  WanryoTalk-Windows-x64.zip
+76551256173766cae062977ab9671518e6c9b1877cf5b8c6f3366286c54e79ae  WanryoTalk-MyPC-Windows-x64.zip
+76551256173766cae062977ab9671518e6c9b1877cf5b8c6f3366286c54e79ae  WanryoTalk-Windows-x64.zip
