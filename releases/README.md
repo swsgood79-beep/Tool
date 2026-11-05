@@ -1,10 +1,12 @@
-# 완료톡 — 회사 PC 서버 통합 프로그램
+# 완료톡 v2.0.1 — 회사 PC 서버 통합 프로그램
 
 Windows 10/11 64비트용입니다. 수주 관리 서버, QR 발급, 작업 완료 소리·팝업 알림, 무료 임시 인터넷 연결을 포함합니다. Python이나 별도 서버를 설치하지 않아도 됩니다.
 
 ## 다운로드
 
-**[프로그램 ZIP 다운로드](https://github.com/swsgood79-beep/Tool/raw/refs/heads/main/releases/WanryoTalk-MyPC-Windows-x64.zip)**
+**[프로그램 ZIP 다운로드](https://github.com/swsgood79-beep/Tool/raw/refs/heads/main/releases/WanryoTalk-MyPC-Windows-x64-v2.0.1.zip)**
+
+**v2.0.1 수정:** Chrome에서 수주 등록 시 ‘잘못된 요청입니다’가 나오던 오류를 수정했습니다. 기존 프로그램을 종료한 뒤 새 EXE를 실행하세요. 기존 수주 데이터는 같은 Windows 계정에 그대로 유지됩니다.
 
 ZIP 안의 `사용방법.txt`에 실행 순서가 들어 있습니다. 무결성 확인용 ZIP SHA-256은 `ZIP-SHA256.txt`에 있습니다.
 
@@ -24,5 +26,5 @@ X 버튼은 알림 영역으로 숨깁니다. PC와 프로그램, 인터넷이 �
 - 무료 임시 Cloudflare Quick Tunnel을 사용합니다. 프로그램 재시작이나 새 연결 시 주소가 바뀔 수 있으므로 QR을 다시 전달해야 할 수 있습니다. 기존 수주·완료 기록은 유지됩니다.
 - Quick Tunnel은 시험용 서비스이며 가동 시간 보장이 없습니다. 고정 QR과 상시 업무용 안정성이 필요하면 고정 주소 연결로 전환해야 합니다.
 - 회사망에서 Cloudflare 연결을 허용해야 합니다. 인터넷 통신은 Cloudflare를 경유하고, 기록 파일은 PC에 저장합니다.
-- Windows 실행 파일은 Linux에서 교차 빌드했습니다. 통합 테스트 16개와 경쟁 상태 검사, Windows 대상 정적 검사, ZIP 무결성 검사를 통과했습니다. 실제 회사 Windows에서의 GUI·소리·터널 연결 및 휴대폰 데이터 접수는 아직 검증 전입니다.
+- Windows 실행 파일은 Linux에서 교차 빌드했습니다. 실제 Chromium 수주 등록·작업 완료를 포함한 테스트 17개와 경쟁 상태 검사, Windows 대상 정적 검사, ZIP 무결성 검사를 통과했습니다. 실제 회사 Windows에서의 GUI·소리·터널 연결 및 휴대폰 데이터 접수는 아직 검증 전입니다.
 - 실행 파일에 디지털 코드 서명은 포함하지 않았습니다.
