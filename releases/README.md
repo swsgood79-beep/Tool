@@ -1,8 +1,12 @@
-# 알파작업완료확인 프로그램 v2.17.0
+# 알파작업완료확인 프로그램 v2.18.0
 
-**[v2.17.0 프로그램 ZIP 다운로드](https://github.com/swsgood79-beep/Tool/raw/refs/heads/main/releases/AlphaWorkComplete-Windows-x64-v2.17.0.zip)**
+**[v2.18.0 프로그램 ZIP 다운로드](https://github.com/swsgood79-beep/Tool/raw/refs/heads/main/releases/AlphaWorkComplete-Windows-x64-v2.18.0.zip)**
 
 Windows 10/11 x64용입니다. 기존 프로그램의 **종료** 버튼을 누르고 새 ZIP의 `AlphaWorkComplete.exe`를 실행하세요. 기존 수주·검사 기록·Excel 자동 저장은 유지됩니다.
+
+## 휴대폰 작업자 화면 개선
+
+휴대폰에서 수주번호, 담당자·특이사항 버튼, 프로젝트명·검사 대기 상태를 나누어 정렬합니다. 담당자와 특이사항은 수주 펼치기 영역 밖의 독립 버튼이며, 특이사항은 붉은색으로 표시합니다. 버튼은 최소 44px 터치 높이를 유지하고 자체 눌림 효과를 줍니다. 프로젝트 제목이나 작업 열기를 누르면 검사 입력란이 열립니다. 기존 QR과 설정은 유지되며 업데이트 후 휴대폰 페이지를 새로고침하세요.
 
 ## 넓어진 수주 등록 화면
 
