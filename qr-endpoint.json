@@ -1,8 +1,8 @@
 {
   "application": "wanryotalk",
   "version": 1,
-  "online": false,
-  "endpoint": "",
-  "session": "p3NltwSgUxOwIrBXfP6FmX508Go6E0B3XZxcAYXBF-k",
-  "updated_at": "2026-11-05T02:29:44Z"
+  "online": true,
+  "endpoint": "https://wave-event-trunk-deaf.trycloudflare.com",
+  "session": "Unij0TIsKQMSHerPLsannFtbbd_-AO6Sc4irLEtPT7A",
+  "updated_at": "2026-11-05T02:29:50Z"
 }
