@@ -1,8 +1,10 @@
-# 알파작업완료확인 프로그램 v2.19.0
+# 알파작업완료확인 프로그램 v2.19.1
 
-**[v2.19.0 프로그램 ZIP 다운로드](https://github.com/swsgood79-beep/Tool/raw/refs/heads/main/releases/AlphaWorkComplete-Windows-x64-v2.19.0.zip)**
+**[v2.19.1 프로그램 ZIP 다운로드](https://github.com/swsgood79-beep/Tool/raw/refs/heads/main/releases/AlphaWorkComplete-Windows-x64-v2.19.1.zip)**
 
 Windows 10/11 x64용입니다. 기존 프로그램의 **종료** 버튼을 누르고 새 ZIP의 `AlphaWorkComplete.exe`를 실행하세요. 기존 수주·검사 기록·Excel 자동 저장은 유지됩니다.
+
+부산을 회사 기본 날씨 지역으로 설정했습니다. 처음 접속하면 부산이 자동 선택됩니다. 이미 다른 지역을 선택해 저장한 브라우저는 해당 선택을 유지하므로, 그 경우 날씨 지역을 부산으로 바꾸세요.
 
 ## 작업자 화면의 오늘 정보
 
