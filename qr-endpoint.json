@@ -1,8 +1,8 @@
 {
   "application": "wanryotalk",
   "version": 1,
-  "online": false,
-  "endpoint": "",
-  "session": "LrUKVaXO1o5cWCT-_d_a7QiReB7Hc7dgJ5SkBWw6xhM",
-  "updated_at": "2026-11-05T05:20:10Z"
+  "online": true,
+  "endpoint": "https://cadillac-generators-heading-mins.trycloudflare.com",
+  "session": "UjN2vNJ5LB0k7xdLH5GxcdemRbPM3MAtv_9e53KHncM",
+  "updated_at": "2026-11-05T05:20:16Z"
 }
