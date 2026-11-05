@@ -1,6 +1,7 @@
 (() => {
   'use strict';
   const pointerURL = 'https://raw.githubusercontent.com/swsgood79-beep/Tool/main/qr-endpoint.json';
+  const commitURL = 'https://api.github.com/repos/swsgood79-beep/Tool/commits?path=qr-endpoint.json&per_page=1';
   const key = new URLSearchParams(location.hash.slice(1)).get('k') || '';
   const title = document.getElementById('title');
   const message = document.getElementById('message');
@@ -26,6 +27,19 @@
     try { return await fetch(url, {...options, signal: controller.signal}); }
     finally { clearTimeout(timer); }
   }
+  async function latestPointerURL() {
+    // Branch-name raw responses can remain cached after a reconnect. Prefer
+    // the latest pointer commit and read its immutable content, without tokens.
+    try {
+      const response = await fetchTimed(`${commitURL}&t=${Date.now().toString(36)}`, {cache:'no-store',credentials:'omit',referrerPolicy:'no-referrer'}, 5000);
+      if (response.ok) {
+        const commits = await response.json();
+        const sha = Array.isArray(commits) && commits[0]?.sha;
+        if (typeof sha === 'string' && /^[a-f0-9]{40}$/.test(sha)) return `https://raw.githubusercontent.com/swsgood79-beep/Tool/${sha}/qr-endpoint.json`;
+      }
+    } catch (_) { /* Public API rate limits or temporary failure use the existing raw path. */ }
+    return pointerURL;
+  }
   async function connect() {
     if (busy) return;
     if (!/^[A-Za-z0-9_-]{43}$/.test(key)) {
@@ -36,7 +50,7 @@
     title.textContent = '작업장에 연결하고 있어요.';
     message.textContent = '회사 PC의 최신 접속 주소를 확인하고 있습니다.';
     try {
-      const response = await fetchTimed(`${pointerURL}?t=${Date.now().toString(36)}`, {cache: 'no-store', credentials: 'omit', referrerPolicy: 'no-referrer'}, 10000);
+      const response = await fetchTimed(`${await latestPointerURL()}?t=${Date.now().toString(36)}`, {cache: 'no-store', credentials: 'omit', referrerPolicy: 'no-referrer'}, 10000);
       if (!response.ok) throw new Error('pointer');
       const state = await response.json();
       if (state.application !== 'wanryotalk' || state.version !== 1 || state.online !== true) {
