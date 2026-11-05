@@ -44,13 +44,13 @@
       }
       const origin = endpoint(state.endpoint);
       if (!origin) { error('연결 정보를 확인해 주세요.', '관리자가 PC 프로그램에서 인터넷 연결을 다시 시작해야 합니다.'); return; }
-      const probe = await fetchTimed(`${origin}/ready/${encodeURIComponent(key)}`, {cache: 'no-store', credentials: 'omit', referrerPolicy: 'no-referrer'}, 7000);
-      if (!probe.ok || (await probe.json()).ready !== true) throw new Error('offline');
+      // A readiness fetch is cross-origin and may be blocked even when normal
+      // navigation works. Move directly to the validated public worker URL.
       title.textContent = '작업장으로 이동합니다.';
       message.textContent = '출하검사·세팅검사 접수 화면을 열고 있습니다.';
       location.replace(`${origin}/work/${encodeURIComponent(key)}`);
     } catch (_) {
-      error('회사 PC 연결을 확인해 주세요.', 'PC가 꺼져 있거나 주소 갱신 중일 수 있습니다. 잠시 후 다시 연결해 주세요.');
+      error('연결 정보를 읽지 못했어요.', 'GitHub 접속이 일시적으로 막혔거나 주소 갱신 중일 수 있습니다. 잠시 후 다시 연결해 주세요.');
     } finally {
       busy = false; retry.disabled = false;
     }
