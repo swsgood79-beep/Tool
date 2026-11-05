@@ -1,8 +1,8 @@
 {
   "application": "wanryotalk",
   "version": 1,
-  "online": true,
-  "endpoint": "https://recreation-length-edward-boys.trycloudflare.com",
+  "online": false,
+  "endpoint": "",
   "session": "LrUKVaXO1o5cWCT-_d_a7QiReB7Hc7dgJ5SkBWw6xhM",
-  "updated_at": "2026-11-05T05:19:05Z"
+  "updated_at": "2026-11-05T05:20:10Z"
 }
