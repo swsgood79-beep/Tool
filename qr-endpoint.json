@@ -1,8 +1,8 @@
 {
   "application": "wanryotalk",
   "version": 1,
-  "online": false,
-  "endpoint": "",
-  "session": "",
-  "updated_at": ""
+  "online": true,
+  "endpoint": "https://oklahoma-barbara-surfing-coverage.trycloudflare.com",
+  "session": "-EF_-zp67A2O3LP3qdFL8ksnkYtmWljYTHJZgyfepAU",
+  "updated_at": "2026-11-05T02:26:52Z"
 }
