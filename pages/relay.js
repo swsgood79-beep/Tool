@@ -9,6 +9,7 @@
   let busy = false;
   function error(heading, text) {
     title.textContent = heading; message.textContent = text;
+    document.body.classList.add("entry-error");
     retry.hidden = false;
   }
   function endpoint(value) {
@@ -46,7 +47,8 @@
       error('작업장 QR을 다시 스캔해 주세요.', '이 페이지 주소만으로는 접수할 수 없습니다. 관리자가 전달한 QR코드로 열어 주세요.');
       retry.hidden = true; return;
     }
-    busy = true; retry.disabled = true;
+    busy = true; retry.disabled = true; retry.hidden = true;
+    document.body.classList.remove("entry-error");
     title.textContent = '작업장에 연결하고 있어요.';
     message.textContent = '회사 PC의 최신 접속 주소를 확인하고 있습니다.';
     try {
@@ -60,9 +62,7 @@
       if (!origin) { error('연결 정보를 확인해 주세요.', '관리자가 PC 프로그램에서 인터넷 연결을 다시 시작해야 합니다.'); return; }
       // A readiness fetch is cross-origin and may be blocked even when normal
       // navigation works. Move directly to the validated public worker URL.
-      title.textContent = '작업장으로 이동합니다.';
-      message.textContent = '출하검사·세팅검사 접수 화면을 열고 있습니다.';
-      location.replace(`${origin}/work/${encodeURIComponent(key)}`);
+      location.replace(`${origin}/work/${encodeURIComponent(key)}?entry=gate`);
     } catch (_) {
       error('연결 정보를 읽지 못했어요.', 'GitHub 접속이 일시적으로 막혔거나 주소 갱신 중일 수 있습니다. 잠시 후 다시 연결해 주세요.');
     } finally {

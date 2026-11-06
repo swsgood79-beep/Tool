@@ -1,8 +1,20 @@
-# 알파작업완료확인 프로그램 v2.26.0
+# 알파작업완료확인 프로그램 v2.27.0
 
-**[v2.26.0 프로그램 ZIP 다운로드](https://github.com/swsgood79-beep/Tool/raw/refs/heads/main/releases/AlphaWorkComplete-Windows-x64-v2.26.0.zip)**
+**[v2.27.0 프로그램 ZIP 다운로드](https://github.com/swsgood79-beep/Tool/raw/refs/heads/main/releases/AlphaWorkComplete-Windows-x64-v2.27.0.zip)**
 
 Windows 10/11 x64용입니다. 기존 프로그램의 **종료** 버튼을 누르고 새 ZIP의 `AlphaWorkComplete.exe`를 실행하세요. 기존 수주·검사 기록·Excel 자동 저장은 유지됩니다.
+
+## QR 입장 · 어두운 2D 문 열림
+
+QR 연결 화면을 확정한 반대 방향 쿼터뷰 일러스트로 바꿨습니다. 계단 아래 문 정면의 인물은 고정하고, 양쪽 문짝만 경첩 방향으로 열리며 문 안에는 금빛만 보입니다. 기존 ‘작업장으로 이동합니다’ 안내 카드는 정상 연결 중에는 표시하지 않습니다.
+
+QR 주소·키와 최신 PC 주소 조회 방식은 유지합니다. 연결 정보를 확인하는 동안 문은 닫혀 있고, 회사 PC의 작업자 페이지에 도착해 초기 화면/스크립트가 준비된 뒤 약 1.4초 동안 문이 열리고 작업자 화면이 드러납니다. 실제 네트워크 완료율을 표시하는 가짜 진행률은 넣지 않았습니다. 날씨 조회를 기다리지는 않습니다. 연결 정보 조회에 실패하거나 PC 연결이 꺼져 있으면 다시 연결 안내를 표시합니다. 이미지 실패·동작 줄이기 설정·브라우저 뒤로가기 복원 시에도 작업자 화면을 가리지 않도록 처리합니다. QR 입장용 일회성 표시만 사용하며 일반 새로고침 때 효과를 반복하지 않습니다.
+
+**기존 프로그램 종료 → 새 EXE 실행 → 휴대폰에서 같은 QR 재접속** 순서입니다. 문 열림 전환을 끝까지 보려면 PC도 v2.27.0으로 갱신하세요. 기존 버전 PC는 작업자 화면으로 연결되지만 도착 후 문 열림은 표시하지 못합니다. Pages 게시/브라우저 캐시로 새 그림 반영에는 잠시 시간이 걸릴 수 있습니다. 기존 QR·수주·납기표 연결·알림·사진·엑셀·백업 설정과 데이터 형식9는 변경하지 않습니다.
+
+[문 열림 영상 미리보기](https://github.com/swsgood79-beep/Tool/raw/refs/heads/main/releases/EntryDoorPreview-v2.27.0.mp4) · [움직이는 이미지](https://github.com/swsgood79-beep/Tool/raw/refs/heads/main/releases/EntryDoorPreview-v2.27.0.gif)
+
+검증: 실제 Chromium에서 초기화 중 닫힘, 준비 후 열림/입력 가능, 이미지 실패와 동작 줄이기, 재접속/일반 새로고침, 고정 QR의 변경된 PC 주소 연결·꺼짐/재시도·외부 주소 차단·GitHub에 QR 키 미전송을 확인했습니다. Windows 정적 검사/크로스 빌드를 통과했습니다. 실제 Windows/Samsung 렌더링은 이 개발 환경에서 실행하지 못했습니다.
 
 ## 남색·파란색 통합 화면 · 주말 출고 일정
 
