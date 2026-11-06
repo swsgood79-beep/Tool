@@ -9,3 +9,9 @@ body.relay-entry{margin:0;background:#080e13;color:#decda6;min-height:100svh;fon
 @media(prefers-reduced-motion:reduce){.gate-leaf,.gate-artwork,.gate-light{transition:none}.entry-gate.gate-leaving{animation:gate-depart .12s linear forwards}}
 
 .rigid-back{transform-origin:0 0;transform-box:view-box}
+
+/* Resolve the fixed QR quietly, then paint the complete door scene once on the PC page. */
+.entry-gate:not(.gate-scene-ready) .gate-composition{opacity:0}.gate-composition{transition:opacity .16s ease}.gate-scene-ready .gate-composition{opacity:1}
+.gate-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:9px;pointer-events:none}.gate-loading i{display:block;width:6px;height:6px;border-radius:50%;background:#b69a62;opacity:.35;animation:entry-wait 1.4s ease-in-out infinite}.gate-loading i:nth-child(2){animation-delay:.18s}.gate-loading i:nth-child(3){animation-delay:.36s}.gate-scene-ready .gate-loading{display:none}.entry-error .gate-loading{opacity:.2}
+@keyframes entry-wait{0%,100%{opacity:.25}50%{opacity:.85}}
+@media(prefers-reduced-motion:reduce){.gate-composition{transition:none}.gate-loading i{animation:none;opacity:.6}}
