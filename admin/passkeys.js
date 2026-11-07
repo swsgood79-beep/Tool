@@ -7,7 +7,7 @@
  const encode=b=>btoa(String.fromCharCode(...new Uint8Array(b))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
  function serial(c){const r=c.response,out={id:c.id,rawId:encode(c.rawId),type:c.type,response:{clientDataJSON:encode(r.clientDataJSON)},clientExtensionResults:c.getClientExtensionResults()};if(c.authenticatorAttachment)out.authenticatorAttachment=c.authenticatorAttachment;if(r.attestationObject){out.response.attestationObject=encode(r.attestationObject);if(r.getTransports)out.response.transports=r.getTransports()}else{out.response.authenticatorData=encode(r.authenticatorData);out.response.signature=encode(r.signature);out.response.userHandle=r.userHandle?encode(r.userHandle):null}return out}
  class RequestFailure extends Error{constructor(code){super();this.code=code}}
- async function api(origin,path,data){const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);try{const r=await fetch(origin+path,{method:'POST',mode:'cors',credentials:'omit',cache:'no-store',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),signal:controller.signal});if(!r.ok)throw new RequestFailure('HTTP'+r.status);try{return await r.json()}catch(_){throw new RequestFailure('RESPONSE')}}finally{clearTimeout(timer)}}
+ async function api(origin,path,data){const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);try{const r=await fetch(origin+path,{method:'POST',mode:'cors',credentials:'omit',cache:'no-store',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),signal:controller.signal});if(!r.ok){let detail='';try{const body=await r.json();if(['FLOW','CONFIG','OWNER','EXPIRED','EXTENSION','ORIGIN','CHALLENGE','USER_VERIFICATION','RP_ID','SIGNATURE','RESPONSE','PROTOCOL'].includes(body?.code))detail='-'+body.code}catch(_){}throw new RequestFailure('HTTP'+r.status+detail)}try{return await r.json()}catch(_){throw new RequestFailure('RESPONSE')}}finally{clearTimeout(timer)}}
  function failure(stage,e){
   const code=e instanceof RequestFailure?e.code:['NotAllowedError','NotSupportedError','InvalidStateError','SecurityError','NotReadableError','AbortError','TypeError'].includes(e?.name)?e.name:'UNKNOWN';
   let message;
@@ -17,7 +17,7 @@
    else if(code==='SecurityError')message='브라우저가 패스키 등록 주소를 허용하지 않았습니다. 고정 관리자 주소를 브라우저에서 직접 열어 다시 시작해 주세요.';
    else message='휴대폰에서 패스키 생성 또는 인증을 완료하지 못했습니다. 지문 확인 뒤에도 보관함 저장이 실패할 수 있습니다. 화면 잠금과 패스키 보관함 설정을 확인해 주세요.';
   }else if(stage==='VERIFY'){
-   message=code.startsWith('HTTP')?'지문 확인 결과는 받았지만 회사 PC가 등록·로그인 검증을 승인하지 않았습니다. 아래 오류 코드를 알려 주세요.':'지문 확인 결과를 회사 PC로 보내는 과정에서 연결을 마치지 못했습니다. 회사 PC의 인터넷 연결을 확인해 주세요.';
+   message=code.endsWith('-FLOW')||code.endsWith('-EXPIRED')?'등록 요청 시간이 지났습니다. 관리자 화면에서 다시 시작해 주세요.':code.endsWith('-OWNER')||code.endsWith('-CONFIG')?'회사 PC의 관리자 로그인이나 설정이 변경되었습니다. 비밀번호로 로그인한 뒤 다시 등록해 주세요.':code.endsWith('-EXTENSION')?'휴대폰이 보낸 패스키 부가 정보가 PC의 등록 요청과 맞지 않습니다. 아래 오류 코드를 알려 주세요.':code.startsWith('HTTP')?'지문 확인 결과는 받았지만 회사 PC가 등록·로그인 검증을 승인하지 않았습니다. 아래 오류 코드를 알려 주세요.':'지문 확인 결과를 회사 PC로 보내는 과정에서 연결을 마치지 못했습니다. 회사 PC의 인터넷 연결을 확인해 주세요.';
   }else if(stage==='SERIALIZE')message='휴대폰이 반환한 패스키 결과를 읽지 못했습니다. 아래 오류 코드를 알려 주세요.';
   else if(stage==='BEGIN'&&code==='HTTP403')message='등록 대기 시간이 지났거나 회사 PC의 로그인 상태가 변경되었습니다. 관리자 화면에서 등록을 다시 시작해 주세요.';
   else message='패스키 인증 준비 중 회사 PC와 연결하지 못했습니다. PC 프로그램·인터넷 연결을 확인하고 다시 시작해 주세요.';
