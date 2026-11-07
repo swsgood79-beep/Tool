@@ -25,7 +25,7 @@
  }
  const supported=!!window.PublicKeyCredential&&!!navigator.credentials;
  if(!supported){start.disabled=true;start.textContent='지문 로그인을 지원하는 브라우저에서 열어 주세요'}
- start.addEventListener('click',async()=>{start.disabled=true;try{const origin=await window.AlphaAdminEntry.resolve();location.assign(origin+'/mobile-admin/passkey/start')}catch(_){document.getElementById('status').textContent='회사 PC의 연결을 확인한 뒤 다시 눌러 주세요.'}finally{start.disabled=!supported}});
+ start.addEventListener('click',async()=>{start.disabled=true;try{const origin=await window.AlphaAdminEntry.resolve();location.assign(origin+'/mobile-admin/passkey/start'+window.AlphaAdminEntry.nextQuery)}catch(_){document.getElementById('status').textContent='회사 PC의 연결을 확인한 뒤 다시 눌러 주세요.'}finally{start.disabled=!supported}});
  if((mode==='register'||mode==='login')&&/^[A-Za-z0-9_-]{43}$/.test(token)){
   let restart=false;
   box.hidden=false;start.hidden=true;document.getElementById('passkey-title').textContent=mode==='register'?'이 휴대폰 패스키 등록':'지문으로 관리자 로그인';document.getElementById('passkey-description').textContent='휴대폰 설정에 따라 지문·얼굴·화면 잠금 PIN으로 확인합니다.';confirm.textContent=mode==='register'?'지문·패스키 등록하기':'지문으로 로그인';
