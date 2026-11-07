@@ -40,7 +40,7 @@
   setup.hidden=true;detail.hidden=false;document.getElementById('received').hidden=true;
   document.getElementById('detail-title').textContent=message.title||'작업 소식';
   document.getElementById('detail-body').textContent=message.body||'내용이 없는 알림입니다.';
-  const review=document.getElementById('review-order');review.hidden=!(message.pending&&Number.isSafeInteger(message.projectId)&&message.projectId>0&&Number.isSafeInteger(message.requestId)&&message.requestId>0);if(!review.hidden){const target=new URL('../admin/',location.href);target.hash='';target.search=new URLSearchParams({project:String(message.projectId),request:String(message.requestId),open:'inspection'});review.href=target.href}else review.removeAttribute('href');
+  const review=document.getElementById('review-order'),request=Number.isSafeInteger(message.requestId)&&message.requestId>0?message.requestId:Number((/^alpha-([1-9][0-9]*)$/.exec(message.tag||'')||[])[1]);review.hidden=!((message.pending===true||/(?:세팅검사|출하검사) 신청\s*$/.test((message.body||'').split('\n')[0]))&&Number.isSafeInteger(request)&&request>0);if(!review.hidden){const target=new URL('../admin/',location.href);target.hash='';const params=new URLSearchParams({request:String(request),open:'inspection',v:'2.37.1'});if(Number.isSafeInteger(message.projectId)&&message.projectId>0)params.set('project',String(message.projectId));target.search=params;review.href=target.href}else review.removeAttribute('href');
   document.getElementById('detail-time').textContent=message.received?new Date(message.received).toLocaleString('ko-KR'):'';
  }
  async function messages(){
