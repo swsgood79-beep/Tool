@@ -1,9 +1,9 @@
 'use strict';
-const CACHE='alpha-phone-v3';
+const CACHE='alpha-phone-v4';
 const HOME=new URL('./',self.location).href;
-const ASSETS=['./','index.html','push.js','phone.css','push.js?v=20261108-approval','phone.css?v=20261108-approval','icon.svg','../style.css'].map(p=>new URL(p,self.location).href);
+const ASSETS=['./','index.html','push.js','phone.css','push.js?v=20261108-queue','phone.css?v=20261108-queue','icon.svg','../style.css'].map(p=>new URL(p,self.location).href);
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS.map(url=>new Request(url,{cache:'reload'})))).then(()=>self.skipWaiting())));
-self.addEventListener('activate',event=>event.waitUntil(Promise.all([self.clients.claim(),caches.delete('alpha-phone-v1'),caches.delete('alpha-phone-v2')])));
+self.addEventListener('activate',event=>event.waitUntil(Promise.all([self.clients.claim(),caches.delete('alpha-phone-v1'),caches.delete('alpha-phone-v2'),caches.delete('alpha-phone-v3')])));
 // This worker controls /Tool/phone/ only; never caches or intercepts the printed work QR relay.
 self.addEventListener('fetch',event=>{
  if(event.request.method!=='GET')return;
@@ -23,20 +23,32 @@ self.addEventListener('push',event=>event.waitUntil((async()=>{
  await Promise.all([saveMessage(safe).catch(()=>{}),self.registration.showNotification(safe.title,{actions:safe.pending&&safe.projectId&&safe.requestId?[{action:'review',title:'확인'}]:[],body:safe.body,tag:safe.tag,renotify:true,icon:new URL('icon.svg',HOME).href,badge:new URL('icon.svg',HOME).href,data:{url:HOME+'#'+new URLSearchParams({message:safe.tag}),message:safe}})]);
  const pages=await self.clients.matchAll({type:'window'});for(const page of pages)page.postMessage({type:'message-received'});
 })()));
-self.addEventListener('notificationclick',event=>{event.notification.close();event.waitUntil((async()=>{
- const notice=event.notification,stored=notice.data&&notice.data.message;
- // Older notifications had no message in data; recover from their title/body/tag as well.
- const message={title:stored&&typeof stored.title==='string'?stored.title:notice.title,body:stored&&typeof stored.body==='string'?stored.body:notice.body,tag:notice.tag||'alpha-message',received:stored&&stored.received||Date.now()};
- message.pending=!!(stored&&stored.pending);message.projectId=stored&&Number.isSafeInteger(stored.projectId)&&stored.projectId>0?stored.projectId:0;message.requestId=stored&&Number.isSafeInteger(stored.requestId)&&stored.requestId>0?stored.requestId:0;
- await saveMessage(message).catch(()=>{});
- let target=HOME+'#'+new URLSearchParams({message:message.tag});
- if(event.action==='review'&&message.pending&&message.projectId&&message.requestId){const review=new URL('../admin/',HOME);review.search=new URLSearchParams({project:String(message.projectId),request:String(message.requestId),open:'inspection'});target=review.href}
- const pages=await self.clients.matchAll({type:'window',includeUncontrolled:true});
- for(const page of pages){
-  const url=new URL(page.url);
-  if(url.origin===self.location.origin&&url.pathname.startsWith(new URL(HOME).pathname)){
-   try{const opened=await page.navigate(target);if(opened){await opened.focus();opened.postMessage({type:'open-message',message});return}}catch(_){}
-  }
+function inspectionTarget(message){
+ const id=Number.isSafeInteger(message.requestId)&&message.requestId>0?message.requestId:Number((/^alpha-([1-9][0-9]*)$/.exec(message.tag||'')||[])[1]);
+ const pending=message.pending===true||/(?:세팅검사|출하검사) 신청\s*$/.test((message.body||'').split('\n')[0]);
+ if(!pending||!Number.isSafeInteger(id)||id<1)return null;
+ const review=new URL('../admin/',HOME),params=new URLSearchParams({request:String(id),open:'inspection',v:'2.37.1'});
+ if(Number.isSafeInteger(message.projectId)&&message.projectId>0)params.set('project',String(message.projectId));
+ review.search=params;return review.href;
+}
+self.addEventListener('notificationclick',event=>{
+ event.notification.close();
+ const notice=event.notification,data=notice.data||{},stored=data.message||data;
+ const message={title:typeof stored.title==='string'?stored.title:notice.title,body:typeof stored.body==='string'?stored.body:notice.body,tag:notice.tag||(typeof stored.tag==='string'?stored.tag:'alpha-message'),received:stored.received||Date.now(),pending:stored.pending===true,projectId:stored.projectId,requestId:stored.requestId};
+ const review=inspectionTarget(message);
+ if(review){
+  // Open while the notification gesture is active, before waiting on storage or
+  // attempting a cross-scope WindowClient.navigate in Samsung Internet.
+  let opening;try{opening=self.clients.openWindow(review)}catch(e){opening=Promise.reject(e)}
+  event.waitUntil(Promise.all([saveMessage(message).catch(()=>{}),Promise.resolve(opening).then(async page=>{if(page){try{await page.focus()}catch(_){}}}).catch(async()=>{
+   const pages=await self.clients.matchAll({type:'window',includeUncontrolled:true});for(const page of pages){if(new URL(page.url).origin===self.location.origin){try{const opened=await page.navigate(review);if(opened){await opened.focus();return}}catch(_){}}}
+  })]));return;
  }
- const opened=await self.clients.openWindow(target);if(opened)opened.postMessage({type:'open-message',message});
-})())});
+ event.waitUntil((async()=>{
+  await saveMessage(message).catch(()=>{});
+  const target=HOME+'#'+new URLSearchParams({message:message.tag});
+  const pages=await self.clients.matchAll({type:'window',includeUncontrolled:true});
+  for(const page of pages){const url=new URL(page.url);if(url.origin===self.location.origin&&url.pathname.startsWith(new URL(HOME).pathname)){try{const opened=await page.navigate(target);if(opened){await opened.focus();opened.postMessage({type:'open-message',message});return}}catch(_){}}}
+  const opened=await self.clients.openWindow(target);if(opened)opened.postMessage({type:'open-message',message});
+ })());
+});
