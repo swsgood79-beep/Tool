@@ -1,3 +1,19 @@
+# 알파작업완료확인 프로그램 v2.38.3
+
+**[v2.38.3 프로그램 ZIP 다운로드](https://github.com/swsgood79-beep/Tool/raw/refs/heads/main/releases/AlphaWorkComplete-Windows-x64-v2.38.3.zip)**
+
+PC·휴대폰 관리자 첫 화면의 **작업자 화면** 전환 버튼을 맨 위 **알파작업완료확인 프로그램 제목 옆**으로 옮겼습니다. 기존 안내 영역과 QR 카드의 중복 전환 버튼은 정리했습니다.
+
+- PC에서는 로컬 작업자 화면을 같은 탭으로 열어 인터넷 연결 없이도 확인할 수 있습니다.
+- 휴대폰에서는 기존과 같은 작업자 주소로 이동하고 관리자 화면으로 돌아갈 때 유효한 로그인 상태를 유지합니다.
+- 작은 화면에서도 제목 옆에 버튼을 배치하며, 제목은 필요한 경우 줄바꿈합니다.
+
+기존 프로그램의 **종료 버튼 → 새 ZIP의 AlphaWorkComplete.exe 실행 → PC·휴대폰 관리자 화면 새로고침** 순서로 적용하세요. 고정 QR·주소·자료·설정·패스키·휴대폰 알림·검사 절차는 유지합니다.
+
+검증: 로컬 Chromium의 PC·HTTPS 휴대폰 관리자에서 제목 옆 배치·320~1360px 넘침·실제 작업자 화면 이동·로그인 유지·설정 메뉴·수주 목록·출고 캘린더를 확인하고 Windows vet/build를 통과했습니다. 실제 삼성 인터넷 기기는 설치 후 확인해 주세요.
+
+---
+
 # 알파작업완료확인 프로그램 v2.38.2
 
 **[v2.38.2 프로그램 ZIP 다운로드](https://github.com/swsgood79-beep/Tool/raw/refs/heads/main/releases/AlphaWorkComplete-Windows-x64-v2.38.2.zip)**
