@@ -1,3 +1,17 @@
+# 알파작업완료확인 프로그램 v2.39.1
+
+**[v2.39.1 프로그램 ZIP 다운로드](https://github.com/swsgood79-beep/Tool/raw/refs/heads/main/releases/AlphaWorkComplete-Windows-x64-v2.39.1.zip)**
+
+세팅·출하 통합 신청의 **PC 팝업 본문**을 **“작업자 님이 세팅·출하 통합검사를 신청했어요”**로 수정했습니다. 기존 통합검사 배지와 본문을 일치시킵니다.
+
+세팅만·출하만 신청한 알림과 비고 알림은 기존 문구를 유지합니다. 알림 한 건, 관리자 승인, 엑셀의 단계별 기록과 팝업·비고 기능은 그대로입니다.
+
+기존 프로그램의 **하단 종료 버튼 → 새 ZIP의 AlphaWorkComplete.exe 실행** 순서로 적용하세요. 기존 QR·주소·자료·설정·자료 형식14는 유지됩니다.
+
+검증: 기존 PC 알림 큐·통합 신청·일괄/부분 승인·원본 보존 검사를 실행하고 Windows vet/build를 통과했습니다.
+
+---
+
 # 알파작업완료확인 프로그램 v2.39.0
 
 **[v2.39.0 프로그램 ZIP 다운로드](https://github.com/swsgood79-beep/Tool/raw/refs/heads/main/releases/AlphaWorkComplete-Windows-x64-v2.39.0.zip)**
