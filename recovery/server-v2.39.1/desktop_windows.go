@@ -244,7 +244,7 @@ func (d *winDesktop) run(ready chan<- error) {
 		}
 		desktopMu.Unlock()
 	}()
-	d.Window = win("CreateWindowExW", 0, uintptr(unsafe.Pointer(wide(mainClass))), uintptr(unsafe.Pointer(wide("알파 복구 테스트판 v1.1 · 기존 자료와 분리"))), 0x02cf0000, 0x80000000, 0x80000000, 900, 800, 0, 0, instance, 0)
+	d.Window = win("CreateWindowExW", 0, uintptr(unsafe.Pointer(wide(mainClass))), uintptr(unsafe.Pointer(wide("알파 복구 테스트판 v1.2 · 기존 자료와 분리"))), 0x02cf0000, 0x80000000, 0x80000000, 900, 800, 0, 0, instance, 0)
 	if d.Window == 0 {
 		ready <- errors.New("Windows 관리 창 생성 실패")
 		return
@@ -567,7 +567,7 @@ func (d *winDesktop) paintMain(dc uintptr, r winRect) {
 	scale := d.px
 	fill(dc, winRect{0, 0, r.Right, scale(96)}, cBlue)
 	drawText(dc, "α  알파 복구 테스트판", winRect{scale(26), scale(22), r.Right - scale(20), scale(60)}, cWhite, d.Large, 0x20|4)
-	drawText(dc, "v1.1 TEST · 운영 자료와 분리", winRect{scale(30), scale(62), r.Right, scale(86)}, colorref(183, 213, 248), d.Font, 0x20|4)
+	drawText(dc, "v1.2 TEST · 운영 자료와 분리", winRect{scale(30), scale(62), r.Right, scale(86)}, colorref(183, 213, 248), d.Font, 0x20|4)
 	for _, box := range []winRect{{scale(16), scale(112), r.Right - scale(16), scale(240)}, {scale(16), scale(252), r.Right - scale(16), scale(320)}, {scale(16), scale(390), r.Right - scale(16), scale(452)}, {scale(16), scale(466), r.Right - scale(16), r.Bottom - scale(65)}} {
 		fill(dc, box, cWhite)
 	}

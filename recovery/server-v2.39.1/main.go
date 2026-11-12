@@ -39,7 +39,7 @@ func init() {
 	}}).ParseFS(web, "web/*.html"))
 }
 
-const notice = `<aside class="recovery-banner">격리 테스트판 v1.1 · 기존 자료와 분리 · 외부 연동 꺼짐 <a href="/recovery-status">기능 차이 확인</a> · <a href="/">관리자</a></aside>`
+const notice = `<aside class="recovery-banner">격리 테스트판 v1.2 · 기존 자료와 분리 · 외부 연동 꺼짐 <a href="/recovery-status">기능 차이 확인</a> · <a href="/">관리자</a></aside>`
 
 func (a *App) renderTemplate(w http.ResponseWriter, t *template.Template, name string, v any) {
 	var b bytes.Buffer
@@ -113,6 +113,7 @@ func run() error {
 	dir := flag.String("data", defaultDir, "격리 테스트 자료 폴더 (기존 자료 폴더 사용 금지)")
 	listen := flag.String("listen", testListen, "테스트 전용 로컬 접속 주소")
 	noBrowser := flag.Bool("no-browser", false, "브라우저 자동 열기 생략")
+	copyOriginal := flag.Bool("copy-original", false, "기존 자료를 새 테스트 복사본으로 가져오기 (원본은 읽기 전용)")
 	headless := flag.Bool("headless", false, "Windows 관리 창과 트레이 생략 (시험용)")
 	flag.Parse()
 	host, _, e := net.SplitHostPort(*listen)
@@ -124,6 +125,33 @@ func run() error {
 		return e
 	}
 	defer unlockOriginal()
+	importing := *copyOriginal
+	customData := false
+	flag.Visit(func(f *flag.Flag) {
+		if f.Name == "data" {
+			customData = true
+		}
+	})
+	if importing {
+		if customData {
+			return errors.New("기존 자료 복사 시 -data를 함께 지정할 수 없습니다")
+		}
+		source, err := legacyDir()
+		if err != nil {
+			return err
+		}
+		copied, err := copyForTest(source, defaultDir, nil)
+		if err != nil {
+			return err
+		}
+		*dir = copied
+	} else if !customData {
+		selected, err := selectedTestDir(defaultDir)
+		if err != nil {
+			return err
+		}
+		*dir = selected
+	}
 	freshTest, e := prepareTestDir(*dir)
 	if e != nil {
 		return e
@@ -143,9 +171,23 @@ func run() error {
 	if e != nil {
 		return e
 	}
+	if importing {
+		if e = a.transaction(func(s *State) error {
+			s.Board = token()
+			for i := range s.Projects {
+				s.Projects[i].rotate()
+			}
+			return nil
+		}); e != nil {
+			return e
+		}
+		if e = selectTestCopy(defaultDir, *dir); e != nil {
+			return e
+		}
+	}
 	url := "http://" + ln.Addr().String()
 	a.localURL = url
-	fmt.Printf("알파 복구 테스트판 v1.1\n관리자: %s\n저장 폴더: %s\n종료: 이 창에서 Ctrl+C\n", url, *dir)
+	fmt.Printf("알파 복구 테스트판 v1.2\n관리자: %s\n저장 폴더: %s\n종료: 이 창에서 Ctrl+C\n", url, *dir)
 	srv := &http.Server{Handler: a, ReadHeaderTimeout: 10 * time.Second, ReadTimeout: 60 * time.Second, WriteTimeout: 60 * time.Second, IdleTimeout: 90 * time.Second, MaxHeaderBytes: 1 << 20}
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
 	defer stop()
@@ -314,4 +356,4 @@ func pathLooksOriginal(p string) bool {
 	return false
 }
 
-const statusPage = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/style.css"><title>복구 기능 확인</title></head><body><header>알파 격리 테스트판 v1.1</header><main><section class="card"><h1>격리 테스트판 v1.1</h1><p><strong>이 버전은 전용 테스트 폴더·포트·트레이·로그인 쿠키를 사용합니다. 기존 운영 자료를 자동으로 읽지 않습니다. 아래 원본 저장 형식 설명은 테스트 폴더 안에서만 적용되며 외부 연동은 차단되어 있습니다.</strong></p><p>원본 메타데이터와 어셈블리·화면 명세로 다시 작성한 코드입니다. 원본과 100% 동일하다고 검증된 프로그램은 아닙니다.</p><h2>원본 직접 저장</h2><p>기존 WanryoTalk의 projects-v2.dat, connection-v1.dat, phone-push-v1.dat, designers-v1.dat, client-notes-v1.dat, backup-v1.dat를 직접 갱신합니다. 기존 파일은 최초 .bak으로 보존하며 기존 백업은 덮어쓰지 않습니다. 수주·기록·담당자·업체·설정은 원본 JSON 필드로 저장하고 사진은 기존 project-photos 폴더의 DPAPI JPEG로 저장합니다. 복구판 추가 상태는 projects-v2.dat의 _RecoveredV1 확장 필드에 보관하며 별도 reconstructed-state.bin은 새로 쓰지 않습니다.</p><p>여러 파일 저장 중 종료되면 복구 저널로 미완료 저장을 되돌립니다. 외부 변경이나 손상이 있으면 자료를 덮어쓰지 않고 중단합니다. 원본과 복구판은 동시에 실행하지 마세요. .bak은 최초 상태이며 이후 자료는 암호화 GitHub 백업도 설정하세요.</p><h2>Windows 창·알림</h2><p>Win32 관리 창, 트레이 메뉴, 자체 팝업, 미확인 숫자 배지를 구현했습니다. 창을 닫으면 트레이에 남고 ‘종료’로 끝납니다. 팝업은 잠시 뒤 사라지며 마우스를 올리면 멈춥니다. 미확인 숫자를 누르면 다시 볼 수 있습니다. 관리자 화면 버튼은 PC가 만든 일회용 티켓으로 연결합니다.</p><h2>확인된 범위와 남은 차이</h2><p>Go 서버 시험·저장 중 종료 및 복구·원본 스키마 읽기·브라우저 업무 흐름·Windows 교차 빌드로 검증합니다. Windows GUI/DPAPI의 실기기 실행, 실제 회사 자료·삼성 인터넷 지문·잠금 알림 및 실제 외부 계정 연동은 이 환경에서 확인하지 못했습니다. 창의 픽셀·배치·애니메이션·소리가 원본과 동일하다는 보장은 없습니다. ngrok 실행, 수주 엑셀 일괄등록, 원본 엑셀 직접 병합·사진 자동 청소는 여전히 미구현입니다.</p><p>시세·일정·Web Push·WebAuthn·Cloudflare·GitHub 백업은 v0.2 기능을 유지합니다. 백업은 복구판 별도 Release에 age 암호화하며 원본 백업을 삭제하지 않습니다. 백업 상한은 256MB입니다. Windows는 현재 계정의 DPAPI를 쓰며 Linux는 암호화 없는 검증용입니다. 실행 전 전체 자료 폴더를 별도 보관하고 복구키는 PC 밖에 보관하세요.</p><a class="button primary" href="/">관리자 화면</a></section></main></body></html>`
+const statusPage = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/style.css"><title>복구 기능 확인</title></head><body><header>알파 격리 테스트판 v1.2</header><main><section class="card"><h1>격리 테스트판 v1.2</h1><p><strong>이 버전은 전용 테스트 폴더·포트·트레이·로그인 쿠키를 사용합니다. 기존 운영 자료를 자동으로 읽지 않습니다. 아래 원본 저장 형식 설명은 테스트 폴더 안에서만 적용되며 외부 연동은 차단되어 있습니다.</strong></p><p>원본 메타데이터와 어셈블리·화면 명세로 다시 작성한 코드입니다. 원본과 100% 동일하다고 검증된 프로그램은 아닙니다.</p><h2>원본 직접 저장</h2><p>기존 WanryoTalk의 projects-v2.dat, connection-v1.dat, phone-push-v1.dat, designers-v1.dat, client-notes-v1.dat, backup-v1.dat를 직접 갱신합니다. 기존 파일은 최초 .bak으로 보존하며 기존 백업은 덮어쓰지 않습니다. 수주·기록·담당자·업체·설정은 원본 JSON 필드로 저장하고 사진은 기존 project-photos 폴더의 DPAPI JPEG로 저장합니다. 복구판 추가 상태는 projects-v2.dat의 _RecoveredV1 확장 필드에 보관하며 별도 reconstructed-state.bin은 새로 쓰지 않습니다.</p><p>여러 파일 저장 중 종료되면 복구 저널로 미완료 저장을 되돌립니다. 외부 변경이나 손상이 있으면 자료를 덮어쓰지 않고 중단합니다. 원본과 복구판은 동시에 실행하지 마세요. .bak은 최초 상태이며 이후 자료는 암호화 GitHub 백업도 설정하세요.</p><h2>Windows 창·알림</h2><p>Win32 관리 창, 트레이 메뉴, 자체 팝업, 미확인 숫자 배지를 구현했습니다. 창을 닫으면 트레이에 남고 ‘종료’로 끝납니다. 팝업은 잠시 뒤 사라지며 마우스를 올리면 멈춥니다. 미확인 숫자를 누르면 다시 볼 수 있습니다. 관리자 화면 버튼은 PC가 만든 일회용 티켓으로 연결합니다.</p><h2>확인된 범위와 남은 차이</h2><p>Go 서버 시험·저장 중 종료 및 복구·원본 스키마 읽기·브라우저 업무 흐름·Windows 교차 빌드로 검증합니다. Windows GUI/DPAPI의 실기기 실행, 실제 회사 자료·삼성 인터넷 지문·잠금 알림 및 실제 외부 계정 연동은 이 환경에서 확인하지 못했습니다. 창의 픽셀·배치·애니메이션·소리가 원본과 동일하다는 보장은 없습니다. ngrok 실행, 수주 엑셀 일괄등록, 원본 엑셀 직접 병합·사진 자동 청소는 여전히 미구현입니다.</p><p>시세·일정·Web Push·WebAuthn·Cloudflare·GitHub 백업은 v0.2 기능을 유지합니다. 백업은 복구판 별도 Release에 age 암호화하며 원본 백업을 삭제하지 않습니다. 백업 상한은 256MB입니다. Windows는 현재 계정의 DPAPI를 쓰며 Linux는 암호화 없는 검증용입니다. 실행 전 전체 자료 폴더를 별도 보관하고 복구키는 PC 밖에 보관하세요.</p><a class="button primary" href="/">관리자 화면</a></section></main></body></html>`

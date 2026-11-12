@@ -1,0 +1,14 @@
+{
+  "source": "synthetic original-schema fixture; no company files",
+  "copiedOrderAndDesigner": "pass",
+  "copiedClientNotes": "pass",
+  "exampleDataNotMixed": "pass",
+  "workerRequestAndAdminApproval": "pass",
+  "javascriptErrors": [],
+  "windowsNativeExecution": "not tested",
+  "originalSourceFilesUnchanged": "pass",
+  "activeCopyReopenedOnNormalLaunch": "pass",
+  "copiedApprovalPreserved": "pass",
+  "workerAccessKeyRotated": "pass",
+  "copiedPasswordStoredOnlyInTestFolder": "pass"
+}
