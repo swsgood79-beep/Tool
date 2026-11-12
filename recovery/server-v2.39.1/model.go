@@ -81,6 +81,7 @@ type Ticket struct {
 	Next    string
 }
 type App struct {
+	testMode      bool
 	mu            sync.Mutex
 	state         State
 	dir           string

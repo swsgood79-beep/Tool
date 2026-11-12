@@ -22,6 +22,10 @@ func (a *App) desktopSnapshot() desktopView {
 	a.mu.Lock()
 	defer a.mu.Unlock()
 	v := desktopView{Connection: a.integration.TunnelStatus, Storage: "원본 직접 저장 · 최초 .bak 보존"}
+	if a.testMode {
+		v.Connection = "격리 테스트 · 외부 접속/알림/백업 꺼짐"
+		v.Storage = "테스트 전용 자료 · 기존 원본은 읽거나 쓰지 않음"
+	}
 	if v.Connection == "" {
 		v.Connection = "인터넷 연결 대기"
 	}

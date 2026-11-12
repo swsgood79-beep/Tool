@@ -159,10 +159,10 @@ func (a *App) adminPOST(w http.ResponseWriter, r *http.Request, session Session)
 	p := strings.Split(strings.Trim(path, "/"), "/")
 	switch {
 	case path == "/logout" || path == "/mobile-admin/logout":
-		if c, e := r.Cookie("aw_recovered_session"); e == nil {
+		if c, e := r.Cookie(a.sessionCookie()); e == nil {
 			delete(a.sessions, hashToken(c.Value))
 		}
-		http.SetCookie(w, &http.Cookie{Name: "aw_recovered_session", Path: "/", Value: "", MaxAge: -1, HttpOnly: true, SameSite: http.SameSiteStrictMode})
+		http.SetCookie(w, &http.Cookie{Name: a.sessionCookie(), Path: "/", Value: "", MaxAge: -1, HttpOnly: true, SameSite: http.SameSiteStrictMode})
 		http.Redirect(w, r, "/login", 303)
 		return true
 	case path == "/projects":

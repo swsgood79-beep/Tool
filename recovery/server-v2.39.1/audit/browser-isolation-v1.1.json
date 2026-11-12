@@ -1,0 +1,10 @@
+{
+  "originalPort18791AndTest28791": "both running",
+  "demoOrders": "pass",
+  "testLoginAndCookieIsolation": "pass",
+  "combinedRequestAndApproval": "pass",
+  "externalRoutesBlocked": "pass",
+  "javascriptErrors": [],
+  "windowsNativeExecution": "not tested",
+  "originalSimulationFilesUnchanged": "pass"
+}

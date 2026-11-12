@@ -49,7 +49,7 @@ func safeNext(raw string) string {
 func (a *App) newSession(w http.ResponseWriter, r *http.Request, next string) {
 	value := token()
 	a.sessions[hashToken(value)] = Session{CSRF: token(), Expires: time.Now().Add(8 * time.Hour)}
-	http.SetCookie(w, &http.Cookie{Name: "aw_recovered_session", Value: value, Path: "/", MaxAge: 8 * 3600, HttpOnly: true, Secure: secureRequest(r), SameSite: http.SameSiteLaxMode})
+	http.SetCookie(w, &http.Cookie{Name: a.sessionCookie(), Value: value, Path: "/", MaxAge: 8 * 3600, HttpOnly: true, Secure: secureRequest(r), SameSite: http.SameSiteLaxMode})
 	jsonReply(w, map[string]any{"ok": true, "next": safeNext(next)})
 }
 func passkeyFailure(w http.ResponseWriter, code string, status int) {

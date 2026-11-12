@@ -19,7 +19,7 @@ func passwordHash(password, salt string) (string, error) {
 	return base64.RawURLEncoding.EncodeToString(b), e
 }
 func (a *App) session(r *http.Request) (Session, bool) {
-	c, e := r.Cookie("aw_recovered_session")
+	c, e := r.Cookie(a.sessionCookie())
 	if e != nil {
 		return Session{}, false
 	}
@@ -69,7 +69,7 @@ func (a *App) login(w http.ResponseWriter, r *http.Request) {
 	setup := a.state.PasswordHash == ""
 	message := ""
 	if r.Method == "POST" {
-		c, e := r.Cookie("aw_login_nonce")
+		c, e := r.Cookie(a.nonceCookie())
 		nonce := r.FormValue("csrf")
 		ticket, ok := a.challenges[nonce]
 		delete(a.challenges, nonce)
@@ -135,7 +135,7 @@ func (a *App) login(w http.ResponseWriter, r *http.Request) {
 				}
 			}
 			a.sessions[hashToken(value)] = Session{csrf, now.Add(8 * time.Hour)}
-			http.SetCookie(w, &http.Cookie{Name: "aw_recovered_session", Value: value, Path: "/", HttpOnly: true, Secure: secureRequest(r), SameSite: http.SameSiteStrictMode, MaxAge: 8 * 3600})
+			http.SetCookie(w, &http.Cookie{Name: a.sessionCookie(), Value: value, Path: "/", HttpOnly: true, Secure: secureRequest(r), SameSite: http.SameSiteStrictMode, MaxAge: 8 * 3600})
 			http.Redirect(w, r, safeNext(ticket.Next), 303)
 			return
 		}
@@ -151,7 +151,7 @@ func (a *App) login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	a.challenges[nonce] = Ticket{Expires: time.Now().Add(10 * time.Minute), Next: safeNext(r.URL.Query().Get("next"))}
-	http.SetCookie(w, &http.Cookie{Name: "aw_login_nonce", Value: nonce, Path: "/login", HttpOnly: true, SameSite: http.SameSiteStrictMode, MaxAge: 600})
+	http.SetCookie(w, &http.Cookie{Name: a.nonceCookie(), Value: nonce, Path: "/login", HttpOnly: true, SameSite: http.SameSiteStrictMode, MaxAge: 600})
 	t := template.Must(template.New("login").Parse(loginPage))
 	a.renderTemplate(w, t, "login", map[string]any{"Setup": setup, "Error": message, "CSRF": nonce, "Next": safeNext(r.URL.Query().Get("next"))})
 }

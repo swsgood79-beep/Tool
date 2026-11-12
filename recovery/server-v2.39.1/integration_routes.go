@@ -390,7 +390,7 @@ func (a *App) integrationPOST(w http.ResponseWriter, r *http.Request, s Session)
 			err = a.transaction(func(st *State) error { st.Integration.Passkeys.UserID = token(); return nil })
 		}
 		if err == nil {
-			cookie, e := r.Cookie("aw_recovered_session")
+			cookie, e := r.Cookie(a.sessionCookie())
 			if e != nil {
 				err = e
 				break

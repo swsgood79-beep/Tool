@@ -66,6 +66,13 @@ func (a *App) cloudTool(ctx context.Context) (string, error) {
 	return path, atomicFile(path, b)
 }
 func (a *App) startTunnel() {
+	if a.testMode {
+		a.mu.Lock()
+		a.integration.TunnelStatus = "격리 테스트판에서는 외부 접속을 시작하지 않습니다"
+		a.mu.Unlock()
+		return
+	}
+
 	a.mu.Lock()
 	if a.integration.CancelTunnel != nil {
 		a.mu.Unlock()

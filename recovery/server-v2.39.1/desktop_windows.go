@@ -62,9 +62,9 @@ const (
 	wmDrawItem      = 0x2b
 )
 const (
-	mainClass  = "WanryoTalkMain"
-	toastClass = "WanryoTalkRecoveredPopup"
-	badgeClass = "WanryoTalkRecoveredUnread"
+	mainClass  = "AlphaWorkRecoveryTestMain"
+	toastClass = "AlphaWorkRecoveryTestPopup"
+	badgeClass = "AlphaWorkRecoveryTestUnread"
 )
 const (
 	idConnect    = 101
@@ -145,7 +145,7 @@ func nativeError(message string) {
 	win("MessageBoxW", 0, uintptr(unsafe.Pointer(wide(message))), uintptr(unsafe.Pointer(wide("알파 프로그램 시작 확인"))), 0x10)
 }
 func lockOriginalApp() (func(), error) {
-	h, _, e := kernel32.NewProc("CreateMutexW").Call(0, 0, uintptr(unsafe.Pointer(wide(`Local\WanryoTalkNotifier-v1`))))
+	h, _, e := kernel32.NewProc("CreateMutexW").Call(0, 0, uintptr(unsafe.Pointer(wide(`Local\AlphaWorkRecoveryTest-v1`))))
 	if h == 0 {
 		return nil, fmt.Errorf("프로그램 단일 실행 확인 실패: %v", e)
 	}
@@ -156,7 +156,7 @@ func lockOriginalApp() (func(), error) {
 			win("ShowWindow", existing, 9)
 			win("SetForegroundWindow", existing)
 		}
-		return nil, errors.New("알파 프로그램이 이미 실행 중입니다. 기존 프로그램을 종료한 뒤 실행하세요")
+		return nil, errors.New("테스트판이 이미 실행 중입니다. 기존 테스트판 창을 확인하세요")
 	}
 	return func() { syscall.CloseHandle(syscall.Handle(h)) }, nil
 }
@@ -244,7 +244,7 @@ func (d *winDesktop) run(ready chan<- error) {
 		}
 		desktopMu.Unlock()
 	}()
-	d.Window = win("CreateWindowExW", 0, uintptr(unsafe.Pointer(wide(mainClass))), uintptr(unsafe.Pointer(wide("알파작업완료확인 프로그램 v1.0 · 복구 구현판"))), 0x02cf0000, 0x80000000, 0x80000000, 900, 800, 0, 0, instance, 0)
+	d.Window = win("CreateWindowExW", 0, uintptr(unsafe.Pointer(wide(mainClass))), uintptr(unsafe.Pointer(wide("알파 복구 테스트판 v1.1 · 기존 자료와 분리"))), 0x02cf0000, 0x80000000, 0x80000000, 900, 800, 0, 0, instance, 0)
 	if d.Window == 0 {
 		ready <- errors.New("Windows 관리 창 생성 실패")
 		return
@@ -354,7 +354,7 @@ func (d *winDesktop) set(id int, text string) {
 }
 func (d *winDesktop) addTray() {
 	n := winNotifyIcon{Size: uint32(unsafe.Sizeof(winNotifyIcon{})), Window: d.Window, ID: 1, Flags: 7, Callback: wmTray, Icon: d.Icon}
-	copyWide(n.Tip[:], "알파작업완료확인 프로그램")
+	copyWide(n.Tip[:], "알파 복구 테스트판")
 	r, _, _ := shell32.NewProc("Shell_NotifyIconW").Call(0, uintptr(unsafe.Pointer(&n)))
 	d.TrayAdded = r != 0
 }
@@ -394,7 +394,7 @@ func (d *winDesktop) command(id int) {
 	case idUnread:
 		d.replay()
 	case idExit:
-		if win("MessageBoxW", d.Window, uintptr(unsafe.Pointer(wide("종료하면 휴대폰 접수와 완료 알림이 멈춥니다. 종료하시겠습니까?"))), uintptr(unsafe.Pointer(wide("알파작업완료확인 프로그램 종료"))), 0x24) == 6 {
+		if win("MessageBoxW", d.Window, uintptr(unsafe.Pointer(wide("테스트판을 종료하시겠습니까? 기존 알파 프로그램은 계속 실행됩니다."))), uintptr(unsafe.Pointer(wide("알파 복구 테스트판 종료"))), 0x24) == 6 {
 			d.shutdown()
 		}
 	}
@@ -566,8 +566,8 @@ func (d *winDesktop) paintMain(dc uintptr, r winRect) {
 	fill(dc, r, cBack)
 	scale := d.px
 	fill(dc, winRect{0, 0, r.Right, scale(96)}, cBlue)
-	drawText(dc, "α  알파작업완료확인 프로그램", winRect{scale(26), scale(22), r.Right - scale(20), scale(60)}, cWhite, d.Large, 0x20|4)
-	drawText(dc, "v1.0 · MY PC WORKSPACE", winRect{scale(30), scale(62), r.Right, scale(86)}, colorref(183, 213, 248), d.Font, 0x20|4)
+	drawText(dc, "α  알파 복구 테스트판", winRect{scale(26), scale(22), r.Right - scale(20), scale(60)}, cWhite, d.Large, 0x20|4)
+	drawText(dc, "v1.1 TEST · 운영 자료와 분리", winRect{scale(30), scale(62), r.Right, scale(86)}, colorref(183, 213, 248), d.Font, 0x20|4)
 	for _, box := range []winRect{{scale(16), scale(112), r.Right - scale(16), scale(240)}, {scale(16), scale(252), r.Right - scale(16), scale(320)}, {scale(16), scale(390), r.Right - scale(16), scale(452)}, {scale(16), scale(466), r.Right - scale(16), r.Bottom - scale(65)}} {
 		fill(dc, box, cWhite)
 	}
@@ -578,7 +578,7 @@ func (d *winDesktop) paintMain(dc uintptr, r winRect) {
 func (d *winDesktop) paintPopup(dc uintptr, r winRect, p *nativePopup) {
 	fill(dc, r, cWhite)
 	fill(dc, winRect{0, 0, r.Right, d.px(38)}, cBlue)
-	drawText(dc, "알파 · 검사 신청 / 작업 소식", winRect{d.px(14), d.px(5), r.Right - d.px(38), d.px(33)}, cWhite, d.Bold, 0x20|4)
+	drawText(dc, "테스트 · 검사 신청 / 작업 소식", winRect{d.px(14), d.px(5), r.Right - d.px(38), d.px(33)}, cWhite, d.Bold, 0x20|4)
 	drawText(dc, "×", winRect{r.Right - d.px(34), d.px(4), r.Right - d.px(6), d.px(32)}, cWhite, d.Bold, 0x20|1|4)
 	drawText(dc, p.Notice.Body, winRect{d.px(14), d.px(49), r.Right - d.px(14), r.Bottom - d.px(25)}, cText, d.Font, 0x10|0x8000)
 	drawText(dc, "누르면 상세 확인 · 닫아도 안 읽은 알림 유지", winRect{d.px(14), r.Bottom - d.px(26), r.Right - d.px(10), r.Bottom - d.px(6)}, cMuted, d.Font, 0x20|4)
