@@ -1,0 +1,53 @@
+/workspace/recovery-input/AlphaWorkComplete-v2.39.1.exe: go1.27.3
+	path	wanryotalk
+	mod	wanryotalk	(devel)	
+	dep	filippo.io/age	v1.2.1	h1:X0TZjehAZylOIj4DubWYU1vWQxv9bJpo+Uu2/LGhi1o=
+	dep	github.com/SherClockHolmes/webpush-go	v1.4.0	h1:ocnzNKWN23T9nvHi6IfyrQjkIc0oJWv1B1pULsf9i3s=
+	dep	github.com/fxamacker/cbor/v2	v2.9.4	h1:xwjVlxEMR3S605oUlgBjKLTTeGFciYPGYCtF/35LKGo=
+	dep	github.com/go-stack/stack	v1.8.1	h1:ntEHSVwIt7PNXNpgPmVfMrNhLtgjlmnZha2kOpuRiDw=
+	dep	github.com/go-viper/mapstructure/v2	v2.5.0	h1:vM5IJoUAy3d7zRSVtIwQgBj7BiWtMPfmPEgAXnvj1Ro=
+	dep	github.com/go-webauthn/webauthn	v0.18.2	h1:0BeftmEHU7i3Dv0VFwBtidy/ba37Vcdjvqst9EYu8Sk=
+	dep	github.com/go-webauthn/x	v0.3.1	h1:1ff37z3XfmTTomkhlURgGizLIDyOvPgTt2t9nlzKLRo=
+	dep	github.com/golang-jwt/jwt/v5	v5.3.1	h1:kYf81DTWFe7t+1VvL7eS+jKFVWaUnK9cB1qbwn63YCY=
+	dep	github.com/google/go-tpm	v0.9.8	h1:slArAR9Ft+1ybZu0lBwpSmpwhRXaa85hWtMinMyRAWo=
+	dep	github.com/google/uuid	v1.6.0	h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
+	dep	github.com/inconshreveable/log15	v3.0.0-testing.5+incompatible	h1:VryeOTiaZfAzwx8xBcID1KlJCeoWSIpsNbSk+/D2LNk=
+	dep	github.com/inconshreveable/log15/v3	v3.0.0-testing.5	h1:h4e0f3kjgg+RJBlKOabrohjHe47D3bbAB9BgMrc3DYA=
+	dep	github.com/jpillora/backoff	v1.0.0	h1:uvFg412JmmHBHw7iwprIxkPMI+sGQ4kzOWsMeHnm2EA=
+	dep	github.com/mattn/go-colorable	v0.1.13	h1:fFA4WZxdEF4tXPZVKMLwD8oUnCTTo08duU7wxecdEvA=
+	dep	github.com/mattn/go-isatty	v0.0.20	h1:xfD0iDuEKnDkl03q4limB+vH+GxLEtL/jb4xVJSWWEY=
+	dep	github.com/philhofer/fwd	v1.2.0	h1:e6DnBTl7vGY+Gz322/ASL4Gyp1FspeMvx1RNDoToZuM=
+	dep	github.com/richardlehane/mscfb	v1.0.9	h1:8xdd9auUvXbFoCw3L9h1spnQHZgjNsSX+ek46J6A9tE=
+	dep	github.com/richardlehane/msoleps	v1.0.6	h1:9BvkpjvD+iUBalUY4esMwv6uBkfOip/Lzvd93jvR9gg=
+	dep	github.com/skip2/go-qrcode	v0.0.0-20200617195104-da1b6568686e	h1:MRM5ITcdelLK2j1vwZ3Je0FKVCfqOLp5zO6trqMLYs0=
+	dep	github.com/tiendc/go-deepcopy	v1.7.2	h1:Ut2yYR7W9tWjTQitganoIue4UGxZwCcJy3orjrrIj44=
+	dep	github.com/tinylib/msgp	v1.6.4	h1:mOwYbyYDLPj35mkA2BjjYejgJk9BuHxDdvRnb6v2ZcQ=
+	dep	github.com/x448/float16	v0.8.4	h1:qLwI1I70+NjRFUR3zs1JPUCgaCXSh3SW62uAKT1mSBM=
+	dep	github.com/xuri/efp	v0.0.3-0.20260924042702-217b81952dec	h1:sZZokRLgr8nyrzkDDCQcvEYBsTrZr6eqXa/R9qALoQA=
+	dep	github.com/xuri/excelize/v2	v2.11.1	h1:tm/FVufArvfUiJXJtGv8jna/zZS1t9Uji2ImsnS9iBo=
+	dep	github.com/xuri/nfp	v0.0.2-0.20250530014748-2ddeb826f9a9	h1:+C0TIdyyYmzadGaL/HBLbf3WdLgC29pgyhTjAT/0nuE=
+	dep	go.uber.org/multierr	v1.11.0	h1:blXXJkSxSSfBVBlC76pxqeO+LN3aDfLQo+309xJstO0=
+	dep	golang.ngrok.com/muxado/v2	v2.0.1	h1:jM9i6Pom6GGmnPrHKNR6OJRrUoHFkSZlJ3/S0zqdVpY=
+	dep	golang.ngrok.com/ngrok	v1.13.0	h1:6SeOS+DAeIaHlkDmNH5waFHv0xjlavOV3wml0Z59/8k=
+	dep	golang.org/x/crypto	v0.58.0	h1:COkYLr4k7nDI4r6QtMML2AfzeIswWHAJthLS6K/M/54=
+	dep	golang.org/x/image	v0.44.0	h1:+tDekMZED9+LrtB3G5xzRggpVh9CARjZqROla3R3R+I=
+	dep	golang.org/x/net	v0.62.0	h1:18ELalfM5+XNRwzM2nYqXsZQ9ByS1uhj2O/U7+5jqRY=
+	dep	golang.org/x/sync	v0.24.0	h1:iqiDrGoDgyuvAKrhLQthUEzU/R378N78gXbBjxed7oA=
+	dep	golang.org/x/sys	v0.49.0	h1:XbzkgYJHdqh/8m2Uu0W/dQv8nktxx4BFHp1M0gROTXA=
+	dep	golang.org/x/term	v0.47.0	h1:cpyOwQkr2Nzxe2p6KnrTG7Ei2wtzjsuSjhpXXepZ/BM=
+	dep	golang.org/x/text	v0.43.0	h1:1QivrlhwAsnMOcqgOdl9my7s9OyZl8O5/UGUTJVXoWc=
+	dep	google.golang.org/protobuf	v1.35.1	h1:m3LfL6/Ca+fqnjnlqQXNpFPABW1UD7mjh8KO2mKFytA=
+	dep	gopkg.in/yaml.v2	v2.4.0	h1:D8xgwECY7CYvx+Y2n4sBz93Jn9JRvxdiyyo8CTfuKaY=
+	dep	gopkg.in/yaml.v3	v3.0.1	h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=
+	build	-buildmode=exe
+	build	-compiler=gc
+	build	-trimpath=true
+	build	DefaultGODEBUG=tracebacklabels=0,x509sslcertoverrideplatform=0
+	build	CGO_ENABLED=0
+	build	GOARCH=amd64
+	build	GOOS=windows
+	build	GOAMD64=v1
+	build	vcs=git
+	build	vcs.revision=962f0914f1d5e5c75d70073f2a15d7ffef2edd0f
+	build	vcs.time=2026-11-09T02:24:58Z
+	build	vcs.modified=true

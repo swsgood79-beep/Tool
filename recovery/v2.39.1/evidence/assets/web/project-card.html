@@ -1,0 +1,62 @@
+{{define "project-card"}}{{if .Completed}}<section class="card delivery-completed" data-status="done" data-setting-worker="{{.Setting.Worker}}" data-shipping-worker="{{.Shipping.Worker}}" data-stage="done" data-order="{{.Number}}" data-name="{{.Name}}" data-due="{{.ShippingDueDate}}" data-project="{{.ID}}" data-generation="{{.Generation}}" data-revision="{{.Revision}}" hidden>
+<div class="project-topline">
+<span class="pill order-number">수주 {{.Number}}</span>{{if .HasSpecialInstructions}}<a class="special-info-link" href="/project-info/{{.Board}}/{{.ID}}">특이사항{{if .Photos}} ▧ {{len .Photos}}{{end}}</a>{{end}}</div>
+<h2>{{.Name}}</h2>
+<span class="shipping-due-chip">출고 예정 {{.ShippingDueDate}}</span> <span class="stage-chip badge success">✓ 검사 완료</span>
+<div class="completed-workers">{{if .Setting.Worker}}<p>세팅 작업자 · {{.Setting.Worker}}</p>{{end}}{{if .Shipping.Worker}}<p>출하 작업자 · {{.Shipping.Worker}}</p>{{end}}</div>
+</section>{{else}}<section class="card work-item inspection-project" data-order="{{.Number}}" data-name="{{.Name}}" data-due="{{.ShippingDueDate}}" data-stage="{{if .Setting.Completed}}shipping{{else}}setting{{end}}" data-project="{{.ID}}" data-generation="{{.Generation}}" data-revision="{{.Revision}}">
+<div class="project-topline">
+<span class="pill order-number" title="수주 {{.Number}}">수주 {{.Number}}</span>
+<span class="project-quick-actions">{{if .DesignerCallURL}}<a class="designer-call" href="{{.DesignerCallURL}}" aria-label="설계담당자 {{.DesignerName}}에게 전화">☎ {{.DesignerName}}</a>{{end}}{{if .HasSpecialInstructions}}<a class="special-info-link" href="/project-info/{{.Board}}/{{.ID}}">특이사항{{if .Photos}} <span aria-label="첨부 사진 {{len .Photos}}장">▧ {{len .Photos}}</span>{{end}}</a>{{end}}</span>
+</div>
+<details class="project-details">
+<summary class="project-summary">
+<div class="work-name">
+<h2>{{.Name}}</h2>{{if .ShippingDueDate}}<span class="shipping-due-chip">출고 예정 {{.ShippingDueDate}}</span>{{end}}{{if .Setting.Completed}}<p class="summary-worker">세팅 작업자 · {{.Setting.Worker}}</p>{{end}}</div>
+<div class="summary-status">
+<span class="stage-chip {{if .Setting.Completed}}chip-shipping{{else}}chip-setting{{end}}">{{if .CombinedPending}}세팅·출하 확인 대기{{else if .Setting.Completed}}{{if .Shipping.Pending}}02 출하검사 확인 대기{{else}}02 출하검사 대기{{end}}{{else if .Setting.Pending}}01 세팅검사 확인 대기{{else}}01 세팅검사 대기{{end}}</span>
+<span class="expand-hint">검사 화면 열기 <span aria-hidden="true">↗</span>
+</span>
+</div>
+</summary>
+<dialog class="worker-inspection-dialog" aria-label="검사 신청 · {{.Name}}">
+<div class="worker-dialog-heading"><div><span class="pill order-number">수주 {{.Number}}</span><h2>{{.Name}}</h2></div><button type="button" class="worker-dialog-close" aria-label="검사 신청 화면 닫기">✕</button></div>
+<div class="worker-dialog-body"><p class="worker-submit-status" role="status" aria-live="polite"></p>
+<div class="inspection-list">{{$project := .}}{{range .Inspections}}<div class="inspection-row stage-{{.Kind}}{{if .State.Pending}} inspection-requested{{end}}{{if .State.Completed}} inspection-done{{else if .Locked}} inspection-locked{{end}}" data-inspection="{{.Kind}}">
+<div class="stage-title">
+<span class="step-number">0{{.Step}}</span>
+<div>
+<h3>{{.Label}}</h3>
+<span class="stage-caption">{{if .State.Completed}}검사 완료{{else if .State.Pending}}관리자가 검사 완료할 때까지 기다려 주세요{{else if .Locked}}관리자 세팅검사 완료 후 진행{{else}}검사를 신청할 수 있어요{{end}}</span>{{if or .State.Completed .State.Pending}}<span class="completed-worker">작업자 · {{.State.Worker}}</span>{{end}}</div>
+</div>{{if .State.Completed}}<span class="badge success">✓ 완료</span>{{else if .State.Pending}}<span class="badge inspection-waiting">신청 완료 · 관리자 확인 대기</span>{{else}}<form method="post" action="/complete/{{$.Board}}">
+<input type="hidden" name="project" value="{{$project.ID}}">
+<input type="hidden" name="inspection" value="{{.Kind}}">
+<input type="hidden" name="submission" value="{{.Form}}">
+<fieldset {{if .Locked}}disabled{{end}}>
+<label>작업자 이름<input name="worker" maxlength="40" placeholder="이름 입력" autocomplete="name" required aria-label="{{.Label}} 작업자 이름">
+</label>
+<div class="inspection-direct-actions"><button class="primary">{{.Label}} 신청</button>{{if eq .Kind "setting"}}<input type="hidden" name="combined_submission" value="{{$project.CombinedForm}}"><button type="submit" class="combined-request" formaction="/combined/{{$.Board}}">세팅·출하<br>함께 신청</button>{{end}}</div>
+</fieldset>
+</form>{{end}}</div>{{end}}</div>
+<section class="note-panel" data-inspection="note">
+<div class="note-heading">
+<span class="note-icon" aria-hidden="true">!</span>
+<div>
+<h3>비고 · 문제 전달</h3>
+<p>검사 완료와 별도로 관리자에게 알릴 수 있어요.</p>
+</div>
+</div>
+<form method="post" action="/note/{{.Board}}">
+<input type="hidden" name="project" value="{{.ID}}">
+<input type="hidden" name="submission" value="{{.NoteForm}}">
+<label>작업자 이름<input name="worker" maxlength="40" required autocomplete="name" aria-label="비고 작성 작업자 이름" placeholder="이름 입력">
+</label>
+<label>비고 내용<textarea name="note" maxlength="1000" required rows="4" placeholder="예: 부품이 누락되어 확인이 필요합니다. (최대 1,000자)">
+</textarea>
+</label>
+<button class="note-send full" type="submit">관리자에게 보내기</button>
+</form>
+</section>
+</div></dialog>
+</details>
+</section>{{end}}{{end}}

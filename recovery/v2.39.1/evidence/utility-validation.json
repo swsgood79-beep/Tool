@@ -1,0 +1,7 @@
+{
+  "compiled_with": "go1.27.4 linux/amd64",
+  "original_exe_verification": "pass",
+  "exported_bytes_match": 57,
+  "existing_directory_overwrite_blocked": "pass",
+  "wrong_binary_rejected": "pass"
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "offset": 0,
+    "machine": "0x8664",
+    "sections": 8,
+    "size_through_last_section": 78287872,
+    "sha256_through_last_section": "cac5fd55c9eb294a228969f1f09f4c01512ea4f1674c80bdb407bae8edf8e7e8"
+  },
+  {
+    "offset": 22015282,
+    "machine": "0x8664",
+    "sections": 21,
+    "size_through_last_section": 52218880,
+    "sha256_through_last_section": "03b88b1e6d3b278d0875c223e07699ab8c19e7726f81cd8f41d9a4c9db0edac1"
+  }
+]

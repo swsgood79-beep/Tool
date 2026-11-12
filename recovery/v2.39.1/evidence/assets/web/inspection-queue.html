@@ -1,0 +1,63 @@
+{{define "inspection-request-items"}}<div id="inspection-request-items" data-total="{{len .Requests}}">{{range .Requests}}<article class="inspection-request-item" data-request="{{.ID}}" data-kind="{{if eq .BatchID .ID}}combined{{else}}{{.Inspection}}{{end}}" data-search="{{.Order}} {{.Project}} {{.Worker}}">
+<div>
+<span class="request-kind {{.Inspection}}">{{.InspectionName}}</span>
+<span class="small muted">수주 {{.Order}}</span>
+<h3>{{.Project}}</h3>
+<p class="request-meta">신청 작업자 · <strong>{{.Worker}}</strong>
+<br>
+<span class="small muted">{{kst .RequestedAt}}{{if not .Active}} · 숨김 수주{{end}}</span>
+</p>
+</div>
+<div class="request-actions">
+<a class="button quiet" href="/projects/{{.ProjectID}}/inspection?request={{.ID}}">검사 화면 열기</a>
+<form method="post" action="/projects/{{.ProjectID}}/inspection">
+<input type="hidden" name="csrf" value="{{$.CSRF}}">
+<input type="hidden" name="inspection" value="{{if eq .BatchID .ID}}combined{{else}}{{.Inspection}}{{end}}">
+<input type="hidden" name="request" value="{{.ID}}">
+<input type="hidden" name="return_queue" value="1">
+<button class="primary full" {{if not .Active}}disabled{{end}}>{{if eq .BatchID .ID}}세팅·출하 모두 완료{{else if eq .Inspection "setting"}}세팅검사 완료{{else}}출하검사 완료{{end}}</button>
+</form>
+</div>
+</article>{{else}}<p class="request-empty muted">대기 중인 검사 신청이 없습니다.</p>{{end}}</div>{{end}}
+{{define "inspection-request-panel"}}<section class="card inspection-request-panel" aria-label="검사 신청 알림">
+<div class="section-heading">
+<div>
+<span class="eyebrow">INSPECTION REQUESTS</span>
+<h2>검사 신청 알림 <span class="request-count" id="inspection-request-count" role="status" aria-live="polite">{{len .Requests}}</span>
+</h2>
+</div>
+<a class="button quiet" href="/inspection-requests">신청 목록 크게 보기</a>
+</div>
+<p class="small muted">신청 순서대로 표시합니다. 검사를 마친 수주의 검사 완료 버튼을 눌러 주세요. 알림을 읽어도 대기 목록은 유지됩니다.</p>
+<div class="request-tools">
+<input id="inspection-request-search" type="search" aria-label="검사 신청 검색" placeholder="수주번호 · 프로젝트 · 작업자 검색">
+<select id="inspection-request-kind" aria-label="검사 신청 종류">
+<option value="all">전체 검사</option>
+<option value="setting">세팅검사</option>
+<option value="shipping">출하검사</option>
+<option value="combined">통합검사</option>
+</select>
+</div>
+<div id="inspection-request-panel" class="inspection-request-scroll">{{template "inspection-request-items" .}}</div>
+<p class="small muted request-no-results" hidden>검색 조건에 맞는 검사 신청이 없습니다.</p>
+<p class="small muted" id="inspection-request-status" role="status">5초 간격으로 새 검사 신청을 확인합니다.</p>
+</section>{{end}}
+{{define "inspection-queue.html"}}<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>검사 신청 알림 · 알파작업완료확인 프로그램</title>
+<link rel="stylesheet" href="/style.css">
+<script defer src="/inspection-queue.js">
+</script>
+</head>
+<body>
+<header>
+<span class="brand">
+<span class="mark">α</span> 알파작업완료확인 프로그램</span>
+<a href="/">관리자 화면</a>
+</header>
+<main class="inspection-queue-page">{{if .Error}}<p class="notice">{{.Error}}</p>{{end}}{{template "inspection-request-panel" .}}</main>
+</body>
+</html>{{end}}

@@ -1,0 +1,8 @@
+{
+  "binary_sha256_verified": true,
+  "assets_byte_identical": 57,
+  "compiler_hashes_verified": 57,
+  "function_ranges_verified": 19911,
+  "backend_source_recovered": false,
+  "dependency_metadata_matches_official_go_tool": 38
+}

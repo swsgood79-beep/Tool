@@ -1,0 +1,24 @@
+(()=>{
+ 'use strict';
+ const board=document.querySelector('main[data-board]')?.dataset.board;if(!board)return;
+ const date=document.getElementById('workspace-date'),clock=document.getElementById('workspace-clock'),status=document.getElementById('market-status');
+ const dateFormat=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',year:'numeric',month:'long',day:'numeric',weekday:'long'}),clockFormat=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+ const valueFormat=new Intl.NumberFormat('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2}),coinFormat=new Intl.NumberFormat('ko-KR',{maximumFractionDigits:0}),changeFormat=new Intl.NumberFormat('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2}),stampFormat=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false});
+ function tick(){const now=new Date();date.textContent=dateFormat.format(now);clock.textContent=clockFormat.format(now);date.dateTime=now.toISOString();clock.dateTime=now.toISOString()}tick();setInterval(tick,1000);
+ let pending=false,nextRefresh=0,refreshTimer=0,failures=0,refreshDelay=1000;
+ function schedule(){clearTimeout(refreshTimer);refreshTimer=setTimeout(()=>{if(!document.hidden)load();else schedule()},refreshDelay)}
+ async function load(){if(pending)return;pending=true;const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000);
+ try{const response=await fetch(`/markets/${encodeURIComponent(board)}`,{cache:'no-store',signal:controller.signal});if(!response.ok)throw Error('unavailable');const data=await response.json();if(!Array.isArray(data.quotes))throw Error('invalid');
+ for(const tile of document.querySelectorAll('.market-tile')){const q=data.quotes.find(row=>row.symbol===tile.dataset.symbol);if(!q)continue;const price=tile.querySelector('.market-price'),change=tile.querySelector('.market-change'),at=tile.querySelector('.market-time');
+  price.textContent=typeof q.price==='number'&&Number.isFinite(q.price)&&q.price>0?(q.symbol.startsWith('KRW-')?'₩'+coinFormat.format(q.price):valueFormat.format(q.price)):'—';price.title=price.textContent;
+  const valid=typeof q.percent==='number'&&Number.isFinite(q.percent),pct=valid?Math.round(q.percent*100)/100:0;change.textContent=valid?`${pct>0?'+':''}${changeFormat.format(pct===0?0:pct)}%`:'—';change.className='market-change '+(valid?(pct>0?'market-rise':pct<0?'market-fall':'market-flat'):'market-flat');
+  const stamp=Date.parse(q.at),checked=Date.parse(q.checked_at);at.textContent=Number.isFinite(stamp)?`${q.stale?'마지막 자료 · ':''}${q.basis==='minute'?'분봉 · ':''}${stampFormat.format(new Date(stamp))}`:typeof q.price==='number'&&Number.isFinite(q.price)&&q.price>0&&Number.isFinite(checked)?`${q.stale?'마지막 자료 · ':''}조회 ${stampFormat.format(new Date(checked))}`:data.enabled?'시세 확인 중':'시세 준비 중';tile.classList.toggle('market-stale',q.stale===true);
+ }
+ const fx=data.fx,fxRate=document.getElementById('market-fx-rate'),fxAt=document.getElementById('market-fx-time'),fxRow=document.querySelector('.market-fx');
+ if(fxRate&&fxAt){const validFX=fx&&typeof fx.rate==='number'&&Number.isFinite(fx.rate)&&fx.rate>0;fxRate.textContent=validFX?`1달러 = ${valueFormat.format(fx.rate)}원`:'—';const stamp=Date.parse(fx?.at);fxAt.textContent=validFX&&Number.isFinite(stamp)?`${fx.stale?'마지막 자료 · ':''}${stampFormat.format(new Date(stamp))} 기준`:data.enabled?'환율 조회 대기':'환율 준비 중';fxRow?.classList.toggle('market-stale',fx?.stale===true);}
+ const checked=Date.parse(data.checked);status.textContent=!data.enabled?'시장 정보 준비 중':data.delayed?'일부 시세 조회 지연 · 시세 기준시각 확인':Number.isFinite(checked)?`마지막 조회 ${clockFormat.format(new Date(checked))}`:'시장 정보를 확인하고 있습니다.';
+ failures=0;refreshDelay=1000;nextRefresh=Date.now()+refreshDelay;
+ }catch(_){document.querySelector('.market-fx')?.classList.add('market-stale');const fxAt=document.getElementById('market-fx-time');if(fxAt&&document.getElementById('market-fx-rate')?.textContent!=='—'&&!fxAt.textContent.startsWith('마지막 자료'))fxAt.textContent='마지막 자료 · '+fxAt.textContent;status.textContent='시장 정보를 불러오지 못했습니다. 잠시 후 다시 확인합니다.';document.querySelectorAll('.market-tile').forEach(tile=>{if(tile.querySelector('.market-price').textContent!=='—'){tile.classList.add('market-stale');const at=tile.querySelector('.market-time');if(!at.textContent.startsWith('마지막 자료'))at.textContent='마지막 자료 · '+at.textContent}});failures=Math.min(failures+1,5);refreshDelay=Math.min(60000,5000*2**(failures-1));nextRefresh=Date.now()+refreshDelay}
+ finally{clearTimeout(timer);pending=false;schedule()}}
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden){tick();if(Date.now()>=nextRefresh){clearTimeout(refreshTimer);load()}}});load();
+})();

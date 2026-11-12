@@ -1,0 +1,493 @@
+_
+archive/zip
+bufio
+bytes
+cmp
+compress/flate
+compress/gzip
+compress/lzw
+compress/zlib
+container/list
+context
+crypto
+crypto/aes
+crypto/cipher
+crypto/des
+crypto/ecdh
+crypto/ecdsa
+crypto/ecdsa.parseRawPrivateKey[go.shape.*crypto/internal/fips140/nistec
+crypto/ecdsa.parseUncompressedPublicKey[go.shape.*crypto/internal/fips140/nistec
+crypto/ecdsa.privateKeyBytes[go.shape.*crypto/internal/fips140/nistec
+crypto/ecdsa.privateKeyToFIPS[go.shape.*crypto/internal/fips140/nistec
+crypto/ecdsa.publicKeyBytes[go.shape.*crypto/internal/fips140/nistec
+crypto/ecdsa.publicKeyToFIPS[go.shape.*crypto/internal/fips140/nistec
+crypto/ecdsa.signFIPSDeterministic[go.shape.*crypto/internal/fips140/nistec
+crypto/ecdsa.signFIPS[go.shape.*crypto/internal/fips140/nistec
+crypto/ecdsa.verifyFIPS[go.shape.*crypto/internal/fips140/nistec
+crypto/ed25519
+crypto/elliptic
+crypto/elliptic.(*nistCurve[*crypto/internal/fips140/nistec
+crypto/fips140
+crypto/hkdf
+crypto/hmac
+crypto/hpke
+crypto/internal/boring
+crypto/internal/boring/sig
+crypto/internal/entropy/v1%2e0%2e0
+crypto/internal/fips140
+crypto/internal/fips140/aes
+crypto/internal/fips140/aes/gcm
+crypto/internal/fips140/bigmod
+crypto/internal/fips140/check
+crypto/internal/fips140/drbg
+crypto/internal/fips140/ecdh
+crypto/internal/fips140/ecdh.ECDH[go.shape.*crypto/internal/fips140/nistec
+crypto/internal/fips140/ecdh.GenerateKey[go.shape.*crypto/internal/fips140/nistec
+crypto/internal/fips140/ecdh.NewPrivateKey[go.shape.*crypto/internal/fips140/nistec
+crypto/internal/fips140/ecdh.NewPublicKey[go.shape.*crypto/internal/fips140/nistec
+crypto/internal/fips140/ecdh.ecdh[go.shape.*crypto/internal/fips140/nistec
+crypto/internal/fips140/ecdsa
+crypto/internal/fips140/ecdsa.NewPrivateKey[go.shape.*crypto/internal/fips140/nistec
+crypto/internal/fips140/ecdsa.NewPublicKey[go.shape.*crypto/internal/fips140/nistec
+crypto/internal/fips140/ecdsa.SignDeterministic[go.shape.*crypto/internal/fips140/nistec
+crypto/internal/fips140/ecdsa.Sign[go.shape.*crypto/internal/fips140/nistec
+crypto/internal/fips140/ecdsa.Verify[go.shape.*crypto/internal/fips140/nistec
+crypto/internal/fips140/ecdsa.bits2octets[go.shape.*crypto/internal/fips140/nistec
+crypto/internal/fips140/ecdsa.hashToNat[go.shape.*crypto/internal/fips140/nistec
+crypto/internal/fips140/ecdsa.inverse[go.shape.*crypto/internal/fips140/nistec
+crypto/internal/fips140/ecdsa.precomputeParams[go.shape.*crypto/internal/fips140/nistec
+crypto/internal/fips140/ecdsa.randomPoint[go.shape.*crypto/internal/fips140/nistec
+crypto/internal/fips140/ecdsa.signGeneric[go.shape.*crypto/internal/fips140/nistec
+crypto/internal/fips140/ecdsa.verifyGeneric[go.shape.*crypto/internal/fips140/nistec
+crypto/internal/fips140/ed25519
+crypto/internal/fips140/edwards25519
+crypto/internal/fips140/edwards25519/field
+crypto/internal/fips140/hkdf
+crypto/internal/fips140/hmac
+crypto/internal/fips140/mldsa
+crypto/internal/fips140/mlkem
+crypto/internal/fips140/mlkem.polyByteDecode[go.shape.[256]crypto/internal/fips140/mlkem
+crypto/internal/fips140/mlkem.polyByteEncode[go.shape.[256]crypto/internal/fips140/mlkem
+crypto/internal/fips140/nistec
+crypto/internal/fips140/nistec/fiat
+crypto/internal/fips140/pbkdf2
+crypto/internal/fips140/rsa
+crypto/internal/fips140/sha256
+crypto/internal/fips140/sha3
+crypto/internal/fips140/sha512
+crypto/internal/fips140/subtle
+crypto/internal/fips140/tls12
+crypto/internal/fips140/tls13
+crypto/internal/fips140cache.(*Cache[crypto/ecdsa.PrivateKey,crypto/internal/fips140/ecdsa
+crypto/internal/fips140cache.(*Cache[go.shape.struct { crypto/ecdsa.PublicKey; D *math/big.Int },go.shape.struct { crypto/internal/fips140/ecdsa.pub crypto/internal/fips140/ecdsa.PublicKey; crypto/internal/fips140/ecdsa
+crypto/internal/fips140cache.(*Cache[go.shape.uint8,go.shape.struct { crypto/internal/fips140/ed25519.seed [32]uint8; crypto/internal/fips140/ed25519.pub [32]uint8; crypto/internal/fips140/ed25519.s crypto/internal/fips140/edwards25519.Scalar; crypto/internal/fips140/ed25519
+crypto/internal/fips140cache.(*Cache[uint8,crypto/internal/fips140/ed25519
+crypto/internal/fips140deps/cpu
+crypto/internal/fips140hash
+crypto/internal/fips140only
+crypto/internal/impl
+crypto/internal/rand
+crypto/internal/randutil
+crypto/internal/sysrand
+crypto/md5
+crypto/mldsa
+crypto/mlkem
+crypto/rand
+crypto/rc4
+crypto/rsa
+crypto/sha1
+crypto/sha256
+crypto/sha3
+crypto/sha512
+crypto/tls
+crypto/tls/internal/fips140tls
+crypto/x509
+crypto/x509.checkConstraints[go.shape.string,go.shape.string,go.shape.struct { crypto/x509.uri *net/url.URL; crypto/x509
+crypto/x509.checkConstraints[go.shape.string,go.shape.struct { crypto/x509.local string; crypto/x509.domain string },go.shape.struct { crypto/x509.local string; crypto/x509
+crypto/x509/pkix
+database/sql/driver
+embed
+encoding
+encoding/asn1
+encoding/base32
+encoding/base64
+encoding/binary
+encoding/csv
+encoding/hex
+encoding/json
+encoding/json/internal
+encoding/json/internal/jsonflags
+encoding/json/internal/jsonopts
+encoding/json/internal/jsonwire
+encoding/json/jsontext
+encoding/json/v2
+encoding/json/v2.(*typedArshalers[go.shape.struct { encoding/json/jsontext.s encoding/json/jsontext
+encoding/pem
+encoding/xml
+errors
+errors.AsType[go.shape.struct { Cert *crypto/x509.Certificate; Reason crypto/x509
+errors.AsType[go.shape.struct { Cert *crypto/x509.Certificate; crypto/x509.hintErr error; crypto/x509.hintCert *crypto/x509
+errors.asType[go.shape.struct { Cert *crypto/x509.Certificate; Reason crypto/x509
+errors.asType[go.shape.struct { Cert *crypto/x509.Certificate; crypto/x509.hintErr error; crypto/x509.hintCert *crypto/x509
+filippo.io/age
+filippo.io/age/internal/bech32
+filippo.io/age/internal/format
+filippo.io/age/internal/stream
+fmt
+github.com/SherClockHolmes/webpush-go
+github.com/fxamacker/cbor/v2
+github.com/go-stack/stack
+github.com/go-viper/mapstructure/v2
+github.com/go-webauthn/webauthn/metadata
+github.com/go-webauthn/webauthn/protocol
+github.com/go-webauthn/webauthn/protocol/webauthncbor
+github.com/go-webauthn/webauthn/protocol/webauthncose
+github.com/go-webauthn/webauthn/webauthn
+github.com/go-webauthn/x/crypto/secp256k1
+github.com/go-webauthn/x/crypto/secp256k1/ecdsa
+github.com/go-webauthn/x/encoding/asn1
+github.com/go-webauthn/x/revoke
+github.com/golang-jwt/jwt/v5
+github.com/google/go-tpm/legacy/tpm2
+github.com/google/go-tpm/tpm2
+github.com/google/go-tpm/tpm2.(*boxed[github.com/google/go-tpm/tpm2
+github.com/google/go-tpm/tpm2.(*boxed[go.shape.struct { github.com/google/go-tpm/tpm2
+github.com/google/go-tpm/tpm2.Unmarshal[go.shape.struct { github.com/google/go-tpm/tpm2.marshalByReflection; Magic github.com/google/go-tpm/tpm2.TPMGenerated "gotpm:\"check\""; Type github.com/google/go-tpm/tpm2.TPMST; QualifiedSigner github.com/google/go-tpm/tpm2.TPM2BName; ExtraData github.com/google/go-tpm/tpm2.TPM2BData; ClockInfo github.com/google/go-tpm/tpm2.TPMSClockInfo; FirmwareVersion uint64; Attested github.com/google/go-tpm/tpm2.TPMUAttest "gotpm:\"tag=Type\"" },go.shape.*github.com/google/go-tpm/tpm2
+github.com/google/go-tpm/tpm2.Unmarshal[go.shape.struct { github.com/google/go-tpm/tpm2.marshalByReflection; Type github.com/google/go-tpm/tpm2.TPMAlgID; NameAlg github.com/google/go-tpm/tpm2.TPMAlgID; ObjectAttributes github.com/google/go-tpm/tpm2.TPMAObject; AuthPolicy github.com/google/go-tpm/tpm2.TPM2BDigest; Parameters github.com/google/go-tpm/tpm2.TPMUPublicParms "gotpm:\"tag=Type\""; Unique github.com/google/go-tpm/tpm2.TPMUPublicID "gotpm:\"tag=Type\"" },go.shape.*github.com/google/go-tpm/tpm2
+github.com/google/go-tpm/tpmutil
+github.com/google/go-tpm/tpmutil/tbs
+github.com/google/uuid
+github.com/inconshreveable/log15
+github.com/inconshreveable/log15/v3
+github.com/inconshreveable/log15/v3/ext
+github.com/jpillora/backoff
+github.com/mattn/go-colorable
+github.com/mattn/go-isatty
+github.com/philhofer/fwd
+github.com/richardlehane/mscfb
+github.com/richardlehane/msoleps/types
+github.com/skip2/go-qrcode
+github.com/skip2/go-qrcode/bitset
+github.com/skip2/go-qrcode/reedsolomon
+github.com/tiendc/go-deepcopy
+github.com/tinylib/msgp/msgp
+github.com/x448/float16
+github.com/xuri/efp
+github.com/xuri/excelize/v2
+github.com/xuri/nfp
+go.uber.org/multierr
+go/token
+go:(*struct { encoding
+go:(*struct { encoding/json/v2
+go:(*struct { io
+go:struct { encoding
+go:struct { encoding/json/v2
+go:struct { io
+golang.ngrok.com/muxado/v2
+golang.ngrok.com/muxado/v2/frame
+golang.ngrok.com/ngrok
+golang.ngrok.com/ngrok/config
+golang.ngrok.com/ngrok/internal/pb
+golang.ngrok.com/ngrok/internal/tunnel/client
+golang.ngrok.com/ngrok/internal/tunnel/netx
+golang.ngrok.com/ngrok/internal/tunnel/proto
+golang.ngrok.com/ngrok/policy
+golang.org/x/crypto/bcrypt
+golang.org/x/crypto/blowfish
+golang.org/x/crypto/chacha20
+golang.org/x/crypto/chacha20poly1305
+golang.org/x/crypto/curve25519
+golang.org/x/crypto/hkdf
+golang.org/x/crypto/internal/poly1305
+golang.org/x/crypto/md4
+golang.org/x/crypto/ocsp
+golang.org/x/crypto/ripemd160
+golang.org/x/image/draw
+golang.org/x/image/riff
+golang.org/x/image/vp8
+golang.org/x/image/vp8l
+golang.org/x/image/webp
+golang.org/x/net/html
+golang.org/x/net/html/charset
+golang.org/x/net/internal/socks
+golang.org/x/net/proxy
+golang.org/x/sync/errgroup
+golang.org/x/sys/cpu
+golang.org/x/sys/windows
+golang.org/x/text/cases
+golang.org/x/text/encoding
+golang.org/x/text/encoding/charmap
+golang.org/x/text/encoding/htmlindex
+golang.org/x/text/encoding/internal
+golang.org/x/text/encoding/japanese
+golang.org/x/text/encoding/korean
+golang.org/x/text/encoding/simplifiedchinese
+golang.org/x/text/encoding/traditionalchinese
+golang.org/x/text/encoding/unicode
+golang.org/x/text/feature/plural
+golang.org/x/text/internal
+golang.org/x/text/internal/catmsg
+golang.org/x/text/internal/language
+golang.org/x/text/internal/language/compact
+golang.org/x/text/internal/number
+golang.org/x/text/internal/tag
+golang.org/x/text/language
+golang.org/x/text/message
+golang.org/x/text/message/catalog
+golang.org/x/text/runes
+golang.org/x/text/transform
+golang.org/x/text/unicode/norm
+google.golang.org/protobuf/encoding/prototext
+google.golang.org/protobuf/encoding/protowire
+google.golang.org/protobuf/internal/descfmt
+google.golang.org/protobuf/internal/detrand
+google.golang.org/protobuf/internal/encoding/defval
+google.golang.org/protobuf/internal/encoding/messageset
+google.golang.org/protobuf/internal/encoding/tag
+google.golang.org/protobuf/internal/encoding/text
+google.golang.org/protobuf/internal/errors
+google.golang.org/protobuf/internal/filedesc
+google.golang.org/protobuf/internal/filetype
+google.golang.org/protobuf/internal/impl
+google.golang.org/protobuf/internal/order
+google.golang.org/protobuf/internal/strs
+google.golang.org/protobuf/proto
+google.golang.org/protobuf/reflect/protoreflect
+google.golang.org/protobuf/reflect/protoregistry
+gopkg.in/yaml%252ev2
+gopkg.in/yaml%252ev3
+gopkg.in/yaml%2ev2
+gopkg.in/yaml%2ev3
+hash
+hash/adler32
+hash/crc32
+html
+html/template
+image
+image/color
+image/draw
+image/gif
+image/internal/imageutil
+image/jpeg
+image/png
+internal/abi
+internal/bisect
+internal/bytealg
+internal/chacha8rand
+internal/cpu
+internal/filepathlite
+internal/fmtsort
+internal/godebug
+internal/godebugs
+internal/poll
+internal/reflectlite
+internal/runtime/atomic
+internal/runtime/exithook
+internal/runtime/gc/scan
+internal/runtime/maps
+internal/runtime/sys
+internal/runtime/syscall/windows
+internal/singleflight
+internal/strconv
+internal/stringslite
+internal/sync
+internal/sync.(*HashTrieMap[*internal/abi
+internal/sync.(*HashTrieMap[go.shape.*internal/abi
+internal/sync.(*entry[go.shape.*internal/abi
+internal/synctest
+internal/syscall/execenv
+internal/syscall/windows
+internal/syscall/windows/registry
+internal/syscall/windows/sysdll
+internal/testlog
+io
+io/fs
+io/ioutil
+iter
+log
+main
+maps
+maps.Keys[go.shape.map[string]github.com/go-webauthn/webauthn/protocol.PRFValues,go.shape.string,go.shape.struct { First github.com/go-webauthn/webauthn/protocol.URLEncodedBase64 "json:\"first\""; Second github.com/go-webauthn/webauthn/protocol
+maps.Values[go.shape.map[string]*crypto/x509
+math
+math/big
+math/bits
+math/rand
+math/rand/v2
+mime
+mime/multipart
+mime/quotedprintable
+net
+net/http
+net/http/cookiejar
+net/http/internal
+net/http/internal/ascii
+net/http/internal/http2
+net/http/internal/httpcommon
+net/http/internal/httpsfv
+net/netip
+net/textproto
+net/url
+os
+os/exec
+path
+path/filepath
+reflect
+reflect.TypeAssert[go.shape.interface { MarshalJSONTo(*encoding/json/jsontext
+reflect.TypeAssert[go.shape.interface { MarshalXML(*encoding/xml.Encoder, encoding/xml
+reflect.TypeAssert[go.shape.interface { MarshalXMLAttr(encoding/xml.Name) (encoding/xml
+reflect.TypeAssert[go.shape.interface { UnmarshalJSONFrom(*encoding/json/jsontext
+reflect.TypeAssert[go.shape.interface { UnmarshalXML(*encoding/xml.Decoder, encoding/xml
+reflect.TypeAssert[go.shape.interface { UnmarshalXMLAttr(encoding/xml
+reflect.TypeAssert[go.shape.struct { Name encoding/xml
+regexp
+regexp/syntax
+runtime
+runtime.AddCleanup[go.shape.struct { Pid int; os.state sync/atomic
+runtime.AddCleanup[go.shape.struct { crypto/ecdsa.PublicKey; D *math/big.Int },go.shape.struct { weak._ [0]*go.shape.struct { crypto/ecdsa.PublicKey; D *math/big
+runtime.AddCleanup[go.shape.struct { net/netip.isV6 bool; net/netip
+runtime.callCleanup[go.shape.struct { weak._ [0]*go.shape.struct { crypto/ecdsa.PublicKey; D *math/big
+runtime/debug
+slices
+slices.BinarySearchFunc[go.shape.[]archive/zip.fileListEntry,go.shape.struct { archive/zip.name string; archive/zip.file *archive/zip.File; archive/zip.isDir bool; archive/zip
+slices.DeleteFunc[go.shape.[][]*crypto/x509.Certificate,go.shape.[]*crypto/x509
+slices.DeleteFunc[go.shape.[]crypto/tls
+slices.breakPatternsCmpFunc[go.shape.interface { Info() (io/fs.FileInfo, error); IsDir() bool; Name() string; Type() io/fs
+slices.breakPatternsCmpFunc[go.shape.struct { Name string; Value string; Quoted bool; Domain string; Path string; SameSite string; Secure bool; HttpOnly bool; Persistent bool; HostOnly bool; Expires time.Time; Creation time.Time; LastAccess time.Time; net/http/cookiejar
+slices.breakPatternsCmpFunc[go.shape.struct { archive/zip.name string; archive/zip.file *archive/zip.File; archive/zip.isDir bool; archive/zip
+slices.breakPatternsCmpFunc[go.shape.struct { compress/flate.literal uint16; compress/flate
+slices.breakPatternsCmpFunc[go.shape.struct { encoding/json/jsontext.name []uint8; encoding/json/jsontext
+slices.breakPatternsCmpFunc[go.shape.struct { encoding/json/v2.id int; encoding/json/v2.index0 int; encoding/json/v2.index []int; encoding/json/v2.typ reflect.Type; encoding/json/v2.fncs *encoding/json/v2.arshaler; encoding/json/v2.isZero func(encoding/json/v2.addressableValue) bool; encoding/json/v2.isEmpty func(encoding/json/v2.addressableValue) bool; encoding/json/v2
+slices.breakPatternsCmpFunc[go.shape.struct { encoding/json/v2.name string; encoding/json/v2.key encoding/json/v2.addressableValue; encoding/json/v2.val encoding/json/v2
+slices.breakPatternsCmpFunc[go.shape.struct { net/http.key string; net/http
+slices.choosePivotCmpFunc[go.shape.interface { Info() (io/fs.FileInfo, error); IsDir() bool; Name() string; Type() io/fs
+slices.choosePivotCmpFunc[go.shape.struct { Name string; Value string; Quoted bool; Domain string; Path string; SameSite string; Secure bool; HttpOnly bool; Persistent bool; HostOnly bool; Expires time.Time; Creation time.Time; LastAccess time.Time; net/http/cookiejar
+slices.choosePivotCmpFunc[go.shape.struct { archive/zip.name string; archive/zip.file *archive/zip.File; archive/zip.isDir bool; archive/zip
+slices.choosePivotCmpFunc[go.shape.struct { compress/flate.literal uint16; compress/flate
+slices.choosePivotCmpFunc[go.shape.struct { encoding/json/jsontext.name []uint8; encoding/json/jsontext
+slices.choosePivotCmpFunc[go.shape.struct { encoding/json/v2.id int; encoding/json/v2.index0 int; encoding/json/v2.index []int; encoding/json/v2.typ reflect.Type; encoding/json/v2.fncs *encoding/json/v2.arshaler; encoding/json/v2.isZero func(encoding/json/v2.addressableValue) bool; encoding/json/v2.isEmpty func(encoding/json/v2.addressableValue) bool; encoding/json/v2
+slices.choosePivotCmpFunc[go.shape.struct { encoding/json/v2.name string; encoding/json/v2.key encoding/json/v2.addressableValue; encoding/json/v2.val encoding/json/v2
+slices.choosePivotCmpFunc[go.shape.struct { net/http.key string; net/http
+slices.heapSortCmpFunc[go.shape.interface { Info() (io/fs.FileInfo, error); IsDir() bool; Name() string; Type() io/fs
+slices.heapSortCmpFunc[go.shape.struct { Name string; Value string; Quoted bool; Domain string; Path string; SameSite string; Secure bool; HttpOnly bool; Persistent bool; HostOnly bool; Expires time.Time; Creation time.Time; LastAccess time.Time; net/http/cookiejar
+slices.heapSortCmpFunc[go.shape.struct { archive/zip.name string; archive/zip.file *archive/zip.File; archive/zip.isDir bool; archive/zip
+slices.heapSortCmpFunc[go.shape.struct { compress/flate.literal uint16; compress/flate
+slices.heapSortCmpFunc[go.shape.struct { encoding/json/jsontext.name []uint8; encoding/json/jsontext
+slices.heapSortCmpFunc[go.shape.struct { encoding/json/v2.id int; encoding/json/v2.index0 int; encoding/json/v2.index []int; encoding/json/v2.typ reflect.Type; encoding/json/v2.fncs *encoding/json/v2.arshaler; encoding/json/v2.isZero func(encoding/json/v2.addressableValue) bool; encoding/json/v2.isEmpty func(encoding/json/v2.addressableValue) bool; encoding/json/v2
+slices.heapSortCmpFunc[go.shape.struct { encoding/json/v2.name string; encoding/json/v2.key encoding/json/v2.addressableValue; encoding/json/v2.val encoding/json/v2
+slices.heapSortCmpFunc[go.shape.struct { net/http.key string; net/http
+slices.medianCmpFunc[go.shape.interface { Info() (io/fs.FileInfo, error); IsDir() bool; Name() string; Type() io/fs
+slices.medianCmpFunc[go.shape.struct { Name string; Value string; Quoted bool; Domain string; Path string; SameSite string; Secure bool; HttpOnly bool; Persistent bool; HostOnly bool; Expires time.Time; Creation time.Time; LastAccess time.Time; net/http/cookiejar
+slices.medianCmpFunc[go.shape.struct { archive/zip.name string; archive/zip.file *archive/zip.File; archive/zip.isDir bool; archive/zip
+slices.medianCmpFunc[go.shape.struct { compress/flate.literal uint16; compress/flate
+slices.medianCmpFunc[go.shape.struct { encoding/json/jsontext.name []uint8; encoding/json/jsontext
+slices.medianCmpFunc[go.shape.struct { encoding/json/v2.id int; encoding/json/v2.index0 int; encoding/json/v2.index []int; encoding/json/v2.typ reflect.Type; encoding/json/v2.fncs *encoding/json/v2.arshaler; encoding/json/v2.isZero func(encoding/json/v2.addressableValue) bool; encoding/json/v2.isEmpty func(encoding/json/v2.addressableValue) bool; encoding/json/v2
+slices.medianCmpFunc[go.shape.struct { encoding/json/v2.name string; encoding/json/v2.key encoding/json/v2.addressableValue; encoding/json/v2.val encoding/json/v2
+slices.medianCmpFunc[go.shape.struct { net/http.key string; net/http
+slices.partialInsertionSortCmpFunc[go.shape.interface { Info() (io/fs.FileInfo, error); IsDir() bool; Name() string; Type() io/fs
+slices.partialInsertionSortCmpFunc[go.shape.struct { Name string; Value string; Quoted bool; Domain string; Path string; SameSite string; Secure bool; HttpOnly bool; Persistent bool; HostOnly bool; Expires time.Time; Creation time.Time; LastAccess time.Time; net/http/cookiejar
+slices.partialInsertionSortCmpFunc[go.shape.struct { archive/zip.name string; archive/zip.file *archive/zip.File; archive/zip.isDir bool; archive/zip
+slices.partialInsertionSortCmpFunc[go.shape.struct { compress/flate.literal uint16; compress/flate
+slices.partialInsertionSortCmpFunc[go.shape.struct { encoding/json/jsontext.name []uint8; encoding/json/jsontext
+slices.partialInsertionSortCmpFunc[go.shape.struct { encoding/json/v2.id int; encoding/json/v2.index0 int; encoding/json/v2.index []int; encoding/json/v2.typ reflect.Type; encoding/json/v2.fncs *encoding/json/v2.arshaler; encoding/json/v2.isZero func(encoding/json/v2.addressableValue) bool; encoding/json/v2.isEmpty func(encoding/json/v2.addressableValue) bool; encoding/json/v2
+slices.partialInsertionSortCmpFunc[go.shape.struct { encoding/json/v2.name string; encoding/json/v2.key encoding/json/v2.addressableValue; encoding/json/v2.val encoding/json/v2
+slices.partialInsertionSortCmpFunc[go.shape.struct { net/http.key string; net/http
+slices.partitionCmpFunc[go.shape.interface { Info() (io/fs.FileInfo, error); IsDir() bool; Name() string; Type() io/fs
+slices.partitionCmpFunc[go.shape.struct { Name string; Value string; Quoted bool; Domain string; Path string; SameSite string; Secure bool; HttpOnly bool; Persistent bool; HostOnly bool; Expires time.Time; Creation time.Time; LastAccess time.Time; net/http/cookiejar
+slices.partitionCmpFunc[go.shape.struct { archive/zip.name string; archive/zip.file *archive/zip.File; archive/zip.isDir bool; archive/zip
+slices.partitionCmpFunc[go.shape.struct { compress/flate.literal uint16; compress/flate
+slices.partitionCmpFunc[go.shape.struct { encoding/json/jsontext.name []uint8; encoding/json/jsontext
+slices.partitionCmpFunc[go.shape.struct { encoding/json/v2.id int; encoding/json/v2.index0 int; encoding/json/v2.index []int; encoding/json/v2.typ reflect.Type; encoding/json/v2.fncs *encoding/json/v2.arshaler; encoding/json/v2.isZero func(encoding/json/v2.addressableValue) bool; encoding/json/v2.isEmpty func(encoding/json/v2.addressableValue) bool; encoding/json/v2
+slices.partitionCmpFunc[go.shape.struct { encoding/json/v2.name string; encoding/json/v2.key encoding/json/v2.addressableValue; encoding/json/v2.val encoding/json/v2
+slices.partitionCmpFunc[go.shape.struct { net/http.key string; net/http
+slices.partitionEqualCmpFunc[go.shape.interface { Info() (io/fs.FileInfo, error); IsDir() bool; Name() string; Type() io/fs
+slices.partitionEqualCmpFunc[go.shape.struct { Name string; Value string; Quoted bool; Domain string; Path string; SameSite string; Secure bool; HttpOnly bool; Persistent bool; HostOnly bool; Expires time.Time; Creation time.Time; LastAccess time.Time; net/http/cookiejar
+slices.partitionEqualCmpFunc[go.shape.struct { archive/zip.name string; archive/zip.file *archive/zip.File; archive/zip.isDir bool; archive/zip
+slices.partitionEqualCmpFunc[go.shape.struct { compress/flate.literal uint16; compress/flate
+slices.partitionEqualCmpFunc[go.shape.struct { encoding/json/jsontext.name []uint8; encoding/json/jsontext
+slices.partitionEqualCmpFunc[go.shape.struct { encoding/json/v2.id int; encoding/json/v2.index0 int; encoding/json/v2.index []int; encoding/json/v2.typ reflect.Type; encoding/json/v2.fncs *encoding/json/v2.arshaler; encoding/json/v2.isZero func(encoding/json/v2.addressableValue) bool; encoding/json/v2.isEmpty func(encoding/json/v2.addressableValue) bool; encoding/json/v2
+slices.partitionEqualCmpFunc[go.shape.struct { encoding/json/v2.name string; encoding/json/v2.key encoding/json/v2.addressableValue; encoding/json/v2.val encoding/json/v2
+slices.partitionEqualCmpFunc[go.shape.struct { net/http.key string; net/http
+slices.pdqsortCmpFunc[go.shape.interface { Info() (io/fs.FileInfo, error); IsDir() bool; Name() string; Type() io/fs
+slices.pdqsortCmpFunc[go.shape.struct { Name string; Value string; Quoted bool; Domain string; Path string; SameSite string; Secure bool; HttpOnly bool; Persistent bool; HostOnly bool; Expires time.Time; Creation time.Time; LastAccess time.Time; net/http/cookiejar
+slices.pdqsortCmpFunc[go.shape.struct { archive/zip.name string; archive/zip.file *archive/zip.File; archive/zip.isDir bool; archive/zip
+slices.pdqsortCmpFunc[go.shape.struct { compress/flate.literal uint16; compress/flate
+slices.pdqsortCmpFunc[go.shape.struct { encoding/json/jsontext.name []uint8; encoding/json/jsontext
+slices.pdqsortCmpFunc[go.shape.struct { encoding/json/v2.id int; encoding/json/v2.index0 int; encoding/json/v2.index []int; encoding/json/v2.typ reflect.Type; encoding/json/v2.fncs *encoding/json/v2.arshaler; encoding/json/v2.isZero func(encoding/json/v2.addressableValue) bool; encoding/json/v2.isEmpty func(encoding/json/v2.addressableValue) bool; encoding/json/v2
+slices.pdqsortCmpFunc[go.shape.struct { encoding/json/v2.name string; encoding/json/v2.key encoding/json/v2.addressableValue; encoding/json/v2.val encoding/json/v2
+slices.pdqsortCmpFunc[go.shape.struct { net/http.key string; net/http
+slices.rotateCmpFunc[go.shape.struct { encoding/json/v2.id int; encoding/json/v2.index0 int; encoding/json/v2.index []int; encoding/json/v2.typ reflect.Type; encoding/json/v2.fncs *encoding/json/v2.arshaler; encoding/json/v2.isZero func(encoding/json/v2.addressableValue) bool; encoding/json/v2.isEmpty func(encoding/json/v2.addressableValue) bool; encoding/json/v2
+slices.rotateCmpFunc[go.shape.struct { net.addr net.IPAddr; net.addrAttr net.ipAttr; net.src net/netip
+slices.siftDownCmpFunc[go.shape.interface { Info() (io/fs.FileInfo, error); IsDir() bool; Name() string; Type() io/fs
+slices.siftDownCmpFunc[go.shape.struct { Name string; Value string; Quoted bool; Domain string; Path string; SameSite string; Secure bool; HttpOnly bool; Persistent bool; HostOnly bool; Expires time.Time; Creation time.Time; LastAccess time.Time; net/http/cookiejar
+slices.siftDownCmpFunc[go.shape.struct { archive/zip.name string; archive/zip.file *archive/zip.File; archive/zip.isDir bool; archive/zip
+slices.siftDownCmpFunc[go.shape.struct { compress/flate.literal uint16; compress/flate
+slices.siftDownCmpFunc[go.shape.struct { encoding/json/jsontext.name []uint8; encoding/json/jsontext
+slices.siftDownCmpFunc[go.shape.struct { encoding/json/v2.id int; encoding/json/v2.index0 int; encoding/json/v2.index []int; encoding/json/v2.typ reflect.Type; encoding/json/v2.fncs *encoding/json/v2.arshaler; encoding/json/v2.isZero func(encoding/json/v2.addressableValue) bool; encoding/json/v2.isEmpty func(encoding/json/v2.addressableValue) bool; encoding/json/v2
+slices.siftDownCmpFunc[go.shape.struct { encoding/json/v2.name string; encoding/json/v2.key encoding/json/v2.addressableValue; encoding/json/v2.val encoding/json/v2
+slices.siftDownCmpFunc[go.shape.struct { net/http.key string; net/http
+slices.stableCmpFunc[go.shape.struct { encoding/json/v2.id int; encoding/json/v2.index0 int; encoding/json/v2.index []int; encoding/json/v2.typ reflect.Type; encoding/json/v2.fncs *encoding/json/v2.arshaler; encoding/json/v2.isZero func(encoding/json/v2.addressableValue) bool; encoding/json/v2.isEmpty func(encoding/json/v2.addressableValue) bool; encoding/json/v2
+slices.stableCmpFunc[go.shape.struct { net.addr net.IPAddr; net.addrAttr net.ipAttr; net.src net/netip
+slices.symMergeCmpFunc[go.shape.struct { encoding/json/v2.id int; encoding/json/v2.index0 int; encoding/json/v2.index []int; encoding/json/v2.typ reflect.Type; encoding/json/v2.fncs *encoding/json/v2.arshaler; encoding/json/v2.isZero func(encoding/json/v2.addressableValue) bool; encoding/json/v2.isEmpty func(encoding/json/v2.addressableValue) bool; encoding/json/v2
+slices.symMergeCmpFunc[go.shape.struct { net.addr net.IPAddr; net.addrAttr net.ipAttr; net.src net/netip
+sort
+strconv
+strings
+sync
+sync/atomic
+sync/atomic.(*Pointer[go.shape.struct { internal/sync.node = internal/sync.node[go.shape.interface {},go.shape.interface {}]; internal/sync.dead sync/atomic.Bool; internal/sync.mu internal/sync.Mutex; internal/sync.parent *internal/sync.indirect[go.shape.interface {},go.shape.interface {}]; internal/sync.children [16]sync/atomic.Pointer[go.shape.struct { internal/sync
+sync/atomic.(*Pointer[golang.ngrok.com/ngrok
+sync/atomic.(*Pointer[golang.ngrok.com/ngrok/internal/tunnel/client
+sync/atomic.(*Pointer[internal/bisect
+sync/atomic.(*Pointer[internal/godebug
+sync/atomic.(*Pointer[internal/sync
+sync/atomic.(*Pointer[internal/sync.entry[*internal/abi
+sync/atomic.(*Pointer[internal/sync.indirect[*internal/abi
+sync/atomic.(*Pointer[internal/sync.node[*internal/abi
+sync/atomic.(*Pointer[net/http
+sync/atomic.(*Pointer[unique.entry[net/netip
+sync/atomic.(*Pointer[unique.indirect[net/netip
+sync/atomic.(*Pointer[unique.node[net/netip
+syscall
+text/template
+text/template/parse
+time
+type:
+unicode
+unicode/utf16
+unicode/utf8
+unique
+unique.(*Handle[net/netip
+unique.(*canonMap[go.shape.struct { net/netip.isV6 bool; net/netip
+unique.(*canonMap[net/netip
+unique.(*entry[go.shape.struct { net/netip.isV6 bool; net/netip
+unique.(*uniqueMap[net/netip
+unique.Handle[net/netip
+unique.Make[go.shape.struct { net/netip.isV6 bool; net/netip
+unique.clone[go.shape.struct { net/netip.isV6 bool; net/netip
+unique.newCanonMap[go.shape.struct { net/netip.isV6 bool; net/netip
+unique.newEntryNode[go.shape.struct { net/netip.isV6 bool; net/netip
+unique.uniqueMap[net/netip
+vendor/golang.org/x/crypto/chacha20
+vendor/golang.org/x/crypto/chacha20poly1305
+vendor/golang.org/x/crypto/cryptobyte
+vendor/golang.org/x/crypto/cryptobyte/asn1
+vendor/golang.org/x/crypto/internal/poly1305
+vendor/golang.org/x/net/dns/dnsmessage
+vendor/golang.org/x/net/http/httpguts
+vendor/golang.org/x/net/http/httpproxy
+vendor/golang.org/x/net/http2/hpack
+vendor/golang.org/x/net/idna
+vendor/golang.org/x/sys/cpu
+vendor/golang.org/x/text/secure/bidirule
+vendor/golang.org/x/text/unicode/bidi
+vendor/golang.org/x/text/unicode/norm
+weak
+weak.(*Pointer[crypto/ecdsa
+weak.(*Pointer[crypto/x509
+weak.(*Pointer[net/netip
+weak.Make[go.shape.struct { crypto/ecdsa.PublicKey; D *math/big
+weak.Make[go.shape.struct { net/netip.isV6 bool; net/netip
+weak.Pointer[crypto/ecdsa
+weak.Pointer[crypto/x509
+weak.Pointer[net/netip

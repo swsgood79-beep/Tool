@@ -1,0 +1,71 @@
+{
+  "binary_sha256": "cac5fd55c9eb294a228969f1f09f4c01512ea4f1674c80bdb407bae8edf8e7e8",
+  "binary_size": 78287872,
+  "go_version": "go1.27.3",
+  "image_base": "0x140000000",
+  "sections": [
+    {
+      "name": ".text",
+      "va": 5368713216,
+      "virtual_size": 8907825,
+      "offset": 1536,
+      "size": 8908288
+    },
+    {
+      "name": ".rdata",
+      "va": 5377622016,
+      "virtual_size": 12189584,
+      "offset": 8909824,
+      "size": 12189696
+    },
+    {
+      "name": ".data",
+      "va": 5389811712,
+      "virtual_size": 90720640,
+      "offset": 21099520,
+      "size": 56796672
+    },
+    {
+      "name": ".pdata",
+      "va": 5480534016,
+      "virtual_size": 197160,
+      "offset": 77896192,
+      "size": 197632
+    },
+    {
+      "name": ".xdata",
+      "va": 5480734720,
+      "virtual_size": 180,
+      "offset": 78093824,
+      "size": 512
+    },
+    {
+      "name": ".idata",
+      "va": 5480738816,
+      "virtual_size": 1404,
+      "offset": 78094336,
+      "size": 1536
+    },
+    {
+      "name": ".reloc",
+      "va": 5480742912,
+      "virtual_size": 191348,
+      "offset": 78095872,
+      "size": 191488
+    },
+    {
+      "name": ".symtab",
+      "va": 5480935424,
+      "virtual_size": 4,
+      "offset": 78287360,
+      "size": 512
+    }
+  ],
+  "pclntab_offset": 12738368,
+  "functions": 19911,
+  "source_files_header": 1459,
+  "source_files_recovered": 1459,
+  "assets_recovered": 57,
+  "application_functions": 711,
+  "limits": "Embedded bytes copied from validated pointers and lengths and verified with Go1.27 compiler hashes. Ordinary SHA-256 generated separately for reproducibility. No original Go backend source recovered."
+}
