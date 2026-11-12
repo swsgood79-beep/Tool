@@ -49,70 +49,8 @@ func reportKey(values []string) string {
 	return strings.Join([]string{values[0], values[2], values[4], values[5]}, "\x00")
 }
 func bindExistingWorkbook(data []byte, s State) (map[int64]WorkbookBinding, error) {
-	book, e := openImportBook(data)
-	if e != nil {
-		return nil, errors.New("기존 엑셀을 열지 못했습니다. 암호 없는 .xlsx 파일인지 확인하세요")
-	}
-	defer book.Close()
-	candidates := map[string][]WorkbookBinding{}
-	headers := 0
-	for _, sheet := range book.GetSheetList() {
-		rows, e := book.GetRows(sheet)
-		if e != nil {
-			return nil, e
-		}
-		if len(rows) > 30000 {
-			return nil, errors.New("엑셀 시트는 30,000행 이하여야 합니다")
-		}
-		for i, row := range rows {
-			if i >= 30 {
-				break
-			}
-			cols, ok := reportHeaderMap(row)
-			if !ok {
-				continue
-			}
-			headers++
-			for ri := i + 1; ri < len(rows); ri++ {
-				values := make([]string, 6)
-				for j, col := range cols {
-					if col <= len(rows[ri]) {
-						values[j] = rows[ri][col-1]
-					}
-				}
-				if values[0] == "" || values[2] == "" {
-					continue
-				}
-				key := reportKey(values)
-				candidates[key] = append(candidates[key], WorkbookBinding{Sheet: sheet, Row: ri + 1, Columns: cols})
-			}
-			break
-		}
-	}
-	if headers == 0 {
-		return nil, errors.New("기존 엑셀에 수주번호·프로젝트명·검사구분·작업자·완료일자·완료시간 제목 열이 필요합니다")
-	}
-	bindings := map[int64]WorkbookBinding{}
-	used := map[string]bool{}
-	for _, event := range completedEvents(s) {
-		values := eventRow(s, event)
-		key := reportKey(values)
-		matches := candidates[key]
-		if len(matches) > 1 {
-			return nil, fmt.Errorf("동일한 검사 기록이 기존 엑셀에 여러 행 있습니다: %s / %s / %s %s", values[0], values[2], values[4], values[5])
-		}
-		if len(matches) == 0 {
-			continue
-		}
-		if used[key] {
-			return nil, errors.New("검사 기록의 수주·구분·완료 시각이 중복되어 엑셀 행을 구분할 수 없습니다")
-		}
-		used[key] = true
-		b := matches[0]
-		b.Baseline = append([]string{}, values...)
-		bindings[event.ID] = b
-	}
-	return bindings, nil
+	b, _, e := analyzeExistingWorkbook(data, s)
+	return b, e
 }
 func mergedWorkbook(s State) ([]byte, error) {
 	book, e := openImportBook(s.WorkbookBase)
@@ -267,6 +205,21 @@ func (a *App) reportSettingsGET(w http.ResponseWriter, r *http.Request, v map[st
 	}
 	v["WorkbookBaseName"] = a.state.WorkbookBaseName
 	v["WorkbookBoundCount"] = len(a.state.WorkbookBindings)
+	active := 0
+	for _, event := range completedEvents(a.state) {
+		if _, ok := a.state.WorkbookBindings[event.ID]; ok {
+			active++
+		}
+	}
+	v["WorkbookActiveBoundCount"] = active
+	if len(a.state.WorkbookBase) > 0 {
+		_, check, e := analyzeExistingWorkbook(a.state.WorkbookBase, a.state)
+		v["WorkbookCheck"] = check
+		if e != nil {
+			v["WorkbookCheckError"] = e.Error()
+		}
+	}
+
 	a.render(w, "report-settings.html", v)
 	return true
 }
@@ -276,6 +229,16 @@ func (a *App) reportSettingsPOST(w http.ResponseWriter, r *http.Request) bool {
 	}
 	fail := func(e error) { http.Error(w, e.Error(), 409) }
 	switch r.FormValue("action") {
+	case "recheck":
+		if len(a.state.WorkbookBase) == 0 {
+			fail(errors.New("먼저 기존 엑셀 파일을 연결하세요"))
+			return true
+		}
+		if e := a.transaction(func(s *State) error { return recheckWorkbookBindings(s) }); e != nil {
+			fail(e)
+			return true
+		}
+
 	case "reset":
 		if e := a.transaction(func(s *State) error {
 			s.WorkbookBase = nil

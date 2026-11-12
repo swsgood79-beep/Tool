@@ -1,0 +1,10 @@
+{
+  "oldVersionZeroMatchBugReproduced": "pass",
+  "uploadedFileReusedAfterUpgrade": "pass",
+  "dateStageAndMinuteTimeNormalized": "pass",
+  "diagnosticsDistinguishExcelAndProgramCounts": "pass",
+  "explicitRecheckSavedWithoutReupload": "pass",
+  "windowsNativeExecution": "not tested",
+  "companyFileUsed": false,
+  "noDuplicateRowsAndOriginalMemoPreserved": "pass"
+}
