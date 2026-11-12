@@ -1,0 +1,5681 @@
+[
+  {
+    "name": "main.BackupStore",
+    "package": "main",
+    "size": 272,
+    "address": "0x1413f4fe8",
+    "fields": [
+      {
+        "name": "mu",
+        "type": "sync.Mutex",
+        "tag": "",
+        "offset": 0,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "cfg",
+        "type": "main.backupConfig",
+        "tag": "",
+        "offset": 8,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "path",
+        "type": "string",
+        "tag": "",
+        "offset": 152,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "seal",
+        "type": "func([]uint8) ([]uint8, error)",
+        "tag": "",
+        "offset": 168,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "tag": "",
+        "offset": 176,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "busy",
+        "type": "bool",
+        "tag": "",
+        "offset": 192,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "cancel",
+        "type": "context.CancelFunc",
+        "tag": "",
+        "offset": 200,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "done",
+        "type": "chan struct {}",
+        "tag": "",
+        "offset": 208,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "wake",
+        "type": "chan struct {}",
+        "tag": "",
+        "offset": 216,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "ctx",
+        "type": "context.Context",
+        "tag": "",
+        "offset": 224,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "closed",
+        "type": "bool",
+        "tag": "",
+        "offset": 240,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "tasks",
+        "type": "sync.WaitGroup",
+        "tag": "",
+        "offset": 248,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "remote",
+        "type": "*main.backupRemote",
+        "tag": "",
+        "offset": 264,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.BackupView",
+    "package": "",
+    "size": 88,
+    "address": "0x1413ee408",
+    "fields": [
+      {
+        "name": "SnapshotAt",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "PendingChanges",
+        "type": "bool",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Ready",
+        "type": "bool",
+        "tag": "",
+        "offset": 17,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Enabled",
+        "type": "bool",
+        "tag": "",
+        "offset": 18,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Busy",
+        "type": "bool",
+        "tag": "",
+        "offset": 19,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "PendingRestart",
+        "type": "bool",
+        "tag": "",
+        "offset": 20,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "LastSuccess",
+        "type": "string",
+        "tag": "",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "LastAsset",
+        "type": "string",
+        "tag": "",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Status",
+        "type": "string",
+        "tag": "",
+        "offset": 56,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "LastSize",
+        "type": "int64",
+        "tag": "",
+        "offset": 72,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "HasToken",
+        "type": "bool",
+        "tag": "",
+        "offset": 80,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.ClientNote",
+    "package": "",
+    "size": 80,
+    "address": "0x1413c9c38",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Name",
+        "type": "string",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Text",
+        "type": "string",
+        "tag": "",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Revision",
+        "type": "int64",
+        "tag": "",
+        "offset": 48,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Photos",
+        "type": "[]main.ProjectPhoto",
+        "tag": "",
+        "offset": 56,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.ClientNoteBook",
+    "package": "main",
+    "size": 64,
+    "address": "0x1413baf58",
+    "fields": [
+      {
+        "name": "mu",
+        "type": "sync.Mutex",
+        "tag": "",
+        "offset": 0,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "path",
+        "type": "string",
+        "tag": "",
+        "offset": 8,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "data",
+        "type": "main.clientNoteData",
+        "tag": "",
+        "offset": 24,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "seal",
+        "type": "func([]uint8) ([]uint8, error)",
+        "tag": "",
+        "offset": 56,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.Completion",
+    "package": "",
+    "size": 184,
+    "address": "0x1413ba358",
+    "fields": [
+      {
+        "name": "Event",
+        "type": "main.Event",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": true
+      },
+      {
+        "name": "Submission",
+        "type": "string",
+        "tag": "",
+        "offset": 168,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.ConnectionConfig",
+    "package": "",
+    "size": 64,
+    "address": "0x1413ba418",
+    "fields": [
+      {
+        "name": "Provider",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Domain",
+        "type": "string",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "AuthToken",
+        "type": "string",
+        "tag": "",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "GitHubToken",
+        "type": "string",
+        "tag": "",
+        "offset": 48,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.ConnectionStore",
+    "package": "main",
+    "size": 96,
+    "address": "0x1413bb018",
+    "fields": [
+      {
+        "name": "mu",
+        "type": "sync.Mutex",
+        "tag": "",
+        "offset": 0,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "path",
+        "type": "string",
+        "tag": "",
+        "offset": 8,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "config",
+        "type": "main.ConnectionConfig",
+        "tag": "",
+        "offset": 24,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "seal",
+        "type": "func([]uint8) ([]uint8, error)",
+        "tag": "",
+        "offset": 88,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.ConnectionView",
+    "package": "",
+    "size": 56,
+    "address": "0x1413d5208",
+    "fields": [
+      {
+        "name": "Provider",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Domain",
+        "type": "string",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "HasToken",
+        "type": "bool",
+        "tag": "",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Ready",
+        "type": "bool",
+        "tag": "",
+        "offset": 33,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "HasGitHubToken",
+        "type": "bool",
+        "tag": "",
+        "offset": 34,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "PagesURL",
+        "type": "string",
+        "tag": "",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.Designer",
+    "package": "",
+    "size": 56,
+    "address": "0x1413ba4d8",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Name",
+        "type": "string",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Phone",
+        "type": "string",
+        "tag": "",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Revision",
+        "type": "int64",
+        "tag": "",
+        "offset": 48,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.DesignerBook",
+    "package": "main",
+    "size": 64,
+    "address": "0x1413bb0d8",
+    "fields": [
+      {
+        "name": "mu",
+        "type": "sync.Mutex",
+        "tag": "",
+        "offset": 0,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "path",
+        "type": "string",
+        "tag": "",
+        "offset": 8,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "seal",
+        "type": "func([]uint8) ([]uint8, error)",
+        "tag": "",
+        "offset": 24,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "data",
+        "type": "main.designerBookData",
+        "tag": "",
+        "offset": 32,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.Event",
+    "package": "",
+    "size": 168,
+    "address": "0x1413fa818",
+    "fields": [
+      {
+        "name": "BatchID",
+        "type": "int64",
+        "tag": "json:\"batch_id,omitempty\"",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Pending",
+        "type": "bool",
+        "tag": "json:\"pending_approval,omitempty\"",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "RequestedAt",
+        "type": "string",
+        "tag": "json:\"requested_at,omitempty\"",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ReadAt",
+        "type": "string",
+        "tag": "json:\"read_at,omitempty\"",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Note",
+        "type": "string",
+        "tag": "json:\"note,omitempty\"",
+        "offset": 48,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Revision",
+        "type": "int64",
+        "tag": "json:\"revision,omitempty\"",
+        "offset": 64,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Inspection",
+        "type": "string",
+        "tag": "json:\"inspection,omitempty\"",
+        "offset": 72,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ProjectID",
+        "type": "int64",
+        "tag": "json:\"project_id,omitempty\"",
+        "offset": 88,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ID",
+        "type": "int64",
+        "tag": "json:\"id\"",
+        "offset": 96,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Worker",
+        "type": "string",
+        "tag": "json:\"worker_name\"",
+        "offset": 104,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Project",
+        "type": "string",
+        "tag": "json:\"name\"",
+        "offset": 120,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Order",
+        "type": "string",
+        "tag": "json:\"order_number\"",
+        "offset": 136,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Completed",
+        "type": "string",
+        "tag": "json:\"completed_at\"",
+        "offset": 152,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.Host",
+    "package": "main",
+    "size": 720,
+    "address": "0x14140ab58",
+    "fields": [
+      {
+        "name": "markets",
+        "type": "*main.marketService",
+        "tag": "",
+        "offset": 0,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "schedule",
+        "type": "*main.scheduleRuntime",
+        "tag": "",
+        "offset": 8,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "scheduleRead",
+        "type": "func(context.Context, main.scheduleConfig) ([]uint8, error)",
+        "tag": "",
+        "offset": 16,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "importStopping",
+        "type": "bool",
+        "tag": "",
+        "offset": 24,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "imports",
+        "type": "map[string]*main.orderImportDraft",
+        "tag": "",
+        "offset": 32,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "clients",
+        "type": "*main.ClientNoteBook",
+        "tag": "",
+        "offset": 40,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "clientError",
+        "type": "string",
+        "tag": "",
+        "offset": 48,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "operations",
+        "type": "sync.RWMutex",
+        "tag": "",
+        "offset": 64,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "restorePending",
+        "type": "bool",
+        "tag": "",
+        "offset": 88,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "internetStarting",
+        "type": "bool",
+        "tag": "",
+        "offset": 89,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "backup",
+        "type": "*main.BackupStore",
+        "tag": "",
+        "offset": 96,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "backupError",
+        "type": "string",
+        "tag": "",
+        "offset": 104,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "designers",
+        "type": "*main.DesignerBook",
+        "tag": "",
+        "offset": 120,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "designerError",
+        "type": "string",
+        "tag": "",
+        "offset": 128,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "unseal",
+        "type": "func([]uint8) ([]uint8, error)",
+        "tag": "",
+        "offset": 144,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "phoneError",
+        "type": "string",
+        "tag": "",
+        "offset": 152,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "phone",
+        "type": "*main.PhonePush",
+        "tag": "",
+        "offset": 168,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "phoneStop",
+        "type": "context.CancelFunc",
+        "tag": "",
+        "offset": 176,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "fixedConnection",
+        "type": "bool",
+        "tag": "",
+        "offset": 184,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "pagesConnected",
+        "type": "bool",
+        "tag": "",
+        "offset": 185,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "exporter",
+        "type": "*main.WorkbookExporter",
+        "tag": "",
+        "offset": 192,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "connection",
+        "type": "*main.ConnectionStore",
+        "tag": "",
+        "offset": 200,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "mu",
+        "type": "sync.Mutex",
+        "tag": "",
+        "offset": 208,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "data",
+        "type": "main.HostData",
+        "tag": "",
+        "offset": 216,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "path",
+        "type": "string",
+        "tag": "",
+        "offset": 528,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "seal",
+        "type": "func([]uint8) ([]uint8, error)",
+        "tag": "",
+        "offset": 544,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "publicURL",
+        "type": "string",
+        "tag": "",
+        "offset": 552,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "pending",
+        "type": "[]main.Event",
+        "tag": "",
+        "offset": 568,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "session",
+        "type": "string",
+        "tag": "",
+        "offset": 592,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "csrf",
+        "type": "string",
+        "tag": "",
+        "offset": 608,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "adminHost",
+        "type": "string",
+        "tag": "",
+        "offset": 624,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "mobile",
+        "type": "*main.mobileAdminRuntime",
+        "tag": "",
+        "offset": 640,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "passkeys",
+        "type": "*main.passkeyRuntime",
+        "tag": "",
+        "offset": 648,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "public",
+        "type": "*http.Server",
+        "tag": "",
+        "offset": 656,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "admin",
+        "type": "*http.Server",
+        "tag": "",
+        "offset": 664,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "Origin",
+        "type": "string",
+        "tag": "",
+        "offset": 672,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "AdminURL",
+        "type": "string",
+        "tag": "",
+        "offset": 688,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "OnRecordsChanged",
+        "type": "func()",
+        "tag": "",
+        "offset": 704,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "OnEvent",
+        "type": "func()",
+        "tag": "",
+        "offset": 712,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.HostData",
+    "package": "",
+    "size": 312,
+    "address": "0x1413f4e50",
+    "fields": [
+      {
+        "name": "MobileAdmin",
+        "type": "main.mobileAdminConfig",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Passkeys",
+        "type": "main.passkeyData",
+        "tag": "",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Market",
+        "type": "main.marketConfig",
+        "tag": "",
+        "offset": 72,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ScheduleSource",
+        "type": "main.scheduleConfig",
+        "tag": "",
+        "offset": 120,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ScheduleApplied",
+        "type": "string",
+        "tag": "",
+        "offset": 184,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "SourcesLinked",
+        "type": "bool",
+        "tag": "",
+        "offset": 200,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Version",
+        "type": "int",
+        "tag": "",
+        "offset": 208,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "BoardToken",
+        "type": "string",
+        "tag": "",
+        "offset": 216,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "SigningKey",
+        "type": "string",
+        "tag": "",
+        "offset": 232,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "NextProject",
+        "type": "int64",
+        "tag": "",
+        "offset": 248,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "NextEvent",
+        "type": "int64",
+        "tag": "",
+        "offset": 256,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Projects",
+        "type": "[]main.WorkOrder",
+        "tag": "",
+        "offset": 264,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Events",
+        "type": "[]main.Completion",
+        "tag": "",
+        "offset": 288,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.HostView",
+    "package": "",
+    "size": 720,
+    "address": "0x14140af60",
+    "fields": [
+      {
+        "name": "Requests",
+        "type": "[]main.InspectionRequestItem",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Review",
+        "type": "*main.OrderView",
+        "tag": "",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "MobileNext",
+        "type": "string",
+        "tag": "",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "RequestedEvent",
+        "type": "int64",
+        "tag": "",
+        "offset": 48,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "MobileAccess",
+        "type": "main.mobileAccessView",
+        "tag": "",
+        "offset": 56,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "MobileAdmin",
+        "type": "bool",
+        "tag": "",
+        "offset": 88,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "PasskeyCount",
+        "type": "int",
+        "tag": "",
+        "offset": 96,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "PasskeyTicket",
+        "type": "string",
+        "tag": "",
+        "offset": 104,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "MobileAdminEnabled",
+        "type": "bool",
+        "tag": "",
+        "offset": 120,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "WorkerURL",
+        "type": "string",
+        "tag": "",
+        "offset": 128,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Market",
+        "type": "main.marketPage",
+        "tag": "",
+        "offset": 144,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "EntryGate",
+        "type": "bool",
+        "tag": "",
+        "offset": 184,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ScheduleHint",
+        "type": "string",
+        "tag": "",
+        "offset": 192,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ClientNotes",
+        "type": "[]main.ClientNote",
+        "tag": "",
+        "offset": 208,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ClientNote",
+        "type": "*main.ClientNote",
+        "tag": "",
+        "offset": 232,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Backup",
+        "type": "main.BackupView",
+        "tag": "",
+        "offset": 240,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "AdminInfo",
+        "type": "bool",
+        "tag": "",
+        "offset": 328,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Designers",
+        "type": "[]main.Designer",
+        "tag": "",
+        "offset": 336,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "SelectedDesigner",
+        "type": "string",
+        "tag": "",
+        "offset": 360,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "SelectedClient",
+        "type": "string",
+        "tag": "",
+        "offset": 376,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Phone",
+        "type": "main.PhoneView",
+        "tag": "",
+        "offset": 392,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "UnreadCount",
+        "type": "int",
+        "tag": "",
+        "offset": 432,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "UnreadThrough",
+        "type": "int64",
+        "tag": "",
+        "offset": 440,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "WeatherPlaces",
+        "type": "[]main.weatherPlace",
+        "tag": "",
+        "offset": 448,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "TodayShipments",
+        "type": "[]main.ShipmentSummary",
+        "tag": "",
+        "offset": 472,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "BusinessDate",
+        "type": "string",
+        "tag": "",
+        "offset": 496,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "PagesMode",
+        "type": "bool",
+        "tag": "",
+        "offset": 512,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ConnectionOnline",
+        "type": "bool",
+        "tag": "",
+        "offset": 513,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "FixedConnection",
+        "type": "bool",
+        "tag": "",
+        "offset": 514,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Title",
+        "type": "string",
+        "tag": "",
+        "offset": 520,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "CSRF",
+        "type": "string",
+        "tag": "",
+        "offset": 536,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "PublicURL",
+        "type": "string",
+        "tag": "",
+        "offset": 552,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Projects",
+        "type": "[]main.OrderView",
+        "tag": "",
+        "offset": 568,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Events",
+        "type": "[]main.Event",
+        "tag": "",
+        "offset": 592,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Saved",
+        "type": "*main.Event",
+        "tag": "",
+        "offset": 616,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Error",
+        "type": "string",
+        "tag": "",
+        "offset": 624,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Report",
+        "type": "*main.WorkbookStatus",
+        "tag": "",
+        "offset": 640,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ReportPending",
+        "type": "bool",
+        "tag": "",
+        "offset": 648,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Config",
+        "type": "main.ConnectionView",
+        "tag": "",
+        "offset": 656,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Record",
+        "type": "*main.Event",
+        "tag": "",
+        "offset": 712,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.InspectionRequestItem",
+    "package": "",
+    "size": 176,
+    "address": "0x1413ba658",
+    "fields": [
+      {
+        "name": "Event",
+        "type": "main.Event",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": true
+      },
+      {
+        "name": "Active",
+        "type": "bool",
+        "tag": "",
+        "offset": 168,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.InspectionState",
+    "package": "",
+    "size": 64,
+    "address": "0x1413d4720",
+    "fields": [
+      {
+        "name": "BatchID",
+        "type": "int64",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Requested",
+        "type": "string",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Worker",
+        "type": "string",
+        "tag": "",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Completed",
+        "type": "string",
+        "tag": "",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "EventID",
+        "type": "int64",
+        "tag": "",
+        "offset": 56,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.InspectionView",
+    "package": "",
+    "size": 128,
+    "address": "0x1413d5118",
+    "fields": [
+      {
+        "name": "Kind",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Label",
+        "type": "string",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Form",
+        "type": "string",
+        "tag": "",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "State",
+        "type": "main.InspectionState",
+        "tag": "",
+        "offset": 48,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Locked",
+        "type": "bool",
+        "tag": "",
+        "offset": 112,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Step",
+        "type": "int",
+        "tag": "",
+        "offset": 120,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.OrderView",
+    "package": "",
+    "size": 488,
+    "address": "0x1413f1280",
+    "fields": [
+      {
+        "name": "CombinedForm",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "CompletedToday",
+        "type": "bool",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "NoteForm",
+        "type": "string",
+        "tag": "",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "WorkOrder",
+        "type": "main.WorkOrder",
+        "tag": "",
+        "offset": 40,
+        "exported": true,
+        "embedded": true
+      },
+      {
+        "name": "Board",
+        "type": "string",
+        "tag": "",
+        "offset": 448,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Inspections",
+        "type": "[]main.InspectionView",
+        "tag": "",
+        "offset": 464,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.PhonePush",
+    "package": "main",
+    "size": 192,
+    "address": "0x1413eb450",
+    "fields": [
+      {
+        "name": "mu",
+        "type": "sync.Mutex",
+        "tag": "",
+        "offset": 0,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "sending",
+        "type": "sync.Mutex",
+        "tag": "",
+        "offset": 8,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "data",
+        "type": "main.phoneData",
+        "tag": "",
+        "offset": 16,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "path",
+        "type": "string",
+        "tag": "",
+        "offset": 80,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "seal",
+        "type": "func([]uint8) ([]uint8, error)",
+        "tag": "",
+        "offset": 96,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "client",
+        "type": "webpush.HTTPClient",
+        "tag": "",
+        "offset": 104,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "pairToken",
+        "type": "string",
+        "tag": "",
+        "offset": 120,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "pairLink",
+        "type": "string",
+        "tag": "",
+        "offset": 136,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "pairExpires",
+        "type": "time.Time",
+        "tag": "",
+        "offset": 152,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "tag": "",
+        "offset": 176,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.PhoneView",
+    "package": "",
+    "size": 40,
+    "address": "0x1413ba7d8",
+    "fields": [
+      {
+        "name": "Available",
+        "type": "bool",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Connected",
+        "type": "bool",
+        "tag": "",
+        "offset": 1,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Link",
+        "type": "string",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Status",
+        "type": "string",
+        "tag": "",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.ProjectPhoto",
+    "package": "",
+    "size": 56,
+    "address": "0x1413c9b60",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Name",
+        "type": "string",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Width",
+        "type": "int",
+        "tag": "",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Height",
+        "type": "int",
+        "tag": "",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Size",
+        "type": "int",
+        "tag": "",
+        "offset": 48,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.RecoveryKey",
+    "package": "",
+    "size": 56,
+    "address": "0x1413ba958",
+    "fields": [
+      {
+        "name": "Version",
+        "type": "int",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Repository",
+        "type": "string",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "BoxID",
+        "type": "string",
+        "tag": "",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Identity",
+        "type": "string",
+        "tag": "",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.RelayPointer",
+    "package": "",
+    "size": 80,
+    "address": "0x1413d52f8",
+    "fields": [
+      {
+        "name": "Application",
+        "type": "string",
+        "tag": "json:\"application\"",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Version",
+        "type": "int",
+        "tag": "json:\"version\"",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Online",
+        "type": "bool",
+        "tag": "json:\"online\"",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Endpoint",
+        "type": "string",
+        "tag": "json:\"endpoint\"",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Session",
+        "type": "string",
+        "tag": "json:\"session\"",
+        "offset": 48,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "UpdatedAt",
+        "type": "string",
+        "tag": "json:\"updated_at\"",
+        "offset": 64,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.RelayPublisher",
+    "package": "main",
+    "size": 56,
+    "address": "0x1413bb258",
+    "fields": [
+      {
+        "name": "token",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "client",
+        "type": "*http.Client",
+        "tag": "",
+        "offset": 16,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "apiBase",
+        "type": "string",
+        "tag": "",
+        "offset": 24,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "siteURL",
+        "type": "string",
+        "tag": "",
+        "offset": 40,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.ShipmentSummary",
+    "package": "",
+    "size": 96,
+    "address": "0x1413dd470",
+    "fields": [
+      {
+        "name": "SettingWorker",
+        "type": "string",
+        "tag": "json:\"setting_worker,omitempty\"",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ShippingWorker",
+        "type": "string",
+        "tag": "json:\"shipping_worker,omitempty\"",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ProjectID",
+        "type": "int64",
+        "tag": "json:\"project_id\"",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Number",
+        "type": "string",
+        "tag": "json:\"number\"",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Name",
+        "type": "string",
+        "tag": "json:\"name\"",
+        "offset": 56,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "InfoURL",
+        "type": "string",
+        "tag": "json:\"info_url,omitempty\"",
+        "offset": 72,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "PhotoCount",
+        "type": "int",
+        "tag": "json:\"photo_count,omitempty\"",
+        "offset": 88,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.WorkOrder",
+    "package": "",
+    "size": 408,
+    "address": "0x141405730",
+    "fields": [
+      {
+        "name": "ShippingDueDate",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ShippingDueManaged",
+        "type": "bool",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "DesignerID",
+        "type": "string",
+        "tag": "",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ClientNoteID",
+        "type": "string",
+        "tag": "",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ClientSourceRevision",
+        "type": "int64",
+        "tag": "",
+        "offset": 56,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ClientPhotoIDs",
+        "type": "[]string",
+        "tag": "",
+        "offset": 64,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "DesignerName",
+        "type": "string",
+        "tag": "",
+        "offset": 88,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "DesignerPhone",
+        "type": "string",
+        "tag": "",
+        "offset": 104,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "SpecialInstructions",
+        "type": "string",
+        "tag": "",
+        "offset": 120,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "AdditionalInstructions",
+        "type": "string",
+        "tag": "",
+        "offset": 136,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Photos",
+        "type": "[]main.ProjectPhoto",
+        "tag": "",
+        "offset": 152,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "InfoRevision",
+        "type": "int64",
+        "tag": "",
+        "offset": 176,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ID",
+        "type": "int64",
+        "tag": "",
+        "offset": 184,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Number",
+        "type": "string",
+        "tag": "",
+        "offset": 192,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Name",
+        "type": "string",
+        "tag": "",
+        "offset": 208,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Active",
+        "type": "bool",
+        "tag": "",
+        "offset": 224,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Created",
+        "type": "string",
+        "tag": "",
+        "offset": 232,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Completed",
+        "type": "string",
+        "tag": "",
+        "offset": 248,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Shipping",
+        "type": "main.InspectionState",
+        "tag": "",
+        "offset": 264,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Setting",
+        "type": "main.InspectionState",
+        "tag": "",
+        "offset": 328,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Generation",
+        "type": "int64",
+        "tag": "",
+        "offset": 392,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Revision",
+        "type": "int64",
+        "tag": "",
+        "offset": 400,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.WorkbookExporter",
+    "package": "main",
+    "size": 144,
+    "address": "0x1413eb5a0",
+    "fields": [
+      {
+        "name": "ioMu",
+        "type": "sync.Mutex",
+        "tag": "",
+        "offset": 0,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "statusMu",
+        "type": "sync.Mutex",
+        "tag": "",
+        "offset": 8,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "status",
+        "type": "main.WorkbookStatus",
+        "tag": "",
+        "offset": 16,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "owner",
+        "type": "string",
+        "tag": "",
+        "offset": 80,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "source",
+        "type": "func() []main.Event",
+        "tag": "",
+        "offset": 96,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "now",
+        "type": "func() time.Time",
+        "tag": "",
+        "offset": 104,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "replace",
+        "type": "func(string, string) error",
+        "tag": "",
+        "offset": 112,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "wake",
+        "type": "chan struct {}",
+        "tag": "",
+        "offset": 120,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "cancel",
+        "type": "context.CancelFunc",
+        "tag": "",
+        "offset": 128,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "done",
+        "type": "chan struct {}",
+        "tag": "",
+        "offset": 136,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.WorkbookStatus",
+    "package": "",
+    "size": 64,
+    "address": "0x1413c9ec0",
+    "fields": [
+      {
+        "name": "Path",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Error",
+        "type": "string",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "LastSync",
+        "type": "string",
+        "tag": "",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Count",
+        "type": "int",
+        "tag": "",
+        "offset": 48,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Started",
+        "type": "bool",
+        "tag": "",
+        "offset": 56,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.backupAsset",
+    "package": "",
+    "size": 80,
+    "address": "0x1413d53e8",
+    "fields": [
+      {
+        "name": "Label",
+        "type": "string",
+        "tag": "json:\"label\"",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ID",
+        "type": "int64",
+        "tag": "json:\"id\"",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Name",
+        "type": "string",
+        "tag": "json:\"name\"",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Size",
+        "type": "int64",
+        "tag": "json:\"size\"",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "State",
+        "type": "string",
+        "tag": "json:\"state\"",
+        "offset": 48,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Digest",
+        "type": "string",
+        "tag": "json:\"digest\"",
+        "offset": 64,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.backupConfig",
+    "package": "",
+    "size": 144,
+    "address": "0x1413e2ba8",
+    "fields": [
+      {
+        "name": "LastSnapshot",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Version",
+        "type": "int",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Key",
+        "type": "main.RecoveryKey",
+        "tag": "",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Enabled",
+        "type": "bool",
+        "tag": "",
+        "offset": 80,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "LastHash",
+        "type": "string",
+        "tag": "",
+        "offset": 88,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "LastSuccess",
+        "type": "string",
+        "tag": "",
+        "offset": 104,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "LastAsset",
+        "type": "string",
+        "tag": "",
+        "offset": 120,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "LastSize",
+        "type": "int64",
+        "tag": "",
+        "offset": 136,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.backupManifest",
+    "package": "",
+    "size": 392,
+    "address": "0x1413e7318",
+    "fields": [
+      {
+        "name": "ClientNotes",
+        "type": "*main.clientNoteData",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Version",
+        "type": "int",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "BoxID",
+        "type": "string",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Created",
+        "type": "string",
+        "tag": "",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Host",
+        "type": "main.HostData",
+        "tag": "",
+        "offset": 48,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Connection",
+        "type": "*main.ConnectionConfig",
+        "tag": "",
+        "offset": 360,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Phone",
+        "type": "*main.phoneData",
+        "tag": "",
+        "offset": 368,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Designers",
+        "type": "*main.designerBookData",
+        "tag": "",
+        "offset": 376,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Workbook",
+        "type": "bool",
+        "tag": "",
+        "offset": 384,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.backupRelease",
+    "package": "",
+    "size": 64,
+    "address": "0x1413bac58",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "int64",
+        "tag": "json:\"id\"",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Tag",
+        "type": "string",
+        "tag": "json:\"tag_name\"",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Body",
+        "type": "string",
+        "tag": "json:\"body\"",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Assets",
+        "type": "[]main.backupAsset",
+        "tag": "json:\"assets\"",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.backupRemote",
+    "package": "main",
+    "size": 40,
+    "address": "0x1413a5c78",
+    "fields": [
+      {
+        "name": "api",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "uploads",
+        "type": "string",
+        "tag": "",
+        "offset": 16,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "client",
+        "type": "*http.Client",
+        "tag": "",
+        "offset": 32,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.blob",
+    "package": "",
+    "size": 16,
+    "address": "0x14138d560",
+    "fields": [
+      {
+        "name": "Size",
+        "type": "uint32",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Data",
+        "type": "*uint8",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.boundedBackupWriter",
+    "package": "",
+    "size": 24,
+    "address": "0x14138cfc0",
+    "fields": [
+      {
+        "name": "W",
+        "type": "io.Writer",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "N",
+        "type": "int64",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.capturedBackup",
+    "package": "",
+    "size": 408,
+    "address": "0x1413a5d20",
+    "fields": [
+      {
+        "name": "Manifest",
+        "type": "main.backupManifest",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Photos",
+        "type": "map[string]*os.File",
+        "tag": "",
+        "offset": 392,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Workbook",
+        "type": "*os.File",
+        "tag": "",
+        "offset": 400,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.clientNoteData",
+    "package": "",
+    "size": 32,
+    "address": "0x14138d050",
+    "fields": [
+      {
+        "name": "Version",
+        "type": "int",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Notes",
+        "type": "[]main.ClientNote",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.coinResponse",
+    "package": "main",
+    "size": 40,
+    "address": "0x14138d5f0",
+    "fields": [
+      {
+        "name": "quotes",
+        "type": "[]main.marketQuote",
+        "tag": "",
+        "offset": 0,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "err",
+        "type": "error",
+        "tag": "",
+        "offset": 24,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.contextBackupReader",
+    "package": "",
+    "size": 32,
+    "address": "0x1413a3580",
+    "fields": [
+      {
+        "name": "C",
+        "type": "context.Context",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "R",
+        "type": "io.Reader",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.datedEvent",
+    "package": "",
+    "size": 200,
+    "address": "0x1413d55c8",
+    "fields": [
+      {
+        "name": "Event",
+        "type": "main.Event",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": true
+      },
+      {
+        "name": "Date",
+        "type": "string",
+        "tag": "",
+        "offset": 168,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "DateSerial",
+        "type": "float64",
+        "tag": "",
+        "offset": 184,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "TimeSerial",
+        "type": "float64",
+        "tag": "",
+        "offset": 192,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.designerBookData",
+    "package": "",
+    "size": 32,
+    "address": "0x14138d0e0",
+    "fields": [
+      {
+        "name": "Version",
+        "type": "int",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "People",
+        "type": "[]main.Designer",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.folderGUID",
+    "package": "",
+    "size": 16,
+    "address": "0x1413bad18",
+    "fields": [
+      {
+        "name": "Data1",
+        "type": "uint32",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Data2",
+        "type": "uint16",
+        "tag": "",
+        "offset": 4,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Data3",
+        "type": "uint16",
+        "tag": "",
+        "offset": 6,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Data4",
+        "type": "[8]uint8",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.healthTiming",
+    "package": "",
+    "size": 32,
+    "address": "0x1413bb318",
+    "fields": [
+      {
+        "name": "Startup",
+        "type": "time.Duration",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Retry",
+        "type": "time.Duration",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Interval",
+        "type": "time.Duration",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Failures",
+        "type": "int",
+        "tag": "",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.hostStartup",
+    "package": "main",
+    "size": 72,
+    "address": "0x1413e2de8",
+    "fields": [
+      {
+        "name": "mu",
+        "type": "sync.Mutex",
+        "tag": "",
+        "offset": 0,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "stage",
+        "type": "string",
+        "tag": "",
+        "offset": 8,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "ready",
+        "type": "bool",
+        "tag": "",
+        "offset": 24,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "closed",
+        "type": "bool",
+        "tag": "",
+        "offset": 25,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "host",
+        "type": "*main.Host",
+        "tag": "",
+        "offset": 32,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "err",
+        "type": "error",
+        "tag": "",
+        "offset": 40,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "changed",
+        "type": "func()",
+        "tag": "",
+        "offset": 56,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "cleanup",
+        "type": "func(*main.Host)",
+        "tag": "",
+        "offset": 64,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.importPage",
+    "package": "",
+    "size": 88,
+    "address": "0x1413c9f98",
+    "fields": [
+      {
+        "name": "CSRF",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Error",
+        "type": "string",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Draft",
+        "type": "*main.orderImportDraft",
+        "tag": "",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "People",
+        "type": "[]main.Designer",
+        "tag": "",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Notes",
+        "type": "[]main.ClientNote",
+        "tag": "",
+        "offset": 64,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.importResult",
+    "package": "",
+    "size": 16,
+    "address": "0x14138d170",
+    "fields": [
+      {
+        "name": "Added",
+        "type": "int",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Skipped",
+        "type": "int",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.importRow",
+    "package": "",
+    "size": 184,
+    "address": "0x1413fe8d8",
+    "fields": [
+      {
+        "name": "Row",
+        "type": "int",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Number",
+        "type": "string",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Project",
+        "type": "string",
+        "tag": "",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "DesignerText",
+        "type": "string",
+        "tag": "",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ClientText",
+        "type": "string",
+        "tag": "",
+        "offset": 56,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Memo",
+        "type": "string",
+        "tag": "",
+        "offset": 72,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "DesignerID",
+        "type": "string",
+        "tag": "",
+        "offset": 88,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ClientID",
+        "type": "string",
+        "tag": "",
+        "offset": 104,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Selected",
+        "type": "bool",
+        "tag": "",
+        "offset": 120,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Issue",
+        "type": "string",
+        "tag": "",
+        "offset": 128,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "MatchNote",
+        "type": "string",
+        "tag": "",
+        "offset": 144,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ClientNote",
+        "type": "string",
+        "tag": "",
+        "offset": 160,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Duplicate",
+        "type": "bool",
+        "tag": "",
+        "offset": 176,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Existing",
+        "type": "bool",
+        "tag": "",
+        "offset": 177,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "DesignerChosen",
+        "type": "bool",
+        "tag": "",
+        "offset": 178,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ClientChosen",
+        "type": "bool",
+        "tag": "",
+        "offset": 179,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.importTask",
+    "package": "",
+    "size": 424,
+    "address": "0x1413a59d8",
+    "fields": [
+      {
+        "name": "Order",
+        "type": "main.WorkOrder",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "DesignerRevision",
+        "type": "int64",
+        "tag": "",
+        "offset": 408,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Note",
+        "type": "*main.ClientNote",
+        "tag": "",
+        "offset": 416,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.item",
+    "package": "",
+    "size": 32,
+    "address": "0x14138d200",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Name",
+        "type": "string",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.location",
+    "package": "main",
+    "size": 24,
+    "address": "0x14138d290",
+    "fields": [
+      {
+        "name": "sheet",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "row",
+        "type": "int",
+        "tag": "",
+        "offset": 16,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.marketBase",
+    "package": "",
+    "size": 24,
+    "address": "0x14138d680",
+    "fields": [
+      {
+        "name": "Day",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Price",
+        "type": "float64",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.marketConfig",
+    "package": "",
+    "size": 48,
+    "address": "0x1413ba598",
+    "fields": [
+      {
+        "name": "Enabled",
+        "type": "bool",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ClientID",
+        "type": "string",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ClientSecret",
+        "type": "string",
+        "tag": "",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Revision",
+        "type": "int64",
+        "tag": "",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.marketFX",
+    "package": "",
+    "size": 48,
+    "address": "0x1413baa18",
+    "fields": [
+      {
+        "name": "Rate",
+        "type": "float64",
+        "tag": "json:\"rate\"",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "At",
+        "type": "string",
+        "tag": "json:\"at\"",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Until",
+        "type": "string",
+        "tag": "json:\"until\"",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Stale",
+        "type": "bool",
+        "tag": "json:\"stale\"",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.marketMinute",
+    "package": "",
+    "size": 56,
+    "address": "0x1413a5bd0",
+    "fields": [
+      {
+        "name": "Price",
+        "type": "float64",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "At",
+        "type": "time.Time",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Until",
+        "type": "time.Time",
+        "tag": "",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.marketPage",
+    "package": "",
+    "size": 40,
+    "address": "0x1413ba718",
+    "fields": [
+      {
+        "name": "CSRF",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Error",
+        "type": "string",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Enabled",
+        "type": "bool",
+        "tag": "",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "HasKeys",
+        "type": "bool",
+        "tag": "",
+        "offset": 33,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.marketQuote",
+    "package": "",
+    "size": 120,
+    "address": "0x1413e7450",
+    "fields": [
+      {
+        "name": "Symbol",
+        "type": "string",
+        "tag": "json:\"symbol\"",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Name",
+        "type": "string",
+        "tag": "json:\"name\"",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Price",
+        "type": "*float64",
+        "tag": "json:\"price\"",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Percent",
+        "type": "*float64",
+        "tag": "json:\"percent\"",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "At",
+        "type": "string",
+        "tag": "json:\"at\"",
+        "offset": 48,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "CheckedAt",
+        "type": "string",
+        "tag": "json:\"checked_at,omitempty\"",
+        "offset": 64,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Basis",
+        "type": "string",
+        "tag": "json:\"basis,omitempty\"",
+        "offset": 80,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Source",
+        "type": "string",
+        "tag": "json:\"source\"",
+        "offset": 96,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Stale",
+        "type": "bool",
+        "tag": "json:\"stale\"",
+        "offset": 112,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.marketResult",
+    "package": "",
+    "size": 64,
+    "address": "0x1413ca070",
+    "fields": [
+      {
+        "name": "Enabled",
+        "type": "bool",
+        "tag": "json:\"enabled\"",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Quotes",
+        "type": "[]main.marketQuote",
+        "tag": "json:\"quotes\"",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Checked",
+        "type": "string",
+        "tag": "json:\"checked\"",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Delayed",
+        "type": "bool",
+        "tag": "json:\"delayed\"",
+        "offset": 48,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "FX",
+        "type": "*main.marketFX",
+        "tag": "json:\"fx,omitempty\"",
+        "offset": 56,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.marketRetry",
+    "package": "main",
+    "size": 48,
+    "address": "0x1413a5dc8",
+    "fields": [
+      {
+        "name": "until",
+        "type": "time.Time",
+        "tag": "",
+        "offset": 0,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "failures",
+        "type": "int",
+        "tag": "",
+        "offset": 24,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "err",
+        "type": "error",
+        "tag": "",
+        "offset": 32,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.marketRetryError",
+    "package": "main",
+    "size": 8,
+    "address": "0x14138a9c0",
+    "fields": [
+      {
+        "name": "delay",
+        "type": "time.Duration",
+        "tag": "",
+        "offset": 0,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.marketService",
+    "package": "main",
+    "size": 392,
+    "address": "0x1413fdaf0",
+    "fields": [
+      {
+        "name": "mu",
+        "type": "sync.Mutex",
+        "tag": "",
+        "offset": 0,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "client",
+        "type": "*http.Client",
+        "tag": "",
+        "offset": 8,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "revision",
+        "type": "int64",
+        "tag": "",
+        "offset": 16,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "initialized",
+        "type": "bool",
+        "tag": "",
+        "offset": 24,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "result",
+        "type": "main.marketResult",
+        "tag": "",
+        "offset": 32,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "private",
+        "type": "string",
+        "tag": "",
+        "offset": 96,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "until",
+        "type": "time.Time",
+        "tag": "",
+        "offset": 112,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "token",
+        "type": "string",
+        "tag": "",
+        "offset": 136,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "expires",
+        "type": "time.Time",
+        "tag": "",
+        "offset": 152,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "bases",
+        "type": "map[string]main.marketBase",
+        "tag": "",
+        "offset": 176,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "minutes",
+        "type": "map[string]main.marketMinute",
+        "tag": "",
+        "offset": 184,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "nextToss",
+        "type": "time.Time",
+        "tag": "",
+        "offset": 192,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "spacing",
+        "type": "time.Duration",
+        "tag": "",
+        "offset": 216,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "tossRetry",
+        "type": "main.marketRetry",
+        "tag": "",
+        "offset": 224,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "coinRetry",
+        "type": "main.marketRetry",
+        "tag": "",
+        "offset": 272,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "fxRetry",
+        "type": "main.marketRetry",
+        "tag": "",
+        "offset": 320,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "fxUntil",
+        "type": "time.Time",
+        "tag": "",
+        "offset": 368,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.mobileAccessView",
+    "package": "",
+    "size": 32,
+    "address": "0x1413c9de8",
+    "fields": [
+      {
+        "name": "Enabled",
+        "type": "bool",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "HasPassword",
+        "type": "bool",
+        "tag": "",
+        "offset": 1,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Revision",
+        "type": "int64",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Sessions",
+        "type": "int",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Passkeys",
+        "type": "int",
+        "tag": "",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.mobileAdminConfig",
+    "package": "",
+    "size": 32,
+    "address": "0x1413a5930",
+    "fields": [
+      {
+        "name": "Enabled",
+        "type": "bool",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "PasswordHash",
+        "type": "string",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Revision",
+        "type": "int64",
+        "tag": "",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.mobileAdminRuntime",
+    "package": "main",
+    "size": 56,
+    "address": "0x1413ca220",
+    "fields": [
+      {
+        "name": "mu",
+        "type": "sync.Mutex",
+        "tag": "",
+        "offset": 0,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "sessions",
+        "type": "map[string]main.mobileSession",
+        "tag": "",
+        "offset": 8,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "failed",
+        "type": "int",
+        "tag": "",
+        "offset": 16,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "blockedUntil",
+        "type": "time.Time",
+        "tag": "",
+        "offset": 24,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "loginBusy",
+        "type": "chan struct {}",
+        "tag": "",
+        "offset": 48,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.mobileContextKey",
+    "package": "",
+    "size": 0,
+    "address": "0x141360ec0",
+    "fields": []
+  },
+  {
+    "name": "main.mobileSession",
+    "package": "",
+    "size": 32,
+    "address": "0x14138d320",
+    "fields": [
+      {
+        "name": "Revision",
+        "type": "int64",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Expires",
+        "type": "time.Time",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.monitorInfo",
+    "package": "",
+    "size": 40,
+    "address": "0x1413badd8",
+    "fields": [
+      {
+        "name": "Size",
+        "type": "uint32",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Monitor",
+        "type": "main.rect",
+        "tag": "",
+        "offset": 4,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Work",
+        "type": "main.rect",
+        "tag": "",
+        "offset": 20,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Flags",
+        "type": "uint32",
+        "tag": "",
+        "offset": 36,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.msg",
+    "package": "",
+    "size": 48,
+    "address": "0x1413dd788",
+    "fields": [
+      {
+        "name": "Window",
+        "type": "uintptr",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Message",
+        "type": "uint32",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "WParam",
+        "type": "uintptr",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "LParam",
+        "type": "uintptr",
+        "tag": "",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Time",
+        "type": "uint32",
+        "tag": "",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Pt",
+        "type": "main.point",
+        "tag": "",
+        "offset": 36,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Private",
+        "type": "uint32",
+        "tag": "",
+        "offset": 44,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.notifyIcon",
+    "package": "",
+    "size": 976,
+    "address": "0x1413fa9e0",
+    "fields": [
+      {
+        "name": "Size",
+        "type": "uint32",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Window",
+        "type": "uintptr",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ID",
+        "type": "uint32",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Flags",
+        "type": "uint32",
+        "tag": "",
+        "offset": 20,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Callback",
+        "type": "uint32",
+        "tag": "",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Icon",
+        "type": "uintptr",
+        "tag": "",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Tip",
+        "type": "[128]uint16",
+        "tag": "",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "State",
+        "type": "uint32",
+        "tag": "",
+        "offset": 296,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "StateMask",
+        "type": "uint32",
+        "tag": "",
+        "offset": 300,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Info",
+        "type": "[256]uint16",
+        "tag": "",
+        "offset": 304,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Version",
+        "type": "uint32",
+        "tag": "",
+        "offset": 816,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Title",
+        "type": "[64]uint16",
+        "tag": "",
+        "offset": 820,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "InfoFlags",
+        "type": "uint32",
+        "tag": "",
+        "offset": 948,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "GUID",
+        "type": "[16]uint8",
+        "tag": "",
+        "offset": 952,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Balloon",
+        "type": "uintptr",
+        "tag": "",
+        "offset": 968,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.orderImportDraft",
+    "package": "main",
+    "size": 280,
+    "address": "0x1413fd8f8",
+    "fields": [
+      {
+        "name": "Token",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Nonce",
+        "type": "string",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Filename",
+        "type": "string",
+        "tag": "",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Sheet",
+        "type": "string",
+        "tag": "",
+        "offset": 48,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ParseError",
+        "type": "string",
+        "tag": "",
+        "offset": 64,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Error",
+        "type": "string",
+        "tag": "",
+        "offset": 80,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Data",
+        "type": "[]uint8",
+        "tag": "",
+        "offset": 96,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Sheets",
+        "type": "[]string",
+        "tag": "",
+        "offset": 120,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Rows",
+        "type": "[]main.importRow",
+        "tag": "",
+        "offset": 144,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "People",
+        "type": "[]main.Designer",
+        "tag": "",
+        "offset": 168,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Notes",
+        "type": "[]main.ClientNote",
+        "tag": "",
+        "offset": 192,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Created",
+        "type": "time.Time",
+        "tag": "",
+        "offset": 216,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Running",
+        "type": "bool",
+        "tag": "",
+        "offset": 240,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Progress",
+        "type": "int",
+        "tag": "",
+        "offset": 248,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Total",
+        "type": "int",
+        "tag": "",
+        "offset": 256,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Result",
+        "type": "*main.importResult",
+        "tag": "",
+        "offset": 264,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "done",
+        "type": "chan struct {}",
+        "tag": "",
+        "offset": 272,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.paintStruct",
+    "package": "",
+    "size": 72,
+    "address": "0x1413d56b8",
+    "fields": [
+      {
+        "name": "DC",
+        "type": "uintptr",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Erase",
+        "type": "int32",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Paint",
+        "type": "main.rect",
+        "tag": "",
+        "offset": 12,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Restore",
+        "type": "int32",
+        "tag": "",
+        "offset": 28,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Update",
+        "type": "int32",
+        "tag": "",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Reserved",
+        "type": "[32]uint8",
+        "tag": "",
+        "offset": 36,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.passkeyData",
+    "package": "",
+    "size": 40,
+    "address": "0x14138cf30",
+    "fields": [
+      {
+        "name": "UserID",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Credentials",
+        "type": "[]main.storedPasskey",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.passkeyFlow",
+    "package": "",
+    "size": 416,
+    "address": "0x1413e7588",
+    "fields": [
+      {
+        "name": "Next",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Mode",
+        "type": "string",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Revision",
+        "type": "int64",
+        "tag": "",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "UserID",
+        "type": "string",
+        "tag": "",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "OwnerSession",
+        "type": "string",
+        "tag": "",
+        "offset": 56,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "NonceHash",
+        "type": "string",
+        "tag": "",
+        "offset": 72,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Until",
+        "type": "time.Time",
+        "tag": "",
+        "offset": 88,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Session",
+        "type": "webauthn.SessionData",
+        "tag": "",
+        "offset": 112,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Credential",
+        "type": "*webauthn.Credential",
+        "tag": "",
+        "offset": 408,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.passkeyRequest",
+    "package": "",
+    "size": 56,
+    "address": "0x1413a5b28",
+    "fields": [
+      {
+        "name": "Token",
+        "type": "string",
+        "tag": "json:\"token\"",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Flow",
+        "type": "string",
+        "tag": "json:\"flow\"",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Credential",
+        "type": "jsontext.Value",
+        "tag": "json:\"credential\"",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.passkeyRuntime",
+    "package": "main",
+    "size": 24,
+    "address": "0x1413a5e70",
+    "fields": [
+      {
+        "name": "mu",
+        "type": "sync.Mutex",
+        "tag": "",
+        "offset": 0,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "flows",
+        "type": "map[string]main.passkeyFlow",
+        "tag": "",
+        "offset": 8,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "verifier",
+        "type": "*webauthn.WebAuthn",
+        "tag": "",
+        "offset": 16,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.passkeyUser",
+    "package": "main",
+    "size": 40,
+    "address": "0x1413b8738",
+    "fields": [
+      {
+        "name": "data",
+        "type": "main.passkeyData",
+        "tag": "",
+        "offset": 0,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.phoneData",
+    "package": "",
+    "size": 64,
+    "address": "0x1413d54d8",
+    "fields": [
+      {
+        "name": "Version",
+        "type": "int",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "PublicKey",
+        "type": "string",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "PrivateKey",
+        "type": "string",
+        "tag": "",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Subscription",
+        "type": "*webpush.Subscription",
+        "tag": "",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Delivered",
+        "type": "int64",
+        "tag": "",
+        "offset": 48,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Generation",
+        "type": "int64",
+        "tag": "",
+        "offset": 56,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.phoneMessage",
+    "package": "",
+    "size": 88,
+    "address": "0x1413dd578",
+    "fields": [
+      {
+        "name": "ProjectID",
+        "type": "int64",
+        "tag": "json:\"project_id,omitempty\"",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "RequestID",
+        "type": "int64",
+        "tag": "json:\"request_id,omitempty\"",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Pending",
+        "type": "bool",
+        "tag": "json:\"pending_approval,omitempty\"",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Title",
+        "type": "string",
+        "tag": "json:\"title\"",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Body",
+        "type": "string",
+        "tag": "json:\"body\"",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Tag",
+        "type": "string",
+        "tag": "json:\"tag\"",
+        "offset": 56,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Completed",
+        "type": "string",
+        "tag": "json:\"completed\"",
+        "offset": 72,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.point",
+    "package": "",
+    "size": 8,
+    "address": "0x14138d4d0",
+    "fields": [
+      {
+        "name": "X",
+        "type": "int32",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Y",
+        "type": "int32",
+        "tag": "",
+        "offset": 4,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.preparedPhoto",
+    "package": "",
+    "size": 80,
+    "address": "0x14138d3b0",
+    "fields": [
+      {
+        "name": "Meta",
+        "type": "main.ProjectPhoto",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Data",
+        "type": "[]uint8",
+        "tag": "",
+        "offset": 56,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.rect",
+    "package": "",
+    "size": 16,
+    "address": "0x1413baad8",
+    "fields": [
+      {
+        "name": "Left",
+        "type": "int32",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Top",
+        "type": "int32",
+        "tag": "",
+        "offset": 4,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Right",
+        "type": "int32",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Bottom",
+        "type": "int32",
+        "tag": "",
+        "offset": 12,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.relayPublishError",
+    "package": "main",
+    "size": 16,
+    "address": "0x14136cc00",
+    "fields": [
+      {
+        "name": "cause",
+        "type": "error",
+        "tag": "",
+        "offset": 0,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.restoreJournal",
+    "package": "",
+    "size": 120,
+    "address": "0x1413e2cc8",
+    "fields": [
+      {
+        "name": "Version",
+        "type": "int",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ID",
+        "type": "string",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Root",
+        "type": "string",
+        "tag": "",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "MainName",
+        "type": "string",
+        "tag": "",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Container",
+        "type": "string",
+        "tag": "",
+        "offset": 56,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "PriorRoot",
+        "type": "string",
+        "tag": "",
+        "offset": 72,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "WorkbookTarget",
+        "type": "string",
+        "tag": "",
+        "offset": 88,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "WorkbookHash",
+        "type": "string",
+        "tag": "",
+        "offset": 104,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.scheduleConfig",
+    "package": "",
+    "size": 64,
+    "address": "0x1413c9d10",
+    "fields": [
+      {
+        "name": "Enabled",
+        "type": "bool",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Mode",
+        "type": "string",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "URL",
+        "type": "string",
+        "tag": "",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Path",
+        "type": "string",
+        "tag": "",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Revision",
+        "type": "int64",
+        "tag": "",
+        "offset": 56,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.scheduleEntry",
+    "package": "main",
+    "size": 24,
+    "address": "0x1413a5a80",
+    "fields": [
+      {
+        "name": "Date",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Conflict",
+        "type": "bool",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "explicit",
+        "type": "bool",
+        "tag": "",
+        "offset": 17,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.schedulePage",
+    "package": "",
+    "size": 216,
+    "address": "0x1413dd680",
+    "fields": [
+      {
+        "name": "CSRF",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Error",
+        "type": "string",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Applied",
+        "type": "string",
+        "tag": "",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Mode",
+        "type": "string",
+        "tag": "",
+        "offset": 48,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "HasSource",
+        "type": "bool",
+        "tag": "",
+        "offset": 64,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Auto",
+        "type": "bool",
+        "tag": "",
+        "offset": 65,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Status",
+        "type": "main.scheduleStatus",
+        "tag": "",
+        "offset": 72,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.scheduleRuntime",
+    "package": "main",
+    "size": 168,
+    "address": "0x1413bb198",
+    "fields": [
+      {
+        "name": "status",
+        "type": "main.scheduleStatus",
+        "tag": "",
+        "offset": 0,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "wake",
+        "type": "chan struct {}",
+        "tag": "",
+        "offset": 144,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "cancel",
+        "type": "context.CancelFunc",
+        "tag": "",
+        "offset": 152,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "runCancel",
+        "type": "context.CancelFunc",
+        "tag": "",
+        "offset": 160,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.scheduleStatus",
+    "package": "",
+    "size": 144,
+    "address": "0x1413fa498",
+    "fields": [
+      {
+        "name": "Running",
+        "type": "bool",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Checked",
+        "type": "string",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Success",
+        "type": "string",
+        "tag": "",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Next",
+        "type": "string",
+        "tag": "",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Error",
+        "type": "string",
+        "tag": "",
+        "offset": 56,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "SourceOrders",
+        "type": "int",
+        "tag": "",
+        "offset": 72,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Dated",
+        "type": "int",
+        "tag": "",
+        "offset": 80,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Unset",
+        "type": "int",
+        "tag": "",
+        "offset": 88,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Conflicts",
+        "type": "int",
+        "tag": "",
+        "offset": 96,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Invalid",
+        "type": "int",
+        "tag": "",
+        "offset": 104,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Matched",
+        "type": "int",
+        "tag": "",
+        "offset": 112,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Unmatched",
+        "type": "int",
+        "tag": "",
+        "offset": 120,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Changed",
+        "type": "int",
+        "tag": "",
+        "offset": 128,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Cleared",
+        "type": "int",
+        "tag": "",
+        "offset": 136,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.sdkEndpoint",
+    "package": "main",
+    "size": 32,
+    "address": "0x1413e6d20",
+    "fields": [
+      {
+        "name": "Tunnel",
+        "type": "ngrok.Tunnel",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": true
+      },
+      {
+        "name": "once",
+        "type": "sync.Once",
+        "tag": "",
+        "offset": 16,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.stageStatus",
+    "package": "",
+    "size": 48,
+    "address": "0x1413bab98",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "int64",
+        "tag": "json:\"id\"",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Generation",
+        "type": "int64",
+        "tag": "json:\"generation\"",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Pending",
+        "type": "[]string",
+        "tag": "json:\"pending\"",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Revision",
+        "type": "int64",
+        "tag": "json:\"revision\"",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.startupLog",
+    "package": "main",
+    "size": 32,
+    "address": "0x1413a5f18",
+    "fields": [
+      {
+        "name": "mu",
+        "type": "sync.Mutex",
+        "tag": "",
+        "offset": 0,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "file",
+        "type": "*os.File",
+        "tag": "",
+        "offset": 8,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "path",
+        "type": "string",
+        "tag": "",
+        "offset": 16,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.storedPasskey",
+    "package": "",
+    "size": 344,
+    "address": "0x14138cea0",
+    "fields": [
+      {
+        "name": "Credential",
+        "type": "webauthn.Credential",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Created",
+        "type": "string",
+        "tag": "",
+        "offset": 328,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.toastItem",
+    "package": "",
+    "size": 176,
+    "address": "0x14138d440",
+    "fields": [
+      {
+        "name": "Key",
+        "type": "uint64",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Event",
+        "type": "main.Event",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.toastWindow",
+    "package": "",
+    "size": 320,
+    "address": "0x1413faba8",
+    "fields": [
+      {
+        "name": "Item",
+        "type": "main.toastItem",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Handle",
+        "type": "uintptr",
+        "tag": "",
+        "offset": 176,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Scale",
+        "type": "float64",
+        "tag": "",
+        "offset": 184,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Width",
+        "type": "int32",
+        "tag": "",
+        "offset": 192,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Height",
+        "type": "int32",
+        "tag": "",
+        "offset": 196,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "X",
+        "type": "float64",
+        "tag": "",
+        "offset": 200,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Y",
+        "type": "float64",
+        "tag": "",
+        "offset": 208,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "TargetX",
+        "type": "float64",
+        "tag": "",
+        "offset": 216,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "TargetY",
+        "type": "float64",
+        "tag": "",
+        "offset": 224,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Born",
+        "type": "time.Time",
+        "tag": "",
+        "offset": 232,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Last",
+        "type": "time.Time",
+        "tag": "",
+        "offset": 256,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Remaining",
+        "type": "time.Duration",
+        "tag": "",
+        "offset": 280,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Closing",
+        "type": "time.Time",
+        "tag": "",
+        "offset": 288,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Hover",
+        "type": "bool",
+        "tag": "",
+        "offset": 312,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "CloseHover",
+        "type": "bool",
+        "tag": "",
+        "offset": 313,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.tunnelNotice",
+    "package": "",
+    "size": 48,
+    "address": "0x1413d57a8",
+    "fields": [
+      {
+        "name": "Generation",
+        "type": "int",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Fixed",
+        "type": "bool",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Pages",
+        "type": "bool",
+        "tag": "",
+        "offset": 9,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Connecting",
+        "type": "bool",
+        "tag": "",
+        "offset": 10,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "URL",
+        "type": "string",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Status",
+        "type": "string",
+        "tag": "",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.weatherEntry",
+    "package": "main",
+    "size": 136,
+    "address": "0x1413bae98",
+    "fields": [
+      {
+        "name": "mu",
+        "type": "sync.Mutex",
+        "tag": "",
+        "offset": 0,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "value",
+        "type": "main.weatherResult",
+        "tag": "",
+        "offset": 8,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "err",
+        "type": "error",
+        "tag": "",
+        "offset": 96,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "until",
+        "type": "time.Time",
+        "tag": "",
+        "offset": 112,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.weatherPlace",
+    "package": "",
+    "size": 64,
+    "address": "0x1413ba898",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "string",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Name",
+        "type": "string",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Lat",
+        "type": "string",
+        "tag": "",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Lon",
+        "type": "string",
+        "tag": "",
+        "offset": 48,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.weatherResult",
+    "package": "",
+    "size": 88,
+    "address": "0x1413ca148",
+    "fields": [
+      {
+        "name": "Place",
+        "type": "string",
+        "tag": "json:\"place\"",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Temperature",
+        "type": "float64",
+        "tag": "json:\"temperature\"",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Description",
+        "type": "string",
+        "tag": "json:\"description\"",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ForecastAt",
+        "type": "time.Time",
+        "tag": "json:\"forecast_at\"",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "UpdatedAt",
+        "type": "time.Time",
+        "tag": "json:\"updated_at\"",
+        "offset": 64,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.weatherService",
+    "package": "main",
+    "size": 16,
+    "address": "0x14138d710",
+    "fields": [
+      {
+        "name": "client",
+        "type": "*http.Client",
+        "tag": "",
+        "offset": 0,
+        "exported": false,
+        "embedded": false
+      },
+      {
+        "name": "entries",
+        "type": "map[string]*main.weatherEntry",
+        "tag": "",
+        "offset": 8,
+        "exported": false,
+        "embedded": false
+      }
+    ]
+  },
+  {
+    "name": "main.wndclass",
+    "package": "",
+    "size": 80,
+    "address": "0x1413f2290",
+    "fields": [
+      {
+        "name": "Size",
+        "type": "uint32",
+        "tag": "",
+        "offset": 0,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Style",
+        "type": "uint32",
+        "tag": "",
+        "offset": 4,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Proc",
+        "type": "uintptr",
+        "tag": "",
+        "offset": 8,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "ClsExtra",
+        "type": "int32",
+        "tag": "",
+        "offset": 16,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "WndExtra",
+        "type": "int32",
+        "tag": "",
+        "offset": 20,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Instance",
+        "type": "uintptr",
+        "tag": "",
+        "offset": 24,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Icon",
+        "type": "uintptr",
+        "tag": "",
+        "offset": 32,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Cursor",
+        "type": "uintptr",
+        "tag": "",
+        "offset": 40,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Background",
+        "type": "uintptr",
+        "tag": "",
+        "offset": 48,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Menu",
+        "type": "*uint16",
+        "tag": "",
+        "offset": 56,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "Class",
+        "type": "*uint16",
+        "tag": "",
+        "offset": 64,
+        "exported": true,
+        "embedded": false
+      },
+      {
+        "name": "SmallIcon",
+        "type": "uintptr",
+        "tag": "",
+        "offset": 72,
+        "exported": true,
+        "embedded": false
+      }
+    ]
+  }
+]

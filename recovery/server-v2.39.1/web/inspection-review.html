@@ -1,0 +1,51 @@
+{{define "inspection-review.html"}}<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>수주 검사 확인 · 알파작업완료확인 프로그램</title>
+<link rel="stylesheet" href="/style.css">
+<script defer src="/read.js">
+</script>
+</head>
+<body>
+<header>
+<span class="brand">
+<span class="mark">α</span> 알파작업완료확인 프로그램</span>
+<a href="/inspection-requests">검사 신청 목록</a>
+</header>
+<main>
+<section class="card inspection-review">
+<span class="eyebrow">ADMIN INSPECTION</span>
+<h1>수주 검사 확인</h1>
+<p class="muted">신청 내용을 확인하고 검사가 끝나면 아래 검사 완료 버튼을 눌러 주세요.</p>{{with .Review}}<span class="pill">수주 {{.Number}}</span>
+<h2>{{.Name}}</h2>{{if not .Active}}{{if .LegacyComplete}}<p class="notice">이전 작업 완료 기록이 있습니다. 검사 구분은 기록되지 않았습니다.</p>{{else if .Completed}}<p class="notice">이 수주는 검사가 모두 완료되었습니다.</p>{{else}}<p class="notice">목록에서 숨긴 수주입니다. 다시 표시한 뒤 완료 처리할 수 있습니다.</p>{{end}}{{end}}<div class="project-quick-actions">{{if .DesignerCallURL}}<a class="designer-call" href="{{.DesignerCallURL}}">☎ {{.DesignerName}}</a>{{end}}{{if .HasSpecialInstructions}}<a class="special-info-link" href="/projects/{{.ID}}/info">특이사항</a>{{end}}</div>{{if .CombinedPending}}<section class="combined-review-panel"><span class="badge">세팅·출하 통합검사 신청</span><p>신청 작업자 · {{.Setting.Worker}}</p><form method="post" action="/projects/{{.ID}}/inspection"><input type="hidden" name="csrf" value="{{$.CSRF}}"><input type="hidden" name="inspection" value="combined"><input type="hidden" name="request" value="{{.Setting.EventID}}"><button class="primary full" {{if not .Active}}disabled{{end}}>세팅·출하 모두 완료</button></form><form method="post" action="/projects/{{.ID}}/inspection"><input type="hidden" name="csrf" value="{{$.CSRF}}"><input type="hidden" name="inspection" value="setting"><input type="hidden" name="request" value="{{.Setting.EventID}}"><button class="quiet full" {{if not .Active}}disabled{{end}}>세팅만 완료 · 출하는 대기</button></form><p class="small muted">실제 검사를 마친 항목만 완료 처리해 주세요.</p></section>{{end}}
+{{$project:=.}}<div class="review-stages">{{range .Inspections}}<section class="review-stage {{if .State.Pending}}review-pending{{end}}">
+<h2>0{{.Step}} {{.Label}}</h2>{{if .State.Completed}}<span class="badge success">검사 완료</span>
+<p>작업자 · {{.State.Worker}}</p>
+<p class="small muted">완료 {{kst .State.Completed}}</p>{{else if .State.Pending}}<span class="badge">관리자 검사 대기</span>
+<div data-read-id="{{.State.EventID}}" data-csrf="{{$.CSRF}}">
+<span class="small muted unread-label">신청 알림</span>
+<button type="button" class="quiet">읽음으로 표시</button>
+<span role="status" class="small muted">
+</span>
+</div>
+<p>
+<strong>신청 작업자 · {{.State.Worker}}</strong>
+</p>
+<p class="small muted">신청 {{kst .State.Requested}}</p>
+{{if not $project.CombinedPending}}<form method="post" action="/projects/{{$project.ID}}/inspection">
+<input type="hidden" name="csrf" value="{{$.CSRF}}">
+<input type="hidden" name="inspection" value="{{.Kind}}">
+<input type="hidden" name="request" value="{{.State.EventID}}">
+<button class="primary full" {{if not $project.Active}}disabled{{end}}>{{.Label}} 완료</button>
+</form>{{end}}{{else}}<p class="muted">{{if .Locked}}세팅검사 완료 후 작업자가 출하검사를 신청할 수 있습니다.{{else}}아직 작업자의 검사 신청이 없습니다.{{end}}</p>{{end}}</section>{{end}}</div>{{end}}<p>
+<a class="button primary full" href="/inspection-requests">다음 검사 신청 확인</a>
+</p>
+<p>
+<a class="button quiet" href="">현재 상태 새로고침</a>
+</p>
+</section>
+</main>
+</body>
+</html>{{end}}

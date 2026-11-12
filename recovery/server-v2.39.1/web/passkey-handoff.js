@@ -1,0 +1,1 @@
+(()=>{'use strict';const link=document.getElementById('passkey-handoff');if(!link)return;const target=new URL(link.href);if(target.origin!=='https://swsgood79-beep.github.io'||target.pathname!=='/Tool/admin/'||target.search!=='?passkey=register'||!/^#enroll=[A-Za-z0-9_-]{43}$/.test(target.hash))return;location.replace(target.href);})();

@@ -1,0 +1,1010 @@
+// RTTI field/type inventory only; not an executable recovered source file.
+// Package qualifiers are preserved. Methods, aliases and imports remain unrecovered.
+package main
+
+// Size 272 bytes; descriptor 0x1413f4fe8
+type BackupStore struct {
+    mu sync.Mutex // offset 0
+    cfg main.backupConfig // offset 8
+    path string // offset 152
+    seal func([]uint8) ([]uint8, error) // offset 168
+    status string // offset 176
+    busy bool // offset 192
+    cancel context.CancelFunc // offset 200
+    done chan struct {} // offset 208
+    wake chan struct {} // offset 216
+    ctx context.Context // offset 224
+    closed bool // offset 240
+    tasks sync.WaitGroup // offset 248
+    remote *main.backupRemote // offset 264
+}
+
+// Size 88 bytes; descriptor 0x1413ee408
+type BackupView struct {
+    SnapshotAt string // offset 0
+    PendingChanges bool // offset 16
+    Ready bool // offset 17
+    Enabled bool // offset 18
+    Busy bool // offset 19
+    PendingRestart bool // offset 20
+    LastSuccess string // offset 24
+    LastAsset string // offset 40
+    Status string // offset 56
+    LastSize int64 // offset 72
+    HasToken bool // offset 80
+}
+
+// Size 80 bytes; descriptor 0x1413c9c38
+type ClientNote struct {
+    ID string // offset 0
+    Name string // offset 16
+    Text string // offset 32
+    Revision int64 // offset 48
+    Photos []main.ProjectPhoto // offset 56
+}
+
+// Size 64 bytes; descriptor 0x1413baf58
+type ClientNoteBook struct {
+    mu sync.Mutex // offset 0
+    path string // offset 8
+    data main.clientNoteData // offset 24
+    seal func([]uint8) ([]uint8, error) // offset 56
+}
+
+// Size 184 bytes; descriptor 0x1413ba358
+type Completion struct {
+    Event main.Event // offset 0
+    Submission string // offset 168
+}
+
+// Size 64 bytes; descriptor 0x1413ba418
+type ConnectionConfig struct {
+    Provider string // offset 0
+    Domain string // offset 16
+    AuthToken string // offset 32
+    GitHubToken string // offset 48
+}
+
+// Size 96 bytes; descriptor 0x1413bb018
+type ConnectionStore struct {
+    mu sync.Mutex // offset 0
+    path string // offset 8
+    config main.ConnectionConfig // offset 24
+    seal func([]uint8) ([]uint8, error) // offset 88
+}
+
+// Size 56 bytes; descriptor 0x1413d5208
+type ConnectionView struct {
+    Provider string // offset 0
+    Domain string // offset 16
+    HasToken bool // offset 32
+    Ready bool // offset 33
+    HasGitHubToken bool // offset 34
+    PagesURL string // offset 40
+}
+
+// Size 56 bytes; descriptor 0x1413ba4d8
+type Designer struct {
+    ID string // offset 0
+    Name string // offset 16
+    Phone string // offset 32
+    Revision int64 // offset 48
+}
+
+// Size 64 bytes; descriptor 0x1413bb0d8
+type DesignerBook struct {
+    mu sync.Mutex // offset 0
+    path string // offset 8
+    seal func([]uint8) ([]uint8, error) // offset 24
+    data main.designerBookData // offset 32
+}
+
+// Size 168 bytes; descriptor 0x1413fa818
+type Event struct {
+    BatchID int64 `json:"batch_id,omitempty"` // offset 0
+    Pending bool `json:"pending_approval,omitempty"` // offset 8
+    RequestedAt string `json:"requested_at,omitempty"` // offset 16
+    ReadAt string `json:"read_at,omitempty"` // offset 32
+    Note string `json:"note,omitempty"` // offset 48
+    Revision int64 `json:"revision,omitempty"` // offset 64
+    Inspection string `json:"inspection,omitempty"` // offset 72
+    ProjectID int64 `json:"project_id,omitempty"` // offset 88
+    ID int64 `json:"id"` // offset 96
+    Worker string `json:"worker_name"` // offset 104
+    Project string `json:"name"` // offset 120
+    Order string `json:"order_number"` // offset 136
+    Completed string `json:"completed_at"` // offset 152
+}
+
+// Size 720 bytes; descriptor 0x14140ab58
+type Host struct {
+    markets *main.marketService // offset 0
+    schedule *main.scheduleRuntime // offset 8
+    scheduleRead func(context.Context, main.scheduleConfig) ([]uint8, error) // offset 16
+    importStopping bool // offset 24
+    imports map[string]*main.orderImportDraft // offset 32
+    clients *main.ClientNoteBook // offset 40
+    clientError string // offset 48
+    operations sync.RWMutex // offset 64
+    restorePending bool // offset 88
+    internetStarting bool // offset 89
+    backup *main.BackupStore // offset 96
+    backupError string // offset 104
+    designers *main.DesignerBook // offset 120
+    designerError string // offset 128
+    unseal func([]uint8) ([]uint8, error) // offset 144
+    phoneError string // offset 152
+    phone *main.PhonePush // offset 168
+    phoneStop context.CancelFunc // offset 176
+    fixedConnection bool // offset 184
+    pagesConnected bool // offset 185
+    exporter *main.WorkbookExporter // offset 192
+    connection *main.ConnectionStore // offset 200
+    mu sync.Mutex // offset 208
+    data main.HostData // offset 216
+    path string // offset 528
+    seal func([]uint8) ([]uint8, error) // offset 544
+    publicURL string // offset 552
+    pending []main.Event // offset 568
+    session string // offset 592
+    csrf string // offset 608
+    adminHost string // offset 624
+    mobile *main.mobileAdminRuntime // offset 640
+    passkeys *main.passkeyRuntime // offset 648
+    public *http.Server // offset 656
+    admin *http.Server // offset 664
+    Origin string // offset 672
+    AdminURL string // offset 688
+    OnRecordsChanged func() // offset 704
+    OnEvent func() // offset 712
+}
+
+// Size 312 bytes; descriptor 0x1413f4e50
+type HostData struct {
+    MobileAdmin main.mobileAdminConfig // offset 0
+    Passkeys main.passkeyData // offset 32
+    Market main.marketConfig // offset 72
+    ScheduleSource main.scheduleConfig // offset 120
+    ScheduleApplied string // offset 184
+    SourcesLinked bool // offset 200
+    Version int // offset 208
+    BoardToken string // offset 216
+    SigningKey string // offset 232
+    NextProject int64 // offset 248
+    NextEvent int64 // offset 256
+    Projects []main.WorkOrder // offset 264
+    Events []main.Completion // offset 288
+}
+
+// Size 720 bytes; descriptor 0x14140af60
+type HostView struct {
+    Requests []main.InspectionRequestItem // offset 0
+    Review *main.OrderView // offset 24
+    MobileNext string // offset 32
+    RequestedEvent int64 // offset 48
+    MobileAccess main.mobileAccessView // offset 56
+    MobileAdmin bool // offset 88
+    PasskeyCount int // offset 96
+    PasskeyTicket string // offset 104
+    MobileAdminEnabled bool // offset 120
+    WorkerURL string // offset 128
+    Market main.marketPage // offset 144
+    EntryGate bool // offset 184
+    ScheduleHint string // offset 192
+    ClientNotes []main.ClientNote // offset 208
+    ClientNote *main.ClientNote // offset 232
+    Backup main.BackupView // offset 240
+    AdminInfo bool // offset 328
+    Designers []main.Designer // offset 336
+    SelectedDesigner string // offset 360
+    SelectedClient string // offset 376
+    Phone main.PhoneView // offset 392
+    UnreadCount int // offset 432
+    UnreadThrough int64 // offset 440
+    WeatherPlaces []main.weatherPlace // offset 448
+    TodayShipments []main.ShipmentSummary // offset 472
+    BusinessDate string // offset 496
+    PagesMode bool // offset 512
+    ConnectionOnline bool // offset 513
+    FixedConnection bool // offset 514
+    Title string // offset 520
+    CSRF string // offset 536
+    PublicURL string // offset 552
+    Projects []main.OrderView // offset 568
+    Events []main.Event // offset 592
+    Saved *main.Event // offset 616
+    Error string // offset 624
+    Report *main.WorkbookStatus // offset 640
+    ReportPending bool // offset 648
+    Config main.ConnectionView // offset 656
+    Record *main.Event // offset 712
+}
+
+// Size 176 bytes; descriptor 0x1413ba658
+type InspectionRequestItem struct {
+    Event main.Event // offset 0
+    Active bool // offset 168
+}
+
+// Size 64 bytes; descriptor 0x1413d4720
+type InspectionState struct {
+    BatchID int64 // offset 0
+    Requested string // offset 8
+    Worker string // offset 24
+    Completed string // offset 40
+    EventID int64 // offset 56
+}
+
+// Size 128 bytes; descriptor 0x1413d5118
+type InspectionView struct {
+    Kind string // offset 0
+    Label string // offset 16
+    Form string // offset 32
+    State main.InspectionState // offset 48
+    Locked bool // offset 112
+    Step int // offset 120
+}
+
+// Size 488 bytes; descriptor 0x1413f1280
+type OrderView struct {
+    CombinedForm string // offset 0
+    CompletedToday bool // offset 16
+    NoteForm string // offset 24
+    WorkOrder main.WorkOrder // offset 40
+    Board string // offset 448
+    Inspections []main.InspectionView // offset 464
+}
+
+// Size 192 bytes; descriptor 0x1413eb450
+type PhonePush struct {
+    mu sync.Mutex // offset 0
+    sending sync.Mutex // offset 8
+    data main.phoneData // offset 16
+    path string // offset 80
+    seal func([]uint8) ([]uint8, error) // offset 96
+    client webpush.HTTPClient // offset 104
+    pairToken string // offset 120
+    pairLink string // offset 136
+    pairExpires time.Time // offset 152
+    status string // offset 176
+}
+
+// Size 40 bytes; descriptor 0x1413ba7d8
+type PhoneView struct {
+    Available bool // offset 0
+    Connected bool // offset 1
+    Link string // offset 8
+    Status string // offset 24
+}
+
+// Size 56 bytes; descriptor 0x1413c9b60
+type ProjectPhoto struct {
+    ID string // offset 0
+    Name string // offset 16
+    Width int // offset 32
+    Height int // offset 40
+    Size int // offset 48
+}
+
+// Size 56 bytes; descriptor 0x1413ba958
+type RecoveryKey struct {
+    Version int // offset 0
+    Repository string // offset 8
+    BoxID string // offset 24
+    Identity string // offset 40
+}
+
+// Size 80 bytes; descriptor 0x1413d52f8
+type RelayPointer struct {
+    Application string `json:"application"` // offset 0
+    Version int `json:"version"` // offset 16
+    Online bool `json:"online"` // offset 24
+    Endpoint string `json:"endpoint"` // offset 32
+    Session string `json:"session"` // offset 48
+    UpdatedAt string `json:"updated_at"` // offset 64
+}
+
+// Size 56 bytes; descriptor 0x1413bb258
+type RelayPublisher struct {
+    token string // offset 0
+    client *http.Client // offset 16
+    apiBase string // offset 24
+    siteURL string // offset 40
+}
+
+// Size 96 bytes; descriptor 0x1413dd470
+type ShipmentSummary struct {
+    SettingWorker string `json:"setting_worker,omitempty"` // offset 0
+    ShippingWorker string `json:"shipping_worker,omitempty"` // offset 16
+    ProjectID int64 `json:"project_id"` // offset 32
+    Number string `json:"number"` // offset 40
+    Name string `json:"name"` // offset 56
+    InfoURL string `json:"info_url,omitempty"` // offset 72
+    PhotoCount int `json:"photo_count,omitempty"` // offset 88
+}
+
+// Size 408 bytes; descriptor 0x141405730
+type WorkOrder struct {
+    ShippingDueDate string // offset 0
+    ShippingDueManaged bool // offset 16
+    DesignerID string // offset 24
+    ClientNoteID string // offset 40
+    ClientSourceRevision int64 // offset 56
+    ClientPhotoIDs []string // offset 64
+    DesignerName string // offset 88
+    DesignerPhone string // offset 104
+    SpecialInstructions string // offset 120
+    AdditionalInstructions string // offset 136
+    Photos []main.ProjectPhoto // offset 152
+    InfoRevision int64 // offset 176
+    ID int64 // offset 184
+    Number string // offset 192
+    Name string // offset 208
+    Active bool // offset 224
+    Created string // offset 232
+    Completed string // offset 248
+    Shipping main.InspectionState // offset 264
+    Setting main.InspectionState // offset 328
+    Generation int64 // offset 392
+    Revision int64 // offset 400
+}
+
+// Size 144 bytes; descriptor 0x1413eb5a0
+type WorkbookExporter struct {
+    ioMu sync.Mutex // offset 0
+    statusMu sync.Mutex // offset 8
+    status main.WorkbookStatus // offset 16
+    owner string // offset 80
+    source func() []main.Event // offset 96
+    now func() time.Time // offset 104
+    replace func(string, string) error // offset 112
+    wake chan struct {} // offset 120
+    cancel context.CancelFunc // offset 128
+    done chan struct {} // offset 136
+}
+
+// Size 64 bytes; descriptor 0x1413c9ec0
+type WorkbookStatus struct {
+    Path string // offset 0
+    Error string // offset 16
+    LastSync string // offset 32
+    Count int // offset 48
+    Started bool // offset 56
+}
+
+// Size 80 bytes; descriptor 0x1413d53e8
+type backupAsset struct {
+    Label string `json:"label"` // offset 0
+    ID int64 `json:"id"` // offset 16
+    Name string `json:"name"` // offset 24
+    Size int64 `json:"size"` // offset 40
+    State string `json:"state"` // offset 48
+    Digest string `json:"digest"` // offset 64
+}
+
+// Size 144 bytes; descriptor 0x1413e2ba8
+type backupConfig struct {
+    LastSnapshot string // offset 0
+    Version int // offset 16
+    Key main.RecoveryKey // offset 24
+    Enabled bool // offset 80
+    LastHash string // offset 88
+    LastSuccess string // offset 104
+    LastAsset string // offset 120
+    LastSize int64 // offset 136
+}
+
+// Size 392 bytes; descriptor 0x1413e7318
+type backupManifest struct {
+    ClientNotes *main.clientNoteData // offset 0
+    Version int // offset 8
+    BoxID string // offset 16
+    Created string // offset 32
+    Host main.HostData // offset 48
+    Connection *main.ConnectionConfig // offset 360
+    Phone *main.phoneData // offset 368
+    Designers *main.designerBookData // offset 376
+    Workbook bool // offset 384
+}
+
+// Size 64 bytes; descriptor 0x1413bac58
+type backupRelease struct {
+    ID int64 `json:"id"` // offset 0
+    Tag string `json:"tag_name"` // offset 8
+    Body string `json:"body"` // offset 24
+    Assets []main.backupAsset `json:"assets"` // offset 40
+}
+
+// Size 40 bytes; descriptor 0x1413a5c78
+type backupRemote struct {
+    api string // offset 0
+    uploads string // offset 16
+    client *http.Client // offset 32
+}
+
+// Size 16 bytes; descriptor 0x14138d560
+type blob struct {
+    Size uint32 // offset 0
+    Data *uint8 // offset 8
+}
+
+// Size 24 bytes; descriptor 0x14138cfc0
+type boundedBackupWriter struct {
+    W io.Writer // offset 0
+    N int64 // offset 16
+}
+
+// Size 408 bytes; descriptor 0x1413a5d20
+type capturedBackup struct {
+    Manifest main.backupManifest // offset 0
+    Photos map[string]*os.File // offset 392
+    Workbook *os.File // offset 400
+}
+
+// Size 32 bytes; descriptor 0x14138d050
+type clientNoteData struct {
+    Version int // offset 0
+    Notes []main.ClientNote // offset 8
+}
+
+// Size 40 bytes; descriptor 0x14138d5f0
+type coinResponse struct {
+    quotes []main.marketQuote // offset 0
+    err error // offset 24
+}
+
+// Size 32 bytes; descriptor 0x1413a3580
+type contextBackupReader struct {
+    C context.Context // offset 0
+    R io.Reader // offset 16
+}
+
+// Size 200 bytes; descriptor 0x1413d55c8
+type datedEvent struct {
+    Event main.Event // offset 0
+    Date string // offset 168
+    DateSerial float64 // offset 184
+    TimeSerial float64 // offset 192
+}
+
+// Size 32 bytes; descriptor 0x14138d0e0
+type designerBookData struct {
+    Version int // offset 0
+    People []main.Designer // offset 8
+}
+
+// Size 16 bytes; descriptor 0x1413bad18
+type folderGUID struct {
+    Data1 uint32 // offset 0
+    Data2 uint16 // offset 4
+    Data3 uint16 // offset 6
+    Data4 [8]uint8 // offset 8
+}
+
+// Size 32 bytes; descriptor 0x1413bb318
+type healthTiming struct {
+    Startup time.Duration // offset 0
+    Retry time.Duration // offset 8
+    Interval time.Duration // offset 16
+    Failures int // offset 24
+}
+
+// Size 72 bytes; descriptor 0x1413e2de8
+type hostStartup struct {
+    mu sync.Mutex // offset 0
+    stage string // offset 8
+    ready bool // offset 24
+    closed bool // offset 25
+    host *main.Host // offset 32
+    err error // offset 40
+    changed func() // offset 56
+    cleanup func(*main.Host) // offset 64
+}
+
+// Size 88 bytes; descriptor 0x1413c9f98
+type importPage struct {
+    CSRF string // offset 0
+    Error string // offset 16
+    Draft *main.orderImportDraft // offset 32
+    People []main.Designer // offset 40
+    Notes []main.ClientNote // offset 64
+}
+
+// Size 16 bytes; descriptor 0x14138d170
+type importResult struct {
+    Added int // offset 0
+    Skipped int // offset 8
+}
+
+// Size 184 bytes; descriptor 0x1413fe8d8
+type importRow struct {
+    Row int // offset 0
+    Number string // offset 8
+    Project string // offset 24
+    DesignerText string // offset 40
+    ClientText string // offset 56
+    Memo string // offset 72
+    DesignerID string // offset 88
+    ClientID string // offset 104
+    Selected bool // offset 120
+    Issue string // offset 128
+    MatchNote string // offset 144
+    ClientNote string // offset 160
+    Duplicate bool // offset 176
+    Existing bool // offset 177
+    DesignerChosen bool // offset 178
+    ClientChosen bool // offset 179
+}
+
+// Size 424 bytes; descriptor 0x1413a59d8
+type importTask struct {
+    Order main.WorkOrder // offset 0
+    DesignerRevision int64 // offset 408
+    Note *main.ClientNote // offset 416
+}
+
+// Size 32 bytes; descriptor 0x14138d200
+type item struct {
+    ID string // offset 0
+    Name string // offset 16
+}
+
+// Size 24 bytes; descriptor 0x14138d290
+type location struct {
+    sheet string // offset 0
+    row int // offset 16
+}
+
+// Size 24 bytes; descriptor 0x14138d680
+type marketBase struct {
+    Day string // offset 0
+    Price float64 // offset 16
+}
+
+// Size 48 bytes; descriptor 0x1413ba598
+type marketConfig struct {
+    Enabled bool // offset 0
+    ClientID string // offset 8
+    ClientSecret string // offset 24
+    Revision int64 // offset 40
+}
+
+// Size 48 bytes; descriptor 0x1413baa18
+type marketFX struct {
+    Rate float64 `json:"rate"` // offset 0
+    At string `json:"at"` // offset 8
+    Until string `json:"until"` // offset 24
+    Stale bool `json:"stale"` // offset 40
+}
+
+// Size 56 bytes; descriptor 0x1413a5bd0
+type marketMinute struct {
+    Price float64 // offset 0
+    At time.Time // offset 8
+    Until time.Time // offset 32
+}
+
+// Size 40 bytes; descriptor 0x1413ba718
+type marketPage struct {
+    CSRF string // offset 0
+    Error string // offset 16
+    Enabled bool // offset 32
+    HasKeys bool // offset 33
+}
+
+// Size 120 bytes; descriptor 0x1413e7450
+type marketQuote struct {
+    Symbol string `json:"symbol"` // offset 0
+    Name string `json:"name"` // offset 16
+    Price *float64 `json:"price"` // offset 32
+    Percent *float64 `json:"percent"` // offset 40
+    At string `json:"at"` // offset 48
+    CheckedAt string `json:"checked_at,omitempty"` // offset 64
+    Basis string `json:"basis,omitempty"` // offset 80
+    Source string `json:"source"` // offset 96
+    Stale bool `json:"stale"` // offset 112
+}
+
+// Size 64 bytes; descriptor 0x1413ca070
+type marketResult struct {
+    Enabled bool `json:"enabled"` // offset 0
+    Quotes []main.marketQuote `json:"quotes"` // offset 8
+    Checked string `json:"checked"` // offset 32
+    Delayed bool `json:"delayed"` // offset 48
+    FX *main.marketFX `json:"fx,omitempty"` // offset 56
+}
+
+// Size 48 bytes; descriptor 0x1413a5dc8
+type marketRetry struct {
+    until time.Time // offset 0
+    failures int // offset 24
+    err error // offset 32
+}
+
+// Size 8 bytes; descriptor 0x14138a9c0
+type marketRetryError struct {
+    delay time.Duration // offset 0
+}
+
+// Size 392 bytes; descriptor 0x1413fdaf0
+type marketService struct {
+    mu sync.Mutex // offset 0
+    client *http.Client // offset 8
+    revision int64 // offset 16
+    initialized bool // offset 24
+    result main.marketResult // offset 32
+    private string // offset 96
+    until time.Time // offset 112
+    token string // offset 136
+    expires time.Time // offset 152
+    bases map[string]main.marketBase // offset 176
+    minutes map[string]main.marketMinute // offset 184
+    nextToss time.Time // offset 192
+    spacing time.Duration // offset 216
+    tossRetry main.marketRetry // offset 224
+    coinRetry main.marketRetry // offset 272
+    fxRetry main.marketRetry // offset 320
+    fxUntil time.Time // offset 368
+}
+
+// Size 32 bytes; descriptor 0x1413c9de8
+type mobileAccessView struct {
+    Enabled bool // offset 0
+    HasPassword bool // offset 1
+    Revision int64 // offset 8
+    Sessions int // offset 16
+    Passkeys int // offset 24
+}
+
+// Size 32 bytes; descriptor 0x1413a5930
+type mobileAdminConfig struct {
+    Enabled bool // offset 0
+    PasswordHash string // offset 8
+    Revision int64 // offset 24
+}
+
+// Size 56 bytes; descriptor 0x1413ca220
+type mobileAdminRuntime struct {
+    mu sync.Mutex // offset 0
+    sessions map[string]main.mobileSession // offset 8
+    failed int // offset 16
+    blockedUntil time.Time // offset 24
+    loginBusy chan struct {} // offset 48
+}
+
+// Size 0 bytes; descriptor 0x141360ec0
+type mobileContextKey struct {
+}
+
+// Size 32 bytes; descriptor 0x14138d320
+type mobileSession struct {
+    Revision int64 // offset 0
+    Expires time.Time // offset 8
+}
+
+// Size 40 bytes; descriptor 0x1413badd8
+type monitorInfo struct {
+    Size uint32 // offset 0
+    Monitor main.rect // offset 4
+    Work main.rect // offset 20
+    Flags uint32 // offset 36
+}
+
+// Size 48 bytes; descriptor 0x1413dd788
+type msg struct {
+    Window uintptr // offset 0
+    Message uint32 // offset 8
+    WParam uintptr // offset 16
+    LParam uintptr // offset 24
+    Time uint32 // offset 32
+    Pt main.point // offset 36
+    Private uint32 // offset 44
+}
+
+// Size 976 bytes; descriptor 0x1413fa9e0
+type notifyIcon struct {
+    Size uint32 // offset 0
+    Window uintptr // offset 8
+    ID uint32 // offset 16
+    Flags uint32 // offset 20
+    Callback uint32 // offset 24
+    Icon uintptr // offset 32
+    Tip [128]uint16 // offset 40
+    State uint32 // offset 296
+    StateMask uint32 // offset 300
+    Info [256]uint16 // offset 304
+    Version uint32 // offset 816
+    Title [64]uint16 // offset 820
+    InfoFlags uint32 // offset 948
+    GUID [16]uint8 // offset 952
+    Balloon uintptr // offset 968
+}
+
+// Size 280 bytes; descriptor 0x1413fd8f8
+type orderImportDraft struct {
+    Token string // offset 0
+    Nonce string // offset 16
+    Filename string // offset 32
+    Sheet string // offset 48
+    ParseError string // offset 64
+    Error string // offset 80
+    Data []uint8 // offset 96
+    Sheets []string // offset 120
+    Rows []main.importRow // offset 144
+    People []main.Designer // offset 168
+    Notes []main.ClientNote // offset 192
+    Created time.Time // offset 216
+    Running bool // offset 240
+    Progress int // offset 248
+    Total int // offset 256
+    Result *main.importResult // offset 264
+    done chan struct {} // offset 272
+}
+
+// Size 72 bytes; descriptor 0x1413d56b8
+type paintStruct struct {
+    DC uintptr // offset 0
+    Erase int32 // offset 8
+    Paint main.rect // offset 12
+    Restore int32 // offset 28
+    Update int32 // offset 32
+    Reserved [32]uint8 // offset 36
+}
+
+// Size 40 bytes; descriptor 0x14138cf30
+type passkeyData struct {
+    UserID string // offset 0
+    Credentials []main.storedPasskey // offset 16
+}
+
+// Size 416 bytes; descriptor 0x1413e7588
+type passkeyFlow struct {
+    Next string // offset 0
+    Mode string // offset 16
+    Revision int64 // offset 32
+    UserID string // offset 40
+    OwnerSession string // offset 56
+    NonceHash string // offset 72
+    Until time.Time // offset 88
+    Session webauthn.SessionData // offset 112
+    Credential *webauthn.Credential // offset 408
+}
+
+// Size 56 bytes; descriptor 0x1413a5b28
+type passkeyRequest struct {
+    Token string `json:"token"` // offset 0
+    Flow string `json:"flow"` // offset 16
+    Credential jsontext.Value `json:"credential"` // offset 32
+}
+
+// Size 24 bytes; descriptor 0x1413a5e70
+type passkeyRuntime struct {
+    mu sync.Mutex // offset 0
+    flows map[string]main.passkeyFlow // offset 8
+    verifier *webauthn.WebAuthn // offset 16
+}
+
+// Size 40 bytes; descriptor 0x1413b8738
+type passkeyUser struct {
+    data main.passkeyData // offset 0
+}
+
+// Size 64 bytes; descriptor 0x1413d54d8
+type phoneData struct {
+    Version int // offset 0
+    PublicKey string // offset 8
+    PrivateKey string // offset 24
+    Subscription *webpush.Subscription // offset 40
+    Delivered int64 // offset 48
+    Generation int64 // offset 56
+}
+
+// Size 88 bytes; descriptor 0x1413dd578
+type phoneMessage struct {
+    ProjectID int64 `json:"project_id,omitempty"` // offset 0
+    RequestID int64 `json:"request_id,omitempty"` // offset 8
+    Pending bool `json:"pending_approval,omitempty"` // offset 16
+    Title string `json:"title"` // offset 24
+    Body string `json:"body"` // offset 40
+    Tag string `json:"tag"` // offset 56
+    Completed string `json:"completed"` // offset 72
+}
+
+// Size 8 bytes; descriptor 0x14138d4d0
+type point struct {
+    X int32 // offset 0
+    Y int32 // offset 4
+}
+
+// Size 80 bytes; descriptor 0x14138d3b0
+type preparedPhoto struct {
+    Meta main.ProjectPhoto // offset 0
+    Data []uint8 // offset 56
+}
+
+// Size 16 bytes; descriptor 0x1413baad8
+type rect struct {
+    Left int32 // offset 0
+    Top int32 // offset 4
+    Right int32 // offset 8
+    Bottom int32 // offset 12
+}
+
+// Size 16 bytes; descriptor 0x14136cc00
+type relayPublishError struct {
+    cause error // offset 0
+}
+
+// Size 120 bytes; descriptor 0x1413e2cc8
+type restoreJournal struct {
+    Version int // offset 0
+    ID string // offset 8
+    Root string // offset 24
+    MainName string // offset 40
+    Container string // offset 56
+    PriorRoot string // offset 72
+    WorkbookTarget string // offset 88
+    WorkbookHash string // offset 104
+}
+
+// Size 64 bytes; descriptor 0x1413c9d10
+type scheduleConfig struct {
+    Enabled bool // offset 0
+    Mode string // offset 8
+    URL string // offset 24
+    Path string // offset 40
+    Revision int64 // offset 56
+}
+
+// Size 24 bytes; descriptor 0x1413a5a80
+type scheduleEntry struct {
+    Date string // offset 0
+    Conflict bool // offset 16
+    explicit bool // offset 17
+}
+
+// Size 216 bytes; descriptor 0x1413dd680
+type schedulePage struct {
+    CSRF string // offset 0
+    Error string // offset 16
+    Applied string // offset 32
+    Mode string // offset 48
+    HasSource bool // offset 64
+    Auto bool // offset 65
+    Status main.scheduleStatus // offset 72
+}
+
+// Size 168 bytes; descriptor 0x1413bb198
+type scheduleRuntime struct {
+    status main.scheduleStatus // offset 0
+    wake chan struct {} // offset 144
+    cancel context.CancelFunc // offset 152
+    runCancel context.CancelFunc // offset 160
+}
+
+// Size 144 bytes; descriptor 0x1413fa498
+type scheduleStatus struct {
+    Running bool // offset 0
+    Checked string // offset 8
+    Success string // offset 24
+    Next string // offset 40
+    Error string // offset 56
+    SourceOrders int // offset 72
+    Dated int // offset 80
+    Unset int // offset 88
+    Conflicts int // offset 96
+    Invalid int // offset 104
+    Matched int // offset 112
+    Unmatched int // offset 120
+    Changed int // offset 128
+    Cleared int // offset 136
+}
+
+// Size 32 bytes; descriptor 0x1413e6d20
+type sdkEndpoint struct {
+    Tunnel ngrok.Tunnel // offset 0
+    once sync.Once // offset 16
+}
+
+// Size 48 bytes; descriptor 0x1413bab98
+type stageStatus struct {
+    ID int64 `json:"id"` // offset 0
+    Generation int64 `json:"generation"` // offset 8
+    Pending []string `json:"pending"` // offset 16
+    Revision int64 `json:"revision"` // offset 40
+}
+
+// Size 32 bytes; descriptor 0x1413a5f18
+type startupLog struct {
+    mu sync.Mutex // offset 0
+    file *os.File // offset 8
+    path string // offset 16
+}
+
+// Size 344 bytes; descriptor 0x14138cea0
+type storedPasskey struct {
+    Credential webauthn.Credential // offset 0
+    Created string // offset 328
+}
+
+// Size 176 bytes; descriptor 0x14138d440
+type toastItem struct {
+    Key uint64 // offset 0
+    Event main.Event // offset 8
+}
+
+// Size 320 bytes; descriptor 0x1413faba8
+type toastWindow struct {
+    Item main.toastItem // offset 0
+    Handle uintptr // offset 176
+    Scale float64 // offset 184
+    Width int32 // offset 192
+    Height int32 // offset 196
+    X float64 // offset 200
+    Y float64 // offset 208
+    TargetX float64 // offset 216
+    TargetY float64 // offset 224
+    Born time.Time // offset 232
+    Last time.Time // offset 256
+    Remaining time.Duration // offset 280
+    Closing time.Time // offset 288
+    Hover bool // offset 312
+    CloseHover bool // offset 313
+}
+
+// Size 48 bytes; descriptor 0x1413d57a8
+type tunnelNotice struct {
+    Generation int // offset 0
+    Fixed bool // offset 8
+    Pages bool // offset 9
+    Connecting bool // offset 10
+    URL string // offset 16
+    Status string // offset 32
+}
+
+// Size 136 bytes; descriptor 0x1413bae98
+type weatherEntry struct {
+    mu sync.Mutex // offset 0
+    value main.weatherResult // offset 8
+    err error // offset 96
+    until time.Time // offset 112
+}
+
+// Size 64 bytes; descriptor 0x1413ba898
+type weatherPlace struct {
+    ID string // offset 0
+    Name string // offset 16
+    Lat string // offset 32
+    Lon string // offset 48
+}
+
+// Size 88 bytes; descriptor 0x1413ca148
+type weatherResult struct {
+    Place string `json:"place"` // offset 0
+    Temperature float64 `json:"temperature"` // offset 16
+    Description string `json:"description"` // offset 24
+    ForecastAt time.Time `json:"forecast_at"` // offset 40
+    UpdatedAt time.Time `json:"updated_at"` // offset 64
+}
+
+// Size 16 bytes; descriptor 0x14138d710
+type weatherService struct {
+    client *http.Client // offset 0
+    entries map[string]*main.weatherEntry // offset 8
+}
+
+// Size 80 bytes; descriptor 0x1413f2290
+type wndclass struct {
+    Size uint32 // offset 0
+    Style uint32 // offset 4
+    Proc uintptr // offset 8
+    ClsExtra int32 // offset 16
+    WndExtra int32 // offset 20
+    Instance uintptr // offset 24
+    Icon uintptr // offset 32
+    Cursor uintptr // offset 40
+    Background uintptr // offset 48
+    Menu *uint16 // offset 56
+    Class *uint16 // offset 64
+    SmallIcon uintptr // offset 72
+}

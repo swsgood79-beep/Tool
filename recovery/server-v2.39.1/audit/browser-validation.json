@@ -1,0 +1,11 @@
+{
+  "browser": "Chromium / Playwright",
+  "setupLogin": "pass",
+  "createOrder": "pass",
+  "anonymousWorkerCombinedRequest": "pass",
+  "adminCombinedApproval": "pass",
+  "completedWorkers": "pass",
+  "calendar": "pass",
+  "javascriptErrors": [],
+  "windowsNativeExecution": "not tested"
+}

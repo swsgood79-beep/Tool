@@ -1,0 +1,566 @@
+{
+  "forms": [
+    {
+      "file": "admin-order-items.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/archive",
+      "fields": [
+        "csrf",
+        "id"
+      ],
+      "reconstruction_status": "implemented with independent code; not proven equivalent"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/mobile-admin/logout",
+      "fields": [
+        "csrf"
+      ],
+      "reconstruction_status": "independent local auth; original protocol not implemented"
+    },
+    {
+      "file": "backup.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/backup/key",
+      "fields": [
+        "csrf"
+      ],
+      "reconstruction_status": "not implemented"
+    },
+    {
+      "file": "backup.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/backup/config",
+      "fields": [
+        "csrf",
+        "enable",
+        "saved_key"
+      ],
+      "reconstruction_status": "not implemented"
+    },
+    {
+      "file": "backup.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/backup/now",
+      "fields": [
+        "csrf"
+      ],
+      "reconstruction_status": "not implemented"
+    },
+    {
+      "file": "backup.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/backup/config",
+      "fields": [
+        "csrf",
+        "enable"
+      ],
+      "reconstruction_status": "not implemented"
+    },
+    {
+      "file": "backup.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/backup/restore",
+      "fields": [
+        "confirm",
+        "csrf",
+        "generation",
+        "github_token",
+        "recovery"
+      ],
+      "reconstruction_status": "not implemented"
+    },
+    {
+      "file": "client-note-edit.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/client-notes",
+      "fields": [
+        "action",
+        "client_name",
+        "client_text",
+        "csrf",
+        "id",
+        "photos",
+        "remove_photo",
+        "revision"
+      ],
+      "reconstruction_status": "implemented with independent code; not proven equivalent"
+    },
+    {
+      "file": "client-note-edit.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/client-notes",
+      "fields": [
+        "action",
+        "csrf",
+        "id",
+        "revision"
+      ],
+      "reconstruction_status": "implemented with independent code; not proven equivalent"
+    },
+    {
+      "file": "client-notes.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/client-notes",
+      "fields": [
+        "action",
+        "client_name",
+        "client_text",
+        "csrf",
+        "photos"
+      ],
+      "reconstruction_status": "implemented with independent code; not proven equivalent"
+    },
+    {
+      "file": "designers.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/designers",
+      "fields": [
+        "action",
+        "csrf",
+        "name",
+        "phone"
+      ],
+      "reconstruction_status": "implemented with independent code; not proven equivalent"
+    },
+    {
+      "file": "designers.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/designers",
+      "fields": [
+        "action",
+        "csrf",
+        "id",
+        "name",
+        "phone",
+        "revision"
+      ],
+      "reconstruction_status": "implemented with independent code; not proven equivalent"
+    },
+    {
+      "file": "edit.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/records/{{.ID}}/edit",
+      "fields": [
+        "action",
+        "csrf",
+        "revision",
+        "worker"
+      ],
+      "reconstruction_status": "implemented with independent code; not proven equivalent"
+    },
+    {
+      "file": "edit.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/records/{{.ID}}/edit",
+      "fields": [
+        "action",
+        "confirm",
+        "csrf",
+        "revision"
+      ],
+      "reconstruction_status": "implemented with independent code; not proven equivalent"
+    },
+    {
+      "file": "edit.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/records/{{.ID}}/edit",
+      "fields": [
+        "action",
+        "confirm",
+        "csrf",
+        "revision"
+      ],
+      "reconstruction_status": "implemented with independent code; not proven equivalent"
+    },
+    {
+      "file": "inspection-queue.html",
+      "line": 13,
+      "method": "POST",
+      "action": "/projects/{{.ProjectID}}/inspection",
+      "fields": [
+        "csrf",
+        "inspection",
+        "request",
+        "return_queue"
+      ],
+      "reconstruction_status": "implemented with independent code; not proven equivalent"
+    },
+    {
+      "file": "inspection-review.html",
+      "line": 22,
+      "method": "POST",
+      "action": "/projects/{{.ID}}/inspection",
+      "fields": [
+        "csrf",
+        "inspection",
+        "request"
+      ],
+      "reconstruction_status": "implemented with independent code; not proven equivalent"
+    },
+    {
+      "file": "inspection-review.html",
+      "line": 22,
+      "method": "POST",
+      "action": "/projects/{{.ID}}/inspection",
+      "fields": [
+        "csrf",
+        "inspection",
+        "request"
+      ],
+      "reconstruction_status": "implemented with independent code; not proven equivalent"
+    },
+    {
+      "file": "inspection-review.html",
+      "line": 37,
+      "method": "POST",
+      "action": "/projects/{{$project.ID}}/inspection",
+      "fields": [
+        "csrf",
+        "inspection",
+        "request"
+      ],
+      "reconstruction_status": "implemented with independent code; not proven equivalent"
+    },
+    {
+      "file": "market-settings.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/market-settings",
+      "fields": [
+        "clear_keys",
+        "client_id",
+        "client_secret",
+        "csrf",
+        "enabled"
+      ],
+      "reconstruction_status": "not implemented"
+    },
+    {
+      "file": "mobile-access.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/mobile-access",
+      "fields": [
+        "action",
+        "confirm",
+        "csrf",
+        "enabled",
+        "password",
+        "revision"
+      ],
+      "reconstruction_status": "not implemented"
+    },
+    {
+      "file": "mobile-access.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/mobile-access",
+      "fields": [
+        "action",
+        "csrf",
+        "revision"
+      ],
+      "reconstruction_status": "not implemented"
+    },
+    {
+      "file": "mobile-access.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/mobile-access",
+      "fields": [
+        "action",
+        "confirm",
+        "csrf",
+        "revision"
+      ],
+      "reconstruction_status": "not implemented"
+    },
+    {
+      "file": "mobile-login.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/mobile-admin/login",
+      "fields": [
+        "csrf",
+        "next",
+        "password"
+      ],
+      "reconstruction_status": "independent local auth; original protocol not implemented"
+    },
+    {
+      "file": "order-import.html",
+      "line": 2,
+      "method": "POST",
+      "action": "/orders/import/preview",
+      "fields": [
+        "csrf",
+        "workbook"
+      ],
+      "reconstruction_status": "not implemented"
+    },
+    {
+      "file": "order-import.html",
+      "line": 6,
+      "method": "POST",
+      "action": "/orders/import/discard",
+      "fields": [
+        "csrf",
+        "draft"
+      ],
+      "reconstruction_status": "not implemented"
+    },
+    {
+      "file": "order-import.html",
+      "line": 6,
+      "method": "POST",
+      "action": "/orders/import/sheet",
+      "fields": [
+        "csrf",
+        "draft",
+        "sheet"
+      ],
+      "reconstruction_status": "not implemented"
+    },
+    {
+      "file": "order-import.html",
+      "line": 9,
+      "method": "POST",
+      "action": "/orders/import/commit",
+      "fields": [
+        "client_{{.Row}}",
+        "csrf",
+        "designer_{{.Row}}",
+        "draft",
+        "nonce",
+        "rows"
+      ],
+      "reconstruction_status": "not implemented"
+    },
+    {
+      "file": "order-import.html",
+      "line": 10,
+      "method": "DIALOG",
+      "action": "(current URL)",
+      "fields": [
+        "choice"
+      ],
+      "reconstruction_status": "not implemented"
+    },
+    {
+      "file": "order-import.html",
+      "line": 11,
+      "method": "DIALOG",
+      "action": "(current URL)",
+      "fields": [
+        "choice"
+      ],
+      "reconstruction_status": "not implemented"
+    },
+    {
+      "file": "passkey-settings.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/mobile-admin/passkey/enroll",
+      "fields": [
+        "csrf",
+        "password"
+      ],
+      "reconstruction_status": "not implemented"
+    },
+    {
+      "file": "phone.html",
+      "line": 1,
+      "method": "POST",
+      "action": "(current URL)",
+      "fields": [
+        "action",
+        "csrf"
+      ],
+      "reconstruction_status": "not implemented"
+    },
+    {
+      "file": "phone.html",
+      "line": 1,
+      "method": "POST",
+      "action": "(current URL)",
+      "fields": [
+        "action",
+        "csrf"
+      ],
+      "reconstruction_status": "not implemented"
+    },
+    {
+      "file": "phone.html",
+      "line": 1,
+      "method": "POST",
+      "action": "(current URL)",
+      "fields": [
+        "action",
+        "csrf"
+      ],
+      "reconstruction_status": "not implemented"
+    },
+    {
+      "file": "project-card.html",
+      "line": 31,
+      "method": "POST",
+      "action": "/complete/{{$.Board}}",
+      "fields": [
+        "combined_submission",
+        "inspection",
+        "project",
+        "submission",
+        "worker"
+      ],
+      "reconstruction_status": "implemented with independent code; not proven equivalent"
+    },
+    {
+      "file": "project-card.html",
+      "line": 49,
+      "method": "POST",
+      "action": "/note/{{.Board}}",
+      "fields": [
+        "note",
+        "project",
+        "submission",
+        "worker"
+      ],
+      "reconstruction_status": "implemented with independent code; not proven equivalent"
+    },
+    {
+      "file": "project-create.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/projects",
+      "fields": [
+        "additional_instructions",
+        "csrf",
+        "designer_id",
+        "designer_name",
+        "designer_phone",
+        "instructions",
+        "name",
+        "number",
+        "photos",
+        "{{.Name}}"
+      ],
+      "reconstruction_status": "implemented with independent code; not proven equivalent"
+    },
+    {
+      "file": "project-delete.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/projects/{{.ID}}/delete",
+      "fields": [
+        "confirm",
+        "csrf"
+      ],
+      "reconstruction_status": "implemented with independent code; not proven equivalent"
+    },
+    {
+      "file": "project-edit.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/projects/{{.ID}}/edit",
+      "fields": [
+        "additional_instructions",
+        "csrf",
+        "designer_id",
+        "designer_name",
+        "designer_phone",
+        "instructions",
+        "name",
+        "number",
+        "photos",
+        "remove_photo",
+        "revision",
+        "{{.Name}}"
+      ],
+      "reconstruction_status": "implemented with independent code; not proven equivalent"
+    },
+    {
+      "file": "schedule.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/schedule",
+      "fields": [
+        "action",
+        "csrf",
+        "enabled",
+        "mode",
+        "source_path",
+        "source_url"
+      ],
+      "reconstruction_status": "not implemented"
+    },
+    {
+      "file": "schedule.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/schedule",
+      "fields": [
+        "action",
+        "csrf"
+      ],
+      "reconstruction_status": "not implemented"
+    },
+    {
+      "file": "settings.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/settings",
+      "fields": [
+        "csrf",
+        "domain",
+        "github_token",
+        "provider",
+        "token"
+      ],
+      "reconstruction_status": "not implemented"
+    },
+    {
+      "file": "unread.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/unread/read-all",
+      "fields": [
+        "csrf",
+        "through"
+      ],
+      "reconstruction_status": "implemented with independent code; not proven equivalent"
+    }
+  ],
+  "transport_status_by_asset": {
+    "admin.js": "implemented: order HTML polling",
+    "client-picker.js": "implemented: directory JSON",
+    "designer-picker.js": "implemented: CRUD and JSON",
+    "inspection-queue.js": "implemented: pending HTML polling",
+    "project-info.js": "implemented: HTML revision polling",
+    "read.js": "implemented: read receipt",
+    "worker.js": "implemented: status JSON and card HTML",
+    "worker-dialog.js": "implemented: forms and card refresh",
+    "worker-context.js": "disabled market result; providers NOT implemented",
+    "backup.js": "NOT implemented",
+    "market-settings.js": "NOT implemented",
+    "mobile-login.js": "original session protocol NOT implemented",
+    "passkey-enter.js": "NOT implemented",
+    "schedule.js": "NOT implemented"
+  }
+}

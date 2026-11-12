@@ -1,0 +1,1840 @@
+{
+  "assets": [
+    {
+      "file": "admin-order-items.html",
+      "bytes": 3089
+    },
+    {
+      "file": "admin.html",
+      "bytes": 10401
+    },
+    {
+      "file": "admin.js",
+      "bytes": 5006
+    },
+    {
+      "file": "backup.html",
+      "bytes": 5816
+    },
+    {
+      "file": "backup.js",
+      "bytes": 1050
+    },
+    {
+      "file": "client-note-edit.html",
+      "bytes": 2324
+    },
+    {
+      "file": "client-notes.html",
+      "bytes": 2484
+    },
+    {
+      "file": "client-picker.html",
+      "bytes": 1565
+    },
+    {
+      "file": "client-picker.js",
+      "bytes": 3256
+    },
+    {
+      "file": "closed.html",
+      "bytes": 786
+    },
+    {
+      "file": "designer-picker.js",
+      "bytes": 3539
+    },
+    {
+      "file": "designers.html",
+      "bytes": 2781
+    },
+    {
+      "file": "due-view.js",
+      "bytes": 4255
+    },
+    {
+      "file": "edit.html",
+      "bytes": 3578
+    },
+    {
+      "file": "entry-gate.css",
+      "bytes": 4138
+    },
+    {
+      "file": "entry-gate.html",
+      "bytes": 3421
+    },
+    {
+      "file": "entry-gate.js",
+      "bytes": 2083
+    },
+    {
+      "file": "entry-motion.js",
+      "bytes": 5749
+    },
+    {
+      "file": "entry-workshop.png",
+      "bytes": 2115601
+    },
+    {
+      "file": "inspection-queue.html",
+      "bytes": 3576
+    },
+    {
+      "file": "inspection-queue.js",
+      "bytes": 2063
+    },
+    {
+      "file": "inspection-review.html",
+      "bytes": 4043
+    },
+    {
+      "file": "market-settings.html",
+      "bytes": 3244
+    },
+    {
+      "file": "market-settings.js",
+      "bytes": 745
+    },
+    {
+      "file": "mobile-access.html",
+      "bytes": 3704
+    },
+    {
+      "file": "mobile-login.html",
+      "bytes": 1884
+    },
+    {
+      "file": "mobile-login.js",
+      "bytes": 585
+    },
+    {
+      "file": "order-import.html",
+      "bytes": 8680
+    },
+    {
+      "file": "order-import.js",
+      "bytes": 1842
+    },
+    {
+      "file": "passkey-enter.html",
+      "bytes": 699
+    },
+    {
+      "file": "passkey-enter.js",
+      "bytes": 1149
+    },
+    {
+      "file": "passkey-handoff.html",
+      "bytes": 968
+    },
+    {
+      "file": "passkey-handoff.js",
+      "bytes": 339
+    },
+    {
+      "file": "passkey-settings.html",
+      "bytes": 1747
+    },
+    {
+      "file": "passkey-settings.js",
+      "bytes": 505
+    },
+    {
+      "file": "passkey-unregistered.html",
+      "bytes": 1043
+    },
+    {
+      "file": "phone.html",
+      "bytes": 3516
+    },
+    {
+      "file": "project-card.html",
+      "bytes": 5772
+    },
+    {
+      "file": "project-create.html",
+      "bytes": 3486
+    },
+    {
+      "file": "project-delete.html",
+      "bytes": 1386
+    },
+    {
+      "file": "project-edit.html",
+      "bytes": 4281
+    },
+    {
+      "file": "project-info.html",
+      "bytes": 2331
+    },
+    {
+      "file": "project-info.js",
+      "bytes": 906
+    },
+    {
+      "file": "read.js",
+      "bytes": 980
+    },
+    {
+      "file": "receipt.html",
+      "bytes": 1111
+    },
+    {
+      "file": "schedule.html",
+      "bytes": 3966
+    },
+    {
+      "file": "schedule.js",
+      "bytes": 1374
+    },
+    {
+      "file": "settings.html",
+      "bytes": 3705
+    },
+    {
+      "file": "shipping-calendar.html",
+      "bytes": 1707
+    },
+    {
+      "file": "shipping-calendar.js",
+      "bytes": 9782
+    },
+    {
+      "file": "style.css",
+      "bytes": 71668
+    },
+    {
+      "file": "today-shipment.html",
+      "bytes": 861
+    },
+    {
+      "file": "unread.html",
+      "bytes": 1850
+    },
+    {
+      "file": "work.html",
+      "bytes": 6682
+    },
+    {
+      "file": "worker-context.js",
+      "bytes": 5087
+    },
+    {
+      "file": "worker-dialog.js",
+      "bytes": 2954
+    },
+    {
+      "file": "worker.js",
+      "bytes": 11353
+    }
+  ],
+  "forms": [
+    {
+      "file": "admin-order-items.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/archive",
+      "fields": [
+        "csrf",
+        "id"
+      ]
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/mobile-admin/logout",
+      "fields": [
+        "csrf"
+      ]
+    },
+    {
+      "file": "backup.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/backup/key",
+      "fields": [
+        "csrf"
+      ]
+    },
+    {
+      "file": "backup.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/backup/config",
+      "fields": [
+        "csrf",
+        "enable",
+        "saved_key"
+      ]
+    },
+    {
+      "file": "backup.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/backup/now",
+      "fields": [
+        "csrf"
+      ]
+    },
+    {
+      "file": "backup.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/backup/config",
+      "fields": [
+        "csrf",
+        "enable"
+      ]
+    },
+    {
+      "file": "backup.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/backup/restore",
+      "fields": [
+        "confirm",
+        "csrf",
+        "generation",
+        "github_token",
+        "recovery"
+      ]
+    },
+    {
+      "file": "client-note-edit.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/client-notes",
+      "fields": [
+        "action",
+        "client_name",
+        "client_text",
+        "csrf",
+        "id",
+        "photos",
+        "remove_photo",
+        "revision"
+      ]
+    },
+    {
+      "file": "client-note-edit.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/client-notes",
+      "fields": [
+        "action",
+        "csrf",
+        "id",
+        "revision"
+      ]
+    },
+    {
+      "file": "client-notes.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/client-notes",
+      "fields": [
+        "action",
+        "client_name",
+        "client_text",
+        "csrf",
+        "photos"
+      ]
+    },
+    {
+      "file": "designers.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/designers",
+      "fields": [
+        "action",
+        "csrf",
+        "name",
+        "phone"
+      ]
+    },
+    {
+      "file": "designers.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/designers",
+      "fields": [
+        "action",
+        "csrf",
+        "id",
+        "name",
+        "phone",
+        "revision"
+      ]
+    },
+    {
+      "file": "edit.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/records/{{.ID}}/edit",
+      "fields": [
+        "action",
+        "csrf",
+        "revision",
+        "worker"
+      ]
+    },
+    {
+      "file": "edit.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/records/{{.ID}}/edit",
+      "fields": [
+        "action",
+        "confirm",
+        "csrf",
+        "revision"
+      ]
+    },
+    {
+      "file": "edit.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/records/{{.ID}}/edit",
+      "fields": [
+        "action",
+        "confirm",
+        "csrf",
+        "revision"
+      ]
+    },
+    {
+      "file": "inspection-queue.html",
+      "line": 13,
+      "method": "POST",
+      "action": "/projects/{{.ProjectID}}/inspection",
+      "fields": [
+        "csrf",
+        "inspection",
+        "request",
+        "return_queue"
+      ]
+    },
+    {
+      "file": "inspection-review.html",
+      "line": 22,
+      "method": "POST",
+      "action": "/projects/{{.ID}}/inspection",
+      "fields": [
+        "csrf",
+        "inspection",
+        "request"
+      ]
+    },
+    {
+      "file": "inspection-review.html",
+      "line": 22,
+      "method": "POST",
+      "action": "/projects/{{.ID}}/inspection",
+      "fields": [
+        "csrf",
+        "inspection",
+        "request"
+      ]
+    },
+    {
+      "file": "inspection-review.html",
+      "line": 37,
+      "method": "POST",
+      "action": "/projects/{{$project.ID}}/inspection",
+      "fields": [
+        "csrf",
+        "inspection",
+        "request"
+      ]
+    },
+    {
+      "file": "market-settings.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/market-settings",
+      "fields": [
+        "clear_keys",
+        "client_id",
+        "client_secret",
+        "csrf",
+        "enabled"
+      ]
+    },
+    {
+      "file": "mobile-access.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/mobile-access",
+      "fields": [
+        "action",
+        "confirm",
+        "csrf",
+        "enabled",
+        "password",
+        "revision"
+      ]
+    },
+    {
+      "file": "mobile-access.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/mobile-access",
+      "fields": [
+        "action",
+        "csrf",
+        "revision"
+      ]
+    },
+    {
+      "file": "mobile-access.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/mobile-access",
+      "fields": [
+        "action",
+        "confirm",
+        "csrf",
+        "revision"
+      ]
+    },
+    {
+      "file": "mobile-login.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/mobile-admin/login",
+      "fields": [
+        "csrf",
+        "next",
+        "password"
+      ]
+    },
+    {
+      "file": "order-import.html",
+      "line": 2,
+      "method": "POST",
+      "action": "/orders/import/preview",
+      "fields": [
+        "csrf",
+        "workbook"
+      ]
+    },
+    {
+      "file": "order-import.html",
+      "line": 6,
+      "method": "POST",
+      "action": "/orders/import/discard",
+      "fields": [
+        "csrf",
+        "draft"
+      ]
+    },
+    {
+      "file": "order-import.html",
+      "line": 6,
+      "method": "POST",
+      "action": "/orders/import/sheet",
+      "fields": [
+        "csrf",
+        "draft",
+        "sheet"
+      ]
+    },
+    {
+      "file": "order-import.html",
+      "line": 9,
+      "method": "POST",
+      "action": "/orders/import/commit",
+      "fields": [
+        "client_{{.Row}}",
+        "csrf",
+        "designer_{{.Row}}",
+        "draft",
+        "nonce",
+        "rows"
+      ]
+    },
+    {
+      "file": "order-import.html",
+      "line": 10,
+      "method": "DIALOG",
+      "action": "(current URL)",
+      "fields": [
+        "choice"
+      ]
+    },
+    {
+      "file": "order-import.html",
+      "line": 11,
+      "method": "DIALOG",
+      "action": "(current URL)",
+      "fields": [
+        "choice"
+      ]
+    },
+    {
+      "file": "passkey-settings.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/mobile-admin/passkey/enroll",
+      "fields": [
+        "csrf",
+        "password"
+      ]
+    },
+    {
+      "file": "phone.html",
+      "line": 1,
+      "method": "POST",
+      "action": "(current URL)",
+      "fields": [
+        "action",
+        "csrf"
+      ]
+    },
+    {
+      "file": "phone.html",
+      "line": 1,
+      "method": "POST",
+      "action": "(current URL)",
+      "fields": [
+        "action",
+        "csrf"
+      ]
+    },
+    {
+      "file": "phone.html",
+      "line": 1,
+      "method": "POST",
+      "action": "(current URL)",
+      "fields": [
+        "action",
+        "csrf"
+      ]
+    },
+    {
+      "file": "project-card.html",
+      "line": 31,
+      "method": "POST",
+      "action": "/complete/{{$.Board}}",
+      "fields": [
+        "combined_submission",
+        "inspection",
+        "project",
+        "submission",
+        "worker"
+      ]
+    },
+    {
+      "file": "project-card.html",
+      "line": 49,
+      "method": "POST",
+      "action": "/note/{{.Board}}",
+      "fields": [
+        "note",
+        "project",
+        "submission",
+        "worker"
+      ]
+    },
+    {
+      "file": "project-create.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/projects",
+      "fields": [
+        "additional_instructions",
+        "csrf",
+        "designer_id",
+        "designer_name",
+        "designer_phone",
+        "instructions",
+        "name",
+        "number",
+        "photos",
+        "{{.Name}}"
+      ]
+    },
+    {
+      "file": "project-delete.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/projects/{{.ID}}/delete",
+      "fields": [
+        "confirm",
+        "csrf"
+      ]
+    },
+    {
+      "file": "project-edit.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/projects/{{.ID}}/edit",
+      "fields": [
+        "additional_instructions",
+        "csrf",
+        "designer_id",
+        "designer_name",
+        "designer_phone",
+        "instructions",
+        "name",
+        "number",
+        "photos",
+        "remove_photo",
+        "revision",
+        "{{.Name}}"
+      ]
+    },
+    {
+      "file": "schedule.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/schedule",
+      "fields": [
+        "action",
+        "csrf",
+        "enabled",
+        "mode",
+        "source_path",
+        "source_url"
+      ]
+    },
+    {
+      "file": "schedule.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/schedule",
+      "fields": [
+        "action",
+        "csrf"
+      ]
+    },
+    {
+      "file": "settings.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/settings",
+      "fields": [
+        "csrf",
+        "domain",
+        "github_token",
+        "provider",
+        "token"
+      ]
+    },
+    {
+      "file": "unread.html",
+      "line": 1,
+      "method": "POST",
+      "action": "/unread/read-all",
+      "fields": [
+        "csrf",
+        "through"
+      ]
+    }
+  ],
+  "url_references": [
+    {
+      "file": "admin-order-items.html",
+      "line": 1,
+      "url": "/projects/{{.ID}}/info"
+    },
+    {
+      "file": "admin-order-items.html",
+      "line": 1,
+      "url": "/projects/{{.ID}}/edit"
+    },
+    {
+      "file": "admin-order-items.html",
+      "line": 1,
+      "url": "/projects/{{.ID}}/inspection"
+    },
+    {
+      "file": "admin-order-items.html",
+      "line": 1,
+      "url": "/archive"
+    },
+    {
+      "file": "admin-order-items.html",
+      "line": 1,
+      "url": "/projects/{{.ID}}/delete"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/due-view.js"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/admin.js"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/shipping-calendar.js"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/inspection-queue.js"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "{{.WorkerURL}}"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/inspection-requests"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/unread"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/mobile-admin/logout"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/client-notes"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/designers"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/mobile-admin/passkey"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "https://swsgood79-beep.github.io/Tool/admin/"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/mobile-access"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/market-settings"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/schedule"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/backup"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/phone"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/settings"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/qr.png"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/qr.png?download=1"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/report.xlsx"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/projects/new"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/orders/import"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/export.csv"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/projects/{{.ProjectID}}/inspection?request={{.ID}}"
+    },
+    {
+      "file": "admin.html",
+      "line": 1,
+      "url": "/records/{{.ID}}/edit"
+    },
+    {
+      "file": "backup.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "backup.html",
+      "line": 1,
+      "url": "/backup.js"
+    },
+    {
+      "file": "backup.html",
+      "line": 1,
+      "url": "/"
+    },
+    {
+      "file": "backup.html",
+      "line": 1,
+      "url": "/backup/key"
+    },
+    {
+      "file": "backup.html",
+      "line": 1,
+      "url": "/backup/config"
+    },
+    {
+      "file": "backup.html",
+      "line": 1,
+      "url": "/backup/now"
+    },
+    {
+      "file": "backup.html",
+      "line": 1,
+      "url": "/backup/config"
+    },
+    {
+      "file": "backup.html",
+      "line": 1,
+      "url": "/backup"
+    },
+    {
+      "file": "backup.html",
+      "line": 1,
+      "url": "/backup/restore"
+    },
+    {
+      "file": "client-note-edit.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "client-note-edit.html",
+      "line": 1,
+      "url": "/client-notes"
+    },
+    {
+      "file": "client-note-edit.html",
+      "line": 1,
+      "url": "/client-notes"
+    },
+    {
+      "file": "client-note-edit.html",
+      "line": 1,
+      "url": "/client-notes/{{$note.ID}}/photos/{{.ID}}"
+    },
+    {
+      "file": "client-note-edit.html",
+      "line": 1,
+      "url": "/client-notes/{{$note.ID}}/photos/{{.ID}}"
+    },
+    {
+      "file": "client-note-edit.html",
+      "line": 1,
+      "url": "/client-notes"
+    },
+    {
+      "file": "client-notes.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "client-notes.html",
+      "line": 1,
+      "url": "/"
+    },
+    {
+      "file": "client-notes.html",
+      "line": 1,
+      "url": "/client-notes"
+    },
+    {
+      "file": "client-notes.html",
+      "line": 1,
+      "url": "/client-notes/{{.ID}}/edit"
+    },
+    {
+      "file": "client-picker.html",
+      "line": 1,
+      "url": "/client-notes"
+    },
+    {
+      "file": "closed.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "closed.html",
+      "line": 1,
+      "url": "/work/{{.CSRF}}"
+    },
+    {
+      "file": "designers.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "designers.html",
+      "line": 1,
+      "url": "/"
+    },
+    {
+      "file": "designers.html",
+      "line": 1,
+      "url": "/designers"
+    },
+    {
+      "file": "designers.html",
+      "line": 1,
+      "url": "/designers"
+    },
+    {
+      "file": "designers.html",
+      "line": 1,
+      "url": "/"
+    },
+    {
+      "file": "edit.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "edit.html",
+      "line": 1,
+      "url": "/read.js"
+    },
+    {
+      "file": "edit.html",
+      "line": 1,
+      "url": "/"
+    },
+    {
+      "file": "edit.html",
+      "line": 1,
+      "url": "/projects/{{.ProjectID}}/inspection?request={{.ID}}"
+    },
+    {
+      "file": "edit.html",
+      "line": 1,
+      "url": "/records/{{.ID}}/edit"
+    },
+    {
+      "file": "edit.html",
+      "line": 1,
+      "url": "/records/{{.ID}}/edit"
+    },
+    {
+      "file": "edit.html",
+      "line": 1,
+      "url": "/records/{{.ID}}/edit"
+    },
+    {
+      "file": "entry-gate.html",
+      "line": 1,
+      "url": "/entry-workshop.png"
+    },
+    {
+      "file": "inspection-queue.html",
+      "line": 12,
+      "url": "/projects/{{.ProjectID}}/inspection?request={{.ID}}"
+    },
+    {
+      "file": "inspection-queue.html",
+      "line": 13,
+      "url": "/projects/{{.ProjectID}}/inspection"
+    },
+    {
+      "file": "inspection-queue.html",
+      "line": 29,
+      "url": "/inspection-requests"
+    },
+    {
+      "file": "inspection-queue.html",
+      "line": 51,
+      "url": "/style.css"
+    },
+    {
+      "file": "inspection-queue.html",
+      "line": 52,
+      "url": "/inspection-queue.js"
+    },
+    {
+      "file": "inspection-queue.html",
+      "line": 59,
+      "url": "/"
+    },
+    {
+      "file": "inspection-review.html",
+      "line": 7,
+      "url": "/style.css"
+    },
+    {
+      "file": "inspection-review.html",
+      "line": 8,
+      "url": "/read.js"
+    },
+    {
+      "file": "inspection-review.html",
+      "line": 15,
+      "url": "/inspection-requests"
+    },
+    {
+      "file": "inspection-review.html",
+      "line": 22,
+      "url": "{{.DesignerCallURL}}"
+    },
+    {
+      "file": "inspection-review.html",
+      "line": 22,
+      "url": "/projects/{{.ID}}/info"
+    },
+    {
+      "file": "inspection-review.html",
+      "line": 22,
+      "url": "/projects/{{.ID}}/inspection"
+    },
+    {
+      "file": "inspection-review.html",
+      "line": 22,
+      "url": "/projects/{{.ID}}/inspection"
+    },
+    {
+      "file": "inspection-review.html",
+      "line": 37,
+      "url": "/projects/{{$project.ID}}/inspection"
+    },
+    {
+      "file": "inspection-review.html",
+      "line": 43,
+      "url": "/inspection-requests"
+    },
+    {
+      "file": "market-settings.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "market-settings.html",
+      "line": 1,
+      "url": "/market-settings.js"
+    },
+    {
+      "file": "market-settings.html",
+      "line": 1,
+      "url": "/"
+    },
+    {
+      "file": "market-settings.html",
+      "line": 1,
+      "url": "/market-settings"
+    },
+    {
+      "file": "mobile-access.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "mobile-access.html",
+      "line": 1,
+      "url": "/"
+    },
+    {
+      "file": "mobile-access.html",
+      "line": 1,
+      "url": "https://swsgood79-beep.github.io/Tool/admin/"
+    },
+    {
+      "file": "mobile-access.html",
+      "line": 1,
+      "url": "/mobile-access"
+    },
+    {
+      "file": "mobile-access.html",
+      "line": 1,
+      "url": "/mobile-access"
+    },
+    {
+      "file": "mobile-access.html",
+      "line": 1,
+      "url": "/mobile-access"
+    },
+    {
+      "file": "mobile-login.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "mobile-login.html",
+      "line": 1,
+      "url": "/mobile-login.js"
+    },
+    {
+      "file": "mobile-login.html",
+      "line": 1,
+      "url": "/mobile-admin/login"
+    },
+    {
+      "file": "mobile-login.html",
+      "line": 1,
+      "url": "https://swsgood79-beep.github.io/Tool/admin/?next={{.MobileNext}}"
+    },
+    {
+      "file": "order-import.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "order-import.html",
+      "line": 1,
+      "url": "/order-import.js"
+    },
+    {
+      "file": "order-import.html",
+      "line": 1,
+      "url": "/"
+    },
+    {
+      "file": "order-import.html",
+      "line": 2,
+      "url": "/orders/import/preview"
+    },
+    {
+      "file": "order-import.html",
+      "line": 2,
+      "url": "/orders/import/template.xlsx"
+    },
+    {
+      "file": "order-import.html",
+      "line": 4,
+      "url": "/"
+    },
+    {
+      "file": "order-import.html",
+      "line": 4,
+      "url": "/orders/import"
+    },
+    {
+      "file": "order-import.html",
+      "line": 6,
+      "url": "/orders/import/discard"
+    },
+    {
+      "file": "order-import.html",
+      "line": 6,
+      "url": "/orders/import/sheet"
+    },
+    {
+      "file": "order-import.html",
+      "line": 8,
+      "url": "/designers"
+    },
+    {
+      "file": "order-import.html",
+      "line": 8,
+      "url": "/client-notes"
+    },
+    {
+      "file": "order-import.html",
+      "line": 8,
+      "url": "/orders/import/refresh"
+    },
+    {
+      "file": "order-import.html",
+      "line": 9,
+      "url": "/orders/import/commit"
+    },
+    {
+      "file": "order-import.html",
+      "line": 9,
+      "url": "/client-notes/{{$client.ID}}/photos/{{.ID}}"
+    },
+    {
+      "file": "order-import.html",
+      "line": 9,
+      "url": "/client-notes/{{$client.ID}}/photos/{{.ID}}"
+    },
+    {
+      "file": "order-import.html",
+      "line": 9,
+      "url": "/"
+    },
+    {
+      "file": "passkey-enter.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "passkey-enter.html",
+      "line": 1,
+      "url": "/passkey-enter.js"
+    },
+    {
+      "file": "passkey-enter.html",
+      "line": 1,
+      "url": "/mobile-admin"
+    },
+    {
+      "file": "passkey-handoff.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "passkey-handoff.html",
+      "line": 1,
+      "url": "/passkey-handoff.js"
+    },
+    {
+      "file": "passkey-handoff.html",
+      "line": 1,
+      "url": "https://swsgood79-beep.github.io/Tool/admin/?passkey=register#enroll={{.PasskeyTicket}}"
+    },
+    {
+      "file": "passkey-handoff.html",
+      "line": 1,
+      "url": "/mobile-admin/passkey"
+    },
+    {
+      "file": "passkey-settings.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "passkey-settings.html",
+      "line": 1,
+      "url": "/passkey-settings.js"
+    },
+    {
+      "file": "passkey-settings.html",
+      "line": 1,
+      "url": "/"
+    },
+    {
+      "file": "passkey-settings.html",
+      "line": 1,
+      "url": "/mobile-admin/passkey/enroll"
+    },
+    {
+      "file": "passkey-settings.js",
+      "line": 1,
+      "url": "/mobile-admin/passkey/enroll"
+    },
+    {
+      "file": "passkey-unregistered.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "passkey-unregistered.html",
+      "line": 1,
+      "url": "/mobile-admin?next={{.MobileNext}}"
+    },
+    {
+      "file": "passkey-unregistered.html",
+      "line": 1,
+      "url": "https://swsgood79-beep.github.io/Tool/admin/"
+    },
+    {
+      "file": "phone.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "phone.html",
+      "line": 1,
+      "url": "/"
+    },
+    {
+      "file": "phone.html",
+      "line": 1,
+      "url": "/phone/pair.png"
+    },
+    {
+      "file": "phone.html",
+      "line": 1,
+      "url": "{{.Phone.Link}}"
+    },
+    {
+      "file": "phone.html",
+      "line": 1,
+      "url": "/phone"
+    },
+    {
+      "file": "project-card.html",
+      "line": 3,
+      "url": "/project-info/{{.Board}}/{{.ID}}"
+    },
+    {
+      "file": "project-card.html",
+      "line": 10,
+      "url": "{{.DesignerCallURL}}"
+    },
+    {
+      "file": "project-card.html",
+      "line": 10,
+      "url": "/project-info/{{.Board}}/{{.ID}}"
+    },
+    {
+      "file": "project-card.html",
+      "line": 31,
+      "url": "/complete/{{$.Board}}"
+    },
+    {
+      "file": "project-card.html",
+      "line": 38,
+      "url": "/combined/{{$.Board}}"
+    },
+    {
+      "file": "project-card.html",
+      "line": 49,
+      "url": "/note/{{.Board}}"
+    },
+    {
+      "file": "project-create.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "project-create.html",
+      "line": 1,
+      "url": "/designer-picker.js"
+    },
+    {
+      "file": "project-create.html",
+      "line": 1,
+      "url": "/client-picker.js"
+    },
+    {
+      "file": "project-create.html",
+      "line": 1,
+      "url": "/"
+    },
+    {
+      "file": "project-create.html",
+      "line": 1,
+      "url": "/projects"
+    },
+    {
+      "file": "project-create.html",
+      "line": 1,
+      "url": "/designers"
+    },
+    {
+      "file": "project-create.html",
+      "line": 1,
+      "url": "/"
+    },
+    {
+      "file": "project-delete.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "project-delete.html",
+      "line": 1,
+      "url": "/"
+    },
+    {
+      "file": "project-delete.html",
+      "line": 1,
+      "url": "/projects/{{.ID}}/delete"
+    },
+    {
+      "file": "project-delete.html",
+      "line": 1,
+      "url": "/"
+    },
+    {
+      "file": "project-edit.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "project-edit.html",
+      "line": 1,
+      "url": "/designer-picker.js"
+    },
+    {
+      "file": "project-edit.html",
+      "line": 1,
+      "url": "/client-picker.js"
+    },
+    {
+      "file": "project-edit.html",
+      "line": 1,
+      "url": "/"
+    },
+    {
+      "file": "project-edit.html",
+      "line": 1,
+      "url": "/projects/{{.ID}}/edit"
+    },
+    {
+      "file": "project-edit.html",
+      "line": 1,
+      "url": "/designers"
+    },
+    {
+      "file": "project-edit.html",
+      "line": 1,
+      "url": "/projects/{{$project.ID}}/photos/{{.ID}}"
+    },
+    {
+      "file": "project-edit.html",
+      "line": 1,
+      "url": "/projects/{{$project.ID}}/photos/{{.ID}}"
+    },
+    {
+      "file": "project-edit.html",
+      "line": 1,
+      "url": "/"
+    },
+    {
+      "file": "project-info.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "project-info.html",
+      "line": 1,
+      "url": "/project-info.js"
+    },
+    {
+      "file": "project-info.html",
+      "line": 1,
+      "url": "/"
+    },
+    {
+      "file": "project-info.html",
+      "line": 1,
+      "url": "/work/{{.CSRF}}"
+    },
+    {
+      "file": "project-info.html",
+      "line": 1,
+      "url": "{{.DesignerCallURL}}"
+    },
+    {
+      "file": "project-info.html",
+      "line": 1,
+      "url": "{{if $.AdminInfo}}/projects/{{$project.ID}}/photos/{{.ID}}{{else}}/project-photo/{{$.CSRF}}/{{$project.ID}}/{{.ID}}{{end}}"
+    },
+    {
+      "file": "project-info.html",
+      "line": 1,
+      "url": "{{if $.AdminInfo}}/projects/{{$project.ID}}/photos/{{.ID}}{{else}}/project-photo/{{$.CSRF}}/{{$project.ID}}/{{.ID}}{{end}}"
+    },
+    {
+      "file": "project-info.html",
+      "line": 1,
+      "url": "/"
+    },
+    {
+      "file": "project-info.html",
+      "line": 1,
+      "url": "/work/{{$.CSRF}}"
+    },
+    {
+      "file": "receipt.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "receipt.html",
+      "line": 1,
+      "url": "/work/{{.CSRF}}"
+    },
+    {
+      "file": "schedule.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "schedule.html",
+      "line": 1,
+      "url": "/schedule.js"
+    },
+    {
+      "file": "schedule.html",
+      "line": 1,
+      "url": "/"
+    },
+    {
+      "file": "schedule.html",
+      "line": 1,
+      "url": "/schedule"
+    },
+    {
+      "file": "schedule.html",
+      "line": 1,
+      "url": "/schedule"
+    },
+    {
+      "file": "settings.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "settings.html",
+      "line": 1,
+      "url": "/"
+    },
+    {
+      "file": "settings.html",
+      "line": 1,
+      "url": "https://github.com/swsgood79-beep/Tool/settings/pages"
+    },
+    {
+      "file": "settings.html",
+      "line": 1,
+      "url": "https://github.com/settings/personal-access-tokens/new"
+    },
+    {
+      "file": "settings.html",
+      "line": 1,
+      "url": "{{.Config.PagesURL}}"
+    },
+    {
+      "file": "settings.html",
+      "line": 1,
+      "url": "/settings"
+    },
+    {
+      "file": "shipping-calendar.js",
+      "line": 46,
+      "url": "/projects/"
+    },
+    {
+      "file": "today-shipment.html",
+      "line": 1,
+      "url": "{{.InfoURL}}"
+    },
+    {
+      "file": "unread.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "unread.html",
+      "line": 1,
+      "url": "/"
+    },
+    {
+      "file": "unread.html",
+      "line": 1,
+      "url": "/unread"
+    },
+    {
+      "file": "unread.html",
+      "line": 1,
+      "url": "/unread/read-all"
+    },
+    {
+      "file": "unread.html",
+      "line": 1,
+      "url": "/records/{{.ID}}/edit"
+    },
+    {
+      "file": "work.html",
+      "line": 1,
+      "url": "/style.css"
+    },
+    {
+      "file": "work.html",
+      "line": 1,
+      "url": "/due-view.js"
+    },
+    {
+      "file": "work.html",
+      "line": 1,
+      "url": "/worker.js"
+    },
+    {
+      "file": "work.html",
+      "line": 1,
+      "url": "/worker-dialog.js"
+    },
+    {
+      "file": "work.html",
+      "line": 1,
+      "url": "/worker-context.js"
+    },
+    {
+      "file": "work.html",
+      "line": 1,
+      "url": "/shipping-calendar.js"
+    },
+    {
+      "file": "work.html",
+      "line": 1,
+      "url": "/entry-gate.css"
+    },
+    {
+      "file": "work.html",
+      "line": 1,
+      "url": "/entry-motion.js"
+    },
+    {
+      "file": "work.html",
+      "line": 1,
+      "url": "/entry-gate.js"
+    },
+    {
+      "file": "work.html",
+      "line": 1,
+      "url": "/mobile-admin"
+    }
+  ],
+  "transport_calls": [
+    {
+      "file": "admin.js",
+      "line": 34,
+      "transport": "fetch",
+      "context": "raw();\n  if(prefix==='order'){let previousHTML=initialHTML,pending=false;async function refresh(){if(pending)return;pending=true;try{if(document.hidden)return;const response=await fetch('/orders/panel',{cache:'no-store',credentials:'same-origin'});if(!response.ok)return;const doc=new DOMParser().parseFromString(await response.text(),'text/html'),fresh=doc.getElementById('order-items');if(!fresh)return;const hint=document.getElementById('admin-schedule-hint');if(hint)hint.textContent=fresh.dataset.scheduleHint||'';container.dataset.scheduleHint=fresh.dataset.scheduleHint||'';const html=fresh.innerHTML;if(html===previousHTML&&container.dataset.day===fresh.dataset.day)return;previousHTML=html;const open=new Set([...container.querySelectorAll('details[open]')].map(n=>n.dataset.project));container.replaceChildren(...[...fresh.childNodes].map(n=>document.importNode(n,true)));container.dataset.day=fresh.dataset.day;items=[...container.querySelectorAll(selector)];items.forEach(n=>{if(open.has(n.dataset.project))n.open=true});draw()}catch(_){}finally{pending=false;setTimeout(refresh,5000)}}setTimeout(refresh,5000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh()})}\n }\n paginate({prefix:'order',selector:'.project-row',filterAttribute:'data-order-filter',typeAttribute:'data-status',size:8});\n paginate({prefix:'event',selector:'.event-row',filterAttribute:'data-event-filter',typeAttribute:'data-type',size:10});\n})();\n"
+    },
+    {
+      "file": "backup.js",
+      "line": 1,
+      "transport": "fetch",
+      "context": "(()=>{let timer;async function refresh(){try{const response=await fetch('/backup/status',{cache:'no-store',credentials:'same-origin'});if(!response.ok)return;const state=await response.json();document.getElementById('backup-mode').textContent=state.Enabled?'자동 백업 켜짐':'자동 백업 꺼짐';document.getElementById('backup-result').textContent=state.Status||'';document.getElementById('backup-last').textContent=state.LastSuccess?new Date(state.LastSuccess).toLocaleString('ko-KR'):'아직 성공한 백업 없음';document.getElementById('backup-snapshot').textContent=state.SnapshotAt?new Date(state.SnapshotAt).toLocaleString('ko-KR'):'아직 없음';document.getElementById('backup-pending').hidden=!state.PendingChanges;document.getElementById('backup-size').textContent=`저장 크기 ${Math.round(state.LastSize/1024/1024*10)/10} MB`;document.getElementById('restore-restart').hidden=!state.PendingRestart}catch(_){}finally{timer=setTimeout(refresh,3000)}}refresh();window.addEventListener('pagehide',()=>clearTimeout(timer))})();\n"
+    },
+    {
+      "file": "client-picker.js",
+      "line": 2,
+      "transport": "fetch",
+      "context": "r('click',async()=>{const selected=picker.value;if(!valid(selected)){status.textContent='먼저 업체를 선택하세요.';return}const request=++sequence;load.disabled=true;try{const response=await fetch(`/client-notes/${encodeURIComponent(selected)}/data`,{credentials:'same-origin',cache:'no-store'});if(!response.ok)throw new Error();const note=await response.json();if(request!==sequence||picker.value!==selected)return;if(note.ID!==selected||typeof note.Text!=='string'||!Array.isArray(note.Photos)||!Number.isSafeInteger(note.Revision))throw new Error();const fragment=document.createDocumentFragment();for(const photo of note.Photos){if(!valid(photo.ID))throw new Error();const figure=document.createElement('figure');figure.className='project-photo';const image=document.createElement('img');image.src=`/client-notes/${selected}/photos/${photo.ID}`;image.alt=photo.Name;const caption=document.createElement('figcaption');caption.textContent=photo.Name;const label=document.createElement('label');label.className='check-label';const check=document.createElement('input');check.type='checkbox';check.name='template_photo';check.value=photo.ID;check.checked=true;label.append(check,document.createTextNode(' 이 사진 함께 넣기'));figure.append(image,caption,label);fragment.append(figure)}text.value=note.Text;id.value=note.ID;revision.value=note.Revision;photos.replaceChildren(fragment);status.textContent=`${note.Name} 특이사항과 사진 ${note.Photos.length}장을 불러왔습니다. 자동 반영을 켜면 이후 업체 원본 변경도 이 수주에 반영됩니다.`}catch(_){status.textContent='업체 특이사항을 불러오지 못했습니다. 기존 입력 내용은 유지합니다.'}finally{load.disabled=false}});\npicker.addEventListener('change',()=>{sequence++;status.textContent='선택한 업체의 내용을 적용하려면 불러오기를 누르세요. 이미 불러온 글·사진은 유지합니다.'});\nreload.addEventListener('click',async()=>{reload.disabled=true;const selected="
+    },
+    {
+      "file": "client-picker.js",
+      "line": 4,
+      "transport": "fetch",
+      "context": "tContent='선택한 업체의 내용을 적용하려면 불러오기를 누르세요. 이미 불러온 글·사진은 유지합니다.'});\nreload.addEventListener('click',async()=>{reload.disabled=true;const selected=picker.value;try{const response=await fetch('/client-notes/list.json',{credentials:'same-origin',cache:'no-store'});if(!response.ok)throw new Error();const notes=await response.json();if(!Array.isArray(notes))throw new Error();const options=[new Option('업체 선택','')];for(const n of notes){if(valid(n.ID)&&typeof n.Name==='string')options.push(new Option(n.Name,n.ID))}picker.replaceChildren(...options);picker.value=selected;status.textContent='업체 목록을 새로 불러왔습니다. 입력한 내용은 유지합니다.'}catch(_){status.textContent='업체 목록을 불러오지 못했습니다.'}finally{reload.disabled=false}});\n})();\n"
+    },
+    {
+      "file": "designer-picker.js",
+      "line": 11,
+      "transport": "fetch",
+      "context": "lue='';status.textContent='직접 입력한 담당자 정보로 저장합니다.'});\n reload.addEventListener('click',async()=>{\n  reload.disabled=true;const selected=picker.value;\n  try{\n   const response=await fetch('/designers.json',{credentials:'same-origin',cache:'no-store'});if(!response.ok)throw new Error();const people=await response.json();if(!Array.isArray(people))throw new Error();\n   const options=[new Option('직접 입력 / 기존 정보 유지','')];\n   for(const person of people){if(typeof person.ID!=='string'||typeof person.Name!=='string'||typeof person.Phone!=='string')continue;const option=new Option(`${person.Name} · ${person.Phone}`,person.ID);option.dataset.name=person.Name;option.dataset.phone=person.Phone;options.push(option)}\n   picker.replaceChildren(...options);picker.value=selected;\n   if(picker.value)choose();else status.textContent='명단을 새로 불러왔습니다. 담당자를 선택해 주세요. 직접 입력한 내용은 유지했습니다.';\n  }catch(_){status.textContent='명단을 불러오지 못했습니다. 잠시 후 다시 눌러 주세요.'}finally{reload.disabled=false}\n });\n})();\n(()=>{const button=document.getElementById('register-designer');if(!button)return;button.addEventListener('click',async()=>{const form=button.form,name=form.querySelector('[name=designer_name]').value.trim(),phone=form.querySelector('[name=designer_phone]').value,status=document.getElementById('designer-picker-status');if(!name||!phone){status.textContent='등록할 담당자 이름과 전화번호를 입력하세요.';return}button.disabled=true;try{const res=await fetch('/designers',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({csrf:form.querySelector('[name=csrf]').value,action:'create',name,phone})});const response=await fetch('/designers.json',{credentials:'same-origin',cache:'no-store'});if(!response.ok)throw new Error();const people=await"
+    },
+    {
+      "file": "designer-picker.js",
+      "line": 19,
+      "transport": "fetch",
+      "context": "e]').value,status=document.getElementById('designer-picker-status');if(!name||!phone){status.textContent='등록할 담당자 이름과 전화번호를 입력하세요.';return}button.disabled=true;try{const res=await fetch('/designers',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({csrf:form.querySelector('[name=csrf]').value,action:'create',name,phone})});const response=await fetch('/designers.json',{credentials:'same-origin',cache:'no-store'});if(!response.ok)throw new Error();const people=await response.json(),person=people.find(p=>p.Name===name&&p.Phone===phone.replace(/[ ()-]/g,''));if(!person)throw new Error();const picker=document.getElementById('designer-picker');let option=[...picker.options].find(o=>o.value===person.ID);if(!option){option=new Option(`${person.Name} · ${person.Phone}`,person.ID);option.dataset.name=person.Name;option.dataset.phone=person.Phone;picker.add(option)}picker.value=person.ID;picker.dispatchEvent(new Event('change'));status.textContent='명단에 등록했습니다. 수주 등록을 누르면 이 담당자로 저장합니다.'}catch(_){status.textContent='명단에 등록하지 못했습니다. 이름·전화번호와 중복 등록 여부를 확인하세요.'}finally{button.disabled=false}})})();\n"
+    },
+    {
+      "file": "designer-picker.js",
+      "line": 19,
+      "transport": "fetch",
+      "context": "ers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({csrf:form.querySelector('[name=csrf]').value,action:'create',name,phone})});const response=await fetch('/designers.json',{credentials:'same-origin',cache:'no-store'});if(!response.ok)throw new Error();const people=await response.json(),person=people.find(p=>p.Name===name&&p.Phone===phone.replace(/[ ()-]/g,''));if(!person)throw new Error();const picker=document.getElementById('designer-picker');let option=[...picker.options].find(o=>o.value===person.ID);if(!option){option=new Option(`${person.Name} · ${person.Phone}`,person.ID);option.dataset.name=person.Name;option.dataset.phone=person.Phone;picker.add(option)}picker.value=person.ID;picker.dispatchEvent(new Event('change'));status.textContent='명단에 등록했습니다. 수주 등록을 누르면 이 담당자로 저장합니다.'}catch(_){status.textContent='명단에 등록하지 못했습니다. 이름·전화번호와 중복 등록 여부를 확인하세요.'}finally{button.disabled=false}})})();\n"
+    },
+    {
+      "file": "inspection-queue.js",
+      "line": 5,
+      "transport": "fetch",
+      "context": "t',draw);kind.addEventListener('change',draw);draw();let busy=false,previous=panel.innerHTML;\n async function refresh(){if(busy||document.hidden)return;busy=true;try{const r=await fetch('/inspection-requests/panel',{credentials:'same-origin',cache:'no-store'});if(!r.ok)throw Error();const doc=new DOMParser().parseFromString(await r.text(),'text/html'),fresh=doc.getElementById('inspection-request-items');if(!fresh){status.textContent='관리자 로그인 상태를 확인해 주세요.';return}const html=fresh.outerHTML;if(html!==previous){const before=Number(count.textContent);panel.replaceChildren(document.importNode(fresh,true));previous=html;draw();status.textContent=Number(count.textContent)>before?'새 검사 신청이 도착했습니다.':'검사 신청 목록을 갱신했습니다.'}}catch(_){status.textContent='신청 목록 연결 확인 중 · 현재 목록은 유지됩니다.'}finally{busy=false}}\n setInterval(refresh,5000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh()});\n})();\n"
+    },
+    {
+      "file": "market-settings.js",
+      "line": 1,
+      "transport": "fetch",
+      "context": "tById('market-check');let pending=false;async function check(){if(pending)return;pending=true;button.disabled=true;status.textContent='시세 제공처에 연결하고 있습니다…';try{const response=await fetch('/market-settings/status.json',{cache:'no-store'});if(!response.ok)throw Error();const data=await response.json();status.textContent=typeof data.message==='string'?data.message:'연결 상태를 확인하지 못했습니다.'}catch(_){status.textContent='연결 확인에 실패했습니다. 잠시 후 다시 확인하세요.'}finally{pending=false;button.disabled=false}}button.addEventListener('click',check);check()})();\n"
+    },
+    {
+      "file": "mobile-login.js",
+      "line": 1,
+      "transport": "fetch",
+      "context": "(()=>{'use strict';const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),5000);fetch('/mobile-admin/session',{credentials:'same-origin',cache:'no-store',signal:controller.signal}).then(r=>r.ok?r.json():null).then(state=>{if(state?.authenticated===true)location.replace((document.querySelector('input[name=next]')?.value||'/').match(/^(?:\\/projects\\/[1-9][0-9]*\\/inspection(?:\\?request=[1-9][0-9]*)?|\\/inspection-requests(?:\\?request=[1-9][0-9]*)?)$/)?document.querySelector('input[name=next]').value:'/')}).catch(()=>{}).finally(()=>clearTimeout(timer));})();\n"
+    },
+    {
+      "file": "passkey-enter.js",
+      "line": 1,
+      "transport": "fetch",
+      "context": "-z0-9_-]{43}$/.test(ticket)){status.textContent='확인 시간이 지났습니다. 고정 관리자 페이지에서 다시 시작하세요.';return}const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);fetch('/mobile-admin/passkey/finish',{method:'POST',cache:'no-store',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:ticket}),signal:controller.signal}).then(async r=>{if(!r.ok)throw Error();const data=await r.json();if(data.ok!==true)throw Error();location.replace(typeof data.next==='string'&&/^(?:\\/projects\\/[1-9][0-9]*\\/inspection(?:\\?request=[1-9][0-9]*)?|\\/inspection-requests(?:\\?request=[1-9][0-9]*)?)$/.test(data.next)?data.next:'/')}).catch(()=>{status.textContent='지문 로그인을 마무리하지 못했습니다. 고정 관리자 페이지에서 다시 시도하거나 비밀번호로 로그인하세요.'}).finally(()=>clearTimeout(timer));})();\n"
+    },
+    {
+      "file": "project-info.js",
+      "line": 3,
+      "transport": "fetch",
+      "context": "'.special-info-card[data-info-id]');if(!current)return;pending=true;const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),8000);\n try{const response=await fetch(location.pathname,{cache:'no-store',credentials:'same-origin',signal:controller.signal});if(!response.ok)return;const html=await response.text(),next=new DOMParser().parseFromString(html,'text/html').querySelector('.special-info-card[data-info-id]');if(next&&next.dataset.infoId===current.dataset.infoId&&next.dataset.infoRevision!==current.dataset.infoRevision)current.replaceWith(document.importNode(next,true))}catch(_){}finally{clearTimeout(timer);pending=false}}\n setInterval(refresh,3000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh()});\n})();\n"
+    },
+    {
+      "file": "read.js",
+      "line": 9,
+      "transport": "fetch",
+      "context": "\n let busy=false,done=false;\n async function read(){\n  if(busy||done||document.visibilityState!=='visible')return;\n  busy=true;button.disabled=true;\n  try{\n   const response=await fetch(`/records/${encodeURIComponent(state.dataset.readId)}/read`,{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({csrf:state.dataset.csrf})});\n   if(!response.ok)throw new Error();done=true;result.textContent='읽음으로 저장했습니다.';button.hidden=true;state.querySelector('.unread-label').textContent='읽음';\n  }catch(_){result.textContent='읽음 저장 실패 · 다시 눌러 주세요.';button.disabled=false}finally{busy=false}\n }\n button.addEventListener('click',read);document.addEventListener('visibilitychange',read);read();\n})();\n"
+    },
+    {
+      "file": "schedule.js",
+      "line": 2,
+      "transport": "fetch",
+      "context": "eoul',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(date)};\n async function update(){try{const response=await fetch('/schedule/status.json',{cache:'no-store',credentials:'same-origin'});if(!response.ok)return;const data=await response.json(),s=data.status;document.getElementById('schedule-label').textContent=data.label;document.getElementById('schedule-error').textContent=s.Error||'';document.getElementById('schedule-auto').textContent=data.enabled?'자동 갱신 켜짐 · 프로그램 실행 중 5분마다 확인':'자동 갱신 중지';document.getElementById('schedule-success').textContent=format(s.Success);document.getElementById('schedule-applied').textContent=format(data.applied);document.getElementById('schedule-next').textContent=s.Next?format(s.Next):'대기';document.getElementById('schedule-counts').textContent=`원본 ${s.SourceOrders}건 · 날짜 확정 ${s.Dated}건 · 미정 ${s.Unset}건 · 매칭 ${s.Matched}건 · 변경 ${s.Changed}건 · 미등록 ${s.Unmatched}건 · 날짜 확인 필요 ${s.Conflicts}건`}catch(_){}finally{setTimeout(update,2500)}}update();\n})();\n"
+    },
+    {
+      "file": "worker-context.js",
+      "line": 11,
+      "transport": "fetch",
+      "context": "freshDelay)}\n async function load(){if(pending)return;pending=true;const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000);\n try{const response=await fetch(`/markets/${encodeURIComponent(board)}`,{cache:'no-store',signal:controller.signal});if(!response.ok)throw Error('unavailable');const data=await response.json();if(!Array.isArray(data.quotes))throw Error('invalid');\n for(const tile of document.querySelectorAll('.market-tile')){const q=data.quotes.find(row=>row.symbol===tile.dataset.symbol);if(!q)continue;const price=tile.querySelector('.market-price'),change=tile.querySelector('.market-change'),at=tile.querySelector('.market-time');\n  price.textContent=typeof q.price==='number'&&Number.isFinite(q.price)&&q.price>0?(q.symbol.startsWith('KRW-')?'₩'+coinFormat.format(q.price):valueFormat.format(q.price)):'—';price.title=price.textContent;\n  const valid=typeof q.percent==='number'&&Number.isFinite(q.percent),pct=valid?Math.round(q.percent*100)/100:0;change.textContent=valid?`${pct>0?'+':''}${changeFormat.format(pct===0?0:pct)}%`:'—';change.className='market-change '+(valid?(pct>0?'market-rise':pct<0?'market-fall':'market-flat'):'market-flat');\n  const stamp=Date.parse(q.at),checked=Date.parse(q.checked_at);at.textContent=Number.isFinite(stamp)?`${q.stale?'마지막 자료 · ':''}${q.basis==='minute'?'분봉 · ':''}${stampFormat.format(new Date(stamp))}`:typeof q.price==='number'&&Number.isFinite(q.price)&&q.price>0&&Number.isFinite(checked)?`${q.stale?'마지막 자료 · ':''}조회 ${stampFormat.format(new Date(checked))}`:data.enabled?'시세 확인 중':'시세 준비 중';tile.classList.toggle('market-stale',q.stale===true);\n }\n const fx=data.fx,fxRate=document.getElementById('market-fx-rate'),fxAt=document.getElementById('market-fx-time'),fxRow=document.querySelec"
+    },
+    {
+      "file": "worker-dialog.js",
+      "line": 36,
+      "transport": "fetch",
+      "context": "ttons=[...form.querySelectorAll('button')];\n  form.dataset.sending='true';buttons.forEach(b=>b.disabled=true);status.textContent='검사 신청을 보내고 있습니다…';\n  try{\n   const response=await fetch(endpoint,{method:'POST',body:data,credentials:'same-origin'});\n   if(!response.ok)throw Error('request not accepted');\n   await window.AlphaWorkerView.refreshCard({id:card.dataset.project,revision:-1});\n   const fresh=list.querySelector(`[data-project=\"${card.dataset.project}\"] .worker-submit-status`);\n   if(fresh)fresh.textContent='신청이 접수되었습니다. 관리자 확인을 기다려 주세요.';\n  }catch(_){status.textContent='신청 결과를 확인하지 못했습니다. 잠시 후 상태를 확인하거나 다시 시도해 주세요.'}\n  finally{delete form.dataset.sending;buttons.forEach(b=>b.disabled=false)}\n });\n list.addEventListener('close',event=>{\n  if(!event.target.matches('.worker-inspection-dialog'))return;\n  const card=event.target.closest('.work-item');if(!card?.isConnected)return;\n  card.querySelector('details').open=false;\n  document.getElementById('project-search').dispatchEvent(new Event('input',{bubbles:true}));\n  card.querySelector('summary')?.focus({preventScroll:true});\n },true);\n})();\n"
+    },
+    {
+      "file": "worker.js",
+      "line": 64,
+      "transport": "fetch",
+      "context": " const current = list.querySelector(`[data-project=\"${project.id}\"]`);\n    if (current && current.dataset.revision === String(project.revision)) return;\n    const response = await fetch(`/card/${encodeURIComponent(board)}/${project.id}`, {cache:'no-store'});\n    if (!response.ok) return;\n    const html = await response.text();\n    const template = document.createElement('template'); template.innerHTML = html;\n    const card = template.content.querySelector('.work-item,.delivery-completed');\n    if (!card || card.dataset.project !== String(project.id)) return;\n    if (current?.querySelector('details')?.open && card.querySelector('details')) card.querySelector('details').open = true;\n    const wasOpen = !!current?.querySelector('.worker-inspection-dialog[open]');\n    const keep = new Map();\n    let focusKind = null, focusField = \"worker\", selection = null;\n    if (current && current.dataset.generation === card.dataset.generation) {\n      current.querySelectorAll('[data-inspection]').forEach(row => {\n        const input = row.querySelector('input[name=\"worker\"]');\n        if (input) {\n          keep.set(row.dataset.inspection, {worker:input.value, note:row.querySelector('textarea[name=\"note\"]')?.value});\n          const field = row.querySelector('textarea[name=\"note\"]');\n          if (document.activeElement === input || document.activeElement === field) {focusKind = row.dataset.inspection;focusField = document.activeElement === field ? \"note\" : \"worker\"; selection = document.activeElement.selectionStart;}\n        }\n      });\n    }\n    card.querySelectorAll('[data-inspection]').forEach(row => {\n      const input = row.querySelector('input[name=\"worker\"]');\n      if (input && !input.matches(':disabled') && keep.has(row.dataset.inspection)) input.value = k"
+    },
+    {
+      "file": "worker.js",
+      "line": 122,
+      "transport": "fetch",
+      "context": "pend(workers);card.append(info,badge);fragment.append(card);\n    }\n    todayItems.replaceChildren(fragment);\n  }\n  async function update() {\n    try {\n      const response = await fetch(`/status/${encodeURIComponent(board)}`, {cache:'no-store'});\n      if (!response.ok) return;\n      const state = await response.json();\n      if (!Array.isArray(state.active) || !Array.isArray(state.stages)) return;\n      refreshShipments(state.shipments,state.date);if(typeof state.schedule==='string')document.getElementById('schedule-hint').textContent=state.schedule;\n      const completedDue=Array.isArray(state.completed_due)?state.completed_due:[];\n const active = new Set([...state.active.map(String),...completedDue.map(p=>String(p.id))]);\n      list.querySelectorAll('.work-item[data-project],.delivery-completed[data-project]').forEach(card => {if (!active.has(card.dataset.project)) card.remove();});\n      await Promise.all([...state.stages,...completedDue].map(refreshCard));\n      filterCards();\n      const empty = list.querySelector('.empty');\n      if (empty) empty.hidden = state.active.length > 0 || !!list.querySelector('.delivery-completed:not([hidden])');\n      if (!state.active.length && !empty && !list.querySelector('.delivery-completed:not([hidden])')) {\n        const section = document.createElement('section'); section.className = 'card empty';\n        const heading = document.createElement('h2'); heading.textContent = '현재 접수할 수주가 없습니다.';\n        const note = document.createElement('p'); note.className = 'muted'; note.textContent = '모든 검사가 끝났거나 관리자가 목록을 정리했습니다.';\n        section.append(heading, note); list.appendChild(section);\n      }\n    } catch (_) {\n      // Temporary interruptions never erase input or completion records.\n    } finally {setTimeout(upd"
+    }
+  ],
+  "limits": "Dynamic template expressions and JS variables are preserved verbatim. Context provides JSON field observations, not a complete proven backend specification."
+}
