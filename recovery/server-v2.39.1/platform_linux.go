@@ -2,6 +2,7 @@ package main
 
 import (
 	"os"
+	"os/exec"
 	"syscall"
 )
 
@@ -20,3 +21,7 @@ func lockData(path string) (func(), error) {
 	}
 	return func() { f.Close() }, nil
 }
+func nativeNotify(title, body, target string) {}
+
+func originalRunning() bool                     { return false }
+func manageChild(cmd *exec.Cmd) (func(), error) { return func() {}, nil }

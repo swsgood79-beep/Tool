@@ -203,13 +203,13 @@ func TestRecoveredTemplatesAndExplicitMissingRoutes(t *testing.T) {
 	if e := a.requestInspection(p.ID, "combined", "시험 작업자", p.SettingForm, p.CombinedForm); e != nil {
 		t.Fatal(e)
 	}
-	for _, path := range []string{"/", "/projects/new", "/projects/1/edit", "/projects/1/inspection", "/projects/1/info", "/projects/1/delete", "/designers", "/designers.json", "/client-notes", "/client-notes/list.json", "/unread", "/orders/panel", "/inspection-requests", "/inspection-requests/panel", "/records/2/edit", "/work/" + a.state.Board, "/project-info/" + a.state.Board + "/1", "/card/" + a.state.Board + "/1"} {
+	for _, path := range []string{"/", "/projects/new", "/projects/1/edit", "/projects/1/inspection", "/projects/1/info", "/projects/1/delete", "/designers", "/designers.json", "/client-notes", "/client-notes/list.json", "/backup", "/mobile-admin/passkey", "/market-settings", "/schedule", "/phone", "/mobile-access", "/settings", "/connection", "/unread", "/orders/panel", "/inspection-requests", "/inspection-requests/panel", "/records/2/edit", "/work/" + a.state.Board, "/project-info/" + a.state.Board + "/1", "/card/" + a.state.Board + "/1"} {
 		r := call(a, "GET", path, nil, c)
 		if r.Code != 200 {
 			t.Errorf("%s: %d %s", path, r.Code, r.Body.String())
 		}
 	}
-	for _, path := range []string{"/backup", "/mobile-admin/passkey", "/market-settings", "/schedule", "/orders/import"} {
+	for _, path := range []string{"/orders/import"} {
 		r := call(a, "GET", path, nil, c)
 		if r.Code != 501 {
 			t.Errorf("missing route %s was not explicit: %d", path, r.Code)

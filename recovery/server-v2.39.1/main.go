@@ -39,7 +39,7 @@ func init() {
 	}}).ParseFS(web, "web/*.html"))
 }
 
-const notice = `<aside class="recovery-banner">복구 서버 · 부분 구현 · 기존 자료와 별도 저장 <a href="/recovery-status">기능 차이 확인</a> · <a href="/">관리자</a></aside>`
+const notice = `<aside class="recovery-banner">복구 서버 · 부분 구현 · 기존 자료 호환 읽기 · 추가 기능 검증판 <a href="/recovery-status">기능 차이 확인</a> · <a href="/">관리자</a></aside>`
 
 func (a *App) renderTemplate(w http.ResponseWriter, t *template.Template, name string, v any) {
 	var b bytes.Buffer
@@ -49,9 +49,10 @@ func (a *App) renderTemplate(w http.ResponseWriter, t *template.Template, name s
 		return
 	}
 	s := b.String()
-	s = strings.ReplaceAll(s, "출처: 토스증권 · 업비트", "복구 서버 · 시장 API 미연동")
+	s = strings.Replace(s, `<a href="/market-settings">`, `<a href="/connection">인터넷 연결 · PC 알림</a><a href="/market-settings">`, 1)
+
 	s = strings.ReplaceAll(s, "수주를 등록하고 공용 QR을 작업자에게 전달하세요.", "수주를 등록하고 상단의 작업자 화면 버튼으로 검사를 신청하세요.")
-	s = strings.ReplaceAll(s, "‘고정 QR 설정’에서 주소와 인증키를 한 번 저장한 뒤 PC 프로그램에서 ‘인터넷 연결’을 눌러 주세요. 연결되면 이 페이지를 새로고침해 QR을 확인할 수 있습니다.", "이 복구판은 같은 PC에서 기능을 비교합니다. 외부 접속·고정 QR은 아직 연결되지 않았습니다.")
+	s = strings.ReplaceAll(s, "‘고정 QR 설정’에서 주소와 인증키를 한 번 저장한 뒤 PC 프로그램에서 ‘인터넷 연결’을 눌러 주세요. 연결되면 이 페이지를 새로고침해 QR을 확인할 수 있습니다.", "설정 메뉴에서 인터넷 연결을 시작하면 기존 고정 QR과 휴대폰 접속 주소를 사용할 수 있습니다.")
 	s = strings.ReplaceAll(s, "Excel에서 파일을 열어 잠겨 있으면 닫은 뒤 자동으로 다시 저장합니다.", "Excel에서 파일을 열어 저장이 막히면 닫아 주세요. 다음 자료 변경 때 다시 저장하며 엑셀 내려받기도 사용할 수 있습니다.")
 	if root, ok := v.(map[string]any); ok && root["WorkerURL"] != nil {
 		if csrf, ok := root["CSRF"].(string); ok && csrf != a.state.Board {
@@ -101,7 +102,13 @@ func main() {
 	if e != nil {
 		log.Fatal(e)
 	}
-	dir := flag.String("data", filepath.Join(home, "AlphaWorkRecoveredServer"), "복구 서버 전용 저장 폴더")
+	defaultDir := filepath.Join(home, "AlphaWorkRecoveredServer")
+	if old, e := legacyDir(); e == nil {
+		if _, e = os.Stat(filepath.Join(old, "projects-v2.dat")); e == nil {
+			defaultDir = old
+		}
+	}
+	dir := flag.String("data", defaultDir, "복구 서버 전용 저장 폴더")
 	listen := flag.String("listen", "127.0.0.1:18791", "로컬 접속 주소")
 	noBrowser := flag.Bool("no-browser", false, "브라우저 자동 열기 생략")
 	flag.Parse()
@@ -117,6 +124,9 @@ func main() {
 		log.Fatal("같은 자료 폴더가 다른 프로세스에서 사용 중이거나 열 수 없습니다: ", e)
 	}
 	defer unlock()
+	if _, err := os.Stat(filepath.Join(*dir, "projects-v2.dat")); err == nil && originalRunning() {
+		log.Fatal("원본 알파 프로그램을 먼저 종료한 뒤 복구 서버를 실행하세요. 기존 자료는 변경하지 않았습니다.")
+	}
 	a, e := newApp(*dir)
 	if e != nil {
 		log.Fatal(e)
@@ -126,12 +136,20 @@ func main() {
 		log.Fatal(e)
 	}
 	url := "http://" + ln.Addr().String()
+	a.localURL = url
 	fmt.Printf("알파 검사 복구 서버 (부분 구현)\n관리자: %s\n저장 폴더: %s\n종료: 이 창에서 Ctrl+C\n", url, *dir)
 	srv := &http.Server{Handler: a, ReadHeaderTimeout: 10 * time.Second, ReadTimeout: 60 * time.Second, WriteTimeout: 60 * time.Second, IdleTimeout: 90 * time.Second, MaxHeaderBytes: 1 << 20}
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
 	defer stop()
+	a.startPumps(ctx)
 	go func() {
 		<-ctx.Done()
+		a.mu.Lock()
+		cancelTunnel := a.integration.CancelTunnel
+		a.mu.Unlock()
+		if cancelTunnel != nil {
+			cancelTunnel()
+		}
 		shutdown, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 		defer cancel()
 		srv.Shutdown(shutdown)
@@ -142,13 +160,25 @@ func main() {
 	if e = srv.Serve(ln); e != nil && !errors.Is(e, http.ErrServerClosed) {
 		log.Fatal(e)
 	}
+	a.mu.Lock()
+	publishOffline := a.state.Integration.Connection.Provider == "pages" && a.integration.TunnelSession != ""
+	a.mu.Unlock()
+	if publishOffline {
+		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+		a.publishPointer(ctx, false)
+		cancel()
+	}
+
 }
 func (a *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Cache-Control", "no-store")
 	w.Header().Set("X-Content-Type-Options", "nosniff")
 	w.Header().Set("Referrer-Policy", "same-origin")
 	w.Header().Set("Content-Security-Policy", "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'")
-	if !localRequest(r) {
+	if a.specialHTTP(w, r) {
+		return
+	}
+	if !a.allowedRequest(r) {
 		http.Error(w, "허용하지 않는 접속 주소 또는 출처", 403)
 		return
 	}
@@ -200,7 +230,22 @@ func (a *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
+	if a.passkeyStart(w, r) {
+		return
+	}
+	if strings.HasPrefix(r.URL.Path, "/ready/") {
+		if equal(strings.TrimPrefix(r.URL.Path, "/ready/"), a.state.Board) {
+			jsonReply(w, map[string]any{"application": "wanryotalk", "session": a.integration.TunnelSession})
+		} else {
+			http.NotFound(w, r)
+		}
+		return
+	}
 	if r.URL.Path == "/login" || r.URL.Path == "/mobile-admin/login" {
+		if !localRequest(r) && !a.state.Integration.MobileEnabled {
+			http.Error(w, "휴대폰 접속 꺼짐", 403)
+			return
+		}
 		a.login(w, r)
 		return
 	}
@@ -212,11 +257,20 @@ func (a *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	v := a.view(s.CSRF)
+	if !localRequest(r) {
+		v["MobileAdmin"] = true
+	}
 	if r.Method == "GET" {
+		if a.integrationGET(w, r, v) {
+			return
+		}
 		if a.adminGET(w, r, v) {
 			return
 		}
 	} else {
+		if a.integrationPOST(w, r, s) {
+			return
+		}
 		if a.adminPOST(w, r, s) {
 			return
 		}
@@ -237,4 +291,4 @@ func pathLooksOriginal(p string) bool {
 	return false
 }
 
-const statusPage = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/style.css"><title>복구 기능 차이</title></head><body><header>알파 검사 복구 서버 · 부분 구현</header><main><section class="card"><h1>원본 프로그램과의 차이</h1><p>화면 57개는 원본에서 추출했습니다. Go 서버 코드는 새로 작성한 부분 구현이며 원본과 100% 동일하지 않습니다.</p><h2>실제 동작</h2><p>관리자 비밀번호 로그인, 독립 자료 저장, 수주 등록·수정·숨김·삭제, 담당자·업체 특이사항 연결, 사진, 세팅/출하 단독·통합 신청 및 관리자 승인, 비고, 읽지 않은 알림, 기록 수정·완료 취소, 출고 캘린더, 월별 엑셀·CSV 내보내기.</p><h2>아직 복원하지 못한 기능</h2><p>원본 데이터 파일 호환·이관, 모바일 외부 접속/고정 QR/터널, 지문·패스키, PC 네이티브 알림·휴대폰 웹 푸시, 토스/코인/환율 API, OneDrive 납기 자동 동기화, 수주 엑셀 일괄등록, GitHub 암호화 백업·복원, 원래 Windows 관리 창·트레이.</p><p>시장 정보는 조회하지 않습니다. 납기일은 수주 수정 화면에서 수동 입력합니다. 신청 상태는 관리자 화면에서 5초 간격으로 갱신됩니다. 운영 자료는 자동으로 불러오지 않습니다.</p><p>Windows는 현재 계정의 DPAPI로 상태와 사진을 암호화합니다. 다른 PC·Windows 계정으로 암호화 파일만 옮기는 복원은 지원하지 않습니다. Linux는 검증용이며 파일 암호화가 적용되지 않습니다.</p><a class="button primary" href="/">관리자 화면</a></section></main></body></html>`
+const statusPage = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/style.css"><title>복구 기능 확인</title></head><body><header>알파 복구 서버 v0.2 · 호환·연동 검증판</header><main><section class="card"><h1>구현 범위와 확인 상태</h1><p>원본과 100% 동일하다고 검증된 프로그램은 아닙니다. 코드는 원본 메타데이터와 화면·API 명세를 참고해 다시 작성했습니다.</p><h2>이번에 연결한 기능</h2><p>기존 %AppData%\WanryoTalk 자료 자동 감지·DPAPI 읽기, 수주·사진·담당자·설정 가져오기, 기존 bcrypt 비밀번호와 등록 패스키 읽기, WebAuthn 서명/UV/일회용 흐름 검증, PC Windows 알림과 암호화 Web Push, 토스 지수·코인·환율, Cloudflare 연결·고정 QR 주소 갱신, OneDrive/동기화 파일 일정, age 암호화 GitHub 백업과 새 PC 복원.</p><h2>원본 자료를 보호하는 방식</h2><p>원본 .dat와 사진은 보존합니다. 복구판 변경 사항은 같은 폴더의 reconstructed-state.bin에 저장합니다. 원본 프로그램이 자료를 바꾸면 추가 저장을 중지합니다. 변경 내용이 원본 프로그램에 역으로 반영되는 동작은 아직 구현되지 않았습니다.</p><h2>아직 동일하지 않거나 실제 확인이 필요한 부분</h2><p>원본 Windows 관리 창·트레이·떠 있는 미확인 숫자, ngrok, 엑셀 일괄등록은 미복원입니다. PC 알림은 원본 자체 창 대신 Windows 토스트를 사용합니다. 실제 회사 DPAPI 파일·백업, 삼성 인터넷의 지문·잠금 알림, 실제 금융 API·공인 IP·Cloudflare·GitHub 연동은 본인 PC와 계정에서 추가 확인이 필요합니다. 자동시험은 원본 스키마 기반 시험 파일·실제 암호 서명·외부 API 대체 응답을 사용합니다.</p><p>백업은 이 복구판의 별도 Release에 보관하며 기존 원본 백업은 보존합니다. 원본 Version 1·2 백업은 형식 호환 읽기를 구현했으나 실제 회사 백업으로 확인한 것은 아닙니다. 메모리 보호를 위해 백업은 256MB로 제한됩니다.</p><p>Windows는 현재 계정의 DPAPI로 상태·사진을 보호합니다. Linux는 검증용이며 파일 암호화가 적용되지 않습니다. 복구키 파일은 PC 밖에 별도로 보관하세요.</p><a class="button primary" href="/">관리자 화면</a></section></main></body></html>`

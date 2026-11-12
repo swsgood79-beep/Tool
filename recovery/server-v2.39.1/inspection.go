@@ -17,7 +17,7 @@ func (a *App) requestInspection(id int64, kind, worker, submission, combined str
 	}
 	return a.transaction(func(s *State) error {
 		p := s.project(id)
-		if p == nil || p.Hidden || p.Shipping.Completed != nil {
+		if p == nil || p.Hidden || p.LegacyCompleted || p.Shipping.Completed != nil {
 			return errors.New("신청 가능한 수주가 아닙니다.")
 		}
 		if kind != "setting" && kind != "shipping" && kind != "combined" {
@@ -64,7 +64,7 @@ func (a *App) requestInspection(id int64, kind, worker, submission, combined str
 func (a *App) approve(id int64, kind string, request int64) error {
 	return a.transaction(func(s *State) error {
 		p := s.project(id)
-		if p == nil || p.Hidden || p.Shipping.Completed != nil {
+		if p == nil || p.Hidden || p.LegacyCompleted || p.Shipping.Completed != nil {
 			return errors.New("검사 가능한 수주가 아닙니다.")
 		}
 		kinds := []string{kind}
@@ -157,7 +157,9 @@ func (a *App) worker(w http.ResponseWriter, r *http.Request) bool {
 		switch kind {
 		case "work":
 			if len(parts) == 2 {
-				a.render(w, "work.html", view())
+				v := view()
+				v["EntryGate"] = r.URL.Query().Get("entry") == "gate"
+				a.render(w, "work.html", v)
 				return true
 			}
 		case "status":
@@ -216,7 +218,11 @@ func (a *App) worker(w http.ResponseWriter, r *http.Request) bool {
 				return true
 			}
 		case "markets":
-			jsonReply(w, map[string]any{"enabled": false, "quotes": []any{}, "fx": nil})
+			if a.state.Integration.Market.Enabled {
+				jsonReply(w, a.integration.MarketResult)
+			} else {
+				jsonReply(w, map[string]any{"enabled": false, "quotes": []any{}, "fx": nil})
+			}
 			return true
 		}
 	} else if r.Method == "POST" && len(parts) == 2 {

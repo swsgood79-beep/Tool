@@ -1,3 +1,8 @@
 __pycache__/
 *.exe
 recovered-server
+reconstructed-state.bin
+server.lock
+photos/
+project-photos/
+*.dat

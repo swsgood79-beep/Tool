@@ -4,6 +4,7 @@ import (
 	"crypto/pbkdf2"
 	"crypto/sha256"
 	"encoding/base64"
+	"golang.org/x/crypto/bcrypt"
 	"html/template"
 	"net"
 	"net/http"
@@ -27,9 +28,13 @@ func (a *App) session(r *http.Request) (Session, bool) {
 }
 func (a *App) admin(w http.ResponseWriter, r *http.Request) (Session, bool) {
 	s, ok := a.session(r)
+	if !localRequest(r) && !a.state.Integration.MobileEnabled {
+		http.Error(w, "휴대폰 관리자 접속이 꺼져 있습니다", 403)
+		return s, false
+	}
 	if !ok {
 		if r.Method == "GET" {
-			http.Redirect(w, r, "/login", http.StatusSeeOther)
+			http.Redirect(w, r, "/login?next="+url.QueryEscape(safeNext(r.URL.RequestURI())), http.StatusSeeOther)
 		} else {
 			http.Error(w, "관리자 로그인이 필요합니다.", 401)
 		}
@@ -58,7 +63,7 @@ func localRequest(r *http.Request) bool {
 	return true
 }
 
-const loginPage = `<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/style.css"><title>복구 서버 로그인</title><body><header><span class="brand">α 알파 검사 복구 서버</span></header><main><section class="card narrow"><h1>{{if .Setup}}관리자 비밀번호 만들기{{else}}관리자 로그인{{end}}</h1><p>12~72자로 입력하세요. 복구 서버의 독립된 비밀번호입니다.</p>{{if .Error}}<p class="error">{{.Error}}</p>{{end}}<form method="post" action="/login"><input type="hidden" name="csrf" value="{{.CSRF}}"><label>비밀번호<input type="password" name="password" minlength="12" maxlength="72" required autocomplete="{{if .Setup}}new-password{{else}}current-password{{end}}"></label>{{if .Setup}}<label>비밀번호 확인<input type="password" name="confirm" minlength="12" maxlength="72" required autocomplete="new-password"></label>{{end}}<button class="primary full">{{if .Setup}}비밀번호 설정{{else}}로그인{{end}}</button></form></section></main></body></html>`
+const loginPage = `<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/style.css"><title>복구 서버 로그인</title><body><header><span class="brand">α 알파 검사 복구 서버</span></header><main><section class="card narrow"><h1>{{if .Setup}}관리자 비밀번호 만들기{{else}}관리자 로그인{{end}}</h1><p>12~72자로 입력하세요. 복구 서버의 독립된 비밀번호입니다.</p>{{if .Error}}<p class="error">{{.Error}}</p>{{end}}<form method="post" action="/login"><input type="hidden" name="csrf" value="{{.CSRF}}"><label>비밀번호<input type="password" name="password" minlength="12" maxlength="72" required autocomplete="{{if .Setup}}new-password{{else}}current-password{{end}}"></label>{{if .Setup}}<label>비밀번호 확인<input type="password" name="confirm" minlength="12" maxlength="72" required autocomplete="new-password"></label>{{end}}<button class="primary full">{{if .Setup}}비밀번호 설정{{else}}로그인{{end}}</button></form>{{if not .Setup}}<p><a class="button quiet full" href="/mobile-admin/passkey/start?next={{.Next}}">지문·패스키로 로그인</a></p>{{end}}</section></main></body></html>`
 
 func (a *App) login(w http.ResponseWriter, r *http.Request) {
 	setup := a.state.PasswordHash == ""
@@ -103,8 +108,7 @@ func (a *App) login(w http.ResponseWriter, r *http.Request) {
 				}
 			}
 		} else {
-			hash, err := passwordHash(password, a.state.Salt)
-			if err != nil || !equal(hash, a.state.PasswordHash) {
+			if !a.passwordMatches(password) {
 				message = "비밀번호가 맞지 않습니다."
 				a.failures[ip] = append(attempts, now)
 			}
@@ -119,8 +123,8 @@ func (a *App) login(w http.ResponseWriter, r *http.Request) {
 				}
 			}
 			a.sessions[hashToken(value)] = Session{csrf, now.Add(8 * time.Hour)}
-			http.SetCookie(w, &http.Cookie{Name: "aw_recovered_session", Value: value, Path: "/", HttpOnly: true, Secure: r.TLS != nil, SameSite: http.SameSiteStrictMode, MaxAge: 8 * 3600})
-			http.Redirect(w, r, "/", 303)
+			http.SetCookie(w, &http.Cookie{Name: "aw_recovered_session", Value: value, Path: "/", HttpOnly: true, Secure: secureRequest(r), SameSite: http.SameSiteStrictMode, MaxAge: 8 * 3600})
+			http.Redirect(w, r, safeNext(ticket.Next), 303)
 			return
 		}
 	}
@@ -134,8 +138,16 @@ func (a *App) login(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "잠시 후 다시 시도하세요.", 429)
 		return
 	}
-	a.challenges[nonce] = Ticket{time.Now().Add(10 * time.Minute)}
+	a.challenges[nonce] = Ticket{Expires: time.Now().Add(10 * time.Minute), Next: safeNext(r.URL.Query().Get("next"))}
 	http.SetCookie(w, &http.Cookie{Name: "aw_login_nonce", Value: nonce, Path: "/login", HttpOnly: true, SameSite: http.SameSiteStrictMode, MaxAge: 600})
 	t := template.Must(template.New("login").Parse(loginPage))
-	a.renderTemplate(w, t, "login", map[string]any{"Setup": setup, "Error": message, "CSRF": nonce})
+	a.renderTemplate(w, t, "login", map[string]any{"Setup": setup, "Error": message, "CSRF": nonce, "Next": safeNext(r.URL.Query().Get("next"))})
+}
+
+func (a *App) passwordMatches(pw string) bool {
+	if strings.HasPrefix(a.state.PasswordHash, "$2") {
+		return bcrypt.CompareHashAndPassword([]byte(a.state.PasswordHash), []byte(pw)) == nil
+	}
+	hash, e := passwordHash(pw, a.state.Salt)
+	return e == nil && equal(hash, a.state.PasswordHash)
 }

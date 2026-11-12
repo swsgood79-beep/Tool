@@ -1,0 +1,180 @@
+{
+  "source": "User supplied Toss OpenAPI 1.2.28",
+  "schemas": {
+    "MarketIndicatorPriceResponse": {
+      "type": "object",
+      "required": [
+        "symbol",
+        "lastPrice"
+      ],
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "description": "시장 지표 심볼. `GET /api/v1/market-indicators/prices` 의 심볼 카탈로그 참조",
+          "example": "KOSPI"
+        },
+        "timestamp": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "데이터 시각. 데이터 미제공 시 null",
+          "example": "2026-06-11T15:30:00+09:00"
+        },
+        "lastPrice": {
+          "type": "string",
+          "format": "decimal",
+          "maxLength": 30,
+          "description": "현재가. 시장 호가 그대로이며, 통화·단위는 심볼 카탈로그를 따릅니다",
+          "example": "2812.45"
+        }
+      }
+    },
+    "MarketIndicatorCandlePageResponse": {
+      "type": "object",
+      "required": [
+        "candles"
+      ],
+      "properties": {
+        "candles": {
+          "type": "array",
+          "description": "캔들 목록. 최신순(`timestamp` 내림차순) 정렬 — 배열 첫 요소가 가장 최근 봉, 마지막 요소가 가장 오래된 봉입니다.",
+          "items": {
+            "$ref": "#/components/schemas/MarketIndicatorCandle"
+          }
+        },
+        "nextBefore": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "다음 페이지 조회 시 `before` 쿼리 파라미터에 그대로 전달. 마지막 페이지면 null."
+        }
+      }
+    },
+    "MarketIndicatorCandle": {
+      "type": "object",
+      "required": [
+        "timestamp",
+        "openPrice",
+        "highPrice",
+        "lowPrice",
+        "closePrice",
+        "volume"
+      ],
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "봉 시작 시각",
+          "example": "2026-06-11T09:00:00+09:00"
+        },
+        "openPrice": {
+          "type": "string",
+          "format": "decimal",
+          "maxLength": 30,
+          "description": "시가",
+          "example": "2798.32"
+        },
+        "highPrice": {
+          "type": "string",
+          "format": "decimal",
+          "maxLength": 30,
+          "description": "고가",
+          "example": "2820.15"
+        },
+        "lowPrice": {
+          "type": "string",
+          "format": "decimal",
+          "maxLength": 30,
+          "description": "저가",
+          "example": "2790.1"
+        },
+        "closePrice": {
+          "type": "string",
+          "format": "decimal",
+          "maxLength": 30,
+          "description": "종가",
+          "example": "2812.45"
+        },
+        "volume": {
+          "type": "string",
+          "format": "decimal",
+          "maxLength": 30,
+          "description": "거래량",
+          "example": "542000000"
+        }
+      }
+    },
+    "ExchangeRateResponse": {
+      "type": "object",
+      "required": [
+        "baseCurrency",
+        "quoteCurrency",
+        "rate",
+        "midRate",
+        "basisPoint",
+        "rateChangeType",
+        "validFrom",
+        "validUntil"
+      ],
+      "properties": {
+        "baseCurrency": {
+          "$ref": "#/components/schemas/Currency",
+          "description": "기준 통화",
+          "example": "USD"
+        },
+        "quoteCurrency": {
+          "$ref": "#/components/schemas/Currency",
+          "description": "표시 통화 (quote currency)",
+          "example": "KRW"
+        },
+        "rate": {
+          "type": "string",
+          "format": "decimal",
+          "maxLength": 30,
+          "description": "매수 환율 (1 baseCurrency = ? quoteCurrency)",
+          "example": "1380.5"
+        },
+        "midRate": {
+          "type": "string",
+          "format": "decimal",
+          "maxLength": 30,
+          "description": "매매기준율 (은행간 mid rate)",
+          "example": "1375"
+        },
+        "basisPoint": {
+          "type": "string",
+          "format": "decimal",
+          "maxLength": 30,
+          "description": "매매기준율(midRate) 대비 basis points. (rate - midRate) / midRate * 10000",
+          "example": "40"
+        },
+        "rateChangeType": {
+          "type": "string",
+          "description": "등락 구분",
+          "enum": [
+            "UP",
+            "EQUAL",
+            "DOWN"
+          ],
+          "example": "UP"
+        },
+        "validFrom": {
+          "type": "string",
+          "format": "date-time",
+          "description": "환율 유효 시작 시각",
+          "example": "2026-03-25T09:30:00+09:00"
+        },
+        "validUntil": {
+          "type": "string",
+          "format": "date-time",
+          "description": "환율 유효 종료 시각",
+          "example": "2026-03-25T09:31:00+09:00"
+        }
+      }
+    }
+  }
+}

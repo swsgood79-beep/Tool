@@ -179,7 +179,8 @@ func (a *App) adminPOST(w http.ResponseWriter, r *http.Request, session Session)
 			if p == nil {
 				return errors.New("수주를 찾을 수 없습니다.")
 			}
-			if p.Shipping.Completed != nil {
+			if p.Shipping.Completed != nil || p.LegacyCompleted {
+				p.LegacyCompleted = false
 				p.Setting = Stage{}
 				p.Shipping = Stage{}
 				p.CombinedPending = false
@@ -330,6 +331,10 @@ func (a *App) saveProject(r *http.Request, id int64) error {
 				}
 				if r.FormValue("sync_client") == "1" {
 					p.ClientID = c.ID
+					if r.FormValue("client_template_id") != "" {
+						p.ClientPhotoIDs = append([]string{}, r.Form["template_photo"]...)
+						p.ClientPhotosSelected = true
+					}
 					if len(c.Photos)+len(p.Photos) > 5 {
 						return errors.New("업체 사진을 포함해 최대 5장입니다.")
 					}
@@ -466,6 +471,10 @@ func (a *App) saveClient(r *http.Request) error {
 					} else if len(updated.Photos)+len(p.Photos) > 5 {
 						return errors.New("연결된 수주와 합쳐 사진이 5장을 넘습니다.")
 					}
+					if action == "save" {
+						p.ClientPhotosSelected = false
+						p.ClientPhotoIDs = nil
+					}
 					p.touch()
 				}
 			}
@@ -535,7 +544,7 @@ func (a *App) uploadPhotos(r *http.Request) ([]Photo, error) {
 		if e = atomicFile(filepath.Join(a.dir, "photos", id), encrypted); e != nil {
 			return nil, e
 		}
-		result = append(result, Photo{id, filepath.Base(f.Filename), mime, cfg.Width, cfg.Height})
+		result = append(result, Photo{ID: id, Name: filepath.Base(f.Filename), MIME: mime, Width: cfg.Width, Height: cfg.Height, Size: len(b)})
 	}
 	return result, nil
 }
@@ -549,9 +558,15 @@ func (a *App) photo(w http.ResponseWriter, r *http.Request, photos []Photo, id s
 	}
 	for _, p := range photos {
 		if p.ID == id {
-			b, e := os.ReadFile(filepath.Join(a.dir, "photos", id))
-			if e == nil {
-				b, e = unprotect(b)
+			var b []byte
+			var e error
+			if p.Legacy {
+				b, e = a.legacyPhoto(p)
+			} else {
+				b, e = os.ReadFile(filepath.Join(a.dir, "photos", id))
+				if e == nil {
+					b, e = unprotect(b)
+				}
 			}
 			if e != nil {
 				http.Error(w, "사진을 읽을 수 없습니다.", 500)

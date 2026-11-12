@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"net/http"
 	"os"
 	"path/filepath"
 	"sort"
@@ -25,14 +26,19 @@ type Stage struct {
 type Photo struct {
 	ID, Name, MIME string
 	Width, Height  int
+	Legacy         bool
+	Size           int
 }
 type Project struct {
 	ID, Revision, InfoRevision, Generation                int64
 	Number, Name, ShippingDueDate                         string
 	Hidden, CombinedPending                               bool
+	LegacyCompleted, ShippingDueManaged                   bool
 	Setting, Shipping                                     Stage
 	DesignerID, DesignerName, DesignerPhone               string
 	ClientID, SpecialInstructions, AdditionalInstructions string
+	ClientPhotoIDs                                        []string
+	ClientPhotosSelected                                  bool
 	Photos                                                []Photo
 	SettingForm, ShippingForm, CombinedForm, NoteForm     string
 }
@@ -53,6 +59,11 @@ type Event struct {
 }
 type State struct {
 	Version                   int
+	Integration               IntegrationConfig
+	LegacySourceHash          string
+	LegacySnapshots           map[string]json.RawMessage
+	LegacyHashes              map[string]string
+	ScheduleApplied           string
 	Board, Salt, PasswordHash string
 	NextID                    int64
 	Projects                  []Project
@@ -64,7 +75,10 @@ type Session struct {
 	CSRF    string
 	Expires time.Time
 }
-type Ticket struct{ Expires time.Time }
+type Ticket struct {
+	Expires time.Time
+	Next    string
+}
 type App struct {
 	mu          sync.Mutex
 	state       State
@@ -73,6 +87,10 @@ type App struct {
 	challenges  map[string]Ticket
 	failures    map[string][]time.Time
 	reportError string
+	integration IntegrationRuntime
+	client      *http.Client
+	localURL    string
+	epoch       int64
 }
 
 var kst = time.FixedZone("Asia/Seoul", 9*3600)
@@ -132,10 +150,18 @@ func newApp(dir string) (*App, error) {
 		return nil, err
 	} else {
 		a.state = State{Version: 1, Board: token(), NextID: 0, Projects: []Project{}, Designers: []Designer{}, ClientNotes: []ClientNote{}, Events: []Event{}}
+		if _, legacyErr := os.Stat(filepath.Join(dir, "projects-v2.dat")); legacyErr == nil {
+			a.state, err = importLegacy(dir)
+			if err != nil {
+				return nil, fmt.Errorf("원본 자료를 변경하지 않고 중단합니다: %w", err)
+			}
+		}
 		if err = a.persist(a.state); err != nil {
 			return nil, err
 		}
 	}
+	a.state.Integration.Connection.PublicURL = ""
+	a.initIntegration()
 	return a, nil
 }
 func atomicFile(path string, b []byte) error {
@@ -174,6 +200,9 @@ func (a *App) persist(s State) error {
 
 // Caller holds a.mu. Changes become visible only after durable state succeeds.
 func (a *App) transaction(fn func(*State) error) error {
+	if err := a.checkLegacySource(); err != nil {
+		return err
+	}
 	n, e := clone(a.state)
 	if e != nil {
 		return e
@@ -245,10 +274,21 @@ func (a *App) projectView(p Project) ProjectView {
 	for _, c := range a.state.ClientNotes {
 		if p.ClientID == c.ID {
 			p.SpecialInstructions = c.Text
-			p.Photos = append(append([]Photo{}, c.Photos...), p.Photos...)
+			sourcePhotos := c.Photos
+			if p.ClientPhotosSelected {
+				sourcePhotos = nil
+				for _, ph := range c.Photos {
+					for _, id := range p.ClientPhotoIDs {
+						if ph.ID == id {
+							sourcePhotos = append(sourcePhotos, ph)
+						}
+					}
+				}
+			}
+			p.Photos = append(append([]Photo{}, sourcePhotos...), p.Photos...)
 		}
 	}
-	v := ProjectView{Project: p, Board: a.state.Board, Completed: p.Shipping.Completed != nil, Active: !p.Hidden && p.Shipping.Completed == nil, HasSpecialInstructions: p.SpecialInstructions != "" || p.AdditionalInstructions != "" || len(p.Photos) > 0}
+	v := ProjectView{Project: p, Board: a.state.Board, Completed: p.Shipping.Completed != nil || p.LegacyCompleted, Active: !p.Hidden && p.Shipping.Completed == nil && !p.LegacyCompleted, LegacyComplete: p.LegacyCompleted, HasSpecialInstructions: p.SpecialInstructions != "" || p.AdditionalInstructions != "" || len(p.Photos) > 0}
 	if p.Shipping.Completed != nil {
 		v.CompletedToday = day(*p.Shipping.Completed) == day(time.Now())
 	}
@@ -315,5 +355,6 @@ func (a *App) view(csrf string) map[string]any {
 	if st, err := os.Stat(reportPath); err == nil {
 		lastSync = st.ModTime().In(kst).Format("2006-01-02 15:04:05")
 	}
-	return map[string]any{"Report": map[string]any{"Path": reportPath, "LastSync": lastSync, "Error": a.reportError}, "CSRF": csrf, "BusinessDate": day(time.Now()), "ScheduleHint": "복구 서버 · 수동 납기일 기준", "Projects": projects, "TodayShipments": shipments, "Requests": requests, "Events": events, "UnreadCount": unread, "UnreadThrough": through, "Designers": a.state.Designers, "ClientNotes": a.state.ClientNotes, "WorkerURL": "/work/" + a.state.Board, "MobileAdminEnabled": false, "EntryGate": false, "SelectedDesigner": "", "SelectedClient": ""}
+	c := a.state.Integration.Connection
+	return map[string]any{"Report": map[string]any{"Path": reportPath, "LastSync": lastSync, "Error": a.reportError}, "CSRF": csrf, "BusinessDate": day(time.Now()), "ScheduleHint": "복구 서버 · 수동 납기일 기준", "Projects": projects, "TodayShipments": shipments, "Requests": requests, "Events": events, "UnreadCount": unread, "UnreadThrough": through, "Designers": a.state.Designers, "ClientNotes": a.state.ClientNotes, "WorkerURL": "/work/" + a.state.Board, "MobileAdminEnabled": a.state.Integration.MobileEnabled, "PublicURL": c.PublicURL, "ConnectionOnline": c.PublicURL != "", "PagesMode": c.Provider == "pages", "EntryGate": false, "SelectedDesigner": "", "SelectedClient": ""}
 }
