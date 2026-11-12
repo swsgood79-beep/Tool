@@ -59,6 +59,7 @@ type Event struct {
 }
 type State struct {
 	Version                   int
+	MaterializedPhotos        map[string]string
 	Integration               IntegrationConfig
 	LegacySourceHash          string
 	LegacySnapshots           map[string]json.RawMessage
@@ -80,17 +81,19 @@ type Ticket struct {
 	Next    string
 }
 type App struct {
-	mu          sync.Mutex
-	state       State
-	dir         string
-	sessions    map[string]Session
-	challenges  map[string]Ticket
-	failures    map[string][]time.Time
-	reportError string
-	integration IntegrationRuntime
-	client      *http.Client
-	localURL    string
-	epoch       int64
+	mu            sync.Mutex
+	state         State
+	dir           string
+	sessions      map[string]Session
+	challenges    map[string]Ticket
+	failures      map[string][]time.Time
+	reportError   string
+	integration   IntegrationRuntime
+	client        *http.Client
+	localURL      string
+	epoch         int64
+	directHook    func(string, string) error
+	storageNotice string
 }
 
 var kst = time.FixedZone("Asia/Seoul", 9*3600)
@@ -130,40 +133,75 @@ func clone(s State) (State, error) {
 	return next, e
 }
 func newApp(dir string) (*App, error) {
-	if err := os.MkdirAll(dir, 0700); err != nil {
-		return nil, err
+	if e := os.MkdirAll(dir, 0700); e != nil {
+		return nil, e
+	}
+	if e := recoverDirect(dir); e != nil {
+		return nil, fmt.Errorf("원본 저장 복구가 필요합니다: %w", e)
 	}
 	a := &App{dir: dir, sessions: map[string]Session{}, challenges: map[string]Ticket{}, failures: map[string][]time.Time{}}
-	b, err := os.ReadFile(filepath.Join(dir, "reconstructed-state.bin"))
-	if err == nil {
-		b, err = unprotect(b)
-		if err == nil {
-			err = json.Unmarshal(b, &a.state)
-		}
+	var have bool
+	if _, e := os.Stat(filepath.Join(dir, "projects-v2.dat")); e == nil {
+		state, ok, err := loadDirect(dir)
 		if err != nil {
-			return nil, fmt.Errorf("저장 자료를 읽지 못했습니다. 기존 파일을 유지합니다: %w", err)
-		}
-		if a.state.Version != 1 {
-			return nil, errors.New("지원하지 않는 저장 버전")
-		}
-	} else if !os.IsNotExist(err) {
-		return nil, err
-	} else {
-		a.state = State{Version: 1, Board: token(), NextID: 0, Projects: []Project{}, Designers: []Designer{}, ClientNotes: []ClientNote{}, Events: []Event{}}
-		if _, legacyErr := os.Stat(filepath.Join(dir, "projects-v2.dat")); legacyErr == nil {
-			a.state, err = importLegacy(dir)
-			if err != nil {
-				return nil, fmt.Errorf("원본 자료를 변경하지 않고 중단합니다: %w", err)
-			}
-		}
-		if err = a.persist(a.state); err != nil {
 			return nil, err
 		}
+		if ok {
+			a.state = state
+			have = true
+		} else {
+			state, err = importLegacy(dir)
+			if err != nil {
+				return nil, err
+			}
+			a.state = state
+			have = true
+		}
+	}
+	// Upgrade v0.1/v0.2 once, only if the original source has not changed independently.
+	if raw, e := os.ReadFile(filepath.Join(dir, "reconstructed-state.bin")); e == nil {
+		original := a.state
+		_, direct, _ := loadDirect(dir)
+		if !direct {
+			plain, err := unprotect(raw)
+			if err != nil {
+				return nil, err
+			}
+			var old State
+			if err = json.Unmarshal(plain, &old); err != nil || old.Version != 1 {
+				return nil, errors.New("이전 검증판 자료 오류")
+			}
+			if have && (old.Board != original.Board || old.LegacySourceHash == "" || old.LegacySourceHash != original.LegacySourceHash) {
+				return nil, errors.New("원본과 이전 검증판 자료가 다릅니다. 자동 덮어쓰기를 중지했습니다")
+			}
+			a.state = old
+			if err = a.checkLegacySource(); err != nil {
+				return nil, err
+			}
+			have = true
+		}
+	} else if !os.IsNotExist(e) {
+		return nil, e
+	}
+	if !have {
+		a.state = State{Version: 1, Board: token(), Projects: []Project{}, Events: []Event{}, Designers: []Designer{}, ClientNotes: []ClientNote{}, LegacyHashes: map[string]string{}}
+	}
+	if e := backupOriginals(dir); e != nil {
+		return nil, e
 	}
 	a.state.Integration.Connection.PublicURL = ""
+	n, e := clone(a.state)
+	if e != nil {
+		return nil, e
+	}
+	if e = a.persist(&n); e != nil {
+		return nil, e
+	}
+	a.state = n
 	a.initIntegration()
 	return a, nil
 }
+
 func atomicFile(path string, b []byte) error {
 	f, e := os.CreateTemp(filepath.Dir(path), ".save-*")
 	if e != nil {
@@ -186,17 +224,7 @@ func atomicFile(path string, b []byte) error {
 	}
 	return os.Rename(name, path)
 }
-func (a *App) persist(s State) error {
-	b, e := json.Marshal(s)
-	if e != nil {
-		return e
-	}
-	b, e = protect(b)
-	if e != nil {
-		return e
-	}
-	return atomicFile(filepath.Join(a.dir, "reconstructed-state.bin"), b)
-}
+func (a *App) persist(s *State) error { return a.writeOriginalGroup(s) }
 
 // Caller holds a.mu. Changes become visible only after durable state succeeds.
 func (a *App) transaction(fn func(*State) error) error {
@@ -210,7 +238,7 @@ func (a *App) transaction(fn func(*State) error) error {
 	if e = fn(&n); e != nil {
 		return e
 	}
-	if e = a.persist(n); e != nil {
+	if e = a.persist(&n); e != nil {
 		return e
 	}
 	a.state = n

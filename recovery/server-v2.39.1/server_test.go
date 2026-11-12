@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"encoding/xml"
 	"image"
+	"image/jpeg"
 	"image/png"
 	"io"
 	"mime/multipart"
@@ -338,8 +339,12 @@ func TestDirectoriesLinkedPhotosAndEscaping(t *testing.T) {
 	}
 	photoPath := "/project-photo/" + a.state.Board + "/1/" + v.Photos[0].ID
 	r = call(a, "GET", photoPath, nil)
-	if r.Code != 200 || !bytes.Equal(r.Body.Bytes(), imageBytes.Bytes()) {
-		t.Fatal("photo round trip failed")
+	cfg, err := jpeg.DecodeConfig(bytes.NewReader(r.Body.Bytes()))
+	if r.Code != 200 || err != nil || cfg.Width != 2 || cfg.Height != 2 {
+		t.Fatal("canonical JPEG photo round trip failed", err)
+	}
+	if _, err = os.Stat(filepath.Join(a.dir, "project-photos", v.Photos[0].ID+".dat")); err != nil {
+		t.Fatal("original photo missing", err)
 	}
 	c = a.state.ClientNotes[0]
 	if r := post("/client-notes", url.Values{"action": {"delete"}, "id": {c.ID}, "revision": {fmtID(c.Revision)}}); r.Code != 303 {

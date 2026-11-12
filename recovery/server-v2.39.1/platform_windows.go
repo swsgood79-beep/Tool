@@ -1,14 +1,11 @@
 package main
 
 import (
-	"encoding/base64"
 	"encoding/binary"
 	"fmt"
 	"os/exec"
 	"runtime"
-	"strings"
 	"syscall"
-	"unicode/utf16"
 	"unsafe"
 )
 
@@ -54,22 +51,6 @@ func lockData(path string) (func(), error) {
 		return nil, e
 	}
 	return func() { syscall.CloseHandle(h) }, nil
-}
-
-// Native Windows toast; source-compatible notification data, different native window implementation.
-func nativeNotify(title, body, target string) {
-	lit := func(s string) string { return "'" + strings.ReplaceAll(s, "'", "''") + "'" }
-	script := `[Windows.UI.Notifications.ToastNotificationManager,Windows.UI.Notifications,ContentType=WindowsRuntime]>$null;[Windows.Data.Xml.Dom.XmlDocument,Windows.Data.Xml.Dom.XmlDocument,ContentType=WindowsRuntime]>$null;$x=New-Object Windows.Data.Xml.Dom.XmlDocument;$x.LoadXml('<toast activationType="protocol"><visual><binding template="ToastGeneric"><text/><text/></binding></visual></toast>');$x.DocumentElement.SetAttribute('launch',` + lit(target) + `);$nodes=$x.GetElementsByTagName('text');$nodes.Item(0).InnerText=` + lit(title) + `;$nodes.Item(1).InnerText=` + lit(body) + `;[Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier('Microsoft.Windows.PowerShell').Show([Windows.UI.Notifications.ToastNotification]::new($x));`
-	words := utf16.Encode([]rune(script))
-	data := make([]byte, len(words)*2)
-	for i, w := range words {
-		binary.LittleEndian.PutUint16(data[i*2:], w)
-	}
-	cmd := exec.Command("powershell.exe", "-NoProfile", "-NonInteractive", "-EncodedCommand", base64.StdEncoding.EncodeToString(data))
-	cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true}
-	if cmd.Start() == nil {
-		cmd.Process.Release()
-	}
 }
 
 func originalRunning() bool {

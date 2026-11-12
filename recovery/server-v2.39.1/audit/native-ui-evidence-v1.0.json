@@ -1,0 +1,991 @@
+{
+  "source": "original v2.39.1 binary; recovered pclntab/RTTI and static assembly, not original source",
+  "functions": [
+    {
+      "name": "main.tray",
+      "address": 5376682272,
+      "end": 5376682784,
+      "size": 512,
+      "source_file": "wanryotalk/main_windows.go",
+      "source_line": 155,
+      "func_offset": 18005992
+    },
+    {
+      "name": "main.windowProc",
+      "address": 5376682784,
+      "end": 5376684864,
+      "size": 2080,
+      "source_file": "wanryotalk/main_windows.go",
+      "source_line": 171,
+      "func_offset": 18006080
+    },
+    {
+      "name": "main.toastTime",
+      "address": 5376878592,
+      "end": 5376878912,
+      "size": 320,
+      "source_file": "wanryotalk/toast.go",
+      "source_line": 63,
+      "func_offset": 18019248
+    },
+    {
+      "name": "main.toastWorkerLine",
+      "address": 5376878912,
+      "end": 5376879488,
+      "size": 576,
+      "source_file": "wanryotalk/toast.go",
+      "source_line": 74,
+      "func_offset": 18019336
+    },
+    {
+      "name": "main.toastNotePreview",
+      "address": 5376879488,
+      "end": 5376879712,
+      "size": 224,
+      "source_file": "wanryotalk/toast.go",
+      "source_line": 86,
+      "func_offset": 18019416
+    },
+    {
+      "name": "main.toastWorkArea",
+      "address": 5376879712,
+      "end": 5376880320,
+      "size": 608,
+      "source_file": "wanryotalk/toast_windows.go",
+      "source_line": 48,
+      "func_offset": 18019496
+    },
+    {
+      "name": "main.toastCapacity",
+      "address": 5376880320,
+      "end": 5376880864,
+      "size": 544,
+      "source_file": "wanryotalk/toast_windows.go",
+      "source_line": 64,
+      "func_offset": 18019568
+    },
+    {
+      "name": "main.fontForToast",
+      "address": 5376880864,
+      "end": 5376882112,
+      "size": 1248,
+      "source_file": "wanryotalk/toast_windows.go",
+      "source_line": 70,
+      "func_offset": 18019656
+    },
+    {
+      "name": "main.registerToastClass",
+      "address": 5376882112,
+      "end": 5376882592,
+      "size": 480,
+      "source_file": "wanryotalk/toast_windows.go",
+      "source_line": 86,
+      "func_offset": 18019744
+    },
+    {
+      "name": "main.fillToasts",
+      "address": 5376883648,
+      "end": 5376888128,
+      "size": 4480,
+      "source_file": "wanryotalk/toast_windows.go",
+      "source_line": 104,
+      "func_offset": 18019968
+    },
+    {
+      "name": "main.repositionToasts",
+      "address": 5376888128,
+      "end": 5376889600,
+      "size": 1472,
+      "source_file": "wanryotalk/toast_windows.go",
+      "source_line": 133,
+      "func_offset": 18020048
+    },
+    {
+      "name": "main.toastTick",
+      "address": 5376889600,
+      "end": 5376891360,
+      "size": 1760,
+      "source_file": "wanryotalk/toast_windows.go",
+      "source_line": 149,
+      "func_offset": 18020136
+    },
+    {
+      "name": "main.toastText",
+      "address": 5376892672,
+      "end": 5376893472,
+      "size": 800,
+      "source_file": "wanryotalk/toast_windows.go",
+      "source_line": 196,
+      "func_offset": 18020400
+    },
+    {
+      "name": "main.paintToast",
+      "address": 5376894176,
+      "end": 5376903424,
+      "size": 9248,
+      "source_file": "wanryotalk/toast_windows.go",
+      "source_line": 211,
+      "func_offset": 18020576
+    },
+    {
+      "name": "main.toastProc",
+      "address": 5376903424,
+      "end": 5376904832,
+      "size": 1408,
+      "source_file": "wanryotalk/toast_windows.go",
+      "source_line": 276,
+      "func_offset": 18020664
+    },
+    {
+      "name": "main.cleanupToasts",
+      "address": 5376904832,
+      "end": 5376905408,
+      "size": 576,
+      "source_file": "wanryotalk/toast_windows.go",
+      "source_line": 322,
+      "func_offset": 18020760
+    },
+    {
+      "name": "main.refreshUnreadBadge",
+      "address": 5376917152,
+      "end": 5376919392,
+      "size": 2240,
+      "source_file": "wanryotalk/unread_windows.go",
+      "source_line": 21,
+      "func_offset": 18021744
+    },
+    {
+      "name": "main.toastDisplayArea",
+      "address": 5376919392,
+      "end": 5376919648,
+      "size": 256,
+      "source_file": "wanryotalk/unread_windows.go",
+      "source_line": 61,
+      "func_offset": 18021816
+    },
+    {
+      "name": "main.unreadBadgeProc",
+      "address": 5376920288,
+      "end": 5376921632,
+      "size": 1344,
+      "source_file": "wanryotalk/unread_windows.go",
+      "source_line": 93,
+      "func_offset": 18022016
+    },
+    {
+      "name": "main.paintToast.func1",
+      "address": 5377086592,
+      "end": 5377087264,
+      "size": 672,
+      "source_file": "wanryotalk/toast_windows.go",
+      "source_line": 230,
+      "func_offset": 18044480
+    },
+    {
+      "name": "main.paintToast.deferwrap1",
+      "address": 5377087264,
+      "end": 5377087392,
+      "size": 128,
+      "source_file": "wanryotalk/toast_windows.go",
+      "source_line": 217,
+      "func_offset": 18044568
+    },
+    {
+      "name": "main.unreadBadgeProc.deferwrap1",
+      "address": 5377091648,
+      "end": 5377091776,
+      "size": 128,
+      "source_file": "wanryotalk/unread_windows.go",
+      "source_line": 105,
+      "func_offset": 18045680
+    }
+  ],
+  "string_references": [
+    {
+      "function": "main.tray",
+      "instruction": "14079a9c4:\t48 8d 1d ee 01 0f 00 \tlea    0xf01ee(%rip),%rbx        # 0x14088abb9",
+      "offset": 8953785,
+      "prefix": "LoadIconW홍길동코스피코스닥업비트client_id?request=매니저designer_%d행: %sextensionchallengesignatureEXTENSIONCHALLENGESIGNATUREcredProps/schedule.1drv.com.previousRoundRectCreatePenKi"
+    },
+    {
+      "function": "main.tray",
+      "instruction": "14079a9f9:\t48 8d 3d fa e1 12 00 \tlea    0x12e1fa(%rip),%rdi        # 0x1408c8bfa",
+      "offset": 9207802,
+      "prefix": "알파작업완료확인 프로그램 v2.39.1 · 내 PC 서버환율 값 또는 유효시각을 확인하지 못했습니다Client ID를 바꾸면 Client Secret도 함께 입력하세요PC 설정이 �"
+    },
+    {
+      "function": "main.tray",
+      "instruction": "14079aa37:\t48 8d 3d 18 1a 10 00 \tlea    0x101a18(%rip),%rdi        # 0x14089c456",
+      "offset": 9025622,
+      "prefix": "작업 완료 알림window_create_failed월별 검사 기록message_loop_entered0123456789-+:.TZtz/ GET /market-settingsmarket-settings.html/inspection-queue.js/orders/import/sheet/mobile-admin/logout"
+    },
+    {
+      "function": "main.tray",
+      "instruction": "14079aaa1:\t48 8d 1d c8 ce 0f 00 \tlea    0xfcec8(%rip),%rbx        # 0x140897970",
+      "offset": 9006448,
+      "prefix": "Shell_NotifyIconWX-Forwarded-Proto/client-picker.jsmobile-login.htmlorder-import.htmluser verificationUSER_VERIFICATIONproject-edit.htmlproject-info.htmlGET /orders/paneladmin-order-itemsonedrive.live"
+    },
+    {
+      "function": "main.windowProc",
+      "instruction": "14079ac02:\t48 8d 35 57 e1 0e 00 \tlea    0xee157(%rip),%rsi        # 0x140888d60",
+      "offset": 8946016,
+      "prefix": "shippingGET /{$}downloadworkbook?record=DeleteDCEndPaintSetTimer환율: passworddesignerno-cachePROTOCOLRESPONSEregisterplatformrequiredendpoint 완료\n\n수주 2006-1-22006/1/22006.1.2starting 님이 "
+    },
+    {
+      "function": "main.windowProc",
+      "instruction": "14079ac1a:\t48 8d 35 a1 ff 0e 00 \tlea    0xeffa1(%rip),%rsi        # 0x14088abc2",
+      "offset": 8953794,
+      "prefix": "홍길동코스피코스닥업비트client_id?request=매니저designer_%d행: %sextensionchallengesignatureEXTENSIONCHALLENGESIGNATUREcredProps/schedule.1drv.com.previousRoundRectCreatePenKillTimerol"
+    },
+    {
+      "function": "main.windowProc",
+      "instruction": "14079ac35:\t48 8d 35 04 34 10 00 \tlea    0x103404(%rip),%rsi        # 0x14089e040",
+      "offset": 9032768,
+      "prefix": "A동 배전반 제작POST /market-settings/orders/import/commit/shipping-calendar.js/mobile-admin/passkey/mobile-admin/session수주별추가메모/orders/import?draft=/passkeys/auth/finishpasskey-set"
+    },
+    {
+      "function": "main.windowProc",
+      "instruction": "14079ac50:\t48 8d 35 70 4b 0f 00 \tlea    0xf4b70(%rip),%rsi        # 0x14088f7c7",
+      "offset": 8973255,
+      "prefix": "SO-2026-0142CreateMutexWmutex_failedUpdateWindowwindow_shown토스증권비트코인이더리움대표이사user presentauthenticateinstructions조립일정EnableWindowserver_ready미리보기SetWindo"
+    },
+    {
+      "function": "main.windowProc",
+      "instruction": "14079ad54:\t48 8d 05 b6 80 13 00 \tlea    0x1380b6(%rip),%rax        # 0x1408d2e11",
+      "offset": 9249297,
+      "prefix": "종료하면 휴대폰 접수와 완료 알림이 멈춥니다. 종료하시겠습니까?비밀번호는 12~72바이트로 입력하고 확인란에도 똑같이 입력하세요.휴대폰 알림 전�"
+    },
+    {
+      "function": "main.windowProc",
+      "instruction": "14079ad6d:\t48 8d 05 24 04 12 00 \tlea    0x120424(%rip),%rax        # 0x1408bb198",
+      "offset": 9151896,
+      "prefix": "알파작업완료확인 프로그램 종료https://swsgood79-beep.github.io/Tool/phone/조회 완료 · 일부 날짜 확인 필요기록 %d의 완료시각을 확인하세요기존 엑셀 파일을 "
+    },
+    {
+      "function": "main.windowProc",
+      "instruction": "14079adcd:\t48 8d 1d 47 34 0f 00 \tlea    0xf3447(%rip),%rbx        # 0x14088e21b",
+      "offset": 8967707,
+      "prefix": "MessageBoxWLoadCursorWFindWindowWGetMessageWCloseHandleRetry-Afterstart-loginenter-loginPOST /phonedesigner_idsync_clientsource_path01.02 15:04startup.lognotepad.exeMessageBeepOpenProcessGET /unreadun"
+    },
+    {
+      "function": "main.windowProc",
+      "instruction": "14079ae1d:\t48 8d 1d 61 65 0f 00 \tlea    0xf6561(%rip),%rbx        # 0x140891385",
+      "offset": 8980357,
+      "prefix": "DestroyWindow맑은 고딕연결 대기DrawFocusRect준비 중…엑셀 폴더시작 기록GetClientRectclient_secretwanryo_admin=authenticated/mobile-admin등록 가능user verifieduser presencerelyi"
+    },
+    {
+      "function": "main.windowProc",
+      "instruction": "14079aec7:\t48 8d 1d e1 48 0f 00 \tlea    0xf48e1(%rip),%rbx        # 0x14088f7af",
+      "offset": 8973231,
+      "prefix": "SendMessageWGetDlgCtrlIDSO-2026-0142CreateMutexWmutex_failedUpdateWindowwindow_shown토스증권비트코인이더리움대표이사user presentauthenticateinstructions조립일정EnableWindowserver_r"
+    },
+    {
+      "function": "main.windowProc",
+      "instruction": "14079b084:\t48 8d 1d fa 62 0f 00 \tlea    0xf62fa(%rip),%rbx        # 0x140891385",
+      "offset": 8980357,
+      "prefix": "DestroyWindow맑은 고딕연결 대기DrawFocusRect준비 중…엑셀 폴더시작 기록GetClientRectclient_secretwanryo_admin=authenticated/mobile-admin등록 가능user verifieduser presencerelyi"
+    },
+    {
+      "function": "main.windowProc",
+      "instruction": "14079b0e2:\t48 8d 1d 02 8b 0f 00 \tlea    0xf8b02(%rip),%rbx        # 0x140893beb",
+      "offset": 8990699,
+      "prefix": "PostQuitMessageprocess_enteredalready_runningShowWindowAsyncwebauthn.createGetMonitorInfoWGetDpiForWindow--no-autoupdate열변경원본web/schedule.js설계담당자web/due-view.jsweb/backup.htmlweb/c"
+    },
+    {
+      "function": "main.windowProc",
+      "instruction": "14079b181:\t48 8d 1d 30 16 0f 00 \tlea    0xf1630(%rip),%rbx        # 0x14088c7b8",
+      "offset": 8960952,
+      "prefix": "ShowWindowempty datagrant_typeclear_keys/passkeys/public-key/fcm/send/GET /phonephone.htmlsource_url2006/01/022006.01.02WanryoTalkPlaySoundW--protocol?to=unreadbottomLeftyyyy-mm-ddobject key0123456789"
+    },
+    {
+      "function": "main.windowProc",
+      "instruction": "14079b1d6:\t48 8d 1d db 15 0f 00 \tlea    0xf15db(%rip),%rbx        # 0x14088c7b8",
+      "offset": 8960952,
+      "prefix": "ShowWindowempty datagrant_typeclear_keys/passkeys/public-key/fcm/send/GET /phonephone.htmlsource_url2006/01/022006.01.02WanryoTalkPlaySoundW--protocol?to=unreadbottomLeftyyyy-mm-ddobject key0123456789"
+    },
+    {
+      "function": "main.windowProc",
+      "instruction": "14079b2c4:\t48 8d 1d 93 73 0f 00 \tlea    0xf7393(%rip),%rbx        # 0x14089265e",
+      "offset": 8985182,
+      "prefix": "DefWindowProcWWanryoTalkMainwindow_created/orders/importenter-register01-02 15:04:05designer_phonetemplate_photoPOST /schedule/project-info/WanryoTalkCardGetStockObject수주번호  web/admin.htmlweb/"
+    },
+    {
+      "function": "main.toastTime",
+      "instruction": "1407ca81d:\t48 8d 05 27 97 0d 00 \tlea    0xd9727(%rip),%rax        # 0x1408a3f4b",
+      "offset": 9057099,
+      "prefix": "2006-01-02T15:04:05Z07:00GET /shipping-calendar.jsGET /receipt/{board}/{id}projects-v%d-backup-*.datPOST /orders/import/sheet접속이 끊겼습니다/passkeys/register/finishpasskey-unregistered.html"
+    },
+    {
+      "function": "main.toastTime",
+      "instruction": "1407ca8de:\t48 8d 3d e9 7f 0b 00 \tlea    0xb7fe9(%rip),%rdi        # 0x1408828ce",
+      "offset": 8920270,
+      "prefix": "15:04badgehttp2--urlsleet&lon=place<nil> via arrayErrorsvqxX&amp;&#34;&#39;:***@bytesRangeHTTP1HTTP2HTTP3https%s %q%s=%scloseAllow%s:%d:httpsocksFoundparsexxxxxchdirwritemkdirchmodchowngetwdLstatMarch"
+    },
+    {
+      "function": "main.toastTime",
+      "instruction": "1407ca8f8:\t48 8d 05 7c 4f 0c 00 \tlea    0xc4f7c(%rip),%rax        # 0x14088f87b",
+      "offset": 8973435,
+      "prefix": "미리보기SetWindowRgnSetWindowPosGetCursorPosGET /read.js진눈깨비일별원본?to=settings수주등록web/admin.jscontext.TODOshort bufferhttpmuxgo121Cookie.ValuemoreSpecific100-continuestatus c"
+    },
+    {
+      "function": "main.toastWorkerLine",
+      "instruction": "1407ca97f:\t48 8d 3d ff 08 0e 00 \tlea    0xe08ff(%rip),%rdi        # 0x1408ab285",
+      "offset": 9086597,
+      "prefix": " 님이 비고를 보냈어요called entry on non-entry nodelooking for beginning of valueMonday, 02-Jan-06 15:04:05 MSThttp: named cookie not presentnegative content size computedunable to make pconn"
+    },
+    {
+      "function": "main.toastWorkerLine",
+      "instruction": "1407ca9cc:\t48 8d 3d 87 90 0f 00 \tlea    0xf9087(%rip),%rdi        # 0x1408c3a5a",
+      "offset": 9186906,
+      "prefix": " 님이 세팅·출하 통합검사를 신청했어요기존 날짜/월 시트 이름을 확인해 주세요fmt: scanning called UnreadRune with no rune availablehttp: Request.Write on Request with no"
+    },
+    {
+      "function": "main.toastWorkerLine",
+      "instruction": "1407ca9fe:\t48 8d 0d b0 68 0c 00 \tlea    0xc68b0(%rip),%rcx        # 0x1408912b5",
+      "offset": 8980149,
+      "prefix": "비고 알림/client-notesGET /settingssettings.htmlCache-Controlweb/style.cssentry-gate.js접수 완료invalid probeGET /admin.jsPOST /archive저장 실패수주 등록수주 관리server_listenShell"
+    },
+    {
+      "function": "main.toastWorkerLine",
+      "instruction": "1407caa28:\t48 8d 0d f0 4c 0c 00 \tlea    0xc4cf0(%rip),%rcx        # 0x14088f71f",
+      "offset": 8973087,
+      "prefix": "세팅검사remove_photoreceipt.htmlproject-cardwanryo_adminproject_dataPostMessageW통합검사return_queueDeleteObjectSelectObjectSetTextColorSendMessageWGetDlgCtrlIDSO-2026-0142CreateMutexWmutex_fa"
+    },
+    {
+      "function": "main.toastWorkerLine",
+      "instruction": "1407caa4b:\t48 8d 0d c1 4c 0c 00 \tlea    0xc4cc1(%rip),%rcx        # 0x14088f713",
+      "offset": 8973075,
+      "prefix": "출하검사세팅검사remove_photoreceipt.htmlproject-cardwanryo_adminproject_dataPostMessageW통합검사return_queueDeleteObjectSelectObjectSetTextColorSendMessageWGetDlgCtrlIDSO-2026-0142CreateMu"
+    },
+    {
+      "function": "main.toastWorkerLine",
+      "instruction": "1407caa59:\t48 8d 0d 3b 9e 0b 00 \tlea    0xb9e3b(%rip),%rcx        # 0x14088489b",
+      "offset": 8928411,
+      "prefix": "작업actionphotosdomainworker/open/Origin/work/recordsymbolBitBltbuttonSTATIC종료BUTTONKOSDAQ누락지수BearerminuteCookienumberclient계장과장대리사원주임차장부장팀장실장이사�"
+    },
+    {
+      "function": "main.toastWorkerLine",
+      "instruction": "1407caa70:\t48 8d 3d a9 e3 0b 00 \tlea    0xbe3a9(%rip),%rdi        # 0x140888e20",
+      "offset": 8946208,
+      "prefix": " 님이 FillRectMoveToEx--confighh:mm:ssGoString01234567beEfFgGvhijackedLocationHTTP/1.1If-MatchIf-RangeHTTP/2.0disjointoverlapsboundaryhttp/1.1ContinueAcceptedConflictreadlinktruncatefile+netunlinkat"
+    },
+    {
+      "function": "main.toastWorkerLine",
+      "instruction": "1407caa82:\t4c 8d 15 ce 02 0d 00 \tlea    0xd02ce(%rip),%r10        # 0x14089ad57",
+      "offset": 9019735,
+      "prefix": "를 신청했어요WanryoTalkWorkbook:web/order-import.js특이사항 업체web/mobile-login.jsweb/entry-gate.htmlweb/entry-motion.jsunsupported value: reflect.Value.IsNilreflect.Value.Floatbad unicod"
+    },
+    {
+      "function": "main.toastWorkerLine",
+      "instruction": "1407caaba:\t48 8d 0d f4 67 0c 00 \tlea    0xc67f4(%rip),%rcx        # 0x1408912b5",
+      "offset": 8980149,
+      "prefix": "비고 알림/client-notesGET /settingssettings.htmlCache-Controlweb/style.cssentry-gate.js접수 완료invalid probeGET /admin.jsPOST /archive저장 실패수주 등록수주 관리server_listenShell"
+    },
+    {
+      "function": "main.toastWorkerLine",
+      "instruction": "1407caae4:\t48 8d 0d 34 4c 0c 00 \tlea    0xc4c34(%rip),%rcx        # 0x14088f71f",
+      "offset": 8973087,
+      "prefix": "세팅검사remove_photoreceipt.htmlproject-cardwanryo_adminproject_dataPostMessageW통합검사return_queueDeleteObjectSelectObjectSetTextColorSendMessageWGetDlgCtrlIDSO-2026-0142CreateMutexWmutex_fa"
+    },
+    {
+      "function": "main.toastWorkerLine",
+      "instruction": "1407cab0a:\t48 8d 0d 02 4c 0c 00 \tlea    0xc4c02(%rip),%rcx        # 0x14088f713",
+      "offset": 8973075,
+      "prefix": "출하검사세팅검사remove_photoreceipt.htmlproject-cardwanryo_adminproject_dataPostMessageW통합검사return_queueDeleteObjectSelectObjectSetTextColorSendMessageWGetDlgCtrlIDSO-2026-0142CreateMu"
+    },
+    {
+      "function": "main.toastWorkerLine",
+      "instruction": "1407cab18:\t48 8d 0d 7c 9d 0b 00 \tlea    0xb9d7c(%rip),%rcx        # 0x14088489b",
+      "offset": 8928411,
+      "prefix": "작업actionphotosdomainworker/open/Origin/work/recordsymbolBitBltbuttonSTATIC종료BUTTONKOSDAQ누락지수BearerminuteCookienumberclient계장과장대리사원주임차장부장팀장실장이사�"
+    },
+    {
+      "function": "main.toastWorkerLine",
+      "instruction": "1407cab2f:\t48 8d 3d ea e2 0b 00 \tlea    0xbe2ea(%rip),%rdi        # 0x140888e20",
+      "offset": 8946208,
+      "prefix": " 님이 FillRectMoveToEx--confighh:mm:ssGoString01234567beEfFgGvhijackedLocationHTTP/1.1If-MatchIf-RangeHTTP/2.0disjointoverlapsboundaryhttp/1.1ContinueAcceptedConflictreadlinktruncatefile+netunlinkat"
+    },
+    {
+      "function": "main.toastWorkerLine",
+      "instruction": "1407cab41:\t4c 8d 15 80 a9 0c 00 \tlea    0xca980(%rip),%r10        # 0x1408954c8",
+      "offset": 8997064,
+      "prefix": "를 마쳤어요CreateJobObjectWquick-tunnel.ymlAlphaUnreadBadge대체로 맑음web/receipt.htmlcontext canceledGo struct field expected integerexpected newlinehttpcookiemaxnumhttp: nil Cookie<!doctyp"
+    },
+    {
+      "function": "main.toastNotePreview",
+      "instruction": "1407cac08:\t48 8d 3d 31 5b 0b 00 \tlea    0xb5b31(%rip),%rdi        # 0x140880740",
+      "offset": 8911680,
+      "prefix": "…→눈비id:topA:Enil01_EOFnewGet443../%2f%2F...0\r\n,h1%25): SunMonTueWedThuFriSatJanFebMarAprMayJunJulAugSepOctNovDecUTCµsμsEET+00+01CATWATEATGMTHSTHDT-03-04-05ESTCSTCDTMSTMDT-02-01EDTASTADTPSTPD"
+    },
+    {
+      "function": "main.toastWorkArea",
+      "instruction": "1407caca1:\t48 8d 1d c7 cd 0c 00 \tlea    0xccdc7(%rip),%rbx        # 0x140897a6f",
+      "offset": 9006703,
+      "prefix": "MonitorFromWindow안 읽은 알림엑셀 저장됨 web/entry-gate.jsweb/schedule.htmlweb/settings.htmlat start of value0123456789ABCDEFX0123456789abcdefxreflect.Value.Intillegal hex digitcan't scan ty"
+    },
+    {
+      "function": "main.toastWorkArea",
+      "instruction": "1407cad23:\t48 8d 1d 0c 8f 0c 00 \tlea    0xc8f0c(%rip),%rbx        # 0x140893c36",
+      "offset": 8990774,
+      "prefix": "GetMonitorInfoWGetDpiForWindow--no-autoupdate열변경원본web/schedule.js설계담당자web/due-view.jsweb/backup.htmlweb/closed.htmlweb/unread.htmlIdempotency-KeyPartial ContentRequest TimeoutLengt"
+    },
+    {
+      "function": "main.toastWorkArea",
+      "instruction": "1407cad95:\t48 8d 1d ca 33 0d 00 \tlea    0xd33ca(%rip),%rbx        # 0x14089e166",
+      "offset": 9033062,
+      "prefix": "SystemParametersInfoWPOST /unread/read-allWanryoTalk workbook 1엑셀 준비 중 · web/worker-context.jsweb/client-notes.htmlweb/mobile-login.htmlweb/order-import.htmlweb/project-card.htmlweb/project"
+    },
+    {
+      "function": "main.toastWorkArea",
+      "instruction": "1407cae04:\t48 8d 0d 3a 8e 0c 00 \tlea    0xc8e3a(%rip),%rcx        # 0x140893c45",
+      "offset": 8990789,
+      "prefix": "GetDpiForWindow--no-autoupdate열변경원본web/schedule.js설계담당자web/due-view.jsweb/backup.htmlweb/closed.htmlweb/unread.htmlIdempotency-KeyPartial ContentRequest TimeoutLength RequiredNot I"
+    },
+    {
+      "function": "main.fontForToast",
+      "instruction": "1407cb1ea:\t48 8d 0d ab 76 0b 00 \tlea    0xb76ab(%rip),%rcx        # 0x14088289c",
+      "offset": 8920220,
+      "prefix": "brandsmallKOSPI-pickdraftsheet.xlsxrp idRP_IDOWNER15:04badgehttp2--urlsleet&lon=place<nil> via arrayErrorsvqxX&amp;&#34;&#39;:***@bytesRangeHTTP1HTTP2HTTP3https%s %q%s=%scloseAllow%s:%d:httpsocksFound"
+    },
+    {
+      "function": "main.fontForToast",
+      "instruction": "1407cb21a:\t48 8d 0d 1f 63 0b 00 \tlea    0xb631f(%rip),%rcx        # 0x140881540",
+      "offset": 8915264,
+      "prefix": "timesnowrainA1:Ftrue._-/ \n\r\tboolmap[eEpPHost&lt;&gt;idleHEAD1080Etag%x\r\nDateGonegzipCopyreadseeksyncfilepipelink\\\\?\\StatJuneJulyEESTSASTAKSTAKDTACSTACDTAESTAEDTAWSTCESTNZSTNZDT as hour in Jan.Feb.Maa."
+    },
+    {
+      "function": "main.fontForToast",
+      "instruction": "1407cb24d:\t48 8d 0d 5f 96 0b 00 \tlea    0xb965f(%rip),%rcx        # 0x1408848b3",
+      "offset": 8928435,
+      "prefix": "worker/open/Origin/work/recordsymbolBitBltbuttonSTATIC종료BUTTONKOSDAQ누락지수BearerminuteCookienumberclient계장과장대리사원주임차장부장팀장실장이사상무전무대표책임�"
+    },
+    {
+      "function": "main.fontForToast",
+      "instruction": "1407cb280:\t48 8d 0d 0c bc 0b 00 \tlea    0xbbc0c(%rip),%rcx        # 0x140886e93",
+      "offset": 8938131,
+      "prefix": "projectsetting/unread 신청requestheadingLISTBOXKRW-BTCKRW-ETHenabledpasskeyclient_messagecontent/ready/?nonce=expiredrp hashEXPIREDoptions#start=1drv.msthroughthunder2006-01patternnil keynumber bool"
+    },
+    {
+      "function": "main.fontForToast",
+      "instruction": "1407cb2b3:\t48 8d 0d e7 75 0b 00 \tlea    0xb75e7(%rip),%rcx        # 0x1408828a1",
+      "offset": 8920225,
+      "prefix": "smallKOSPI-pickdraftsheet.xlsxrp idRP_IDOWNER15:04badgehttp2--urlsleet&lon=place<nil> via arrayErrorsvqxX&amp;&#34;&#39;:***@bytesRangeHTTP1HTTP2HTTP3https%s %q%s=%scloseAllow%s:%d:httpsocksFoundparse"
+    },
+    {
+      "function": "main.fontForToast",
+      "instruction": "1407cb2e6:\t48 8d 0d d4 96 0b 00 \tlea    0xb96d4(%rip),%rcx        # 0x1408849c1",
+      "offset": 8928705,
+      "prefix": "footerLineTotunnel뇌우맑음흐림안개Sheet1FFFFFF196B52centerEEF4FDFFF7E6E6F4EAD5EBDD8DA6B8 into object \r\n\t,:StringFormat[]byte' for stringactiveclosedBasic <pre>\nExpect</a>.\n:httpshttp/3socks Lo"
+    },
+    {
+      "function": "main.fontForToast",
+      "instruction": "1407cb319:\t48 8d 0d b3 75 0b 00 \tlea    0xb75b3(%rip),%rcx        # 0x1408828d3",
+      "offset": 8920275,
+      "prefix": "badgehttp2--urlsleet&lon=place<nil> via arrayErrorsvqxX&amp;&#34;&#39;:***@bytesRangeHTTP1HTTP2HTTP3https%s %q%s=%scloseAllow%s:%d:httpsocksFoundparsexxxxxchdirwritemkdirchmodchowngetwdLstatMarchApril"
+    },
+    {
+      "function": "main.fontForToast",
+      "instruction": "1407cb3a7:\t48 8d 05 e4 5f 0c 00 \tlea    0xc5fe4(%rip),%rax        # 0x140891392",
+      "offset": 8980370,
+      "prefix": "맑은 고딕연결 대기DrawFocusRect준비 중…엑셀 폴더시작 기록GetClientRectclient_secretwanryo_admin=authenticated/mobile-admin등록 가능user verifieduser presencerelying party수�"
+    },
+    {
+      "function": "main.fontForToast",
+      "instruction": "1407cb427:\t48 8d 1d d7 2d 0c 00 \tlea    0xc2dd7(%rip),%rbx        # 0x14088e205",
+      "offset": 8967685,
+      "prefix": "CreateFontW · 수주 MessageBoxWLoadCursorWFindWindowWGetMessageWCloseHandleRetry-Afterstart-loginenter-loginPOST /phonedesigner_idsync_clientsource_path01.02 15:04startup.lognotepad.exeMessageBeepOp"
+    },
+    {
+      "function": "main.registerToastClass",
+      "instruction": "1407cb615:\t48 8d 05 ce 70 0c 00 \tlea    0xc70ce(%rip),%rax        # 0x1408926ea",
+      "offset": 8985322,
+      "prefix": "WanryoTalkCardGetStockObject수주번호  web/admin.htmlweb/phone.html.WithoutCancel.WithDeadline(unexpected EOFContent-Lengthbytes %d-%d/%d{$} not at endempty wildcardinvalid methodinternal errorPRI "
+    },
+    {
+      "function": "main.registerToastClass",
+      "instruction": "1407cb654:\t48 8d 1d cb 2b 0c 00 \tlea    0xc2bcb(%rip),%rbx        # 0x14088e226",
+      "offset": 8967718,
+      "prefix": "LoadCursorWFindWindowWGetMessageWCloseHandleRetry-Afterstart-loginenter-loginPOST /phonedesigner_idsync_clientsource_path01.02 15:04startup.lognotepad.exeMessageBeepOpenProcessGET /unreadunread.html_�"
+    },
+    {
+      "function": "main.registerToastClass",
+      "instruction": "1407cb763:\t48 8d 1d 5e 9c 0c 00 \tlea    0xc9c5e(%rip),%rbx        # 0x1408953c8",
+      "offset": 8996808,
+      "prefix": "RegisterClassExWgui_initializingGetModuleHandleW인터넷 연결인터넷 끊기TranslateMessageDispatchMessageW담당자 없음WanryoTalk/2.4.0지문 로그인알파 관리자phone-push-*.tmpkeep_cli"
+    },
+    {
+      "function": "main.fillToasts",
+      "instruction": "1407cc408:\t48 8d 05 db 62 0c 00 \tlea    0xc62db(%rip),%rax        # 0x1408926ea",
+      "offset": 8985322,
+      "prefix": "WanryoTalkCardGetStockObject수주번호  web/admin.htmlweb/phone.html.WithoutCancel.WithDeadline(unexpected EOFContent-Lengthbytes %d-%d/%d{$} not at endempty wildcardinvalid methodinternal errorPRI "
+    },
+    {
+      "function": "main.fillToasts",
+      "instruction": "1407cc53f:\t48 8d 1d 96 76 0c 00 \tlea    0xc7696(%rip),%rbx        # 0x140893bdc",
+      "offset": 8990684,
+      "prefix": "CreateWindowExWPostQuitMessageprocess_enteredalready_runningShowWindowAsyncwebauthn.createGetMonitorInfoWGetDpiForWindow--no-autoupdate열변경원본web/schedule.js설계담당자web/due-view.jsweb/b"
+    },
+    {
+      "function": "main.fillToasts",
+      "instruction": "1407cca16:\t48 8d 1d d0 c4 0c 00 \tlea    0xcc4d0(%rip),%rbx        # 0x140898eed",
+      "offset": 9011949,
+      "prefix": "CreateRoundRectRgn안 읽은 알림 .wanryotalk-*.xlsxtoo many redirectsweb/designers.htmlweb/entry-gate.csscontext.Backgroundcannot be negativeat start of stringafter object valuein numeric literalre"
+    },
+    {
+      "function": "main.fillToasts",
+      "instruction": "1407cca82:\t48 8d 1d fe 2d 0c 00 \tlea    0xc2dfe(%rip),%rbx        # 0x14088f887",
+      "offset": 8973447,
+      "prefix": "SetWindowRgnSetWindowPosGetCursorPosGET /read.js진눈깨비일별원본?to=settings수주등록web/admin.jscontext.TODOshort bufferhttpmuxgo121Cookie.ValuemoreSpecific100-continuestatus code Multi-St"
+    },
+    {
+      "function": "main.fillToasts",
+      "instruction": "1407ccad7:\t48 8d 1d ad 2c 0c 00 \tlea    0xc2cad(%rip),%rbx        # 0x14088f78b",
+      "offset": 8973195,
+      "prefix": "DeleteObjectSelectObjectSetTextColorSendMessageWGetDlgCtrlIDSO-2026-0142CreateMutexWmutex_failedUpdateWindowwindow_shown토스증권비트코인이더리움대표이사user presentauthenticateinstruct"
+    },
+    {
+      "function": "main.fillToasts",
+      "instruction": "1407ccb2b:\t48 8d 1d e9 8a 0d 00 \tlea    0xd8ae9(%rip),%rbx        # 0x1408a561b",
+      "offset": 9062939,
+      "prefix": "SetLayeredWindowAttributesweb/admin-order-items.htmlweb/inspection-review.htmlweb/shipping-calendar.htmlreflect.Value.CanInterfaceinteger overflow on token empty buffer in CopyBufferhttp: invalid cook"
+    },
+    {
+      "function": "main.fillToasts",
+      "instruction": "1407ccb8f:\t48 8d 1d 02 c2 0b 00 \tlea    0xbc202(%rip),%rbx        # 0x140888d98",
+      "offset": 8946072,
+      "prefix": "SetTimer환율: passworddesignerno-cachePROTOCOLRESPONSEregisterplatformrequiredendpoint 완료\n\n수주 2006-1-22006/1/22006.1.2starting 님이 FillRectMoveToEx--confighh:mm:ssGoString01234567beEfFgGv"
+    },
+    {
+      "function": "main.repositionToasts",
+      "instruction": "1407cd2a6:\t48 8d 1d e6 25 0c 00 \tlea    0xc25e6(%rip),%rbx        # 0x14088f893",
+      "offset": 8973459,
+      "prefix": "SetWindowPosGetCursorPosGET /read.js진눈깨비일별원본?to=settings수주등록web/admin.jscontext.TODOshort bufferhttpmuxgo121Cookie.ValuemoreSpecific100-continuestatus code Multi-StatusNot Modi"
+    },
+    {
+      "function": "main.toastTick",
+      "instruction": "1407cd3d6:\t48 8d 1d c2 24 0c 00 \tlea    0xc24c2(%rip),%rbx        # 0x14088f89f",
+      "offset": 8973471,
+      "prefix": "GetCursorPosGET /read.js진눈깨비일별원본?to=settings수주등록web/admin.jscontext.TODOshort bufferhttpmuxgo121Cookie.ValuemoreSpecific100-continuestatus code Multi-StatusNot ModifiedUnauthor"
+    },
+    {
+      "function": "main.toastTick",
+      "instruction": "1407cd862:\t48 8d 1d b2 7d 0d 00 \tlea    0xd7db2(%rip),%rbx        # 0x1408a561b",
+      "offset": 9062939,
+      "prefix": "SetLayeredWindowAttributesweb/admin-order-items.htmlweb/inspection-review.htmlweb/shipping-calendar.htmlreflect.Value.CanInterfaceinteger overflow on token empty buffer in CopyBufferhttp: invalid cook"
+    },
+    {
+      "function": "main.toastTick",
+      "instruction": "1407cd8f9:\t48 8d 1d 93 1f 0c 00 \tlea    0xc1f93(%rip),%rbx        # 0x14088f893",
+      "offset": 8973459,
+      "prefix": "SetWindowPosGetCursorPosGET /read.js진눈깨비일별원본?to=settings수주등록web/admin.jscontext.TODOshort bufferhttpmuxgo121Cookie.ValuemoreSpecific100-continuestatus code Multi-StatusNot Modi"
+    },
+    {
+      "function": "main.toastTick",
+      "instruction": "1407cd949:\t48 8d 1d e4 4c 0c 00 \tlea    0xc4ce4(%rip),%rbx        # 0x140892634",
+      "offset": 8985140,
+      "prefix": "InvalidateRectSetWindowTextWGetWindowTextWDefWindowProcWWanryoTalkMainwindow_created/orders/importenter-register01-02 15:04:05designer_phonetemplate_photoPOST /schedule/project-info/WanryoTalkCardGetS"
+    },
+    {
+      "function": "main.toastTick",
+      "instruction": "1407cd99b:\t48 8d 1d e3 39 0c 00 \tlea    0xc39e3(%rip),%rbx        # 0x140891385",
+      "offset": 8980357,
+      "prefix": "DestroyWindow맑은 고딕연결 대기DrawFocusRect준비 중…엑셀 폴더시작 기록GetClientRectclient_secretwanryo_admin=authenticated/mobile-admin등록 가능user verifieduser presencerelyi"
+    },
+    {
+      "function": "main.toastText",
+      "instruction": "1407cdfd0:\t48 8d 1d c0 17 0c 00 \tlea    0xc17c0(%rip),%rbx        # 0x14088f797",
+      "offset": 8973207,
+      "prefix": "SelectObjectSetTextColorSendMessageWGetDlgCtrlIDSO-2026-0142CreateMutexWmutex_failedUpdateWindowwindow_shown토스증권비트코인이더리움대표이사user presentauthenticateinstructions조립�"
+    },
+    {
+      "function": "main.toastText",
+      "instruction": "1407ce05f:\t48 8d 1d 3d 17 0c 00 \tlea    0xc173d(%rip),%rbx        # 0x14088f7a3",
+      "offset": 8973219,
+      "prefix": "SetTextColorSendMessageWGetDlgCtrlIDSO-2026-0142CreateMutexWmutex_failedUpdateWindowwindow_shown토스증권비트코인이더리움대표이사user presentauthenticateinstructions조립일정EnableWi"
+    },
+    {
+      "function": "main.toastText",
+      "instruction": "1407ce0ae:\t48 8d 1d e0 ca 0b 00 \tlea    0xbcae0(%rip),%rbx        # 0x14088ab95",
+      "offset": 8953749,
+      "prefix": "SetBkModeDrawTextW연결됨LocalFreeLoadIconW홍길동코스피코스닥업비트client_id?request=매니저designer_%d행: %sextensionchallengesignatureEXTENSIONCHALLENGESIGNATUREcredProps/schedule.1"
+    },
+    {
+      "function": "main.toastText",
+      "instruction": "1407ce13f:\t48 8d 1d 58 ca 0b 00 \tlea    0xbca58(%rip),%rbx        # 0x14088ab9e",
+      "offset": 8953758,
+      "prefix": "DrawTextW연결됨LocalFreeLoadIconW홍길동코스피코스닥업비트client_id?request=매니저designer_%d행: %sextensionchallengesignatureEXTENSIONCHALLENGESIGNATUREcredProps/schedule.1drv.com.p"
+    },
+    {
+      "function": "main.toastText",
+      "instruction": "1407ce18f:\t48 8d 1d 01 16 0c 00 \tlea    0xc1601(%rip),%rbx        # 0x14088f797",
+      "offset": 8973207,
+      "prefix": "SelectObjectSetTextColorSendMessageWGetDlgCtrlIDSO-2026-0142CreateMutexWmutex_failedUpdateWindowwindow_shown토스증권비트코인이더리움대표이사user presentauthenticateinstructions조립�"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407ce578:\t48 8d 1d 25 e2 0b 00 \tlea    0xbe225(%rip),%rbx        # 0x14088c7a4",
+      "offset": 8960932,
+      "prefix": "BeginPaintSetBkColorShowWindowempty datagrant_typeclear_keys/passkeys/public-key/fcm/send/GET /phonephone.htmlsource_url2006/01/022006.01.02WanryoTalkPlaySoundW--protocol?to=unreadbottomLeftyyyy-mm-dd"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407ce637:\t48 8d 1d 59 a7 0c 00 \tlea    0xca759(%rip),%rbx        # 0x140898d97",
+      "offset": 9011607,
+      "prefix": "CreateCompatibleDCCryptUnprotectDataSetProcessDPIAwareclient_credentialsalpha_mobile_adminalpha_mobile_loginGET /mobile-accessmobile-access.html업체특이사항특이사항업체GET /orders/import%s"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407ce6a4:\t48 8d 1d 9a 14 0d 00 \tlea    0xd149a(%rip),%rbx        # 0x14089fb45",
+      "offset": 9039685,
+      "prefix": "CreateCompatibleBitmap/orders/import/discard/orders/import/preview/orders/import/refresh/mobile-admin/passkey//mobile-access?saved=1GET /worker-context.jsweb/market-settings.jsweb/designer-picker.jswe"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407ce717:\t48 8d 1d 6a a6 0b 00 \tlea    0xba66a(%rip),%rbx        # 0x140888d88",
+      "offset": 8946056,
+      "prefix": "DeleteDCEndPaintSetTimer환율: passworddesignerno-cachePROTOCOLRESPONSEregisterplatformrequiredendpoint 완료\n\n수주 2006-1-22006/1/22006.1.2starting 님이 FillRectMoveToEx--confighh:mm:ssGoString"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407ce76d:\t48 8d 1d 17 10 0c 00 \tlea    0xc1017(%rip),%rbx        # 0x14088f78b",
+      "offset": 8973195,
+      "prefix": "DeleteObjectSelectObjectSetTextColorSendMessageWGetDlgCtrlIDSO-2026-0142CreateMutexWmutex_failedUpdateWindowwindow_shown토스증권비트코인이더리움대표이사user presentauthenticateinstruct"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407ce7e3:\t48 8d 1d ad 0f 0c 00 \tlea    0xc0fad(%rip),%rbx        # 0x14088f797",
+      "offset": 8973207,
+      "prefix": "SelectObjectSetTextColorSendMessageWGetDlgCtrlIDSO-2026-0142CreateMutexWmutex_failedUpdateWindowwindow_shown토스증권비트코인이더리움대표이사user presentauthenticateinstructions조립�"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407cf0f0:\t48 8d 0d 69 48 0e 00 \tlea    0xe4869(%rip),%rcx        # 0x1408b3960",
+      "offset": 9121120,
+      "prefix": "알파작업완료확인 프로그램미리보기가 만료되었습니다갱신 실패 · 기존 납기 유지저장 폴더에 쓸 수 없습니다cannot create context from nil parenthttp: invalid b"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407cf0fc:\t48 8d 35 99 37 0b 00 \tlea    0xb3799(%rip),%rsi        # 0x14088289c",
+      "offset": 8920220,
+      "prefix": "brandsmallKOSPI-pickdraftsheet.xlsxrp idRP_IDOWNER15:04badgehttp2--urlsleet&lon=place<nil> via arrayErrorsvqxX&amp;&#34;&#39;:***@bytesRangeHTTP1HTTP2HTTP3https%s %q%s=%scloseAllow%s:%d:httpsocksFound"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407cf19d:\t48 8d 35 9c 23 0b 00 \tlea    0xb239c(%rip),%rsi        # 0x140881540",
+      "offset": 8915264,
+      "prefix": "timesnowrainA1:Ftrue._-/ \n\r\tboolmap[eEpPHost&lt;&gt;idleHEAD1080Etag%x\r\nDateGonegzipCopyreadseeksyncfilepipelink\\\\?\\StatJuneJulyEESTSASTAKSTAKDTACSTACDTAESTAEDTAWSTCESTNZSTNZDT as hour in Jan.Feb.Maa."
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407cf2d6:\t48 8d 0d 96 04 0c 00 \tlea    0xc0496(%rip),%rcx        # 0x14088f773",
+      "offset": 8973171,
+      "prefix": "통합검사return_queueDeleteObjectSelectObjectSetTextColorSendMessageWGetDlgCtrlIDSO-2026-0142CreateMutexWmutex_failedUpdateWindowwindow_shown토스증권비트코인이더리움대표이사user pre"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407cf301:\t48 8d 0d ad 1f 0c 00 \tlea    0xc1fad(%rip),%rcx        # 0x1408912b5",
+      "offset": 8980149,
+      "prefix": "비고 알림/client-notesGET /settingssettings.htmlCache-Controlweb/style.cssentry-gate.js접수 완료invalid probeGET /admin.jsPOST /archive저장 실패수주 등록수주 관리server_listenShell"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407cf32e:\t48 8d 0d ea 03 0c 00 \tlea    0xc03ea(%rip),%rcx        # 0x14088f71f",
+      "offset": 8973087,
+      "prefix": "세팅검사remove_photoreceipt.htmlproject-cardwanryo_adminproject_dataPostMessageW통합검사return_queueDeleteObjectSelectObjectSetTextColorSendMessageWGetDlgCtrlIDSO-2026-0142CreateMutexWmutex_fa"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407cf351:\t48 8d 0d bb 03 0c 00 \tlea    0xc03bb(%rip),%rcx        # 0x14088f713",
+      "offset": 8973075,
+      "prefix": "출하검사세팅검사remove_photoreceipt.htmlproject-cardwanryo_adminproject_dataPostMessageW통합검사return_queueDeleteObjectSelectObjectSetTextColorSendMessageWGetDlgCtrlIDSO-2026-0142CreateMu"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407cf35f:\t48 8d 0d 35 55 0b 00 \tlea    0xb5535(%rip),%rcx        # 0x14088489b",
+      "offset": 8928411,
+      "prefix": "작업actionphotosdomainworker/open/Origin/work/recordsymbolBitBltbuttonSTATIC종료BUTTONKOSDAQ누락지수BearerminuteCookienumberclient계장과장대리사원주임차장부장팀장실장이사�"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407cf3cb:\t48 8d 35 01 35 0b 00 \tlea    0xb3501(%rip),%rsi        # 0x1408828d3",
+      "offset": 8920275,
+      "prefix": "badgehttp2--urlsleet&lon=place<nil> via arrayErrorsvqxX&amp;&#34;&#39;:***@bytesRangeHTTP1HTTP2HTTP3https%s %q%s=%scloseAllow%s:%d:httpsocksFoundparsexxxxxchdirwritemkdirchmodchowngetwdLstatMarchApril"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407cfd34:\t48 8d 35 78 4b 0b 00 \tlea    0xb4b78(%rip),%rsi        # 0x1408848b3",
+      "offset": 8928435,
+      "prefix": "worker/open/Origin/work/recordsymbolBitBltbuttonSTATIC종료BUTTONKOSDAQ누락지수BearerminuteCookienumberclient계장과장대리사원주임차장부장팀장실장이사상무전무대표책임�"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407cfdd2:\t48 8d 35 ba 70 0b 00 \tlea    0xb70ba(%rip),%rsi        # 0x140886e93",
+      "offset": 8938131,
+      "prefix": "projectsetting/unread 신청requestheadingLISTBOXKRW-BTCKRW-ETHenabledpasskeyclient_messagecontent/ready/?nonce=expiredrp hashEXPIREDoptions#start=1drv.msthroughthunder2006-01patternnil keynumber bool"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407cfe50:\t48 8d 1d af 28 0c 00 \tlea    0xc28af(%rip),%rbx        # 0x140892706",
+      "offset": 8985350,
+      "prefix": "수주번호  web/admin.htmlweb/phone.html.WithoutCancel.WithDeadline(unexpected EOFContent-Lengthbytes %d-%d/%d{$} not at endempty wildcardinvalid methodinternal errorPRI * HTTP/2.0parsing %q: %wunkn"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407cfe96:\t48 8d 35 04 2a 0b 00 \tlea    0xb2a04(%rip),%rsi        # 0x1408828a1",
+      "offset": 8920225,
+      "prefix": "smallKOSPI-pickdraftsheet.xlsxrp idRP_IDOWNER15:04badgehttp2--urlsleet&lon=place<nil> via arrayErrorsvqxX&amp;&#34;&#39;:***@bytesRangeHTTP1HTTP2HTTP3https%s %q%s=%scloseAllow%s:%d:httpsocksFoundparse"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407d003e:\t48 8d 35 5c 28 0b 00 \tlea    0xb285c(%rip),%rsi        # 0x1408828a1",
+      "offset": 8920225,
+      "prefix": "smallKOSPI-pickdraftsheet.xlsxrp idRP_IDOWNER15:04badgehttp2--urlsleet&lon=place<nil> via arrayErrorsvqxX&amp;&#34;&#39;:***@bytesRangeHTTP1HTTP2HTTP3https%s %q%s=%scloseAllow%s:%d:httpsocksFoundparse"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407d00c1:\t48 8d 35 cb 6d 0b 00 \tlea    0xb6dcb(%rip),%rsi        # 0x140886e93",
+      "offset": 8938131,
+      "prefix": "projectsetting/unread 신청requestheadingLISTBOXKRW-BTCKRW-ETHenabledpasskeyclient_messagecontent/ready/?nonce=expiredrp hashEXPIREDoptions#start=1drv.msthroughthunder2006-01patternnil keynumber bool"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407d013f:\t48 8d 1d c0 25 0c 00 \tlea    0xc25c0(%rip),%rbx        # 0x140892706",
+      "offset": 8985350,
+      "prefix": "수주번호  web/admin.htmlweb/phone.html.WithoutCancel.WithDeadline(unexpected EOFContent-Lengthbytes %d-%d/%d{$} not at endempty wildcardinvalid methodinternal errorPRI * HTTP/2.0parsing %q: %wunkn"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407d0181:\t48 8d 35 19 27 0b 00 \tlea    0xb2719(%rip),%rsi        # 0x1408828a1",
+      "offset": 8920225,
+      "prefix": "smallKOSPI-pickdraftsheet.xlsxrp idRP_IDOWNER15:04badgehttp2--urlsleet&lon=place<nil> via arrayErrorsvqxX&amp;&#34;&#39;:***@bytesRangeHTTP1HTTP2HTTP3https%s %q%s=%scloseAllow%s:%d:httpsocksFoundparse"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407d023d:\t4c 8d 05 b6 c3 0c 00 \tlea    0xcc3b6(%rip),%r8        # 0x14089c5fa",
+      "offset": 9026042,
+      "prefix": "완료 내역 보기검사 신청 확인날씨 정보 없음GET /weather/{board}비고내용(자동)SHGetKnownFolderPathweb/worker-dialog.jsweb/client-picker.jsweb/passkey-enter.jsjson: Unmarshal(nil)"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407d0244:\t4c 8d 0d c3 c3 0c 00 \tlea    0xcc3c3(%rip),%r9        # 0x14089c60e",
+      "offset": 9026062,
+      "prefix": "검사 신청 확인날씨 정보 없음GET /weather/{board}비고내용(자동)SHGetKnownFolderPathweb/worker-dialog.jsweb/client-picker.jsweb/passkey-enter.jsjson: Unmarshal(nil)json: Unmarshal(nil "
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407d0268:\t4c 8d 05 8c 6c 0d 00 \tlea    0xd6c8c(%rip),%r8        # 0x1408a6efb",
+      "offset": 9069307,
+      "prefix": "비고 내용 전체 보기weather service unavailableafter object key:value pairnet/http: use last responsehttpservecontentkeepheadersnet/http: request completednet/http: invalid scheme %qhttp: inval"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407d02e2:\t48 8d 35 d8 46 0b 00 \tlea    0xb46d8(%rip),%rsi        # 0x1408849c1",
+      "offset": 8928705,
+      "prefix": "footerLineTotunnel뇌우맑음흐림안개Sheet1FFFFFF196B52centerEEF4FDFFF7E6E6F4EAD5EBDD8DA6B8 into object \r\n\t,:StringFormat[]byte' for stringactiveclosedBasic <pre>\nExpect</a>.\n:httpshttp/3socks Lo"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407d034a:\t48 8d 0d f2 03 0b 00 \tlea    0xb03f2(%rip),%rcx        # 0x140880743",
+      "offset": 8911683,
+      "prefix": "→눈비id:topA:Enil01_EOFnewGet443../%2f%2F...0\r\n,h1%25): SunMonTueWedThuFriSatJanFebMarAprMayJunJulAugSepOctNovDecUTCµsμsEET+00+01CATWATEATGMTHSTHDT-03-04-05ESTCSTCDTMSTMDT-02-01EDTASTADTPSTPDTNS"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407d0356:\t48 8d 35 64 46 0b 00 \tlea    0xb4664(%rip),%rsi        # 0x1408849c1",
+      "offset": 8928705,
+      "prefix": "footerLineTotunnel뇌우맑음흐림안개Sheet1FFFFFF196B52centerEEF4FDFFF7E6E6F4EAD5EBDD8DA6B8 into object \r\n\t,:StringFormat[]byte' for stringactiveclosedBasic <pre>\nExpect</a>.\n:httpshttp/3socks Lo"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407d0793:\t48 8d 1d 3d 41 0b 00 \tlea    0xb413d(%rip),%rbx        # 0x1408848d7",
+      "offset": 8928471,
+      "prefix": "BitBltbuttonSTATIC종료BUTTONKOSDAQ누락지수BearerminuteCookienumberclient계장과장대리사원주임차장부장팀장실장이사상무전무대표책임선임수석프로branchoriginORIGINen"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407d07e6:\t48 8d 1d aa ef 0b 00 \tlea    0xbefaa(%rip),%rbx        # 0x14088f797",
+      "offset": 8973207,
+      "prefix": "SelectObjectSetTextColorSendMessageWGetDlgCtrlIDSO-2026-0142CreateMutexWmutex_failedUpdateWindowwindow_shown토스증권비트코인이더리움대표이사user presentauthenticateinstructions조립�"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407d082d:\t48 8d 1d 57 ef 0b 00 \tlea    0xbef57(%rip),%rbx        # 0x14088f78b",
+      "offset": 8973195,
+      "prefix": "DeleteObjectSelectObjectSetTextColorSendMessageWGetDlgCtrlIDSO-2026-0142CreateMutexWmutex_failedUpdateWindowwindow_shown토스증권비트코인이더리움대표이사user presentauthenticateinstruct"
+    },
+    {
+      "function": "main.paintToast",
+      "instruction": "1407d0877:\t48 8d 1d 0a 85 0b 00 \tlea    0xb850a(%rip),%rbx        # 0x140888d88",
+      "offset": 8946056,
+      "prefix": "DeleteDCEndPaintSetTimer환율: passworddesignerno-cachePROTOCOLRESPONSEregisterplatformrequiredendpoint 완료\n\n수주 2006-1-22006/1/22006.1.2starting 님이 FillRectMoveToEx--confighh:mm:ssGoString"
+    },
+    {
+      "function": "main.toastProc",
+      "instruction": "1407d0989:\t48 8d 1d ef a2 0b 00 \tlea    0xba2ef(%rip),%rbx        # 0x14088ac7f",
+      "offset": 8953983,
+      "prefix": "KillTimerole32.dll완료톡Documentsin number of type 01234567_websocketnet/http.HTTP/1.1 HTTP/1.0 <a href=\"succeededSee OtherUse ProxyForbiddenNot FoundToo EarlyTrailer: protocol nil error%s %q: %sem"
+    },
+    {
+      "function": "main.toastProc",
+      "instruction": "1407d0a3b:\t48 8d 1d 43 09 0c 00 \tlea    0xc0943(%rip),%rbx        # 0x140891385",
+      "offset": 8980357,
+      "prefix": "DestroyWindow맑은 고딕연결 대기DrawFocusRect준비 중…엑셀 폴더시작 기록GetClientRectclient_secretwanryo_admin=authenticated/mobile-admin등록 가능user verifieduser presencerelyi"
+    },
+    {
+      "function": "main.toastProc",
+      "instruction": "1407d0c6c:\t48 8d 1d 12 07 0c 00 \tlea    0xc0712(%rip),%rbx        # 0x140891385",
+      "offset": 8980357,
+      "prefix": "DestroyWindow맑은 고딕연결 대기DrawFocusRect준비 중…엑셀 폴더시작 기록GetClientRectclient_secretwanryo_admin=authenticated/mobile-admin등록 가능user verifieduser presencerelyi"
+    },
+    {
+      "function": "main.toastProc",
+      "instruction": "1407d0cd7:\t48 8d 1d 80 19 0c 00 \tlea    0xc1980(%rip),%rbx        # 0x14089265e",
+      "offset": 8985182,
+      "prefix": "DefWindowProcWWanryoTalkMainwindow_created/orders/importenter-register01-02 15:04:05designer_phonetemplate_photoPOST /schedule/project-info/WanryoTalkCardGetStockObject수주번호  web/admin.htmlweb/"
+    },
+    {
+      "function": "main.cleanupToasts",
+      "instruction": "1407d0f0b:\t48 8d 1d 73 04 0c 00 \tlea    0xc0473(%rip),%rbx        # 0x140891385",
+      "offset": 8980357,
+      "prefix": "DestroyWindow맑은 고딕연결 대기DrawFocusRect준비 중…엑셀 폴더시작 기록GetClientRectclient_secretwanryo_admin=authenticated/mobile-admin등록 가능user verifieduser presencerelyi"
+    },
+    {
+      "function": "main.cleanupToasts",
+      "instruction": "1407d1008:\t48 8d 1d 7c e7 0b 00 \tlea    0xbe77c(%rip),%rbx        # 0x14088f78b",
+      "offset": 8973195,
+      "prefix": "DeleteObjectSelectObjectSetTextColorSendMessageWGetDlgCtrlIDSO-2026-0142CreateMutexWmutex_failedUpdateWindowwindow_shown토스증권비트코인이더리움대표이사user presentauthenticateinstruct"
+    },
+    {
+      "function": "main.cleanupToasts",
+      "instruction": "1407d1085:\t48 8d 1d ae b7 0b 00 \tlea    0xbb7ae(%rip),%rbx        # 0x14088c83a",
+      "offset": 8961082,
+      "prefix": "PlaySoundW--protocol?to=unreadbottomLeftyyyy-mm-ddobject key0123456789 for type local-addrSet-Cookiebytes */%dequivalentHost: %s\r\nConnectionkeep-alivesocks bindProcessingNo Content%s|%s%s|%swinsymlink"
+    },
+    {
+      "function": "main.refreshUnreadBadge",
+      "instruction": "1407d3f2d:\t48 8d 1d 84 88 0b 00 \tlea    0xb8884(%rip),%rbx        # 0x14088c7b8",
+      "offset": 8960952,
+      "prefix": "ShowWindowempty datagrant_typeclear_keys/passkeys/public-key/fcm/send/GET /phonephone.htmlsource_url2006/01/022006.01.02WanryoTalkPlaySoundW--protocol?to=unreadbottomLeftyyyy-mm-ddobject key0123456789"
+    },
+    {
+      "function": "main.refreshUnreadBadge",
+      "instruction": "1407d4273:\t4c 8d 05 f0 53 0f 00 \tlea    0xf53f0(%rip),%r8        # 0x1408c966a",
+      "offset": 9210474,
+      "prefix": "개 · 클릭: 다시 보기 · 오른쪽 클릭: 전체 목록https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=AlphaWorkComplete/2.19.1 https://github.com/swsgood79-beep/Toolinternal/sy"
+    },
+    {
+      "function": "main.refreshUnreadBadge",
+      "instruction": "1407d4282:\t48 8d 1d 76 4c 0c 00 \tlea    0xc4c76(%rip),%rbx        # 0x140898eff",
+      "offset": 9011967,
+      "prefix": "안 읽은 알림 .wanryotalk-*.xlsxtoo many redirectsweb/designers.htmlweb/entry-gate.csscontext.Backgroundcannot be negativeat start of stringafter object valuein numeric literalreflect.Value.Uintun"
+    },
+    {
+      "function": "main.refreshUnreadBadge",
+      "instruction": "1407d42a9:\t48 8d 05 48 12 0c 00 \tlea    0xc1248(%rip),%rax        # 0x1408954f8",
+      "offset": 8997112,
+      "prefix": "AlphaUnreadBadge대체로 맑음web/receipt.htmlcontext canceledGo struct field expected integerexpected newlinehttpcookiemaxnumhttp: nil Cookie<!doctype html>\nContent-Encodinginvalid URL pathUnencryp"
+    },
+    {
+      "function": "main.refreshUnreadBadge",
+      "instruction": "1407d435b:\t48 8d 1d 7a f8 0b 00 \tlea    0xbf87a(%rip),%rbx        # 0x140893bdc",
+      "offset": 8990684,
+      "prefix": "CreateWindowExWPostQuitMessageprocess_enteredalready_runningShowWindowAsyncwebauthn.createGetMonitorInfoWGetDpiForWindow--no-autoupdate열변경원본web/schedule.js설계담당자web/due-view.jsweb/b"
+    },
+    {
+      "function": "main.refreshUnreadBadge",
+      "instruction": "1407d43cf:\t48 8d 1d 6c e2 0b 00 \tlea    0xbe26c(%rip),%rbx        # 0x140892642",
+      "offset": 8985154,
+      "prefix": "SetWindowTextWGetWindowTextWDefWindowProcWWanryoTalkMainwindow_created/orders/importenter-register01-02 15:04:05designer_phonetemplate_photoPOST /schedule/project-info/WanryoTalkCardGetStockObject수�"
+    },
+    {
+      "function": "main.refreshUnreadBadge",
+      "instruction": "1407d4575:\t48 8d 1d 71 49 0c 00 \tlea    0xc4971(%rip),%rbx        # 0x140898eed",
+      "offset": 9011949,
+      "prefix": "CreateRoundRectRgn안 읽은 알림 .wanryotalk-*.xlsxtoo many redirectsweb/designers.htmlweb/entry-gate.csscontext.Backgroundcannot be negativeat start of stringafter object valuein numeric literalre"
+    },
+    {
+      "function": "main.refreshUnreadBadge",
+      "instruction": "1407d45da:\t48 8d 1d a6 b2 0b 00 \tlea    0xbb2a6(%rip),%rbx        # 0x14088f887",
+      "offset": 8973447,
+      "prefix": "SetWindowRgnSetWindowPosGetCursorPosGET /read.js진눈깨비일별원본?to=settings수주등록web/admin.jscontext.TODOshort bufferhttpmuxgo121Cookie.ValuemoreSpecific100-continuestatus code Multi-St"
+    },
+    {
+      "function": "main.refreshUnreadBadge",
+      "instruction": "1407d4623:\t48 8d 1d 61 b1 0b 00 \tlea    0xbb161(%rip),%rbx        # 0x14088f78b",
+      "offset": 8973195,
+      "prefix": "DeleteObjectSelectObjectSetTextColorSendMessageWGetDlgCtrlIDSO-2026-0142CreateMutexWmutex_failedUpdateWindowwindow_shown토스증권비트코인이더리움대표이사user presentauthenticateinstruct"
+    },
+    {
+      "function": "main.refreshUnreadBadge",
+      "instruction": "1407d46a8:\t48 8d 1d e4 b1 0b 00 \tlea    0xbb1e4(%rip),%rbx        # 0x14088f893",
+      "offset": 8973459,
+      "prefix": "SetWindowPosGetCursorPosGET /read.js진눈깨비일별원본?to=settings수주등록web/admin.jscontext.TODOshort bufferhttpmuxgo121Cookie.ValuemoreSpecific100-continuestatus code Multi-StatusNot Modi"
+    },
+    {
+      "function": "main.refreshUnreadBadge",
+      "instruction": "1407d46f3:\t48 8d 1d 3a df 0b 00 \tlea    0xbdf3a(%rip),%rbx        # 0x140892634",
+      "offset": 8985140,
+      "prefix": "InvalidateRectSetWindowTextWGetWindowTextWDefWindowProcWWanryoTalkMainwindow_created/orders/importenter-register01-02 15:04:05designer_phonetemplate_photoPOST /schedule/project-info/WanryoTalkCardGetS"
+    },
+    {
+      "function": "main.unreadBadgeProc",
+      "instruction": "1407d4bc9:\t48 8d 1d d4 7b 0b 00 \tlea    0xb7bd4(%rip),%rbx        # 0x14088c7a4",
+      "offset": 8960932,
+      "prefix": "BeginPaintSetBkColorShowWindowempty datagrant_typeclear_keys/passkeys/public-key/fcm/send/GET /phonephone.htmlsource_url2006/01/022006.01.02WanryoTalkPlaySoundW--protocol?to=unreadbottomLeftyyyy-mm-dd"
+    },
+    {
+      "function": "main.unreadBadgeProc",
+      "instruction": "1407d4c6d:\t48 8d 05 1f 22 0b 00 \tlea    0xb221f(%rip),%rax        # 0x140886e93",
+      "offset": 8938131,
+      "prefix": "projectsetting/unread 신청requestheadingLISTBOXKRW-BTCKRW-ETHenabledpasskeyclient_messagecontent/ready/?nonce=expiredrp hashEXPIREDoptions#start=1drv.msthroughthunder2006-01patternnil keynumber bool"
+    },
+    {
+      "function": "main.unreadBadgeProc",
+      "instruction": "1407d4cb1:\t48 8d 1d df aa 0b 00 \tlea    0xbaadf(%rip),%rbx        # 0x14088f797",
+      "offset": 8973207,
+      "prefix": "SelectObjectSetTextColorSendMessageWGetDlgCtrlIDSO-2026-0142CreateMutexWmutex_failedUpdateWindowwindow_shown토스증권비트코인이더리움대표이사user presentauthenticateinstructions조립�"
+    },
+    {
+      "function": "main.unreadBadgeProc",
+      "instruction": "1407d4d02:\t48 8d 1d 9a aa 0b 00 \tlea    0xbaa9a(%rip),%rbx        # 0x14088f7a3",
+      "offset": 8973219,
+      "prefix": "SetTextColorSendMessageWGetDlgCtrlIDSO-2026-0142CreateMutexWmutex_failedUpdateWindowwindow_shown토스증권비트코인이더리움대표이사user presentauthenticateinstructions조립일정EnableWi"
+    },
+    {
+      "function": "main.unreadBadgeProc",
+      "instruction": "1407d4d52:\t48 8d 1d 3c 5e 0b 00 \tlea    0xb5e3c(%rip),%rbx        # 0x14088ab95",
+      "offset": 8953749,
+      "prefix": "SetBkModeDrawTextW연결됨LocalFreeLoadIconW홍길동코스피코스닥업비트client_id?request=매니저designer_%d행: %sextensionchallengesignatureEXTENSIONCHALLENGESIGNATUREcredProps/schedule.1"
+    },
+    {
+      "function": "main.unreadBadgeProc",
+      "instruction": "1407d4e19:\t48 8d 1d 7e 5d 0b 00 \tlea    0xb5d7e(%rip),%rbx        # 0x14088ab9e",
+      "offset": 8953758,
+      "prefix": "DrawTextW연결됨LocalFreeLoadIconW홍길동코스피코스닥업비트client_id?request=매니저designer_%d행: %sextensionchallengesignatureEXTENSIONCHALLENGESIGNATUREcredProps/schedule.1drv.com.p"
+    },
+    {
+      "function": "main.unreadBadgeProc",
+      "instruction": "1407d4e66:\t48 8d 1d 2a a9 0b 00 \tlea    0xba92a(%rip),%rbx        # 0x14088f797",
+      "offset": 8973207,
+      "prefix": "SelectObjectSetTextColorSendMessageWGetDlgCtrlIDSO-2026-0142CreateMutexWmutex_failedUpdateWindowwindow_shown토스증권비트코인이더리움대표이사user presentauthenticateinstructions조립�"
+    },
+    {
+      "function": "main.unreadBadgeProc",
+      "instruction": "1407d4f75:\t48 8d 1d e2 d6 0b 00 \tlea    0xbd6e2(%rip),%rbx        # 0x14089265e",
+      "offset": 8985182,
+      "prefix": "DefWindowProcWWanryoTalkMainwindow_created/orders/importenter-register01-02 15:04:05designer_phonetemplate_photoPOST /schedule/project-info/WanryoTalkCardGetStockObject수주번호  web/admin.htmlweb/"
+    },
+    {
+      "function": "main.paintToast.deferwrap1",
+      "instruction": "1407fd770:\t48 8d 1d 19 b6 08 00 \tlea    0x8b619(%rip),%rbx        # 0x140888d90",
+      "offset": 8946064,
+      "prefix": "EndPaintSetTimer환율: passworddesignerno-cachePROTOCOLRESPONSEregisterplatformrequiredendpoint 완료\n\n수주 2006-1-22006/1/22006.1.2starting 님이 FillRectMoveToEx--confighh:mm:ssGoString01234567"
+    },
+    {
+      "function": "main.unreadBadgeProc.deferwrap1",
+      "instruction": "1407fe890:\t48 8d 1d f9 a4 08 00 \tlea    0x8a4f9(%rip),%rbx        # 0x140888d90",
+      "offset": 8946064,
+      "prefix": "EndPaintSetTimer환율: passworddesignerno-cachePROTOCOLRESPONSEregisterplatformrequiredendpoint 완료\n\n수주 2006-1-22006/1/22006.1.2starting 님이 FillRectMoveToEx--confighh:mm:ssGoString01234567"
+    }
+  ]
+}

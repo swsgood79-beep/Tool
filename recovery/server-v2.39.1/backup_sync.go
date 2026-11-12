@@ -33,6 +33,9 @@ type PortableManifest struct {
 
 func digest(b []byte) string { h := sha256.Sum256(b); return hex.EncodeToString(h[:]) }
 func snapshotHash(s State) string {
+	s.LegacySourceHash = ""
+	s.LegacyHashes = nil
+	s.LegacySnapshots = nil
 	s.Integration.Backup.LastSuccess = ""
 	s.Integration.Backup.LastSnapshot = ""
 	s.Integration.Backup.LastHash = ""
@@ -428,7 +431,7 @@ func (a *App) restorePortable(key RecoveryKey, encrypted []byte) error {
 			next.ClientNotes[i].Photos[j].Legacy = false
 		}
 	}
-	if e = a.persist(next); e != nil {
+	if e = a.persist(&next); e != nil {
 		return e
 	}
 	a.state = next

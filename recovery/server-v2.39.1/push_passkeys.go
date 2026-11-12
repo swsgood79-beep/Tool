@@ -41,7 +41,7 @@ func safeNext(raw string) string {
 	if e != nil || u.IsAbs() || u.Host != "" || strings.HasPrefix(raw, "//") {
 		return "/"
 	}
-	if u.Path == "/inspection-requests" || strings.HasPrefix(u.Path, "/projects/") && strings.HasSuffix(u.Path, "/inspection") {
+	if u.Path == "/" || u.Path == "/unread" || u.Path == "/settings" || u.Path == "/connection" || strings.HasPrefix(u.Path, "/records/") && strings.HasSuffix(u.Path, "/edit") || u.Path == "/inspection-requests" || strings.HasPrefix(u.Path, "/projects/") && strings.HasSuffix(u.Path, "/inspection") {
 		return u.RequestURI()
 	}
 	return "/"
@@ -347,7 +347,7 @@ func (a *App) pumpNotifications(ctx context.Context) {
 		}
 		a.mu.Unlock()
 		if !seen && e.Unread {
-			nativeNotify(text(payload["title"]), text(payload["body"]), local+"/projects/"+fmtID(e.ProjectID)+"/inspection")
+			nativeNotify(text(payload["title"]), text(payload["body"]), local+"/projects/"+fmtID(e.ProjectID)+"/inspection?request="+fmtID(e.ID))
 		}
 		if phone.Subscription != nil {
 			b, _ := json.Marshal(payload)

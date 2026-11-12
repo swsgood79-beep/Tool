@@ -63,7 +63,7 @@ func localRequest(r *http.Request) bool {
 	return true
 }
 
-const loginPage = `<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/style.css"><title>복구 서버 로그인</title><body><header><span class="brand">α 알파 검사 복구 서버</span></header><main><section class="card narrow"><h1>{{if .Setup}}관리자 비밀번호 만들기{{else}}관리자 로그인{{end}}</h1><p>12~72자로 입력하세요. 복구 서버의 독립된 비밀번호입니다.</p>{{if .Error}}<p class="error">{{.Error}}</p>{{end}}<form method="post" action="/login"><input type="hidden" name="csrf" value="{{.CSRF}}"><label>비밀번호<input type="password" name="password" minlength="12" maxlength="72" required autocomplete="{{if .Setup}}new-password{{else}}current-password{{end}}"></label>{{if .Setup}}<label>비밀번호 확인<input type="password" name="confirm" minlength="12" maxlength="72" required autocomplete="new-password"></label>{{end}}<button class="primary full">{{if .Setup}}비밀번호 설정{{else}}로그인{{end}}</button></form>{{if not .Setup}}<p><a class="button quiet full" href="/mobile-admin/passkey/start?next={{.Next}}">지문·패스키로 로그인</a></p>{{end}}</section></main></body></html>`
+const loginPage = `<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/style.css"><title>복구 서버 로그인</title><body><header><span class="brand">α 알파 검사 복구 서버</span></header><main><section class="card narrow"><h1>{{if .Setup}}관리자 비밀번호 만들기{{else}}관리자 로그인{{end}}</h1><p>12~72자로 입력하세요. 원본 자료에도 호환되는 관리자 비밀번호입니다.</p>{{if .Error}}<p class="error">{{.Error}}</p>{{end}}<form method="post" action="/login"><input type="hidden" name="csrf" value="{{.CSRF}}"><label>비밀번호<input type="password" name="password" minlength="12" maxlength="72" required autocomplete="{{if .Setup}}new-password{{else}}current-password{{end}}"></label>{{if .Setup}}<label>비밀번호 확인<input type="password" name="confirm" minlength="12" maxlength="72" required autocomplete="new-password"></label>{{end}}<button class="primary full">{{if .Setup}}비밀번호 설정{{else}}로그인{{end}}</button></form>{{if not .Setup}}<p><a class="button quiet full" href="/mobile-admin/passkey/start?next={{.Next}}">지문·패스키로 로그인</a></p>{{end}}</section></main></body></html>`
 
 func (a *App) login(w http.ResponseWriter, r *http.Request) {
 	setup := a.state.PasswordHash == ""
@@ -98,7 +98,8 @@ func (a *App) login(w http.ResponseWriter, r *http.Request) {
 				message = "비밀번호 확인이 다릅니다."
 			} else {
 				salt := token()
-				hash, err := passwordHash(password, salt)
+				bytes, err := bcrypt.GenerateFromPassword([]byte(password), 12)
+				hash := string(bytes)
 				if err == nil {
 					err = a.transaction(func(s *State) error { s.Salt = salt; s.PasswordHash = hash; return nil })
 				}
@@ -111,6 +112,17 @@ func (a *App) login(w http.ResponseWriter, r *http.Request) {
 			if !a.passwordMatches(password) {
 				message = "비밀번호가 맞지 않습니다."
 				a.failures[ip] = append(attempts, now)
+			}
+		}
+		if message == "" && !strings.HasPrefix(a.state.PasswordHash, "$2") {
+			hash, err := bcrypt.GenerateFromPassword([]byte(password), 12)
+			if err != nil {
+				http.Error(w, "원본 호환 비밀번호는 72바이트 이하여야 합니다", 400)
+				return
+			}
+			if err = a.transaction(func(s *State) error { s.PasswordHash = string(hash); s.Salt = ""; return nil }); err != nil {
+				http.Error(w, "비밀번호 호환 저장 실패", 500)
+				return
 			}
 		}
 		if message == "" {

@@ -37,7 +37,7 @@ func response(r *http.Request, status int, v any) *http.Response {
 	b, _ := json.Marshal(v)
 	return &http.Response{StatusCode: status, Body: io.NopCloser(bytes.NewReader(b)), Header: http.Header{}, Request: r}
 }
-func TestLegacyImportPreservesOriginalFilesAndBoard(t *testing.T) {
+func TestLegacyDirectWritePreservesBackupAndBoard(t *testing.T) {
 	d := t.TempDir()
 	pw, _ := bcrypt.GenerateFromPassword([]byte("old-password-1234"), bcrypt.MinCost)
 	h := LegacyHost{Version: 14, BoardToken: token(), Projects: []LegacyOrder{{ID: 5, Revision: 8, InfoRevision: 4, Number: "OLD-001", Name: "원본 호환 시험", Active: true, Setting: LegacyStage{Worker: "작업자", Completed: time.Now().Format(time.RFC3339)}}}}
@@ -59,8 +59,14 @@ func TestLegacyImportPreservesOriginalFilesAndBoard(t *testing.T) {
 		t.Fatal(e)
 	}
 	after, _ := os.ReadFile(path)
-	if digest(after) != orig {
-		t.Fatal("legacy original overwritten")
+	var saved LegacyHost
+	plain, err := unprotect(after)
+	if err != nil || json.Unmarshal(plain, &saved) != nil || saved.Projects[0].Name != "복구판 수정" {
+		t.Fatal("original direct write missing")
+	}
+	bak, err := os.ReadFile(path + ".bak")
+	if err != nil || digest(bak) != orig {
+		t.Fatal("first original backup was not preserved")
 	}
 	os.WriteFile(path, append(cipher, ' '), 0600)
 	if e = a.transaction(func(s *State) error { return nil }); e == nil {

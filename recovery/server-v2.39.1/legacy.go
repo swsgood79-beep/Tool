@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-// Original field names and JSON tags are copied from recovered RTTI. Files are READ ONLY.
+// Original field names and JSON tags are copied from recovered RTTI.
 type LegacyStage struct {
 	BatchID                      int64
 	Requested, Worker, Completed string
@@ -290,6 +290,15 @@ func importLegacy(dir string) (State, error) {
 	return s, nil
 }
 func (a *App) checkLegacySource() error {
+	for _, name := range originalFiles {
+		if _, tracked := a.state.LegacyHashes[name]; !tracked {
+			if _, e := os.Stat(filepath.Join(a.dir, name)); e == nil {
+				return errors.New("다른 프로세스가 원본 저장 파일을 만들었습니다")
+			} else if !os.IsNotExist(e) {
+				return e
+			}
+		}
+	}
 	for name, expected := range a.state.LegacyHashes {
 		hash, e := legacyHash(filepath.Join(a.dir, name))
 		if e != nil || hash != expected {

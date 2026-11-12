@@ -1,4 +1,4 @@
-// Independently reconstructed partial server using byte-exact recovered web assets.
+// Independently reconstructed server using byte-exact recovered web assets.
 // NOT a recovered copy of the original Go backend. See README.md and /recovery-status.
 package main
 
@@ -39,7 +39,7 @@ func init() {
 	}}).ParseFS(web, "web/*.html"))
 }
 
-const notice = `<aside class="recovery-banner">복구 서버 · 부분 구현 · 기존 자료 호환 읽기 · 추가 기능 검증판 <a href="/recovery-status">기능 차이 확인</a> · <a href="/">관리자</a></aside>`
+const notice = `<aside class="recovery-banner">복구 서버 v1.0 · 원본 직접 저장 · Windows UI 구현판 <a href="/recovery-status">기능 차이 확인</a> · <a href="/">관리자</a></aside>`
 
 func (a *App) renderTemplate(w http.ResponseWriter, t *template.Template, name string, v any) {
 	var b bytes.Buffer
@@ -98,49 +98,76 @@ func jsonReply(w http.ResponseWriter, v any) {
 	json.NewEncoder(w).Encode(v)
 }
 func main() {
+	if e := run(); e != nil {
+		log.Print(e)
+		nativeError(e.Error())
+		os.Exit(1)
+	}
+}
+func run() error {
 	home, e := os.UserConfigDir()
 	if e != nil {
-		log.Fatal(e)
+		return e
 	}
-	defaultDir := filepath.Join(home, "AlphaWorkRecoveredServer")
+	defaultDir := filepath.Join(home, "WanryoTalk")
 	if old, e := legacyDir(); e == nil {
 		if _, e = os.Stat(filepath.Join(old, "projects-v2.dat")); e == nil {
 			defaultDir = old
 		}
 	}
-	dir := flag.String("data", defaultDir, "복구 서버 전용 저장 폴더")
+	if _, err := os.Stat(filepath.Join(defaultDir, "projects-v2.dat")); os.IsNotExist(err) {
+		previous := filepath.Join(home, "AlphaWorkRecoveredServer")
+		if _, err := os.Stat(filepath.Join(previous, "reconstructed-state.bin")); err == nil {
+			defaultDir = previous
+		}
+	}
+	dir := flag.String("data", defaultDir, "원본 호환 자료 저장 폴더")
 	listen := flag.String("listen", "127.0.0.1:18791", "로컬 접속 주소")
 	noBrowser := flag.Bool("no-browser", false, "브라우저 자동 열기 생략")
+	headless := flag.Bool("headless", false, "Windows 관리 창과 트레이 생략 (시험용)")
 	flag.Parse()
 	host, _, e := net.SplitHostPort(*listen)
 	if e != nil || host != "127.0.0.1" {
-		log.Fatal("이 부분 복구판은 127.0.0.1에서만 실행합니다.")
+		return errors.New("복구 서버는 127.0.0.1에서만 실행합니다")
 	}
+	unlockOriginal, e := lockOriginalApp()
+	if e != nil {
+		return e
+	}
+	defer unlockOriginal()
 	if e = os.MkdirAll(*dir, 0700); e != nil {
-		log.Fatal(e)
+		return e
 	}
 	unlock, e := lockData(filepath.Join(*dir, "server.lock"))
 	if e != nil {
-		log.Fatal("같은 자료 폴더가 다른 프로세스에서 사용 중이거나 열 수 없습니다: ", e)
+		return fmt.Errorf("같은 자료 폴더가 사용 중이거나 열 수 없습니다: %w", e)
 	}
 	defer unlock()
-	if _, err := os.Stat(filepath.Join(*dir, "projects-v2.dat")); err == nil && originalRunning() {
-		log.Fatal("원본 알파 프로그램을 먼저 종료한 뒤 복구 서버를 실행하세요. 기존 자료는 변경하지 않았습니다.")
-	}
-	a, e := newApp(*dir)
-	if e != nil {
-		log.Fatal(e)
-	}
+
 	ln, e := net.Listen("tcp", *listen)
 	if e != nil {
-		log.Fatal(e)
+		return e
+	}
+	defer ln.Close()
+	a, e := newApp(*dir)
+	if e != nil {
+		return e
 	}
 	url := "http://" + ln.Addr().String()
 	a.localURL = url
-	fmt.Printf("알파 검사 복구 서버 (부분 구현)\n관리자: %s\n저장 폴더: %s\n종료: 이 창에서 Ctrl+C\n", url, *dir)
+	fmt.Printf("알파 검사 복구 서버 v1.0\n관리자: %s\n저장 폴더: %s\n종료: 이 창에서 Ctrl+C\n", url, *dir)
 	srv := &http.Server{Handler: a, ReadHeaderTimeout: 10 * time.Second, ReadTimeout: 60 * time.Second, WriteTimeout: 60 * time.Second, IdleTimeout: 90 * time.Second, MaxHeaderBytes: 1 << 20}
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
 	defer stop()
+	desktopStarted := false
+	if !*headless {
+		closeDesktop, started, err := startDesktop(a, stop)
+		if err != nil {
+			return err
+		}
+		defer closeDesktop()
+		desktopStarted = started
+	}
 	a.startPumps(ctx)
 	go func() {
 		<-ctx.Done()
@@ -154,11 +181,11 @@ func main() {
 		defer cancel()
 		srv.Shutdown(shutdown)
 	}()
-	if !*noBrowser {
+	if !*noBrowser && !desktopStarted {
 		openBrowser(url)
 	}
 	if e = srv.Serve(ln); e != nil && !errors.Is(e, http.ErrServerClosed) {
-		log.Fatal(e)
+		return e
 	}
 	a.mu.Lock()
 	publishOffline := a.state.Integration.Connection.Provider == "pages" && a.integration.TunnelSession != ""
@@ -169,6 +196,7 @@ func main() {
 		cancel()
 	}
 
+	return nil
 }
 func (a *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Cache-Control", "no-store")
@@ -291,4 +319,4 @@ func pathLooksOriginal(p string) bool {
 	return false
 }
 
-const statusPage = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/style.css"><title>복구 기능 확인</title></head><body><header>알파 복구 서버 v0.2 · 호환·연동 검증판</header><main><section class="card"><h1>구현 범위와 확인 상태</h1><p>원본과 100% 동일하다고 검증된 프로그램은 아닙니다. 코드는 원본 메타데이터와 화면·API 명세를 참고해 다시 작성했습니다.</p><h2>이번에 연결한 기능</h2><p>기존 %AppData%\WanryoTalk 자료 자동 감지·DPAPI 읽기, 수주·사진·담당자·설정 가져오기, 기존 bcrypt 비밀번호와 등록 패스키 읽기, WebAuthn 서명/UV/일회용 흐름 검증, PC Windows 알림과 암호화 Web Push, 토스 지수·코인·환율, Cloudflare 연결·고정 QR 주소 갱신, OneDrive/동기화 파일 일정, age 암호화 GitHub 백업과 새 PC 복원.</p><h2>원본 자료를 보호하는 방식</h2><p>원본 .dat와 사진은 보존합니다. 복구판 변경 사항은 같은 폴더의 reconstructed-state.bin에 저장합니다. 원본 프로그램이 자료를 바꾸면 추가 저장을 중지합니다. 변경 내용이 원본 프로그램에 역으로 반영되는 동작은 아직 구현되지 않았습니다.</p><h2>아직 동일하지 않거나 실제 확인이 필요한 부분</h2><p>원본 Windows 관리 창·트레이·떠 있는 미확인 숫자, ngrok, 엑셀 일괄등록은 미복원입니다. PC 알림은 원본 자체 창 대신 Windows 토스트를 사용합니다. 실제 회사 DPAPI 파일·백업, 삼성 인터넷의 지문·잠금 알림, 실제 금융 API·공인 IP·Cloudflare·GitHub 연동은 본인 PC와 계정에서 추가 확인이 필요합니다. 자동시험은 원본 스키마 기반 시험 파일·실제 암호 서명·외부 API 대체 응답을 사용합니다.</p><p>백업은 이 복구판의 별도 Release에 보관하며 기존 원본 백업은 보존합니다. 원본 Version 1·2 백업은 형식 호환 읽기를 구현했으나 실제 회사 백업으로 확인한 것은 아닙니다. 메모리 보호를 위해 백업은 256MB로 제한됩니다.</p><p>Windows는 현재 계정의 DPAPI로 상태·사진을 보호합니다. Linux는 검증용이며 파일 암호화가 적용되지 않습니다. 복구키 파일은 PC 밖에 별도로 보관하세요.</p><a class="button primary" href="/">관리자 화면</a></section></main></body></html>`
+const statusPage = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/style.css"><title>복구 기능 확인</title></head><body><header>알파 복구 서버 v1.0 · 직접 저장·Windows UI 구현판</header><main><section class="card"><h1>구현 범위와 확인 상태</h1><p>원본 메타데이터와 어셈블리·화면 명세로 다시 작성한 코드입니다. 원본과 100% 동일하다고 검증된 프로그램은 아닙니다.</p><h2>원본 직접 저장</h2><p>기존 WanryoTalk의 projects-v2.dat, connection-v1.dat, phone-push-v1.dat, designers-v1.dat, client-notes-v1.dat, backup-v1.dat를 직접 갱신합니다. 기존 파일은 최초 .bak으로 보존하며 기존 백업은 덮어쓰지 않습니다. 수주·기록·담당자·업체·설정은 원본 JSON 필드로 저장하고 사진은 기존 project-photos 폴더의 DPAPI JPEG로 저장합니다. 복구판 추가 상태는 projects-v2.dat의 _RecoveredV1 확장 필드에 보관하며 별도 reconstructed-state.bin은 새로 쓰지 않습니다.</p><p>여러 파일 저장 중 종료되면 복구 저널로 미완료 저장을 되돌립니다. 외부 변경이나 손상이 있으면 자료를 덮어쓰지 않고 중단합니다. 원본과 복구판은 동시에 실행하지 마세요. .bak은 최초 상태이며 이후 자료는 암호화 GitHub 백업도 설정하세요.</p><h2>Windows 창·알림</h2><p>Win32 관리 창, 트레이 메뉴, 자체 팝업, 미확인 숫자 배지를 구현했습니다. 창을 닫으면 트레이에 남고 ‘종료’로 끝납니다. 팝업은 잠시 뒤 사라지며 마우스를 올리면 멈춥니다. 미확인 숫자를 누르면 다시 볼 수 있습니다. 관리자 화면 버튼은 PC가 만든 일회용 티켓으로 연결합니다.</p><h2>확인된 범위와 남은 차이</h2><p>Go 서버 시험·저장 중 종료 및 복구·원본 스키마 읽기·브라우저 업무 흐름·Windows 교차 빌드로 검증합니다. Windows GUI/DPAPI의 실기기 실행, 실제 회사 자료·삼성 인터넷 지문·잠금 알림 및 실제 외부 계정 연동은 이 환경에서 확인하지 못했습니다. 창의 픽셀·배치·애니메이션·소리가 원본과 동일하다는 보장은 없습니다. ngrok 실행, 수주 엑셀 일괄등록, 원본 엑셀 직접 병합·사진 자동 청소는 여전히 미구현입니다.</p><p>시세·일정·Web Push·WebAuthn·Cloudflare·GitHub 백업은 v0.2 기능을 유지합니다. 백업은 복구판 별도 Release에 age 암호화하며 원본 백업을 삭제하지 않습니다. 백업 상한은 256MB입니다. Windows는 현재 계정의 DPAPI를 쓰며 Linux는 암호화 없는 검증용입니다. 실행 전 전체 자료 폴더를 별도 보관하고 복구키는 PC 밖에 보관하세요.</p><a class="button primary" href="/">관리자 화면</a></section></main></body></html>`

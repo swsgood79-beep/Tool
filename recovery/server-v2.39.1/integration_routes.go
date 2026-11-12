@@ -2,6 +2,8 @@ package main
 
 import (
 	"context"
+	"fmt"
+	"golang.org/x/crypto/bcrypt"
 
 	"encoding/json"
 	"errors"
@@ -352,7 +354,8 @@ func (a *App) integrationPOST(w http.ResponseWriter, r *http.Request, s Session)
 						return errors.New("비밀번호 확인이 다릅니다")
 					}
 					salt := token()
-					hash, e := passwordHash(pw, salt)
+					bytes, e := bcrypt.GenerateFromPassword([]byte(pw), 12)
+					hash := string(bytes)
 					if e != nil {
 						return e
 					}
@@ -412,6 +415,21 @@ func (a *App) integrationPOST(w http.ResponseWriter, r *http.Request, s Session)
 	return true
 }
 func (a *App) passkeyStart(w http.ResponseWriter, r *http.Request) bool {
+	if r.Method == "GET" && r.URL.Path == "/native-admin" {
+		if !localRequest(r) {
+			http.Error(w, "PC에서만 사용할 수 있습니다", 403)
+			return true
+		}
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+		fmt.Fprint(w, `<html lang="ko"><meta charset="utf-8"><title>PC 관리자 연결</title><script defer src="/native-enter.js"></script><p id="native-result">PC 관리자 화면에 연결합니다.</p><a href="/login">비밀번호 로그인</a></html>`)
+		return true
+	}
+	if r.Method == "GET" && r.URL.Path == "/native-enter.js" {
+		w.Header().Set("Content-Type", "text/javascript; charset=utf-8")
+		fmt.Fprint(w, nativeEnterJS)
+		return true
+	}
+
 	if r.URL.Path == "/mobile-admin/passkey/enter" {
 		a.render(w, "passkey-enter.html", map[string]any{})
 		return true
