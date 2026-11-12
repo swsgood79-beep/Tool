@@ -1,0 +1,1 @@
+(()=>{'use strict';const gate=document.querySelector('[data-entry-gate]'),board=document.querySelector('main[data-board]')?.dataset.board;if(!gate||!board)return;try{const key='alpha-entry-'+board;if(sessionStorage.getItem(key)==='shown'&&!new URLSearchParams(location.search).has('entry'))gate.remove();else sessionStorage.setItem(key,'shown')}catch(_){}})();

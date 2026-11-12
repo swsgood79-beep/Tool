@@ -57,6 +57,9 @@ func esc(s string) string {
 	return b.String()
 }
 func workbook(s State) ([]byte, error) {
+	if len(s.WorkbookBase) > 0 {
+		return mergedWorkbook(s)
+	}
 	months := map[string][]Event{}
 	for _, e := range completedEvents(s) {
 		m := e.Completed.In(kst).Format("2006-01")

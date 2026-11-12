@@ -1,0 +1,17 @@
+{
+  "excelUploadPreview": "pass",
+  "nameWithoutTitle": "pass",
+  "ambiguousNameManualChoice": "pass",
+  "duplicateSkippedAndReplaySafe": "pass",
+  "clientMasterPhotoAndExtraMemoLinks": "pass",
+  "unlinkedWorkerClientDirectory": "pass",
+  "workerSearchAndPhoto": "pass",
+  "directoryLiveRefresh": "pass",
+  "firstEntryAnimationNoReloadAndNotRepeated": "pass",
+  "firstEntryDocumentRequests": 1,
+  "importedOrderRequestAndApproval": "pass",
+  "workbookBaseUploadAndExport": "pass",
+  "javascriptErrors": [],
+  "windowsNativeExecution": "not tested",
+  "exportedManualMemoFormulaAndExtraSheetPreserved": "pass"
+}

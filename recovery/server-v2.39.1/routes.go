@@ -21,6 +21,12 @@ import (
 
 func fmtID(id int64) string { return strconv.FormatInt(id, 10) }
 func (a *App) adminGET(w http.ResponseWriter, r *http.Request, v map[string]any) bool {
+	if a.reportSettingsGET(w, r, v) {
+		return true
+	}
+	if a.importGET(w, r, Session{CSRF: v["CSRF"].(string)}) {
+		return true
+	}
 	path := r.URL.Path
 	switch path {
 	case "/", "/mobile-admin":
@@ -152,6 +158,12 @@ func (a *App) adminGET(w http.ResponseWriter, r *http.Request, v map[string]any)
 	return false
 }
 func (a *App) adminPOST(w http.ResponseWriter, r *http.Request, session Session) bool {
+	if a.reportSettingsPOST(w, r) {
+		return true
+	}
+	if a.importPOST(w, r, session) {
+		return true
+	}
 	path := r.URL.Path
 	redirect := "/"
 	var err error

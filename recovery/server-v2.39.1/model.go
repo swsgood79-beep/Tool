@@ -58,6 +58,9 @@ type Event struct {
 	RequestedAt, Completed                                   *time.Time
 }
 type State struct {
+	WorkbookBase              []byte
+	WorkbookBaseName          string
+	WorkbookBindings          map[int64]WorkbookBinding
 	Version                   int
 	MaterializedPhotos        map[string]string
 	Integration               IntegrationConfig
@@ -81,6 +84,7 @@ type Ticket struct {
 	Next    string
 }
 type App struct {
+	imports       map[string]*ImportDraft
 	testMode      bool
 	mu            sync.Mutex
 	state         State

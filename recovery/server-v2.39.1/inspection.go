@@ -130,7 +130,7 @@ func (a *App) worker(w http.ResponseWriter, r *http.Request) bool {
 	}
 	kind := parts[0]
 	public := false
-	for _, v := range []string{"work", "status", "card", "complete", "combined", "note", "project-info", "project-photo", "markets"} {
+	for _, v := range []string{"work", "status", "card", "complete", "combined", "note", "project-info", "project-photo", "markets", "client-directory", "client-photo"} {
 		if kind == v {
 			public = true
 		}
@@ -140,6 +140,11 @@ func (a *App) worker(w http.ResponseWriter, r *http.Request) bool {
 	}
 	if !equal(parts[1], a.state.Board) {
 		http.NotFound(w, r)
+		return true
+	}
+	if r.Method != "GET" && (kind == "client-directory" || kind == "client-photo") {
+		w.Header().Set("Allow", "GET")
+		http.Error(w, "업체 특이사항은 조회만 가능합니다", http.StatusMethodNotAllowed)
 		return true
 	}
 	view := func() map[string]any {
@@ -158,7 +163,7 @@ func (a *App) worker(w http.ResponseWriter, r *http.Request) bool {
 		case "work":
 			if len(parts) == 2 {
 				v := view()
-				v["EntryGate"] = r.URL.Query().Get("entry") == "gate"
+				v["EntryGate"] = r.URL.Query().Get("entry") != "skip"
 				a.render(w, "work.html", v)
 				return true
 			}
@@ -217,6 +222,25 @@ func (a *App) worker(w http.ResponseWriter, r *http.Request) bool {
 				}
 				return true
 			}
+		case "client-directory":
+			if len(parts) != 2 {
+				http.NotFound(w, r)
+				return true
+			}
+			notes := sortedClientNotes(a.state.ClientNotes)
+			a.render(w, "worker-client-directory.html", map[string]any{"Board": a.state.Board, "ClientNotes": notes, "DirectoryRevision": digest(jsonRaw(notes))})
+			return true
+		case "client-photo":
+			if len(parts) == 4 {
+				for _, client := range a.state.ClientNotes {
+					if client.ID == parts[2] {
+						a.photo(w, r, client.Photos, parts[3])
+						return true
+					}
+				}
+			}
+			http.NotFound(w, r)
+			return true
 		case "markets":
 			if a.state.Integration.Market.Enabled {
 				jsonReply(w, a.integration.MarketResult)
