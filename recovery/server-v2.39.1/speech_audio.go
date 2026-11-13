@@ -1,8 +1,11 @@
 package main
 
 import (
+	"bytes"
 	"context"
+	"fmt"
 	"net/http"
+	"strconv"
 	"strings"
 )
 
@@ -43,7 +46,7 @@ func (a *App) speechAudioHTTP(w http.ResponseWriter, r *http.Request) bool {
 		}
 	}
 	if r.FormValue("preview") == "1" {
-		text = "홍길동님이 알파 작업 확인의 세팅 및 출하 통합검사를 신청했습니다."
+		text = ttsTestText
 		if r.FormValue("welcome") == "1" {
 			text = "음성 알림을 켭니다."
 		}
@@ -64,6 +67,31 @@ func (a *App) speechAudioHTTP(w http.ResponseWriter, r *http.Request) bool {
 			break
 		}
 	}
+	if a.ttsConfigError != "" {
+		msg := a.ttsConfigError
+		a.mu.Unlock()
+		http.Error(w, msg, 409)
+		return true
+	}
+	cfg := a.ttsConfig
+	if v := r.FormValue("voice"); v != "" {
+		cfg.Voice = v
+	}
+	if v := r.FormValue("speed"); v != "" {
+		if x, err := strconv.ParseFloat(v, 64); err == nil {
+			cfg.Speed = x
+		} else {
+			a.mu.Unlock()
+			http.Error(w, "배속 오류", 400)
+			return true
+		}
+	}
+	if err := cfg.validate(); err != nil {
+		a.mu.Unlock()
+		http.Error(w, err.Error(), 400)
+		return true
+	}
+	configSynth := a.speechSynthesizeConfigured
 	synth := a.speechSynthesize
 	a.mu.Unlock()
 	if text == "" {
@@ -71,14 +99,35 @@ func (a *App) speechAudioHTTP(w http.ResponseWriter, r *http.Request) bool {
 		return true
 	}
 	if synth == nil {
-		synth = func(ctx context.Context, s string) ([]byte, error) { return runGTTSPython(ctx, s, "synth") }
+		synth = func(ctx context.Context, s string) ([]byte, error) { return runTTSPython(ctx, s, "synth", cfg) }
 	}
-	audio, err := synth(r.Context(), text)
+	var audio []byte
+	var err error
+	if configSynth != nil {
+		audio, err = configSynth(r.Context(), text, cfg)
+	} else {
+		audio, err = synth(r.Context(), text)
+	}
 	if err != nil || len(audio) < 4 || len(audio) > 8<<20 {
-		http.Error(w, "Google 음성 생성 실패 · 인터넷 연결을 확인하세요", 502)
+		detail := "잘못된 음성 데이터"
+		if err != nil {
+			detail = err.Error()
+		}
+		http.Error(w, cfg.label()+" 음성 실패: "+detail, 502)
 		return true
 	}
-	w.Header().Set("Content-Type", "audio/mpeg")
+	mime := "audio/mpeg"
+	if bytes.HasPrefix(audio, []byte("RIFF")) {
+		mime = "audio/wav"
+	}
+	w.Header().Set("Content-Type", mime)
+	rate := cfg.Speed
+	if cfg.Voice == "sunhi" || cfg.Voice == "injoon" {
+		rate = 1
+	}
+	w.Header().Set("X-TTS-Playback-Rate", fmt.Sprintf("%.2f", rate))
+	w.Header().Set("X-TTS-Voice", cfg.Voice)
+	w.Header().Set("X-TTS-Requested-Speed", fmt.Sprintf("%.2f", cfg.Speed))
 	w.Header().Set("Cache-Control", "no-store")
 	w.Write(audio)
 	return true

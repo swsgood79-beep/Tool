@@ -23,6 +23,9 @@ func speechField(s, fallback string, limit int) string {
 
 // Existing request/note alerts only. Text is data, never SSML or code.
 func inspectionSpeech(e desktopEvent) string {
+	if e.SpeechPreview {
+		return ttsTestText
+	}
 	if e.Rejected || (!e.Pending && !e.IsNote) {
 		return ""
 	}
@@ -38,19 +41,24 @@ func inspectionSpeech(e desktopEvent) string {
 	return worker + "님이 " + project + "의 " + kind + "를 신청했습니다."
 }
 
-type speechJob struct{ text string }
+type speechJob struct {
+	text    string
+	preview bool
+	config  *TTSConfig
+}
 type inspectionAnnouncer struct {
-	mu      sync.Mutex
-	ctx     context.Context
-	stop    context.CancelFunc
-	cancel  context.CancelFunc
-	wake    chan struct{}
-	done    chan struct{}
-	run     func(context.Context, string) error
-	enabled bool
-	status  string
-	queue   []speechJob
-	seen    map[int64]bool
+	mu            sync.Mutex
+	ctx           context.Context
+	stop          context.CancelFunc
+	cancel        context.CancelFunc
+	wake          chan struct{}
+	done          chan struct{}
+	run           func(context.Context, string) error
+	runConfigured func(context.Context, string, TTSConfig) error
+	enabled       bool
+	status        string
+	queue         []speechJob
+	seen          map[int64]bool
 }
 
 func newInspectionAnnouncer(enabled bool, run func(context.Context, string) error) *inspectionAnnouncer {
@@ -105,14 +113,19 @@ func (s *inspectionAnnouncer) enqueue(e desktopEvent) {
 		}
 		s.seen[e.ID] = true
 	}
-	if !s.enabled || s.ctx.Err() != nil {
+	if (!s.enabled && !e.SpeechPreview) || s.ctx.Err() != nil {
 		return
 	}
 	if len(s.queue) >= 256 {
 		s.status = "음성 대기 초과 · 신청 목록 확인"
 		return
 	}
-	s.queue = append(s.queue, speechJob{t})
+	var cfg *TTSConfig
+	if e.SpeechConfig != nil {
+		copy := *e.SpeechConfig
+		cfg = &copy
+	}
+	s.queue = append(s.queue, speechJob{t, e.SpeechPreview, cfg})
 	select {
 	case s.wake <- struct{}{}:
 	default:
@@ -128,7 +141,7 @@ func (s *inspectionAnnouncer) loop() {
 		}
 		for {
 			s.mu.Lock()
-			if !s.enabled || len(s.queue) == 0 || s.ctx.Err() != nil {
+			if len(s.queue) == 0 || (!s.enabled && !s.queue[0].preview) || s.ctx.Err() != nil {
 				s.mu.Unlock()
 				break
 			}
@@ -137,14 +150,26 @@ func (s *inspectionAnnouncer) loop() {
 			ctx, cancel := context.WithCancel(s.ctx)
 			s.cancel = cancel
 			s.status = "검사 신청 읽는 중"
+			configured := s.runConfigured
 			s.mu.Unlock()
-			err := s.run(ctx, job.text)
+			var err error
+			if job.config != nil && configured != nil {
+				err = configured(ctx, job.text, *job.config)
+			} else {
+				err = s.run(ctx, job.text)
+			}
 			s.mu.Lock()
 			s.cancel = nil
-			if s.enabled && ctx.Err() == nil {
+			if (s.enabled || job.preview) && ctx.Err() == nil {
 				s.status = "신청 시 자동 읽기"
+				if job.preview {
+					s.status = "테스트 재생 완료"
+					if !s.enabled {
+						s.status += " · 알림 꺼짐"
+					}
+				}
 				if err != nil {
-					s.status = "Google 음성 실패 · 인터넷/출력 확인"
+					s.status = "음성 실패 · " + err.Error()
 				}
 			}
 			s.mu.Unlock()

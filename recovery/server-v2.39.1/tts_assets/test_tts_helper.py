@@ -9,6 +9,8 @@ import subprocess
 import tempfile
 import threading
 import unittest
+from unittest.mock import patch
+from types import SimpleNamespace
 import wave
 
 spec=importlib.util.spec_from_file_location('tts_helper',Path(__file__).with_name('tts_helper.py'))
@@ -58,5 +60,45 @@ class HelperTests(unittest.TestCase):
    subprocess.run(['ffmpeg','-loglevel','error','-i',str(wav),str(mp3)],check=True)
    os.environ['SDL_AUDIODRIVER']='dummy';os.environ['PYGAME_HIDE_SUPPORT_PROMPT']='1'
    h.TTSWorker._play(str(mp3),None)
+
+class EngineTests(unittest.TestCase):
+ def test_edge_model_rate_and_no_second_speed_change(self):
+  calls=[]
+  class Communicate:
+   def __init__(self,text,model,**kw):calls.append((text,model,kw['rate']))
+   async def save(self,path):Path(path).write_bytes(b'ID3edge')
+  with tempfile.TemporaryDirectory() as folder,patch.dict('sys.modules',{'edge_tts':SimpleNamespace(Communicate=Communicate)}):
+   for voice,speed,model,rate in [('sunhi',1.1,'ko-KR-SunHiNeural','+10%'),('injoon',.9,'ko-KR-InJoonNeural','-10%')]:
+    worker=h.TTSWorker(folder,'synth');result,done=worker.submit({'text':'test','voice':voice,'speed':speed});self.assertTrue(done.wait(2));worker.close();self.assertTrue(result['ok']);self.assertEqual(calls[-1],('test',model,rate))
+ def test_selected_engine_error_is_visible_without_gtts_fallback(self):
+  def fail(*args):raise OSError('HTTP403 selected voice blocked')
+  with tempfile.TemporaryDirectory() as folder,patch.object(h.TTSWorker,'_edge',side_effect=fail):
+   factory=lambda **kw:self.fail('unexpected gTTS fallback')
+   worker=h.TTSWorker(folder,'synth',synth_factory=factory)
+   result,done=worker.submit({'text':'test','voice':'sunhi','speed':1.1});self.assertTrue(done.wait(2));worker.close()
+   self.assertFalse(result['ok']);self.assertEqual(result['engine'],'sunhi');self.assertIn('HTTP403',result['detail']);self.assertEqual(list(Path(folder).iterdir()),[])
+ def test_sapi_offline_stream_uses_default_voice(self):
+  calls=[];state={}
+  class Stream:
+   Format=SimpleNamespace(Type=0)
+   def Open(self,path,*args):state['path']=path;calls.append('open')
+   def Close(self):calls.append('close')
+  class Voice:
+   def Speak(self,text,flags):self_outer.assertEqual(flags,16);Path(state['path']).write_bytes(b'RIFFwave');calls.append(text)
+  self_outer=self
+  def create(name,**kw):calls.append(name);return Voice() if name=='SAPI.SpVoice' else Stream()
+  com=SimpleNamespace(CoInitialize=lambda:calls.append('init'),CoUninitialize=lambda:calls.append('uninit'))
+  with tempfile.TemporaryDirectory() as folder,patch.dict('sys.modules',{'comtypes':com,'comtypes.client':SimpleNamespace(CreateObject=create)}):
+   worker=h.TTSWorker(folder,'synth');result,done=worker.submit({'text':'offline','voice':'sapi','speed':1.5});self.assertTrue(done.wait(2));worker.close();self.assertTrue(result['ok']);self.assertIn('offline',calls);self.assertEqual(calls[-1],'uninit')
+ def test_pcm_speed_is_not_applied_twice_to_edge(self):
+  rates=[];stretched=[]
+  class Sound:
+   def __init__(self,*args,**kw):pass
+   def get_raw(self):return b'\0'*400
+   def play(self):return SimpleNamespace(get_busy=lambda:False)
+  mixer=SimpleNamespace(init=lambda **kw:rates.append(kw['frequency']),Sound=Sound,quit=lambda:None)
+  with patch.dict('sys.modules',{'pygame':SimpleNamespace(mixer=mixer)}),patch.object(h,'stretch_pcm',side_effect=lambda raw,rate,speed:stretched.append(speed) or raw):
+   h.TTSWorker._play('fake',None,'gtts',1.15);h.TTSWorker._play('fake',None,'sunhi',1.15);h.TTSWorker._play('fake',None,'sapi',.8)
+  self.assertEqual(rates,[27600,24000,24000]);self.assertEqual(stretched,[1.15,.8])
 
 if __name__=='__main__':unittest.main(verbosity=2)

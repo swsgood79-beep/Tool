@@ -437,6 +437,7 @@ func (a *App) restorePortable(key RecoveryKey, encrypted []byte) error {
 	a.state = next
 	a.sessions = map[string]Session{}
 	a.initIntegration()
+	a.restoreTTSConfig()
 	return nil
 }
 func (a *App) downloadBackup(ctx context.Context, key RecoveryKey, token string, generation int) ([]byte, error) {

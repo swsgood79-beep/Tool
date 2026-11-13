@@ -91,22 +91,26 @@ type Ticket struct {
 	Next    string
 }
 type App struct {
-	speechSynthesize func(context.Context, string) ([]byte, error)
-	imports          map[string]*ImportDraft
-	testMode         bool
-	mu               sync.Mutex
-	state            State
-	dir              string
-	sessions         map[string]Session
-	challenges       map[string]Ticket
-	failures         map[string][]time.Time
-	reportError      string
-	integration      IntegrationRuntime
-	client           *http.Client
-	localURL         string
-	epoch            int64
-	directHook       func(string, string) error
-	storageNotice    string
+	ttsConfig                  TTSConfig
+	ttsConfigError             string
+	nativeQueue                *inspectionAnnouncer
+	speechSynthesizeConfigured func(context.Context, string, TTSConfig) ([]byte, error)
+	speechSynthesize           func(context.Context, string) ([]byte, error)
+	imports                    map[string]*ImportDraft
+	testMode                   bool
+	mu                         sync.Mutex
+	state                      State
+	dir                        string
+	sessions                   map[string]Session
+	challenges                 map[string]Ticket
+	failures                   map[string][]time.Time
+	reportError                string
+	integration                IntegrationRuntime
+	client                     *http.Client
+	localURL                   string
+	epoch                      int64
+	directHook                 func(string, string) error
+	storageNotice              string
 }
 
 var kst = time.FixedZone("Asia/Seoul", 9*3600)
@@ -212,6 +216,7 @@ func newApp(dir string) (*App, error) {
 	}
 	a.state = n
 	a.initIntegration()
+	a.loadTTSConfig()
 	return a, nil
 }
 

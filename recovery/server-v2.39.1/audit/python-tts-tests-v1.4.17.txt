@@ -1,0 +1,13 @@
+test_edge_model_rate_and_no_second_speed_change (__main__.EngineTests.test_edge_model_rate_and_no_second_speed_change) ... ok
+test_pcm_speed_is_not_applied_twice_to_edge (__main__.EngineTests.test_pcm_speed_is_not_applied_twice_to_edge) ... ok
+test_sapi_offline_stream_uses_default_voice (__main__.EngineTests.test_sapi_offline_stream_uses_default_voice) ... ok
+test_selected_engine_error_is_visible_without_gtts_fallback (__main__.EngineTests.test_selected_engine_error_is_visible_without_gtts_fallback) ... ok
+test_queue_fifo_failure_survival_and_immediate_temp_cleanup (__main__.HelperTests.test_queue_fifo_failure_survival_and_immediate_temp_cleanup) ... ok
+test_real_pygame_mp3_decode_and_pcm_playback (__main__.HelperTests.test_real_pygame_mp3_decode_and_pcm_playback) ... ok
+test_speed_duration_and_pitch (__main__.HelperTests.test_speed_duration_and_pitch) ... ok
+test_synthesis_returns_mp3_and_deletes_file (__main__.HelperTests.test_synthesis_returns_mp3_and_deletes_file) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.402s
+
+OK

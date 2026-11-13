@@ -8,6 +8,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"os"
 	"os/exec"
@@ -118,6 +119,12 @@ func prepareTTSRuntime() (string, error) {
 	return target, nil
 }
 func runGTTSPython(ctx context.Context, text, mode string) ([]byte, error) {
+	return runTTSPython(ctx, text, mode, defaultTTSConfig())
+}
+func runTTSPython(ctx context.Context, text, mode string, cfg TTSConfig) ([]byte, error) {
+	if err := cfg.validate(); err != nil {
+		return nil, err
+	}
 	if runtime.GOOS != "windows" {
 		return nil, errors.New("내장 음성 런타임은 Windows용입니다")
 	}
@@ -138,7 +145,7 @@ func runGTTSPython(ctx context.Context, text, mode string) ([]byte, error) {
 	defer os.RemoveAll(dir)
 	ctx, cancel := context.WithTimeout(ctx, 90*time.Second)
 	defer cancel()
-	job := map[string]string{"text": text}
+	job := map[string]any{"text": text, "voice": cfg.Voice, "speed": cfg.Speed}
 	if mode == "speak" {
 		chime := filepath.Join(dir, "chime.wav")
 		if err = os.WriteFile(chime, inspectionChime(), 0600); err != nil {
@@ -154,26 +161,31 @@ func runGTTSPython(ctx context.Context, text, mode string) ([]byte, error) {
 	cmd.Stdout = &output
 	cmd.Stderr = io.Discard
 	if err = cmd.Start(); err != nil {
-		return nil, errors.New("Google 음성 런타임 시작 실패")
+		return nil, errors.New("TTS Python 런타임 시작 실패")
 	}
 	release, childErr := manageChild(cmd)
 	if childErr != nil {
 		_ = cmd.Process.Kill()
 		_ = cmd.Wait()
-		return nil, errors.New("Google 음성 프로세스 관리 실패")
+		return nil, errors.New("TTS 프로세스 관리 실패")
 	}
 	defer release()
 	err = cmd.Wait()
 	out := output.Bytes()
 	if err != nil {
-		return nil, errors.New("Google 음성 생성·재생 실패: 인터넷/스피커를 확인하세요")
+		return nil, fmt.Errorf("%s / Python worker: %v", cfg.label(), err)
 	}
 	var result struct {
-		OK  bool   `json:"ok"`
-		MP3 string `json:"mp3"`
+		OK     bool   `json:"ok"`
+		MP3    string `json:"mp3"`
+		Error  string `json:"error"`
+		Detail string `json:"detail"`
 	}
-	if len(out) > 12<<20 || json.Unmarshal(bytes.TrimSpace(out), &result) != nil || !result.OK {
-		return nil, errors.New("Google 음성 생성·재생 실패: 인터넷/스피커를 확인하세요")
+	if len(out) > 12<<20 || json.Unmarshal(bytes.TrimSpace(out), &result) != nil {
+		return nil, fmt.Errorf("%s / Python worker 응답 형식 오류", cfg.label())
+	}
+	if !result.OK {
+		return nil, fmt.Errorf("%s / %s: %s", cfg.label(), result.Error, result.Detail)
 	}
 	if mode == "speak" {
 		return nil, nil

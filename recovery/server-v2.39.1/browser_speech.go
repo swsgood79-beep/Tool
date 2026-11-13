@@ -75,8 +75,8 @@ func (a *App) speechPollReply(w http.ResponseWriter, r *http.Request, principal 
 			}
 			// The explicit browser ON click replaces the local default voice. OFF must
 			// not unexpectedly restart the old Windows voice on the next application.
-			if !shared && scope == "local" && r.FormValue("select_browser") == "1" && !a.state.Integration.DesktopSpeechMuted {
-				if err := a.transaction(func(s *State) error { s.Integration.DesktopSpeechMuted = true; return nil }); err != nil {
+			if !shared && scope == "local" && r.FormValue("select_browser") == "1" && a.ttsConfig.Enabled {
+				if err := func() error { c := a.ttsConfig; c.Enabled = false; return a.saveTTSConfig(c) }(); err != nil {
 					http.Error(w, "PC 기본 음성을 끄지 못했습니다.", 500)
 					return
 				}

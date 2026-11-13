@@ -15,6 +15,7 @@ const pagesOrigin = "https://swsgood79-beep.github.io"
 const repository = "swsgood79-beep/Tool"
 
 type IntegrationConfig struct {
+	TTS                *TTSConfig `json:",omitempty"`
 	Connection         ConnectionConfig
 	Phone              PhoneData
 	Market             MarketConfig

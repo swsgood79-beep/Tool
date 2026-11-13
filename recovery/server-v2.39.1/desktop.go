@@ -8,6 +8,8 @@ import (
 )
 
 type desktopEvent struct {
+	SpeechConfig                                   *TTSConfig
+	SpeechPreview                                  bool
 	Rejected                                       bool
 	ID, ProjectID                                  int64
 	Title, Body, Target                            string

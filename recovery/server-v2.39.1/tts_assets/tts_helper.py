@@ -1,4 +1,6 @@
 """gTTS worker: JSON lines on stdin, one result per job. No UI work on this thread."""
+import asyncio
+import re
 import array
 import base64
 import json
@@ -64,7 +66,7 @@ class TTSWorker:
     def submit(self, job):
         completed = threading.Event()
         result = {}
-        self.jobs.put((job, result, completed))
+        self.jobs.put((dict(job), result, completed))
         return result, completed
 
     def _run(self):
@@ -76,9 +78,10 @@ class TTSWorker:
             job, result, completed = item
             try:
                 result.update(self._process(job))
-            except Exception:
-                # Never print names/messages or network credentials in diagnostics.
-                result.update(ok=False, error='GTTS_AUDIO_FAILED')
+            except Exception as exc:
+                detail = str(exc).replace(str(job.get('text','')), '[message]')[:500]
+                detail = re.sub(r'https?://[^\s]+', '[remote endpoint]', detail)
+                result.update(ok=False, engine=job.get('voice','gtts'), error=type(exc).__name__, detail=detail)
             finally:
                 completed.set()
                 self.jobs.task_done()
@@ -87,42 +90,81 @@ class TTSWorker:
         text = job.get('text', '')
         if not isinstance(text, str) or not text.strip() or len(text) > 1600:
             raise ValueError('invalid text')
-        factory = self.synth_factory
-        if factory is None:
-            from gtts import gTTS
-            factory = gTTS
+        voice, speed = job.get('voice','gtts'), job.get('speed',1.1)
+        if voice not in ('gtts','sunhi','injoon','sapi') or not isinstance(speed,(int,float)) or not math.isfinite(speed) or not .8 <= speed <= 1.5 or abs(speed*20-round(speed*20))>1e-7:
+            raise ValueError('invalid voice/speed')
         with tempfile.TemporaryDirectory(prefix='speech-', dir=self.job_dir) as folder:
-            path = os.path.join(folder, 'speech.mp3')
-            factory(text=text, lang='ko', slow=False, timeout=(5, 12)).save(path)
+            path = os.path.join(folder, 'speech.wav' if voice=='sapi' else 'speech.mp3')
+            if voice == 'gtts':
+                factory = self.synth_factory
+                if factory is None:
+                    from gtts import gTTS
+                    factory = gTTS
+                factory(text=text, lang='ko', slow=False, timeout=(5,12)).save(path)
+            elif voice in ('sunhi','injoon'):
+                self._edge(text,path,voice,speed)
+            else:
+                self._sapi(text,path)
             if os.path.getsize(path) > 8*1024*1024:
                 raise ValueError('audio too large')
             if self.mode == 'synth':
-                with open(path, 'rb') as f:
-                    return dict(ok=True, mp3=base64.b64encode(f.read()).decode('ascii'))
+                with open(path,'rb') as f:
+                    return dict(ok=True,mp3=base64.b64encode(f.read()).decode('ascii'))
             if self.speak_backend:
                 self.speak_backend(path)
             else:
-                self._play(path, job.get('chime'))
-            # Temporary MP3 is deleted on success, playback failure and network failure.
+                self._play(path,job.get('chime'),voice,speed)
             return dict(ok=True)
 
     @staticmethod
-    def _play(path, chime):
-        os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
+    def _edge(text,path,voice,speed):
+        import edge_tts
+        model={'sunhi':'ko-KR-SunHiNeural','injoon':'ko-KR-InJoonNeural'}[voice]
+        rate=f'{round((speed-1)*100):+d}%'
+        async def generate():
+            await edge_tts.Communicate(text,model,rate=rate,connect_timeout=5,receive_timeout=20).save(path)
+        asyncio.run(generate())
+
+    @staticmethod
+    def _sapi(text,path):
+        # Offline SAPI default voice, never silently replaced with another engine/voice.
+        import comtypes
+        from comtypes.client import CreateObject
+        comtypes.CoInitialize()
+        voice,stream=None,None
+        opened=False
+        try:
+            voice=CreateObject('SAPI.SpVoice',dynamic=True)
+            stream=CreateObject('SAPI.SpFileStream',dynamic=True)
+            stream.Format.Type=22  # 22.05kHz / 16bit mono PCM WAV
+            stream.Open(path,3,False)
+            opened=True
+            voice.AudioOutputStream=stream
+            voice.Rate=0
+            voice.Speak(text,16)  # SVSFIsNotXML: names/messages are plain text
+        finally:
+            if stream is not None and opened:
+                stream.Close()
+            voice,stream=None,None
+            comtypes.CoUninitialize()
+
+    @staticmethod
+    def _play(path,chime,voice='gtts',speed=1.1):
+        os.environ['PYGAME_HIDE_SUPPORT_PROMPT']='1'
         import pygame
-        pygame.mixer.init(frequency=26400, size=-16, channels=1, allowedchanges=0)
+        frequency=int(round(24000*speed)) if voice=='gtts' else 24000
+        pygame.mixer.init(frequency=frequency,size=-16,channels=1,allowedchanges=0)
         try:
             if chime:
-                channel = pygame.mixer.Sound(chime).play()
-                while channel and channel.get_busy():
-                    time.sleep(.02)
-            sound = pygame.mixer.Sound(path)
-            pcm = stretch_pcm(sound.get_raw(), sample_rate=26400, speed=1.1)
-            channel = pygame.mixer.Sound(buffer=pcm).play()
-            if channel is None:
-                raise RuntimeError('no mixer channel')
-            while channel.get_busy():
-                time.sleep(.02)
+                channel=pygame.mixer.Sound(chime).play()
+                while channel and channel.get_busy():time.sleep(.02)
+            sound=pygame.mixer.Sound(path)
+            raw=sound.get_raw()
+            # edge-tts already applied +/-% during synthesis: do not speed it up twice.
+            pcm=raw if voice in ('sunhi','injoon') or speed==1 else stretch_pcm(raw,frequency,speed)
+            channel=pygame.mixer.Sound(buffer=pcm).play()
+            if channel is None:raise RuntimeError('No available audio output channel')
+            while channel.get_busy():time.sleep(.02)
         finally:
             pygame.mixer.quit()
 

@@ -161,7 +161,7 @@ func TestBundledGTTSRuntimeChecksumsAndWindowsArchitecture(t *testing.T) {
 			}
 		}
 	}
-	for _, n := range []string{"python.exe", "python312.dll", "LICENSE.txt", "Lib/site-packages/gtts/tts.py", "Lib/site-packages/pygame/__init__.py"} {
+	for _, n := range []string{"python.exe", "python312.dll", "LICENSE.txt", "Lib/site-packages/edge_tts/communicate.py", "Lib/site-packages/comtypes/client/__init__.py", "Lib/site-packages/gtts/tts.py", "Lib/site-packages/pygame/__init__.py"} {
 		if !seen[n] {
 			t.Fatal("runtime missing", n)
 		}

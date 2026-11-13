@@ -41,7 +41,7 @@ func safeNext(raw string) string {
 	if e != nil || u.IsAbs() || u.Host != "" || strings.HasPrefix(raw, "//") {
 		return "/"
 	}
-	if u.Path == "/" || u.Path == "/unread" || u.Path == "/settings" || u.Path == "/connection" || strings.HasPrefix(u.Path, "/records/") && strings.HasSuffix(u.Path, "/edit") || u.Path == "/inspection-requests" || strings.HasPrefix(u.Path, "/projects/") && strings.HasSuffix(u.Path, "/inspection") {
+	if u.Path == "/" || u.Path == "/unread" || u.Path == "/settings" || u.Path == "/tts-settings" || u.Path == "/connection" || strings.HasPrefix(u.Path, "/records/") && strings.HasSuffix(u.Path, "/edit") || u.Path == "/inspection-requests" || strings.HasPrefix(u.Path, "/projects/") && strings.HasSuffix(u.Path, "/inspection") {
 		return u.RequestURI()
 	}
 	return "/"

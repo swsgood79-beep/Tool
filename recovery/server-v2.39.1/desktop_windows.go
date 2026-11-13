@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"net/url"
@@ -283,10 +284,19 @@ func (d *winDesktop) run(ready chan<- error) {
 	}()
 	d.initControls()
 	d.App.mu.Lock()
-	muted := d.App.state.Integration.DesktopSpeechMuted
+	muted := !d.App.ttsConfig.Enabled || d.App.ttsConfigError != ""
 	d.App.mu.Unlock()
-	d.Speech = newInspectionAnnouncer(!muted, playInspectionSpeech)
-	defer d.Speech.close()
+	d.Speech = newInspectionAnnouncer(!muted, d.App.playConfiguredSpeech)
+	d.Speech.mu.Lock()
+	d.Speech.runConfigured = func(ctx context.Context, text string, cfg TTSConfig) error {
+		_, err := runTTSPython(ctx, text, "speak", cfg)
+		return err
+	}
+	d.Speech.mu.Unlock()
+	d.App.mu.Lock()
+	d.App.nativeQueue = d.Speech
+	d.App.mu.Unlock()
+	defer func() { d.Speech.close(); d.App.mu.Lock(); d.App.nativeQueue = nil; d.App.mu.Unlock() }()
 	d.addTray()
 	win("SetTimer", d.Window, 1, 250, 0)
 	d.refresh()
@@ -320,7 +330,7 @@ func (d *winDesktop) initControls() {
 	for _, c := range []struct {
 		id    int
 		label string
-	}{{idConnect, "인터넷 연결"}, {idDisconnect, "인터넷 끊기"}, {idSettings, "고정 QR 설정"}, {idAdmin, "수주 · 메시지 관리"}, {idPreview, "알림 미리보기"}, {idFolder, "엑셀 폴더"}, {idExit, "종료"}, {idUnread, "안 읽은 알림"}, {idSpeechToggle, "음성 알림 켜짐"}, {idSpeechPreview, "음성 미리듣기"}} {
+	}{{idConnect, "인터넷 연결"}, {idDisconnect, "인터넷 끊기"}, {idSettings, "고정 QR 설정"}, {idAdmin, "수주 · 메시지 관리"}, {idPreview, "알림 미리보기"}, {idFolder, "엑셀 폴더"}, {idExit, "종료"}, {idUnread, "안 읽은 알림"}, {idSpeechToggle, "음성 알림 켜짐"}, {idSpeechPreview, "음성 설정·테스트"}} {
 		d.control(c.id, "BUTTON", c.label, 0x0b)
 	}
 	d.control(idURL, "EDIT", "", 0x00800880)
@@ -417,25 +427,17 @@ func (d *winDesktop) command(id int) {
 	case idPreview:
 		d.enqueue(desktopEvent{Title: "세팅·출하 통합검사 신청", Inspection: "combined", Order: "SAMPLE-001", Project: "검사 알림 미리보기 프로젝트", Worker: "홍길동", Note: "신청 내용을 확인한 뒤 검사를 진행해 주세요.", When: time.Now().In(kst).Format("01.02 15:04"), Pending: true, Target: "/inspection-requests"})
 	case idSpeechToggle:
-		if err := d.App.transaction(func(s *State) error {
-			s.Integration.DesktopSpeechMuted = !s.Integration.DesktopSpeechMuted
-			return nil
-		}); err != nil {
-			nativeError("음성 설정 저장에 실패했습니다.\n" + err.Error())
+		d.App.mu.Lock()
+		c := d.App.ttsConfig
+		c.Enabled = !c.Enabled
+		err := d.App.saveTTSConfig(c)
+		d.App.mu.Unlock()
+		if err != nil {
+			nativeError("음성 설정 저장 실패: " + err.Error())
 		}
 		d.refresh()
 	case idSpeechPreview:
-		d.App.mu.Lock()
-		muted := d.App.state.Integration.DesktopSpeechMuted
-		webSpeech := d.App.integration.SpeechLeases["local"].Expires.After(time.Now())
-		d.App.mu.Unlock()
-		if webSpeech {
-			nativeError("관리자 웹 화면에서 ‘전자녀 알람’ 옆의 미리듣기를 눌러 주세요.")
-		} else if muted {
-			nativeError("‘음성 알림 꺼짐’을 눌러 켠 뒤 미리듣기를 눌러 주세요.")
-		} else if d.Speech != nil {
-			d.Speech.enqueue(desktopEvent{Pending: true, Inspection: "combined", Project: "알파 작업 확인", Worker: "홍길동"})
-		}
+		d.open("/tts-settings")
 	case idUnread:
 		d.replay()
 	case idExit:
@@ -475,7 +477,7 @@ func (d *winDesktop) refresh() {
 	v := d.App.desktopSnapshot()
 	if d.Speech != nil {
 		d.App.mu.Lock()
-		muted := d.App.state.Integration.DesktopSpeechMuted
+		muted := !d.App.ttsConfig.Enabled || d.App.ttsConfigError != ""
 		webSpeech := d.App.integration.SpeechLeases["local"].Expires.After(time.Now())
 		d.App.mu.Unlock()
 		d.Speech.setEnabled(!muted && !webSpeech)
@@ -527,7 +529,7 @@ func (d *winDesktop) enqueue(e desktopEvent) {
 	if d.Speech != nil && (e.ID == 0 || !d.App.testMode) {
 		d.App.mu.Lock()
 		webSpeech := d.App.integration.SpeechLeases["local"].Expires.After(time.Now())
-		muted := d.App.state.Integration.DesktopSpeechMuted
+		muted := !d.App.ttsConfig.Enabled || d.App.ttsConfigError != ""
 		d.App.mu.Unlock()
 		d.Speech.setEnabled(!muted && !webSpeech)
 		if webSpeech || muted {
