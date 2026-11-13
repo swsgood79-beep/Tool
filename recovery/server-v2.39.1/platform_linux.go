@@ -29,3 +29,5 @@ func manageChild(cmd *exec.Cmd) (func(), error) { return func() {}, nil }
 func lockOriginalApp() (func(), error)                       { return func() {}, nil }
 func nativeError(message string)                             {}
 func startDesktop(a *App, stop func()) (func(), bool, error) { return func() {}, false, nil }
+
+func configureDesktop(test bool) {}

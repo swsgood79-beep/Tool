@@ -91,6 +91,9 @@ func testCopyInventory(source string) (map[string]string, error) {
 	return out, nil
 }
 func copyForTest(source, base string, hook func() error) (string, error) {
+	return copySnapshot(source, base, hook, prepareTestDir)
+}
+func copySnapshot(source, base string, hook func() error, prepare func(string) (bool, error)) (string, error) {
 	source, e := filepath.Abs(source)
 	if e != nil {
 		return "", e
@@ -99,7 +102,7 @@ func copyForTest(source, base string, hook func() error) (string, error) {
 	if e != nil {
 		return "", e
 	}
-	if _, e = prepareTestDir(base); e != nil {
+	if _, e = prepare(base); e != nil {
 		return "", e
 	}
 	copies := filepath.Join(base, "copies")
@@ -112,7 +115,7 @@ func copyForTest(source, base string, hook func() error) (string, error) {
 	}
 	name := "copy-" + time.Now().UTC().Format("20060102T150405Z") + "-" + token()
 	target := filepath.Join(base, "copies", name)
-	if _, e = prepareTestDir(target); e != nil {
+	if _, e = prepare(target); e != nil {
 		return "", e
 	}
 	for rel, expected := range before {

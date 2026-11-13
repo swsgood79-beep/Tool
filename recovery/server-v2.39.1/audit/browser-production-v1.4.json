@@ -1,0 +1,13 @@
+{
+  "source": "synthetic original-schema fixture only",
+  "firstProductionLaunchCopiesSource": "pass",
+  "productionMenusAndSettingsAvailable": "pass",
+  "requestAndApproval": "pass",
+  "testModeStillIsolated": "pass",
+  "productionAndTestCookiesSeparated": "pass",
+  "javascriptErrors": [],
+  "liveExternalAccounts": "not contacted",
+  "windowsNativeExecution": "not tested",
+  "originalSourceUnchanged": "pass",
+  "productionRestartRetainsCompletion": "pass"
+}

@@ -1,2 +1,2 @@
 @echo off
-start "" "%~dp0AlphaWorkRecoveryTest.exe" -copy-original
+start "" "%~dp0AlphaWorkComplete-Recovered.exe" -test -copy-original

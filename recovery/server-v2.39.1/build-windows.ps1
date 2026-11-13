@@ -4,7 +4,7 @@ try {
     $env:GOOS = 'windows'
     $env:GOARCH = 'amd64'
     $env:CGO_ENABLED = '0'
-    go build -trimpath -buildvcs=false -ldflags='-s -w -H=windowsgui' -o AlphaWorkRecoveryTest.exe .
+    go build -trimpath -buildvcs=false -ldflags='-s -w -H=windowsgui' -o AlphaWorkComplete-Recovered.exe .
     if ($LASTEXITCODE -ne 0) { throw 'Windows build failed' }
-    Get-FileHash -Algorithm SHA256 .\AlphaWorkRecoveryTest.exe
+    Get-FileHash -Algorithm SHA256 .\AlphaWorkComplete-Recovered.exe
 } finally { Pop-Location }
