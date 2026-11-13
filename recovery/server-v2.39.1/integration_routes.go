@@ -81,8 +81,8 @@ func (a *App) integrationGET(w http.ResponseWriter, r *http.Request, v map[strin
 		v["Market"] = map[string]any{"CSRF": csrf, "Enabled": m.Enabled, "HasKeys": m.ClientID != "", "Error": a.integration.MarketStatus}
 		a.render(w, "market-settings.html", v)
 		return true
-	case "/market-settings/status":
-		jsonReply(w, map[string]any{"status": a.integration.MarketStatus})
+	case "/market-settings/status", "/market-settings/status.json":
+		jsonReply(w, a.marketAdminStatus())
 		return true
 	case "/schedule":
 		status := a.integration.ScheduleStatus

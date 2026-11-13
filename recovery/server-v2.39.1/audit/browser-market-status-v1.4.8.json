@@ -1,0 +1,10 @@
+{
+  "source": "synthetic cached provider results; no live credentials used",
+  "frontendStatusJSONPath": "pass",
+  "successGreenAndNotError": "pass",
+  "partialFailureSummary": "pass",
+  "disabledState": "pass",
+  "repeatCheck": "pass",
+  "requests": 3,
+  "javascriptErrors": []
+}

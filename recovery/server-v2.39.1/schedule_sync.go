@@ -3,12 +3,9 @@ package main
 import (
 	"bytes"
 	"context"
-	"encoding/base64"
 	"errors"
-	"fmt"
 	"github.com/xuri/excelize/v2"
 	"io"
-	"net/http"
 	"net/url"
 	"os"
 	"strings"
@@ -21,7 +18,7 @@ func scheduleURLAllowed(raw string) bool {
 		return false
 	}
 	h := strings.ToLower(u.Hostname())
-	for _, host := range []string{"onedrive.live.com", "1drv.ms", "api.onedrive.com", "onedrive.com", "sharepoint.com", "1drv.com", "files.1drv.com", "livefilestore.com"} {
+	for _, host := range []string{"onedrive.live.com", "1drv.ms", "api.onedrive.com", "onedrive.com", "sharepoint.com", "1drv.com", "files.1drv.com", "livefilestore.com", "storage.live.com"} {
 		if h == host || strings.HasSuffix(h, "."+host) {
 			return true
 		}
@@ -41,34 +38,7 @@ func (a *App) readSchedule(ctx context.Context, c ScheduleConfig) ([]byte, error
 		}
 		return b, e
 	}
-	if !scheduleURLAllowed(c.URL) {
-		return nil, errors.New("허용된 OneDrive 공유 주소가 아닙니다")
-	}
-	endpoint := "https://api.onedrive.com/v1.0/shares/u!" + base64.RawURLEncoding.EncodeToString([]byte(c.URL)) + "/root/content"
-	client := *a.httpClient()
-	client.CheckRedirect = func(req *http.Request, via []*http.Request) error {
-		if len(via) > 8 || !scheduleURLAllowed(req.URL.String()) {
-			return errors.New("허용하지 않는 다운로드 주소")
-		}
-		return nil
-	}
-	r, e := http.NewRequestWithContext(ctx, "GET", endpoint, nil)
-	if e != nil {
-		return nil, e
-	}
-	res, e := client.Do(r)
-	if e != nil {
-		return nil, e
-	}
-	defer res.Body.Close()
-	if res.StatusCode != 200 {
-		return nil, fmt.Errorf("일정표 HTTP %d", res.StatusCode)
-	}
-	b, e := io.ReadAll(io.LimitReader(res.Body, (32<<20)+1))
-	if len(b) > 32<<20 {
-		return nil, errors.New("일정표 용량 초과")
-	}
-	return b, e
+	return a.downloadSchedule(ctx, c.URL)
 }
 func scheduleDate(s string) (date string, unknown bool, err error) {
 	s = strings.TrimSpace(s)
@@ -199,6 +169,16 @@ func (a *App) syncSchedule(ctx context.Context, force bool) {
 	epoch := a.epoch
 	a.integration.ScheduleSequence++
 	sequence := a.integration.ScheduleSequence
+	previousSuccess := a.integration.ScheduleStatus["success"]
+	if c.Enabled || force {
+		pending := map[string]any{}
+		for key, value := range a.integration.ScheduleStatus {
+			pending[key] = value
+		}
+		pending["label"] = "납기표 다운로드·내용 확인 중"
+		pending["error"] = ""
+		a.integration.ScheduleStatus = pending
+	}
 	a.mu.Unlock()
 	if !c.Enabled && !force {
 		return
@@ -214,7 +194,7 @@ func (a *App) syncSchedule(ctx context.Context, force bool) {
 	if epoch != a.epoch || sequence != a.integration.ScheduleSequence || c.Revision != a.state.Integration.Schedule.Revision {
 		return
 	}
-	status := map[string]any{"label": "납기 확인 완료", "auto": c.Enabled, "next": time.Now().Add(5 * time.Minute).Format(time.RFC3339), "source_orders": len(dates), "conflicts": len(conflicts)}
+	status := map[string]any{"success": previousSuccess, "label": "납기 확인 완료", "auto": c.Enabled, "next": time.Now().Add(5 * time.Minute).Format(time.RFC3339), "source_orders": len(dates), "conflicts": len(conflicts)}
 	if e != nil {
 		status["label"] = "갱신 실패 · 기존 납기 유지"
 		status["error"] = e.Error()
