@@ -44,6 +44,14 @@ func (a *App) adminGET(w http.ResponseWriter, r *http.Request, v map[string]any)
 	case "/inspection-requests/panel":
 		a.render(w, "inspection-request-items", v)
 		return true
+	case "/projects/find":
+		p := findOrderByNumber(&a.state, r.URL.Query().Get("number"))
+		if p == nil {
+			http.Error(w, "등록된 수주번호가 없습니다.", http.StatusNotFound)
+			return true
+		}
+		a.render(w, "duplicate-order.html", map[string]any{"Existing": *p, "ExistingStatus": duplicateOrderStatus(*p)})
+		return true
 	case "/designers":
 		a.render(w, "designers.html", v)
 		return true
@@ -260,6 +268,13 @@ func (a *App) adminPOST(w http.ResponseWriter, r *http.Request, session Session)
 		return false
 	}
 	if err != nil {
+		var duplicate *duplicateOrderError
+		if errors.As(err, &duplicate) {
+			w.Header().Set("Content-Type", "text/html; charset=utf-8")
+			w.WriteHeader(http.StatusConflict)
+			a.render(w, "duplicate-order.html", map[string]any{"Existing": duplicate.Project, "ExistingStatus": duplicateOrderStatus(duplicate.Project)})
+			return true
+		}
 		http.Error(w, err.Error(), 409)
 		return true
 	}
@@ -289,7 +304,7 @@ func (a *App) saveProject(r *http.Request, id int64) error {
 	return a.transaction(func(s *State) error {
 		for _, p := range s.Projects {
 			if p.ID != id && strings.EqualFold(p.Number, n) {
-				return errors.New("이미 등록된 수주번호입니다.")
+				return &duplicateOrderError{Project: p}
 			}
 		}
 		p := s.project(id)
