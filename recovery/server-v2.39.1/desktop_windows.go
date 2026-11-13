@@ -82,6 +82,9 @@ const (
 	idStatus          = 111
 	idStore           = 112
 	idConnectionBadge = 113
+	idSpeechToggle    = 114
+	idSpeechPreview   = 115
+	idSpeechStatus    = 116
 )
 
 var desktopMu sync.RWMutex
@@ -110,6 +113,8 @@ type winDesktop struct {
 	Done                                             chan struct{}
 	Last                                             desktopView
 	Closing                                          bool
+	Speech                                           *inspectionAnnouncer
+	SpeechReady                                      bool
 }
 
 func colorref(r, g, b byte) uintptr { return uintptr(r) | uintptr(g)<<8 | uintptr(b)<<16 }
@@ -277,6 +282,11 @@ func (d *winDesktop) run(ready chan<- error) {
 		}
 	}()
 	d.initControls()
+	d.App.mu.Lock()
+	muted := d.App.state.Integration.DesktopSpeechMuted
+	d.App.mu.Unlock()
+	d.Speech = newInspectionAnnouncer(!muted, playInspectionSpeech)
+	defer d.Speech.close()
 	d.addTray()
 	win("SetTimer", d.Window, 1, 250, 0)
 	d.refresh()
@@ -310,7 +320,7 @@ func (d *winDesktop) initControls() {
 	for _, c := range []struct {
 		id    int
 		label string
-	}{{idConnect, "인터넷 연결"}, {idDisconnect, "인터넷 끊기"}, {idSettings, "고정 QR 설정"}, {idAdmin, "수주 · 메시지 관리"}, {idPreview, "알림 미리보기"}, {idFolder, "엑셀 폴더"}, {idExit, "종료"}, {idUnread, "안 읽은 알림"}} {
+	}{{idConnect, "인터넷 연결"}, {idDisconnect, "인터넷 끊기"}, {idSettings, "고정 QR 설정"}, {idAdmin, "수주 · 메시지 관리"}, {idPreview, "알림 미리보기"}, {idFolder, "엑셀 폴더"}, {idExit, "종료"}, {idUnread, "안 읽은 알림"}, {idSpeechToggle, "음성 알림 켜짐"}, {idSpeechPreview, "음성 미리듣기"}} {
 		d.control(c.id, "BUTTON", c.label, 0x0b)
 	}
 	d.control(idURL, "EDIT", "", 0x00800880)
@@ -318,6 +328,7 @@ func (d *winDesktop) initControls() {
 	d.control(idStatus, "STATIC", "", 0)
 	d.control(idConnectionBadge, "STATIC", "● 연결 안 됨", 0)
 	d.control(idStore, "STATIC", "", 0)
+	d.control(idSpeechStatus, "STATIC", "", 0)
 	d.layout()
 }
 func (d *winDesktop) layout() {
@@ -347,7 +358,10 @@ func (d *winDesktop) layout() {
 	place(idFolder, w-150, 278, 118, 34)
 	place(idAdmin, 32, 334, (w-76)/2, 44)
 	place(idPreview, 44+(w-76)/2, 334, (w-76)/2, 44)
-	place(idStatus, 32, 400, w-64, 44)
+	place(idStatus, 32, 397, w-64, 23)
+	place(idSpeechToggle, 32, 423, 170, 25)
+	place(idSpeechPreview, 212, 423, 145, 25)
+	place(idSpeechStatus, 367, 425, w-399, 23)
 	place(idHistory, 32, 490, w-64, h-560)
 	place(idUnread, 32, h-52, 190, 34)
 	place(idExit, w-130, h-52, 98, 34)
@@ -402,6 +416,23 @@ func (d *winDesktop) command(id int) {
 		}
 	case idPreview:
 		d.enqueue(desktopEvent{Title: "세팅·출하 통합검사 신청", Inspection: "combined", Order: "SAMPLE-001", Project: "검사 알림 미리보기 프로젝트", Worker: "홍길동", Note: "신청 내용을 확인한 뒤 검사를 진행해 주세요.", When: time.Now().In(kst).Format("01.02 15:04"), Pending: true, Target: "/inspection-requests"})
+	case idSpeechToggle:
+		if err := d.App.transaction(func(s *State) error {
+			s.Integration.DesktopSpeechMuted = !s.Integration.DesktopSpeechMuted
+			return nil
+		}); err != nil {
+			nativeError("음성 설정 저장에 실패했습니다.\n" + err.Error())
+		}
+		d.refresh()
+	case idSpeechPreview:
+		d.App.mu.Lock()
+		muted := d.App.state.Integration.DesktopSpeechMuted
+		d.App.mu.Unlock()
+		if muted {
+			nativeError("‘음성 알림 꺼짐’을 눌러 켠 뒤 미리듣기를 눌러 주세요.")
+		} else if d.Speech != nil {
+			d.Speech.enqueue(desktopEvent{Pending: true, Inspection: "combined", Project: "알파 작업 확인", Worker: "홍길동"})
+		}
 	case idUnread:
 		d.replay()
 	case idExit:
@@ -415,6 +446,9 @@ func (d *winDesktop) shutdown() {
 		return
 	}
 	d.Closing = true
+	if d.Speech != nil {
+		d.Speech.close()
+	}
 	d.removeTray()
 	win("KillTimer", d.Window, 1)
 	for h := range d.Popups {
@@ -436,6 +470,22 @@ func (d *winDesktop) workArea() winRect {
 }
 func (d *winDesktop) refresh() {
 	v := d.App.desktopSnapshot()
+	if d.Speech != nil {
+		d.App.mu.Lock()
+		muted := d.App.state.Integration.DesktopSpeechMuted
+		d.App.mu.Unlock()
+		d.Speech.setEnabled(!muted)
+		label := "음성 알림 켜짐"
+		if muted {
+			label = "음성 알림 꺼짐"
+		}
+		d.set(idSpeechToggle, label)
+		d.set(idSpeechStatus, d.Speech.state())
+		if !d.SpeechReady {
+			d.Speech.prime(v.Events)
+			d.SpeechReady = true
+		}
+	}
 	d.set(idURL, v.WorkerURL)
 	if v.Connected {
 		d.set(idConnectionBadge, "● 연결됨")
@@ -466,7 +516,10 @@ func (d *winDesktop) enqueue(e desktopEvent) {
 		}
 		d.Seen[e.ID] = true
 	}
-	if e.ID > 0 {
+	if d.Speech != nil && (e.ID == 0 || !d.App.testMode) {
+		d.Speech.enqueue(e)
+	}
+	if e.ID > 0 && inspectionSpeech(e) == "" {
 		syscall.NewLazyDLL("winmm.dll").NewProc("PlaySoundW").Call(uintptr(unsafe.Pointer(wide("SystemNotification"))), 0, 0x10003)
 	}
 	d.Queue = append(d.Queue, e)

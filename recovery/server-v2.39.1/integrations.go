@@ -15,14 +15,15 @@ const pagesOrigin = "https://swsgood79-beep.github.io"
 const repository = "swsgood79-beep/Tool"
 
 type IntegrationConfig struct {
-	Connection    ConnectionConfig
-	Phone         PhoneData
-	Market        MarketConfig
-	Schedule      ScheduleConfig
-	Backup        BackupConfig
-	Passkeys      PasskeyData
-	MobileEnabled bool
-	Revision      int64
+	Connection         ConnectionConfig
+	Phone              PhoneData
+	Market             MarketConfig
+	Schedule           ScheduleConfig
+	Backup             BackupConfig
+	Passkeys           PasskeyData
+	MobileEnabled      bool
+	DesktopSpeechMuted bool
+	Revision           int64
 }
 type ConnectionConfig struct{ Provider, Domain, AuthToken, GitHubToken, PublicURL string }
 type PhoneData struct {

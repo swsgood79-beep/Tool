@@ -3,7 +3,7 @@
 import argparse,hashlib,json,os,subprocess,tempfile,zipfile
 from pathlib import Path
 from datetime import datetime,timezone
-p=argparse.ArgumentParser();p.add_argument('--version',default='1.4.12');p.add_argument('--go',default='/workspace/toolchain/go/bin/go');args=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--version',default='1.4.13');p.add_argument('--go',default='/workspace/toolchain/go/bin/go');args=p.parse_args()
 module=Path(__file__).resolve().parent.parent;out=module.parent/'server-builds';stem='AlphaWorkComplete-Recovered'
 source=out/f'{stem}-source-v{args.version}.zip';windows=out/f'{stem}-Windows-x64-v{args.version}.zip';proof=out/f'{stem}-source-v{args.version}-rebuild.json'
 assert not proof.exists(),'Never overwrite an existing verification record'
