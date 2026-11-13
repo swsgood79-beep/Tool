@@ -399,7 +399,7 @@ func (d *winDesktop) command(id int) {
 	case idFolder:
 		openBrowser(d.App.dir)
 	case idPreview:
-		d.enqueue(desktopEvent{Title: "알림 미리보기", Body: "세팅·출하 통합검사 신청\n수주와 작업자 메시지를 이 창에서 확인합니다.\n메시지를 누르면 해당 검사 화면이 열립니다.", Target: "/inspection-requests"})
+		d.enqueue(desktopEvent{Title: "세팅·출하 통합검사 신청", Inspection: "combined", Order: "SAMPLE-001", Project: "검사 알림 미리보기 프로젝트", Worker: "홍길동", Note: "신청 내용을 확인한 뒤 검사를 진행해 주세요.", When: time.Now().In(kst).Format("01.02 15:04"), Pending: true, Target: "/inspection-requests"})
 	case idUnread:
 		d.replay()
 	case idExit:
@@ -475,11 +475,11 @@ func (d *winDesktop) enqueue(e desktopEvent) {
 }
 func (d *winDesktop) fillPopups() {
 	area := d.workArea()
-	capacity := max(1, min(3, int((area.Bottom-area.Top-d.px(90))/max(1, d.px(202)))))
+	capacity := max(1, min(3, int((area.Bottom-area.Top-d.px(90))/max(1, d.px(342)))))
 	for len(d.Popups) < capacity && len(d.Queue) > 0 {
 		e := d.Queue[0]
 		d.Queue = d.Queue[1:]
-		h := win("CreateWindowExW", 0x08000088, uintptr(unsafe.Pointer(wide(toastClass))), 0, 0x80000000, 0, 0, uintptr(d.px(370)), uintptr(d.px(190)), 0, 0, d.Instance, 0)
+		h := win("CreateWindowExW", 0x08000088, uintptr(unsafe.Pointer(wide(toastClass))), 0, 0x80000000, 0, 0, uintptr(d.px(min(420, int(float64(area.Right-area.Left)/d.Scale)-36))), uintptr(d.px(popupHeight(e))), 0, 0, d.Instance, 0)
 		if h == 0 {
 			continue
 		}
@@ -491,7 +491,8 @@ func (d *winDesktop) fillPopups() {
 }
 func (d *winDesktop) positionPopups() {
 	r := d.workArea()
-	i := 0
+	bottom := r.Bottom - d.px(80)
+	width := d.px(min(420, int(float64(r.Right-r.Left)/d.Scale)-36))
 	handles := make([]uintptr, 0, len(d.Popups))
 	for h := range d.Popups {
 		handles = append(handles, h)
@@ -500,8 +501,9 @@ func (d *winDesktop) positionPopups() {
 		return d.Popups[handles[i]].Created.Before(d.Popups[handles[j]].Created) || d.Popups[handles[i]].Created.Equal(d.Popups[handles[j]].Created) && handles[i] < handles[j]
 	})
 	for _, h := range handles {
-		win("SetWindowPos", h, ^uintptr(0), signed(r.Right-d.px(388)), signed(r.Bottom-d.px(80+(i+1)*202)), uintptr(d.px(370)), uintptr(d.px(190)), 0x10)
-		i++
+		height := d.px(popupHeight(d.Popups[h].Notice))
+		win("SetWindowPos", h, ^uintptr(0), signed(r.Right-width-d.px(18)), signed(bottom-height), uintptr(width), uintptr(height), 0x10)
+		bottom -= height + d.px(12)
 	}
 }
 func (d *winDesktop) dismiss(h uintptr) { delete(d.Popups, h); win("DestroyWindow", h); d.fillPopups() }
@@ -583,23 +585,71 @@ func (d *winDesktop) paintMain(dc uintptr, r winRect) {
 	fill(dc, r, cBack)
 	scale := d.px
 	fill(dc, winRect{0, 0, r.Right, scale(96)}, cBlue)
-	drawText(dc, "α  "+productTitle(d.App.testMode), winRect{scale(26), scale(22), r.Right - scale(20), scale(60)}, cWhite, d.Large, 0x20|4)
-	drawText(dc, productTitle(d.App.testMode), winRect{scale(30), scale(62), r.Right, scale(86)}, colorref(183, 213, 248), d.Font, 0x20|4)
+	drawText(dc, "α  알파작업완료확인", winRect{scale(26), scale(22), r.Right - scale(20), scale(60)}, cWhite, d.Large, 0x20|4)
+	drawText(dc, "검사 신청부터 완료까지, 한눈에 · v"+releaseVersion, winRect{scale(30), scale(62), r.Right, scale(86)}, colorref(183, 213, 248), d.Font, 0x20|4)
 	for _, box := range []winRect{{scale(16), scale(112), r.Right - scale(16), scale(240)}, {scale(16), scale(252), r.Right - scale(16), scale(320)}, {scale(16), scale(390), r.Right - scale(16), scale(452)}, {scale(16), scale(466), r.Right - scale(16), r.Bottom - scale(65)}} {
-		fill(dc, box, cWhite)
+		roundedFill(dc, box, cWhite, colorref(218, 229, 243), scale(14))
 	}
 	drawText(dc, "휴대폰 접속 · 고정 QR", winRect{scale(32), scale(116), r.Right, scale(140)}, cText, d.Bold, 0x20|4)
 	drawText(dc, "월별 검사 기록 · 자동 저장", winRect{scale(32), scale(252), r.Right, scale(277)}, cText, d.Bold, 0x20|4)
-	drawText(dc, "완료·비고 수신 내역 · 최근 100건", winRect{scale(32), scale(464), r.Right, scale(490)}, cText, d.Bold, 0x20|4)
+	drawText(dc, "최근 소식 · 검사 신청 / 완료 / 비고", winRect{scale(32), scale(464), r.Right, scale(490)}, cText, d.Bold, 0x20|4)
+}
+func roundedFill(dc uintptr, r winRect, color, border uintptr, radius int32) {
+	brush := gdi("CreateSolidBrush", color)
+	pen := gdi("CreatePen", 0, 1, border)
+	oldBrush := gdi("SelectObject", dc, brush)
+	oldPen := gdi("SelectObject", dc, pen)
+	gdi("RoundRect", dc, signed(r.Left), signed(r.Top), signed(r.Right), signed(r.Bottom), signed(radius), signed(radius))
+	gdi("SelectObject", dc, oldBrush)
+	gdi("SelectObject", dc, oldPen)
+	gdi("DeleteObject", brush)
+	gdi("DeleteObject", pen)
 }
 func (d *winDesktop) paintPopup(dc uintptr, r winRect, p *nativePopup) {
-	fill(dc, r, cWhite)
-	fill(dc, winRect{0, 0, r.Right, d.px(38)}, cBlue)
-	drawText(dc, "테스트 · 검사 신청 / 작업 소식", winRect{d.px(14), d.px(5), r.Right - d.px(38), d.px(33)}, cWhite, d.Bold, 0x20|4)
-	drawText(dc, "×", winRect{r.Right - d.px(34), d.px(4), r.Right - d.px(6), d.px(32)}, cWhite, d.Bold, 0x20|1|4)
-	drawText(dc, p.Notice.Body, winRect{d.px(14), d.px(49), r.Right - d.px(14), r.Bottom - d.px(25)}, cText, d.Font, 0x10|0x8000)
-	drawText(dc, "누르면 상세 확인 · 닫아도 안 읽은 알림 유지", winRect{d.px(14), r.Bottom - d.px(26), r.Right - d.px(10), r.Bottom - d.px(6)}, cMuted, d.Font, 0x20|4)
+	e := p.Notice
+	s := d.px
+	accent, soft := cAccent, colorref(234, 242, 255)
+	if e.Inspection == "shipping" {
+		accent, soft = colorref(180, 85, 10), colorref(255, 243, 226)
+	}
+	if e.Inspection == "combined" {
+		accent, soft = colorref(111, 67, 184), colorref(243, 236, 255)
+	}
+	if !e.Pending && !e.IsNote {
+		accent, soft = colorref(0, 130, 89), colorref(230, 247, 239)
+	}
+	if e.IsNote {
+		accent, soft = colorref(145, 102, 8), colorref(255, 247, 216)
+	}
+	fill(dc, r, cBack)
+	roundedFill(dc, winRect{s(1), s(1), r.Right - s(1), r.Bottom - s(1)}, cWhite, colorref(202, 217, 238), s(18))
+	roundedFill(dc, winRect{s(14), s(14), r.Right - s(14), s(53)}, soft, soft, s(10))
+	drawText(dc, e.Title, winRect{s(24), s(20), r.Right - s(45), s(46)}, accent, d.Bold, 0x20|4|0x8000)
+	drawText(dc, "×", winRect{r.Right - s(44), s(18), r.Right - s(18), s(46)}, cMuted, d.Bold, 0x20|1|4)
+	if e.Order != "" || e.Project != "" {
+		drawText(dc, "수주번호", winRect{s(24), s(69), s(94), s(94)}, cMuted, d.Font, 0x20|4)
+		drawText(dc, e.Order, winRect{s(100), s(69), r.Right - s(24), s(94)}, cBlue, d.Bold, 0x20|4|0x8000)
+		drawText(dc, "프로젝트", winRect{s(24), s(105), s(94), s(130)}, cMuted, d.Font, 0x20|4)
+		drawText(dc, e.Project, winRect{s(100), s(105), r.Right - s(24), s(153)}, cText, d.Bold, 0x10|0x8000)
+		roundedFill(dc, winRect{s(20), s(161), r.Right - s(20), s(198)}, colorref(245, 248, 253), colorref(245, 248, 253), s(8))
+		drawText(dc, e.workerLabel(), winRect{s(26), s(167), s(96), s(192)}, cMuted, d.Font, 0x20|4)
+		drawText(dc, e.Worker, winRect{s(100), s(167), r.Right - s(26), s(192)}, cText, d.Bold, 0x20|4|0x8000)
+		if e.Note != "" {
+			drawText(dc, "비고", winRect{s(24), s(207), s(94), s(232)}, cMuted, d.Font, 0x20|4)
+			drawText(dc, e.Note, winRect{s(100), s(207), r.Right - s(24), s(253)}, cText, d.Font, 0x10|0x8000)
+		}
+	} else {
+		drawText(dc, e.Body, winRect{s(24), s(68), r.Right - s(24), r.Bottom - s(65)}, cText, d.Font, 0x10|0x8000)
+	}
+	drawText(dc, e.When, winRect{s(24), r.Bottom - s(52), r.Right - s(172), r.Bottom - s(25)}, cMuted, d.Font, 0x20|4)
+	roundedFill(dc, winRect{r.Right - s(166), r.Bottom - s(59), r.Right - s(20), r.Bottom - s(17)}, accent, accent, s(10))
+	action := "내용 확인"
+	if e.Pending {
+		action = "검사 신청 확인"
+	}
+	drawText(dc, action, winRect{r.Right - s(162), r.Bottom - s(56), r.Right - s(24), r.Bottom - s(20)}, cWhite, d.Bold, 0x20|1|4)
 }
+
 func nativeWindowProc(h, m, w, l uintptr) uintptr {
 	desktopMu.RLock()
 	d := currentDesktop
@@ -715,7 +765,7 @@ func nativeWindowProc(h, m, w, l uintptr) uintptr {
 			var r winRect
 			win("GetClientRect", h, uintptr(unsafe.Pointer(&r)))
 			x, y := int32(int16(l&0xffff)), int32(int16(l>>16))
-			if x >= r.Right-d.px(38) && y < d.px(38) {
+			if x >= r.Right-d.px(38) && y < d.px(53) {
 				d.dismiss(h)
 			} else {
 				d.open(p.Notice.Target)
@@ -754,6 +804,24 @@ func nativeNotify(title, body, target string) {
 		id, _ = strconv.ParseInt(u.Query().Get("request"), 10, 64)
 	}
 	e := desktopEvent{ID: id, Title: title, Body: body, Target: next}
+	if id > 0 {
+		d.App.mu.Lock()
+		for _, record := range d.App.state.Events {
+			if record.ID == id {
+				if project := d.App.state.project(record.ProjectID); project != nil {
+					record.Order = project.Number
+					record.Project = project.Name
+				}
+				if !notifyEvent(record) {
+					d.App.mu.Unlock()
+					return
+				}
+				e = desktopNotice(record)
+				break
+			}
+		}
+		d.App.mu.Unlock()
+	}
 	select {
 	case d.Messages <- e:
 		win("PostMessageW", d.Window, wmNotice, 0, 0)

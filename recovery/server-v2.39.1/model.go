@@ -364,6 +364,9 @@ func (a *App) view(csrf string) map[string]any {
 	})
 	for i := len(a.state.Events) - 1; i >= 0; i-- {
 		e := a.state.Events[i]
+		if !notifyEvent(e) {
+			e.Unread = false
+		}
 		if p := a.state.project(e.ProjectID); p != nil {
 			e.Order = p.Number
 			e.Project = p.Name

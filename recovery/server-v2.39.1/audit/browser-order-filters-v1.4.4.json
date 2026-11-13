@@ -1,0 +1,21 @@
+{
+  "source": "synthetic data only",
+  "results": [
+    {
+      "role": "admin",
+      "ordinaryListHidesCompleted": "pass",
+      "todayCompletedFilter": "pass",
+      "dueViewIncludesCompleted": "pass",
+      "calendarIncludesCompleted": "pass",
+      "javascriptErrors": []
+    },
+    {
+      "role": "work",
+      "ordinaryListHidesCompleted": "pass",
+      "todayCompletedFilter": "pass",
+      "dueViewIncludesCompleted": "pass",
+      "calendarIncludesCompleted": "pass",
+      "javascriptErrors": []
+    }
+  ]
+}

@@ -101,6 +101,7 @@ func (a *App) approve(id int64, kind string, request int64) error {
 				e := &s.Events[i]
 				if e.ID == st.EventID {
 					e.Pending = false
+					e.Unread = false
 					e.Completed = &now
 					e.InspectionName = stageLabel(k)
 					e.Revision++

@@ -339,39 +339,41 @@ func (a *App) pumpNotifications(ctx context.Context) {
 	a.mu.Unlock()
 	sort.Slice(events, func(i, j int) bool { return events[i].ID < events[j].ID })
 	for _, e := range events {
-		payload := notification(e)
-		a.mu.Lock()
-		seen := a.integration.NativeSent[e.ID]
-		if !seen && a.epoch == epoch {
-			a.integration.NativeSent[e.ID] = true
-		}
-		a.mu.Unlock()
-		if !seen && e.Unread {
-			nativeNotify(text(payload["title"]), text(payload["body"]), local+"/projects/"+fmtID(e.ProjectID)+"/inspection?request="+fmtID(e.ID))
-		}
-		if phone.Subscription != nil {
-			b, _ := json.Marshal(payload)
-			res, err := webpush.SendNotificationWithContext(ctx, b, phone.Subscription, &webpush.Options{Subscriber: "mailto:admin@example.invalid", VAPIDPublicKey: phone.PublicKey, VAPIDPrivateKey: phone.PrivateKey, TTL: 3600, HTTPClient: a.httpClient()})
-			if err != nil {
-				return
+		if notifyEvent(e) {
+			payload := notification(e)
+			a.mu.Lock()
+			seen := a.integration.NativeSent[e.ID]
+			if !seen && a.epoch == epoch {
+				a.integration.NativeSent[e.ID] = true
 			}
-			status := res.StatusCode
-			ioClose(res)
-			if status == 410 || status == 404 {
-				a.mu.Lock()
-				if a.epoch == epoch && a.state.Integration.Phone.Generation == phone.Generation {
-					a.transaction(func(s *State) error {
-						s.Integration.Phone.Subscription = nil
-						s.Integration.Phone.Generation++
-						return nil
-					})
-					a.integration.PhoneStatus = "휴대폰 등록이 만료되었습니다. 다시 연결하세요"
+			a.mu.Unlock()
+			if !seen && e.Unread {
+				nativeNotify(text(payload["title"]), text(payload["body"]), local+"/projects/"+fmtID(e.ProjectID)+"/inspection?request="+fmtID(e.ID))
+			}
+			if phone.Subscription != nil {
+				b, _ := json.Marshal(payload)
+				res, err := webpush.SendNotificationWithContext(ctx, b, phone.Subscription, &webpush.Options{Subscriber: "mailto:admin@example.invalid", VAPIDPublicKey: phone.PublicKey, VAPIDPrivateKey: phone.PrivateKey, TTL: 3600, HTTPClient: a.httpClient()})
+				if err != nil {
+					return
 				}
-				a.mu.Unlock()
-				return
-			}
-			if status < 200 || status >= 300 {
-				return
+				status := res.StatusCode
+				ioClose(res)
+				if status == 410 || status == 404 {
+					a.mu.Lock()
+					if a.epoch == epoch && a.state.Integration.Phone.Generation == phone.Generation {
+						a.transaction(func(s *State) error {
+							s.Integration.Phone.Subscription = nil
+							s.Integration.Phone.Generation++
+							return nil
+						})
+						a.integration.PhoneStatus = "휴대폰 등록이 만료되었습니다. 다시 연결하세요"
+					}
+					a.mu.Unlock()
+					return
+				}
+				if status < 200 || status >= 300 {
+					return
+				}
 			}
 		}
 		a.mu.Lock()

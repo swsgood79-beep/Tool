@@ -8,9 +8,11 @@ import (
 )
 
 type desktopEvent struct {
-	ID, ProjectID       int64
-	Title, Body, Target string
-	Pending             bool
+	ID, ProjectID                                  int64
+	Title, Body, Target                            string
+	Pending                                        bool
+	Inspection, Order, Project, Worker, Note, When string
+	IsNote                                         bool
 }
 type desktopView struct {
 	Connection, WorkerURL, ReportPath, History, Storage string
@@ -55,15 +57,10 @@ func (a *App) desktopSnapshot() desktopView {
 			e.Order = p.Number
 			e.Project = p.Name
 		}
-		if e.Unread {
+		if e.Unread && notifyEvent(e) {
 			v.Unread++
 			if e.BatchID == 0 || e.BatchID == e.ID {
-				payload := notification(e)
-				target := "/records/" + fmtID(e.ID) + "/edit"
-				if e.Pending {
-					target = "/projects/" + fmtID(e.ProjectID) + "/inspection?request=" + fmtID(e.ID)
-				}
-				v.Events = append(v.Events, desktopEvent{e.ID, e.ProjectID, text(payload["title"]), text(payload["body"]), target, e.Pending})
+				v.Events = append(v.Events, desktopNotice(e))
 			}
 		}
 		if len(history) < 100 {
@@ -71,16 +68,10 @@ func (a *App) desktopSnapshot() desktopView {
 			if e.Completed != nil {
 				when = e.Completed.In(kst).Format("01-02 15:04")
 			}
-			label := stageLabel(e.Inspection)
-			if e.Pending {
-				label += " 신청"
-			}
-			if e.IsNote {
-				label = "비고"
-			}
-			line := when + "  " + label + " · " + e.Worker + "\r\n" + e.Order + " · " + e.Project
-			if e.Note != "" {
-				line += "\r\n" + e.Note
+			n := desktopNotice(e)
+			line := "[" + n.Title + "]  " + when + "\r\n수주번호  " + n.Order + "\r\n프로젝트  " + n.Project + "\r\n" + n.workerLabel() + "  " + n.Worker
+			if n.Note != "" {
+				line += "\r\n비고  " + n.Note
 			}
 			history = append(history, line)
 		}
@@ -89,6 +80,55 @@ func (a *App) desktopSnapshot() desktopView {
 	v.History = strings.Join(history, "\r\n\r\n")
 	return v
 }
+
+// Inspection completion is a stored record, not a new alert. Notes retain their existing alerts.
+func notifyEvent(e Event) bool { return e.Pending || e.IsNote }
+
+// Structured PC fields come from the event, never from splitting a display string.
+func desktopNotice(e Event) desktopEvent {
+	kind := e.Inspection
+	if e.BatchID != 0 && e.BatchID == e.ID {
+		kind = "combined"
+	}
+	title := stageLabel(kind)
+	if e.IsNote {
+		title = "비고 메시지"
+	} else if e.Pending {
+		title += " 신청"
+	} else {
+		title += " 완료"
+	}
+	target := "/records/" + fmtID(e.ID) + "/edit"
+	if e.Pending {
+		target = "/projects/" + fmtID(e.ProjectID) + "/inspection?request=" + fmtID(e.ID)
+	}
+	when := ""
+	at := e.Completed
+	if e.Pending && e.RequestedAt != nil {
+		at = e.RequestedAt
+	}
+	if at != nil {
+		when = at.In(kst).Format("01.02 15:04")
+	}
+	payload := notification(e)
+	return desktopEvent{ID: e.ID, ProjectID: e.ProjectID, Title: title, Body: text(payload["body"]), Target: target, Pending: e.Pending, Inspection: kind, Order: e.Order, Project: e.Project, Worker: e.Worker, Note: e.Note, When: when, IsNote: e.IsNote}
+}
+func (e desktopEvent) workerLabel() string {
+	if e.Pending {
+		return "신청자"
+	}
+	if e.IsNote {
+		return "작성자"
+	}
+	return "작업자"
+}
+func popupHeight(e desktopEvent) int {
+	if e.Note != "" {
+		return 330
+	}
+	return 278
+}
+
 func (a *App) nativeAdminURL(next string) string {
 	a.mu.Lock()
 	defer a.mu.Unlock()

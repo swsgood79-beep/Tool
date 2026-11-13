@@ -387,6 +387,19 @@ func TestPushPayloadAndHostWhitelist(t *testing.T) {
 	if sent != 1 {
 		t.Fatal("notification replayed")
 	}
+	request := a.state.Projects[0].Setting.EventID
+	if err := a.approve(p.ID, "combined", request); err != nil {
+		t.Fatal(err)
+	}
+	// Even after resetting delivery history, completed inspection records must not push.
+	a.state.Integration.Phone.Delivered = 0
+	a.pumpNotifications(context.Background())
+	if sent != 1 {
+		t.Fatal("completion sent a phone notification", sent)
+	}
+	if a.state.Integration.Phone.Delivered < request {
+		t.Fatal("skipped records did not advance delivery cursor")
+	}
 }
 func TestPublicHostAndDeepLink(t *testing.T) {
 	a := fixture(t)

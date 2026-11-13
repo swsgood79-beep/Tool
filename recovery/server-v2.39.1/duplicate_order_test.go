@@ -44,3 +44,29 @@ func TestDuplicateLookupNeedsAdminLogin(t *testing.T) {
 		t.Fatal("order exposed without login")
 	}
 }
+
+func TestDeletedTestOrderNumberCanBeRegisteredAgain(t *testing.T) {
+	a := fixture(t)
+	if e := a.transaction(func(s *State) error {
+		s.Projects[0].Number = "TEST"
+		now := time.Now()
+		s.Projects[0].Shipping.Completed = &now
+		s.Events = append(s.Events, Event{ID: s.next(), ProjectID: s.Projects[0].ID, Order: "TEST", Project: "시험", Inspection: "shipping", Completed: &now})
+		return nil
+	}); e != nil {
+		t.Fatal(e)
+	}
+	cookie := adminCookie(a)
+	csrf := a.sessions[hashToken(cookie.Value)].CSRF
+	r := call(a, "POST", "/projects/1/delete", url.Values{"csrf": {csrf}, "confirm": {"1"}}, cookie)
+	if r.Code != 303 {
+		t.Fatal("delete failed", r.Body.String())
+	}
+	r = call(a, "POST", "/projects", url.Values{"csrf": {csrf}, "number": {"test"}, "name": {"새 시험 수주"}}, cookie)
+	if r.Code != 303 || len(a.state.Projects) != 1 || a.state.Projects[0].Number != "test" || a.state.Projects[0].Shipping.Completed != nil {
+		t.Fatal("number could not be reused", r.Code, r.Body.String())
+	}
+	if len(a.state.Events) != 1 {
+		t.Fatal("old completion record lost")
+	}
+}
