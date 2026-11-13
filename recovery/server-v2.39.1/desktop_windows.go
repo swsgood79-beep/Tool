@@ -397,7 +397,9 @@ func (d *winDesktop) command(id int) {
 	case idAdmin:
 		d.open("/")
 	case idFolder:
-		openBrowser(d.App.dir)
+		if err := openDataFolder(d.App.dir); err != nil {
+			nativeError("엑셀 저장 폴더를 열지 못했습니다.\n\n" + err.Error() + "\n\n저장 위치: " + d.App.dir + "\nWindows 키 + R에서 위 경로를 입력해 열 수도 있습니다.")
+		}
 	case idPreview:
 		d.enqueue(desktopEvent{Title: "세팅·출하 통합검사 신청", Inspection: "combined", Order: "SAMPLE-001", Project: "검사 알림 미리보기 프로젝트", Worker: "홍길동", Note: "신청 내용을 확인한 뒤 검사를 진행해 주세요.", When: time.Now().In(kst).Format("01.02 15:04"), Pending: true, Target: "/inspection-requests"})
 	case idUnread:

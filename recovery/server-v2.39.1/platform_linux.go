@@ -35,3 +35,7 @@ func configureDesktop(test bool) {}
 func nativeFirstStart(message string) int { return 2 }
 
 func hideChildWindow(cmd *exec.Cmd) {}
+
+func openDataFolder(path string) error {
+	return openFolderWith(path, func(absolute string) error { return exec.Command("xdg-open", absolute).Run() })
+}

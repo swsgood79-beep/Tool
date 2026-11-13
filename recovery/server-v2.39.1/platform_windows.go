@@ -99,3 +99,23 @@ func hideChildWindow(cmd *exec.Cmd) {
 	cmd.SysProcAttr.HideWindow = true
 	cmd.SysProcAttr.CreationFlags |= 0x08000000 // CREATE_NO_WINDOW
 }
+
+func openDataFolder(path string) error {
+	return openFolderWith(path, func(absolute string) error {
+		verb, err := syscall.UTF16PtrFromString("open")
+		if err != nil {
+			return err
+		}
+		target, err := syscall.UTF16PtrFromString(absolute)
+		if err != nil {
+			return err
+		}
+		result, _, _ := syscall.NewLazyDLL("shell32.dll").NewProc("ShellExecuteW").Call(0, uintptr(unsafe.Pointer(verb)), uintptr(unsafe.Pointer(target)), 0, 0, 1)
+		runtime.KeepAlive(verb)
+		runtime.KeepAlive(target)
+		if result <= 32 {
+			return fmt.Errorf("Windows 탐색기 실행 실패 (ShellExecute 코드 %d)", result)
+		}
+		return nil
+	})
+}
