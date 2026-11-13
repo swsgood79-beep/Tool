@@ -1,0 +1,27 @@
+{
+  "source": "synthetic data only",
+  "results": [
+    {
+      "role": "admin",
+      "ordinaryListHidesCompleted": "pass",
+      "todayCompletedFilter": "pass",
+      "dueViewHidesCompleted": "pass",
+      "calendarHidesCompleted": "pass",
+      "calendarRemovesNewCompletionWhileOpen": "pass",
+      "monthlyAndDailyCountsExcludeCompleted": "pass",
+      "nextShippingHidesCompleted": "pass",
+      "javascriptErrors": []
+    },
+    {
+      "role": "work",
+      "ordinaryListHidesCompleted": "pass",
+      "todayCompletedFilter": "pass",
+      "dueViewHidesCompleted": "pass",
+      "calendarHidesCompleted": "pass",
+      "calendarRemovesNewCompletionWhileOpen": "pass",
+      "monthlyAndDailyCountsExcludeCompleted": "pass",
+      "nextShippingHidesCompleted": "pass",
+      "javascriptErrors": []
+    }
+  ]
+}

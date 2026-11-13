@@ -52,7 +52,7 @@ func init() {
 	}
 }
 
-const notice = `<aside class="recovery-banner">격리 테스트판 v1.4.4 · 기존 자료와 분리 · 외부 연동 꺼짐 <a href="/recovery-status">기능 차이 확인</a> · <a href="/">관리자</a></aside>`
+const notice = `<aside class="recovery-banner">격리 테스트판 v1.4.5 · 기존 자료와 분리 · 외부 연동 꺼짐 <a href="/recovery-status">기능 차이 확인</a> · <a href="/">관리자</a></aside>`
 
 func (a *App) renderTemplate(w http.ResponseWriter, t *template.Template, name string, v any) {
 	var b bytes.Buffer
@@ -62,8 +62,10 @@ func (a *App) renderTemplate(w http.ResponseWriter, t *template.Template, name s
 		return
 	}
 	s := b.String()
-	s = strings.ReplaceAll(s, `/shipping-calendar.js`, `/shipping-calendar-v1.4.2.js`)
-	s = strings.ReplaceAll(s, `/admin.js`, `/admin-v1.4.4.js`)
+	s = strings.ReplaceAll(s, `/shipping-calendar.js`, `/shipping-calendar-v1.4.5.js`)
+	s = strings.ReplaceAll(s, `/admin.js`, `/admin-v1.4.5.js`)
+	s = strings.ReplaceAll(s, `/worker.js`, `/worker-v1.4.5.js`)
+	s = strings.ReplaceAll(s, `/due-view.js`, `/due-view-v1.4.5.js`)
 	if root, ok := v.(map[string]any); ok {
 		if board, ok := root["CSRF"].(string); ok && name == "work.html" {
 			button := `<p><a class="button quiet" id="worker-client-directory" href="/client-directory/` + template.HTMLEscapeString(board) + `">업체별 특이사항 전체 보기</a></p>`
@@ -483,4 +485,4 @@ func pathLooksOriginal(p string) bool {
 	return false
 }
 
-const statusPage = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/style.css"><title>복구 기능 확인</title></head><body><header>알파 격리 테스트판 v1.4.4</header><main><section class="card"><h1>격리 테스트판 v1.4.4</h1><p><strong>이 버전은 전용 테스트 폴더·포트·트레이·로그인 쿠키를 사용합니다. 기존 운영 자료를 자동으로 읽지 않습니다. 아래 원본 저장 형식 설명은 테스트 폴더 안에서만 적용되며 외부 연동은 차단되어 있습니다.</strong></p><p>원본 메타데이터와 어셈블리·화면 명세로 다시 작성한 코드입니다. 원본과 100% 동일하다고 검증된 프로그램은 아닙니다.</p><h2>원본 직접 저장</h2><p>기존 WanryoTalk의 projects-v2.dat, connection-v1.dat, phone-push-v1.dat, designers-v1.dat, client-notes-v1.dat, backup-v1.dat를 직접 갱신합니다. 기존 파일은 최초 .bak으로 보존하며 기존 백업은 덮어쓰지 않습니다. 수주·기록·담당자·업체·설정은 원본 JSON 필드로 저장하고 사진은 기존 project-photos 폴더의 DPAPI JPEG로 저장합니다. 복구판 추가 상태는 projects-v2.dat의 _RecoveredV1 확장 필드에 보관하며 별도 reconstructed-state.bin은 새로 쓰지 않습니다.</p><p>여러 파일 저장 중 종료되면 복구 저널로 미완료 저장을 되돌립니다. 외부 변경이나 손상이 있으면 자료를 덮어쓰지 않고 중단합니다. 원본과 복구판은 동시에 실행하지 마세요. .bak은 최초 상태이며 이후 자료는 암호화 GitHub 백업도 설정하세요.</p><h2>Windows 창·알림</h2><p>Win32 관리 창, 트레이 메뉴, 자체 팝업, 미확인 숫자 배지를 구현했습니다. 창을 닫으면 트레이에 남고 ‘종료’로 끝납니다. 팝업은 잠시 뒤 사라지며 마우스를 올리면 멈춥니다. 미확인 숫자를 누르면 다시 볼 수 있습니다. 관리자 화면 버튼은 PC가 만든 일회용 티켓으로 연결합니다.</p><h2>확인된 범위와 남은 차이</h2><p>Go 서버 시험·저장 중 종료 및 복구·원본 스키마 읽기·브라우저 업무 흐름·Windows 교차 빌드로 검증합니다. Windows GUI/DPAPI의 실기기 실행, 실제 회사 자료·삼성 인터넷 지문·잠금 알림 및 실제 외부 계정 연동은 이 환경에서 확인하지 못했습니다. 창의 픽셀·배치·애니메이션·소리가 원본과 동일하다는 보장은 없습니다. 수주 엑셀 일괄등록·작업자 업체 특이사항 전체 조회·엑셀 복사본 병합을 추가했습니다. ngrok 실행과 원본과 동일한 사진 자동 청소는 미구현입니다.</p><p>시세·일정·Web Push·WebAuthn·Cloudflare·GitHub 백업은 v0.2 기능을 유지합니다. 백업은 복구판 별도 Release에 age 암호화하며 원본 백업을 삭제하지 않습니다. 백업 상한은 256MB입니다. Windows는 현재 계정의 DPAPI를 쓰며 Linux는 암호화 없는 검증용입니다. 실행 전 전체 자료 폴더를 별도 보관하고 복구키는 PC 밖에 보관하세요.</p><a class="button primary" href="/">관리자 화면</a></section></main></body></html>`
+const statusPage = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/style.css"><title>복구 기능 확인</title></head><body><header>알파 격리 테스트판 v1.4.5</header><main><section class="card"><h1>격리 테스트판 v1.4.5</h1><p><strong>이 버전은 전용 테스트 폴더·포트·트레이·로그인 쿠키를 사용합니다. 기존 운영 자료를 자동으로 읽지 않습니다. 아래 원본 저장 형식 설명은 테스트 폴더 안에서만 적용되며 외부 연동은 차단되어 있습니다.</strong></p><p>원본 메타데이터와 어셈블리·화면 명세로 다시 작성한 코드입니다. 원본과 100% 동일하다고 검증된 프로그램은 아닙니다.</p><h2>원본 직접 저장</h2><p>기존 WanryoTalk의 projects-v2.dat, connection-v1.dat, phone-push-v1.dat, designers-v1.dat, client-notes-v1.dat, backup-v1.dat를 직접 갱신합니다. 기존 파일은 최초 .bak으로 보존하며 기존 백업은 덮어쓰지 않습니다. 수주·기록·담당자·업체·설정은 원본 JSON 필드로 저장하고 사진은 기존 project-photos 폴더의 DPAPI JPEG로 저장합니다. 복구판 추가 상태는 projects-v2.dat의 _RecoveredV1 확장 필드에 보관하며 별도 reconstructed-state.bin은 새로 쓰지 않습니다.</p><p>여러 파일 저장 중 종료되면 복구 저널로 미완료 저장을 되돌립니다. 외부 변경이나 손상이 있으면 자료를 덮어쓰지 않고 중단합니다. 원본과 복구판은 동시에 실행하지 마세요. .bak은 최초 상태이며 이후 자료는 암호화 GitHub 백업도 설정하세요.</p><h2>Windows 창·알림</h2><p>Win32 관리 창, 트레이 메뉴, 자체 팝업, 미확인 숫자 배지를 구현했습니다. 창을 닫으면 트레이에 남고 ‘종료’로 끝납니다. 팝업은 잠시 뒤 사라지며 마우스를 올리면 멈춥니다. 미확인 숫자를 누르면 다시 볼 수 있습니다. 관리자 화면 버튼은 PC가 만든 일회용 티켓으로 연결합니다.</p><h2>확인된 범위와 남은 차이</h2><p>Go 서버 시험·저장 중 종료 및 복구·원본 스키마 읽기·브라우저 업무 흐름·Windows 교차 빌드로 검증합니다. Windows GUI/DPAPI의 실기기 실행, 실제 회사 자료·삼성 인터넷 지문·잠금 알림 및 실제 외부 계정 연동은 이 환경에서 확인하지 못했습니다. 창의 픽셀·배치·애니메이션·소리가 원본과 동일하다는 보장은 없습니다. 수주 엑셀 일괄등록·작업자 업체 특이사항 전체 조회·엑셀 복사본 병합을 추가했습니다. ngrok 실행과 원본과 동일한 사진 자동 청소는 미구현입니다.</p><p>시세·일정·Web Push·WebAuthn·Cloudflare·GitHub 백업은 v0.2 기능을 유지합니다. 백업은 복구판 별도 Release에 age 암호화하며 원본 백업을 삭제하지 않습니다. 백업 상한은 256MB입니다. Windows는 현재 계정의 DPAPI를 쓰며 Linux는 암호화 없는 검증용입니다. 실행 전 전체 자료 폴더를 별도 보관하고 복구키는 PC 밖에 보관하세요.</p><a class="button primary" href="/">관리자 화면</a></section></main></body></html>`
