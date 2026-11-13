@@ -69,18 +69,19 @@ var (
 )
 
 const (
-	idConnect    = 101
-	idDisconnect = 102
-	idSettings   = 103
-	idAdmin      = 104
-	idPreview    = 105
-	idFolder     = 106
-	idExit       = 107
-	idUnread     = 108
-	idHistory    = 109
-	idURL        = 110
-	idStatus     = 111
-	idStore      = 112
+	idConnect         = 101
+	idDisconnect      = 102
+	idSettings        = 103
+	idAdmin           = 104
+	idPreview         = 105
+	idFolder          = 106
+	idExit            = 107
+	idUnread          = 108
+	idHistory         = 109
+	idURL             = 110
+	idStatus          = 111
+	idStore           = 112
+	idConnectionBadge = 113
 )
 
 var desktopMu sync.RWMutex
@@ -315,6 +316,7 @@ func (d *winDesktop) initControls() {
 	d.control(idURL, "EDIT", "", 0x00800880)
 	d.control(idHistory, "EDIT", "", 0x00a008c4)
 	d.control(idStatus, "STATIC", "", 0)
+	d.control(idConnectionBadge, "STATIC", "● 연결 안 됨", 0)
 	d.control(idStore, "STATIC", "", 0)
 	d.layout()
 }
@@ -335,6 +337,7 @@ func (d *winDesktop) layout() {
 	place := func(id, x, y, cw, ch int) {
 		win("MoveWindow", d.Controls[id], signed(d.px(x)), signed(d.px(y)), signed(d.px(cw)), signed(d.px(ch)), 1)
 	}
+	place(idConnectionBadge, w-180, 116, 148, 23)
 	place(idURL, 32, 142, w-64, 32)
 	bw := (w - 80) / 3
 	place(idConnect, 32, 188, bw, 38)
@@ -432,6 +435,14 @@ func (d *winDesktop) workArea() winRect {
 func (d *winDesktop) refresh() {
 	v := d.App.desktopSnapshot()
 	d.set(idURL, v.WorkerURL)
+	if v.Connected {
+		d.set(idConnectionBadge, "● 연결됨")
+	} else {
+		d.set(idConnectionBadge, "● 연결 안 됨")
+	}
+	if d.Last.Connected != v.Connected {
+		win("InvalidateRect", d.Controls[idConnectionBadge], 0, 1)
+	}
 	d.set(idStatus, v.Connection)
 	d.set(idStore, v.Storage)
 	d.set(idHistory, v.History)
@@ -668,7 +679,14 @@ func nativeWindowProc(h, m, w, l uintptr) uintptr {
 			return 1
 		case 0x138:
 			gdi("SetBkColor", w, cWhite)
-			gdi("SetTextColor", w, cText)
+			fg := cText
+			if l == d.Controls[idConnectionBadge] {
+				fg = colorref(200, 45, 50)
+				if d.Last.Connected {
+					fg = colorref(0, 133, 83)
+				}
+			}
+			gdi("SetTextColor", w, fg)
 			return gdi("GetStockObject", 0)
 		}
 	}
@@ -752,4 +770,8 @@ func configureDesktop(test bool) {
 		toastClass = "AlphaWorkRecoveredPopup"
 		badgeClass = "AlphaWorkRecoveredUnread"
 	}
+}
+
+func nativeFirstStart(message string) int {
+	return int(win("MessageBoxW", 0, uintptr(unsafe.Pointer(wide(message))), uintptr(unsafe.Pointer(wide("알파 프로그램 · 최초 자료 선택"))), 0x23))
 }

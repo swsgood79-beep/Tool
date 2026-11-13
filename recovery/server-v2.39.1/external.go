@@ -97,6 +97,7 @@ func (a *App) startTunnel() {
 			return
 		}
 		cmd := exec.CommandContext(ctx, tool, "tunnel", "--url", base, "--no-autoupdate", "--protocol", "http2")
+		hideChildWindow(cmd)
 		pipe, e := cmd.StderrPipe()
 		if e != nil {
 			return

@@ -31,3 +31,7 @@ func nativeError(message string)                             {}
 func startDesktop(a *App, stop func()) (func(), bool, error) { return func() {}, false, nil }
 
 func configureDesktop(test bool) {}
+
+func nativeFirstStart(message string) int { return 2 }
+
+func hideChildWindow(cmd *exec.Cmd) {}

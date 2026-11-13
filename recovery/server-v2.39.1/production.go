@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-const releaseVersion = "1.4"
+const releaseVersion = "1.4.1"
 const productionFolderName = "AlphaWorkCompleteRecovered"
 const productionListen = "127.0.0.1:18791"
 const productionMarker = ".alpha-recovered-production-v1"
@@ -169,13 +169,13 @@ func (a *App) modeNotice() string {
 	if a.testMode {
 		return notice
 	}
-	return `<aside class="recovery-banner">알파작업완료확인 v1.4 · 복구 운영판 <a href="/recovery-status">구현·검증 상태</a> · <a href="/">관리자</a></aside>`
+	return `<aside class="recovery-banner">알파작업완료확인 v1.4.1 · 복구 운영판 <a href="/recovery-status">구현·검증 상태</a> · <a href="/">관리자</a></aside>`
 }
 func (a *App) modeStatus() string {
 	if a.testMode {
 		return statusPage
 	}
-	s := strings.ReplaceAll(statusPage, "격리 테스트판 v1.4", "복구 운영판 v1.4")
+	s := strings.ReplaceAll(statusPage, "격리 테스트판 v1.4.1", "복구 운영판 v1.4.1")
 	s = strings.ReplaceAll(s, "이 버전은 전용 테스트 폴더·포트·트레이·로그인 쿠키를 사용합니다. 기존 운영 자료를 자동으로 읽지 않습니다. 아래 원본 저장 형식 설명은 테스트 폴더 안에서만 적용되며 외부 연동은 차단되어 있습니다.", "이 운영판은 별도 운영 폴더의 복사본에 저장하며 기존 WanryoTalk 원본은 보존합니다. 외부 접속·알림·시세·일정·백업은 저장된 설정에 따라 사용할 수 있습니다. 이전 프로그램을 종료한 뒤 운영하세요.")
 	return s
 }
@@ -229,4 +229,43 @@ func latestBusinessSource(home string) (string, error) {
 		return selected, nil
 	}
 	return filepath.Join(home, "WanryoTalk"), nil
+}
+
+// Called only before the first operating copy is selected; updates never choose again.
+func firstProductionChoice(home string, ask func(string) int) (promote, empty bool, err error) {
+	original := filepath.Join(home, "WanryoTalk", "projects-v2.dat")
+	_, originalErr := os.Stat(original)
+	testDir, e := selectedTestDir(filepath.Join(home, testFolderName))
+	if e != nil {
+		return false, false, e
+	}
+	_, testErr := os.Stat(filepath.Join(testDir, "projects-v2.dat"))
+	if originalErr != nil && !os.IsNotExist(originalErr) {
+		return false, false, originalErr
+	}
+	if testErr != nil && !os.IsNotExist(testErr) {
+		return false, false, testErr
+	}
+	if originalErr == nil {
+		message := "처음 시작하는 자료를 선택해 주세요.\n\n[예] 기존 WanryoTalk 자료·사진·설정을 복사해 시작\n"
+		if testErr == nil {
+			message += "[아니요] 테스트판에서 수정한 업무 자료로 시작 (연결 설정은 원본에서 가져옴)\n"
+		} else {
+			message += "[아니요] 시작 취소\n"
+		}
+		message += "[취소] 시작 취소\n\n원본은 보존하며 이후 실행·업데이트는 운영 자료를 자동으로 이어서 엽니다."
+		switch ask(message) {
+		case 6:
+			return false, false, nil
+		case 7:
+			if testErr == nil {
+				return true, false, nil
+			}
+		}
+	} else {
+		if ask("기존 WanryoTalk 수주 파일을 찾지 못했습니다.\n\n[예] 빈 자료로 시작 (새 PC에서는 관리자 설정에서 암호화 백업 복원)\n[아니요/취소] 종료\n\n기존 자료를 가져오려면 원래 PC의 같은 Windows 계정에서 실행하세요.") == 6 {
+			return false, true, nil
+		}
+	}
+	return false, false, errors.New("자료 선택을 취소했습니다. 기존 자료는 변경하지 않았습니다")
 }

@@ -37,6 +37,7 @@ func protect(b []byte) ([]byte, error)   { return crypt(b, false) }
 func unprotect(b []byte) ([]byte, error) { return crypt(b, true) }
 func openBrowser(url string) {
 	c := exec.Command("rundll32.exe", "url.dll,FileProtocolHandler", url)
+	hideChildWindow(c)
 	if c.Start() == nil {
 		c.Process.Release()
 	}
@@ -88,4 +89,13 @@ func manageChild(cmd *exec.Cmd) (func(), error) {
 		return nil, e
 	}
 	return func() { syscall.CloseHandle(syscall.Handle(job)) }, nil
+}
+
+// Apply before Start: HideWindow alone does not prevent console allocation.
+func hideChildWindow(cmd *exec.Cmd) {
+	if cmd.SysProcAttr == nil {
+		cmd.SysProcAttr = &syscall.SysProcAttr{}
+	}
+	cmd.SysProcAttr.HideWindow = true
+	cmd.SysProcAttr.CreationFlags |= 0x08000000 // CREATE_NO_WINDOW
 }

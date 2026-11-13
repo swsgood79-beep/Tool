@@ -14,6 +14,7 @@ type desktopEvent struct {
 }
 type desktopView struct {
 	Connection, WorkerURL, ReportPath, History, Storage string
+	Connected                                           bool
 	Unread                                              int
 	Events                                              []desktopEvent
 }
@@ -22,6 +23,7 @@ func (a *App) desktopSnapshot() desktopView {
 	a.mu.Lock()
 	defer a.mu.Unlock()
 	v := desktopView{Connection: a.integration.TunnelStatus, Storage: "운영 복사본에 저장 · 기존 원본 보존 · 최초 .bak 보존"}
+	v.Connected = !a.testMode && a.integration.CancelTunnel != nil && a.integration.TunnelStatus == "외부 접속 연결됨" && a.state.Integration.Connection.PublicURL != ""
 	if a.testMode {
 		v.Connection = "격리 테스트 · 외부 접속/알림/백업 꺼짐"
 		v.Storage = "테스트 전용 자료 · 기존 원본은 읽거나 쓰지 않음"
