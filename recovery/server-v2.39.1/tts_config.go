@@ -19,10 +19,14 @@ type TTSConfig struct {
 	Enabled bool    `json:"enabled"`
 	Voice   string  `json:"voice"`
 	Speed   float64 `json:"speed"`
+	Repeat  int     `json:"repeat"`
 }
 
-func defaultTTSConfig() TTSConfig { return TTSConfig{true, "gtts", 1.10} }
+func defaultTTSConfig() TTSConfig { return TTSConfig{true, "gtts", 1.10, 1} }
 func (c TTSConfig) validate() error {
+	if c.Repeat != 1 && c.Repeat != 2 {
+		return errors.New("반복 말하기는 1회 또는 2회만 가능합니다")
+	}
 	if c.Voice != "gtts" && c.Voice != "sunhi" && c.Voice != "injoon" && c.Voice != "sapi" {
 		return errors.New("선택한 목소리가 올바르지 않습니다")
 	}
@@ -39,6 +43,9 @@ func (a *App) loadTTSConfig() {
 	c.Enabled = !a.state.Integration.DesktopSpeechMuted
 	if a.state.Integration.TTS != nil {
 		c = *a.state.Integration.TTS
+	}
+	if c.Repeat == 0 {
+		c.Repeat = 1
 	}
 	b, err := os.ReadFile(filepath.Join(a.dir, "tts_config.json"))
 	if err == nil {
@@ -156,7 +163,15 @@ func (a *App) ttsConfigHTTP(w http.ResponseWriter, r *http.Request, s Session) b
 		http.Error(w, "배속 오류", 400)
 		return true
 	}
-	c := TTSConfig{r.FormValue("enabled") == "1", "" + r.FormValue("voice"), speed}
+	repeat := a.ttsConfig.Repeat
+	if value := r.FormValue("repeat"); value != "" {
+		repeat, err = strconv.Atoi(value)
+		if err != nil {
+			http.Error(w, "반복 횟수 오류", 400)
+			return true
+		}
+	}
+	c := TTSConfig{r.FormValue("enabled") == "1", r.FormValue("voice"), speed, repeat}
 	if err = a.saveTTSConfig(c); err != nil {
 		http.Error(w, err.Error(), 400)
 		return true
@@ -171,6 +186,9 @@ func (a *App) restoreTTSConfig() {
 	c.Enabled = !a.state.Integration.DesktopSpeechMuted
 	if a.state.Integration.TTS != nil {
 		c = *a.state.Integration.TTS
+	}
+	if c.Repeat == 0 {
+		c.Repeat = 1
 	}
 	a.ttsConfigError = ""
 	if err := c.validate(); err != nil {

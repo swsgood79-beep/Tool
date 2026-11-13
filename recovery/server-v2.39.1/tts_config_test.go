@@ -25,7 +25,7 @@ func TestTTSConfigDefaultsValidationAndRestart(t *testing.T) {
 			t.Fatal(err)
 		}
 	}
-	cfg := TTSConfig{false, "injoon", .95}
+	cfg := TTSConfig{false, "injoon", .95, 1}
 	if err := a.saveTTSConfig(cfg); err != nil {
 		t.Fatal(err)
 	}
@@ -38,7 +38,7 @@ func TestTTSConfigDefaultsValidationAndRestart(t *testing.T) {
 	if json.Unmarshal(raw, &saved) != nil || saved != cfg || !b.state.Integration.DesktopSpeechMuted || b.state.Integration.TTS == nil {
 		t.Fatal("sidecar/backup mirror mismatch")
 	}
-	for _, c := range []TTSConfig{{true, "other", 1.1}, {true, "gtts", .75}, {true, "sunhi", 1.55}, {true, "sapi", 1.11}} {
+	for _, c := range []TTSConfig{{true, "other", 1.1, 1}, {true, "gtts", .75, 1}, {true, "sunhi", 1.55, 1}, {true, "sapi", 1.11, 1}} {
 		if a.saveTTSConfig(c) == nil {
 			t.Fatal("invalid settings accepted", c)
 		}
@@ -76,7 +76,7 @@ func TestTTSConfigSaveFailureRollsBackFile(t *testing.T) {
 	before, _ := os.ReadFile(name)
 	cfg := a.ttsConfig
 	a.directHook = func(string, string) error { return errors.New("synthetic storage failure") }
-	if err := a.saveTTSConfig(TTSConfig{true, "sunhi", 1.2}); err == nil {
+	if err := a.saveTTSConfig(TTSConfig{true, "sunhi", 1.2, 1}); err == nil {
 		t.Fatal("failed mirror accepted")
 	}
 	after, _ := os.ReadFile(name)
@@ -194,12 +194,12 @@ func TestTTSQueuedPreviewKeepsClickedVoiceAndSpeed(t *testing.T) {
 		}
 	}
 	s.mu.Unlock()
-	first := TTSConfig{false, "sunhi", 1.1}
+	first := TTSConfig{false, "sunhi", 1.1, 1}
 	s.enqueue(desktopEvent{SpeechPreview: true, SpeechConfig: &first})
 	if c := awaitSpeech(t, started); c != first {
 		t.Fatal(c)
 	}
-	second := TTSConfig{false, "injoon", .9}
+	second := TTSConfig{false, "injoon", .9, 1}
 	s.enqueue(desktopEvent{SpeechPreview: true, SpeechConfig: &second})
 	second.Voice = "gtts"
 	close(gate)
@@ -210,7 +210,7 @@ func TestTTSQueuedPreviewKeepsClickedVoiceAndSpeed(t *testing.T) {
 
 func TestTTSPreferencesSurvivePortableBackup(t *testing.T) {
 	a := fixture(t)
-	cfg := TTSConfig{false, "sapi", 1.35}
+	cfg := TTSConfig{false, "sapi", 1.35, 2}
 	if err := a.saveTTSConfig(cfg); err != nil {
 		t.Fatal(err)
 	}
@@ -234,5 +234,47 @@ func TestTTSPreferencesSurvivePortableBackup(t *testing.T) {
 	restarted, err := newApp(fresh.dir)
 	if err != nil || restarted.ttsConfig != cfg {
 		t.Fatal("restored sidecar changed on restart", err)
+	}
+}
+
+func TestTTSRepeatMigrationPersistenceAndSingleGeneration(t *testing.T) {
+	a := fixture(t)
+	name := filepath.Join(a.dir, "tts_config.json")
+	if err := os.WriteFile(name, []byte(`{"enabled":true,"voice":"gtts","speed":1.1}`), 0600); err != nil {
+		t.Fatal(err)
+	}
+	b, err := newApp(a.dir)
+	if err != nil || b.ttsConfig.Repeat != 1 {
+		t.Fatal("old settings did not migrate to one read", err)
+	}
+	cfg := b.ttsConfig
+	cfg.Repeat = 2
+	if err = b.saveTTSConfig(cfg); err != nil {
+		t.Fatal(err)
+	}
+	restarted, err := newApp(b.dir)
+	if err != nil || restarted.ttsConfig.Repeat != 2 {
+		t.Fatal("repeat not persisted", err)
+	}
+	cookie := adminCookie(restarted)
+	calls := 0
+	restarted.speechSynthesizeConfigured = func(context.Context, string, TTSConfig) ([]byte, error) {
+		calls++
+		return []byte("ID3single-audio"), nil
+	}
+	r := call(restarted, "POST", "/admin-speech/audio", url.Values{"csrf": {"admin-csrf"}, "preview": {"1"}}, cookie)
+	if r.Code != 200 || r.Header().Get("X-TTS-Repeat") != "2" || calls != 1 {
+		t.Fatal("repeat regenerated or missing", r.Code, r.Header(), calls)
+	}
+	legacyForm := url.Values{"csrf": {"admin-csrf"}, "enabled": {"1"}, "voice": {"gtts"}, "speed": {"1.10"}}
+	if r = call(restarted, "POST", "/tts-settings", legacyForm, cookie); r.Code != 200 || restarted.ttsConfig.Repeat != 2 {
+		t.Fatal("old GUI reset repetition")
+	}
+	for _, repeat := range []int{0, 3, -1} {
+		bad := cfg
+		bad.Repeat = repeat
+		if restarted.saveTTSConfig(bad) == nil {
+			t.Fatal("invalid repeat accepted")
+		}
 	}
 }

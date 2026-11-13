@@ -288,6 +288,8 @@ func (d *winDesktop) run(ready chan<- error) {
 	d.App.mu.Unlock()
 	d.Speech = newInspectionAnnouncer(!muted, d.App.playConfiguredSpeech)
 	d.Speech.mu.Lock()
+	d.Speech.notice = playImmediateInspectionChime
+	d.Speech.stopNotice = stopImmediateInspectionChime
 	d.Speech.runConfigured = func(ctx context.Context, text string, cfg TTSConfig) error {
 		_, err := runTTSPython(ctx, text, "speak", cfg)
 		return err
@@ -303,6 +305,9 @@ func (d *winDesktop) run(ready chan<- error) {
 	win("ShowWindow", d.Window, 5)
 	win("UpdateWindow", d.Window)
 	ready <- nil
+	if !d.App.testMode {
+		go func() { _, _ = prepareTTSRuntime() }()
+	}
 	var m winMessage
 	for {
 		r := win("GetMessageW", uintptr(unsafe.Pointer(&m)), 0, 0, 0)

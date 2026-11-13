@@ -95,10 +95,25 @@ class EngineTests(unittest.TestCase):
   class Sound:
    def __init__(self,*args,**kw):pass
    def get_raw(self):return b'\0'*400
-   def play(self):return SimpleNamespace(get_busy=lambda:False)
+   def play(self,**kw):return SimpleNamespace(get_busy=lambda:False)
   mixer=SimpleNamespace(init=lambda **kw:rates.append(kw['frequency']),Sound=Sound,quit=lambda:None)
   with patch.dict('sys.modules',{'pygame':SimpleNamespace(mixer=mixer)}),patch.object(h,'stretch_pcm',side_effect=lambda raw,rate,speed:stretched.append(speed) or raw):
    h.TTSWorker._play('fake',None,'gtts',1.15);h.TTSWorker._play('fake',None,'sunhi',1.15);h.TTSWorker._play('fake',None,'sapi',.8)
   self.assertEqual(rates,[27600,24000,24000]);self.assertEqual(stretched,[1.15,.8])
+
+class RepeatTests(unittest.TestCase):
+ def test_repeat_two_generates_once_and_uses_one_mixer_channel(self):
+  generations=[];plays=[]
+  class Factory:
+   def __init__(self,**kw):generations.append(kw['text'])
+   def save(self,path):Path(path).write_bytes(b'ID3sample')
+  class Sound:
+   def __init__(self,*args,**kw):pass
+   def get_raw(self):return b'\0'*400
+   def play(self,**kw):plays.append(kw.get('loops',0));return SimpleNamespace(get_busy=lambda:False)
+  mixer=SimpleNamespace(init=lambda **kw:None,Sound=Sound,quit=lambda:None)
+  with tempfile.TemporaryDirectory() as folder,patch.dict('sys.modules',{'pygame':SimpleNamespace(mixer=mixer)}):
+   worker=h.TTSWorker(folder,'speak',synth_factory=Factory);result,done=worker.submit({'text':'repeat test','voice':'gtts','speed':1,'repeat':2});self.assertTrue(done.wait(2));worker.close()
+   self.assertTrue(result['ok']);self.assertEqual(generations,['repeat test']);self.assertEqual(plays,[1]);self.assertEqual(list(Path(folder).iterdir()),[])
 
 if __name__=='__main__':unittest.main(verbosity=2)

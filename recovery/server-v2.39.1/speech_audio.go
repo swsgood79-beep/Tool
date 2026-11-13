@@ -127,6 +127,7 @@ func (a *App) speechAudioHTTP(w http.ResponseWriter, r *http.Request) bool {
 	}
 	w.Header().Set("X-TTS-Playback-Rate", fmt.Sprintf("%.2f", rate))
 	w.Header().Set("X-TTS-Voice", cfg.Voice)
+	w.Header().Set("X-TTS-Repeat", strconv.Itoa(cfg.Repeat))
 	w.Header().Set("X-TTS-Requested-Speed", fmt.Sprintf("%.2f", cfg.Speed))
 	w.Header().Set("Cache-Control", "no-store")
 	w.Write(audio)

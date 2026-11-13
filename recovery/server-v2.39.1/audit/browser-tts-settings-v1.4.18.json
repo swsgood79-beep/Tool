@@ -1,0 +1,29 @@
+{
+  "scope": "Go-rendered synthetic settings with mocked save/native queue protocol; actual PC audio not played",
+  "results": [
+    {
+      "width": 1100,
+      "defaultOnGoogle110": "pass",
+      "fourVoices": "pass",
+      "range080to150Step005": "pass",
+      "liveSpeedLabel": "pass",
+      "autoSave": "pass",
+      "testUsesSelectedVoiceAndSpeed": "pass",
+      "manualTestWhileOff": "pass",
+      "repeatSelectorAutoSave": "pass",
+      "noOverflow": "pass"
+    },
+    {
+      "width": 390,
+      "defaultOnGoogle110": "pass",
+      "fourVoices": "pass",
+      "range080to150Step005": "pass",
+      "liveSpeedLabel": "pass",
+      "autoSave": "pass",
+      "testUsesSelectedVoiceAndSpeed": "pass",
+      "manualTestWhileOff": "pass",
+      "repeatSelectorAutoSave": "pass",
+      "noOverflow": "pass"
+    }
+  ]
+}

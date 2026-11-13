@@ -155,3 +155,34 @@ func TestDesktopSpeechMuteSurvivesOperatingDataRestart(t *testing.T) {
 		t.Fatal("mute setting or existing project lost", err)
 	}
 }
+
+func TestNoticeRingsBeforeBlockedSynthesisAndDoesNotReplay(t *testing.T) {
+	calls := make(chan string, 8)
+	s := newInspectionAnnouncer(true, func(ctx context.Context, text string) error { calls <- "synthesis"; <-ctx.Done(); return ctx.Err() })
+	defer func() { s.close(); awaitSpeech(t, s.done) }()
+	s.mu.Lock()
+	s.notice = func() { calls <- "ding" }
+	s.mu.Unlock()
+	event := desktopEvent{ID: 42, Pending: true, Inspection: "setting", Project: "알림", Worker: "작업자"}
+	s.enqueue(event)
+	if got := awaitSpeech(t, calls); got != "ding" {
+		t.Fatal("notice waited for generation", got)
+	}
+	if got := awaitSpeech(t, calls); got != "synthesis" {
+		t.Fatal(got)
+	}
+	s.enqueue(event)
+	select {
+	case got := <-calls:
+		t.Fatal("duplicate rang again", got)
+	default:
+	}
+	s.setEnabled(false)
+	event.ID = 43
+	s.enqueue(event)
+	select {
+	case got := <-calls:
+		t.Fatal("muted alert rang", got)
+	default:
+	}
+}

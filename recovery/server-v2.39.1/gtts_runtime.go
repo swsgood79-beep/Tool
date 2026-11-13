@@ -143,15 +143,11 @@ func runTTSPython(ctx context.Context, text, mode string, cfg TTSConfig) ([]byte
 		return nil, err
 	}
 	defer os.RemoveAll(dir)
-	ctx, cancel := context.WithTimeout(ctx, 90*time.Second)
+	ctx, cancel := context.WithTimeout(ctx, time.Duration(90*cfg.Repeat)*time.Second)
 	defer cancel()
-	job := map[string]any{"text": text, "voice": cfg.Voice, "speed": cfg.Speed}
+	job := map[string]any{"text": text, "voice": cfg.Voice, "speed": cfg.Speed, "repeat": cfg.Repeat}
 	if mode == "speak" {
-		chime := filepath.Join(dir, "chime.wav")
-		if err = os.WriteFile(chime, inspectionChime(), 0600); err != nil {
-			return nil, err
-		}
-		job["chime"] = chime
+		job["not_before"] = nativeSpeechNotBefore()
 	}
 	payload, _ := json.Marshal(job)
 	cmd := exec.CommandContext(ctx, filepath.Join(root, "python.exe"), "-I", "-B", "-X", "utf8", filepath.Join(root, "tts_helper.py"), mode, dir)

@@ -56,6 +56,8 @@ type inspectionAnnouncer struct {
 	run           func(context.Context, string) error
 	runConfigured func(context.Context, string, TTSConfig) error
 	enabled       bool
+	notice        func()
+	stopNotice    func()
 	status        string
 	queue         []speechJob
 	seen          map[int64]bool
@@ -77,6 +79,9 @@ func (s *inspectionAnnouncer) setEnabled(enabled bool) {
 	s.enabled = enabled
 	s.status = "신청 시 자동 읽기"
 	if !enabled {
+		if s.stopNotice != nil {
+			s.stopNotice()
+		}
 		s.status = "음성 알림 꺼짐"
 		s.queue = nil
 		if s.cancel != nil {
@@ -126,6 +131,9 @@ func (s *inspectionAnnouncer) enqueue(e desktopEvent) {
 		cfg = &copy
 	}
 	s.queue = append(s.queue, speechJob{t, e.SpeechPreview, cfg})
+	if s.notice != nil {
+		s.notice()
+	}
 	select {
 	case s.wake <- struct{}{}:
 	default:
@@ -178,6 +186,11 @@ func (s *inspectionAnnouncer) loop() {
 	}
 }
 func (s *inspectionAnnouncer) close() {
+	s.mu.Lock()
+	if s.stopNotice != nil {
+		s.stopNotice()
+	}
+	s.mu.Unlock()
 	s.stop()
 }
 

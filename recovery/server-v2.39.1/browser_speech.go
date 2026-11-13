@@ -90,7 +90,7 @@ func (a *App) speechPollReply(w http.ResponseWriter, r *http.Request, principal 
 	cursor := a.state.NextID
 	alerts := []speechAlert{}
 	after := number(r.FormValue("after"))
-	if active && r.FormValue("baseline") != "1" && after >= 0 && after <= a.state.NextID {
+	if active && r.FormValue("baseline") != "1" && after >= 0 && after < a.state.NextID {
 		events := append([]Event(nil), a.state.Events...)
 		sort.Slice(events, func(i, j int) bool { return events[i].ID < events[j].ID })
 		for _, e := range events {

@@ -91,6 +91,8 @@ class TTSWorker:
         if not isinstance(text, str) or not text.strip() or len(text) > 1600:
             raise ValueError('invalid text')
         voice, speed = job.get('voice','gtts'), job.get('speed',1.1)
+        repeat=job.get('repeat',1)
+        if type(repeat) is not int or repeat not in (1,2):raise ValueError('repeat must be 1 or 2')
         if voice not in ('gtts','sunhi','injoon','sapi') or not isinstance(speed,(int,float)) or not math.isfinite(speed) or not .8 <= speed <= 1.5 or abs(speed*20-round(speed*20))>1e-7:
             raise ValueError('invalid voice/speed')
         with tempfile.TemporaryDirectory(prefix='speech-', dir=self.job_dir) as folder:
@@ -113,7 +115,7 @@ class TTSWorker:
             if self.speak_backend:
                 self.speak_backend(path)
             else:
-                self._play(path,job.get('chime'),voice,speed)
+                self._play(path,job.get('chime'),voice,speed,repeat,job.get('not_before',0))
             return dict(ok=True)
 
     @staticmethod
@@ -149,7 +151,7 @@ class TTSWorker:
             comtypes.CoUninitialize()
 
     @staticmethod
-    def _play(path,chime,voice='gtts',speed=1.1):
+    def _play(path,chime,voice='gtts',speed=1.1,repeat=1,not_before=0):
         os.environ['PYGAME_HIDE_SUPPORT_PROMPT']='1'
         import pygame
         frequency=int(round(24000*speed)) if voice=='gtts' else 24000
@@ -162,7 +164,10 @@ class TTSWorker:
             raw=sound.get_raw()
             # edge-tts already applied +/-% during synthesis: do not speed it up twice.
             pcm=raw if voice in ('sunhi','injoon') or speed==1 else stretch_pcm(raw,frequency,speed)
-            channel=pygame.mixer.Sound(buffer=pcm).play()
+            prepared=pygame.mixer.Sound(buffer=pcm)
+            delay=max(0,min(2,float(not_before)-time.time()))
+            if delay:time.sleep(delay)
+            channel=prepared.play(loops=repeat-1)
             if channel is None:raise RuntimeError('No available audio output channel')
             while channel.get_busy():time.sleep(.02)
         finally:
