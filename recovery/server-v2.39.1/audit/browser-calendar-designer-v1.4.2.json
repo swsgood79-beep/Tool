@@ -1,0 +1,49 @@
+{
+  "data": "synthetic fixture only; real company data not used",
+  "results": [
+    {
+      "role": "admin",
+      "width": 1100,
+      "activeAndCompleteDesigner": "pass",
+      "phone": "pass",
+      "liveDirectoryChange": "pass",
+      "unassignedOmitted": "pass",
+      "specialInstructions": "pass",
+      "horizontalOverflow": false,
+      "javascriptErrors": []
+    },
+    {
+      "role": "admin",
+      "width": 390,
+      "activeAndCompleteDesigner": "pass",
+      "phone": "pass",
+      "liveDirectoryChange": "pass",
+      "unassignedOmitted": "pass",
+      "specialInstructions": "pass",
+      "horizontalOverflow": false,
+      "javascriptErrors": []
+    },
+    {
+      "role": "work",
+      "width": 1100,
+      "activeAndCompleteDesigner": "pass",
+      "phone": "pass",
+      "liveDirectoryChange": "pass",
+      "unassignedOmitted": "pass",
+      "specialInstructions": "pass",
+      "horizontalOverflow": false,
+      "javascriptErrors": []
+    },
+    {
+      "role": "work",
+      "width": 390,
+      "activeAndCompleteDesigner": "pass",
+      "phone": "pass",
+      "liveDirectoryChange": "pass",
+      "unassignedOmitted": "pass",
+      "specialInstructions": "pass",
+      "horizontalOverflow": false,
+      "javascriptErrors": []
+    }
+  ]
+}
