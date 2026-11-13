@@ -1,0 +1,49 @@
+{
+  "source": "synthetic supplied-material values only",
+  "results": [
+    {
+      "role": "admin",
+      "width": 1100,
+      "beforeSpecialInstructions": "pass",
+      "fullTextDialog": "pass",
+      "safeText": "pass",
+      "calendarAndLiveUpdate": "pass",
+      "independentButtonClick": "pass",
+      "horizontalOverflow": false,
+      "javascriptErrors": []
+    },
+    {
+      "role": "admin",
+      "width": 390,
+      "beforeSpecialInstructions": "pass",
+      "fullTextDialog": "pass",
+      "safeText": "pass",
+      "calendarAndLiveUpdate": "pass",
+      "independentButtonClick": "pass",
+      "horizontalOverflow": false,
+      "javascriptErrors": []
+    },
+    {
+      "role": "work",
+      "width": 1100,
+      "beforeSpecialInstructions": "pass",
+      "fullTextDialog": "pass",
+      "safeText": "pass",
+      "calendarAndLiveUpdate": "pass",
+      "independentButtonClick": "pass",
+      "horizontalOverflow": false,
+      "javascriptErrors": []
+    },
+    {
+      "role": "work",
+      "width": 390,
+      "beforeSpecialInstructions": "pass",
+      "fullTextDialog": "pass",
+      "safeText": "pass",
+      "calendarAndLiveUpdate": "pass",
+      "independentButtonClick": "pass",
+      "horizontalOverflow": false,
+      "javascriptErrors": []
+    }
+  ]
+}

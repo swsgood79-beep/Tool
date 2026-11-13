@@ -32,6 +32,8 @@ type Photo struct {
 type Project struct {
 	ID, Revision, InfoRevision, Generation                int64
 	Number, Name, ShippingDueDate                         string
+	SuppliedMaterials                                     string
+	SuppliedMaterialsManaged                              bool
 	Hidden, CombinedPending                               bool
 	LegacyCompleted, ShippingDueManaged                   bool
 	Setting, Shipping                                     Stage
@@ -282,6 +284,7 @@ type ShipmentSummary struct {
 	InfoURL                       string
 	PhotoCount                    int
 	SettingWorker, ShippingWorker string
+	SuppliedMaterials             string
 }
 
 type InspectionView struct {
@@ -346,7 +349,7 @@ func (a *App) view(csrf string) map[string]any {
 			if v.HasSpecialInstructions {
 				infoURL = "/project-info/" + a.state.Board + "/" + fmtID(v.ID)
 			}
-			shipments = append(shipments, ShipmentSummary{v.ID, v.Number, v.Name, infoURL, len(v.Photos), v.Setting.Worker, v.Shipping.Worker})
+			shipments = append(shipments, ShipmentSummary{ProjectID: v.ID, Number: v.Number, Name: v.Name, InfoURL: infoURL, PhotoCount: len(v.Photos), SettingWorker: v.Setting.Worker, ShippingWorker: v.Shipping.Worker, SuppliedMaterials: v.SuppliedMaterials})
 		}
 	}
 	sort.SliceStable(projects, func(i, j int) bool {

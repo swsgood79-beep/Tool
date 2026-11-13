@@ -131,6 +131,10 @@ func TestUploadedScheduleIfProvided(t *testing.T) {
 	if e != nil || len(dates) == 0 {
 		t.Fatal("uploaded schedule headers not parsed", e)
 	}
+	materials, available, err := parseScheduleMaterials(b)
+	if err != nil || !available || len(materials) == 0 {
+		t.Fatal("uploaded N supplied-material column not parsed", err)
+	}
 	t.Logf("parsed orders=%d conflicts=%d (contents withheld)", len(dates), len(conflicts))
 }
 func TestMarketAPIAndPreviousCloseCache(t *testing.T) {

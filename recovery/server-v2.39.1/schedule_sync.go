@@ -186,8 +186,13 @@ func (a *App) syncSchedule(ctx context.Context, force bool) {
 	data, e := a.readSchedule(ctx, c)
 	var dates map[string]string
 	var conflicts map[string]bool
+	var materials map[string]string
+	var materialAvailable bool
 	if e == nil {
 		dates, conflicts, e = parseSchedule(data)
+	}
+	if e == nil {
+		materials, materialAvailable, e = parseScheduleMaterials(data)
 	}
 	a.mu.Lock()
 	defer a.mu.Unlock()
@@ -201,10 +206,21 @@ func (a *App) syncSchedule(ctx context.Context, force bool) {
 		a.integration.ScheduleStatus = status
 		return
 	}
-	matched, changed := 0, 0
+	matched, changed, materialChanged := 0, 0, 0
 	e = a.transaction(func(s *State) error {
 		for i := range s.Projects {
 			p := &s.Projects[i]
+			if materialAvailable {
+				value, found := materials[p.Number]
+				if found {
+					if p.SuppliedMaterials != value {
+						p.SuppliedMaterials = value
+						p.Revision++
+						materialChanged++
+					}
+					p.SuppliedMaterialsManaged = found
+				}
+			}
 			if conflicts[p.Number] {
 				continue
 			}
@@ -222,7 +238,7 @@ func (a *App) syncSchedule(ctx context.Context, force bool) {
 			}
 			p.ShippingDueManaged = ok
 		}
-		if changed > 0 {
+		if changed > 0 || materialChanged > 0 {
 			s.ScheduleApplied = time.Now().Format(time.RFC3339)
 		}
 		return nil
@@ -240,6 +256,8 @@ func (a *App) syncSchedule(ctx context.Context, force bool) {
 			dated++
 		}
 	}
+	status["material_available"] = materialAvailable
+	status["material_changed"] = materialChanged
 	status["dated"] = dated
 	status["unset"] = unset
 	status["matched"] = matched
@@ -251,10 +269,10 @@ func (a *App) syncSchedule(ctx context.Context, force bool) {
 func (a *App) scheduleJSON() map[string]any {
 	r := a.integration.ScheduleStatus
 	s := map[string]any{"Error": text(r["error"]), "Success": r["success"], "Next": r["next"]}
-	for _, key := range []string{"SourceOrders", "Dated", "Unset", "Matched", "Changed", "Unmatched", "Conflicts"} {
+	for _, key := range []string{"SourceOrders", "Dated", "Unset", "Matched", "Changed", "Unmatched", "Conflicts", "MaterialChanged"} {
 		s[key] = 0
 	}
-	for from, to := range map[string]string{"source_orders": "SourceOrders", "matched": "Matched", "changed": "Changed", "unmatched": "Unmatched", "conflicts": "Conflicts", "dated": "Dated", "unset": "Unset"} {
+	for from, to := range map[string]string{"source_orders": "SourceOrders", "matched": "Matched", "changed": "Changed", "unmatched": "Unmatched", "conflicts": "Conflicts", "dated": "Dated", "unset": "Unset", "material_changed": "MaterialChanged"} {
 		if v, ok := r[from]; ok {
 			s[to] = v
 		}
@@ -263,5 +281,5 @@ func (a *App) scheduleJSON() map[string]any {
 	if label == "" {
 		label = "납기표 미연결"
 	}
-	return map[string]any{"status": s, "enabled": a.state.Integration.Schedule.Enabled, "applied": a.state.ScheduleApplied, "label": label}
+	return map[string]any{"status": s, "enabled": a.state.Integration.Schedule.Enabled, "applied": a.state.ScheduleApplied, "label": label, "material_available": r["material_available"]}
 }
