@@ -26,10 +26,30 @@ func (a *App) browserSpeechPOST(w http.ResponseWriter, r *http.Request, session 
 	if r.Method != "POST" || r.URL.Path != "/admin-speech/poll" {
 		return false
 	}
+	a.speechPollReply(w, r, session.CSRF, false)
+	return true
+}
+
+// Worker-board access permits request announcements, never administrator messages/settings.
+// Called under App.mu after the board URL has been checked by worker().
+func (a *App) workerSpeech(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		w.Header().Set("Allow", "POST")
+		http.Error(w, "음성 연결은 POST로 요청하세요.", http.StatusMethodNotAllowed)
+		return
+	}
+	if !equal(r.FormValue("csrf"), a.state.Board) {
+		http.Error(w, "작업장 요청 검증 실패", http.StatusForbidden)
+		return
+	}
+	a.speechPollReply(w, r, a.state.Board, true)
+}
+
+func (a *App) speechPollReply(w http.ResponseWriter, r *http.Request, principal string, shared bool) {
 	owner, device := r.FormValue("owner"), r.FormValue("device")
 	if !speechIdentity.MatchString(owner) || !speechIdentity.MatchString(device) {
 		http.Error(w, "음성 연결 식별자 오류", 400)
-		return true
+		return
 	}
 	now := time.Now()
 	if a.integration.SpeechLeases == nil {
@@ -44,21 +64,21 @@ func (a *App) browserSpeechPOST(w http.ResponseWriter, r *http.Request, session 
 	if localRequest(r) {
 		scope = "local"
 	}
-	identity := hashToken(session.CSRF + ":" + owner)
+	identity := hashToken(principal + ":" + owner)
 	lease := a.integration.SpeechLeases[scope]
 	active := false
 	if r.FormValue("enabled") == "1" {
 		if lease.Owner == "" || lease.Owner == identity {
 			if len(a.integration.SpeechLeases) >= 64 && lease.Owner == "" {
 				http.Error(w, "음성 연결 수가 너무 많습니다.", 429)
-				return true
+				return
 			}
 			// The explicit browser ON click replaces the local default voice. OFF must
 			// not unexpectedly restart the old Windows voice on the next application.
-			if scope == "local" && r.FormValue("select_browser") == "1" && !a.state.Integration.DesktopSpeechMuted {
+			if !shared && scope == "local" && r.FormValue("select_browser") == "1" && !a.state.Integration.DesktopSpeechMuted {
 				if err := a.transaction(func(s *State) error { s.Integration.DesktopSpeechMuted = true; return nil }); err != nil {
 					http.Error(w, "PC 기본 음성을 끄지 못했습니다.", 500)
-					return true
+					return
 				}
 			}
 			a.integration.SpeechLeases[scope] = speechLease{identity, now.Add(9 * time.Second)}
@@ -74,8 +94,14 @@ func (a *App) browserSpeechPOST(w http.ResponseWriter, r *http.Request, session 
 		events := append([]Event(nil), a.state.Events...)
 		sort.Slice(events, func(i, j int) bool { return events[i].ID < events[j].ID })
 		for _, e := range events {
-			if e.ID <= after || !e.Unread || !notifyEvent(e) || (e.BatchID != 0 && e.BatchID != e.ID) {
+			if e.ID <= after || (!shared && !e.Unread) || !notifyEvent(e) || (e.BatchID != 0 && e.BatchID != e.ID) {
 				continue
+			}
+			if shared {
+				p := a.state.project(e.ProjectID)
+				if e.IsNote || !e.Pending || p == nil || p.Hidden || p.LegacyCompleted || p.Shipping.Completed != nil {
+					continue
+				}
 			}
 			if p := a.state.project(e.ProjectID); p != nil {
 				e.Project, e.Order = p.Name, p.Number
@@ -95,5 +121,4 @@ func (a *App) browserSpeechPOST(w http.ResponseWriter, r *http.Request, session 
 		}
 	}
 	jsonReply(w, map[string]any{"ok": true, "active": active, "cursor": cursor, "events": alerts, "native_suppressed": active && scope == "local"})
-	return true
 }

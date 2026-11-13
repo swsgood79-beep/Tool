@@ -90,8 +90,8 @@ func TestBrowserSpeechAlertsUseExistingRequestsAndNotesWithoutChangingData(t *te
 		}
 	}
 	worker := call(a, "GET", "/work/"+a.state.Board, nil)
-	if strings.Contains(worker.Body.String(), "electron-speech-toggle") {
-		t.Fatal("admin toolbar exposed to worker")
+	if strings.Contains(worker.Body.String(), `data-csrf="admin-csrf"`) || !strings.Contains(worker.Body.String(), `data-mode="shared"`) {
+		t.Fatal("worker voice toolbar is not isolated from administrator controls")
 	}
 }
 func TestBrowserSpeechLeasePreventsSamePCDuplicatesAndExpires(t *testing.T) {

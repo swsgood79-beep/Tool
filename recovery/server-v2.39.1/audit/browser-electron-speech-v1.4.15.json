@@ -1,0 +1,134 @@
+{
+  "scope": "Go-rendered synthetic admin HTML and mocked authenticated API, SpeechSynthesis and AudioContext; no actual installed voice/audio output claim",
+  "results": [
+    {
+      "voice": "google",
+      "width": 1100,
+      "selectedVoice": "Google 한국의",
+      "rate": 1.1,
+      "pitch": 1,
+      "clickUnlock": "pass",
+      "fifoAndNoOverlap": "pass",
+      "duplicateSuppression": "pass",
+      "chimeBeforeMessage": "pass",
+      "offCancellation": "pass",
+      "noOverflow": "pass"
+    },
+    {
+      "voice": "google",
+      "width": 390,
+      "selectedVoice": "Google 한국의",
+      "rate": 1.1,
+      "pitch": 1,
+      "clickUnlock": "pass",
+      "fifoAndNoOverlap": "pass",
+      "duplicateSuppression": "pass",
+      "chimeBeforeMessage": "pass",
+      "offCancellation": "pass",
+      "noOverflow": "pass"
+    },
+    {
+      "voice": "sunhi",
+      "width": 1100,
+      "selectedVoice": "Microsoft SunHi Online (Natural) - Korean (Korea)",
+      "rate": 1.1,
+      "pitch": 1,
+      "clickUnlock": "pass",
+      "fifoAndNoOverlap": "pass",
+      "duplicateSuppression": "pass",
+      "chimeBeforeMessage": "pass",
+      "offCancellation": "pass",
+      "noOverflow": "pass"
+    },
+    {
+      "voice": "sunhi",
+      "width": 390,
+      "selectedVoice": "Microsoft SunHi Online (Natural) - Korean (Korea)",
+      "rate": 1.1,
+      "pitch": 1,
+      "clickUnlock": "pass",
+      "fifoAndNoOverlap": "pass",
+      "duplicateSuppression": "pass",
+      "chimeBeforeMessage": "pass",
+      "offCancellation": "pass",
+      "noOverflow": "pass"
+    },
+    {
+      "voice": "heami",
+      "width": 1100,
+      "selectedVoice": "Microsoft Heami - Korean (Korea)",
+      "rate": 1.1,
+      "pitch": 1,
+      "clickUnlock": "pass",
+      "fifoAndNoOverlap": "pass",
+      "duplicateSuppression": "pass",
+      "chimeBeforeMessage": "pass",
+      "offCancellation": "pass",
+      "noOverflow": "pass"
+    },
+    {
+      "voice": "heami",
+      "width": 390,
+      "selectedVoice": "Microsoft Heami - Korean (Korea)",
+      "rate": 1.1,
+      "pitch": 1,
+      "clickUnlock": "pass",
+      "fifoAndNoOverlap": "pass",
+      "duplicateSuppression": "pass",
+      "chimeBeforeMessage": "pass",
+      "offCancellation": "pass",
+      "noOverflow": "pass"
+    },
+    {
+      "voice": "korean-fallback",
+      "width": 1100,
+      "selectedVoice": "Other Korean",
+      "rate": 1.1,
+      "pitch": 1,
+      "clickUnlock": "pass",
+      "fifoAndNoOverlap": "pass",
+      "duplicateSuppression": "pass",
+      "chimeBeforeMessage": "pass",
+      "offCancellation": "pass",
+      "noOverflow": "pass"
+    },
+    {
+      "voice": "korean-fallback",
+      "width": 390,
+      "selectedVoice": "Other Korean",
+      "rate": 1.1,
+      "pitch": 1,
+      "clickUnlock": "pass",
+      "fifoAndNoOverlap": "pass",
+      "duplicateSuppression": "pass",
+      "chimeBeforeMessage": "pass",
+      "offCancellation": "pass",
+      "noOverflow": "pass"
+    }
+  ],
+  "sharedResults": [
+    {
+      "width": 1100,
+      "publicBoardEndpointWithoutAdminLogin": "pass",
+      "workerTokenOnly": "pass",
+      "noAdminSettingsRequest": "pass",
+      "newOtherWorkerRequestSpeech": "pass",
+      "voiceAndRate": "pass",
+      "offCancellation": "pass",
+      "noOverflow": "pass"
+    },
+    {
+      "width": 390,
+      "publicBoardEndpointWithoutAdminLogin": "pass",
+      "workerTokenOnly": "pass",
+      "noAdminSettingsRequest": "pass",
+      "newOtherWorkerRequestSpeech": "pass",
+      "voiceAndRate": "pass",
+      "offCancellation": "pass",
+      "noOverflow": "pass"
+    }
+  ],
+  "lateVoices": "pass",
+  "rivalTabAndTakeover": "pass",
+  "authenticationFailureStopsPlayback": "pass"
+}

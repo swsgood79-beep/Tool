@@ -132,7 +132,7 @@ func (a *App) worker(w http.ResponseWriter, r *http.Request) bool {
 	}
 	kind := parts[0]
 	public := false
-	for _, v := range []string{"work", "status", "card", "complete", "combined", "note", "project-info", "project-photo", "markets", "client-directory", "client-photo"} {
+	for _, v := range []string{"work", "status", "card", "complete", "combined", "note", "project-info", "project-photo", "markets", "client-directory", "client-photo", "worker-speech"} {
 		if kind == v {
 			public = true
 		}
@@ -142,6 +142,14 @@ func (a *App) worker(w http.ResponseWriter, r *http.Request) bool {
 	}
 	if !equal(parts[1], a.state.Board) {
 		http.NotFound(w, r)
+		return true
+	}
+	if kind == "worker-speech" {
+		if len(parts) != 2 {
+			http.NotFound(w, r)
+		} else {
+			a.workerSpeech(w, r)
+		}
 		return true
 	}
 	if r.Method != "GET" && (kind == "client-directory" || kind == "client-photo") {
