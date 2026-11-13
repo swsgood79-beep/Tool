@@ -71,6 +71,7 @@ type Handoff struct {
 	Expires     time.Time
 }
 type IntegrationRuntime struct {
+	SpeechLeases     map[string]speechLease
 	Minutes          map[string]MinuteQuote
 	Flows            map[string]PasskeyFlow
 	Starts           map[string]PasskeyFlow

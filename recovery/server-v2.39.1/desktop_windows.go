@@ -427,8 +427,11 @@ func (d *winDesktop) command(id int) {
 	case idSpeechPreview:
 		d.App.mu.Lock()
 		muted := d.App.state.Integration.DesktopSpeechMuted
+		webSpeech := d.App.integration.SpeechLeases["local"].Expires.After(time.Now())
 		d.App.mu.Unlock()
-		if muted {
+		if webSpeech {
+			nativeError("관리자 웹 화면에서 ‘전자녀 알람’ 옆의 미리듣기를 눌러 주세요.")
+		} else if muted {
 			nativeError("‘음성 알림 꺼짐’을 눌러 켠 뒤 미리듣기를 눌러 주세요.")
 		} else if d.Speech != nil {
 			d.Speech.enqueue(desktopEvent{Pending: true, Inspection: "combined", Project: "알파 작업 확인", Worker: "홍길동"})
@@ -473,14 +476,19 @@ func (d *winDesktop) refresh() {
 	if d.Speech != nil {
 		d.App.mu.Lock()
 		muted := d.App.state.Integration.DesktopSpeechMuted
+		webSpeech := d.App.integration.SpeechLeases["local"].Expires.After(time.Now())
 		d.App.mu.Unlock()
-		d.Speech.setEnabled(!muted)
+		d.Speech.setEnabled(!muted && !webSpeech)
 		label := "음성 알림 켜짐"
 		if muted {
 			label = "음성 알림 꺼짐"
 		}
 		d.set(idSpeechToggle, label)
-		d.set(idSpeechStatus, d.Speech.state())
+		status := d.Speech.state()
+		if webSpeech {
+			status = "웹 전자녀 음성 사용 중"
+		}
+		d.set(idSpeechStatus, status)
 		if !d.SpeechReady {
 			d.Speech.prime(v.Events)
 			d.SpeechReady = true
@@ -517,7 +525,16 @@ func (d *winDesktop) enqueue(e desktopEvent) {
 		d.Seen[e.ID] = true
 	}
 	if d.Speech != nil && (e.ID == 0 || !d.App.testMode) {
-		d.Speech.enqueue(e)
+		d.App.mu.Lock()
+		webSpeech := d.App.integration.SpeechLeases["local"].Expires.After(time.Now())
+		muted := d.App.state.Integration.DesktopSpeechMuted
+		d.App.mu.Unlock()
+		d.Speech.setEnabled(!muted && !webSpeech)
+		if webSpeech || muted {
+			d.Speech.prime([]desktopEvent{e})
+		} else {
+			d.Speech.enqueue(e)
+		}
 	}
 	if e.ID > 0 && inspectionSpeech(e) == "" {
 		syscall.NewLazyDLL("winmm.dll").NewProc("PlaySoundW").Call(uintptr(unsafe.Pointer(wide("SystemNotification"))), 0, 0x10003)

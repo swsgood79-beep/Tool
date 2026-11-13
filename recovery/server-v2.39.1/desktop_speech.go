@@ -9,27 +9,33 @@ import (
 	"unicode"
 )
 
-// Only inspection applications are spoken. Text is passed as data, never SSML or code.
+func speechField(s, fallback string, limit int) string {
+	s = strings.Join(strings.FieldsFunc(s, func(r rune) bool { return unicode.IsSpace(r) || unicode.IsControl(r) }), " ")
+	r := []rune(s)
+	if len(r) > limit {
+		s = string(r[:limit]) + ", 나머지 내용은 화면에서 확인해 주세요"
+	}
+	if s == "" {
+		return fallback
+	}
+	return s
+}
+
+// Existing request/note alerts only. Text is data, never SSML or code.
 func inspectionSpeech(e desktopEvent) string {
-	if !e.Pending || e.IsNote || e.Rejected {
+	if e.Rejected || (!e.Pending && !e.IsNote) {
 		return ""
+	}
+	worker := speechField(e.Worker, "작업자", 100)
+	project := speechField(e.Project, "이름 없음", 200)
+	if e.IsNote {
+		return worker + "님이 " + project + " 비고 메시지를 남겼습니다. " + speechField(e.Note, "내용을 화면에서 확인해 주세요", 300)
 	}
 	kind := map[string]string{"setting": "세팅검사", "shipping": "출하검사", "combined": "세팅 및 출하 통합검사"}[e.Inspection]
 	if kind == "" {
 		return ""
 	}
-	clean := func(s, fallback string) string {
-		s = strings.Join(strings.FieldsFunc(s, func(r rune) bool { return unicode.IsSpace(r) || unicode.IsControl(r) }), " ")
-		r := []rune(s)
-		if len(r) > 200 {
-			s = string(r[:200])
-		}
-		if s == "" {
-			return fallback
-		}
-		return s
-	}
-	return "프로젝트, " + clean(e.Project, "이름 없음") + ". " + kind + " 신청입니다. 신청자, " + clean(e.Worker, "이름 없음") + "."
+	return worker + "님이 " + project + "의 " + kind + "를 신청했습니다."
 }
 
 type speechJob struct{ text string }

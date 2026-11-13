@@ -13,17 +13,21 @@ func TestInspectionSpeechContainsOnlyRequestedFieldsAndSupportedRequests(t *test
 	for _, kind := range []string{"setting", "shipping", "combined"} {
 		e := desktopEvent{Pending: true, Inspection: kind, Project: "프로젝트\n이름", Worker: "홍길동\x00", Order: "READ-NO-ORDER", Note: "READ-NO-NOTE"}
 		text := inspectionSpeech(e)
-		if !strings.HasPrefix(text, "프로젝트, 프로젝트 이름.") || !strings.HasSuffix(text, "신청자, 홍길동.") || strings.Contains(text, "READ-NO") || strings.ContainsAny(text, "\n\x00") {
+		if !strings.HasPrefix(text, "홍길동님이 프로젝트 이름의 ") || !strings.HasSuffix(text, "신청했습니다.") || strings.Contains(text, "READ-NO") || strings.ContainsAny(text, "\n\x00") {
 			t.Fatal("wrong speech fields", text)
 		}
 		if kind == "combined" && !strings.Contains(text, "세팅 및 출하 통합검사") {
 			t.Fatal(text)
 		}
-		for _, silent := range []desktopEvent{{Inspection: kind}, {Pending: true, Inspection: kind, IsNote: true}, {Pending: true, Inspection: kind, Rejected: true}, {Pending: true, Inspection: "unknown"}} {
+		for _, silent := range []desktopEvent{{Inspection: kind}, {Pending: true, Inspection: kind, Rejected: true}, {Pending: true, Inspection: "unknown"}} {
 			if inspectionSpeech(silent) != "" {
 				t.Fatal("non-application announced", silent)
 			}
 		}
+	}
+	note := inspectionSpeech(desktopEvent{IsNote: true, Project: "샘플", Worker: "김작업", Note: "센서를 확인해 주세요."})
+	if note != "김작업님이 샘플 비고 메시지를 남겼습니다. 센서를 확인해 주세요." {
+		t.Fatal(note)
 	}
 }
 func awaitSpeech[T any](t *testing.T, ch <-chan T) T {

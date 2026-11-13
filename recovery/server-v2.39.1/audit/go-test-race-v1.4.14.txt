@@ -1,0 +1,239 @@
+=== RUN   TestBrowserSpeechAlertsUseExistingRequestsAndNotesWithoutChangingData
+--- PASS: TestBrowserSpeechAlertsUseExistingRequestsAndNotesWithoutChangingData (0.10s)
+=== RUN   TestBrowserSpeechLeasePreventsSamePCDuplicatesAndExpires
+--- PASS: TestBrowserSpeechLeasePreventsSamePCDuplicatesAndExpires (0.05s)
+=== RUN   TestRemoteBrowserSpeechDoesNotSuppressPC
+--- PASS: TestRemoteBrowserSpeechDoesNotSuppressPC (0.04s)
+=== RUN   TestBrowserSpeechExplicitSelectionKeepsOldVoiceOffAfterBrowserOff
+--- PASS: TestBrowserSpeechExplicitSelectionKeepsOldVoiceOffAfterBrowserOff (0.07s)
+=== RUN   TestBrowserSpeechRequiresAuthenticationCSRFAndValidOwner
+--- PASS: TestBrowserSpeechRequiresAuthenticationCSRFAndValidOwner (0.04s)
+=== RUN   TestBrowserSpeechPaginationDoesNotLoseLargeBurst
+--- PASS: TestBrowserSpeechPaginationDoesNotLoseLargeBurst (0.22s)
+=== RUN   TestCalendarDesignerMetadataAcrossRolesAndPolling
+--- PASS: TestCalendarDesignerMetadataAcrossRolesAndPolling (0.04s)
+=== RUN   TestWin32X64ABIFromOriginalRTTI
+--- PASS: TestWin32X64ABIFromOriginalRTTI (0.00s)
+=== RUN   TestDesktopNoticeStructuredFieldsAndTypes
+=== RUN   TestDesktopNoticeStructuredFieldsAndTypes/setting
+=== RUN   TestDesktopNoticeStructuredFieldsAndTypes/shipping
+=== RUN   TestDesktopNoticeStructuredFieldsAndTypes/combined
+=== RUN   TestDesktopNoticeStructuredFieldsAndTypes/completed
+=== RUN   TestDesktopNoticeStructuredFieldsAndTypes/note
+--- PASS: TestDesktopNoticeStructuredFieldsAndTypes (0.00s)
+    --- PASS: TestDesktopNoticeStructuredFieldsAndTypes/setting (0.00s)
+    --- PASS: TestDesktopNoticeStructuredFieldsAndTypes/shipping (0.00s)
+    --- PASS: TestDesktopNoticeStructuredFieldsAndTypes/combined (0.00s)
+    --- PASS: TestDesktopNoticeStructuredFieldsAndTypes/completed (0.00s)
+    --- PASS: TestDesktopNoticeStructuredFieldsAndTypes/note (0.00s)
+=== RUN   TestDesktopSnapshotUsesLatestProjectNamesWithoutMarkingRead
+--- PASS: TestDesktopSnapshotUsesLatestProjectNamesWithoutMarkingRead (0.03s)
+=== RUN   TestCompletionRecordsDoNotBecomePCAlerts
+--- PASS: TestCompletionRecordsDoNotBecomePCAlerts (0.03s)
+=== RUN   TestInspectionSpeechContainsOnlyRequestedFieldsAndSupportedRequests
+--- PASS: TestInspectionSpeechContainsOnlyRequestedFieldsAndSupportedRequests (0.00s)
+=== RUN   TestInspectionAnnouncerFIFOAndDuplicateStartupReplaySuppression
+--- PASS: TestInspectionAnnouncerFIFOAndDuplicateStartupReplaySuppression (0.00s)
+=== RUN   TestInspectionAnnouncerMuteCancelsAndClearsQueueAndSurvivesFailure
+--- PASS: TestInspectionAnnouncerMuteCancelsAndClearsQueueAndSurvivesFailure (0.00s)
+=== RUN   TestInspectionChimeIsValidBoundedPCM
+--- PASS: TestInspectionChimeIsValidBoundedPCM (0.00s)
+=== RUN   TestDesktopSpeechMuteSurvivesOperatingDataRestart
+--- PASS: TestDesktopSpeechMuteSurvivesOperatingDataRestart (0.07s)
+=== RUN   TestDirectJournalCrashRollbackAtEveryFile
+=== RUN   TestDirectJournalCrashRollbackAtEveryFile/connection-v1.dat
+=== RUN   TestDirectJournalCrashRollbackAtEveryFile/phone-push-v1.dat
+=== RUN   TestDirectJournalCrashRollbackAtEveryFile/designers-v1.dat
+=== RUN   TestDirectJournalCrashRollbackAtEveryFile/client-notes-v1.dat
+=== RUN   TestDirectJournalCrashRollbackAtEveryFile/backup-v1.dat
+=== RUN   TestDirectJournalCrashRollbackAtEveryFile/projects-v2.dat
+--- PASS: TestDirectJournalCrashRollbackAtEveryFile (0.45s)
+    --- PASS: TestDirectJournalCrashRollbackAtEveryFile/connection-v1.dat (0.07s)
+    --- PASS: TestDirectJournalCrashRollbackAtEveryFile/phone-push-v1.dat (0.08s)
+    --- PASS: TestDirectJournalCrashRollbackAtEveryFile/designers-v1.dat (0.06s)
+    --- PASS: TestDirectJournalCrashRollbackAtEveryFile/client-notes-v1.dat (0.07s)
+    --- PASS: TestDirectJournalCrashRollbackAtEveryFile/backup-v1.dat (0.08s)
+    --- PASS: TestDirectJournalCrashRollbackAtEveryFile/projects-v2.dat (0.09s)
+=== RUN   TestDirectJournalCrashAfterCommitKeepsNewState
+--- PASS: TestDirectJournalCrashAfterCommitKeepsNewState (0.06s)
+=== RUN   TestDirectJournalErrorRollbackAndRetry
+--- PASS: TestDirectJournalErrorRollbackAndRetry (0.08s)
+=== RUN   TestDirectJournalRejectsForeignEditsAndInvalidPaths
+--- PASS: TestDirectJournalRejectsForeignEditsAndInvalidPaths (0.04s)
+=== RUN   TestDirectJournalPreflightsAllRollbackBytes
+--- PASS: TestDirectJournalPreflightsAllRollbackBytes (0.05s)
+=== RUN   TestDirectProjectionOriginalReaderAndUnknownFields
+--- PASS: TestDirectProjectionOriginalReaderAndUnknownFields (0.08s)
+=== RUN   TestDirectReimportsOriginalChangesOnRestart
+--- PASS: TestDirectReimportsOriginalChangesOnRestart (0.06s)
+=== RUN   TestDirectBlockedBackupNeverWritesOriginals
+--- PASS: TestDirectBlockedBackupNeverWritesOriginals (0.03s)
+=== RUN   TestDirectSourcePhotosMaterializedAsIndependentJPEGs
+--- PASS: TestDirectSourcePhotosMaterializedAsIndependentJPEGs (0.06s)
+=== RUN   TestNativeTicketOneUseAndAdminCookie
+--- PASS: TestNativeTicketOneUseAndAdminCookie (0.05s)
+=== RUN   TestPopupTimeoutAndUnreadAreIndependent
+--- PASS: TestPopupTimeoutAndUnreadAreIndependent (0.06s)
+=== RUN   TestDirectUpgradeFromV02PreservesShadowAndMigratesPassword
+--- PASS: TestDirectUpgradeFromV02PreservesShadowAndMigratesPassword (11.55s)
+=== RUN   TestDirectInitialCrashRemovesOnlyNewFiles
+--- PASS: TestDirectInitialCrashRemovesOnlyNewFiles (0.02s)
+=== RUN   TestDuplicateOrderShowsCompletedAndHiddenWithoutChangingData
+=== RUN   TestDuplicateOrderShowsCompletedAndHiddenWithoutChangingData/completed
+=== RUN   TestDuplicateOrderShowsCompletedAndHiddenWithoutChangingData/hidden
+--- PASS: TestDuplicateOrderShowsCompletedAndHiddenWithoutChangingData (0.08s)
+    --- PASS: TestDuplicateOrderShowsCompletedAndHiddenWithoutChangingData/completed (0.05s)
+    --- PASS: TestDuplicateOrderShowsCompletedAndHiddenWithoutChangingData/hidden (0.04s)
+=== RUN   TestDuplicateLookupNeedsAdminLogin
+--- PASS: TestDuplicateLookupNeedsAdminLogin (0.11s)
+=== RUN   TestDeletedTestOrderNumberCanBeRegisteredAgain
+--- PASS: TestDeletedTestOrderNumberCanBeRegisteredAgain (0.14s)
+=== RUN   TestFirstStartChoiceDoesNotGuessOrOverwrite
+--- PASS: TestFirstStartChoiceDoesNotGuessOrOverwrite (0.00s)
+=== RUN   TestFirstStartEmptyNeedsExplicitChoice
+--- PASS: TestFirstStartEmptyNeedsExplicitChoice (0.00s)
+=== RUN   TestDesktopConnectionOnlyGreenAfterVerifiedTunnel
+--- PASS: TestDesktopConnectionOnlyGreenAfterVerifiedTunnel (0.04s)
+=== RUN   TestFolderOpensAsPathWithKoreanAndSpacesAndReportsShellFailure
+--- PASS: TestFolderOpensAsPathWithKoreanAndSpacesAndReportsShellFailure (0.00s)
+=== RUN   TestRejectInspectionAllowsNewRequestAndPreservesApprovedStages
+=== RUN   TestRejectInspectionAllowsNewRequestAndPreservesApprovedStages/setting
+=== RUN   TestRejectInspectionAllowsNewRequestAndPreservesApprovedStages/shipping
+=== RUN   TestRejectInspectionAllowsNewRequestAndPreservesApprovedStages/combined
+--- PASS: TestRejectInspectionAllowsNewRequestAndPreservesApprovedStages (0.61s)
+    --- PASS: TestRejectInspectionAllowsNewRequestAndPreservesApprovedStages/setting (0.19s)
+    --- PASS: TestRejectInspectionAllowsNewRequestAndPreservesApprovedStages/shipping (0.25s)
+    --- PASS: TestRejectInspectionAllowsNewRequestAndPreservesApprovedStages/combined (0.18s)
+=== RUN   TestRejectEndpointRequiresAdminAndCSRF
+--- PASS: TestRejectEndpointRequiresAdminAndCSRF (0.10s)
+=== RUN   TestConcurrentApproveAndRejectOnlyOneSucceeds
+--- PASS: TestConcurrentApproveAndRejectOnlyOneSucceeds (0.09s)
+=== RUN   TestCombinedCannotBeRejectedWithSingleStageForm
+--- PASS: TestCombinedCannotBeRejectedWithSingleStageForm (0.07s)
+=== RUN   TestRejectShippingAfterPartialCombinedApprovalKeepsSetting
+--- PASS: TestRejectShippingAfterPartialCombinedApprovalKeepsSetting (0.12s)
+=== RUN   TestRejectedHistoryDeletionDoesNotCancelNewRequest
+--- PASS: TestRejectedHistoryDeletionDoesNotCancelNewRequest (0.15s)
+=== RUN   TestLegacyDirectWritePreservesBackupAndBoard
+--- PASS: TestLegacyDirectWritePreservesBackupAndBoard (0.07s)
+=== RUN   TestScheduleDownloadApplyAndConflicts
+--- PASS: TestScheduleDownloadApplyAndConflicts (0.12s)
+=== RUN   TestUploadedScheduleIfProvided
+    integration_test.go:138: parsed orders=52 conflicts=0 (contents withheld)
+--- PASS: TestUploadedScheduleIfProvided (2.88s)
+=== RUN   TestMarketAPIAndPreviousCloseCache
+--- PASS: TestMarketAPIAndPreviousCloseCache (0.03s)
+=== RUN   TestEncryptedBackupRoundTripAndWrongKey
+--- PASS: TestEncryptedBackupRoundTripAndWrongKey (0.10s)
+=== RUN   TestOriginalBackupManifestCompatibility
+--- PASS: TestOriginalBackupManifestCompatibility (0.01s)
+=== RUN   TestWebAuthnRealCryptoFlowAndReplay
+--- PASS: TestWebAuthnRealCryptoFlowAndReplay (0.10s)
+=== RUN   TestPushPayloadAndHostWhitelist
+--- PASS: TestPushPayloadAndHostWhitelist (0.21s)
+=== RUN   TestPublicHostAndDeepLink
+--- PASS: TestPublicHostAndDeepLink (0.04s)
+=== RUN   TestGitHubUploadVerificationAndPointerOwnership
+--- PASS: TestGitHubUploadVerificationAndPointerOwnership (0.08s)
+=== RUN   TestMinuteFallbackCacheAndRetryAfter
+--- PASS: TestMinuteFallbackCacheAndRetryAfter (0.04s)
+=== RUN   TestMarketStatusEndpointMatchesFrontendAndCachedQuotes
+--- PASS: TestMarketStatusEndpointMatchesFrontendAndCachedQuotes (0.04s)
+=== RUN   TestMaterialFirstRowAndFirstLineIncludingBlank
+--- PASS: TestMaterialFirstRowAndFirstLineIncludingBlank (0.07s)
+=== RUN   TestMaterialRGBThemeAndConditionalColor
+--- PASS: TestMaterialRGBThemeAndConditionalColor (0.09s)
+=== RUN   TestMaterialOnlyColorChangePersistsAndRefreshes
+--- PASS: TestMaterialOnlyColorChangePersistsAndRefreshes (0.24s)
+=== RUN   TestMaterialThemeTintResolved
+--- PASS: TestMaterialThemeTintResolved (0.06s)
+=== RUN   TestImportTitleMatchingAndAmbiguity
+--- PASS: TestImportTitleMatchingAndAmbiguity (0.00s)
+=== RUN   TestImportPreviewCommitLinksPhotosMemoAndNoOverwrite
+--- PASS: TestImportPreviewCommitLinksPhotosMemoAndNoOverwrite (0.17s)
+=== RUN   TestImportInvalidConnectionsRollbackAndOwnerExpiry
+--- PASS: TestImportInvalidConnectionsRollbackAndOwnerExpiry (0.11s)
+=== RUN   TestImportFormulaLimitsSheetsAndTemplate
+--- PASS: TestImportFormulaLimitsSheetsAndTemplate (0.35s)
+=== RUN   TestWorkerClientDirectoryReadOnlyBoardPhotosAndEscaping
+--- PASS: TestWorkerClientDirectoryReadOnlyBoardPhotosAndEscaping (0.09s)
+=== RUN   TestWorkbookMergePreservesManualDataAndUpdatesOnlyChangedFields
+--- PASS: TestWorkbookMergePreservesManualDataAndUpdatesOnlyChangedFields (0.16s)
+=== RUN   TestWorkbookAttachmentDurableAndNewEventsNotDuplicated
+--- PASS: TestWorkbookAttachmentDurableAndNewEventsNotDuplicated (0.35s)
+=== RUN   TestProductionCopiesOriginalAndKeepsSettingsAndBoard
+--- PASS: TestProductionCopiesOriginalAndKeepsSettingsAndBoard (0.13s)
+=== RUN   TestProductionRejectsOriginalTestAndUnsafeSelection
+--- PASS: TestProductionRejectsOriginalTestAndUnsafeSelection (0.08s)
+=== RUN   TestPromoteTestKeepsBusinessButRestoresOriginalConnections
+--- PASS: TestPromoteTestKeepsBusinessButRestoresOriginalConnections (0.23s)
+=== RUN   TestProductionEmptyRestoreStartDoesNotReplaceExistingData
+--- PASS: TestProductionEmptyRestoreStartDoesNotReplaceExistingData (0.01s)
+=== RUN   TestProductionEndpointsOpenButTestStillBlocksServices
+--- PASS: TestProductionEndpointsOpenButTestStillBlocksServices (0.09s)
+=== RUN   TestTestNativeHandoffWorksWithoutOpeningExternalPasskeyLogin
+--- PASS: TestTestNativeHandoffWorksWithoutOpeningExternalPasskeyLogin (0.05s)
+=== RUN   TestTestCopiesUseLatestProductionAfterCutover
+--- PASS: TestTestCopiesUseLatestProductionAfterCutover (0.08s)
+=== RUN   TestScheduleDirectDownloadBeforeAPI
+--- PASS: TestScheduleDirectDownloadBeforeAPI (0.07s)
+=== RUN   TestScheduleModernRedeemFallbackAndStorageRedirect
+--- PASS: TestScheduleModernRedeemFallbackAndStorageRedirect (0.05s)
+=== RUN   TestScheduleHTMLFallbackAndFailureKeepsDatesPrivate
+--- PASS: TestScheduleHTMLFallbackAndFailureKeepsDatesPrivate (0.07s)
+=== RUN   TestScheduleRejectsForeignRedirectAndRedeem
+--- PASS: TestScheduleRejectsForeignRedirectAndRedeem (0.05s)
+=== RUN   TestScheduleMaterialsNColumnMergedBlankAndRepeatedOrders
+--- PASS: TestScheduleMaterialsNColumnMergedBlankAndRepeatedOrders (0.08s)
+=== RUN   TestScheduleMaterialsSyncPersistsAndDoesNotOverwriteManualNotes
+--- PASS: TestScheduleMaterialsSyncPersistsAndDoesNotOverwriteManualNotes (0.25s)
+=== RUN   TestSuppliedMaterialsViewsAndCompletedStatusPolling
+--- PASS: TestSuppliedMaterialsViewsAndCompletedStatusPolling (0.04s)
+=== RUN   TestInspectionApprovalAndRestart
+--- PASS: TestInspectionApprovalAndRestart (0.20s)
+=== RUN   TestRoleCSRFAndWorkerJSON
+--- PASS: TestRoleCSRFAndWorkerJSON (0.09s)
+=== RUN   TestLoginLogout
+--- PASS: TestLoginLogout (2.88s)
+=== RUN   TestRecoveredTemplatesAndExplicitMissingRoutes
+--- PASS: TestRecoveredTemplatesAndExplicitMissingRoutes (0.07s)
+=== RUN   TestFailedStateWriteRollsBack
+--- PASS: TestFailedStateWriteRollsBack (0.04s)
+=== RUN   TestWorkbookOnlyApprovedEventsAndXML
+--- PASS: TestWorkbookOnlyApprovedEventsAndXML (0.10s)
+=== RUN   TestDirectoriesLinkedPhotosAndEscaping
+--- PASS: TestDirectoriesLinkedPhotosAndEscaping (0.20s)
+=== RUN   TestExistingDataCopyIsIndependentAndRestoresPhotos
+--- PASS: TestExistingDataCopyIsIndependentAndRestoresPhotos (0.21s)
+=== RUN   TestExistingCopyDetectsChangingSourceAndKeepsSelection
+--- PASS: TestExistingCopyDetectsChangingSourceAndKeepsSelection (0.05s)
+=== RUN   TestExistingCopyMissingSourceAndPathEscape
+--- PASS: TestExistingCopyMissingSourceAndPathEscape (0.00s)
+=== RUN   TestExistingCopyPreservesOldSnapshotsAndFailedImport
+--- PASS: TestExistingCopyPreservesOldSnapshotsAndFailedImport (0.05s)
+=== RUN   TestIsolatedModeRejectsExistingDataWithoutChanges
+--- PASS: TestIsolatedModeRejectsExistingDataWithoutChanges (0.03s)
+=== RUN   TestIsolatedModeFreshDemoRestartAndNetworkBlocked
+--- PASS: TestIsolatedModeFreshDemoRestartAndNetworkBlocked (0.09s)
+=== RUN   TestIsolatedModeIndependentWorkflowAndCookies
+--- PASS: TestIsolatedModeIndependentWorkflowAndCookies (2.91s)
+=== RUN   TestWorkbookMatchingNormalizesDateTimeAndStage
+=== RUN   TestWorkbookMatchingNormalizesDateTimeAndStage/2026.11.139:30
+=== RUN   TestWorkbookMatchingNormalizesDateTimeAndStage/2026/11/1309:30:17
+=== RUN   TestWorkbookMatchingNormalizesDateTimeAndStage/2026년_11월_13일오전_9:30:17
+=== RUN   TestWorkbookMatchingNormalizesDateTimeAndStage/202611139:30_AM
+--- PASS: TestWorkbookMatchingNormalizesDateTimeAndStage (0.10s)
+    --- PASS: TestWorkbookMatchingNormalizesDateTimeAndStage/2026.11.139:30 (0.03s)
+    --- PASS: TestWorkbookMatchingNormalizesDateTimeAndStage/2026/11/1309:30:17 (0.02s)
+    --- PASS: TestWorkbookMatchingNormalizesDateTimeAndStage/2026년_11월_13일오전_9:30:17 (0.03s)
+    --- PASS: TestWorkbookMatchingNormalizesDateTimeAndStage/202611139:30_AM (0.02s)
+=== RUN   TestWorkbookMatchingExcelSerialAnd1904Epoch
+--- PASS: TestWorkbookMatchingExcelSerialAnd1904Epoch (0.14s)
+=== RUN   TestWorkbookMinutePrecisionDoesNotGuessMultipleEvents
+--- PASS: TestWorkbookMinutePrecisionDoesNotGuessMultipleEvents (0.09s)
+=== RUN   TestWorkbookZeroMatchExplainsCountsAndDoesNotImportRows
+--- PASS: TestWorkbookZeroMatchExplainsCountsAndDoesNotImportRows (0.13s)
+=== RUN   TestWorkbookRecheckAddsNormalizedLinksAndKeepsOldBaseline
+--- PASS: TestWorkbookRecheckAddsNormalizedLinksAndKeepsOldBaseline (0.28s)
+PASS
+ok  	wanryotalk-reconstructed-server	30.211s
