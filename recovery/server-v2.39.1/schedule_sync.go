@@ -186,13 +186,13 @@ func (a *App) syncSchedule(ctx context.Context, force bool) {
 	data, e := a.readSchedule(ctx, c)
 	var dates map[string]string
 	var conflicts map[string]bool
-	var materials map[string]string
+	var materials map[string]scheduleMaterial
 	var materialAvailable bool
 	if e == nil {
 		dates, conflicts, e = parseSchedule(data)
 	}
 	if e == nil {
-		materials, materialAvailable, e = parseScheduleMaterials(data)
+		materials, materialAvailable, e = parseScheduleMaterialDetails(data)
 	}
 	a.mu.Lock()
 	defer a.mu.Unlock()
@@ -213,8 +213,9 @@ func (a *App) syncSchedule(ctx context.Context, force bool) {
 			if materialAvailable {
 				value, found := materials[p.Number]
 				if found {
-					if p.SuppliedMaterials != value {
-						p.SuppliedMaterials = value
+					if p.SuppliedMaterials != value.Text || p.SuppliedMaterialsColor != value.Color {
+						p.SuppliedMaterials = value.Text
+						p.SuppliedMaterialsColor = value.Color
 						p.Revision++
 						materialChanged++
 					}

@@ -33,6 +33,7 @@ type Project struct {
 	ID, Revision, InfoRevision, Generation                int64
 	Number, Name, ShippingDueDate                         string
 	SuppliedMaterials                                     string
+	SuppliedMaterialsColor                                string
 	SuppliedMaterialsManaged                              bool
 	Hidden, CombinedPending                               bool
 	LegacyCompleted, ShippingDueManaged                   bool
@@ -285,6 +286,7 @@ type ShipmentSummary struct {
 	PhotoCount                    int
 	SettingWorker, ShippingWorker string
 	SuppliedMaterials             string
+	SuppliedMaterialsColor        string
 }
 
 type InspectionView struct {
@@ -301,6 +303,7 @@ type ProjectView struct {
 }
 
 func (a *App) projectView(p Project) ProjectView {
+	p.SuppliedMaterials = firstMaterialLine(p.SuppliedMaterials)
 	for _, d := range a.state.Designers {
 		if p.DesignerID == d.ID {
 			p.DesignerName = d.Name
@@ -349,7 +352,7 @@ func (a *App) view(csrf string) map[string]any {
 			if v.HasSpecialInstructions {
 				infoURL = "/project-info/" + a.state.Board + "/" + fmtID(v.ID)
 			}
-			shipments = append(shipments, ShipmentSummary{ProjectID: v.ID, Number: v.Number, Name: v.Name, InfoURL: infoURL, PhotoCount: len(v.Photos), SettingWorker: v.Setting.Worker, ShippingWorker: v.Shipping.Worker, SuppliedMaterials: v.SuppliedMaterials})
+			shipments = append(shipments, ShipmentSummary{ProjectID: v.ID, Number: v.Number, Name: v.Name, InfoURL: infoURL, PhotoCount: len(v.Photos), SettingWorker: v.Setting.Worker, ShippingWorker: v.Shipping.Worker, SuppliedMaterials: v.SuppliedMaterials, SuppliedMaterialsColor: v.SuppliedMaterialsColor})
 		}
 	}
 	sort.SliceStable(projects, func(i, j int) bool {

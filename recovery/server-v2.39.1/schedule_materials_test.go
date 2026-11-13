@@ -57,7 +57,7 @@ func TestScheduleMaterialsNColumnMergedBlankAndRepeatedOrders(t *testing.T) {
 	}
 	buf, _ := b.WriteToBuffer()
 	m, _, e = parseScheduleMaterials(buf.Bytes())
-	if e != nil || m["T-001"] != "부품 A\n부품 B" || m["T-002"] != "" {
+	if e != nil || m["T-001"] != "부품 A" || m["T-002"] != "" {
 		t.Fatal("repeated or blank N lost", e)
 	}
 	_, available, e = parseScheduleMaterials(materialBook(t, "ignored", false, false))
@@ -111,6 +111,7 @@ func TestSuppliedMaterialsViewsAndCompletedStatusPolling(t *testing.T) {
 	a := fixture(t)
 	text := "고객 지급 <시험> 부품\n확인 중"
 	a.state.Projects[0].SuppliedMaterials = text
+	a.state.Projects[0].SuppliedMaterialsColor = "#00B050"
 	a.state.Projects[0].SpecialInstructions = "특이사항"
 	cookie := adminCookie(a)
 	for _, path := range []string{"/", "/work/" + a.state.Board + "?entry=skip", "/projects/1/inspection", "/projects/1/info", "/project-info/" + a.state.Board + "/1"} {
@@ -137,7 +138,7 @@ func TestSuppliedMaterialsViewsAndCompletedStatusPolling(t *testing.T) {
 		t.Fatal("bad status")
 	}
 	shipments := data["shipments"].([]any)
-	if len(shipments) != 1 || shipments[0].(map[string]any)["supplied_materials"] != text {
+	if len(shipments) != 1 || shipments[0].(map[string]any)["supplied_materials"] != firstMaterialLine(text) {
 		t.Fatal("poll payload lost supplied materials")
 	}
 }

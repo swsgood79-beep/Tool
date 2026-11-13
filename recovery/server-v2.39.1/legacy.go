@@ -20,6 +20,7 @@ type LegacyStage struct {
 	EventID                      int64
 }
 type LegacyOrder struct {
+	SuppliedMaterialsColor                                                                                                                                string
 	SuppliedMaterials                                                                                                                                     string
 	SuppliedMaterialsManaged                                                                                                                              bool
 	ClientPhotoIDs                                                                                                                                        []string
@@ -124,7 +125,7 @@ func importLegacy(dir string) (State, error) {
 			return State{}, errors.New("원본 수주 식별자 또는 필드 오류")
 		}
 		seen[old.ID] = true
-		p := Project{ID: old.ID, Revision: max(old.Revision, 1), InfoRevision: max(old.InfoRevision, 1), Number: old.Number, Name: old.Name, SuppliedMaterials: old.SuppliedMaterials, SuppliedMaterialsManaged: old.SuppliedMaterialsManaged, ShippingDueDate: old.ShippingDueDate, DesignerID: old.DesignerID, DesignerName: old.DesignerName, DesignerPhone: old.DesignerPhone, ClientID: old.ClientNoteID, ClientPhotoIDs: old.ClientPhotoIDs, ClientPhotosSelected: old.ClientPhotoIDs != nil, SpecialInstructions: old.SpecialInstructions, AdditionalInstructions: old.AdditionalInstructions, Photos: old.Photos, LegacyCompleted: old.Completed != "" && old.Shipping.Completed == "", Hidden: !old.Active && old.Completed == "", ShippingDueManaged: old.ShippingDueManaged}
+		p := Project{ID: old.ID, Revision: max(old.Revision, 1), InfoRevision: max(old.InfoRevision, 1), Number: old.Number, Name: old.Name, SuppliedMaterials: old.SuppliedMaterials, SuppliedMaterialsColor: old.SuppliedMaterialsColor, SuppliedMaterialsManaged: old.SuppliedMaterialsManaged, ShippingDueDate: old.ShippingDueDate, DesignerID: old.DesignerID, DesignerName: old.DesignerName, DesignerPhone: old.DesignerPhone, ClientID: old.ClientNoteID, ClientPhotoIDs: old.ClientPhotoIDs, ClientPhotosSelected: old.ClientPhotoIDs != nil, SpecialInstructions: old.SpecialInstructions, AdditionalInstructions: old.AdditionalInstructions, Photos: old.Photos, LegacyCompleted: old.Completed != "" && old.Shipping.Completed == "", Hidden: !old.Active && old.Completed == "", ShippingDueManaged: old.ShippingDueManaged}
 		for i, st := range []LegacyStage{old.Setting, old.Shipping} {
 			completed, e := legacyTime(st.Completed)
 			if e != nil {

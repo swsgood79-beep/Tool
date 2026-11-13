@@ -197,7 +197,7 @@ func (a *App) worker(w http.ResponseWriter, r *http.Request) bool {
 					if v.HasSpecialInstructions {
 						url = "/project-info/" + a.state.Board + "/" + fmtID(p.ID)
 					}
-					shipments = append(shipments, map[string]any{"project_id": p.ID, "number": p.Number, "name": p.Name, "info_url": url, "photo_count": len(v.Photos), "setting_worker": p.Setting.Worker, "shipping_worker": p.Shipping.Worker, "supplied_materials": v.SuppliedMaterials})
+					shipments = append(shipments, map[string]any{"project_id": p.ID, "number": p.Number, "name": p.Name, "info_url": url, "photo_count": len(v.Photos), "setting_worker": p.Setting.Worker, "shipping_worker": p.Shipping.Worker, "supplied_materials": v.SuppliedMaterials, "supplied_materials_color": v.SuppliedMaterialsColor})
 				}
 			}
 			jsonReply(w, map[string]any{"active": active, "stages": stages, "completed_due": completed, "shipments": shipments, "date": day(time.Now()), "schedule": "복구 서버 · 수동 납기일 기준"})

@@ -8,7 +8,21 @@ import (
 )
 
 // Column N is only used when its header identifies supplied materials; a changed layout never clears prior values.
+type scheduleMaterial struct{ Text, Color string }
+
+func firstMaterialLine(s string) string {
+	s = strings.NewReplacer("\r\n", "\n", "\r", "\n").Replace(s)
+	return strings.TrimSpace(strings.SplitN(s, "\n", 2)[0])
+}
 func parseScheduleMaterials(data []byte) (map[string]string, bool, error) {
+	values, available, err := parseScheduleMaterialDetails(data)
+	out := map[string]string{}
+	for key, value := range values {
+		out[key] = value.Text
+	}
+	return out, available, err
+}
+func parseScheduleMaterialDetails(data []byte) (map[string]scheduleMaterial, bool, error) {
 	b, err := excelize.OpenReader(bytes.NewReader(data))
 	if err != nil {
 		return nil, false, err
@@ -47,7 +61,12 @@ func parseScheduleMaterials(data []byte) (map[string]string, bool, error) {
 	if len(rows[head]) <= 13 || !strings.Contains(rows[head][13], "사급") {
 		return nil, false, nil
 	}
+	colors, err := newMaterialColorReader(b, data)
+	if err != nil {
+		return nil, false, err
+	}
 	mergedNumbers, mergedMaterials := map[int]string{}, map[int]string{}
+	mergedOrigins := map[int]string{}
 	merges, err := b.GetMergeCells("조립일정")
 	if err != nil {
 		return nil, false, err
@@ -72,10 +91,13 @@ func parseScheduleMaterials(data []byte) (map[string]string, bool, error) {
 			}
 			for r := sr; r <= er; r++ {
 				target.values[r] = value
+				if target.col == 14 {
+					mergedOrigins[r] = m.GetStartAxis()
+				}
 			}
 		}
 	}
-	values := map[string][]string{}
+	values := map[string]scheduleMaterial{}
 	for index, row := range rows[head+1:] {
 		r := head + index + 2
 		n := ""
@@ -88,7 +110,13 @@ func parseScheduleMaterials(data []byte) (map[string]string, bool, error) {
 		if n == "" {
 			continue
 		}
+		if _, seen := values[n]; seen {
+			continue
+		}
 		cell, _ := excelize.CoordinatesToCellName(14, r)
+		if origin := mergedOrigins[r]; origin != "" {
+			cell = origin
+		}
 		value, e := b.GetCellValue("조립일정", cell)
 		if e != nil {
 			return nil, false, e
@@ -96,26 +124,15 @@ func parseScheduleMaterials(data []byte) (map[string]string, bool, error) {
 		if value == "" {
 			value = mergedMaterials[r]
 		}
-		value = strings.TrimSpace(strings.ReplaceAll(value, "\r\n", "\n"))
-		if _, ok := values[n]; !ok {
-			values[n] = nil
+		color, err := colors.color(cell, value)
+		if err != nil {
+			return nil, false, err
 		}
-		if value != "" {
-			duplicate := false
-			for _, old := range values[n] {
-				if old == value {
-					duplicate = true
-					break
-				}
-			}
-			if !duplicate {
-				values[n] = append(values[n], value)
-			}
+		line := firstMaterialLine(value)
+		if line == "" {
+			color = ""
 		}
+		values[n] = scheduleMaterial{Text: line, Color: color}
 	}
-	out := map[string]string{}
-	for n, parts := range values {
-		out[n] = strings.Join(parts, "\n")
-	}
-	return out, true, nil
+	return values, true, nil
 }
