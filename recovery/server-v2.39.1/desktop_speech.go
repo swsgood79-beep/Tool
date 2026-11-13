@@ -144,7 +144,7 @@ func (s *inspectionAnnouncer) loop() {
 			if s.enabled && ctx.Err() == nil {
 				s.status = "신청 시 자동 읽기"
 				if err != nil {
-					s.status = "음성 실패 · 한국어 음성/출력 확인"
+					s.status = "Google 음성 실패 · 인터넷/출력 확인"
 				}
 			}
 			s.mu.Unlock()

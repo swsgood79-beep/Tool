@@ -1,0 +1,9 @@
+test_queue_fifo_failure_survival_and_immediate_temp_cleanup (__main__.HelperTests.test_queue_fifo_failure_survival_and_immediate_temp_cleanup) ... ok
+test_real_pygame_mp3_decode_and_pcm_playback (__main__.HelperTests.test_real_pygame_mp3_decode_and_pcm_playback) ... ok
+test_speed_duration_and_pitch (__main__.HelperTests.test_speed_duration_and_pitch) ... ok
+test_synthesis_returns_mp3_and_deletes_file (__main__.HelperTests.test_synthesis_returns_mp3_and_deletes_file) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.416s
+
+OK

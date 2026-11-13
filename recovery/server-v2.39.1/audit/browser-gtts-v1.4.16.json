@@ -1,0 +1,58 @@
+{
+  "scope": "Go-rendered synthetic pages; mocked MP3 API and media output, no live Google synthesis/real speakers",
+  "results": [
+    {
+      "mode": "admin",
+      "width": 1100,
+      "clickUnlock": "pass",
+      "gttsMP3API": "pass",
+      "playbackRate": 1.1,
+      "preservesPitch": true,
+      "fifoAndNoOverlap": "pass",
+      "duplicateSuppression": "pass",
+      "networkFailureAndRecovery": "pass",
+      "offAndURLCleanup": "pass",
+      "noOldSpeechSynthesis": "pass"
+    },
+    {
+      "mode": "admin",
+      "width": 390,
+      "clickUnlock": "pass",
+      "gttsMP3API": "pass",
+      "playbackRate": 1.1,
+      "preservesPitch": true,
+      "fifoAndNoOverlap": "pass",
+      "duplicateSuppression": "pass",
+      "networkFailureAndRecovery": "pass",
+      "offAndURLCleanup": "pass",
+      "noOldSpeechSynthesis": "pass"
+    },
+    {
+      "mode": "shared",
+      "width": 1100,
+      "clickUnlock": "pass",
+      "gttsMP3API": "pass",
+      "playbackRate": 1.1,
+      "preservesPitch": true,
+      "fifoAndNoOverlap": "pass",
+      "duplicateSuppression": "pass",
+      "networkFailureAndRecovery": "pass",
+      "offAndURLCleanup": "pass",
+      "noOldSpeechSynthesis": "pass"
+    },
+    {
+      "mode": "shared",
+      "width": 390,
+      "clickUnlock": "pass",
+      "gttsMP3API": "pass",
+      "playbackRate": 1.1,
+      "preservesPitch": true,
+      "fifoAndNoOverlap": "pass",
+      "duplicateSuppression": "pass",
+      "networkFailureAndRecovery": "pass",
+      "offAndURLCleanup": "pass",
+      "noOldSpeechSynthesis": "pass"
+    }
+  ],
+  "cancelWhileGenerating": "pass"
+}
