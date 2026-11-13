@@ -1,0 +1,25 @@
+{
+  "data": "synthetic company/photo only",
+  "results": [
+    {
+      "width": 1100,
+      "prominentEntry": "pass",
+      "unlinkedCompanyVisible": "pass",
+      "photos": "pass",
+      "search": "pass",
+      "liveUpdatePreservesSearchAndExpandedState": "pass",
+      "horizontalOverflow": false,
+      "javascriptErrors": []
+    },
+    {
+      "width": 390,
+      "prominentEntry": "pass",
+      "unlinkedCompanyVisible": "pass",
+      "photos": "pass",
+      "search": "pass",
+      "liveUpdatePreservesSearchAndExpandedState": "pass",
+      "horizontalOverflow": false,
+      "javascriptErrors": []
+    }
+  ]
+}

@@ -232,6 +232,13 @@ func TestWorkerClientDirectoryReadOnlyBoardPhotosAndEscaping(t *testing.T) {
 		t.Fatal("directory missing or unsafe", r.Code)
 	}
 	first := r.Body.String()
+	if out := os.Getenv("DIRECTORY_HTML_OUT"); out != "" {
+		for name, data := range map[string][]byte{"directory.html": r.Body.Bytes(), "photo.jpg": img.Bytes(), "work.html": call(a, "GET", "/work/"+a.state.Board+"?entry=skip", nil).Body.Bytes()} {
+			if err := os.WriteFile(filepath.Join(out, name), data, 0600); err != nil {
+				t.Fatal(err)
+			}
+		}
+	}
 	if r := call(a, "GET", "/client-directory/"+token(), nil); r.Code != 404 {
 		t.Fatal("invalid board allowed")
 	}
@@ -246,6 +253,11 @@ func TestWorkerClientDirectoryReadOnlyBoardPhotosAndEscaping(t *testing.T) {
 	r = call(a, "GET", path, nil)
 	if r.Body.String() == first || !strings.Contains(r.Body.String(), "수정됨") {
 		t.Fatal("directory not updated")
+	}
+	if out := os.Getenv("DIRECTORY_HTML_OUT"); out != "" {
+		if err := os.WriteFile(filepath.Join(out, "directory-updated.html"), r.Body.Bytes(), 0600); err != nil {
+			t.Fatal(err)
+		}
 	}
 	if r := call(a, "GET", "/work/"+a.state.Board, nil); !strings.Contains(r.Body.String(), "worker-client-directory") || !strings.Contains(r.Body.String(), "entry-motion.js") {
 		t.Fatal("directory entry or loading effect absent")
