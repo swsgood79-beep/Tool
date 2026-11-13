@@ -1,0 +1,59 @@
+{
+  "source": "Go-handler generated synthetic snapshots; browser POST contract mocked; backend state/auth separately tested",
+  "results": [
+    {
+      "kind": "setting",
+      "width": 1100,
+      "rejectFormWithCurrentRequest": "pass",
+      "rejectedNotice": "pass",
+      "settingCompletionPreserved": "pass",
+      "workerCanReapply": "pass",
+      "javascriptErrors": []
+    },
+    {
+      "kind": "setting",
+      "width": 390,
+      "rejectFormWithCurrentRequest": "pass",
+      "rejectedNotice": "pass",
+      "settingCompletionPreserved": "pass",
+      "workerCanReapply": "pass",
+      "javascriptErrors": []
+    },
+    {
+      "kind": "shipping",
+      "width": 1100,
+      "rejectFormWithCurrentRequest": "pass",
+      "rejectedNotice": "pass",
+      "settingCompletionPreserved": "pass",
+      "workerCanReapply": "pass",
+      "javascriptErrors": []
+    },
+    {
+      "kind": "shipping",
+      "width": 390,
+      "rejectFormWithCurrentRequest": "pass",
+      "rejectedNotice": "pass",
+      "settingCompletionPreserved": "pass",
+      "workerCanReapply": "pass",
+      "javascriptErrors": []
+    },
+    {
+      "kind": "combined",
+      "width": 1100,
+      "rejectFormWithCurrentRequest": "pass",
+      "rejectedNotice": "pass",
+      "settingCompletionPreserved": "pass",
+      "workerCanReapply": "pass",
+      "javascriptErrors": []
+    },
+    {
+      "kind": "combined",
+      "width": 390,
+      "rejectFormWithCurrentRequest": "pass",
+      "rejectedNotice": "pass",
+      "settingCompletionPreserved": "pass",
+      "workerCanReapply": "pass",
+      "javascriptErrors": []
+    }
+  ]
+}

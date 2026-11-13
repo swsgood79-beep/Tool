@@ -8,6 +8,7 @@ import (
 )
 
 type desktopEvent struct {
+	Rejected                                       bool
 	ID, ProjectID                                  int64
 	Title, Body, Target                            string
 	Pending                                        bool
@@ -65,7 +66,9 @@ func (a *App) desktopSnapshot() desktopView {
 		}
 		if len(history) < 100 {
 			when := ""
-			if e.Completed != nil {
+			if e.Rejected && e.RejectedAt != nil {
+				when = e.RejectedAt.In(kst).Format("01-02 15:04")
+			} else if e.Completed != nil {
 				when = e.Completed.In(kst).Format("01-02 15:04")
 			}
 			n := desktopNotice(e)
@@ -82,7 +85,7 @@ func (a *App) desktopSnapshot() desktopView {
 }
 
 // Inspection completion is a stored record, not a new alert. Notes retain their existing alerts.
-func notifyEvent(e Event) bool { return e.Pending || e.IsNote }
+func notifyEvent(e Event) bool { return !e.Rejected && (e.Pending || e.IsNote) }
 
 // Structured PC fields come from the event, never from splitting a display string.
 func desktopNotice(e Event) desktopEvent {
@@ -93,6 +96,8 @@ func desktopNotice(e Event) desktopEvent {
 	title := stageLabel(kind)
 	if e.IsNote {
 		title = "비고 메시지"
+	} else if e.Rejected {
+		title += " 반려"
 	} else if e.Pending {
 		title += " 신청"
 	} else {
@@ -104,17 +109,19 @@ func desktopNotice(e Event) desktopEvent {
 	}
 	when := ""
 	at := e.Completed
-	if e.Pending && e.RequestedAt != nil {
+	if e.Rejected {
+		at = e.RejectedAt
+	} else if e.Pending && e.RequestedAt != nil {
 		at = e.RequestedAt
 	}
 	if at != nil {
 		when = at.In(kst).Format("01.02 15:04")
 	}
 	payload := notification(e)
-	return desktopEvent{ID: e.ID, ProjectID: e.ProjectID, Title: title, Body: text(payload["body"]), Target: target, Pending: e.Pending, Inspection: kind, Order: e.Order, Project: e.Project, Worker: e.Worker, Note: e.Note, When: when, IsNote: e.IsNote}
+	return desktopEvent{Rejected: e.Rejected, ID: e.ID, ProjectID: e.ProjectID, Title: title, Body: text(payload["body"]), Target: target, Pending: e.Pending, Inspection: kind, Order: e.Order, Project: e.Project, Worker: e.Worker, Note: e.Note, When: when, IsNote: e.IsNote}
 }
 func (e desktopEvent) workerLabel() string {
-	if e.Pending {
+	if e.Pending || e.Rejected {
 		return "신청자"
 	}
 	if e.IsNote {

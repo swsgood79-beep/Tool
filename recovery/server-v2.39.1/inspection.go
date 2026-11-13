@@ -56,6 +56,7 @@ func (a *App) requestInspection(id int64, kind, worker, submission, combined str
 			}
 			s.Events = append(s.Events, Event{ID: eid, BatchID: batch, ProjectID: id, Revision: 1, Order: p.Number, Project: p.Name, Worker: worker, Inspection: k, InspectionName: name, Pending: true, Unread: i == 0, Active: true, RequestedAt: &now, Completed: &now})
 		}
+		p.RejectedInspection = ""
 		p.CombinedPending = kind == "combined"
 		p.touch()
 		return nil

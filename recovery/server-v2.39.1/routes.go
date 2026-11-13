@@ -149,14 +149,22 @@ func (a *App) adminGET(w http.ResponseWriter, r *http.Request, v map[string]any)
 		for _, e := range v["Events"].([]Event) {
 			if e.ID == number(p[1]) {
 				v["Record"] = e
-				a.render(w, "edit.html", v)
+				if e.Rejected {
+					a.render(w, "rejected-record.html", v)
+				} else {
+					a.render(w, "edit.html", v)
+				}
 				return true
 			}
 		}
 		for _, e := range a.state.Events {
 			if e.ID == number(p[1]) {
 				v["Record"] = e
-				a.render(w, "edit.html", v)
+				if e.Rejected {
+					a.render(w, "rejected-record.html", v)
+				} else {
+					a.render(w, "edit.html", v)
+				}
 				return true
 			}
 		}
@@ -229,7 +237,13 @@ func (a *App) adminPOST(w http.ResponseWriter, r *http.Request, session Session)
 		case "edit":
 			err = a.saveProject(r, id)
 		case "inspection":
-			err = a.approve(id, r.FormValue("inspection"), number(r.FormValue("request")))
+			if r.FormValue("action") == "reject" {
+				err = a.rejectInspection(id, r.FormValue("inspection"), number(r.FormValue("request")))
+			} else if r.FormValue("action") == "" || r.FormValue("action") == "approve" {
+				err = a.approve(id, r.FormValue("inspection"), number(r.FormValue("request")))
+			} else {
+				err = errors.New("검사 처리 구분 오류")
+			}
 			redirect = "/projects/" + p[1] + "/inspection"
 			if r.FormValue("return_queue") == "1" {
 				redirect = "/inspection-requests"

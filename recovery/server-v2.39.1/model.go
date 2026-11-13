@@ -30,6 +30,7 @@ type Photo struct {
 	Size           int
 }
 type Project struct {
+	RejectedInspection                                    string
 	ID, Revision, InfoRevision, Generation                int64
 	Number, Name, ShippingDueDate                         string
 	SuppliedMaterials                                     string
@@ -55,6 +56,8 @@ type ClientNote struct {
 	Photos         []Photo
 }
 type Event struct {
+	Rejected                                                 bool
+	RejectedAt                                               *time.Time
 	ID, BatchID, ProjectID, Revision                         int64
 	Order, Project, Worker, Note, Inspection, InspectionName string
 	IsNote, Pending, Unread, Active                          bool
@@ -296,6 +299,7 @@ type InspectionView struct {
 	Locked            bool
 }
 type ProjectView struct {
+	RejectionMessage string
 	Project
 	Board, DesignerCallURL                                                    string
 	Completed, Active, CompletedToday, HasSpecialInstructions, LegacyComplete bool
@@ -333,6 +337,9 @@ func (a *App) projectView(p Project) ProjectView {
 	}
 	if p.DesignerPhone != "" {
 		v.DesignerCallURL = "tel:" + p.DesignerPhone
+	}
+	if p.RejectedInspection == "setting" || p.RejectedInspection == "shipping" || p.RejectedInspection == "combined" {
+		v.RejectionMessage = stageLabel(p.RejectedInspection) + " 신청이 반려되었습니다. 확인 후 다시 신청해 주세요."
 	}
 	v.Inspections = []InspectionView{{"setting", "세팅검사", p.SettingForm, 1, p.Setting, false}, {"shipping", "출하검사", p.ShippingForm, 2, p.Shipping, p.Setting.Completed == nil}}
 	return v
@@ -372,6 +379,9 @@ func (a *App) view(csrf string) map[string]any {
 		e := a.state.Events[i]
 		if !notifyEvent(e) {
 			e.Unread = false
+		}
+		if e.Rejected {
+			e.InspectionName = stageLabel(e.Inspection) + " 반려"
 		}
 		if p := a.state.project(e.ProjectID); p != nil {
 			e.Order = p.Number

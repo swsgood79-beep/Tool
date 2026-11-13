@@ -20,6 +20,7 @@ type LegacyStage struct {
 	EventID                      int64
 }
 type LegacyOrder struct {
+	RejectedInspection                                                                                                                                    string
 	SuppliedMaterialsColor                                                                                                                                string
 	SuppliedMaterials                                                                                                                                     string
 	SuppliedMaterialsManaged                                                                                                                              bool
@@ -32,6 +33,8 @@ type LegacyOrder struct {
 	Photos                                                                                                                                                []Photo
 }
 type LegacyEvent struct {
+	Rejected    bool   `json:"rejected,omitempty"`
+	RejectedAt  string `json:"rejected_at,omitempty"`
 	BatchID     int64  `json:"batch_id,omitempty"`
 	Pending     bool   `json:"pending_approval,omitempty"`
 	RequestedAt string `json:"requested_at,omitempty"`
@@ -125,7 +128,7 @@ func importLegacy(dir string) (State, error) {
 			return State{}, errors.New("원본 수주 식별자 또는 필드 오류")
 		}
 		seen[old.ID] = true
-		p := Project{ID: old.ID, Revision: max(old.Revision, 1), InfoRevision: max(old.InfoRevision, 1), Number: old.Number, Name: old.Name, SuppliedMaterials: old.SuppliedMaterials, SuppliedMaterialsColor: old.SuppliedMaterialsColor, SuppliedMaterialsManaged: old.SuppliedMaterialsManaged, ShippingDueDate: old.ShippingDueDate, DesignerID: old.DesignerID, DesignerName: old.DesignerName, DesignerPhone: old.DesignerPhone, ClientID: old.ClientNoteID, ClientPhotoIDs: old.ClientPhotoIDs, ClientPhotosSelected: old.ClientPhotoIDs != nil, SpecialInstructions: old.SpecialInstructions, AdditionalInstructions: old.AdditionalInstructions, Photos: old.Photos, LegacyCompleted: old.Completed != "" && old.Shipping.Completed == "", Hidden: !old.Active && old.Completed == "", ShippingDueManaged: old.ShippingDueManaged}
+		p := Project{ID: old.ID, Revision: max(old.Revision, 1), InfoRevision: max(old.InfoRevision, 1), Number: old.Number, Name: old.Name, RejectedInspection: old.RejectedInspection, SuppliedMaterials: old.SuppliedMaterials, SuppliedMaterialsColor: old.SuppliedMaterialsColor, SuppliedMaterialsManaged: old.SuppliedMaterialsManaged, ShippingDueDate: old.ShippingDueDate, DesignerID: old.DesignerID, DesignerName: old.DesignerName, DesignerPhone: old.DesignerPhone, ClientID: old.ClientNoteID, ClientPhotoIDs: old.ClientPhotoIDs, ClientPhotosSelected: old.ClientPhotoIDs != nil, SpecialInstructions: old.SpecialInstructions, AdditionalInstructions: old.AdditionalInstructions, Photos: old.Photos, LegacyCompleted: old.Completed != "" && old.Shipping.Completed == "", Hidden: !old.Active && old.Completed == "", ShippingDueManaged: old.ShippingDueManaged}
 		for i, st := range []LegacyStage{old.Setting, old.Shipping} {
 			completed, e := legacyTime(st.Completed)
 			if e != nil {
@@ -169,7 +172,11 @@ func importLegacy(dir string) (State, error) {
 		if e != nil {
 			return State{}, e
 		}
-		s.Events = append(s.Events, Event{ID: old.ID, BatchID: old.BatchID, ProjectID: old.ProjectID, Revision: max(old.Revision, 1), Order: old.Order, Project: old.Project, Worker: old.Worker, Note: old.Note, Inspection: old.Inspection, InspectionName: stageLabel(old.Inspection), IsNote: old.Inspection == "note" || old.Note != "" && old.Inspection == "", Pending: old.Pending, Unread: old.ReadAt == "", RequestedAt: requested, Completed: completed})
+		rejectedAt, e := legacyTime(old.RejectedAt)
+		if e != nil {
+			return State{}, e
+		}
+		s.Events = append(s.Events, Event{ID: old.ID, Rejected: old.Rejected, RejectedAt: rejectedAt, BatchID: old.BatchID, ProjectID: old.ProjectID, Revision: max(old.Revision, 1), Order: old.Order, Project: old.Project, Worker: old.Worker, Note: old.Note, Inspection: old.Inspection, InspectionName: stageLabel(old.Inspection), IsNote: old.Inspection == "note" || old.Note != "" && old.Inspection == "", Pending: old.Pending, Unread: old.ReadAt == "", RequestedAt: requested, Completed: completed})
 		s.NextID = max(s.NextID, old.ID)
 	}
 	aux := []struct {

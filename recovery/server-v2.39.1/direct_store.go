@@ -175,7 +175,7 @@ func (a *App) projectOriginal(s *State) (map[string][]byte, error) {
 		if len(photos) > 5 {
 			return nil, errors.New("원본 형식은 수주당 사진 5장까지 저장할 수 있습니다")
 		}
-		patch(old, map[string]any{"ID": p.ID, "Number": p.Number, "Name": p.Name, "Created": json.RawMessage(created), "Active": !p.Hidden && completed == "", "Completed": completed, "Setting": originalStage(p.Setting, batch), "Shipping": originalStage(p.Shipping, batch), "Generation": p.Generation, "Revision": p.Revision, "InfoRevision": p.InfoRevision, "ShippingDueDate": p.ShippingDueDate, "ShippingDueManaged": p.ShippingDueManaged, "SuppliedMaterials": p.SuppliedMaterials, "SuppliedMaterialsColor": p.SuppliedMaterialsColor, "SuppliedMaterialsManaged": p.SuppliedMaterialsManaged, "DesignerID": p.DesignerID, "DesignerName": p.DesignerName, "DesignerPhone": p.DesignerPhone, "ClientNoteID": p.ClientID, "ClientSourceRevision": sourceRevision, "ClientPhotoIDs": sourceIDs, "SpecialInstructions": p.SpecialInstructions, "AdditionalInstructions": p.AdditionalInstructions, "Photos": photosProjection(photos)})
+		patch(old, map[string]any{"ID": p.ID, "Number": p.Number, "Name": p.Name, "RejectedInspection": p.RejectedInspection, "Created": json.RawMessage(created), "Active": !p.Hidden && completed == "", "Completed": completed, "Setting": originalStage(p.Setting, batch), "Shipping": originalStage(p.Shipping, batch), "Generation": p.Generation, "Revision": p.Revision, "InfoRevision": p.InfoRevision, "ShippingDueDate": p.ShippingDueDate, "ShippingDueManaged": p.ShippingDueManaged, "SuppliedMaterials": p.SuppliedMaterials, "SuppliedMaterialsColor": p.SuppliedMaterialsColor, "SuppliedMaterialsManaged": p.SuppliedMaterialsManaged, "DesignerID": p.DesignerID, "DesignerName": p.DesignerName, "DesignerPhone": p.DesignerPhone, "ClientNoteID": p.ClientID, "ClientSourceRevision": sourceRevision, "ClientPhotoIDs": sourceIDs, "SpecialInstructions": p.SpecialInstructions, "AdditionalInstructions": p.AdditionalInstructions, "Photos": photosProjection(photos)})
 		orders = append(orders, old)
 	}
 	events := []map[string]json.RawMessage{}
@@ -203,7 +203,7 @@ func (a *App) projectOriginal(s *State) (map[string][]byte, error) {
 		if len(submission) == 0 {
 			submission = jsonRaw(token())
 		}
-		patch(old, map[string]any{"id": ev.ID, "project_id": ev.ProjectID, "order_number": ev.Order, "name": ev.Project, "worker_name": ev.Worker, "inspection": kind, "pending_approval": ev.Pending, "requested_at": timeString(ev.RequestedAt), "completed_at": completed, "read_at": readAt, "batch_id": ev.BatchID, "note": ev.Note, "revision": ev.Revision, "Submission": json.RawMessage(submission)})
+		patch(old, map[string]any{"id": ev.ID, "project_id": ev.ProjectID, "order_number": ev.Order, "name": ev.Project, "worker_name": ev.Worker, "inspection": kind, "pending_approval": ev.Pending, "rejected": ev.Rejected, "rejected_at": timeString(ev.RejectedAt), "requested_at": timeString(ev.RequestedAt), "completed_at": completed, "read_at": readAt, "batch_id": ev.BatchID, "note": ev.Note, "revision": ev.Revision, "Submission": json.RawMessage(submission)})
 		events = append(events, old)
 	}
 	// bcrypt is the original password format. A v0.1/v0.2 PBKDF2 password stays only

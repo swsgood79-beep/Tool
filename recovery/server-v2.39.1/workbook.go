@@ -13,7 +13,7 @@ import (
 func completedEvents(s State) []Event {
 	events := []Event{}
 	for _, e := range s.Events {
-		if !e.IsNote && !e.Pending && e.Completed != nil {
+		if !e.IsNote && !e.Pending && !e.Rejected && e.Completed != nil {
 			events = append(events, e)
 		}
 	}
