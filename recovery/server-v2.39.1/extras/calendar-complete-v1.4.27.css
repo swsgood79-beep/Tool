@@ -1,0 +1,4 @@
+/* Inspection completion does not imply shipment: keep completed orders green. */
+html[data-alpha-design=modern] #shipping-calendar .calendar-order.is-complete{background:var(--ui-green-soft);border:1px solid var(--ui-green-line);border-left:4px solid var(--ui-green-ink)}
+html[data-alpha-design=modern] #shipping-calendar .calendar-order.is-complete .completed-workers{color:var(--ui-green-ink);font-size:12px;line-height:1.6;margin-top:10px}
+html[data-alpha-design=modern] #shipping-calendar .calendar-order.is-complete .completed-workers p{margin:3px 0}
