@@ -401,7 +401,7 @@ func (a *App) view(csrf string) map[string]any {
 				through = e.ID
 			}
 		}
-		if len(events) < 100 {
+		if !e.Rejected && len(events) < 100 {
 			events = append(events, e)
 		}
 		if e.Pending && (e.BatchID == 0 || e.BatchID == e.ID) {

@@ -1,0 +1,21 @@
+{
+  "scope": "Real Go-rendered synthetic history with 121 retained rejections; read-only browser validation",
+  "results": [
+    {
+      "width": 390,
+      "rejectionsAbsentFromRowsAndCounts": "pass",
+      "approvedAndNoteRowsPreserved": "pass",
+      "filtersAndSearch": "pass",
+      "csvLinkPreserved": "pass",
+      "pageErrors": []
+    },
+    {
+      "width": 1100,
+      "rejectionsAbsentFromRowsAndCounts": "pass",
+      "approvedAndNoteRowsPreserved": "pass",
+      "filtersAndSearch": "pass",
+      "csvLinkPreserved": "pass",
+      "pageErrors": []
+    }
+  ]
+}
