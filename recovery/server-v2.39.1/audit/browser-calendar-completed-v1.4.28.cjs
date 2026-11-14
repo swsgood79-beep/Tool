@@ -1,0 +1,27 @@
+const {chromium}=require('playwright'),fs=require('fs'),path=require('path'),assert=require('assert/strict');
+const root=path.join(__dirname,'..'),dir='/tmp/calendar-v27-html',fixture=(phase,name)=>fs.readFileSync(path.join(dir,phase+'-'+name));
+(async()=>{const browser=await chromium.launch({headless:true,executablePath:'/usr/bin/chromium',args:['--no-sandbox']});try{const results=[];
+for(const scheme of ['light','dark'])for(const width of [320,390,1100])for(const role of ['worker','admin']){
+const ctx=await browser.newContext({viewport:{width,height:900},colorScheme:scheme}),p=await ctx.newPage(),errors=[];let phase='before';p.on('pageerror',e=>errors.push(e.message));await p.addInitScript(()=>localStorage.setItem('alpha-speech-browser-enabled-v1','off'));
+await p.route('**/*',async route=>{const u=new URL(route.request().url()),n=path.basename(u.pathname);let file=u.pathname==='/'?'admin.html':u.pathname.startsWith('/work/')?'work.html':u.pathname==='/orders/panel'?'orders-fragment.html':u.pathname.startsWith('/status/')?'status.json':u.pathname.startsWith('/card/')&&u.pathname.endsWith('/1')?'card-1.html':null;
+if(file)return route.fulfill({contentType:file.endsWith('.json')?'application/json':'text/html',body:fixture(phase,file)});
+for(const d of ['extras','web']){const f=path.join(root,d,n);if(n&&fs.existsSync(f)&&fs.statSync(f).isFile())return route.fulfill({contentType:n.endsWith('.js')?'application/javascript':'text/css',body:fs.readFileSync(f)})}return route.fulfill({status:404,body:''})});
+const board=fixture('before','work.html').toString().match(/main data-board="([^"]+)"/)[1];await p.goto('http://calendar.test/'+(role==='worker'?'work/'+board:''));
+const source=role==='worker'?'.delivery-completed':'.admin-project';
+// Normal work remains filtered independently, including completed days before today.
+if(role==='worker'){assert.equal(await p.locator('.delivery-completed:visible').count(),0);assert.equal(await p.locator('.work-item:visible').count(),1)}else{await p.locator('.design-bottom-nav [data-tab=orders]').click();assert.equal(await p.locator('.admin-project[data-name="이전 완료 수주"]').isVisible(),false)}
+const open=async()=>{if(role==='worker')await p.locator('.design-bottom-nav [data-tab=calendar]').click();else{await p.locator('.design-bottom-nav [data-tab=inspection]').click();await p.locator('.design-calendar-shortcut').click()}};
+await open();const cal=p.locator('#shipping-calendar[open]');await cal.waitFor();const due=await p.locator(source+'[data-name="미리 완료한 수주"]').getAttribute('data-due');
+// Future date may lie in the next month.
+for(let i=0;i<2&&!await cal.locator(`[data-day="${due}"]`).count();i++)await cal.locator('#calendar-next').click();await cal.locator(`[data-day="${due}"]`).click();
+assert.equal(await cal.locator('.calendar-order').count(),3);assert.equal(await cal.locator('.calendar-order.is-complete').count(),2);assert((await cal.locator('#calendar-selected-count').innerText()).includes('3건'));assert((await cal.locator(`[data-day="${due}"] .calendar-day-count`).innerText()).includes('3건'));assert.equal(await cal.locator('.calendar-order').filter({hasText:'숨긴 수주'}).count(),0);
+const complete=cal.locator('.calendar-order').filter({hasText:'미리 완료한 수주'});assert((await complete.innerText()).includes('✓ 검사 완료'));assert((await complete.innerText()).includes('세팅 작업자 · 세팅 시험'));assert((await complete.innerText()).includes('출하 작업자 · 출하 시험'));assert((await complete.innerText()).includes('설계 시험'));
+const green=await complete.evaluate(e=>getComputedStyle(e).backgroundColor),activeBg=await cal.locator('.calendar-order:not(.is-complete)').evaluate(e=>getComputedStyle(e).backgroundColor);assert.notEqual(green,activeBg);assert.equal(green,scheme==='light'?'rgb(223, 245, 235)':'rgb(23, 57, 45)');
+assert.equal(await cal.evaluate(e=>e.matches(':modal')),false);assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
+await p.screenshot({path:path.join(__dirname,`calendar-completed-${role}-${scheme}-${width}-v1.4.28.png`)});
+// Simulate the next poll response from the real Go approval fixture, not a reload.
+phase='after';await p.waitForFunction(()=>document.querySelectorAll('#calendar-orders .calendar-order.is-complete').length===3,null,{timeout:16000});assert.equal(await cal.locator('.calendar-order').count(),3);assert((await cal.locator('#calendar-selected-count').innerText()).includes('3건'));
+await p.reload();await open();for(let i=0;i<2&&!await cal.locator(`[data-day="${due}"]`).count();i++)await cal.locator('#calendar-next').click();await cal.locator(`[data-day="${due}"]`).click();assert.equal(await cal.locator('.calendar-order.is-complete').count(),3);
+assert.deepEqual(errors,[]);results.push({role,width,scheme,futureCompletedRetained:'pass',pastCompletionRetained:'pass',dueCountsIncludeCompleted:'pass',greenCardAndWorkers:'pass',hiddenExcluded:'pass',normalListUnchanged:'pass',liveApprovalRetainsCalendar:'pass',reloadRetainsCalendar:'pass',gridAndInlinePagePreserved:'pass',noOverflow:'pass',pageErrors:errors});await ctx.close();}
+fs.writeFileSync(path.join(__dirname,'browser-calendar-completed-v1.4.28.json'),JSON.stringify({scope:'Go-rendered synthetic approvals, pages and polling responses in Chromium; no live company data or Windows execution',results},null,2)+'\n');console.log('Completed shipment calendars passed all 12 cases')
+}finally{await browser.close()}})().catch(e=>{console.error(e);process.exit(1)});

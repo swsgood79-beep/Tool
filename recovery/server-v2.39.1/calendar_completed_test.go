@@ -64,7 +64,7 @@ func TestCalendarKeepsCompletedOrdersUntilTheirScheduledDate(t *testing.T) {
 			}
 			s := w.Body.String()
 			if name == "work.html" {
-				if !strings.Contains(s, "shipping-calendar-v1.4.27.js") || !strings.Contains(s, "calendar-complete-v1.4.27.css") || !strings.Contains(s, `data-name="미리 완료한 수주" data-due="`+due+`"`) || strings.Contains(s, "숨긴 수주") {
+				if !strings.Contains(s, "shipping-calendar-v1.4.28.js") || !strings.Contains(s, "calendar-complete-v1.4.27.css") || !strings.Contains(s, `data-name="미리 완료한 수주" data-due="`+due+`"`) || strings.Contains(s, "숨긴 수주") {
 					t.Fatal("missing scheduled completed record, calendar assets, or hidden record exposed")
 				}
 			}

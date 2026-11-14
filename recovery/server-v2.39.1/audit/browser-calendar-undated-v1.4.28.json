@@ -1,0 +1,149 @@
+{
+  "scope": "Real Go-rendered synthetic data with 27 historical records without dates and 2 schedule-linked undated records; Chromium 320/390/1100px light/dark, administrator/worker",
+  "results": [
+    {
+      "role": "worker",
+      "width": 320,
+      "scheme": "light",
+      "undatedRequiresLinkedSource": "pass",
+      "historical27NotCountedAsUnknown": "pass",
+      "missingSourceExcludedFromCalendar": "pass",
+      "datedCountsUnaffected": "pass",
+      "metadataChangesRefreshCounts": "pass",
+      "noOverflow": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "admin",
+      "width": 320,
+      "scheme": "light",
+      "undatedRequiresLinkedSource": "pass",
+      "historical27NotCountedAsUnknown": "pass",
+      "missingSourceExcludedFromCalendar": "pass",
+      "datedCountsUnaffected": "pass",
+      "metadataChangesRefreshCounts": "pass",
+      "noOverflow": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "worker",
+      "width": 390,
+      "scheme": "light",
+      "undatedRequiresLinkedSource": "pass",
+      "historical27NotCountedAsUnknown": "pass",
+      "missingSourceExcludedFromCalendar": "pass",
+      "datedCountsUnaffected": "pass",
+      "metadataChangesRefreshCounts": "pass",
+      "noOverflow": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "admin",
+      "width": 390,
+      "scheme": "light",
+      "undatedRequiresLinkedSource": "pass",
+      "historical27NotCountedAsUnknown": "pass",
+      "missingSourceExcludedFromCalendar": "pass",
+      "datedCountsUnaffected": "pass",
+      "metadataChangesRefreshCounts": "pass",
+      "noOverflow": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "worker",
+      "width": 1100,
+      "scheme": "light",
+      "undatedRequiresLinkedSource": "pass",
+      "historical27NotCountedAsUnknown": "pass",
+      "missingSourceExcludedFromCalendar": "pass",
+      "datedCountsUnaffected": "pass",
+      "metadataChangesRefreshCounts": "pass",
+      "noOverflow": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "admin",
+      "width": 1100,
+      "scheme": "light",
+      "undatedRequiresLinkedSource": "pass",
+      "historical27NotCountedAsUnknown": "pass",
+      "missingSourceExcludedFromCalendar": "pass",
+      "datedCountsUnaffected": "pass",
+      "metadataChangesRefreshCounts": "pass",
+      "noOverflow": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "worker",
+      "width": 320,
+      "scheme": "dark",
+      "undatedRequiresLinkedSource": "pass",
+      "historical27NotCountedAsUnknown": "pass",
+      "missingSourceExcludedFromCalendar": "pass",
+      "datedCountsUnaffected": "pass",
+      "metadataChangesRefreshCounts": "pass",
+      "noOverflow": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "admin",
+      "width": 320,
+      "scheme": "dark",
+      "undatedRequiresLinkedSource": "pass",
+      "historical27NotCountedAsUnknown": "pass",
+      "missingSourceExcludedFromCalendar": "pass",
+      "datedCountsUnaffected": "pass",
+      "metadataChangesRefreshCounts": "pass",
+      "noOverflow": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "worker",
+      "width": 390,
+      "scheme": "dark",
+      "undatedRequiresLinkedSource": "pass",
+      "historical27NotCountedAsUnknown": "pass",
+      "missingSourceExcludedFromCalendar": "pass",
+      "datedCountsUnaffected": "pass",
+      "metadataChangesRefreshCounts": "pass",
+      "noOverflow": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "admin",
+      "width": 390,
+      "scheme": "dark",
+      "undatedRequiresLinkedSource": "pass",
+      "historical27NotCountedAsUnknown": "pass",
+      "missingSourceExcludedFromCalendar": "pass",
+      "datedCountsUnaffected": "pass",
+      "metadataChangesRefreshCounts": "pass",
+      "noOverflow": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "worker",
+      "width": 1100,
+      "scheme": "dark",
+      "undatedRequiresLinkedSource": "pass",
+      "historical27NotCountedAsUnknown": "pass",
+      "missingSourceExcludedFromCalendar": "pass",
+      "datedCountsUnaffected": "pass",
+      "metadataChangesRefreshCounts": "pass",
+      "noOverflow": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "admin",
+      "width": 1100,
+      "scheme": "dark",
+      "undatedRequiresLinkedSource": "pass",
+      "historical27NotCountedAsUnknown": "pass",
+      "missingSourceExcludedFromCalendar": "pass",
+      "datedCountsUnaffected": "pass",
+      "metadataChangesRefreshCounts": "pass",
+      "noOverflow": "pass",
+      "pageErrors": []
+    }
+  ]
+}

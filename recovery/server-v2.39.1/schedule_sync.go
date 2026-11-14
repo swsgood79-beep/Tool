@@ -236,6 +236,9 @@ func (a *App) syncSchedule(ctx context.Context, force bool) {
 				p.ShippingDueDate = d
 				p.touch()
 				changed++
+			} else if p.ShippingDueManaged != ok {
+				// Refresh calendar source membership even when the date stays empty.
+				p.touch()
 			}
 			p.ShippingDueManaged = ok
 		}
