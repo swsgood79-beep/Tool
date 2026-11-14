@@ -1,0 +1,256 @@
+/* Opt-in only. The extracted 57 original assets remain intact. */
+.design-only{display:none!important}
+.design-classic-bar{display:flex;align-items:center;justify-content:center;gap:14px;padding:9px 16px;background:#eef5ff;border-bottom:1px solid #c9dcff;color:#17478c;font:13px/1.5 system-ui,sans-serif}
+.design-classic-bar button{border:0;border-radius:9px;background:#3182f6;color:white;padding:9px 14px;font-size:13px;font-weight:700;cursor:pointer}
+.design-classic-bar[hidden]{display:none!important}
+html[data-alpha-design=modern]{--ink:#191f28;--muted:#6b7684;--green:#3182f6;--line:#edf0f4;--bg:#f4f5f7;color-scheme:light;scroll-padding-top:80px}
+html[data-alpha-design=modern] body{background:#f4f5f7;color:#191f28;font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;font-size:16px;line-height:1.6;letter-spacing:-.3px;margin:0;padding:0 0 calc(90px + env(safe-area-inset-bottom))}
+html[data-alpha-design=modern] .design-only{display:revert!important}
+html[data-alpha-design=modern] [hidden]{display:none!important}
+html[data-alpha-design=modern] body>header,html[data-alpha-design=modern] body>.recovery-banner{display:none!important}
+html[data-alpha-design=modern] main{max-width:1000px;width:100%;margin:20px auto 30px;padding:0 24px}
+html[data-alpha-design=modern] h1{font-size:28px;line-height:1.35;font-weight:800;letter-spacing:-1px;margin:12px 0 24px}
+html[data-alpha-design=modern] h2{font-size:20px;font-weight:750;color:#191f28;letter-spacing:-.6px}
+html[data-alpha-design=modern] h3{font-size:18px;color:#191f28}
+html[data-alpha-design=modern] .muted,html[data-alpha-design=modern] .small,html[data-alpha-design=modern] small{color:#6b7684}
+html[data-alpha-design=modern] a{color:#2775e5}
+html[data-alpha-design=modern] .card{border:1px solid #edf0f4;border-radius:20px;background:#fff;box-shadow:0 2px 5px #192c4d03;padding:24px;margin-bottom:16px}
+html[data-alpha-design=modern] button,html[data-alpha-design=modern] .button{font-family:inherit;font-size:15px;border-radius:12px;min-height:44px;line-height:1.45;font-weight:650;box-shadow:none;letter-spacing:-.3px;cursor:pointer}
+html[data-alpha-design=modern] button:disabled{cursor:not-allowed;opacity:.5}
+html[data-alpha-design=modern] .primary,html[data-alpha-design=modern] .design-blue{background:#3182f6;color:#fff;border:1px solid #3182f6;box-shadow:none}
+html[data-alpha-design=modern] .quiet{background:#f2f4f6;color:#4e5968;border:1px solid transparent}
+html[data-alpha-design=modern] input:not([type=hidden]):not([type=checkbox]):not([type=radio]):not([type=range]),html[data-alpha-design=modern] select,html[data-alpha-design=modern] textarea{line-height:1.6;font-family:inherit;font-size:16px;color:#191f28;max-width:100%;border:1px solid #dce1e8;background:#fff;border-radius:12px;box-shadow:none;min-height:48px;padding:12px 14px}
+html[data-alpha-design=modern] input[type=checkbox]{accent-color:#3182f6}
+html[data-alpha-design=modern] :focus-visible{outline:3px solid #7db0ff;outline-offset:3px}
+html[data-alpha-design=modern] .eyebrow{display:none}
+html[data-alpha-design=modern] .badge,html[data-alpha-design=modern] .stage-chip,html[data-alpha-design=modern] .request-kind,html[data-alpha-design=modern] .admin-status-chip{border:0;border-radius:7px;padding:4px 8px;font-size:12px;line-height:1.5;letter-spacing:-.2px;box-shadow:none}
+html[data-alpha-design=modern] .badge.success,html[data-alpha-design=modern] .stage-chip.success{background:#e0f5eb;color:#13855e}
+html[data-alpha-design=modern] .special-info-link{color:#d83c4b;background:#fff0f1;border:0;border-radius:7px;padding:5px 8px;font-size:12px;font-weight:650;min-height:30px}
+html[data-alpha-design=modern] .designer-call{color:#4e5968;background:transparent;border:0;padding:2px 0;font-size:13px}
+html[data-alpha-design=modern] .supplied-materials{min-height:30px;border-radius:7px;box-shadow:none;font-size:12px;padding:5px 8px}
+html[data-alpha-design=modern] .design-header{display:flex!important;position:sticky;top:0;z-index:40;gap:12px;align-items:center;max-width:100%;min-height:72px;background:#ffffffed;backdrop-filter:blur(12px);padding:12px max(20px,calc((100vw - 950px)/2));border-bottom:1px solid #e9edf3}
+html[data-alpha-design=modern] .design-brand{display:flex;gap:8px;align-items:center;color:#191f28;text-decoration:none;flex:1;min-width:0;white-space:nowrap}
+html[data-alpha-design=modern] .design-brand b{font-size:22px;letter-spacing:-1px}
+html[data-alpha-design=modern] .design-brand small{font-size:12px;padding-left:4px}
+html[data-alpha-design=modern] .design-logo{display:inline-grid;place-items:center;flex:none;width:35px;height:35px;border-radius:11px;background:#3182f6;color:#fff;font:bold 32px/1 Georgia,serif}
+html[data-alpha-design=modern] .design-preview-label{font-size:11px;color:#3182f6;background:#edf5ff;border-radius:6px;padding:3px 6px;white-space:nowrap}
+html[data-alpha-design=modern] .design-restore{font-size:12px;border:0;border-radius:8px;min-height:38px;padding:7px 9px;background:#f2f4f6;color:#4e5968;white-space:nowrap}
+html[data-alpha-design=modern] .design-bottom-nav{display:grid!important;grid-template-columns:repeat(4,1fr);position:fixed;z-index:45;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,1000px);min-height:76px;background:#ffffffed;backdrop-filter:blur(12px);border:1px solid #e9edf3;border-bottom:0;border-radius:18px 18px 0 0;padding:8px 8px calc(8px + env(safe-area-inset-bottom));box-shadow:0 -4px 24px #25304705}
+html[data-alpha-design=modern] .design-nav-item{display:flex;gap:3px;align-items:center;justify-content:center;flex-direction:column;min-height:56px;color:#6b7684;font-size:12px;font-weight:600;text-decoration:none}
+html[data-alpha-design=modern] .design-nav-item svg{width:24px;height:24px}
+html[data-alpha-design=modern] .design-nav-item[aria-current=page]{color:#3182f6}
+html[data-alpha-design=modern] .design-home,html[data-alpha-design=modern] .design-orders-title,html[data-alpha-design=modern] .design-menu{display:none!important}
+html[data-alpha-design=modern] .admin-page[data-design-tab=home] main>.design-home,html[data-alpha-design=modern] .admin-page[data-design-tab=orders] main>.design-orders-title,html[data-alpha-design=modern] body[data-design-tab=menu] main>.design-menu{display:block!important}
+html[data-alpha-design=modern] .admin-page[data-design-tab=home] main>:not(.design-home):not(.inspection-request-panel){display:none!important}
+html[data-alpha-design=modern] .admin-page[data-design-tab=orders] main>:not(.design-orders-title):not(.columns){display:none!important}
+html[data-alpha-design=modern] body[data-design-tab=menu] main>:not(.design-menu):not(.electron-speech-toolbar){display:none!important}
+html[data-alpha-design=modern] .admin-page[data-design-tab=orders] .columns>.create{display:none}
+html[data-alpha-design=modern] .admin-page .columns{display:block}
+html[data-alpha-design=modern] .admin-page[data-design-tab=home] .request-tools,html[data-alpha-design=modern] .admin-page[data-design-tab=home] .inspection-request-panel>.small,html[data-alpha-design=modern] .admin-page[data-design-tab=home] .inspection-request-panel .eyebrow{display:none}
+html[data-alpha-design=modern] .design-summary-card{border:1px solid #edf0f4;border-radius:22px;background:#fff;padding:24px;margin-bottom:16px}
+html[data-alpha-design=modern] .design-pending{display:flex;align-items:center;gap:6px;color:#333d4b;padding:0 0 22px}
+html[data-alpha-design=modern] .design-pending strong{font-size:42px;font-weight:800;color:#3182f6;line-height:1}
+html[data-alpha-design=modern] .design-pending svg{width:22px;height:22px;margin-left:auto}
+html[data-alpha-design=modern] .design-stats{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #edf0f4;padding-top:18px}
+html[data-alpha-design=modern] .design-stats button{background:transparent;border:0;display:flex;align-items:center;flex-direction:column;color:#4e5968;font-size:14px}
+html[data-alpha-design=modern] .design-stats button+button{border-left:1px solid #edf0f4;border-radius:0}
+html[data-alpha-design=modern] .design-stats strong{font-size:26px;color:#191f28;line-height:1.6}
+html[data-alpha-design=modern] .design-calendar-shortcut{width:100%;display:grid;grid-template-columns:34px 1fr 20px;align-items:center;text-align:left;border:1px solid #edf0f4;background:#fff;color:#191f28;border-radius:16px;padding:18px 20px;margin:0 0 20px}
+html[data-alpha-design=modern] .design-calendar-shortcut>svg:first-child{width:28px;height:28px;grid-row:span 2;color:#3182f6}
+html[data-alpha-design=modern] .design-calendar-shortcut>span{font-size:13px;color:#6b7684;grid-column:2}
+html[data-alpha-design=modern] .design-calendar-shortcut>svg:last-child{width:20px;height:20px;grid-column:3;grid-row:1 / span 2;color:#8b95a1}
+html[data-alpha-design=modern] .design-orders-title{margin-bottom:20px}
+html[data-alpha-design=modern] .design-orders-title .design-blue{display:inline-block;padding:10px 16px;border-radius:12px}
+html[data-alpha-design=modern] .inspection-request-panel{border:0;background:transparent;padding:0;box-shadow:none}
+html[data-alpha-design=modern] .inspection-request-panel .section-heading{align-items:center;margin-bottom:16px}
+html[data-alpha-design=modern] .inspection-request-panel .section-heading h2{margin-bottom:0}
+html[data-alpha-design=modern] .inspection-request-panel .section-heading>a{font-size:12px;padding:8px 10px;background:transparent;color:#3182f6}
+html[data-alpha-design=modern] .request-count{background:#e9f2ff;color:#3182f6;min-width:28px;height:auto;border-radius:8px;font-size:16px;padding:3px 8px}
+html[data-alpha-design=modern] .inspection-request-scroll{max-height:none;overflow:visible;padding:0}
+html[data-alpha-design=modern] .inspection-request-item{display:block;border:1px solid #edf0f4;background:#fff;border-radius:18px;padding:20px;margin-bottom:12px;box-shadow:none}
+html[data-alpha-design=modern] .inspection-request-item h3{font-size:20px;line-height:1.45;margin:12px 0 6px;overflow-wrap:anywhere}
+html[data-alpha-design=modern] .inspection-request-item .request-actions{display:flex;justify-content:flex-end;margin-top:8px}
+html[data-alpha-design=modern] .inspection-request-item .request-actions form{display:none}
+html[data-alpha-design=modern] .inspection-request-item .request-actions>a{background:transparent;border:0;color:#3182f6;padding:8px 0;font-size:14px}
+html[data-alpha-design=modern] .request-meta{margin:8px 0 0;font-size:14px;color:#4e5968}
+html[data-alpha-design=modern] .request-kind.setting{background:#e7f1ff;color:#2775e5}
+html[data-alpha-design=modern] .request-kind.shipping,html[data-alpha-design=modern] .request-kind.combined{background:#fff2d7;color:#a66b04}
+html[data-alpha-design=modern] .request-tools{display:grid;grid-template-columns:minmax(0,1fr) 110px;gap:8px}
+html[data-alpha-design=modern] .request-tools input{width:100%}
+html[data-alpha-design=modern] .design-profile{display:flex;align-items:center;gap:14px;background:#fff;padding:22px;border:1px solid #edf0f4;border-radius:20px;margin-bottom:28px}
+html[data-alpha-design=modern] .design-profile b{font-size:20px}
+html[data-alpha-design=modern] .design-profile p{font-size:13px;color:#6b7684;margin:3px 0 0}
+html[data-alpha-design=modern] .design-menu-group{margin:0 0 26px}
+html[data-alpha-design=modern] .design-menu-group h2{font-size:15px;margin:0 0 10px 4px;color:#6b7684}
+html[data-alpha-design=modern] .design-menu-links{background:#fff;border:1px solid #edf0f4;border-radius:18px;overflow:hidden}
+html[data-alpha-design=modern] .design-menu-link{display:flex;gap:14px;align-items:center;width:100%;text-align:left;background:#fff;border:0;border-radius:0;color:#333d4b;padding:18px 20px;min-height:60px;font-size:16px;font-weight:550;text-decoration:none}
+html[data-alpha-design=modern] .design-menu-link+.design-menu-link{border-top:1px solid #f2f4f6}
+html[data-alpha-design=modern] .design-menu-link svg:first-child{width:23px;height:23px;color:#6b7684;flex:none}
+html[data-alpha-design=modern] .design-menu-link svg:last-child{width:18px;height:18px;color:#b0b8c1;margin-left:auto;flex:none}
+html[data-alpha-design=modern] .design-menu-link:hover{background:#f7faff}
+html[data-alpha-design=modern] .design-logout{margin:24px 0}
+html[data-alpha-design=modern] .worker-page .worker-top{display:block;background:transparent;border:0;padding:0;border-radius:0;box-shadow:none;margin:0 0 20px;color:#191f28}
+html[data-alpha-design=modern] .worker-heading>h1:not(.design-work-title),html[data-alpha-design=modern] .worker-heading>p{display:none}
+html[data-alpha-design=modern] .worker-heading .design-work-title{color:#191f28;font-size:30px}
+html[data-alpha-design=modern] .worker-context{width:auto;border:0;max-width:100%;background:#fff;border-radius:16px;box-shadow:none;padding:12px 14px;color:#333d4b}
+html[data-alpha-design=modern] .market-grid{display:flex;gap:20px;overflow:auto;scrollbar-width:thin;grid-template-columns:none;padding:0 0 4px}
+html[data-alpha-design=modern] .market-tile{display:grid;grid-template-columns:auto auto;column-gap:8px;min-width:166px;background:transparent;border:0;padding:0;border-radius:0}
+html[data-alpha-design=modern] .market-name{color:#4e5968;font-size:12px}
+html[data-alpha-design=modern] .market-price{color:#333d4b;font-size:16px;grid-row:2;grid-column:1}
+html[data-alpha-design=modern] .market-change{font-size:12px;grid-row:2;grid-column:2;align-self:center}
+html[data-alpha-design=modern] .market-context:not(.design-market-expanded) .market-context-top,html[data-alpha-design=modern] .market-context:not(.design-market-expanded) .market-time,html[data-alpha-design=modern] .market-context:not(.design-market-expanded) .market-fx,html[data-alpha-design=modern] .market-context:not(.design-market-expanded)>p,html[data-alpha-design=modern] .market-context:not(.design-market-expanded)>.market-basis,html[data-alpha-design=modern] .market-context:not(.design-market-expanded)>.market-sources{display:none}
+html[data-alpha-design=modern] .market-context.design-market-expanded .market-context-top,html[data-alpha-design=modern] .market-context.design-market-expanded small{color:#6b7684}
+html[data-alpha-design=modern] .market-context.design-market-expanded .market-tile{min-width:180px}
+html[data-alpha-design=modern] .market-fx{background:#f4f6f9;border-color:#edf0f4;color:#333d4b}
+html[data-alpha-design=modern] .market-context #market-fx-rate{color:#333d4b}
+html[data-alpha-design=modern] .design-market-toggle{font-size:11px;min-height:30px;border:0;background:transparent;color:#6b7684;padding:4px 0}
+html[data-alpha-design=modern] .worker-tools{background:transparent;border:0;border-radius:0;padding:0;box-shadow:none;margin-bottom:24px}
+html[data-alpha-design=modern] .worker-tools>.search-label,html[data-alpha-design=modern] #worker-client-directory{display:none}
+html[data-alpha-design=modern] .search-box{border:0;background:#e9edf2;border-radius:14px;box-shadow:none}
+html[data-alpha-design=modern] .search-box input{background:transparent!important;border:0!important;border-radius:14px;min-height:52px}
+html[data-alpha-design=modern] .search-symbol{color:#8b95a1}
+html[data-alpha-design=modern] .stage-filters{display:flex;gap:6px;overflow:auto;scrollbar-width:none;margin:14px 0}
+html[data-alpha-design=modern] .stage-filters>button,html[data-alpha-design=modern] .admin-filter-bar>button{flex:none;white-space:nowrap;background:#fff;color:#4e5968;border:1px solid #e5e8eb;border-radius:12px;font-size:13px;min-height:42px;padding:10px 12px;box-shadow:none}
+html[data-alpha-design=modern] .stage-filters>button[aria-pressed=true],html[data-alpha-design=modern] .admin-filter-bar>button[aria-pressed=true]{background:#3182f6;color:#fff;border-color:#3182f6}
+html[data-alpha-design=modern] .delivery-panel{padding:0;background:transparent;border:0;box-shadow:none}
+html[data-alpha-design=modern] .delivery-tabs{background:#e9edf2;border:0;border-radius:12px;padding:4px;margin-bottom:10px}
+html[data-alpha-design=modern] .delivery-tabs>button{background:transparent;border:0;color:#4e5968;font-size:13px;box-shadow:none}
+html[data-alpha-design=modern] .delivery-tabs>button[aria-pressed=true]{background:#fff;color:#3182f6;box-shadow:0 1px 4px #00000008}
+html[data-alpha-design=modern] .delivery-summary{border:1px solid #edf0f4;border-radius:16px;background:#fff;padding:16px;gap:12px;min-height:78px;color:#191f28;width:100%}
+html[data-alpha-design=modern] .delivery-icon{color:#3182f6}
+html[data-alpha-design=modern] .delivery-title{font-size:18px;color:#191f28;line-height:1.5}
+html[data-alpha-design=modern] .delivery-description{color:#6b7684;font-size:12px}
+html[data-alpha-design=modern] .search-meta{font-size:12px;gap:8px;margin-top:12px;color:#8b95a1}
+html[data-alpha-design=modern] .search-meta #view-hint{display:none}
+html[data-alpha-design=modern] .schedule-hint{font-size:10px;color:#8b95a1}
+html[data-alpha-design=modern] .design-list-title{font-size:20px;margin:4px 0 16px}
+html[data-alpha-design=modern] .work-item{background:#fff;border:1px solid #edf0f4;border-radius:18px;padding:18px 20px;margin-bottom:12px;box-shadow:none}
+html[data-alpha-design=modern] .work-item .project-topline{margin-bottom:8px;gap:8px;flex-wrap:wrap}
+html[data-alpha-design=modern] .work-item .order-number{background:transparent;color:#8b95a1;padding:0;border:0;border-radius:0;font-size:12px}
+html[data-alpha-design=modern] .work-item .project-summary{padding:0;gap:10px;align-items:center}
+html[data-alpha-design=modern] .work-item h2{font-size:20px;line-height:1.5;letter-spacing:-.6px;color:#191f28;margin:0 0 6px}
+html[data-alpha-design=modern] .work-item .summary-status{min-width:0;max-width:112px}
+html[data-alpha-design=modern] .work-item .expand-hint{font-size:12px;color:#8b95a1;margin-top:8px}
+html[data-alpha-design=modern] .shipping-due-chip{background:#f2f4f6;color:#6b7684;border:0;border-radius:6px;font-size:11px;padding:3px 6px}
+html[data-alpha-design=modern] .chip-setting{background:#e7f1ff;color:#2775e5}
+html[data-alpha-design=modern] .chip-shipping{background:#fff2d7;color:#a66b04}
+html[data-alpha-design=modern] .summary-worker{font-size:12px;color:#6b7684}
+html[data-alpha-design=modern] .admin-order-panel{padding:0;background:transparent;border:0;box-shadow:none}
+html[data-alpha-design=modern] .admin-order-scroll{max-height:none;overflow:visible;padding:0}
+html[data-alpha-design=modern] .admin-filter-bar{display:flex;flex-wrap:nowrap;overflow:auto;gap:6px}
+html[data-alpha-design=modern] .admin-project{border:1px solid #edf0f4;border-radius:18px;background:#fff;padding:16px;margin:12px 0;box-shadow:none}
+html[data-alpha-design=modern] .admin-project summary{gap:10px}
+html[data-alpha-design=modern] .admin-project h3{font-size:20px;line-height:1.45;margin:6px 0;color:#191f28}
+html[data-alpha-design=modern] .admin-project-info{margin-top:10px}
+html[data-alpha-design=modern] .admin-project .order-edit{font-size:12px;padding:7px 9px;min-height:36px}
+html[data-alpha-design=modern] .admin-project[data-status=done]{background:#e8f7ef;border-color:#b9e4cf}
+html[data-alpha-design=modern] .project-row .admin-project-body{background:#f9fafb;border-radius:12px;margin-top:16px;padding:16px}
+html[data-alpha-design=modern] dialog{color:#191f28;box-shadow:0 24px 90px #142b4933}
+html[data-alpha-design=modern] dialog::backdrop{background:#182a4266;backdrop-filter:blur(3px)}
+html[data-alpha-design=modern] .shipping-calendar{border:1px solid #edf0f4;border-radius:24px;width:min(650px,calc(100vw - 24px));max-width:calc(100vw - 24px);max-height:92vh;max-height:92dvh;background:#fff;padding:0}
+html[data-alpha-design=modern] .calendar-header{position:sticky;top:0;background:#fff;color:#191f28;border-bottom:1px solid #edf0f4;padding:18px 20px;z-index:2}
+html[data-alpha-design=modern] .calendar-header h2{color:#191f28}
+html[data-alpha-design=modern] .calendar-close{background:#f2f4f6;color:#6b7684;border:0;width:40px;min-height:40px}
+html[data-alpha-design=modern] .calendar-body{padding:16px 20px 24px}
+html[data-alpha-design=modern] .calendar-navigation{gap:10px}
+html[data-alpha-design=modern] .calendar-navigation h3{font-size:21px}
+html[data-alpha-design=modern] .calendar-navigation button{background:#fff;color:#4e5968;border:0;min-width:40px}
+html[data-alpha-design=modern] .calendar-table{border:0;border-collapse:separate;border-spacing:3px;margin-top:16px;background:#fff;border-radius:0;overflow:visible}
+html[data-alpha-design=modern] .calendar-table th{background:#fff;color:#6b7684;border:0;font-size:12px;padding:8px 0}
+html[data-alpha-design=modern] .calendar-table td{border:0;height:64px;background:#fff;padding:0}
+html[data-alpha-design=modern] .calendar-table td.calendar-gap{background:#fff}
+html[data-alpha-design=modern] .calendar-day{width:100%;height:60px;min-height:60px;border:0;border-radius:13px;background:#fff;padding:5px 0;color:#333d4b;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1px;box-shadow:none}
+html[data-alpha-design=modern] .calendar-day.is-selected{background:#3182f6;color:#fff;box-shadow:0 3px 8px #3182f620}
+html[data-alpha-design=modern] .calendar-day.is-today:not(.is-selected){background:#edf5ff;color:#3182f6}
+html[data-alpha-design=modern] .calendar-day-number{font-size:16px;line-height:1.5}
+html[data-alpha-design=modern] .calendar-day-count{background:#e9f2ff;color:#3182f6;font-size:10px;padding:1px 4px;border:0;border-radius:5px;line-height:1.4;min-width:0}
+html[data-alpha-design=modern] .calendar-day-count>span{display:none}
+html[data-alpha-design=modern] .calendar-day.is-selected .calendar-day-count{background:#ffffff30;color:#fff}
+html[data-alpha-design=modern] .calendar-legend,html[data-alpha-design=modern] .calendar-month-summary{color:#8b95a1;font-size:11px}
+html[data-alpha-design=modern] .calendar-selection{border-top:1px solid #edf0f4;padding-top:20px;margin-top:16px}
+html[data-alpha-design=modern] .calendar-selection-heading h3{font-size:18px}
+html[data-alpha-design=modern] .calendar-order{border:1px solid #edf0f4;border-radius:16px;padding:16px;background:#fff;gap:12px;margin-bottom:10px}
+html[data-alpha-design=modern] .calendar-order h4{font-size:18px;color:#191f28;line-height:1.5;margin:4px 0 10px}
+html[data-alpha-design=modern] .calendar-order-number{background:transparent;color:#8b95a1;font-size:12px;padding:0}
+html[data-alpha-design=modern] .calendar-open-work{background:#edf5ff;color:#3182f6;border:0;font-size:12px;padding:9px 10px;border-radius:10px;min-height:40px}
+html[data-alpha-design=modern] .calendar-order-meta{gap:6px}
+html[data-alpha-design=modern] .calendar-footer{color:#8b95a1;font-size:11px}
+html[data-alpha-design=modern] .worker-inspection-dialog{width:min(650px,calc(100vw - 24px));max-width:calc(100vw - 24px);border:1px solid #edf0f4;border-radius:24px;background:#f4f5f7;max-height:92vh;max-height:92dvh}
+html[data-alpha-design=modern] .worker-dialog-heading{position:sticky;top:0;z-index:2;background:#fff;color:#191f28;border-bottom:1px solid #edf0f4;padding:20px}
+html[data-alpha-design=modern] .worker-dialog-heading h2{color:#191f28;font-size:23px;line-height:1.4;margin-top:8px}
+html[data-alpha-design=modern] .worker-dialog-heading .order-number{background:#f2f4f6;color:#6b7684;font-size:12px}
+html[data-alpha-design=modern] .worker-dialog-close{background:#f2f4f6;border:0;color:#6b7684}
+html[data-alpha-design=modern] .worker-dialog-body{padding:20px}
+html[data-alpha-design=modern] .design-request-selector{background:#fff;border:1px solid #edf0f4;border-radius:18px;padding:20px;margin-bottom:16px}
+html[data-alpha-design=modern] .design-request-selector h3{margin:0 0 14px;font-size:19px}
+html[data-alpha-design=modern] .design-request-options{display:flex;flex-direction:column;gap:6px}
+html[data-alpha-design=modern] .design-request-choice{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:#fff;border:0;text-align:left;width:100%;border-radius:12px;padding:14px 10px;color:#333d4b;min-height:52px}
+html[data-alpha-design=modern] .design-request-choice small{width:100%;padding-left:28px;margin-top:-5px;font-size:11px}
+html[data-alpha-design=modern] .design-radio{display:block;flex:none;width:21px;height:21px;border:2px solid #b0b8c1;border-radius:50%}
+html[data-alpha-design=modern] .design-request-choice[aria-pressed=true]{background:#edf5ff;color:#2775e5}
+html[data-alpha-design=modern] .design-request-choice[aria-pressed=true] .design-radio{border:6px solid #3182f6}
+html[data-alpha-design=modern] .worker-inspection-dialog[data-request-mode=setting] .stage-shipping:not(.inspection-done):not(.inspection-requested),html[data-alpha-design=modern] .worker-inspection-dialog[data-request-mode=combined] .stage-shipping:not(.inspection-done):not(.inspection-requested),html[data-alpha-design=modern] .worker-inspection-dialog[data-request-mode=shipping] .stage-setting:not(.inspection-done):not(.inspection-requested){display:none}
+html[data-alpha-design=modern] .worker-inspection-dialog[data-request-mode=setting] .combined-request,html[data-alpha-design=modern] .worker-inspection-dialog[data-request-mode=combined] .stage-setting .inspection-direct-actions>button.primary{display:none}
+html[data-alpha-design=modern] .inspection-list{display:block}
+html[data-alpha-design=modern] .inspection-row{display:block;background:#fff;border:1px solid #edf0f4;border-radius:18px;padding:20px;margin:0 0 16px}
+html[data-alpha-design=modern] .inspection-row .step-number{display:none}
+html[data-alpha-design=modern] .inspection-row .stage-title{margin-bottom:18px}
+html[data-alpha-design=modern] .inspection-row form,html[data-alpha-design=modern] .inspection-row fieldset{min-width:0;width:100%;border:0;padding:0;margin:0}
+html[data-alpha-design=modern] .inspection-direct-actions{display:flex;flex-direction:column;gap:8px}
+html[data-alpha-design=modern] .inspection-direct-actions>button{width:100%;padding:16px;font-size:17px;border-radius:14px;min-height:54px}
+html[data-alpha-design=modern] .combined-request{background:#3182f6;color:#fff;border:0}
+html[data-alpha-design=modern] .inspection-requested{background:#fff9e9;border-color:#f5dfaa}
+html[data-alpha-design=modern] .inspection-done{background:#e9f8f0;border-color:#bee6d2}
+html[data-alpha-design=modern] .note-panel{background:#fff;border:1px solid #edf0f4;border-radius:18px;padding:20px}
+html[data-alpha-design=modern] .note-icon{display:none}
+html[data-alpha-design=modern] .note-heading h3{color:#333d4b}
+html[data-alpha-design=modern] .note-heading p{color:#6b7684;font-size:12px}
+html[data-alpha-design=modern] .note-panel form{display:block}
+html[data-alpha-design=modern] .note-panel label{display:block;margin:12px 0}
+html[data-alpha-design=modern] .note-panel input,html[data-alpha-design=modern] .note-panel textarea{width:100%}
+html[data-alpha-design=modern] .note-send{background:#f2f4f6;border:0;color:#4e5968}
+html[data-alpha-design=modern] .worker-special-review-dialog{background:#fff;border-radius:22px}
+html[data-alpha-design=modern] .special-review-footer{color:#191f28;font-size:15px}
+html[data-alpha-design=modern] .special-review-check{color:#333d4b}
+html[data-alpha-design=modern] #worker-client-list>details{border:1px solid #edf0f4;border-radius:18px;padding:20px;margin:12px 0;background:#fff}
+html[data-alpha-design=modern] #worker-client-list summary{display:flex;align-items:center;gap:10px;justify-content:space-between;min-height:42px;cursor:pointer;font-size:20px;font-weight:700;color:#191f28}
+html[data-alpha-design=modern] #worker-client-list summary::after{content:'›';font-size:24px;color:#b0b8c1}
+html[data-alpha-design=modern] #worker-client-list summary .badge{background:#fff0f1;color:#d83c4b;font-size:11px;margin-left:auto}
+html[data-alpha-design=modern] .special-instructions{line-height:1.8;overflow-wrap:anywhere}
+html[data-alpha-design=modern] .special-photo-list img{max-width:100%;height:auto;border-radius:14px}
+html[data-alpha-design=modern] .inspection-review .review-stage,html[data-alpha-design=modern] .combined-review-panel{border:1px solid #edf0f4;border-radius:18px;padding:20px;background:#fff}
+html[data-alpha-design=modern] .review-pending{border-color:#f5dfaa!important;background:#fffbf1!important}
+html[data-alpha-design=modern] .inspection-reject-form button{background:#fff0f1;color:#d83c4b;border-color:#ffd5da}
+html[data-alpha-design=modern] .electron-speech-toolbar{margin:24px 0;background:#fff;border:1px solid #edf0f4;border-radius:16px;padding:16px;color:#4e5968}
+html[data-alpha-design=modern] .electron-speech-toolbar p{font-size:12px}
+@media(min-width:760px){html[data-alpha-design=modern] .design-home h1{font-size:32px}html[data-alpha-design=modern] .design-menu{max-width:720px;margin:auto}html[data-alpha-design=modern] .work-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}html[data-alpha-design=modern] .work-list>.work-item{margin:0}html[data-alpha-design=modern] .work-list>.delivery-date-group{grid-column:1/-1}html[data-alpha-design=modern] .worker-tools{max-width:100%}}
+@media(max-width:600px){html[data-alpha-design=modern] main{padding:0 18px;margin-top:18px}html[data-alpha-design=modern] .design-header{padding:10px 16px;gap:7px;min-height:66px}html[data-alpha-design=modern] .design-brand{gap:7px}html[data-alpha-design=modern] .design-brand b{font-size:21px}html[data-alpha-design=modern] .card{padding:20px}html[data-alpha-design=modern] .admin-order-panel,html[data-alpha-design=modern] .inspection-request-panel{padding:0}html[data-alpha-design=modern] .admin-project summary{display:grid;grid-template-columns:minmax(0,1fr) auto}html[data-alpha-design=modern] .admin-project summary>div:first-child{grid-column:1;grid-row:1 / span 3}html[data-alpha-design=modern] .admin-project .admin-status-chip{font-size:10px}html[data-alpha-design=modern] .work-item{padding:18px}html[data-alpha-design=modern] .work-item .project-quick-actions{gap:6px;flex-wrap:wrap}html[data-alpha-design=modern] .work-item .summary-status{max-width:94px}html[data-alpha-design=modern] .work-item .stage-chip{font-size:10px}html[data-alpha-design=modern] .worker-inspection-dialog .worker-dialog-body{padding:16px}html[data-alpha-design=modern] .worker-dialog-heading{padding:16px}html[data-alpha-design=modern] .calendar-body{padding:14px 12px 20px}html[data-alpha-design=modern] .calendar-order{display:block;padding:16px}html[data-alpha-design=modern] .calendar-order .calendar-open-work{display:inline-flex;margin-top:12px}html[data-alpha-design=modern] .calendar-selection-heading{gap:8px}html[data-alpha-design=modern] .calendar-selection-heading h3{font-size:16px}html[data-alpha-design=modern] .calendar-table td{height:58px}html[data-alpha-design=modern] .calendar-day{height:54px;min-height:54px}html[data-alpha-design=modern] .design-preview-label{font-size:10px}html[data-alpha-design=modern] .design-restore{font-size:11px;padding:6px 8px}html[data-alpha-design=modern] .design-brand small{font-size:11px}html[data-alpha-design=modern] .inspection-review .review-stages{display:block}html[data-alpha-design=modern] .request-tools{grid-template-columns:minmax(0,1fr) 104px}}
+@media(prefers-reduced-motion:reduce){html[data-alpha-design=modern] *{scroll-behavior:auto!important;transition:none!important}}
+/* Keep the first screen focused on orders; speech remains live in the menu. */
+html[data-alpha-design=modern] body:not([data-design-tab=menu]):not([data-design-tab=tools]) main>.electron-speech-toolbar{display:none}
+html[data-alpha-design=modern] body[data-design-tab=menu] main{display:flex;flex-direction:column}
+html[data-alpha-design=modern] body[data-design-tab=menu] .design-menu{order:0;width:100%}
+html[data-alpha-design=modern] body[data-design-tab=menu] main>.electron-speech-toolbar{order:1}
+html[data-alpha-design=modern] body .inspection-request-panel{border:0!important;border-radius:0}
+html[data-alpha-design=modern] .design-mode-switch{font-size:11px;color:#3182f6;white-space:nowrap;min-height:36px;display:flex;align-items:center}
+html[data-alpha-design=modern] .design-classic-label{display:none}
+html[data-alpha-design=modern] .design-modern-label{display:inline!important}
+html[data-alpha-design=modern] .stage-filters>button{flex:1;font-size:12px;padding:10px 8px}
+html[data-alpha-design=modern] .stage-filters{gap:5px}
+html[data-alpha-design=modern] .worker-tools>.search-meta,html[data-alpha-design=modern] .worker-tools>.schedule-hint{display:none}
+html[data-alpha-design=modern] .stage-title .design-modern-label{display:none!important}
+html[data-alpha-design=modern] .stage-title .design-classic-label{display:inline}
+html[data-alpha-design=modern] [data-request-mode=combined] .stage-setting .stage-title .design-classic-label{display:none}
+html[data-alpha-design=modern] [data-request-mode=combined] .stage-setting .stage-title .design-modern-label{display:inline!important}
+html[data-alpha-design=modern] body[data-design-page="worker-client-directory.html"] main>.card{background:transparent;padding:0;border:0;box-shadow:none}
+html[data-alpha-design=modern] body[data-design-page="worker-client-directory.html"] main>.card>h1,html[data-alpha-design=modern] body[data-design-page="worker-client-directory.html"] main>.card>p.muted{display:none}
+html[data-alpha-design=modern] #worker-client-list summary{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px}
+html[data-alpha-design=modern] #worker-client-list summary>strong{font-size:19px;overflow-wrap:anywhere}
+html[data-alpha-design=modern] #worker-client-list .design-directory-preview{grid-row:2;grid-column:1/-1;color:#6b7684;font-size:14px;font-weight:400;line-height:1.7;display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+html[data-alpha-design=modern] #worker-client-list details[open] .design-directory-preview{display:none!important}
+html[data-alpha-design=modern] #worker-client-list [data-design-no-photos=true]{display:none}
+html[data-alpha-design=modern] #worker-client-list p.special-instructions{background:#f7f9fc;border:0;color:#4e5968;border-radius:12px;font-size:15px;padding:16px}
+html[data-alpha-design=modern] .market-context:not(.design-market-expanded) .market-tile{display:flex;align-items:center;gap:7px;min-width:max-content;white-space:nowrap}
+html[data-alpha-design=modern] .market-context:not(.design-market-expanded) .market-price{font-size:14px}
+html[data-alpha-design=modern] .market-context:not(.design-market-expanded) .market-change{font-size:11px}
+html[data-alpha-design=modern] .market-context:not(.design-market-expanded) .design-market-toggle{min-height:24px}

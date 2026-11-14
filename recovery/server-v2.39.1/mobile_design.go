@@ -1,0 +1,45 @@
+package main
+
+import (
+	"html/template"
+	"strings"
+)
+
+// UI preview is browser-local and opt-in. Never decorate card/poll fragments or
+// login/handoff pages, and never export a board token on an unauthenticated page.
+func mobileDesignPreview(s, name string, v any) string {
+	if !strings.Contains(s, "</body>") {
+		return s
+	}
+	allowed := map[string]bool{"admin.html": true, "work.html": true, "worker-client-directory.html": true, "inspection-queue.html": true, "inspection-review.html": true, "project-info.html": true, "form": true, "designers.html": true, "client-notes.html": true, "client-note-edit.html": true, "order-import.html": true, "unread.html": true, "edit.html": true, "project-delete.html": true, "report-settings.html": true, "tts-settings.html": true, "market-settings.html": true, "schedule.html": true, "settings.html": true, "backup.html": true, "phone.html": true, "mobile-access.html": true, "passkey-settings.html": true}
+	if !allowed[name] {
+		return s
+	}
+	role, workerURL, mobile := "admin", "", false
+	if root, ok := v.(map[string]any); ok {
+		workerURL, _ = root["WorkerURL"].(string)
+		mobile, _ = root["MobileAdmin"].(bool)
+		if name == "work.html" {
+			role = "worker"
+			if board, ok := root["CSRF"].(string); ok {
+				workerURL = "/work/" + board
+			}
+		}
+		if name == "worker-client-directory.html" {
+			role = "worker"
+			if board, ok := root["Board"].(string); ok {
+				workerURL = "/work/" + board
+			}
+		}
+		if name == "project-info.html" && root["AdminInfo"] != true {
+			role = "worker"
+			if board, ok := root["CSRF"].(string); ok {
+				workerURL = "/work/" + board
+			}
+		}
+	}
+	metadata := `<div id="alpha-design" hidden data-page="` + template.HTMLEscapeString(name) + `" data-role="` + role + `" data-worker-url="` + template.HTMLEscapeString(workerURL) + `" data-mobile="` + map[bool]string{true: "true", false: "false"}[mobile] + `"></div>`
+	assets := `<link rel="stylesheet" href="/mobile-design-v1.4.21.css"><script defer src="/mobile-design-v1.4.21.js"></script>`
+	s = strings.Replace(s, "</head>", assets+"</head>", 1)
+	return strings.Replace(s, "</body>", metadata+"</body>", 1)
+}

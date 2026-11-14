@@ -1,0 +1,59 @@
+{
+  "scope": "Go-rendered synthetic pages, mocked poll/media; real request forms exercised against a non-writing capture endpoint",
+  "results": [
+    {
+      "width": 360,
+      "optInDefaultClassic": "pass",
+      "noBusinessPostFromDesignSwitch": "pass",
+      "homeCounts": "pass",
+      "menuGrouping": "pass",
+      "persistAcrossPages": "pass",
+      "searchAndFilter": "pass",
+      "originalRestoreKeepsInputs": "pass",
+      "requestTypesAndOriginalPayload": "pass",
+      "polledFormPreservesModeAndInputs": "pass",
+      "notesRetained": "pass",
+      "specialInstructionsGate": "pass",
+      "calendarAndDesigner": "pass",
+      "directory": "pass",
+      "adminCompleteRejectVisible": "pass",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 390,
+      "optInDefaultClassic": "pass",
+      "noBusinessPostFromDesignSwitch": "pass",
+      "homeCounts": "pass",
+      "menuGrouping": "pass",
+      "persistAcrossPages": "pass",
+      "searchAndFilter": "pass",
+      "originalRestoreKeepsInputs": "pass",
+      "requestTypesAndOriginalPayload": "pass",
+      "polledFormPreservesModeAndInputs": "pass",
+      "notesRetained": "pass",
+      "specialInstructionsGate": "pass",
+      "calendarAndDesigner": "pass",
+      "directory": "pass",
+      "adminCompleteRejectVisible": "pass",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1100,
+      "optInDefaultClassic": "pass",
+      "noBusinessPostFromDesignSwitch": "pass",
+      "homeCounts": "pass",
+      "menuGrouping": "pass",
+      "persistAcrossPages": "pass",
+      "searchAndFilter": "pass",
+      "originalRestoreKeepsInputs": "pass",
+      "requestTypesAndOriginalPayload": "pass",
+      "polledFormPreservesModeAndInputs": "pass",
+      "notesRetained": "pass",
+      "specialInstructionsGate": "pass",
+      "calendarAndDesigner": "pass",
+      "directory": "pass",
+      "adminCompleteRejectVisible": "pass",
+      "horizontalOverflow": false
+    }
+  ]
+}
