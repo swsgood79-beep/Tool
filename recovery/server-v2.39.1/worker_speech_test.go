@@ -76,7 +76,7 @@ func TestWorkerSpeechPublicPCReadsNewRequestsWithoutAdminOrPrivateNotes(t *testi
 		t.Fatal("old request repeated")
 	}
 	page := call(a, "GET", "/work/"+a.state.Board+"?entry=skip", nil)
-	if page.Code != 200 || !strings.Contains(page.Body.String(), "공용 PC 음성 알림 켜기") || !strings.Contains(page.Body.String(), `data-endpoint="/worker-speech/`+a.state.Board+`"`) || strings.Contains(page.Body.String(), "admin-csrf") {
+	if page.Code != 200 || !strings.Contains(page.Body.String(), "공용 PC 음성 알림 끄기") || !strings.Contains(page.Body.String(), `data-endpoint="/worker-speech/`+a.state.Board+`"`) || strings.Contains(page.Body.String(), "admin-csrf") {
 		t.Fatal("public worker voice controls", page.Code)
 	}
 	if out := os.Getenv("WORKER_SPEECH_HTML"); out != "" {

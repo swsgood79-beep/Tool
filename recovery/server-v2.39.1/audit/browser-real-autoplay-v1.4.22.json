@@ -1,0 +1,8 @@
+{
+  "browser": "Chromium headless, real HTMLAudioElement/WebAudio with required-user-activation policy",
+  "defaultOnWhileBlocked": "pass",
+  "noLeaseBeforeGesture": "pass",
+  "ordinaryTapUnlocksRealAudio": "pass",
+  "pageErrors": [],
+  "physicalSpeaker": "not verified"
+}

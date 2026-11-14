@@ -1,0 +1,31 @@
+{
+  "scope": "Go-rendered synthetic pages; browser autoplay permission and media simulated; physical phone/PC playback not executed",
+  "results": [
+    {
+      "mode": "admin",
+      "defaultOn": "pass",
+      "newAlertsWithoutExtraOnClick": "pass",
+      "noStartupWelcomeOrOldReplay": "pass",
+      "explicitOffPersists": "pass",
+      "onAndPagehideReloadPersist": "pass",
+      "autoplayBlockedKeepsOnIntent": "pass",
+      "ordinaryTapUnlocks": "pass",
+      "noLeaseBeforeUnlock": "pass",
+      "nativeOwnerNotStolenOrPersistentlyMuted": "pass",
+      "explicitBrowserSelection": "pass"
+    },
+    {
+      "mode": "shared",
+      "defaultOn": "pass",
+      "newAlertsWithoutExtraOnClick": "pass",
+      "noStartupWelcomeOrOldReplay": "pass",
+      "explicitOffPersists": "pass",
+      "onAndPagehideReloadPersist": "pass",
+      "autoplayBlockedKeepsOnIntent": "pass",
+      "ordinaryTapUnlocks": "pass",
+      "noLeaseBeforeUnlock": "pass",
+      "nativeOwnerNotStolenOrPersistentlyMuted": "pass",
+      "explicitBrowserSelection": "pass"
+    }
+  ]
+}
