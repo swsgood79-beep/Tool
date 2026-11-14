@@ -1,0 +1,33 @@
+{
+  "comparison": "v1.4.23 vs v1.4.24 design assets against identical synthetic worker data; full PNG comparison",
+  "results": [
+    {
+      "scheme": "light",
+      "width": 390,
+      "workerListPixelIdentical": "pass",
+      "workerCalendarPixelIdentical": "pass",
+      "workerMenuPixelIdentical": "pass"
+    },
+    {
+      "scheme": "light",
+      "width": 1100,
+      "workerListPixelIdentical": "pass",
+      "workerCalendarPixelIdentical": "pass",
+      "workerMenuPixelIdentical": "pass"
+    },
+    {
+      "scheme": "dark",
+      "width": 390,
+      "workerListPixelIdentical": "pass",
+      "workerCalendarPixelIdentical": "pass",
+      "workerMenuPixelIdentical": "pass"
+    },
+    {
+      "scheme": "dark",
+      "width": 1100,
+      "workerListPixelIdentical": "pass",
+      "workerCalendarPixelIdentical": "pass",
+      "workerMenuPixelIdentical": "pass"
+    }
+  ]
+}

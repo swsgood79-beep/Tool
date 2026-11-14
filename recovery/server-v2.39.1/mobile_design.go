@@ -2,6 +2,7 @@ package main
 
 import (
 	"html/template"
+	"strconv"
 	"strings"
 )
 
@@ -16,9 +17,21 @@ func mobileDesignPreview(s, name string, v any) string {
 		return s
 	}
 	role, workerURL, mobile := "admin", "", false
+	activeCount, dueCount := 0, 0
 	if root, ok := v.(map[string]any); ok {
 		workerURL, _ = root["WorkerURL"].(string)
 		mobile, _ = root["MobileAdmin"].(bool)
+		if projects, ok := root["Projects"].([]ProjectView); ok {
+			date, _ := root["BusinessDate"].(string)
+			for _, p := range projects {
+				if p.Active {
+					activeCount++
+					if date != "" && p.ShippingDueDate == date {
+						dueCount++
+					}
+				}
+			}
+		}
 		if name == "work.html" {
 			role = "worker"
 			if board, ok := root["CSRF"].(string); ok {
@@ -39,7 +52,10 @@ func mobileDesignPreview(s, name string, v any) string {
 		}
 	}
 	metadata := `<div id="alpha-design" hidden data-page="` + template.HTMLEscapeString(name) + `" data-role="` + role + `" data-worker-url="` + template.HTMLEscapeString(workerURL) + `" data-mobile="` + map[bool]string{true: "true", false: "false"}[mobile] + `"></div>`
-	assets := `<link rel="stylesheet" href="/mobile-design-v1.4.23.css"><script defer src="/mobile-design-v1.4.23.js"></script>`
+	if role == "admin" {
+		metadata = strings.Replace(metadata, ` data-mobile=`, ` data-active-count="`+strconv.Itoa(activeCount)+`" data-due-count="`+strconv.Itoa(dueCount)+`" data-mobile=`, 1)
+	}
+	assets := `<link rel="stylesheet" href="/mobile-design-v1.4.24.css"><script defer src="/mobile-design-v1.4.24.js"></script>`
 	s = strings.Replace(s, "<html", `<html data-alpha-design="modern"`, 1)
 	s = strings.Replace(s, "</head>", assets+"</head>", 1)
 	return strings.Replace(s, "</body>", metadata+"</body>", 1)

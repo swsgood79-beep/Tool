@@ -1,0 +1,61 @@
+{
+  "scope": "Go-rendered synthetic data; read-only poll responses simulated; no real business writes",
+  "results": [
+    {
+      "width": 390,
+      "scheme": "light",
+      "homeContainsManagementTools": "pass",
+      "homeHasNoInspectionDuplicate": "pass",
+      "inspectionCombinesSummaryAndSingleList": "pass",
+      "countsSearchKindAndLivePolling": "pass",
+      "directNotificationURLIntegrated": "pass",
+      "approvalRejectLinkPreserved": "pass",
+      "homeInputsAndBackForward": "pass",
+      "oldToolsBookmarkMapsHome": "pass",
+      "noOverflow": "pass",
+      "pageErrors": []
+    },
+    {
+      "width": 1100,
+      "scheme": "light",
+      "homeContainsManagementTools": "pass",
+      "homeHasNoInspectionDuplicate": "pass",
+      "inspectionCombinesSummaryAndSingleList": "pass",
+      "countsSearchKindAndLivePolling": "pass",
+      "directNotificationURLIntegrated": "pass",
+      "approvalRejectLinkPreserved": "pass",
+      "homeInputsAndBackForward": "pass",
+      "oldToolsBookmarkMapsHome": "pass",
+      "noOverflow": "pass",
+      "pageErrors": []
+    },
+    {
+      "width": 390,
+      "scheme": "dark",
+      "homeContainsManagementTools": "pass",
+      "homeHasNoInspectionDuplicate": "pass",
+      "inspectionCombinesSummaryAndSingleList": "pass",
+      "countsSearchKindAndLivePolling": "pass",
+      "directNotificationURLIntegrated": "pass",
+      "approvalRejectLinkPreserved": "pass",
+      "homeInputsAndBackForward": "pass",
+      "oldToolsBookmarkMapsHome": "pass",
+      "noOverflow": "pass",
+      "pageErrors": []
+    },
+    {
+      "width": 1100,
+      "scheme": "dark",
+      "homeContainsManagementTools": "pass",
+      "homeHasNoInspectionDuplicate": "pass",
+      "inspectionCombinesSummaryAndSingleList": "pass",
+      "countsSearchKindAndLivePolling": "pass",
+      "directNotificationURLIntegrated": "pass",
+      "approvalRejectLinkPreserved": "pass",
+      "homeInputsAndBackForward": "pass",
+      "oldToolsBookmarkMapsHome": "pass",
+      "noOverflow": "pass",
+      "pageErrors": []
+    }
+  ]
+}

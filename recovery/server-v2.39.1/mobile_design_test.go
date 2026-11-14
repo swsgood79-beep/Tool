@@ -40,16 +40,26 @@ func TestMobileDesignPreviewPagesAndFragments(t *testing.T) {
 	now := time.Now()
 	a.state.Projects[2].Setting.Completed = &now
 	a.state.Projects[2].Setting.Worker = "김동홍"
+	a.state.Integration.Connection.Provider = "pages"
+	a.state.Integration.Connection.PublicURL = "https://example.invalid"
 	c := adminCookie(a)
 	paths := map[string]string{"admin.html": "/", "work.html": "/work/" + a.state.Board + "?entry=skip", "queue.html": "/inspection-requests", "review.html": "/projects/" + fmtID(pending.ID) + "/inspection", "directory.html": "/client-directory/" + a.state.Board, "info.html": "/project-info/" + a.state.Board + "/1", "new.html": "/projects/new", "tts.html": "/tts-settings"}
 	for name, path := range paths {
 		w := call(a, "GET", path, nil, c)
 		s := w.Body.String()
-		if w.Code != 200 || strings.Count(s, `id="alpha-design"`) != 1 || !strings.Contains(s, "mobile-design-v1.4.23.js") {
+		if w.Code != 200 || strings.Count(s, `id="alpha-design"`) != 1 || !strings.Contains(s, "mobile-design-v1.4.24.js") {
 			t.Fatal("missing preview entry", name, w.Code)
 		}
 		if !strings.Contains(s, `data-alpha-design="modern"`) {
 			t.Fatal("new design must be the default")
+		}
+		if name == "admin.html" || name == "queue.html" {
+			if !strings.Contains(s, `data-active-count="3" data-due-count="3"`) {
+				t.Fatal("admin summary metadata missing", name)
+			}
+		}
+		if name == "work.html" && strings.Contains(s, `data-active-count=`) {
+			t.Fatal("admin summary metadata leaked onto worker")
 		}
 		if out := os.Getenv("DESIGN_HTML_OUT"); out != "" {
 			if err := os.WriteFile(filepath.Join(out, name), w.Body.Bytes(), 0600); err != nil {
@@ -59,12 +69,12 @@ func TestMobileDesignPreviewPagesAndFragments(t *testing.T) {
 	}
 	for _, path := range []string{"/card/" + a.state.Board + "/1", "/orders/panel", "/inspection-requests/panel"} {
 		s := call(a, "GET", path, nil, c).Body.String()
-		if strings.Contains(s, "mobile-design-v1.4.23") || strings.Contains(s, `id="alpha-design"`) {
+		if strings.Contains(s, "mobile-design-v1.4.24") || strings.Contains(s, `id="alpha-design"`) {
 			t.Fatal("preview chrome injected into poll fragment", path)
 		}
 	}
 	if out := os.Getenv("DESIGN_HTML_OUT"); out != "" {
-		for name, path := range map[string]string{"orders-fragment.html": "/orders/panel", "requests-fragment.html": "/inspection-requests/panel", "card-1.html": "/card/" + a.state.Board + "/1", "status.json": "/status/" + a.state.Board} {
+		for name, path := range map[string]string{"orders-fragment.html": "/orders/panel", "requests-fragment.html": "/inspection-requests/panel", "card-1.html": "/card/" + a.state.Board + "/1", "qr.png": "/qr.png", "status.json": "/status/" + a.state.Board} {
 			w := call(a, "GET", path, nil, c)
 			if err := os.WriteFile(filepath.Join(out, name), w.Body.Bytes(), 0600); err != nil {
 				t.Fatal(err)
