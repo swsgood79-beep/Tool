@@ -297,6 +297,10 @@ func (d *winDesktop) run(ready chan<- error) {
 	d.Speech.mu.Unlock()
 	d.App.mu.Lock()
 	d.App.nativeQueue = d.Speech
+	if !muted {
+		d.App.integration.NativeSpeechSelected = true
+		delete(d.App.integration.SpeechLeases, "local")
+	}
 	d.App.mu.Unlock()
 	defer func() { d.Speech.close(); d.App.mu.Lock(); d.App.nativeQueue = nil; d.App.mu.Unlock() }()
 	d.addTray()

@@ -67,7 +67,8 @@ func (a *App) speechPollReply(w http.ResponseWriter, r *http.Request, principal 
 	identity := hashToken(principal + ":" + owner)
 	lease := a.integration.SpeechLeases[scope]
 	active := false
-	if r.FormValue("enabled") == "1" {
+	nativeSelected := scope == "local" && a.integration.NativeSpeechSelected && r.FormValue("select_browser") != "1"
+	if r.FormValue("enabled") == "1" && !nativeSelected {
 		if lease.Owner == "" || lease.Owner == identity {
 			if len(a.integration.SpeechLeases) >= 64 && lease.Owner == "" {
 				http.Error(w, "음성 연결 수가 너무 많습니다.", 429)
@@ -80,6 +81,9 @@ func (a *App) speechPollReply(w http.ResponseWriter, r *http.Request, principal 
 					http.Error(w, "PC 기본 음성을 끄지 못했습니다.", 500)
 					return
 				}
+			}
+			if scope == "local" {
+				a.integration.NativeSpeechSelected = false
 			}
 			a.integration.SpeechLeases[scope] = speechLease{identity, now.Add(9 * time.Second)}
 			active = true
@@ -120,5 +124,5 @@ func (a *App) speechPollReply(w http.ResponseWriter, r *http.Request, principal 
 			}
 		}
 	}
-	jsonReply(w, map[string]any{"ok": true, "active": active, "cursor": cursor, "events": alerts, "native_suppressed": active && scope == "local"})
+	jsonReply(w, map[string]any{"ok": true, "active": active, "cursor": cursor, "events": alerts, "native_suppressed": active && scope == "local", "native_selected": nativeSelected})
 }

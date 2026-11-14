@@ -104,6 +104,13 @@ func (a *App) saveTTSConfig(c TTSConfig) error {
 	}
 	a.ttsConfig = c
 	a.ttsConfigError = ""
+	// An explicit PC settings save with ON selects the native speaker again.
+	// Revoke the browser lease only after a successful persisted save. Renewals
+	// from already-open tabs must not immediately steal it back.
+	a.integration.NativeSpeechSelected = c.Enabled
+	if c.Enabled {
+		delete(a.integration.SpeechLeases, "local")
+	}
 	return nil
 }
 func (a *App) playConfiguredSpeech(ctx context.Context, text string) error {
@@ -133,7 +140,11 @@ func (a *App) ttsConfigHTTP(w http.ResponseWriter, r *http.Request, s Session) b
 		if a.nativeQueue != nil && status == "" {
 			status = a.nativeQueue.state()
 		}
-		jsonReply(w, map[string]any{"config": a.ttsConfig, "status": status})
+		browserActive := a.integration.SpeechLeases["local"].Expires.After(time.Now())
+		if browserActive && a.ttsConfigError == "" {
+			status = "이 PC의 브라우저 화면에서 음성 재생 중 · 테스트 재생을 누르면 PC 프로그램으로 전환됩니다"
+		}
+		jsonReply(w, map[string]any{"config": a.ttsConfig, "status": status, "browser_active": browserActive, "native_available": a.nativeQueue != nil})
 		return true
 	}
 	if r.Method != "POST" {

@@ -72,32 +72,33 @@ type Handoff struct {
 	Expires     time.Time
 }
 type IntegrationRuntime struct {
-	SpeechLeases     map[string]speechLease
-	Minutes          map[string]MinuteQuote
-	Flows            map[string]PasskeyFlow
-	Starts           map[string]PasskeyFlow
-	Handoffs         map[string]Handoff
-	Pair             string
-	PairExpiry       time.Time
-	PhoneStatus      string
-	MarketResult     map[string]any
-	MarketStatus     string
-	MarketChecked    time.Time
-	AccessToken      string
-	TokenUntil       time.Time
-	Bases            map[string]float64
-	BaseDate         string
-	ScheduleStatus   map[string]any
-	BackupStatus     string
-	BackupBusy       bool
-	CancelTunnel     context.CancelFunc
-	TunnelStatus     string
-	TunnelSession    string
-	NativeSent       map[int64]bool
-	MarketNext       time.Time
-	FXCache          map[string]any
-	FXUntil          time.Time
-	ScheduleSequence int64
+	SpeechLeases         map[string]speechLease
+	NativeSpeechSelected bool
+	Minutes              map[string]MinuteQuote
+	Flows                map[string]PasskeyFlow
+	Starts               map[string]PasskeyFlow
+	Handoffs             map[string]Handoff
+	Pair                 string
+	PairExpiry           time.Time
+	PhoneStatus          string
+	MarketResult         map[string]any
+	MarketStatus         string
+	MarketChecked        time.Time
+	AccessToken          string
+	TokenUntil           time.Time
+	Bases                map[string]float64
+	BaseDate             string
+	ScheduleStatus       map[string]any
+	BackupStatus         string
+	BackupBusy           bool
+	CancelTunnel         context.CancelFunc
+	TunnelStatus         string
+	TunnelSession        string
+	NativeSent           map[int64]bool
+	MarketNext           time.Time
+	FXCache              map[string]any
+	FXUntil              time.Time
+	ScheduleSequence     int64
 }
 
 func (a *App) initIntegration() {
