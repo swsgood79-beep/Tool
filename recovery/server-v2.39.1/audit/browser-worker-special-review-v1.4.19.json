@@ -1,0 +1,33 @@
+{
+  "scope": "Go-rendered synthetic worker cards; browser protocol simulated; no company data",
+  "results": [
+    {
+      "width": 1100,
+      "textMemoPhotos": "pass",
+      "escapedText": "pass",
+      "checkboxRequired": "pass",
+      "cancelEscape": "pass",
+      "calendarEntry": "pass",
+      "everyManualOpening": "pass",
+      "changedDuringReview": "pass",
+      "requestRefreshNoExtraGate": "pass",
+      "notesRetained": "pass",
+      "emptyDirect": "pass",
+      "noOverflow": "pass"
+    },
+    {
+      "width": 390,
+      "textMemoPhotos": "pass",
+      "escapedText": "pass",
+      "checkboxRequired": "pass",
+      "cancelEscape": "pass",
+      "calendarEntry": "pass",
+      "everyManualOpening": "pass",
+      "changedDuringReview": "pass",
+      "requestRefreshNoExtraGate": "pass",
+      "notesRetained": "pass",
+      "emptyDirect": "pass",
+      "noOverflow": "pass"
+    }
+  ]
+}

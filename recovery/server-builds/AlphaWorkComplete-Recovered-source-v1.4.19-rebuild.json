@@ -1,0 +1,14 @@
+{
+  "version": "1.4.19",
+  "checked_utc": "2026-11-14T00:57:53.792958+00:00",
+  "source_zip": "AlphaWorkComplete-Recovered-source-v1.4.19.zip",
+  "source_zip_sha256": "8d1a9602972393f84bdd1a184936b396b3de10ee108c199e2c4c91e03450559c",
+  "delivered_exe_sha256": "e91dfe547edcfabbb72fc7b9f1f34945b9f3eec1489bce1dd4b3d730cfaa8114",
+  "rebuilt_exe_sha256": "e91dfe547edcfabbb72fc7b9f1f34945b9f3eec1489bce1dd4b3d730cfaa8114",
+  "identical": true,
+  "toolchain": "go version go1.27.4 linux/amd64",
+  "target": "windows/amd64; CGO_ENABLED=0",
+  "source_archive_all_file_checksums": "pass",
+  "dependency_note": "go.mod/go.sum with external modules in cache; this is not a fully offline dependency bundle",
+  "windows_execution": "not performed; cross-build comparison only"
+}

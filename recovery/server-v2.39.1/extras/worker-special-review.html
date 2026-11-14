@@ -1,0 +1,8 @@
+{{define "worker-special-review"}}{{if .HasSpecialInstructions}}<template class="worker-special-review"><dialog class="worker-special-review-dialog" data-info-revision="{{.InfoRevision}}" aria-label="검사 신청 전 특이사항 확인">
+<header class="special-review-heading"><span class="pill order-number">수주 {{.Number}}</span><h2>{{.Name}}</h2><p>검사 신청 전 특이사항을 확인해 주세요</p></header>
+<div class="special-review-content">
+{{if .SpecialInstructions}}<h3>특이사항</h3><p class="special-instructions">{{.SpecialInstructions}}</p>{{end}}
+{{if .AdditionalInstructions}}<h3>수주별 추가 메모</h3><p class="special-instructions">{{.AdditionalInstructions}}</p>{{end}}
+{{if .Photos}}<h3>첨부 사진</h3><div class="special-photo-list">{{$project := .}}{{range .Photos}}<figure><a href="/project-photo/{{$project.Board}}/{{$project.ID}}/{{.ID}}" target="_blank" rel="noopener noreferrer"><img src="/project-photo/{{$project.Board}}/{{$project.ID}}/{{.ID}}" alt="{{.Name}}" loading="lazy" width="{{.Width}}" height="{{.Height}}"></a><figcaption>{{.Name}} · 사진을 누르면 크게 볼 수 있어요.</figcaption></figure>{{end}}</div>{{end}}
+</div><footer class="special-review-footer"><p class="special-review-status" role="status"></p><strong>특이사항을 다 확인하였습니까?</strong><label class="special-review-check"><input type="checkbox"> 특이사항을 모두 확인했습니다</label><div class="special-review-actions"><button type="button" class="special-review-cancel quiet">닫기</button><button type="button" class="special-review-proceed primary" disabled>확인하고 검사 화면 열기</button></div></footer>
+</dialog></template>{{end}}{{end}}
