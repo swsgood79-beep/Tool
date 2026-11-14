@@ -58,6 +58,9 @@ func TestMobileDesignPreviewPagesAndFragments(t *testing.T) {
 				t.Fatal("admin summary metadata missing", name)
 			}
 		}
+		if name == "work.html" && (!strings.Contains(s, `class="market-caption">시장정보</span>`) || !strings.Contains(s, "market-calendar-v1.4.26.css")) {
+			t.Fatal("market title/style missing")
+		}
 		if name == "work.html" && strings.Contains(s, `data-active-count=`) {
 			t.Fatal("admin summary metadata leaked onto worker")
 		}

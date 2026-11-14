@@ -55,7 +55,7 @@ func mobileDesignPreview(s, name string, v any) string {
 	if role == "admin" {
 		metadata = strings.Replace(metadata, ` data-mobile=`, ` data-active-count="`+strconv.Itoa(activeCount)+`" data-due-count="`+strconv.Itoa(dueCount)+`" data-mobile=`, 1)
 	}
-	assets := `<link rel="stylesheet" href="/mobile-design-v1.4.24.css"><script defer src="/mobile-design-v1.4.24.js"></script>`
+	assets := `<link rel="stylesheet" href="/mobile-design-v1.4.24.css"><link rel="stylesheet" href="/market-calendar-v1.4.26.css"><script defer src="/mobile-design-v1.4.24.js"></script>`
 	s = strings.Replace(s, "<html", `<html data-alpha-design="modern"`, 1)
 	s = strings.Replace(s, "</head>", assets+"</head>", 1)
 	return strings.Replace(s, "</body>", metadata+"</body>", 1)

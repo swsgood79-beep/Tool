@@ -1,0 +1,42 @@
+/* Market retains the original navy identity; the compact 2x2 data layout stays. */
+html[data-alpha-design=modern] .worker-page .market-context{background:linear-gradient(135deg,#193c69 0%,#28578f 100%);border:1px solid #4a709d;box-shadow:0 3px 12px #15365c12;color:#fff;padding:14px 16px}
+html[data-alpha-design=modern] .worker-page .market-context .market-context-top{display:flex!important;flex-wrap:wrap;gap:6px 12px;margin:0 0 12px;padding:0 0 10px;border-bottom:1px solid #7396bf66;color:#e2edfb}
+html[data-alpha-design=modern] .worker-page .market-context .market-caption{color:#ffe19a;font-size:12px;font-weight:800;letter-spacing:0;flex-basis:100%}
+html[data-alpha-design=modern] .worker-page .market-context:not(.design-market-expanded) #workspace-date,html[data-alpha-design=modern] .worker-page .market-context:not(.design-market-expanded) #workspace-clock{display:none}
+html[data-alpha-design=modern] .worker-page .market-context #workspace-date{color:#fff;font-size:13px;font-weight:700}
+html[data-alpha-design=modern] .worker-page .market-context #workspace-clock{color:#dceafd;font-size:12px;margin-left:auto}
+html[data-alpha-design=modern] .worker-page .market-context .market-grid{gap:10px 14px!important}
+html[data-alpha-design=modern] .worker-page .market-context .market-tile{padding:0 0 8px;border-bottom:1px solid #7396bf55}
+html[data-alpha-design=modern] .worker-page .market-context .market-name{color:#e0ebfa;font-weight:650;font-size:11px}
+html[data-alpha-design=modern] .worker-page .market-context .market-price{color:#fff;font-weight:800}
+html[data-alpha-design=modern] .worker-page .market-context .market-rise{color:#ffadb7}
+html[data-alpha-design=modern] .worker-page .market-context .market-fall{color:#8bdfff}
+html[data-alpha-design=modern] .worker-page .market-context .market-flat{color:#e0ebfa}
+html[data-alpha-design=modern] .worker-page .market-context .market-time{color:#d3e3f7}
+html[data-alpha-design=modern] .worker-page .market-context .market-fx{background:#ffffff08;border-color:#7396bf55;padding:9px 0 0;margin-top:3px}
+html[data-alpha-design=modern] .worker-page .market-context .market-fx-name,html[data-alpha-design=modern] .worker-page .market-context .market-fx small{color:#dbe9fc}
+html[data-alpha-design=modern] .worker-page .market-context #market-fx-rate{color:#fff}
+html[data-alpha-design=modern] .worker-page .market-context #market-fx-time{color:#cdddF3}
+html[data-alpha-design=modern] .worker-page .market-context .design-market-toggle{color:#e0ebfa;font-weight:600;margin-top:4px}
+html[data-alpha-design=modern] .worker-page .market-context #market-status,html[data-alpha-design=modern] .worker-page .market-context .market-basis,html[data-alpha-design=modern] .worker-page .market-context .market-sources{color:#d3e3f7}
+html[data-alpha-design=modern] .worker-page .market-context.design-market-expanded .market-context-top,html[data-alpha-design=modern] .worker-page .market-context.design-market-expanded small{color:#d3e3f7}
+/* Calendar cells and day types remain distinct in both color schemes. */
+html[data-alpha-design=modern] #shipping-calendar .calendar-navigation{background:var(--ui-subtle);border:1px solid var(--ui-line-strong);border-radius:12px;padding:8px}
+html[data-alpha-design=modern] #shipping-calendar .calendar-navigation button{background:var(--ui-surface);border:1px solid var(--ui-line);border-radius:8px}
+html[data-alpha-design=modern] #shipping-calendar .calendar-table{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;border:1px solid var(--ui-line-strong);border-radius:12px;overflow:hidden}
+html[data-alpha-design=modern] #shipping-calendar .calendar-table th{background:var(--ui-blue-soft);color:var(--ui-secondary);border-right:1px solid var(--ui-line);border-bottom:1px solid var(--ui-line-strong);padding:10px 0;font-size:12px}
+html[data-alpha-design=modern] #shipping-calendar .calendar-table td{background:var(--ui-surface);border-right:1px solid var(--ui-line-strong);border-bottom:1px solid var(--ui-line-strong);padding:4px;height:70px;vertical-align:middle}
+html[data-alpha-design=modern] #shipping-calendar .calendar-table td.calendar-gap{background:var(--ui-subtle)}
+html[data-alpha-design=modern] #shipping-calendar .calendar-table tr>th:last-child,html[data-alpha-design=modern] #shipping-calendar .calendar-table tr>td:last-child{border-right:0}
+html[data-alpha-design=modern] #shipping-calendar .calendar-table tr:last-child>td{border-bottom:0}
+html[data-alpha-design=modern] #shipping-calendar .calendar-day{height:62px;min-height:62px;min-width:0;width:100%;padding:4px 0;background:var(--ui-surface);border:1px solid transparent;border-radius:9px;box-shadow:none}
+html[data-alpha-design=modern] #shipping-calendar .calendar-day.has-orders:not(.is-selected):not(.is-today){background:var(--ui-blue-soft);border-color:var(--ui-line-strong);color:var(--ui-link)}
+html[data-alpha-design=modern] #shipping-calendar .calendar-day.is-today:not(.is-selected){background:var(--ui-amber-soft);border:2px solid var(--ui-amber-line);color:var(--ui-amber-ink)}
+html[data-alpha-design=modern] #shipping-calendar .calendar-day.is-today:not(.is-selected) .calendar-day-number{color:var(--ui-amber-ink)}
+html[data-alpha-design=modern] #shipping-calendar .calendar-day.is-selected{background:var(--ui-action);border-color:var(--ui-action);color:#fff;box-shadow:0 2px 6px #123a7020}
+html[data-alpha-design=modern] #shipping-calendar .calendar-day.is-selected .calendar-day-number{color:#fff}
+html[data-alpha-design=modern] #shipping-calendar .calendar-day.is-selected .calendar-day-count{color:#fff;background:#ffffff30}
+html[data-alpha-design=modern] #shipping-calendar .calendar-day.has-orders:not(.is-selected) .calendar-day-count{background:var(--ui-surface);color:var(--ui-link)}
+html[data-alpha-design=modern] #shipping-calendar .calendar-selection{background:var(--ui-subtle);border:1px solid var(--ui-line-strong);border-radius:14px;padding:16px;margin-top:18px}
+html[data-alpha-design=modern] #shipping-calendar .calendar-order{border-color:var(--ui-line-strong)}
+@media(max-width:480px){html[data-alpha-design=modern] .worker-page .market-context{padding:12px}html[data-alpha-design=modern] #shipping-calendar .calendar-table td{padding:2px;height:60px}html[data-alpha-design=modern] #shipping-calendar .calendar-day{height:55px;min-height:55px}html[data-alpha-design=modern] #shipping-calendar .calendar-day-count{font-size:9px;padding:1px 2px}html[data-alpha-design=modern] #shipping-calendar .calendar-selection{padding:12px}html[data-alpha-design=modern] #shipping-calendar .calendar-navigation{gap:4px;padding:6px}html[data-alpha-design=modern] #shipping-calendar .calendar-navigation h3{font-size:18px}}

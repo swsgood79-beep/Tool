@@ -1,0 +1,89 @@
+{
+  "scope": "Go-rendered synthetic market/orders in Chromium; 320/390/1100px light/dark; live price providers and physical Samsung engine not executed",
+  "results": [
+    {
+      "width": 320,
+      "scheme": "light",
+      "marketTitleTopLeft": "pass",
+      "originalNavyAndWhite": "pass",
+      "coralAndSkyBluePercent": "pass",
+      "allPricesAndFXVisible": "pass",
+      "expandedTimesPreserved": "pass",
+      "workerAndAdminGridBorders": "pass",
+      "fourDayStatesDistinct": "pass",
+      "calendarStillNormalPage": "pass",
+      "noOverflow": "pass",
+      "pageErrors": []
+    },
+    {
+      "width": 390,
+      "scheme": "light",
+      "marketTitleTopLeft": "pass",
+      "originalNavyAndWhite": "pass",
+      "coralAndSkyBluePercent": "pass",
+      "allPricesAndFXVisible": "pass",
+      "expandedTimesPreserved": "pass",
+      "workerAndAdminGridBorders": "pass",
+      "fourDayStatesDistinct": "pass",
+      "calendarStillNormalPage": "pass",
+      "noOverflow": "pass",
+      "pageErrors": []
+    },
+    {
+      "width": 1100,
+      "scheme": "light",
+      "marketTitleTopLeft": "pass",
+      "originalNavyAndWhite": "pass",
+      "coralAndSkyBluePercent": "pass",
+      "allPricesAndFXVisible": "pass",
+      "expandedTimesPreserved": "pass",
+      "workerAndAdminGridBorders": "pass",
+      "fourDayStatesDistinct": "pass",
+      "calendarStillNormalPage": "pass",
+      "noOverflow": "pass",
+      "pageErrors": []
+    },
+    {
+      "width": 320,
+      "scheme": "dark",
+      "marketTitleTopLeft": "pass",
+      "originalNavyAndWhite": "pass",
+      "coralAndSkyBluePercent": "pass",
+      "allPricesAndFXVisible": "pass",
+      "expandedTimesPreserved": "pass",
+      "workerAndAdminGridBorders": "pass",
+      "fourDayStatesDistinct": "pass",
+      "calendarStillNormalPage": "pass",
+      "noOverflow": "pass",
+      "pageErrors": []
+    },
+    {
+      "width": 390,
+      "scheme": "dark",
+      "marketTitleTopLeft": "pass",
+      "originalNavyAndWhite": "pass",
+      "coralAndSkyBluePercent": "pass",
+      "allPricesAndFXVisible": "pass",
+      "expandedTimesPreserved": "pass",
+      "workerAndAdminGridBorders": "pass",
+      "fourDayStatesDistinct": "pass",
+      "calendarStillNormalPage": "pass",
+      "noOverflow": "pass",
+      "pageErrors": []
+    },
+    {
+      "width": 1100,
+      "scheme": "dark",
+      "marketTitleTopLeft": "pass",
+      "originalNavyAndWhite": "pass",
+      "coralAndSkyBluePercent": "pass",
+      "allPricesAndFXVisible": "pass",
+      "expandedTimesPreserved": "pass",
+      "workerAndAdminGridBorders": "pass",
+      "fourDayStatesDistinct": "pass",
+      "calendarStillNormalPage": "pass",
+      "noOverflow": "pass",
+      "pageErrors": []
+    }
+  ]
+}
