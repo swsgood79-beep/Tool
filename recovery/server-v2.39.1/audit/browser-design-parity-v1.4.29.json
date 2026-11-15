@@ -1,0 +1,638 @@
+{
+  "scope": "20 Go-rendered pages in both designs at 390/1100px; synthetic POST capture only, no company writes; actual Windows/audio/push/external integrations not executed",
+  "records": [
+    {
+      "width": 390,
+      "mode": "classic",
+      "page": "admin.html",
+      "formCount": 5,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "classic",
+      "page": "work.html",
+      "formCount": 7,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "classic",
+      "page": "queue.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "classic",
+      "page": "review.html",
+      "formCount": 3,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "classic",
+      "page": "new.html",
+      "formCount": 1,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "classic",
+      "page": "directory.html",
+      "formCount": 0,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "classic",
+      "page": "info.html",
+      "formCount": 0,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "classic",
+      "page": "tts.html",
+      "formCount": 1,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "classic",
+      "page": "settings.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "classic",
+      "page": "connection.html",
+      "formCount": 1,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "classic",
+      "page": "schedule.html",
+      "formCount": 3,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "classic",
+      "page": "market.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "classic",
+      "page": "report.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "classic",
+      "page": "backup.html",
+      "formCount": 6,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "classic",
+      "page": "mobile.html",
+      "formCount": 4,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "classic",
+      "page": "designers.html",
+      "formCount": 3,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "classic",
+      "page": "clients.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "classic",
+      "page": "import.html",
+      "formCount": 1,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "classic",
+      "page": "edit-project.html",
+      "formCount": 1,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "classic",
+      "page": "unread.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "modern",
+      "page": "admin.html",
+      "formCount": 5,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "modern",
+      "page": "work.html",
+      "formCount": 7,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "modern",
+      "page": "queue.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "modern",
+      "page": "review.html",
+      "formCount": 3,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "modern",
+      "page": "new.html",
+      "formCount": 1,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "modern",
+      "page": "directory.html",
+      "formCount": 0,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "modern",
+      "page": "info.html",
+      "formCount": 0,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "modern",
+      "page": "tts.html",
+      "formCount": 1,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "modern",
+      "page": "settings.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "modern",
+      "page": "connection.html",
+      "formCount": 1,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "modern",
+      "page": "schedule.html",
+      "formCount": 3,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "modern",
+      "page": "market.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "modern",
+      "page": "report.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "modern",
+      "page": "backup.html",
+      "formCount": 6,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "modern",
+      "page": "mobile.html",
+      "formCount": 4,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "modern",
+      "page": "designers.html",
+      "formCount": 3,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "modern",
+      "page": "clients.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "modern",
+      "page": "import.html",
+      "formCount": 1,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "modern",
+      "page": "edit-project.html",
+      "formCount": 1,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 390,
+      "mode": "modern",
+      "page": "unread.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "classic",
+      "page": "admin.html",
+      "formCount": 5,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "classic",
+      "page": "work.html",
+      "formCount": 7,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "classic",
+      "page": "queue.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "classic",
+      "page": "review.html",
+      "formCount": 3,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "classic",
+      "page": "new.html",
+      "formCount": 1,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "classic",
+      "page": "directory.html",
+      "formCount": 0,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "classic",
+      "page": "info.html",
+      "formCount": 0,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "classic",
+      "page": "tts.html",
+      "formCount": 1,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "classic",
+      "page": "settings.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "classic",
+      "page": "connection.html",
+      "formCount": 1,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "classic",
+      "page": "schedule.html",
+      "formCount": 3,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "classic",
+      "page": "market.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "classic",
+      "page": "report.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "classic",
+      "page": "backup.html",
+      "formCount": 6,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "classic",
+      "page": "mobile.html",
+      "formCount": 4,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "classic",
+      "page": "designers.html",
+      "formCount": 3,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "classic",
+      "page": "clients.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "classic",
+      "page": "import.html",
+      "formCount": 1,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "classic",
+      "page": "edit-project.html",
+      "formCount": 1,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "classic",
+      "page": "unread.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "modern",
+      "page": "admin.html",
+      "formCount": 5,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "modern",
+      "page": "work.html",
+      "formCount": 7,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "modern",
+      "page": "queue.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "modern",
+      "page": "review.html",
+      "formCount": 3,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "modern",
+      "page": "new.html",
+      "formCount": 1,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "modern",
+      "page": "directory.html",
+      "formCount": 0,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "modern",
+      "page": "info.html",
+      "formCount": 0,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "modern",
+      "page": "tts.html",
+      "formCount": 1,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "modern",
+      "page": "settings.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "modern",
+      "page": "connection.html",
+      "formCount": 1,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "modern",
+      "page": "schedule.html",
+      "formCount": 3,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "modern",
+      "page": "market.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "modern",
+      "page": "report.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "modern",
+      "page": "backup.html",
+      "formCount": 6,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "modern",
+      "page": "mobile.html",
+      "formCount": 4,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "modern",
+      "page": "designers.html",
+      "formCount": 3,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "modern",
+      "page": "clients.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "modern",
+      "page": "import.html",
+      "formCount": 1,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "modern",
+      "page": "edit-project.html",
+      "formCount": 1,
+      "invalidUrlCount": 0
+    },
+    {
+      "width": 1100,
+      "mode": "modern",
+      "page": "unread.html",
+      "formCount": 2,
+      "invalidUrlCount": 0
+    }
+  ],
+  "comparisons": [
+    {
+      "width": 390,
+      "mode": "classic",
+      "formActionsAndFieldsPreserved": "pass",
+      "settingsMenusAccessible": "pass",
+      "workerSearch": "pass",
+      "materialsDialog": "pass",
+      "specialReviewGate": "pass",
+      "settingAndCombinedRequestPayloads": "pass",
+      "notesPayload": "pass",
+      "approvalAndRejectButtons": "pass",
+      "clientDirectory": "pass",
+      "voiceToggleAccessible": "pass",
+      "pageErrors": []
+    },
+    {
+      "width": 390,
+      "mode": "modern",
+      "formActionsAndFieldsPreserved": "pass",
+      "settingsMenusAccessible": "pass",
+      "workerSearch": "pass",
+      "materialsDialog": "pass",
+      "specialReviewGate": "pass",
+      "settingAndCombinedRequestPayloads": "pass",
+      "notesPayload": "pass",
+      "approvalAndRejectButtons": "pass",
+      "clientDirectory": "pass",
+      "voiceToggleAccessible": "pass",
+      "pageErrors": []
+    },
+    {
+      "width": 1100,
+      "mode": "classic",
+      "formActionsAndFieldsPreserved": "pass",
+      "settingsMenusAccessible": "pass",
+      "workerSearch": "pass",
+      "materialsDialog": "pass",
+      "specialReviewGate": "pass",
+      "settingAndCombinedRequestPayloads": "pass",
+      "notesPayload": "pass",
+      "approvalAndRejectButtons": "pass",
+      "clientDirectory": "pass",
+      "voiceToggleAccessible": "pass",
+      "pageErrors": []
+    },
+    {
+      "width": 1100,
+      "mode": "modern",
+      "formActionsAndFieldsPreserved": "pass",
+      "settingsMenusAccessible": "pass",
+      "workerSearch": "pass",
+      "materialsDialog": "pass",
+      "specialReviewGate": "pass",
+      "settingAndCombinedRequestPayloads": "pass",
+      "notesPayload": "pass",
+      "approvalAndRejectButtons": "pass",
+      "clientDirectory": "pass",
+      "voiceToggleAccessible": "pass",
+      "pageErrors": []
+    }
+  ],
+  "issues": [
+    {
+      "id": "worker-date-heading-grid",
+      "status": "confirmed-not-fixed",
+      "classic": "full-width date separator",
+      "modern": "date separator occupies one column like a card",
+      "width": 1100,
+      "headingWidth": 469,
+      "listWidth": 952
+    }
+  ]
+}

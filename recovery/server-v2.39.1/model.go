@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"html/template"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -308,7 +309,8 @@ type InspectionView struct {
 type ProjectView struct {
 	RejectionMessage string
 	Project
-	Board, DesignerCallURL                                                    string
+	Board                                                                     string
+	DesignerCallURL                                                           template.URL
 	Completed, Active, CompletedToday, HasSpecialInstructions, LegacyComplete bool
 	Inspections                                                               []InspectionView
 }
@@ -342,8 +344,9 @@ func (a *App) projectView(p Project) ProjectView {
 	if p.Shipping.Completed != nil {
 		v.CompletedToday = day(*p.Shipping.Completed) == day(time.Now())
 	}
-	if p.DesignerPhone != "" {
-		v.DesignerCallURL = "tel:" + p.DesignerPhone
+	if phone := cleanPhone(p.DesignerPhone); len(phone) >= 7 && len(phone) <= 30 {
+		// Trust only a server-built tel URL containing a normalized phone number.
+		v.DesignerCallURL = template.URL("tel:" + phone)
 	}
 	if p.RejectedInspection == "setting" || p.RejectedInspection == "shipping" || p.RejectedInspection == "combined" {
 		v.RejectionMessage = stageLabel(p.RejectedInspection) + " 신청이 반려되었습니다. 확인 후 다시 신청해 주세요."

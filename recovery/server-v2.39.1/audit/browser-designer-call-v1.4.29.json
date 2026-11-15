@@ -1,0 +1,181 @@
+{
+  "scope": "Synthetic Go templates; native tel navigation captured before OS launch; real handset phone app not executed",
+  "results": [
+    {
+      "role": "worker",
+      "width": 390,
+      "scheme": "light",
+      "mode": "classic",
+      "validPhoneHref": "pass",
+      "unblockedClickWithoutOpeningOrder": "pass",
+      "updatedPhoneAfterPoll": "pass",
+      "noInventedEmptyPhone": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "admin",
+      "width": 390,
+      "scheme": "light",
+      "mode": "classic",
+      "validPhoneHref": "pass",
+      "unblockedClickWithoutOpeningOrder": "pass",
+      "updatedPhoneAfterPoll": "pass",
+      "noInventedEmptyPhone": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "worker",
+      "width": 390,
+      "scheme": "light",
+      "mode": "modern",
+      "validPhoneHref": "pass",
+      "unblockedClickWithoutOpeningOrder": "pass",
+      "updatedPhoneAfterPoll": "pass",
+      "noInventedEmptyPhone": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "admin",
+      "width": 390,
+      "scheme": "light",
+      "mode": "modern",
+      "validPhoneHref": "pass",
+      "unblockedClickWithoutOpeningOrder": "pass",
+      "updatedPhoneAfterPoll": "pass",
+      "noInventedEmptyPhone": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "worker",
+      "width": 1100,
+      "scheme": "light",
+      "mode": "classic",
+      "validPhoneHref": "pass",
+      "unblockedClickWithoutOpeningOrder": "pass",
+      "updatedPhoneAfterPoll": "pass",
+      "noInventedEmptyPhone": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "admin",
+      "width": 1100,
+      "scheme": "light",
+      "mode": "classic",
+      "validPhoneHref": "pass",
+      "unblockedClickWithoutOpeningOrder": "pass",
+      "updatedPhoneAfterPoll": "pass",
+      "noInventedEmptyPhone": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "worker",
+      "width": 1100,
+      "scheme": "light",
+      "mode": "modern",
+      "validPhoneHref": "pass",
+      "unblockedClickWithoutOpeningOrder": "pass",
+      "updatedPhoneAfterPoll": "pass",
+      "noInventedEmptyPhone": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "admin",
+      "width": 1100,
+      "scheme": "light",
+      "mode": "modern",
+      "validPhoneHref": "pass",
+      "unblockedClickWithoutOpeningOrder": "pass",
+      "updatedPhoneAfterPoll": "pass",
+      "noInventedEmptyPhone": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "worker",
+      "width": 390,
+      "scheme": "dark",
+      "mode": "classic",
+      "validPhoneHref": "pass",
+      "unblockedClickWithoutOpeningOrder": "pass",
+      "updatedPhoneAfterPoll": "pass",
+      "noInventedEmptyPhone": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "admin",
+      "width": 390,
+      "scheme": "dark",
+      "mode": "classic",
+      "validPhoneHref": "pass",
+      "unblockedClickWithoutOpeningOrder": "pass",
+      "updatedPhoneAfterPoll": "pass",
+      "noInventedEmptyPhone": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "worker",
+      "width": 390,
+      "scheme": "dark",
+      "mode": "modern",
+      "validPhoneHref": "pass",
+      "unblockedClickWithoutOpeningOrder": "pass",
+      "updatedPhoneAfterPoll": "pass",
+      "noInventedEmptyPhone": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "admin",
+      "width": 390,
+      "scheme": "dark",
+      "mode": "modern",
+      "validPhoneHref": "pass",
+      "unblockedClickWithoutOpeningOrder": "pass",
+      "updatedPhoneAfterPoll": "pass",
+      "noInventedEmptyPhone": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "worker",
+      "width": 1100,
+      "scheme": "dark",
+      "mode": "classic",
+      "validPhoneHref": "pass",
+      "unblockedClickWithoutOpeningOrder": "pass",
+      "updatedPhoneAfterPoll": "pass",
+      "noInventedEmptyPhone": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "admin",
+      "width": 1100,
+      "scheme": "dark",
+      "mode": "classic",
+      "validPhoneHref": "pass",
+      "unblockedClickWithoutOpeningOrder": "pass",
+      "updatedPhoneAfterPoll": "pass",
+      "noInventedEmptyPhone": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "worker",
+      "width": 1100,
+      "scheme": "dark",
+      "mode": "modern",
+      "validPhoneHref": "pass",
+      "unblockedClickWithoutOpeningOrder": "pass",
+      "updatedPhoneAfterPoll": "pass",
+      "noInventedEmptyPhone": "pass",
+      "pageErrors": []
+    },
+    {
+      "role": "admin",
+      "width": 1100,
+      "scheme": "dark",
+      "mode": "modern",
+      "validPhoneHref": "pass",
+      "unblockedClickWithoutOpeningOrder": "pass",
+      "updatedPhoneAfterPoll": "pass",
+      "noInventedEmptyPhone": "pass",
+      "pageErrors": []
+    }
+  ]
+}

@@ -84,6 +84,17 @@ func TestMobileDesignPreviewPagesAndFragments(t *testing.T) {
 			}
 		}
 	}
+	if out := os.Getenv("DESIGN_PARITY_HTML_OUT"); out != "" {
+		for name, path := range map[string]string{"settings.html": "/settings", "connection.html": "/connection", "schedule.html": "/schedule", "market.html": "/market-settings", "report.html": "/report-settings", "backup.html": "/backup", "mobile.html": "/mobile-access", "designers.html": "/designers", "clients.html": "/client-notes", "import.html": "/orders/import", "edit-project.html": "/projects/1/edit", "unread.html": "/unread"} {
+			w := call(a, "GET", path, nil, c)
+			if w.Code != 200 {
+				t.Fatal("parity fixture", path, w.Code)
+			}
+			if err := os.WriteFile(filepath.Join(out, name), w.Body.Bytes(), 0600); err != nil {
+				t.Fatal(err)
+			}
+		}
+	}
 	login := call(a, "GET", "/", nil).Body.String()
 	if strings.Contains(login, "alpha-design") || strings.Contains(login, a.state.Board) {
 		t.Fatal("preview exposed board on login")
