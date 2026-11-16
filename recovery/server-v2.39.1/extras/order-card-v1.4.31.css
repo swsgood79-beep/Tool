@@ -1,0 +1,23 @@
+/* A shared card title and metadata layout for work and shipment lists. */
+html[data-alpha-design=modern] .unified-order-card>.unified-order-heading{display:grid!important;grid-template-columns:minmax(0,1fr) auto;gap:10px 12px;align-items:start;box-sizing:border-box;width:100%;min-width:0;padding:14px;margin:0 0 2px;border:1px solid #6688b5;border-radius:12px;background:linear-gradient(135deg,#193c69,#28578f);color:#fff}
+html[data-alpha-design=modern] .unified-order-card .unified-order-number{grid-column:1;grid-row:1;min-width:0;color:#d7e7fc;font-size:12px;line-height:22px;font-weight:650;overflow-wrap:anywhere}
+html[data-alpha-design=modern] .unified-order-card .unified-order-stage{grid-column:2;grid-row:1;align-self:center;max-width:110px;margin:0;padding:4px 6px;border:0;border-radius:7px;font-size:10px;line-height:16px;text-align:center;white-space:normal;background:#e8f1ff;color:#1764cf}
+html[data-alpha-design=modern] .unified-order-card .unified-order-stage.chip-shipping,html[data-alpha-design=modern] .unified-order-card .unified-order-stage.shipping{background:#fff1d4;color:#875305}
+html[data-alpha-design=modern] .unified-order-card .unified-order-stage.done{background:var(--ui-green-soft);color:var(--ui-green-ink)}
+html[data-alpha-design=modern] .unified-order-card .unified-order-title{grid-column:1/-1;grid-row:2;min-width:0;min-height:52px;margin:0;padding:0;color:#fff;font-size:18px;font-weight:750;line-height:26px;letter-spacing:-.6px;overflow-wrap:anywhere;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+html[data-alpha-design=modern] .work-item.unified-order-card>.project-topline,html[data-alpha-design=modern] .work-item.unified-order-card .project-summary{display:none!important}
+html[data-alpha-design=modern] #shipping-calendar .calendar-order.unified-order-card{display:flex;flex-direction:column;align-items:stretch;gap:0;margin:0;padding:16px;border-radius:18px;min-width:0;box-sizing:border-box}
+html[data-alpha-design=modern] #calendar-orders{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+html[data-alpha-design=modern] .unified-order-card>.design-order-meta{width:100%;margin:12px 0;min-height:34px}
+html[data-alpha-design=modern] .unified-order-card>.design-order-footer{width:100%;min-width:0;box-sizing:border-box}
+html[data-alpha-design=modern] .unified-order-card>.design-order-footer .shipping-due-chip{margin:0;font-size:11px;line-height:18px}
+html[data-alpha-design=modern] #shipping-calendar .unified-order-card .unified-open-work{display:inline-flex;align-items:center;justify-content:flex-end;flex-shrink:0;min-height:30px;margin:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;color:var(--ui-secondary);font-size:11px;font-weight:400;line-height:18px;white-space:nowrap}
+html[data-alpha-design=modern] .unified-order-card .design-order-workers{font-size:11px;line-height:18px;margin:6px 0 0}
+html[data-alpha-design=modern] .unified-order-card .design-order-workers p{margin:0;font-size:11px;line-height:18px}
+@media(min-width:760px){html[data-alpha-design=modern] #calendar-orders{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:360px){html[data-alpha-design=modern] .unified-order-card>.unified-order-heading{padding:12px;gap:8px}html[data-alpha-design=modern] .unified-order-card .unified-order-title{font-size:17px;line-height:24px;min-height:48px}html[data-alpha-design=modern] #shipping-calendar .calendar-order.unified-order-card{padding:14px}}
+
+html[data-alpha-design=modern] #shipping-calendar .unified-order-card .unified-open-work>span{display:inline-block;font-size:18px;margin-left:8px}
+
+html[data-alpha-design=modern] #shipping-calendar .calendar-order.unified-order-card:not(.is-complete){border-color:var(--ui-line)}
+html[data-alpha-design=modern] #shipping-calendar .calendar-order.unified-order-card[data-stage=shipping]{border-left-color:#ea650b}
