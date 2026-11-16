@@ -1,0 +1,109 @@
+{
+  "scope": "Visual inspection using Go-rendered synthetic worker page and a cloned normal notice for style comparison; no persisted company data modified",
+  "views": [
+    {
+      "scheme": "light",
+      "width": 390,
+      "cards": [
+        {
+          "urgent": true,
+          "border": "rgb(239, 146, 137)",
+          "width": "1px",
+          "left": "1px",
+          "background": "rgb(255, 248, 239)",
+          "badge": "rgb(220, 37, 57)",
+          "badgeText": "rgb(255, 255, 255)",
+          "footer": "rgb(18, 97, 208)"
+        },
+        {
+          "urgent": false,
+          "border": "rgb(137, 88, 207)",
+          "width": "2px",
+          "left": "5px",
+          "background": "rgb(247, 242, 252)",
+          "badge": "rgb(128, 80, 192)",
+          "badgeText": "rgb(255, 255, 255)",
+          "footer": "rgb(112, 64, 172)"
+        }
+      ]
+    },
+    {
+      "scheme": "light",
+      "width": 1100,
+      "cards": [
+        {
+          "urgent": true,
+          "border": "rgb(239, 146, 137)",
+          "width": "1px",
+          "left": "1px",
+          "background": "rgb(255, 248, 239)",
+          "badge": "rgb(220, 37, 57)",
+          "badgeText": "rgb(255, 255, 255)",
+          "footer": "rgb(18, 97, 208)"
+        },
+        {
+          "urgent": false,
+          "border": "rgb(137, 88, 207)",
+          "width": "2px",
+          "left": "5px",
+          "background": "rgb(247, 242, 252)",
+          "badge": "rgb(128, 80, 192)",
+          "badgeText": "rgb(255, 255, 255)",
+          "footer": "rgb(112, 64, 172)"
+        }
+      ]
+    },
+    {
+      "scheme": "dark",
+      "width": 390,
+      "cards": [
+        {
+          "urgent": true,
+          "border": "rgb(167, 104, 107)",
+          "width": "1px",
+          "left": "1px",
+          "background": "rgb(53, 41, 43)",
+          "badge": "rgb(220, 37, 57)",
+          "badgeText": "rgb(255, 255, 255)",
+          "footer": "rgb(148, 191, 255)"
+        },
+        {
+          "urgent": false,
+          "border": "rgb(172, 134, 229)",
+          "width": "2px",
+          "left": "5px",
+          "background": "rgb(41, 34, 54)",
+          "badge": "rgb(128, 80, 192)",
+          "badgeText": "rgb(255, 255, 255)",
+          "footer": "rgb(208, 176, 255)"
+        }
+      ]
+    },
+    {
+      "scheme": "dark",
+      "width": 1100,
+      "cards": [
+        {
+          "urgent": true,
+          "border": "rgb(167, 104, 107)",
+          "width": "1px",
+          "left": "1px",
+          "background": "rgb(53, 41, 43)",
+          "badge": "rgb(220, 37, 57)",
+          "badgeText": "rgb(255, 255, 255)",
+          "footer": "rgb(148, 191, 255)"
+        },
+        {
+          "urgent": false,
+          "border": "rgb(172, 134, 229)",
+          "width": "2px",
+          "left": "5px",
+          "background": "rgb(41, 34, 54)",
+          "badge": "rgb(128, 80, 192)",
+          "badgeText": "rgb(255, 255, 255)",
+          "footer": "rgb(208, 176, 255)"
+        }
+      ]
+    }
+  ]
+}
