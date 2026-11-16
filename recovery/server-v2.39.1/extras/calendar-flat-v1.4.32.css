@@ -1,0 +1,10 @@
+/* Inline shipment lists use the same available width as the work list. */
+html[data-alpha-design=modern] #shipping-calendar[data-inline=true][open]{padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}
+html[data-alpha-design=modern] #shipping-calendar[data-inline=true] .calendar-header{padding:0 0 16px;border:0;border-radius:0;background:transparent}
+html[data-alpha-design=modern] #shipping-calendar[data-inline=true] .calendar-body{padding:0}
+html[data-alpha-design=modern] #shipping-calendar[data-inline=true] .calendar-selection{margin-top:24px;padding:0;border:0;border-radius:0;background:transparent}
+html[data-alpha-design=modern] #shipping-calendar[data-inline=true] .calendar-selection-heading{margin:0 0 12px;padding:0;border:0;background:transparent}
+html[data-alpha-design=modern] #shipping-calendar[data-inline=true] #calendar-orders{gap:9px}
+@media(min-width:760px){html[data-alpha-design=modern] #shipping-calendar[data-inline=true] #calendar-orders{gap:14px}}
+html[data-alpha-design=modern] #shipping-calendar[data-inline=true] #calendar-orders>.calendar-order{margin-bottom:12px}
+@media(min-width:760px){html[data-alpha-design=modern] #shipping-calendar[data-inline=true] #calendar-orders>.calendar-order{margin-bottom:0}}
