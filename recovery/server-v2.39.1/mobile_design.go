@@ -12,7 +12,7 @@ func mobileDesignPreview(s, name string, v any) string {
 	if !strings.Contains(s, "</body>") {
 		return s
 	}
-	allowed := map[string]bool{"announcements.html": true, "announcement-detail.html": true, "announcement-edit.html": true, "admin.html": true, "work.html": true, "worker-client-directory.html": true, "inspection-queue.html": true, "inspection-review.html": true, "project-info.html": true, "form": true, "designers.html": true, "client-notes.html": true, "client-note-edit.html": true, "order-import.html": true, "unread.html": true, "edit.html": true, "project-delete.html": true, "report-settings.html": true, "tts-settings.html": true, "market-settings.html": true, "schedule.html": true, "settings.html": true, "backup.html": true, "phone.html": true, "mobile-access.html": true, "passkey-settings.html": true}
+	allowed := map[string]bool{"community.html": true, "community-edit.html": true, "community-detail.html": true, "data-storage.html": true, "announcements.html": true, "announcement-detail.html": true, "announcement-edit.html": true, "admin.html": true, "work.html": true, "worker-client-directory.html": true, "inspection-queue.html": true, "inspection-review.html": true, "project-info.html": true, "form": true, "designers.html": true, "client-notes.html": true, "client-note-edit.html": true, "order-import.html": true, "unread.html": true, "edit.html": true, "project-delete.html": true, "report-settings.html": true, "tts-settings.html": true, "market-settings.html": true, "schedule.html": true, "settings.html": true, "backup.html": true, "phone.html": true, "mobile-access.html": true, "passkey-settings.html": true}
 	if !allowed[name] {
 		return s
 	}
@@ -31,6 +31,10 @@ func mobileDesignPreview(s, name string, v any) string {
 					}
 				}
 			}
+		}
+		if strings.HasPrefix(name, "community") && root["CommunityAdmin"] != true {
+			role = "worker"
+			workerURL = "/work/" + root["Board"].(string)
 		}
 		if root["NoticeWorker"] == true {
 			role = "worker"
@@ -59,7 +63,7 @@ func mobileDesignPreview(s, name string, v any) string {
 	if role == "admin" {
 		metadata = strings.Replace(metadata, ` data-mobile=`, ` data-active-count="`+strconv.Itoa(activeCount)+`" data-due-count="`+strconv.Itoa(dueCount)+`" data-mobile=`, 1)
 	}
-	assets := `<link rel="stylesheet" href="/mobile-design-v1.4.24.css"><link rel="stylesheet" href="/market-calendar-v1.4.26.css"><link rel="stylesheet" href="/calendar-complete-v1.4.27.css"><link rel="stylesheet" href="/order-card-v1.4.35.css"><link rel="stylesheet" href="/calendar-flat-v1.4.32.css"><script defer src="/mobile-design-v1.4.36.js"></script><script defer src="/order-card-v1.4.35.js"></script>`
+	assets := `<link rel="stylesheet" href="/community-v1.4.38.css"><link rel="stylesheet" href="/mobile-design-v1.4.24.css"><link rel="stylesheet" href="/market-calendar-v1.4.26.css"><link rel="stylesheet" href="/calendar-complete-v1.4.27.css"><link rel="stylesheet" href="/order-card-v1.4.35.css"><link rel="stylesheet" href="/calendar-flat-v1.4.32.css"><script defer src="/mobile-design-v1.4.38.js"></script><script defer src="/order-card-v1.4.35.js"></script>`
 	s = strings.Replace(s, "<html", `<html data-alpha-design="modern"`, 1)
 	s = strings.Replace(s, "</head>", assets+"</head>", 1)
 	return strings.Replace(s, "</body>", metadata+"</body>", 1)

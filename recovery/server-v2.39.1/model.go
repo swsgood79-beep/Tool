@@ -66,7 +66,8 @@ type Event struct {
 	RequestedAt, Completed                                   *time.Time
 }
 type State struct {
-	Announcements             []Announcement `json:",omitempty"`
+	Announcements             []Announcement  `json:",omitempty"`
+	Community                 []CommunityPost `json:",omitempty"`
 	WorkbookBase              []byte
 	WorkbookBaseName          string
 	WorkbookBindings          map[int64]WorkbookBinding
@@ -93,6 +94,7 @@ type Ticket struct {
 	Next    string
 }
 type App struct {
+	storageHome                string
 	ttsConfig                  TTSConfig
 	ttsConfigError             string
 	nativeQueue                *inspectionAnnouncer

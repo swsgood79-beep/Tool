@@ -1,0 +1,137 @@
+{
+  "scope": "Go-rendered community and storage fixtures; browser POST capture is synthetic; ownership, durable writes, backup and migration tested by Go; no real company data",
+  "results": [
+    {
+      "mode": "modern",
+      "scheme": "light",
+      "width": 320,
+      "fiveWorkerMenusAndFourAdminMenus": "pass",
+      "requestedCategoriesAndFeed": "pass",
+      "photoZoomCommentsAndUpload": "pass",
+      "editAndAdminModerationEntry": "pass",
+      "dataStoragePathForm": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "light",
+      "width": 390,
+      "fiveWorkerMenusAndFourAdminMenus": "pass",
+      "requestedCategoriesAndFeed": "pass",
+      "photoZoomCommentsAndUpload": "pass",
+      "editAndAdminModerationEntry": "pass",
+      "dataStoragePathForm": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "light",
+      "width": 1100,
+      "fiveWorkerMenusAndFourAdminMenus": "pass",
+      "requestedCategoriesAndFeed": "pass",
+      "photoZoomCommentsAndUpload": "pass",
+      "editAndAdminModerationEntry": "pass",
+      "dataStoragePathForm": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "dark",
+      "width": 320,
+      "fiveWorkerMenusAndFourAdminMenus": "pass",
+      "requestedCategoriesAndFeed": "pass",
+      "photoZoomCommentsAndUpload": "pass",
+      "editAndAdminModerationEntry": "pass",
+      "dataStoragePathForm": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "dark",
+      "width": 390,
+      "fiveWorkerMenusAndFourAdminMenus": "pass",
+      "requestedCategoriesAndFeed": "pass",
+      "photoZoomCommentsAndUpload": "pass",
+      "editAndAdminModerationEntry": "pass",
+      "dataStoragePathForm": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "dark",
+      "width": 1100,
+      "fiveWorkerMenusAndFourAdminMenus": "pass",
+      "requestedCategoriesAndFeed": "pass",
+      "photoZoomCommentsAndUpload": "pass",
+      "editAndAdminModerationEntry": "pass",
+      "dataStoragePathForm": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "light",
+      "width": 320,
+      "fiveWorkerMenusAndFourAdminMenus": "pass",
+      "requestedCategoriesAndFeed": "pass",
+      "photoZoomCommentsAndUpload": "pass",
+      "editAndAdminModerationEntry": "pass",
+      "dataStoragePathForm": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "light",
+      "width": 390,
+      "fiveWorkerMenusAndFourAdminMenus": "pass",
+      "requestedCategoriesAndFeed": "pass",
+      "photoZoomCommentsAndUpload": "pass",
+      "editAndAdminModerationEntry": "pass",
+      "dataStoragePathForm": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "light",
+      "width": 1100,
+      "fiveWorkerMenusAndFourAdminMenus": "pass",
+      "requestedCategoriesAndFeed": "pass",
+      "photoZoomCommentsAndUpload": "pass",
+      "editAndAdminModerationEntry": "pass",
+      "dataStoragePathForm": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "dark",
+      "width": 320,
+      "fiveWorkerMenusAndFourAdminMenus": "pass",
+      "requestedCategoriesAndFeed": "pass",
+      "photoZoomCommentsAndUpload": "pass",
+      "editAndAdminModerationEntry": "pass",
+      "dataStoragePathForm": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "dark",
+      "width": 390,
+      "fiveWorkerMenusAndFourAdminMenus": "pass",
+      "requestedCategoriesAndFeed": "pass",
+      "photoZoomCommentsAndUpload": "pass",
+      "editAndAdminModerationEntry": "pass",
+      "dataStoragePathForm": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "dark",
+      "width": 1100,
+      "fiveWorkerMenusAndFourAdminMenus": "pass",
+      "requestedCategoriesAndFeed": "pass",
+      "photoZoomCommentsAndUpload": "pass",
+      "editAndAdminModerationEntry": "pass",
+      "dataStoragePathForm": "pass",
+      "pageErrors": []
+    }
+  ]
+}
