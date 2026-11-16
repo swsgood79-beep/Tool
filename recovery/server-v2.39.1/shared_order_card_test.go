@@ -52,7 +52,7 @@ func TestSharedOrderCardPagesAndApprovalPolling(t *testing.T) {
 				t.Fatal(route, w.Code)
 			}
 			if name == "work.html" || name == "admin.html" {
-				for _, asset := range []string{"order-card-v1.4.34.css", "order-card-v1.4.34.js", "shipping-calendar-v1.4.33.js"} {
+				for _, asset := range []string{"order-card-v1.4.35.css", "order-card-v1.4.35.js", "shipping-calendar-v1.4.33.js"} {
 					if !strings.Contains(w.Body.String(), asset) {
 						t.Fatal("shared card asset missing", name, asset)
 					}

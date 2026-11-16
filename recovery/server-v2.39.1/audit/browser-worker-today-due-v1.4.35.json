@@ -1,0 +1,149 @@
+{
+  "scope": "Real Go initial pages, actual inspection approval and schedule revision fixtures; worker today-due only; Chromium browser tests, no company data or Windows execution",
+  "results": [
+    {
+      "mode": "modern",
+      "scheme": "light",
+      "width": 320,
+      "todayDueMatchesCalendarIncludingOldAndLegacyCompletions": "pass",
+      "completedGreenAndPhone": "pass",
+      "approvalPollingRetainsDueCard": "pass",
+      "removedOrChangedDueLeavesToday": "pass",
+      "otherFiltersUnchanged": "pass",
+      "searchAndClassicRestoration": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "light",
+      "width": 390,
+      "todayDueMatchesCalendarIncludingOldAndLegacyCompletions": "pass",
+      "completedGreenAndPhone": "pass",
+      "approvalPollingRetainsDueCard": "pass",
+      "removedOrChangedDueLeavesToday": "pass",
+      "otherFiltersUnchanged": "pass",
+      "searchAndClassicRestoration": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "light",
+      "width": 1100,
+      "todayDueMatchesCalendarIncludingOldAndLegacyCompletions": "pass",
+      "completedGreenAndPhone": "pass",
+      "approvalPollingRetainsDueCard": "pass",
+      "removedOrChangedDueLeavesToday": "pass",
+      "otherFiltersUnchanged": "pass",
+      "searchAndClassicRestoration": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "dark",
+      "width": 320,
+      "todayDueMatchesCalendarIncludingOldAndLegacyCompletions": "pass",
+      "completedGreenAndPhone": "pass",
+      "approvalPollingRetainsDueCard": "pass",
+      "removedOrChangedDueLeavesToday": "pass",
+      "otherFiltersUnchanged": "pass",
+      "searchAndClassicRestoration": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "dark",
+      "width": 390,
+      "todayDueMatchesCalendarIncludingOldAndLegacyCompletions": "pass",
+      "completedGreenAndPhone": "pass",
+      "approvalPollingRetainsDueCard": "pass",
+      "removedOrChangedDueLeavesToday": "pass",
+      "otherFiltersUnchanged": "pass",
+      "searchAndClassicRestoration": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "dark",
+      "width": 1100,
+      "todayDueMatchesCalendarIncludingOldAndLegacyCompletions": "pass",
+      "completedGreenAndPhone": "pass",
+      "approvalPollingRetainsDueCard": "pass",
+      "removedOrChangedDueLeavesToday": "pass",
+      "otherFiltersUnchanged": "pass",
+      "searchAndClassicRestoration": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "light",
+      "width": 320,
+      "todayDueMatchesCalendarIncludingOldAndLegacyCompletions": "pass",
+      "completedGreenAndPhone": "pass",
+      "approvalPollingRetainsDueCard": "pass",
+      "removedOrChangedDueLeavesToday": "pass",
+      "otherFiltersUnchanged": "pass",
+      "searchAndClassicRestoration": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "light",
+      "width": 390,
+      "todayDueMatchesCalendarIncludingOldAndLegacyCompletions": "pass",
+      "completedGreenAndPhone": "pass",
+      "approvalPollingRetainsDueCard": "pass",
+      "removedOrChangedDueLeavesToday": "pass",
+      "otherFiltersUnchanged": "pass",
+      "searchAndClassicRestoration": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "light",
+      "width": 1100,
+      "todayDueMatchesCalendarIncludingOldAndLegacyCompletions": "pass",
+      "completedGreenAndPhone": "pass",
+      "approvalPollingRetainsDueCard": "pass",
+      "removedOrChangedDueLeavesToday": "pass",
+      "otherFiltersUnchanged": "pass",
+      "searchAndClassicRestoration": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "dark",
+      "width": 320,
+      "todayDueMatchesCalendarIncludingOldAndLegacyCompletions": "pass",
+      "completedGreenAndPhone": "pass",
+      "approvalPollingRetainsDueCard": "pass",
+      "removedOrChangedDueLeavesToday": "pass",
+      "otherFiltersUnchanged": "pass",
+      "searchAndClassicRestoration": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "dark",
+      "width": 390,
+      "todayDueMatchesCalendarIncludingOldAndLegacyCompletions": "pass",
+      "completedGreenAndPhone": "pass",
+      "approvalPollingRetainsDueCard": "pass",
+      "removedOrChangedDueLeavesToday": "pass",
+      "otherFiltersUnchanged": "pass",
+      "searchAndClassicRestoration": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "dark",
+      "width": 1100,
+      "todayDueMatchesCalendarIncludingOldAndLegacyCompletions": "pass",
+      "completedGreenAndPhone": "pass",
+      "approvalPollingRetainsDueCard": "pass",
+      "removedOrChangedDueLeavesToday": "pass",
+      "otherFiltersUnchanged": "pass",
+      "searchAndClassicRestoration": "pass",
+      "pageErrors": []
+    }
+  ]
+}
