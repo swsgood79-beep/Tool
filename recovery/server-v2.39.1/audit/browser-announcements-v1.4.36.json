@@ -1,0 +1,149 @@
+{
+  "scope": "Real Go rendered fixture pages after authenticated create/edit/end with protected photo fixtures; browser requests are read-only; actual persistence, auth and backup tested by Go tests",
+  "results": [
+    {
+      "mode": "modern",
+      "scheme": "light",
+      "width": 320,
+      "placementBetweenMarketAndSearch": "pass",
+      "workerReadOnlyListDetailAndPhotoZoom": "pass",
+      "noticeEditAndEndPolling": "pass",
+      "adminMenuAndPhotoForm": "pass",
+      "previewWithoutWriteAndPhotoLimits": "pass",
+      "endedHistoryAndEmptyState": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "light",
+      "width": 390,
+      "placementBetweenMarketAndSearch": "pass",
+      "workerReadOnlyListDetailAndPhotoZoom": "pass",
+      "noticeEditAndEndPolling": "pass",
+      "adminMenuAndPhotoForm": "pass",
+      "previewWithoutWriteAndPhotoLimits": "pass",
+      "endedHistoryAndEmptyState": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "light",
+      "width": 1100,
+      "placementBetweenMarketAndSearch": "pass",
+      "workerReadOnlyListDetailAndPhotoZoom": "pass",
+      "noticeEditAndEndPolling": "pass",
+      "adminMenuAndPhotoForm": "pass",
+      "previewWithoutWriteAndPhotoLimits": "pass",
+      "endedHistoryAndEmptyState": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "dark",
+      "width": 320,
+      "placementBetweenMarketAndSearch": "pass",
+      "workerReadOnlyListDetailAndPhotoZoom": "pass",
+      "noticeEditAndEndPolling": "pass",
+      "adminMenuAndPhotoForm": "pass",
+      "previewWithoutWriteAndPhotoLimits": "pass",
+      "endedHistoryAndEmptyState": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "dark",
+      "width": 390,
+      "placementBetweenMarketAndSearch": "pass",
+      "workerReadOnlyListDetailAndPhotoZoom": "pass",
+      "noticeEditAndEndPolling": "pass",
+      "adminMenuAndPhotoForm": "pass",
+      "previewWithoutWriteAndPhotoLimits": "pass",
+      "endedHistoryAndEmptyState": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "dark",
+      "width": 1100,
+      "placementBetweenMarketAndSearch": "pass",
+      "workerReadOnlyListDetailAndPhotoZoom": "pass",
+      "noticeEditAndEndPolling": "pass",
+      "adminMenuAndPhotoForm": "pass",
+      "previewWithoutWriteAndPhotoLimits": "pass",
+      "endedHistoryAndEmptyState": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "light",
+      "width": 320,
+      "placementBetweenMarketAndSearch": "pass",
+      "workerReadOnlyListDetailAndPhotoZoom": "pass",
+      "noticeEditAndEndPolling": "pass",
+      "adminMenuAndPhotoForm": "pass",
+      "previewWithoutWriteAndPhotoLimits": "pass",
+      "endedHistoryAndEmptyState": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "light",
+      "width": 390,
+      "placementBetweenMarketAndSearch": "pass",
+      "workerReadOnlyListDetailAndPhotoZoom": "pass",
+      "noticeEditAndEndPolling": "pass",
+      "adminMenuAndPhotoForm": "pass",
+      "previewWithoutWriteAndPhotoLimits": "pass",
+      "endedHistoryAndEmptyState": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "light",
+      "width": 1100,
+      "placementBetweenMarketAndSearch": "pass",
+      "workerReadOnlyListDetailAndPhotoZoom": "pass",
+      "noticeEditAndEndPolling": "pass",
+      "adminMenuAndPhotoForm": "pass",
+      "previewWithoutWriteAndPhotoLimits": "pass",
+      "endedHistoryAndEmptyState": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "dark",
+      "width": 320,
+      "placementBetweenMarketAndSearch": "pass",
+      "workerReadOnlyListDetailAndPhotoZoom": "pass",
+      "noticeEditAndEndPolling": "pass",
+      "adminMenuAndPhotoForm": "pass",
+      "previewWithoutWriteAndPhotoLimits": "pass",
+      "endedHistoryAndEmptyState": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "dark",
+      "width": 390,
+      "placementBetweenMarketAndSearch": "pass",
+      "workerReadOnlyListDetailAndPhotoZoom": "pass",
+      "noticeEditAndEndPolling": "pass",
+      "adminMenuAndPhotoForm": "pass",
+      "previewWithoutWriteAndPhotoLimits": "pass",
+      "endedHistoryAndEmptyState": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "dark",
+      "width": 1100,
+      "placementBetweenMarketAndSearch": "pass",
+      "workerReadOnlyListDetailAndPhotoZoom": "pass",
+      "noticeEditAndEndPolling": "pass",
+      "adminMenuAndPhotoForm": "pass",
+      "previewWithoutWriteAndPhotoLimits": "pass",
+      "endedHistoryAndEmptyState": "pass",
+      "pageErrors": []
+    }
+  ]
+}

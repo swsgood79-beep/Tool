@@ -61,6 +61,11 @@ func (a *App) portable(s State) ([]byte, error) {
 			entries["photos/"+ph.ID] = nil
 		}
 	}
+	for _, n := range s.Announcements {
+		for _, ph := range n.Photos {
+			entries["photos/"+ph.ID] = nil
+		}
+	}
 	for name := range entries {
 		id := strings.TrimPrefix(name, "photos/")
 		if !validPhotoID.MatchString(id) {
@@ -395,7 +400,7 @@ func (a *App) maybeBackup(ctx context.Context) {
 	}
 }
 func (a *App) restorePortable(key RecoveryKey, encrypted []byte) error {
-	if len(a.state.Projects) > 0 || len(a.state.Events) > 0 || len(a.state.Designers) > 0 || len(a.state.ClientNotes) > 0 || a.state.Integration.Phone.Subscription != nil {
+	if len(a.state.Announcements) > 0 || len(a.state.Projects) > 0 || len(a.state.Events) > 0 || len(a.state.Designers) > 0 || len(a.state.ClientNotes) > 0 || a.state.Integration.Phone.Subscription != nil {
 		return errors.New("자료가 없는 새 복구 서버에서만 복원할 수 있습니다")
 	}
 	m, entries, e := decodePortable(encrypted, key)

@@ -21,6 +21,9 @@ import (
 
 func fmtID(id int64) string { return strconv.FormatInt(id, 10) }
 func (a *App) adminGET(w http.ResponseWriter, r *http.Request, v map[string]any) bool {
+	if a.announcementAdminGET(w, r, v) {
+		return true
+	}
 	if a.reportSettingsGET(w, r, v) {
 		return true
 	}
@@ -174,6 +177,9 @@ func (a *App) adminGET(w http.ResponseWriter, r *http.Request, v map[string]any)
 	return false
 }
 func (a *App) adminPOST(w http.ResponseWriter, r *http.Request, session Session) bool {
+	if a.announcementAdminPOST(w, r) {
+		return true
+	}
 	if a.reportSettingsPOST(w, r) {
 		return true
 	}

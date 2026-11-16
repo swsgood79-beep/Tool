@@ -46,7 +46,7 @@ func TestCalendarInspectionReturnPagesAndApprovalFixture(t *testing.T) {
 			if w.Code != 200 {
 				t.Fatal(path, w.Code)
 			}
-			if name == "work.html" && (!strings.Contains(w.Body.String(), "shipping-calendar-v1.4.33.js") || !strings.Contains(w.Body.String(), "mobile-design-v1.4.33.js")) {
+			if name == "work.html" && (!strings.Contains(w.Body.String(), "shipping-calendar-v1.4.33.js") || !strings.Contains(w.Body.String(), "mobile-design-v1.4.36.js")) {
 				t.Fatal("calendar return scripts missing")
 			}
 			if out := os.Getenv("CALENDAR_RETURN_HTML_OUT"); out != "" {

@@ -66,6 +66,7 @@ type Event struct {
 	RequestedAt, Completed                                   *time.Time
 }
 type State struct {
+	Announcements             []Announcement `json:",omitempty"`
 	WorkbookBase              []byte
 	WorkbookBaseName          string
 	WorkbookBindings          map[int64]WorkbookBinding
