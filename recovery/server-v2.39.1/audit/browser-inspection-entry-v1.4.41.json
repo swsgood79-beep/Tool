@@ -1,0 +1,149 @@
+{
+  "scope": "Actual Go pending shipping request and polled card fixtures; background/title/status are inert, explicit actions retain review and keyboard behavior; no company writes",
+  "results": [
+    {
+      "mode": "modern",
+      "scheme": "light",
+      "width": 320,
+      "bodyTitleAndStatusNeverOpen": "pass",
+      "explicitMouseAndKeyboardActionOnly": "pass",
+      "pendingBadgeOneLineInModern": "pass",
+      "calendarActionAndReturn": "pass",
+      "pollingReplacementPreservesEntryRules": "pass",
+      "noInspectionPostOnOpen": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "light",
+      "width": 390,
+      "bodyTitleAndStatusNeverOpen": "pass",
+      "explicitMouseAndKeyboardActionOnly": "pass",
+      "pendingBadgeOneLineInModern": "pass",
+      "calendarActionAndReturn": "pass",
+      "pollingReplacementPreservesEntryRules": "pass",
+      "noInspectionPostOnOpen": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "light",
+      "width": 1100,
+      "bodyTitleAndStatusNeverOpen": "pass",
+      "explicitMouseAndKeyboardActionOnly": "pass",
+      "pendingBadgeOneLineInModern": "pass",
+      "calendarActionAndReturn": "pass",
+      "pollingReplacementPreservesEntryRules": "pass",
+      "noInspectionPostOnOpen": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "dark",
+      "width": 320,
+      "bodyTitleAndStatusNeverOpen": "pass",
+      "explicitMouseAndKeyboardActionOnly": "pass",
+      "pendingBadgeOneLineInModern": "pass",
+      "calendarActionAndReturn": "pass",
+      "pollingReplacementPreservesEntryRules": "pass",
+      "noInspectionPostOnOpen": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "dark",
+      "width": 390,
+      "bodyTitleAndStatusNeverOpen": "pass",
+      "explicitMouseAndKeyboardActionOnly": "pass",
+      "pendingBadgeOneLineInModern": "pass",
+      "calendarActionAndReturn": "pass",
+      "pollingReplacementPreservesEntryRules": "pass",
+      "noInspectionPostOnOpen": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "dark",
+      "width": 1100,
+      "bodyTitleAndStatusNeverOpen": "pass",
+      "explicitMouseAndKeyboardActionOnly": "pass",
+      "pendingBadgeOneLineInModern": "pass",
+      "calendarActionAndReturn": "pass",
+      "pollingReplacementPreservesEntryRules": "pass",
+      "noInspectionPostOnOpen": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "light",
+      "width": 320,
+      "bodyTitleAndStatusNeverOpen": "pass",
+      "explicitMouseAndKeyboardActionOnly": "pass",
+      "pendingBadgeOneLineInModern": "pass",
+      "calendarActionAndReturn": "pass",
+      "pollingReplacementPreservesEntryRules": "pass",
+      "noInspectionPostOnOpen": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "light",
+      "width": 390,
+      "bodyTitleAndStatusNeverOpen": "pass",
+      "explicitMouseAndKeyboardActionOnly": "pass",
+      "pendingBadgeOneLineInModern": "pass",
+      "calendarActionAndReturn": "pass",
+      "pollingReplacementPreservesEntryRules": "pass",
+      "noInspectionPostOnOpen": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "light",
+      "width": 1100,
+      "bodyTitleAndStatusNeverOpen": "pass",
+      "explicitMouseAndKeyboardActionOnly": "pass",
+      "pendingBadgeOneLineInModern": "pass",
+      "calendarActionAndReturn": "pass",
+      "pollingReplacementPreservesEntryRules": "pass",
+      "noInspectionPostOnOpen": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "dark",
+      "width": 320,
+      "bodyTitleAndStatusNeverOpen": "pass",
+      "explicitMouseAndKeyboardActionOnly": "pass",
+      "pendingBadgeOneLineInModern": "pass",
+      "calendarActionAndReturn": "pass",
+      "pollingReplacementPreservesEntryRules": "pass",
+      "noInspectionPostOnOpen": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "dark",
+      "width": 390,
+      "bodyTitleAndStatusNeverOpen": "pass",
+      "explicitMouseAndKeyboardActionOnly": "pass",
+      "pendingBadgeOneLineInModern": "pass",
+      "calendarActionAndReturn": "pass",
+      "pollingReplacementPreservesEntryRules": "pass",
+      "noInspectionPostOnOpen": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "dark",
+      "width": 1100,
+      "bodyTitleAndStatusNeverOpen": "pass",
+      "explicitMouseAndKeyboardActionOnly": "pass",
+      "pendingBadgeOneLineInModern": "pass",
+      "calendarActionAndReturn": "pass",
+      "pollingReplacementPreservesEntryRules": "pass",
+      "noInspectionPostOnOpen": "pass",
+      "pageErrors": []
+    }
+  ]
+}
