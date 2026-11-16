@@ -1,6 +1,6 @@
 717088d158337b8c85639d99a9a5acf4e67293e5622ed5fd116d6a4565205d50  .gitignore
-9cb2dcc4c176bc929dcca62a6fcaa4cda687f5391c24762d1e09a03fc5c0f8d7  README.md
-79e8cf4d656b614eb5de82893dc792bb6d3f94f77c7361290a58436faba8df9d  START-HERE.md
+f9f540436d2dc06af8156f5432fa1e072c889936af981dcc15e7cee0f2b4be6d  README.md
+2961f519d1c31123c1d9c4dc9f839c42656b7145c94752189356c8a32f968820  START-HERE.md
 8efa045e6a05bc787743d68e0e86aab002ffd777a7a1f0f89937ee97f01622ea  activity_rejection_test.go
 ba55a4d271cb4ef16d4e2768641000544d63d6518254578c9e62c6fff7395aa8  audit/API-CONTRACTS.md
 d05a3be0dc148b1fc30420017aa217d3d734ea8dacee5d773f761b8411927b39  audit/DESIGN-PARITY-V1.4.29.md
@@ -33,6 +33,7 @@ c7088249c7a1a9f4264d12dfa90d3277cf4f85e5d90d69f2cd322896857acb9c  audit/RECOVERY
 2db117113e836a557e437d418167fd4836f7185c5c28a0f3dabf19d55f3ff159  audit/RECOVERY-V1.4.28.md
 7ed3722e9186517cbce0186c8e25edab6ab7fd3cdd1e9a5379d4dfdf5b3c9ff8  audit/RECOVERY-V1.4.29.md
 cff77e91ccbf302d7f52ce319b0cb2a781040ee28495067628f9baf3a6db5b5c  audit/RECOVERY-V1.4.3.md
+0af6c8779d1312f5cd6638fed06d8a8be57992e829ea4d312a0fb65d9bef04de  audit/RECOVERY-V1.4.30.md
 07cc5f8f7d081d1059f3fd4f3ccf89933324c7ed23f054b9b6b055d67f30d09c  audit/RECOVERY-V1.4.4.md
 36237fe42ef6d7b72e4b341b3bf6850cb137cf542ba1aa0d7915361a5538232d  audit/RECOVERY-V1.4.5.md
 528b90a5540e51efbc64695a91b1b77ca51a41186ccd17b564b3b6b75fb00808  audit/RECOVERY-V1.4.6.md
@@ -100,6 +101,8 @@ f25ded481b8157166a1adaa667bf10d96cfcf672ad3f5650c6b7aab7f5ecac04  audit/browser-
 85403c2a3ab54101141df82bcd3990597b76e58307410b63f865d5dede387198  audit/browser-order-filters-v1.4.5.json
 db138dd255c901cdc86b99079b72188f61e69ff485fec981962ad214b09b9664  audit/browser-production-v1.4.cjs
 ef89eaae5b2f06a7dccb943d5ab8baec7246de69b7e6895ab460f0023b60d24b  audit/browser-production-v1.4.json
+d4f48815d2c6c2038cc42d1537911962568202fb85311449bba5d5dad621edc2  audit/browser-project-info-v1.4.30.cjs
+656e4aa32840abce91b948cc611cc367d5ed057905f98565c31fd78ef8e10e4a  audit/browser-project-info-v1.4.30.json
 315ae8069917d025991990388e4e22ed05cf945d7fa6704d31d6b16c92925660  audit/browser-real-autoplay-v1.4.22.cjs
 65e83c80119f766d75a917d7c5885817f4f2b91aa6bd25cd2ea5985d0c631b1c  audit/browser-real-autoplay-v1.4.22.json
 3266d2acf87795de40b2e633ac45ef340b738e18b4e9f737ee36d9716f161262  audit/browser-speech-defaults-v1.4.22.cjs
@@ -167,6 +170,7 @@ dd933bd50d5cf8865710baa56ba5904154f22586b501c635cfebbb2ad5877964  audit/build-ma
 65cb47bd0da9065275e13f50eb5bace5fd14e308907072cd3c2164b7090cbe85  audit/build-manifest-v1.4.28.json
 fe6d8916283e37abde2648367058d0638efdd2d44dcbebf2e2c1a9a805709937  audit/build-manifest-v1.4.29.json
 89535011b3575c919d9ebb1abd15d1f8668530c1ca9578a16d2827fd1233a0c1  audit/build-manifest-v1.4.3.json
+2dedd6f2a2af2e817311f7b5c6ea36390daa9f3d9f76185439b4f0cda8856bad  audit/build-manifest-v1.4.30.json
 b27765f48427095524b46ba0464d4bc72b6624a9df05c589acc5854f3d803874  audit/build-manifest-v1.4.4.json
 db7340d2fc879f5528ba7026a36678c68d8c05b0d408e957d95b70f31ab272f6  audit/build-manifest-v1.4.5.json
 8426b1d307f85ce6c0e46a60c27246c4a23efe4ac16f9a8e389b43687de25070  audit/build-manifest-v1.4.6.json
@@ -254,6 +258,7 @@ f04a08307530788df984668eb036ed1dc7e4962f084e31b43349f32cc8ae9f85  audit/go-test-
 12cc6c6f2957b71484fb2bb5ce10b2a71d37416bec4ac436d7ed0ed92b7e73f5  audit/go-test-race-v1.4.28.txt
 4fe103736dca68a0efd9b1451cf313a8020f315fc92d4f62acb22abf0c4b02a4  audit/go-test-race-v1.4.29.txt
 1f21d6f5f3b3c0547a351d84b282d9caaaae152e46562d857629afb779914947  audit/go-test-race-v1.4.3.txt
+987fe5d2178bbf8fdb3febcdd6b26c1050c08b6de25f9e16d0b3a328efbaf325  audit/go-test-race-v1.4.30.txt
 8a23c6b29fa04181107a64d8ccd7489004396b1a2b6dc4dedebbbbf8ba5711ff  audit/go-test-race-v1.4.4.txt
 d1b2459d9506cf43f48e09b8b456a9cedd8a194e062db37db5f0100ae5681841  audit/go-test-race-v1.4.5.txt
 97a705997970ba957b3b3cb6f9ae278233bd36468d1c0f4549f11e892aa2e33e  audit/go-test-race-v1.4.6.txt
@@ -412,6 +417,7 @@ c5c5cee26709bc23e423882ccc53bd95c8c77cbb76acfb715d2e061f340c5629  audit/package-
 27e96cb7923fac5749ee6733188384f9218e37c6c1142b448a6de020e9ba0c35  audit/package-v1.4.28.py
 e13449178da0a0a237adb8041e78fd06c7435f1ac875fc92442bbdbbd8e5d08c  audit/package-v1.4.29.py
 120db407efef7c9aca9c1a8a263d1c2a6f7cd48b8e3b53a124e46971b167f1bc  audit/package-v1.4.3.py
+468198a7c59e93e38eb695b3caf709c6e48e5d2b8cecb8b46df7704ff14a4a04  audit/package-v1.4.30.py
 f9b49c4ac8bf7934fa7cf36c1fb03821cc36ed96cfdbf2735182227428074d1b  audit/package-v1.4.4.py
 6a7acc44673647025297fa0fcb8d695b539c3d66ab3bed565984c8e9fc772ff0  audit/package-v1.4.5.py
 5bfd2bae6334bf153c3661fc208cd2e7171c56e35567ff7c8f8910ee45dd2dd3  audit/package-v1.4.6.py
@@ -421,6 +427,14 @@ a438abb9fef96aeb06ec6a42f8c52f22eb90046d284ebae8bd38d01a689b7c0b  audit/package-
 a00ccd9e068caf8d20f529e12037a055053670e18836fee0ef6dbc7e7d4385bd  audit/package-v1.4.py
 9c9aa1a0d63bc6466a433c544a3dc7f0875937c6807fbddd447bfdd2f81d14e9  audit/parity-date-heading-v1.4.29.png
 6324525b053463ead1cfe51430bed50cef18a19fe6668fb568e1146130aee807  audit/production-v1.4.png
+da11dd2d1cf56a8ca470b6d9cda98fcef70afdc3234573460c8b672d1a5496a6  audit/project-info-admin-dark-1100-v1.4.30.png
+a5d3b1be24eb54c732a8adaccc153aa64deb7c72e8089bfa88778d8e16a8112b  audit/project-info-admin-dark-390-v1.4.30.png
+2b1e1f947c6c79a1d8f83f2cef5cf571e4053f596a117d7ee1ec0eb6dd1248ec  audit/project-info-admin-light-1100-v1.4.30.png
+b15af0049df9e14a286c839710d004deb5b61be1396beddbf4e0b52012d6c4d4  audit/project-info-admin-light-390-v1.4.30.png
+4705e34ec04c3ccd81dd94f749e5c3def92e480d01b649af12da1ade07d13046  audit/project-info-worker-dark-1100-v1.4.30.png
+c357f586645ecb8756a3935717d36c93151aa6e7efe23e90be4877a466625922  audit/project-info-worker-dark-390-v1.4.30.png
+242fe381b731b68e0baec28f5f7a51351b6afa8a63300cbb58a37aa8d8b6d915  audit/project-info-worker-light-1100-v1.4.30.png
+0ba1bd13d052ea17999ffc7cb263c97e9cf28a5afbdc087abbb898a52d9113ba  audit/project-info-worker-light-390-v1.4.30.png
 1694b69837a54518bd971045c7124993391351f8db899726b313fbbf01e35004  audit/python-gtts-tests-v1.4.16.txt
 fbb4e1bc2ccd5066520c70bb4591a63afc487dd15ea8e2b0bc80fe6e9f3206fa  audit/python-tts-tests-v1.4.17.txt
 05e73cddd5a4ef51a70c40e6feeaa1d22a25cb75cc0f209d95cb3445b70da4fc  audit/python-tts-tests-v1.4.18.txt
@@ -569,6 +583,8 @@ c7a9d3895e36029db83a7853c124d5e9fbda49239eb4d3f8f3e492759e7d1a53  extras/mobile-
 8b59c585a098f6469dbfde29fb91535daf4be0c7724bcad59f68f4da2898094f  extras/mobile-design-v1.4.23.js
 d3c77dafde48132c918ed9e8ddd5b330c872ff299b76b468e6d702bbbfeb3606  extras/mobile-design-v1.4.24.css
 124621bc06e67f6c8a87f07bc56e1aa2b688e6ff14bc8a80d726a5ab0c1616b8  extras/mobile-design-v1.4.24.js
+81679babc95640e4af6294cf90ddbfde662e965df84dfd82bde8c8b1ec5a014f  extras/project-info-layout-v1.4.30.css
+dd7f728c545867741faf69a5d8e5ac7cdcdd629b20f0c2aa2b868be86d3ffa35  extras/project-info-meta.html
 4b36c04b5ff29bc8ac36fc160740fd2f8b13f8f8278f168c1677048372f2925c  extras/rejected-record.html
 404dce6aef42bcfb793b89fda73716256e3ab08c494199cd6baed8d47e398e38  extras/report-settings.html
 91d0fa2dda3b1522d3ccf36bb500822bd5391078f20373e8219500f716a8be07  extras/schedule-v1.4.10.js
@@ -628,7 +644,7 @@ f48f38005e6f5fb6093770d10dc1508d30231e357356c4d47916fb84cf0e6658  integration_ro
 a26ef2815376454070d1af41f07b761078ad90f85f13e3da21a48d0da8a25229  integrations.go
 a41c04bc9525679efd17b46c925831112713cf7877ff31b3dc92dddb4b4da558  legacy.go
 9504960cca970f8b5abdb82adf542c6271c5b97d9a6aebf95c96624e1ca19108  legacy_backup.go
-f6706b791a9259352a0fd5bc9c4e5fe6c65d2b11c1aae7b9e904607961389063  main.go
+ac95f8d86d57d418f50a10df4d0ce1a30455124ca6898b0e37ddc256a6c578ed  main.go
 a34d93bb882f28a72cdf16d7d72a1e982f85e521ed4cf294c4d03139fd9ec57f  market_minute.go
 e0e743bd6be421045f2e739bdb6b97ba7450f01be95fa8086daa919bf5760cd3  market_status.go
 0c7387c83d682c06cbe3bfecf404cbf6d295dc982890e56355cb4f6cc93d8cc8  market_status_test.go
@@ -641,8 +657,9 @@ c0b1970d9a09caffcfbf4444b11eed423cfe7686e4f38a846702966992746a65  market_sync.go
 e058eaf4200cf9f211a4821e7ffcc58735865ef50ffd021e0dd384586b543687  order_import.go
 6082b5d2c373dd0537bc64a8eeb005c8921592dc6d7142d599011d4888f4fec6  platform_linux.go
 ba6a3e79a1bda871bbe5a38c93287db9c0d2268dd43f880726794429e17af00c  platform_windows.go
-8777378275c5dccc056d3239e4a9e0d60805f52a8d6c2e85c061dec7777aaf29  production.go
+23db95e43db3b9e08f26a98751b149ed4701e0f005940f49158a4e7c51cacc6d  production.go
 b49443054ce6547a846da900dcc3a2d0468cc345d4f170dc8041eb6e16a5861c  production_test.go
+6532a8f10ed62d6d661b4da34d90d7009697851d72fdba636af04e75f6dce3ec  project_info_layout_test.go
 74b315673f2367c14218922e44fb6e460aa29e45fa7fcf4767f67e0ec75ebc50  promote-test-to-production.cmd
 d5ad66c19ee1f734ad50af01da7f16e0b8f1e807e5521b4c0aa8ba38c4ea87fb  push_passkeys.go
 6cb0d6b808ec8a3c3aa1a49814bc466b7771165967ec3cb64ccf4bad23495692  routes.go
