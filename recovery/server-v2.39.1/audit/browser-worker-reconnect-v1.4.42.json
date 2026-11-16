@@ -1,0 +1,95 @@
+{
+  "scope": "Real Chromium service worker on loopback secure context with Go-rendered worker HTML and actual shipped scripts; public endpoints mocked and DNS blocked; no company traffic",
+  "results": [
+    {
+      "width": 390,
+      "case": "manual reload while old origin offline",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "case": "automatic recovery of existing tab",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "case": "open inspection draft preserved with new-tab recovery",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "case": "POST not replayed and no content cache",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "case": "offline pointer waits and later recovers",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "case": "other worker pages preserve path and filters",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "case": "admin/auth navigation remains untouched",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "case": "same-origin version refresh without loop",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "case": "invalid pointer never redirects",
+      "result": "pass"
+    },
+    {
+      "width": 1100,
+      "case": "manual reload while old origin offline",
+      "result": "pass"
+    },
+    {
+      "width": 1100,
+      "case": "automatic recovery of existing tab",
+      "result": "pass"
+    },
+    {
+      "width": 1100,
+      "case": "open inspection draft preserved with new-tab recovery",
+      "result": "pass"
+    },
+    {
+      "width": 1100,
+      "case": "POST not replayed and no content cache",
+      "result": "pass"
+    },
+    {
+      "width": 1100,
+      "case": "offline pointer waits and later recovers",
+      "result": "pass"
+    },
+    {
+      "width": 1100,
+      "case": "other worker pages preserve path and filters",
+      "result": "pass"
+    },
+    {
+      "width": 1100,
+      "case": "admin/auth navigation remains untouched",
+      "result": "pass"
+    },
+    {
+      "width": 1100,
+      "case": "same-origin version refresh without loop",
+      "result": "pass"
+    },
+    {
+      "width": 1100,
+      "case": "invalid pointer never redirects",
+      "result": "pass"
+    }
+  ]
+}
