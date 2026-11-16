@@ -89,6 +89,9 @@ func TestTalkForumAndUnreadFixture(t *testing.T) {
 		}
 	}
 	id := a.state.Community[0].ID
+	if w := call(a, "POST", base+"/comment", url.Values{"csrf": {a.state.Board}, "id": {id}, "author": {"댓글 시험"}, "text": {"확인했습니다."}}, viewer); w.Code != 303 {
+		t.Fatal(w.Code)
+	}
 	out := os.Getenv("TALK_HTML_OUT")
 	if out == "" {
 		return

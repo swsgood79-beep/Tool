@@ -1,0 +1,149 @@
+{
+  "scope": "Go rendered list/detail/status fixtures; read state isolated by browser context and synchronized by storage events; synthetic live status changes; no company writes",
+  "results": [
+    {
+      "mode": "modern",
+      "scheme": "light",
+      "width": 320,
+      "forumRowsAndDetailNavigation": "pass",
+      "orangeBadgeAndReadOnDetailOnly": "pass",
+      "readPersistenceAndIndependentPhones": "pass",
+      "crossTabReadSync": "pass",
+      "newDeletedOwnAndFailureCounts": "pass",
+      "zeroHiddenAndAdminUnaffected": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "light",
+      "width": 390,
+      "forumRowsAndDetailNavigation": "pass",
+      "orangeBadgeAndReadOnDetailOnly": "pass",
+      "readPersistenceAndIndependentPhones": "pass",
+      "crossTabReadSync": "pass",
+      "newDeletedOwnAndFailureCounts": "pass",
+      "zeroHiddenAndAdminUnaffected": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "light",
+      "width": 1100,
+      "forumRowsAndDetailNavigation": "pass",
+      "orangeBadgeAndReadOnDetailOnly": "pass",
+      "readPersistenceAndIndependentPhones": "pass",
+      "crossTabReadSync": "pass",
+      "newDeletedOwnAndFailureCounts": "pass",
+      "zeroHiddenAndAdminUnaffected": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "dark",
+      "width": 320,
+      "forumRowsAndDetailNavigation": "pass",
+      "orangeBadgeAndReadOnDetailOnly": "pass",
+      "readPersistenceAndIndependentPhones": "pass",
+      "crossTabReadSync": "pass",
+      "newDeletedOwnAndFailureCounts": "pass",
+      "zeroHiddenAndAdminUnaffected": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "dark",
+      "width": 390,
+      "forumRowsAndDetailNavigation": "pass",
+      "orangeBadgeAndReadOnDetailOnly": "pass",
+      "readPersistenceAndIndependentPhones": "pass",
+      "crossTabReadSync": "pass",
+      "newDeletedOwnAndFailureCounts": "pass",
+      "zeroHiddenAndAdminUnaffected": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "modern",
+      "scheme": "dark",
+      "width": 1100,
+      "forumRowsAndDetailNavigation": "pass",
+      "orangeBadgeAndReadOnDetailOnly": "pass",
+      "readPersistenceAndIndependentPhones": "pass",
+      "crossTabReadSync": "pass",
+      "newDeletedOwnAndFailureCounts": "pass",
+      "zeroHiddenAndAdminUnaffected": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "light",
+      "width": 320,
+      "forumRowsAndDetailNavigation": "pass",
+      "orangeBadgeAndReadOnDetailOnly": "pass",
+      "readPersistenceAndIndependentPhones": "pass",
+      "crossTabReadSync": "pass",
+      "newDeletedOwnAndFailureCounts": "pass",
+      "zeroHiddenAndAdminUnaffected": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "light",
+      "width": 390,
+      "forumRowsAndDetailNavigation": "pass",
+      "orangeBadgeAndReadOnDetailOnly": "pass",
+      "readPersistenceAndIndependentPhones": "pass",
+      "crossTabReadSync": "pass",
+      "newDeletedOwnAndFailureCounts": "pass",
+      "zeroHiddenAndAdminUnaffected": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "light",
+      "width": 1100,
+      "forumRowsAndDetailNavigation": "pass",
+      "orangeBadgeAndReadOnDetailOnly": "pass",
+      "readPersistenceAndIndependentPhones": "pass",
+      "crossTabReadSync": "pass",
+      "newDeletedOwnAndFailureCounts": "pass",
+      "zeroHiddenAndAdminUnaffected": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "dark",
+      "width": 320,
+      "forumRowsAndDetailNavigation": "pass",
+      "orangeBadgeAndReadOnDetailOnly": "pass",
+      "readPersistenceAndIndependentPhones": "pass",
+      "crossTabReadSync": "pass",
+      "newDeletedOwnAndFailureCounts": "pass",
+      "zeroHiddenAndAdminUnaffected": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "dark",
+      "width": 390,
+      "forumRowsAndDetailNavigation": "pass",
+      "orangeBadgeAndReadOnDetailOnly": "pass",
+      "readPersistenceAndIndependentPhones": "pass",
+      "crossTabReadSync": "pass",
+      "newDeletedOwnAndFailureCounts": "pass",
+      "zeroHiddenAndAdminUnaffected": "pass",
+      "pageErrors": []
+    },
+    {
+      "mode": "classic",
+      "scheme": "dark",
+      "width": 1100,
+      "forumRowsAndDetailNavigation": "pass",
+      "orangeBadgeAndReadOnDetailOnly": "pass",
+      "readPersistenceAndIndependentPhones": "pass",
+      "crossTabReadSync": "pass",
+      "newDeletedOwnAndFailureCounts": "pass",
+      "zeroHiddenAndAdminUnaffected": "pass",
+      "pageErrors": []
+    }
+  ]
+}

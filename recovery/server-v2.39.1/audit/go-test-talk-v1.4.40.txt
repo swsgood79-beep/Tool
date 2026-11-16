@@ -1,0 +1,8 @@
+=== RUN   TestMobileDesignPreviewPagesAndFragments
+--- PASS: TestMobileDesignPreviewPagesAndFragments (0.05s)
+=== RUN   TestTalkStatusBoardGuardAndForumNavigation
+--- PASS: TestTalkStatusBoardGuardAndForumNavigation (0.18s)
+=== RUN   TestTalkForumAndUnreadFixture
+--- PASS: TestTalkForumAndUnreadFixture (0.21s)
+PASS
+ok  	wanryotalk-reconstructed-server	0.456s
