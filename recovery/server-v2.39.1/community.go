@@ -198,6 +198,14 @@ func (a *App) communityHTTP(w http.ResponseWriter, r *http.Request) bool {
 		offset = 1
 	}
 	tail := p[offset:]
+	if !admin && len(tail) == 1 && tail[0] == "status" {
+		posts := []map[string]any{}
+		for _, post := range a.state.Community {
+			posts = append(posts, map[string]any{"id": post.ID, "mine": post.Owner == owner})
+		}
+		jsonReply(w, map[string]any{"posts": posts})
+		return true
+	}
 	var n *CommunityPost
 	if len(tail) > 0 && tail[0] != "new" {
 		n = findCommunity(&a.state, tail[0])
@@ -240,6 +248,44 @@ func (a *App) communityHTTP(w http.ResponseWriter, r *http.Request) bool {
 		}
 		v["Post"] = q
 		v["Owner"] = owner
+		category := r.URL.Query().Get("category")
+		if category == "" {
+			category = n.Category
+		}
+		if category != "all" && communityCategory(category) == "" {
+			category = n.Category
+		}
+		v["Category"] = category
+		listCategory := category
+		if listCategory == "all" {
+			listCategory = ""
+		}
+		v["ListCategory"] = listCategory
+		v["Query"] = r.URL.Query().Get("q")
+		listPage := number(r.URL.Query().Get("page"))
+		if listPage < 1 {
+			listPage = 1
+		}
+		v["ListPage"] = listPage
+		query := strings.ToLower(strings.TrimSpace(r.URL.Query().Get("q")))
+		navigation := []CommunityPost{}
+		for _, post := range a.state.Community {
+			if (category == "all" || post.Category == category) && (query == "" || strings.Contains(strings.ToLower(post.Author+" "+post.Title+" "+post.Text), query)) {
+				navigation = append(navigation, post)
+			}
+		}
+		sort.SliceStable(navigation, func(i, j int) bool { return navigation[i].CreatedAt.After(navigation[j].CreatedAt) })
+		for i, post := range navigation {
+			if post.ID == n.ID {
+				if i > 0 {
+					v["PreviousPost"] = navigation[i-1].ID
+				}
+				if i+1 < len(navigation) {
+					v["NextPost"] = navigation[i+1].ID
+				}
+				break
+			}
+		}
 		a.render(w, "community-detail.html", v)
 		return true
 	}
