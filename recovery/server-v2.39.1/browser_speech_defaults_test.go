@@ -12,7 +12,7 @@ func TestBrowserSpeechDefaultOnKeepsNativePreference(t *testing.T) {
 	for _, path := range []string{"/", "/work/" + a.state.Board + "?entry=skip"} {
 		w := call(a, "GET", path, nil, cookie)
 		s := w.Body.String()
-		if w.Code != 200 || !strings.Contains(s, `id="electron-speech-toggle" aria-pressed="true"`) || !strings.Contains(s, "tts-speech-v1.4.22.js") {
+		if w.Code != 200 || !strings.Contains(s, `id="electron-speech-toggle" aria-pressed="true"`) || !strings.Contains(s, "tts-speech-v1.4.44.js") {
 			t.Fatal("browser default ON markup missing", path)
 		}
 	}

@@ -45,7 +45,18 @@ func (a *App) speechAudioHTTP(w http.ResponseWriter, r *http.Request) bool {
 			return true
 		}
 	}
-	if r.FormValue("preview") == "1" {
+	broadcastParts := 1
+	broadcast := r.FormValue("broadcast") != ""
+	if broadcast {
+		if shared {
+			parts := noticeSpeechParts(a.noticeBroadcastText(r))
+			part := number(r.FormValue("part"))
+			broadcastParts = len(parts)
+			if part >= 0 && part < int64(len(parts)) {
+				text = parts[part]
+			}
+		}
+	} else if r.FormValue("preview") == "1" {
 		text = ttsTestText
 		if r.FormValue("welcome") == "1" {
 			text = "음성 알림을 켭니다."
@@ -74,6 +85,9 @@ func (a *App) speechAudioHTTP(w http.ResponseWriter, r *http.Request) bool {
 		return true
 	}
 	cfg := a.ttsConfig
+	if broadcast {
+		cfg.Repeat = 1
+	}
 	if v := r.FormValue("voice"); v != "" {
 		cfg.Voice = v
 	}
@@ -128,6 +142,9 @@ func (a *App) speechAudioHTTP(w http.ResponseWriter, r *http.Request) bool {
 	w.Header().Set("X-TTS-Playback-Rate", fmt.Sprintf("%.2f", rate))
 	w.Header().Set("X-TTS-Voice", cfg.Voice)
 	w.Header().Set("X-TTS-Repeat", strconv.Itoa(cfg.Repeat))
+	if broadcast {
+		w.Header().Set("X-TTS-Part-Count", strconv.Itoa(broadcastParts))
+	}
 	w.Header().Set("X-TTS-Requested-Speed", fmt.Sprintf("%.2f", cfg.Speed))
 	w.Header().Set("Cache-Control", "no-store")
 	w.Write(audio)

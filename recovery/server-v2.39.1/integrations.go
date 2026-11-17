@@ -72,6 +72,8 @@ type Handoff struct {
 	Expires     time.Time
 }
 type IntegrationRuntime struct {
+	NoticeReceivers      map[string]noticeReceiver
+	NoticeBroadcasts     []noticeBroadcast
 	SpeechLeases         map[string]speechLease
 	NativeSpeechSelected bool
 	Minutes              map[string]MinuteQuote

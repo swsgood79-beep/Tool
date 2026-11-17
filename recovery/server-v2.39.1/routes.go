@@ -177,6 +177,9 @@ func (a *App) adminGET(w http.ResponseWriter, r *http.Request, v map[string]any)
 	return false
 }
 func (a *App) adminPOST(w http.ResponseWriter, r *http.Request, session Session) bool {
+	if a.noticeBroadcastPOST(w, r) {
+		return true
+	}
 	if a.announcementAdminPOST(w, r) {
 		return true
 	}

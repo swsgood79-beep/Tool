@@ -60,10 +60,7 @@ func (a *App) speechPollReply(w http.ResponseWriter, r *http.Request, principal 
 			delete(a.integration.SpeechLeases, key)
 		}
 	}
-	scope := "remote:" + hashToken(device)
-	if localRequest(r) {
-		scope = "local"
-	}
+	scope := speechScope(r, device)
 	identity := hashToken(principal + ":" + owner)
 	lease := a.integration.SpeechLeases[scope]
 	active := false
@@ -124,5 +121,5 @@ func (a *App) speechPollReply(w http.ResponseWriter, r *http.Request, principal 
 			}
 		}
 	}
-	jsonReply(w, map[string]any{"ok": true, "active": active, "cursor": cursor, "events": alerts, "native_suppressed": active && scope == "local", "native_selected": nativeSelected})
+	jsonReply(w, map[string]any{"ok": true, "active": active, "cursor": cursor, "events": alerts, "broadcasts": a.noticeBroadcastPoll(r, shared, active, scope, identity, now), "native_suppressed": active && scope == "local", "native_selected": nativeSelected})
 }
