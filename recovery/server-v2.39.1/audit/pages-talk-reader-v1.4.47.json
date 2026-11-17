@@ -1,0 +1,11 @@
+{
+  "commit": "724c4ac",
+  "branch": "gh-pages",
+  "public_page": "https://swsgood79-beep.github.io/Tool/talk-reader.html",
+  "source_sha256": {
+    "talk-reader-bridge-v1.4.47.html": "efc3c74524b201dd39db48d6629bdf972d61ab01d2b7bb8d5607fb6d964022d3",
+    "talk-reader-bridge-v1.4.47.js": "3a92f94f09b8e2a2666afce2c6522a8a1e9961cc1dd10854b019fc9df0db61e5"
+  },
+  "public_raw_script_matches": true,
+  "live_pages_check": "existing root and new page both blocked by execution environment HTTP 403; not verified live"
+}

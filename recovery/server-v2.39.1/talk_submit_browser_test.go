@@ -35,7 +35,11 @@ func TestTalkSubmitBrowserIntegration(t *testing.T) {
 	}))
 	defer server.Close()
 	origin := server.URL
-	cmd := exec.Command("node", "audit/browser-talk-submit-v1.4.46.cjs", origin, a.state.Board)
+	script := os.Getenv("TALK_SUBMIT_SCRIPT")
+	if script == "" {
+		script = "audit/browser-talk-submit-v1.4.46.cjs"
+	}
+	cmd := exec.Command("node", script, origin, a.state.Board)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	if e := cmd.Run(); e != nil {

@@ -1,0 +1,20 @@
+{
+  "scope": "Actual temporary Go server with real persisted read API, Chromium across two HTTPS tunnel origins and stable first-party Pages origin; public pointer and Pages files simulated; no company data",
+  "results": [
+    {
+      "case": "mobile read state across three first-party origins",
+      "result": "pass",
+      "scope": "legacy reads migrated, new read remembered, tunnel address changes retain read state, fresh posts remain unread"
+    },
+    {
+      "case": "independent PC reader",
+      "result": "pass",
+      "scope": "independent stable browser storage and read flags, all four posts unread"
+    },
+    {
+      "case": "stable bridge target validation",
+      "result": "pass",
+      "scope": "stored reader wins over supplied candidate, foreign return path rejected, invalid pointer never receives reader credential"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+=== RUN   TestTalkReadBrowserAcrossOrigins
+Talk cross-origin read-state checks passed: 3
+--- PASS: TestTalkReadBrowserAcrossOrigins (6.83s)
+PASS
+ok  	wanryotalk-reconstructed-server	7.974s
