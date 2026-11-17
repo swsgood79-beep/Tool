@@ -315,7 +315,8 @@ type InspectionView struct {
 	Locked            bool
 }
 type ProjectView struct {
-	RejectionMessage string
+	ShippingRecordMissing bool
+	RejectionMessage      string
 	Project
 	Board                                                                     string
 	DesignerCallURL                                                           template.URL
@@ -359,6 +360,7 @@ func (a *App) projectView(p Project) ProjectView {
 	if p.RejectedInspection == "setting" || p.RejectedInspection == "shipping" || p.RejectedInspection == "combined" {
 		v.RejectionMessage = stageLabel(p.RejectedInspection) + " 신청이 반려되었습니다. 확인 후 다시 신청해 주세요."
 	}
+	v.ShippingRecordMissing = shippingRecordRecoverable(&a.state, p)
 	v.Inspections = []InspectionView{{"setting", "세팅검사", p.SettingForm, 1, p.Setting, false}, {"shipping", "출하검사", p.ShippingForm, 2, p.Shipping, p.Setting.Completed == nil}}
 	return v
 }

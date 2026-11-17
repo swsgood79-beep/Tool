@@ -1,0 +1,5 @@
+=== RUN   TestShippingArchiveResetBrowser
+Archive reset browser checks passed 12
+--- PASS: TestShippingArchiveResetBrowser (7.73s)
+PASS
+ok  	wanryotalk-reconstructed-server	7.760s

@@ -149,7 +149,7 @@ func TestShippingPermissionsAndAdminDeletion(t *testing.T) {
 	cookie := adminCookie(a)
 	csrf := a.sessions[hashToken(cookie.Value)].CSRF
 	w = call(a, "POST", "/shipping-archive-admin/"+record.ID+"/delete", url.Values{"csrf": {csrf}, "confirm": {"1"}}, cookie)
-	if w.Code != 303 || len(a.state.ShippingRecords) != 0 || len(a.state.Projects) != 1 {
+	if w.Code != 303 || len(a.state.ShippingRecords) != 1 || a.state.ShippingRecords[0].ArchivedAt != nil || len(a.state.ShippingRecords[0].Photos) != 0 || len(a.state.Projects) != 1 {
 		t.Fatal("delete scope", w.Code, w.Body.String())
 	}
 	if _, err := os.Stat(filepath.Join(a.dir, "photos", photo.ID)); !os.IsNotExist(err) {
