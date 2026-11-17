@@ -63,7 +63,7 @@ func TestShippingArchiveResetBrowser(t *testing.T) {
 	}))
 	defer srv.Close()
 	metadata := map[string]any{"ids": ids, "missing": missing, "cookie": map[string]string{"name": cookie.Name, "value": cookie.Value}}
-	cmd := exec.Command("node", "audit/browser-archive-reset-v1.4.52.cjs", srv.URL, a.state.Board, string(jsonRaw(metadata)))
+	cmd := exec.Command("node", "audit/browser-archive-reset-v1.4.53.cjs", srv.URL, a.state.Board, string(jsonRaw(metadata)))
 	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
 	if err := cmd.Run(); err != nil {
 		t.Fatal(err)

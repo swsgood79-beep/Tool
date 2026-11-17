@@ -1,0 +1,77 @@
+{
+  "scope": "actual temporary Go server/Chromium admin archive photo delete -> photo pending -> inspection cancel -> pending removed; explicit recovery; company data untouched",
+  "results": [
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "admin archive deletion resets photo requirement instead of deleting completed order obligation",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "archive -> delete photos -> photo required -> admin cancels inspections -> pending task disappears and stale upload page is invalid",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "manual repair of record deleted in older release; live inspection state verified unchanged by Go",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "admin archive deletion resets photo requirement instead of deleting completed order obligation",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "archive -> delete photos -> photo required -> admin cancels inspections -> pending task disappears and stale upload page is invalid",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "manual repair of record deleted in older release; live inspection state verified unchanged by Go",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "admin archive deletion resets photo requirement instead of deleting completed order obligation",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "archive -> delete photos -> photo required -> admin cancels inspections -> pending task disappears and stale upload page is invalid",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "manual repair of record deleted in older release; live inspection state verified unchanged by Go",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "admin archive deletion resets photo requirement instead of deleting completed order obligation",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "archive -> delete photos -> photo required -> admin cancels inspections -> pending task disappears and stale upload page is invalid",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "manual repair of record deleted in older release; live inspection state verified unchanged by Go",
+      "result": "pass"
+    }
+  ]
+}

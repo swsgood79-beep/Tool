@@ -184,7 +184,7 @@ func (a *App) shippingRecordsHTTP(w http.ResponseWriter, r *http.Request) bool {
 				pending = append(pending, map[string]any{"id": record.ID, "project_id": record.Project.ID, "number": record.Project.Number, "name": record.Project.Name})
 			}
 		}
-		jsonReply(w, map[string]any{"pending": pending})
+		jsonReply(w, map[string]any{"pending": pending, "pending_signature": shippingPendingSignature(&a.state)})
 		return true
 	}
 	calendarURL := "/work/" + a.state.Board + "?design-tab=calendar"
@@ -207,6 +207,7 @@ func (a *App) shippingRecordsHTTP(w http.ResponseWriter, r *http.Request) bool {
 			http.Error(w, err.Error(), 400)
 			return true
 		}
+		view["PendingSignature"] = shippingPendingSignature(&a.state)
 		for key, value := range list {
 			view[key] = value
 		}
@@ -303,7 +304,7 @@ func (a *App) shippingRecordMarkup(s, name string, value any) string {
 			link := `<a class="shipment-pending-link" href="` + base + `?pending=1">📷 출하사진 필요 <strong data-shipping-pending-count>` + fmt.Sprint(n) + `</strong><span>사진 등록 후 완료·보관 ›</span></a>`
 			s = strings.Replace(s, `<div class="search-meta">`, link+`<div class="search-meta">`, 1)
 		}
-		s = strings.Replace(s, "</head>", `<meta name="shipping-records-board" content="`+board+`"><script defer src="/shipping-records-v1.4.51.js"></script></head>`, 1)
+		s = strings.Replace(s, "</head>", `<meta name="shipping-records-board" content="`+board+`"><script defer src="/shipping-records-v1.4.53.js"></script></head>`, 1)
 	}
 	if name == "shipping-records.html" || name == "work.html" || name == "admin.html" {
 		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/shipping-records-v1.4.52.css"></head>`, 1)

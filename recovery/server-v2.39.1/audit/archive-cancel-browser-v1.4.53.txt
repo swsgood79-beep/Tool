@@ -1,0 +1,5 @@
+=== RUN   TestShippingArchiveCancelBrowser
+Archive cancellation browser checks passed 12
+--- PASS: TestShippingArchiveCancelBrowser (9.04s)
+PASS
+ok  	wanryotalk-reconstructed-server	9.069s

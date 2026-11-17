@@ -1,0 +1,77 @@
+{
+  "scope": "actual temporary Go server/Chromium admin delete -> worker pending -> photo reupload; explicit recovery; company data untouched",
+  "results": [
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "admin archive deletion resets photo requirement instead of deleting completed order obligation",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "worker sees restored pending task and can rearchive with photos without leave prompt",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "manual repair of record deleted in older release; live inspection state verified unchanged by Go",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "admin archive deletion resets photo requirement instead of deleting completed order obligation",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "worker sees restored pending task and can rearchive with photos without leave prompt",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "manual repair of record deleted in older release; live inspection state verified unchanged by Go",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "admin archive deletion resets photo requirement instead of deleting completed order obligation",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "worker sees restored pending task and can rearchive with photos without leave prompt",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "manual repair of record deleted in older release; live inspection state verified unchanged by Go",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "admin archive deletion resets photo requirement instead of deleting completed order obligation",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "worker sees restored pending task and can rearchive with photos without leave prompt",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "manual repair of record deleted in older release; live inspection state verified unchanged by Go",
+      "result": "pass"
+    }
+  ]
+}

@@ -220,10 +220,14 @@ func newApp(dir string) (*App, error) {
 	if e != nil {
 		return nil, e
 	}
+	removedPhotos := pruneCancelledShippingRecords(&n)
 	if e = a.persist(&n); e != nil {
 		return nil, e
 	}
 	a.state = n
+	if len(removedPhotos) > 0 {
+		a.pruneCommunityPhotos(removedPhotos)
+	}
 	a.initIntegration()
 	a.loadTTSConfig()
 	return a, nil
@@ -265,10 +269,14 @@ func (a *App) transaction(fn func(*State) error) error {
 	if e = fn(&n); e != nil {
 		return e
 	}
+	removedPhotos := pruneCancelledShippingRecords(&n)
 	if e = a.persist(&n); e != nil {
 		return e
 	}
 	a.state = n
+	if len(removedPhotos) > 0 {
+		a.pruneCommunityPhotos(removedPhotos)
+	}
 	b, e := workbook(n)
 	if e == nil {
 		e = atomicFile(filepath.Join(a.dir, "검사완료기록-복구서버.xlsx"), b)
