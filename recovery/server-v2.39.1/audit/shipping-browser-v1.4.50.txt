@@ -1,0 +1,5 @@
+=== RUN   TestShippingRecordsBrowser
+Shipping browser checks passed 19
+--- PASS: TestShippingRecordsBrowser (8.80s)
+PASS
+ok  	wanryotalk-reconstructed-server	8.815s

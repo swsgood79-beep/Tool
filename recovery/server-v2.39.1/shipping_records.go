@@ -282,7 +282,7 @@ func (a *App) shippingRecordMarkup(s, name string, value any) string {
 		if !worker {
 			base = "/shipping-archive-admin"
 		}
-		tabs := `<nav class="shipment-tabs" aria-label="출고 자료"><span class="selected">출고 일정</span><a href="` + base + `">수주 보관함</a></nav>`
+		tabs := `<nav class="shipment-tabs" aria-label="출고 자료"><span class="selected">출고 일정</span><a href="` + base + `">출하 기록</a></nav>`
 		s = strings.Replace(s, `<div class="calendar-body">`, tabs+`<div class="calendar-body">`, 1)
 		if worker {
 			n := 0
@@ -297,7 +297,7 @@ func (a *App) shippingRecordMarkup(s, name string, value any) string {
 		s = strings.Replace(s, "</head>", `<meta name="shipping-records-board" content="`+board+`"><script defer src="/shipping-records-v1.4.49.js"></script></head>`, 1)
 	}
 	if name == "shipping-records.html" || name == "work.html" || name == "admin.html" {
-		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/shipping-records-v1.4.49.css"></head>`, 1)
+		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/shipping-records-v1.4.50.css"></head>`, 1)
 	}
 	return s
 }
