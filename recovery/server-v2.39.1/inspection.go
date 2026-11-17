@@ -63,7 +63,8 @@ func (a *App) requestInspection(id int64, kind, worker, submission, combined str
 	})
 }
 func (a *App) approve(id int64, kind string, request int64) error {
-	return a.transaction(func(s *State) error {
+	var copied []Photo
+	err := a.transaction(func(s *State) error {
 		p := s.project(id)
 		if p == nil || p.Hidden || p.LegacyCompleted || p.Shipping.Completed != nil {
 			return errors.New("검사 가능한 수주가 아닙니다.")
@@ -122,8 +123,19 @@ func (a *App) approve(id int64, kind string, request int64) error {
 		}
 		p.CombinedPending = false
 		p.touch()
+		if p.Shipping.Completed != nil {
+			var err error
+			copied, err = a.captureShippingRecord(s, *p)
+			if err != nil {
+				return err
+			}
+		}
 		return nil
 	})
+	if err != nil {
+		a.pruneCommunityPhotos(copied)
+	}
+	return err
 }
 func (a *App) worker(w http.ResponseWriter, r *http.Request) bool {
 	parts := strings.Split(strings.Trim(r.URL.Path, "/"), "/")

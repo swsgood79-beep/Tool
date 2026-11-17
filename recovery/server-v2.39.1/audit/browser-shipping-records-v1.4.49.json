@@ -1,0 +1,57 @@
+{
+  "scope": "actual temporary Go server and Chromium; company data untouched; source removed before all uploads",
+  "results": [
+    {
+      "case": "immutable card designer call / material receipt after source removal",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "20 photos accumulated and mandatory completion without leave prompt; scroll and no horizontal overflow",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "simplified archive search, detail, thumbnail and shipping navigation",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "20 photos accumulated and mandatory completion without leave prompt; scroll and no horizontal overflow",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "simplified archive search, detail, thumbnail and shipping navigation",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "20 photos accumulated and mandatory completion without leave prompt; scroll and no horizontal overflow",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "simplified archive search, detail, thumbnail and shipping navigation",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "20 photos accumulated and mandatory completion without leave prompt; scroll and no horizontal overflow",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "simplified archive search, detail, thumbnail and shipping navigation",
+      "result": "pass"
+    }
+  ]
+}

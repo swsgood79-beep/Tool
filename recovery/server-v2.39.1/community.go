@@ -402,6 +402,11 @@ func (a *App) pruneCommunityPhotos(candidates []Photo) {
 			used[p.ID] = true
 		}
 	}
+	for _, record := range a.state.ShippingRecords {
+		for _, p := range append(append([]Photo{}, record.Project.Photos...), record.Photos...) {
+			used[p.ID] = true
+		}
+	}
 	for _, p := range candidates {
 		if !used[p.ID] && validPhotoID.MatchString(p.ID) {
 			_ = os.Remove(filepath.Join(a.dir, "photos", p.ID))

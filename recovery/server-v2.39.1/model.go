@@ -66,6 +66,7 @@ type Event struct {
 	RequestedAt, Completed                                   *time.Time
 }
 type State struct {
+	ShippingRecords           []ShippingRecord             `json:",omitempty"`
 	TalkReaders               map[string][]string          `json:",omitempty"`
 	MaterialReceipts          map[string][]MaterialReceipt `json:",omitempty"`
 	MaterialReceiptsUpdated   string                       `json:",omitempty"`

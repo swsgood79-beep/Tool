@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/binary"
 	"errors"
+	"fmt"
 	"image"
 	"image/color"
 	"image/jpeg"
@@ -16,6 +17,10 @@ import (
 // Downsize and strip image metadata before storing worker uploads. Existing
 // project and notice upload behavior is intentionally unchanged.
 func (a *App) uploadCommunityPhotos(r *http.Request) ([]Photo, error) {
+	return a.uploadReducedPhotos(r, 5)
+}
+
+func (a *App) uploadReducedPhotos(r *http.Request, maximum int) ([]Photo, error) {
 	out := []Photo{}
 	complete := false
 	defer func() {
@@ -29,8 +34,8 @@ func (a *App) uploadCommunityPhotos(r *http.Request) ([]Photo, error) {
 		return out, nil
 	}
 	files := r.MultipartForm.File["photos"]
-	if len(files) > 5 {
-		return nil, errors.New("사진은 최대 5장입니다.")
+	if len(files) > maximum {
+		return nil, fmt.Errorf("사진은 최대 %d장입니다.", maximum)
 	}
 	for _, file := range files {
 		if file.Size > 8<<20 {
