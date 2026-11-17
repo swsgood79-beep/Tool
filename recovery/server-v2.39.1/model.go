@@ -66,8 +66,11 @@ type Event struct {
 	RequestedAt, Completed                                   *time.Time
 }
 type State struct {
-	Announcements             []Announcement  `json:",omitempty"`
-	Community                 []CommunityPost `json:",omitempty"`
+	MaterialReceipts          map[string][]MaterialReceipt `json:",omitempty"`
+	MaterialReceiptsUpdated   string                       `json:",omitempty"`
+	MaterialReceiptsError     string                       `json:",omitempty"`
+	Announcements             []Announcement               `json:",omitempty"`
+	Community                 []CommunityPost              `json:",omitempty"`
 	WorkbookBase              []byte
 	WorkbookBaseName          string
 	WorkbookBindings          map[int64]WorkbookBinding

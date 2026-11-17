@@ -194,6 +194,10 @@ func (a *App) syncSchedule(ctx context.Context, force bool) {
 	if e == nil {
 		materials, materialAvailable, e = parseScheduleMaterialDetails(data)
 	}
+	receipts, receiptsAvailable, receiptsErr := map[string][]MaterialReceipt{}, false, error(nil)
+	if e == nil {
+		receipts, receiptsAvailable, receiptsErr = parseMaterialReceipts(data)
+	}
 	a.mu.Lock()
 	defer a.mu.Unlock()
 	if epoch != a.epoch || sequence != a.integration.ScheduleSequence || c.Revision != a.state.Integration.Schedule.Revision {
@@ -208,6 +212,21 @@ func (a *App) syncSchedule(ctx context.Context, force bool) {
 	}
 	matched, changed, materialChanged := 0, 0, 0
 	e = a.transaction(func(s *State) error {
+		s.MaterialReceipts = nil
+		s.MaterialReceiptsUpdated = ""
+		s.MaterialReceiptsError = "납기표에 사급품 수령 내역 시트가 없습니다."
+		if receiptsErr != nil {
+			s.MaterialReceiptsError = "사급품 수령 내역을 확인할 수 없습니다: " + receiptsErr.Error()
+		} else if receiptsAvailable {
+			s.MaterialReceiptsError = ""
+			s.MaterialReceiptsUpdated = time.Now().Format(time.RFC3339)
+			s.MaterialReceipts = map[string][]MaterialReceipt{}
+			for _, p := range s.Projects {
+				if rows := receipts[strings.TrimSpace(p.Number)]; len(rows) > 0 {
+					s.MaterialReceipts[strings.TrimSpace(p.Number)] = rows
+				}
+			}
+		}
 		for i := range s.Projects {
 			p := &s.Projects[i]
 			if materialAvailable {

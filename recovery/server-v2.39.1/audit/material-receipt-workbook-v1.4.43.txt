@@ -1,0 +1,5 @@
+=== RUN   TestMaterialReceiptUploadedWorkbook
+    material_receipts_test.go:137: Uploaded workbook: two expected Panasonic rows and quantities verified with production parser; workbook read only
+--- PASS: TestMaterialReceiptUploadedWorkbook (0.39s)
+PASS
+ok  	wanryotalk-reconstructed-server	0.409s

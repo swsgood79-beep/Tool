@@ -1,0 +1,43 @@
+.supplied-materials{display:inline-flex;align-items:center;gap:5px;max-width:min(100%,340px);min-height:30px;padding:5px 8px;border:1px solid #dfbf64;border-radius:8px;background:#fff7dd;color:#805a0c;font:inherit;font-size:11px;line-height:18px;vertical-align:middle;box-shadow:none;text-align:left;cursor:pointer}.supplied-materials b{flex-shrink:0}.supplied-materials-text{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.supplied-materials:hover{background:#ffefbc}.supplied-materials:active{background:#ffe6a1}.supplied-materials:focus-visible{outline:3px solid #c99b2d;outline-offset:2px}.worker-page .project-quick-actions{flex-wrap:wrap}.supplied-materials-dialog{padding:0;border:1px solid #bed2ef;border-radius:16px;width:min(540px,calc(100% - 24px));max-height:85dvh;color:#18365c;background:#fff}.supplied-materials-dialog::backdrop{background:#102c5599}.supplied-materials-dialog header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0;padding:14px 18px;background:#173e71;color:#fff}.supplied-materials-dialog h2{margin:0;color:#fff;font-size:19px}.supplied-materials-dialog header button{padding:4px 9px;border:1px solid #ffffff60;border-radius:8px;color:#fff;background:transparent;font-size:22px;box-shadow:none}.supplied-materials-dialog p{padding:18px;margin:0;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.8;max-height:60dvh;overflow-y:auto}.supplied-materials-dialog small{display:block;padding:0 18px 18px;color:#71849e}@media(max-width:480px){.supplied-materials{max-width:min(100%,260px);font-size:11px}.supplied-materials-dialog{width:calc(100% - 16px)}}
+
+.supplied-materials:active{box-shadow:inset 0 2px 4px #0002;transform:translateY(1px)}
+
+/* Receipt dialog: the table scrolls while title, close and footer stay visible. */
+.supplied-materials-dialog{width:min(760px,calc(100% - 24px));max-height:85dvh;overflow:hidden;color:#172b42;background:#fff}
+.supplied-materials-dialog[open]{display:flex;flex-direction:column}
+.supplied-materials-dialog header{flex-shrink:0;background:#eef2f7;color:#172b42;border-bottom:1px solid #dce4ef}
+.supplied-materials-dialog h2{color:inherit}
+.supplied-materials-dialog header button{color:#29415c;background:#e7edf5;border-color:#d9e2ef}
+.supplied-materials-dialog .material-receipt-status{flex-shrink:0;margin:18px 20px 10px;padding:0;max-height:none;overflow:visible;font-weight:700}
+.supplied-materials-dialog .material-receipt-status.is-received{align-self:flex-start;background:#d5f7de;color:#11642d;border-radius:20px;padding:5px 12px}
+.material-receipt-content{min-height:0;display:flex;flex-direction:column;padding:0 20px;overflow:hidden}
+.material-receipt-order{flex-shrink:0;color:#53657a;font-size:13px;margin-bottom:16px;overflow-wrap:anywhere}
+.material-receipt-scroll{min-height:0;max-height: min(360px,45dvh);overflow-y:auto;overscroll-behavior:contain;border:1px solid #dce4ef;border-radius:10px;scrollbar-gutter:stable;scrollbar-color:#98a7bb #edf1f6;scrollbar-width:thin}
+.material-receipt-scroll.has-more{border-bottom:3px solid #8f9fb6}
+.material-receipt-scroll:focus-visible{outline:2px solid #2865c1;outline-offset:2px}
+.material-receipt-scroll table{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed;font-size:14px}
+.material-receipt-scroll th{position:sticky;top:0;background:#e3eaf4;color:#182c47;text-align:left;padding:12px 10px;z-index:1;border-bottom:1px solid #cdd7e5}
+.material-receipt-scroll td{padding:12px 10px;border-bottom:1px solid #e1e7f0;overflow-wrap:anywhere;vertical-align:top}
+.material-receipt-scroll th:nth-child(1){width:17%}.material-receipt-scroll th:nth-child(2){width:24%}.material-receipt-scroll th:nth-child(3){width:43%}.material-receipt-scroll th:nth-child(4){width:16%}
+.material-receipt-scroll th:last-child,.material-receipt-scroll td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.material-receipt-scroll tr:last-child td{border-bottom:0}
+.material-receipt-empty{padding:18px 0;color:#687b93;line-height:1.7}
+.supplied-materials-dialog .material-receipt-footer{flex-shrink:0;padding:16px 20px 20px;line-height:1.6;font-size:12px}
+html[data-theme="dark"] .supplied-materials-dialog{background:#1c2635;color:#e3eaf5;border-color:#53657d}
+html[data-theme="dark"] .supplied-materials-dialog header{background:#273447;color:#e3eaf5;border-color:#53657d}
+html[data-theme="dark"] .material-receipt-scroll th{background:#34445b;color:#eef4ff}
+html[data-theme="dark"] .material-receipt-scroll,html[data-theme="dark"] .material-receipt-scroll td{border-color:#485970}
+html[data-theme="dark"] .material-receipt-order,html[data-theme="dark"] .material-receipt-footer{color:#b5c4d9}
+@media(max-width:480px){.supplied-materials-dialog{width:calc(100% - 16px)}.material-receipt-content{padding:0 12px}.material-receipt-scroll table{font-size:11px}.material-receipt-scroll th,.material-receipt-scroll td{padding:10px 5px}.supplied-materials-dialog .material-receipt-status{margin-left:12px}.supplied-materials-dialog .material-receipt-footer{padding:12px}.material-receipt-order{font-size:12px}}
+html[data-alpha-design=modern] .supplied-materials-dialog{background:var(--ui-surface);color:var(--ui-text);border-color:var(--ui-line-strong)}
+html[data-alpha-design=modern] .supplied-materials-dialog h2{color:var(--ui-ink)}
+html[data-alpha-design=modern] .supplied-materials-dialog .material-receipt-status.is-received{background:var(--ui-green-soft);color:var(--ui-green-ink)}
+html[data-alpha-design=modern] .material-receipt-scroll{border-color:var(--ui-line-strong);scrollbar-color:var(--ui-muted) var(--ui-subtle)}
+html[data-alpha-design=modern] .material-receipt-scroll th{background:var(--ui-subtle);color:var(--ui-ink);border-color:var(--ui-line-strong)}
+html[data-alpha-design=modern] .material-receipt-scroll td{border-color:var(--ui-line)}
+html[data-alpha-design=modern] .material-receipt-order,html[data-alpha-design=modern] .supplied-materials-dialog .material-receipt-footer,html[data-alpha-design=modern] .material-receipt-empty{color:var(--ui-secondary)}
+/* Isolate receipt rows from the app's legacy report-table zebra/font rules. */
+.supplied-materials-dialog .material-receipt-scroll tbody tr,.supplied-materials-dialog .material-receipt-scroll td{background:#fff}
+html[data-alpha-design=modern] .supplied-materials-dialog .material-receipt-scroll tbody tr,html[data-alpha-design=modern] .supplied-materials-dialog .material-receipt-scroll td{background:var(--ui-surface);color:var(--ui-text)}
+.supplied-materials-dialog .material-receipt-scroll th,.supplied-materials-dialog .material-receipt-scroll td{font-size:inherit}
+@media(max-width:480px){.supplied-materials-dialog .material-receipt-scroll table{font-size:11px}.material-receipt-scroll th:nth-child(1){width:16%}.material-receipt-scroll th:nth-child(2){width:27%}.material-receipt-scroll th:nth-child(3){width:44%}.material-receipt-scroll th:nth-child(4){width:13%}}

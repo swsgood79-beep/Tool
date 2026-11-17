@@ -1,0 +1,14 @@
+=== RUN   TestMaterialReceiptParsingSyncPersistenceAndAccess
+--- PASS: TestMaterialReceiptParsingSyncPersistenceAndAccess (0.81s)
+=== RUN   TestMaterialReceiptMergedOrderAndMissingColumns
+--- PASS: TestMaterialReceiptMergedOrderAndMissingColumns (0.14s)
+=== RUN   TestMaterialReceiptBrowserFixture
+    material_receipts_test.go:103: optional browser fixture
+--- SKIP: TestMaterialReceiptBrowserFixture (0.00s)
+=== RUN   TestMaterialReceiptUploadedWorkbook
+    material_receipts_test.go:123: optional read-only uploaded workbook test
+--- SKIP: TestMaterialReceiptUploadedWorkbook (0.00s)
+=== RUN   TestMaterialReceiptNextSchedulePollReplacesChangedAndRemovedRows
+--- PASS: TestMaterialReceiptNextSchedulePollReplacesChangedAndRemovedRows (0.61s)
+PASS
+ok  	wanryotalk-reconstructed-server	2.635s

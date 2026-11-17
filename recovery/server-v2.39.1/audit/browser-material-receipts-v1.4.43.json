@@ -1,0 +1,173 @@
+{
+  "scope": "Go-rendered synthetic pages, actual shipped browser scripts, mocked receipt GET; no company writes or Windows execution",
+  "results": [
+    {
+      "role": "worker",
+      "scheme": "light",
+      "width": 320,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    },
+    {
+      "role": "admin",
+      "scheme": "light",
+      "width": 320,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    },
+    {
+      "role": "info",
+      "scheme": "light",
+      "width": 320,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    },
+    {
+      "role": "admin-info",
+      "scheme": "light",
+      "width": 320,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    },
+    {
+      "role": "worker",
+      "scheme": "light",
+      "width": 390,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    },
+    {
+      "role": "admin",
+      "scheme": "light",
+      "width": 390,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    },
+    {
+      "role": "info",
+      "scheme": "light",
+      "width": 390,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    },
+    {
+      "role": "admin-info",
+      "scheme": "light",
+      "width": 390,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    },
+    {
+      "role": "worker",
+      "scheme": "light",
+      "width": 1100,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    },
+    {
+      "role": "admin",
+      "scheme": "light",
+      "width": 1100,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    },
+    {
+      "role": "info",
+      "scheme": "light",
+      "width": 1100,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    },
+    {
+      "role": "admin-info",
+      "scheme": "light",
+      "width": 1100,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    },
+    {
+      "role": "worker",
+      "scheme": "dark",
+      "width": 320,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    },
+    {
+      "role": "admin",
+      "scheme": "dark",
+      "width": 320,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    },
+    {
+      "role": "info",
+      "scheme": "dark",
+      "width": 320,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    },
+    {
+      "role": "admin-info",
+      "scheme": "dark",
+      "width": 320,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    },
+    {
+      "role": "worker",
+      "scheme": "dark",
+      "width": 390,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    },
+    {
+      "role": "admin",
+      "scheme": "dark",
+      "width": 390,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    },
+    {
+      "role": "info",
+      "scheme": "dark",
+      "width": 390,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    },
+    {
+      "role": "admin-info",
+      "scheme": "dark",
+      "width": 390,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    },
+    {
+      "role": "worker",
+      "scheme": "dark",
+      "width": 1100,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    },
+    {
+      "role": "admin",
+      "scheme": "dark",
+      "width": 1100,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    },
+    {
+      "role": "info",
+      "scheme": "dark",
+      "width": 1100,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    },
+    {
+      "role": "admin-info",
+      "scheme": "dark",
+      "width": 1100,
+      "result": "pass",
+      "scope": "two rows, poll update, 35 rows internal scroll, fixed header, literal unsafe text, empty/error states, close/ESC, existing status fallback; calendar where available"
+    }
+  ]
+}
