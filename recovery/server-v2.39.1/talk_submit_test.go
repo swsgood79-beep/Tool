@@ -12,7 +12,7 @@ func TestTalkSubmitUsesUpdatedDraftGuard(t *testing.T) {
 	a.state.Integration.Connection.Provider = "pages"
 	a.state.Integration.Connection.PublicURL = "https://old-worker.trycloudflare.com"
 	w := call(a, "GET", "/community/"+a.state.Board+"/new", nil)
-	if w.Code != 200 || !strings.Contains(w.Body.String(), "worker-reconnect-v1.4.46.js") || !strings.Contains(w.Body.String(), `id="community-form"`) {
+	if w.Code != 200 || !strings.Contains(w.Body.String(), "worker-reconnect-v1.4.48.js") || !strings.Contains(w.Body.String(), `id="community-form"`) {
 		t.Fatal("Talk editor guard missing", w.Code)
 	}
 	if dir := os.Getenv("TALK_SUBMIT_HTML"); dir != "" {
