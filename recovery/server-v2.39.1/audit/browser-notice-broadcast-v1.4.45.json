@@ -1,0 +1,53 @@
+{
+  "scope": "Actual Go-rendered pages and shipped scripts in Chromium; media playback and HTTP responses simulated, physical speaker not tested",
+  "results": [
+    {
+      "device": "PC",
+      "scheme": "light",
+      "result": "pass",
+      "scope": "desktop default ON without checkbox interaction, explicit OFF survives reload, no startup voice, phone exclusion, single playback despite repeated polls, inspection audio retained, opt-out"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "result": "pass",
+      "scope": "desktop default ON without checkbox interaction, explicit OFF survives reload, no startup voice, phone exclusion, single playback despite repeated polls, inspection audio retained, opt-out"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "result": "pass",
+      "scope": "desktop default ON without checkbox interaction, explicit OFF survives reload, no startup voice, phone exclusion, single playback despite repeated polls, inspection audio retained, opt-out"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "result": "pass",
+      "scope": "desktop default ON without checkbox interaction, explicit OFF survives reload, no startup voice, phone exclusion, single playback despite repeated polls, inspection audio retained, opt-out"
+    },
+    {
+      "page": "admin list",
+      "width": 390,
+      "result": "pass",
+      "scope": "manual send only, server id/revision/csrf, result feedback, no receiver error, no overflow"
+    },
+    {
+      "page": "admin list",
+      "width": 1100,
+      "result": "pass",
+      "scope": "manual send only, server id/revision/csrf, result feedback, no receiver error, no overflow"
+    },
+    {
+      "page": "admin detail",
+      "width": 390,
+      "result": "pass",
+      "scope": "manual send only, server id/revision/csrf, result feedback, no receiver error, no overflow"
+    },
+    {
+      "page": "admin detail",
+      "width": 1100,
+      "result": "pass",
+      "scope": "manual send only, server id/revision/csrf, result feedback, no receiver error, no overflow"
+    }
+  ]
+}
