@@ -17,7 +17,7 @@ func (a *App) workerReconnectMarkup(name string, value any) string {
 	if c.Provider != "pages" || cloudURL.FindString(c.PublicURL) != c.PublicURL || c.PublicURL == "" || !validPhotoID.MatchString(a.state.Board) {
 		return ""
 	}
-	return `<div id="worker-reconnect-config" hidden data-origin="` + template.HTMLEscapeString(c.PublicURL) + `" data-board="` + template.HTMLEscapeString(a.state.Board) + `" data-release="` + releaseVersion + `"></div><link rel="stylesheet" href="/worker-reconnect-v1.4.42.css"><script defer src="/worker-reconnect-v1.4.49.js"></script>`
+	return `<div id="worker-reconnect-config" hidden data-origin="` + template.HTMLEscapeString(c.PublicURL) + `" data-board="` + template.HTMLEscapeString(a.state.Board) + `" data-release="` + releaseVersion + `"></div><link rel="stylesheet" href="/worker-reconnect-v1.4.42.css"><script defer src="/worker-reconnect-v1.4.51.js"></script>`
 }
 func workerServiceWorkerCSP() string {
 	return "default-src 'none'; script-src 'self'; connect-src 'self' https://api.github.com https://raw.githubusercontent.com; base-uri 'none'"

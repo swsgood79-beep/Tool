@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-	"sort"
 	"strings"
 	"time"
 	"unicode/utf8"
@@ -16,14 +15,15 @@ import (
 // An independent snapshot, captured in the approval transaction. The live schedule
 // remains a projection of the connected sheet and never owns archive records.
 type ShippingRecord struct {
-	ClientName  string
-	ID          string
-	Project     Project
-	Receipts    []MaterialReceipt
-	InspectedAt time.Time
-	ArchivedAt  *time.Time
-	Photos      []Photo
-	Memo        string
+	PhotoUploadKeys []string `json:",omitempty"`
+	ClientName      string
+	ID              string
+	Project         Project
+	Receipts        []MaterialReceipt
+	InspectedAt     time.Time
+	ArchivedAt      *time.Time
+	Photos          []Photo
+	Memo            string
 }
 
 func shippingRecord(s *State, id string) *ShippingRecord {
@@ -185,28 +185,14 @@ func (a *App) shippingRecordsHTTP(w http.ResponseWriter, r *http.Request) bool {
 	}
 	view := map[string]any{"CalendarURL": calendarURL, "Board": a.state.Board, "CSRF": csrf, "Base": base, "ShippingAdmin": admin, "WorkerURL": "/work/" + a.state.Board}
 	if len(rest) == 0 && r.Method == "GET" {
-		pending := r.URL.Query().Get("pending") == "1"
-		query := strings.TrimSpace(r.URL.Query().Get("q"))
-		matches := []ShippingRecord{}
-		pendingCount := 0
-		archivedCount := 0
-		for _, record := range a.state.ShippingRecords {
-			if record.ArchivedAt == nil {
-				pendingCount++
-			} else {
-				archivedCount++
-			}
-			if (record.ArchivedAt == nil) != pending {
-				continue
-			}
-			if query != "" && !strings.Contains(strings.ToLower(record.Project.Number+" "+record.Project.Name+" "+record.ClientName), strings.ToLower(query)) {
-				continue
-			}
-			matches = append(matches, record)
+		list, err := shippingListView(&a.state, base, r.URL.Query(), time.Now())
+		if err != nil {
+			http.Error(w, err.Error(), 400)
+			return true
 		}
-		sort.SliceStable(matches, func(i, j int) bool { return matches[i].InspectedAt.After(matches[j].InspectedAt) })
-		view["ShippingPending"] = pending
-		view["Records"], view["Pending"], view["Query"], view["PendingCount"], view["ArchivedCount"] = matches, pending, query, pendingCount, archivedCount
+		for key, value := range list {
+			view[key] = value
+		}
 		a.render(w, "shipping-records.html", view)
 		return true
 	}
@@ -225,6 +211,14 @@ func (a *App) shippingRecordsHTTP(w http.ResponseWriter, r *http.Request) bool {
 			return true
 		}
 		if len(rest) == 2 && r.Method == "POST" {
+			if rest[1] == "add-photos" {
+				if err := a.addShippingPhotos(record.ID, r); err != nil {
+					http.Error(w, err.Error(), 400)
+					return true
+				}
+				http.Redirect(w, r, base+"/"+record.ID+"?photos_added=1", http.StatusSeeOther)
+				return true
+			}
 			if rest[1] == "save" && !admin {
 				if err := a.saveShippingRecord(record.ID, r); err != nil {
 					http.Error(w, err.Error(), 400)
@@ -258,6 +252,9 @@ func (a *App) shippingRecordsHTTP(w http.ResponseWriter, r *http.Request) bool {
 			}
 		}
 		if len(rest) == 1 && r.Method == "GET" {
+			view["CanAddPhotos"] = record.ArchivedAt != nil && len(record.Photos) < 20
+			view["PhotoRevision"], view["UploadKey"] = shippingPhotoRevision(record), token()
+			view["PhotosAdded"] = r.URL.Query().Get("photos_added") == "1"
 			view["ShippingPending"] = record.ArchivedAt == nil
 			view["Record"], view["Saved"] = record, r.URL.Query().Get("saved") == "1"
 			phone := cleanPhone(record.Project.DesignerPhone)
@@ -294,10 +291,10 @@ func (a *App) shippingRecordMarkup(s, name string, value any) string {
 			link := `<a class="shipment-pending-link" href="` + base + `?pending=1">📷 출하사진 필요 <strong data-shipping-pending-count>` + fmt.Sprint(n) + `</strong><span>사진 등록 후 완료·보관 ›</span></a>`
 			s = strings.Replace(s, `<div class="search-meta">`, link+`<div class="search-meta">`, 1)
 		}
-		s = strings.Replace(s, "</head>", `<meta name="shipping-records-board" content="`+board+`"><script defer src="/shipping-records-v1.4.49.js"></script></head>`, 1)
+		s = strings.Replace(s, "</head>", `<meta name="shipping-records-board" content="`+board+`"><script defer src="/shipping-records-v1.4.51.js"></script></head>`, 1)
 	}
 	if name == "shipping-records.html" || name == "work.html" || name == "admin.html" {
-		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/shipping-records-v1.4.50.css"></head>`, 1)
+		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/shipping-records-v1.4.51.css"></head>`, 1)
 	}
 	return s
 }

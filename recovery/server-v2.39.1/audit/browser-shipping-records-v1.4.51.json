@@ -1,0 +1,117 @@
+{
+  "scope": "actual temporary Go server and Chromium; company data untouched; source removed before all uploads",
+  "results": [
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "compact people information, phone call retained, responsive three-column or stacked rows and optional material scroll region",
+      "result": "pass"
+    },
+    {
+      "case": "immutable card designer call / material receipt after source removal",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "20 photos accumulated and mandatory completion without leave prompt; scroll and no horizontal overflow",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "simplified archive search, detail, thumbnail and shipping navigation",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "archived detail retains people, inspection dates, Excel-colored material receipt table and uploaded photos",
+      "result": "pass"
+    },
+    {
+      "device": "320px phone",
+      "scheme": "light",
+      "case": "narrow phone has table-only horizontal scroll and no page overflow",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "compact people information, phone call retained, responsive three-column or stacked rows and optional material scroll region",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "20 photos accumulated and mandatory completion without leave prompt; scroll and no horizontal overflow",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "simplified archive search, detail, thumbnail and shipping navigation",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "archived detail retains people, inspection dates, Excel-colored material receipt table and uploaded photos",
+      "result": "pass"
+    },
+    {
+      "device": "320px phone",
+      "scheme": "dark",
+      "case": "narrow phone has table-only horizontal scroll and no page overflow",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "compact people information, phone call retained, responsive three-column or stacked rows and optional material scroll region",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "20 photos accumulated and mandatory completion without leave prompt; scroll and no horizontal overflow",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "simplified archive search, detail, thumbnail and shipping navigation",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "archived detail retains people, inspection dates, Excel-colored material receipt table and uploaded photos",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "compact people information, phone call retained, responsive three-column or stacked rows and optional material scroll region",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "20 photos accumulated and mandatory completion without leave prompt; scroll and no horizontal overflow",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "simplified archive search, detail, thumbnail and shipping navigation",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "archived detail retains people, inspection dates, Excel-colored material receipt table and uploaded photos",
+      "result": "pass"
+    }
+  ]
+}

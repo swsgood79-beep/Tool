@@ -1,0 +1,101 @@
+{
+  "scope": "real temporary Go app + Chromium PC/mobile light/dark incl 320px; no company data; archive date verified by Go",
+  "results": [
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "20-row pages and month grouping with full month counts",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "archive-date periods and inclusive custom dates; sort and page preserve filters without leave prompts",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "append two packaging photos, retain originals and archive date, no beforeunload on valid native POST; cancel clears draft and real exit stays protected",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "duplicate append submission is harmless",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "20-row pages and month grouping with full month counts",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "archive-date periods and inclusive custom dates; sort and page preserve filters without leave prompts",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "append two packaging photos, retain originals and archive date, no beforeunload on valid native POST; cancel clears draft and real exit stays protected",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "duplicate append submission is harmless",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "20-row pages and month grouping with full month counts",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "archive-date periods and inclusive custom dates; sort and page preserve filters without leave prompts",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "append two packaging photos, retain originals and archive date, no beforeunload on valid native POST; cancel clears draft and real exit stays protected",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "duplicate append submission is harmless",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "20-row pages and month grouping with full month counts",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "archive-date periods and inclusive custom dates; sort and page preserve filters without leave prompts",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "append two packaging photos, retain originals and archive date, no beforeunload on valid native POST; cancel clears draft and real exit stays protected",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "duplicate append submission is harmless",
+      "result": "pass"
+    }
+  ]
+}

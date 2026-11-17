@@ -1,0 +1,5 @@
+=== RUN   TestShippingArchiveAddAndListBrowser
+Archive browser checks passed 16
+--- PASS: TestShippingArchiveAddAndListBrowser (23.84s)
+PASS
+ok  	wanryotalk-reconstructed-server	23.882s

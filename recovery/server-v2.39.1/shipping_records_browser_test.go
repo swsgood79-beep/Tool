@@ -54,7 +54,7 @@ func TestShippingRecordsBrowser(t *testing.T) {
 		w.Write(body)
 	}))
 	defer server.Close()
-	cmd := exec.Command("node", "audit/browser-shipping-records-v1.4.50.cjs", server.URL, a.state.Board, string(jsonRaw(pending)))
+	cmd := exec.Command("node", "audit/browser-shipping-records-v1.4.51.cjs", server.URL, a.state.Board, string(jsonRaw(pending)))
 	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
 	if err := cmd.Run(); err != nil {
 		t.Fatal(err)
