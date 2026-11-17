@@ -15,7 +15,7 @@ func TestWorkerReconnectMetadataScopeAndReadiness(t *testing.T) {
 	a.state.Integration.Connection.GitHubToken = "TEST-PRIVATE-NOT-A-REAL-TOKEN"
 	w := call(a, "GET", "/work/"+a.state.Board+"?entry=skip", nil)
 	body := w.Body.String()
-	if w.Code != 200 || !strings.Contains(body, `id="worker-reconnect-config"`) || !strings.Contains(body, "worker-reconnect-v1.4.42.js") || strings.Contains(body, "TEST-PRIVATE-NOT-A-REAL-TOKEN") {
+	if w.Code != 200 || !strings.Contains(body, `id="worker-reconnect-config"`) || !strings.Contains(body, "worker-reconnect-v1.4.46.js") || strings.Contains(body, "TEST-PRIVATE-NOT-A-REAL-TOKEN") {
 		t.Fatal("missing recovery metadata or credential leak")
 	}
 	for _, path := range []string{"/community/" + a.state.Board, "/notices/" + a.state.Board, "/client-directory/" + a.state.Board, "/project-info/" + a.state.Board + "/1"} {

@@ -1,0 +1,29 @@
+{
+  "scope": "Real temporary Go app, actual Chromium browser and native multipart photo uploads; no mocked posting or company writes; physical Samsung browser not tested",
+  "results": [
+    {
+      "device": "phone",
+      "scheme": "light",
+      "result": "pass",
+      "scope": "real Go server/native photo POST+redirect, one saved photo, edit by Enter, zero share/edit leave dialogs; HTML/file validation and ordinary-exit draft warning retained"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "result": "pass",
+      "scope": "real Go server/native photo POST+redirect, one saved photo, edit by Enter, zero share/edit leave dialogs; HTML/file validation and ordinary-exit draft warning retained"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "result": "pass",
+      "scope": "real Go server/native photo POST+redirect, one saved photo, edit by Enter, zero share/edit leave dialogs; HTML/file validation and ordinary-exit draft warning retained"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "result": "pass",
+      "scope": "real Go server/native photo POST+redirect, one saved photo, edit by Enter, zero share/edit leave dialogs; HTML/file validation and ordinary-exit draft warning retained"
+    }
+  ]
+}

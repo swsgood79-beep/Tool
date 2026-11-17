@@ -1,0 +1,6 @@
+=== RUN   TestTalkSubmitBrowserIntegration
+Talk native upload checks passed: 4
+    talk_submit_browser_test.go:54: Real browser native multipart uploads and edits stored in temporary Go app; four posts with one photo each; no company data used
+--- PASS: TestTalkSubmitBrowserIntegration (15.79s)
+PASS
+ok  	wanryotalk-reconstructed-server	16.915s
