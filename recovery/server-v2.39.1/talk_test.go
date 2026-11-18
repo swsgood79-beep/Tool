@@ -65,7 +65,7 @@ func TestTalkStatusBoardGuardAndForumNavigation(t *testing.T) {
 	if !strings.Contains(list, "talk-row") || !strings.Contains(list, "talk-title") || strings.Contains(list, "community-excerpt") {
 		t.Fatal("forum list not applied")
 	}
-	if !strings.Contains(list, "talk-unread-v1.4.49.js") {
+	if !strings.Contains(list, "talk-unread-v1.4.61.js") {
 		t.Fatal("unread script missing")
 	}
 	if w := call(a, "POST", base+"/delete", url.Values{"csrf": {a.state.Board}, "id": {p1.ID}}, author); w.Code != 303 {

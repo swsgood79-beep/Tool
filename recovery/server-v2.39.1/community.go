@@ -43,12 +43,21 @@ func findCommunity(s *State, id string) *CommunityPost {
 func communityIdentity(w http.ResponseWriter, r *http.Request, create bool) string {
 	c, e := r.Cookie("alpha-community-owner-v1")
 	v := ""
+	if e != nil {
+		c, e = r.Cookie("alpha-community-owner-pwa-v1")
+	}
 	if e == nil && validPhotoID.MatchString(c.Value) {
 		v = c.Value
 	}
 	if v == "" && create {
 		v = token()
-		http.SetCookie(w, &http.Cookie{Name: "alpha-community-owner-v1", Value: v, Path: "/", HttpOnly: true, Secure: r.TLS != nil || r.Header.Get("X-Forwarded-Proto") == "https", SameSite: http.SameSiteStrictMode, MaxAge: 31536000})
+		cookie := &http.Cookie{Name: "alpha-community-owner-v1", Value: v, Path: "/", HttpOnly: true, Secure: r.TLS != nil || r.Header.Get("X-Forwarded-Proto") == "https", SameSite: http.SameSiteStrictMode, MaxAge: 31536000}
+		if communityPWACookie(r) {
+			cookie.Name = "alpha-community-owner-pwa-v1"
+			cookie.SameSite = http.SameSiteNoneMode
+			cookie.Partitioned = true
+		}
+		http.SetCookie(w, cookie)
 	}
 	if v == "" {
 		return ""

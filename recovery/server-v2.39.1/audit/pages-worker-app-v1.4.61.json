@@ -1,0 +1,20 @@
+{
+  "version": "1.4.61",
+  "destination": "https://swsgood79-beep.github.io/Tool/app/",
+  "assets": {
+    "app.css": "52f7658234481a794c15357c9f71bbddbc493e4a14a663ce8273b55d5da32b9a",
+    "app.js": "e0a2e7ebfd6fdbb0f53825e0b91c07468d62a83ab7ed4bac6921fce531a20356",
+    "icon-192.png": "56c22fad8d356beac504383707c067ce5d65005a5c92af205bb2e97ca9b7c777",
+    "icon-512.png": "cc2f6870bfa10f231fef7a3b2e5cb1352ef443b271bff49c0ed5f9952321d0c6",
+    "icon-maskable.png": "16dabf875c55c54a19bd883c9babdd848fc9c3b5deb0ba219f784ef10f28c4db",
+    "icon.svg": "8602cada006ae2a7e21d60df85b477b87e6de473589006a49bdceeb6fbe71f2c",
+    "index.html": "c68e5cf5617c7e081e95ff2f43b4c16e876c7ba4bb7b532b820c7034251c13dd",
+    "manifest.webmanifest": "b50f479a5050b705160448eb7693ec84823d8259643bcbadc2e55944a2a0763e",
+    "sw.js": "22367b8a8480d7ad85e4d52d97c9744095b725da68cbdb19464245c2151691b0"
+  },
+  "original_pages_paths_changed": false,
+  "pages_host_access": "execution network proxy returns403 CONNECT for both existing /admin/ and new app host; GitHub raw publication checked separately",
+  "android_os_install": "not executed; manifest, installation guidance and Chromium app flows checked",
+  "pages_commit": "5bfcf57ec645f85a61102af0be5b58068755a394",
+  "pages_previous_commit": "724c4aca11a389b48beb5eb031f5e46534f0556d"
+}

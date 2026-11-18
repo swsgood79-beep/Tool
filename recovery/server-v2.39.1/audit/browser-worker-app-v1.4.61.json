@@ -1,0 +1,65 @@
+{
+  "scope": "real temporary Go application behind simulated HTTPS stable Pages/tunnel routes; actual Talk photo save, archive upload, partitioned cookies, address and version swaps; worker activation signal simulated (real cache install in separate test); redirect303 at the intercepted HTTPS boundary simulated with HTML refresh; desktop and phone; Android installer itself not run",
+  "results": [
+    {
+      "mobile": true,
+      "case": "stable app origin, board remembered, hash-free next launch opens worker without QR",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "case": "standalone manifest, app icons and manual installation guidance",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "case": "endpoint update held while post text/photo draft exists",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "case": "photo post saved without leave prompt, app reconnects, stable partitioned author can edit after address change",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "case": "same-server release deferred during selected photo; native save archives first and latest view opens",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "case": "app worker activation held during draft; shell restarts only after save and returns to saved record",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "case": "stable app origin, board remembered, hash-free next launch opens worker without QR",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "case": "standalone manifest, app icons and manual installation guidance",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "case": "endpoint update held while post text/photo draft exists",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "case": "photo post saved without leave prompt, app reconnects, stable partitioned author can edit after address change",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "case": "same-server release deferred during selected photo; native save archives first and latest view opens",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "case": "app worker activation held during draft; shell restarts only after save and returns to saved record",
+      "result": "pass"
+    }
+  ]
+}

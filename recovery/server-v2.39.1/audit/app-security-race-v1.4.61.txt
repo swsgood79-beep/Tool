@@ -1,0 +1,6 @@
+=== RUN   TestWorkerAppSecurityAndIdentity
+--- PASS: TestWorkerAppSecurityAndIdentity (0.05s)
+=== RUN   TestWorkerSpeechRequiresBoardAndMatchingBodyAndCannotAccessAdmin
+--- PASS: TestWorkerSpeechRequiresBoardAndMatchingBodyAndCannotAccessAdmin (0.03s)
+PASS
+ok  	wanryotalk-reconstructed-server	3.820s
