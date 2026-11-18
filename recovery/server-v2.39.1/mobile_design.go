@@ -69,7 +69,7 @@ func mobileDesignPreview(s, name string, v any) string {
 	if role == "admin" {
 		metadata = strings.Replace(metadata, ` data-mobile=`, ` data-active-count="`+strconv.Itoa(activeCount)+`" data-due-count="`+strconv.Itoa(dueCount)+`" data-mobile=`, 1)
 	}
-	assets := `<link rel="stylesheet" href="/community-v1.4.38.css"><link rel="stylesheet" href="/mobile-design-v1.4.24.css"><link rel="stylesheet" href="/market-calendar-v1.4.26.css"><link rel="stylesheet" href="/calendar-complete-v1.4.27.css"><link rel="stylesheet" href="/order-card-v1.4.41.css"><link rel="stylesheet" href="/calendar-flat-v1.4.32.css"><link rel="stylesheet" href="/talk-board-v1.4.40.css"><script defer src="/mobile-design-v1.4.56.js"></script><script defer src="/order-card-v1.4.41.js"></script><script defer src="/talk-unread-v1.4.61.js"></script>`
+	assets := `<link rel="stylesheet" href="/community-v1.4.38.css"><link rel="stylesheet" href="/mobile-design-v1.4.24.css"><link rel="stylesheet" href="/market-calendar-v1.4.26.css"><link rel="stylesheet" href="/calendar-complete-v1.4.27.css"><link rel="stylesheet" href="/order-card-v1.4.41.css"><link rel="stylesheet" href="/calendar-flat-v1.4.32.css"><link rel="stylesheet" href="/talk-board-v1.4.40.css"><script defer src="/mobile-design-v1.4.63.js"></script><script defer src="/order-card-v1.4.41.js"></script><script defer src="/talk-unread-v1.4.61.js"></script>`
 	if name == "admin.html" {
 		assets += `<link rel="stylesheet" href="/admin-order-grid-v1.4.59.css">`
 	}

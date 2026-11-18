@@ -1,0 +1,5 @@
+=== RUN   TestWorkerAppThemeBrowser
+App theme checks passed 24
+--- PASS: TestWorkerAppThemeBrowser (9.14s)
+PASS
+ok  	wanryotalk-reconstructed-server	9.411s

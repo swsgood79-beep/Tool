@@ -16,7 +16,7 @@ func TestWorkerAppSecurityAndIdentity(t *testing.T) {
 	b := a.state.Board
 	for _, path := range []string{"/work/" + b + "?entry=skip", "/shipping-records/" + b, "/community/" + b, "/notices/" + b} {
 		w := call(a, "GET", path, nil)
-		if !strings.Contains(w.Header().Get("Content-Security-Policy"), "frame-ancestors "+workerAppOrigin) || !strings.Contains(w.Body.String(), "worker-app-v1.4.61.js") {
+		if !strings.Contains(w.Header().Get("Content-Security-Policy"), "frame-ancestors "+workerAppOrigin) || !strings.Contains(w.Body.String(), "worker-app-v1.4.63.js") {
 			t.Fatal("worker app missing", path)
 		}
 	}
@@ -26,7 +26,7 @@ func TestWorkerAppSecurityAndIdentity(t *testing.T) {
 			t.Fatal("admin or invalid frame permitted", path)
 		}
 	}
-	if w := call(a, "GET", "/worker-app-entry/"+b, nil); w.Code != 200 || !strings.Contains(w.Body.String(), "worker-app-entry-v1.4.61.js") {
+	if w := call(a, "GET", "/worker-app-entry/"+b, nil); w.Code != 200 || !strings.Contains(w.Body.String(), "worker-app-entry-v1.4.63.js") {
 		t.Fatal("bootstrap missing")
 	}
 	owner := token()
@@ -76,7 +76,7 @@ func TestWorkerAppBrowser(t *testing.T) {
 	}
 	srv := httptest.NewServer(a)
 	defer srv.Close()
-	cmd := exec.Command("node", "audit/browser-worker-app-v1.4.61.cjs", srv.URL, a.state.Board, string(jsonRaw(ids)))
+	cmd := exec.Command("node", "audit/browser-worker-app-v1.4.63.cjs", srv.URL, a.state.Board, string(jsonRaw(ids)))
 	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
 	if e := cmd.Run(); e != nil {
 		t.Fatal(e)
@@ -94,7 +94,7 @@ func TestWorkerAppServiceWorkerBrowser(t *testing.T) {
 	if os.Getenv("WORKER_APP_BROWSER") != "1" {
 		t.Skip("optional real service worker cache flow")
 	}
-	dir, err := filepath.Abs("extras/pwa-v1.4.61")
+	dir, err := filepath.Abs("extras/pwa-v1.4.63")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -102,7 +102,7 @@ func TestWorkerAppServiceWorkerBrowser(t *testing.T) {
 	mux.Handle("/Tool/app/", http.StripPrefix("/Tool/app/", http.FileServer(http.Dir(dir))))
 	srv := httptest.NewServer(mux)
 	defer srv.Close()
-	cmd := exec.Command("node", "audit/browser-app-sw-v1.4.61.cjs", srv.URL)
+	cmd := exec.Command("node", "audit/browser-app-sw-v1.4.63.cjs", srv.URL)
 	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
 	if e := cmd.Run(); e != nil {
 		t.Fatal(e)

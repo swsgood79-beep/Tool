@@ -1,0 +1,20 @@
+{
+  "version": "1.4.63",
+  "destination": "https://swsgood79-beep.github.io/Tool/app/",
+  "assets": {
+    "app.css": "e90d2a311d1f652054219242b02ca28ba8d399ea0c9b6899f5a46dc6b6e7f89d",
+    "app.js": "6180eb7127d97d605db94899488cdd843b1b4fa2772ea628dca7d65ba4acb608",
+    "icon-192.png": "56c22fad8d356beac504383707c067ce5d65005a5c92af205bb2e97ca9b7c777",
+    "icon-512.png": "cc2f6870bfa10f231fef7a3b2e5cb1352ef443b271bff49c0ed5f9952321d0c6",
+    "icon-maskable.png": "16dabf875c55c54a19bd883c9babdd848fc9c3b5deb0ba219f784ef10f28c4db",
+    "icon.svg": "8602cada006ae2a7e21d60df85b477b87e6de473589006a49bdceeb6fbe71f2c",
+    "index.html": "e4ce87c7e677fc61bbc761e4c329e054f4ee2af44775e3b53b4545248720dd05",
+    "manifest.webmanifest": "b50f479a5050b705160448eb7693ec84823d8259643bcbadc2e55944a2a0763e",
+    "sw.js": "f418f1f6950efcca83118a1f7ebbf1ed833f2a1e536fe36a74e2fef59fcd71e7",
+    "theme-bootstrap.js": "c70140294ab723f725f1061e4ae330be71b64c27b3cf0bae33ababc36ebad75d"
+  },
+  "pages_previous_commit": "5bfcf57ec645f85a61102af0be5b58068755a394",
+  "pages_host_access": "environment proxy blocks direct Pages host; public raw asset hashes verified after publication",
+  "physical_android_forced_dark_mode": "not tested; actual theme buttons and computed colors verified in Chromium device-dark/light contexts",
+  "pages_commit": "cb498955bb7f8ee91b60d106d3cf1b521a649b14"
+}

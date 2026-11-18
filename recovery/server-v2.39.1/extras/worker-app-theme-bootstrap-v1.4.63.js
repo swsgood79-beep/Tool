@@ -1,0 +1,1 @@
+(()=>{'use strict';if(parent===window)return;try{const value=document.cookie.split('; ').find(x=>x.startsWith('alpha-app-theme-pwa-v1='))?.split('=')[1];if(['system','light','dark'].includes(value))document.documentElement.dataset.alphaTheme=value}catch(_){}})();

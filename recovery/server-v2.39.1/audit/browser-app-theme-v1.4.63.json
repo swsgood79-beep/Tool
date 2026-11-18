@@ -1,0 +1,149 @@
+{
+  "scope": "real Go server via simulated HTTPS app/tunnel origins; actual theme buttons; PC/phone device light/dark; delayed UI script first-paint check; no physical Android forced-night-mode test",
+  "results": [
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "case": "light button immediately makes worker and app shell light even with device dark; only-light color scheme",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "case": "light theme is present before deferred UI executes on next page",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "case": "app reload without QR preserves explicit light",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "case": "tunnel address change preserves light at shell and worker",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "case": "explicit dark also synchronizes regardless of light device",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "case": "system mode follows device after manual overrides; no script errors",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "case": "light button immediately makes worker and app shell light even with device dark; only-light color scheme",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "case": "light theme is present before deferred UI executes on next page",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "case": "app reload without QR preserves explicit light",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "case": "tunnel address change preserves light at shell and worker",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "case": "explicit dark also synchronizes regardless of light device",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "case": "system mode follows device after manual overrides; no script errors",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "case": "light button immediately makes worker and app shell light even with device dark; only-light color scheme",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "case": "light theme is present before deferred UI executes on next page",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "case": "app reload without QR preserves explicit light",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "case": "tunnel address change preserves light at shell and worker",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "case": "explicit dark also synchronizes regardless of light device",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "case": "system mode follows device after manual overrides; no script errors",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "case": "light button immediately makes worker and app shell light even with device dark; only-light color scheme",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "case": "light theme is present before deferred UI executes on next page",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "case": "app reload without QR preserves explicit light",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "case": "tunnel address change preserves light at shell and worker",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "case": "explicit dark also synchronizes regardless of light device",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "case": "system mode follows device after manual overrides; no script errors",
+      "result": "pass"
+    }
+  ]
+}

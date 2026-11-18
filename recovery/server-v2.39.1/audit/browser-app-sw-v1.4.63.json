@@ -1,0 +1,17 @@
+{
+  "scope": "real localhost secure-context service worker install, app asset cache and offline relaunch; no worker orders/photos cached",
+  "results": [
+    {
+      "case": "worker installs and claims app scope",
+      "result": "pass"
+    },
+    {
+      "case": "only10 app shell assets cached",
+      "result": "pass"
+    },
+    {
+      "case": "offline shell reload and online return",
+      "result": "pass"
+    }
+  ]
+}

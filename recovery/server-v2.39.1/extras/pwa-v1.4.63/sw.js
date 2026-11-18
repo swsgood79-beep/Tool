@@ -1,0 +1,5 @@
+'use strict';const CACHE='alpha-worker-app-v1.4.63',PREFIX='alpha-worker-app-',ROOT=new URL('./',self.location).href,ASSETS=['theme-bootstrap.js?v=1.4.63','./','index.html','app.js?v=1.4.63','app.css?v=1.4.63','manifest.webmanifest','icon.svg','icon-192.png','icon-512.png','icon-maskable.png'];
+self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS.map(p=>new Request(new URL(p,ROOT),{cache:'reload'}))))));
+self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith(PREFIX)&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
+self.addEventListener('message',e=>{if(e.data?.type==='ACTIVATE')self.skipWaiting()});
+self.addEventListener('fetch',e=>{const r=e.request,u=new URL(r.url);if(r.method!=='GET'||u.origin!==self.location.origin||!u.href.startsWith(ROOT))return;if(r.mode==='navigate'){e.respondWith(fetch(r).catch(()=>caches.match(ROOT)));return}if(!ASSETS.some(p=>new URL(p,ROOT).href===u.href))return;e.respondWith(caches.open(CACHE).then(async c=>(await c.match(r))||fetch(r).then(response=>{if(response.ok)c.put(r,response.clone());return response})))});

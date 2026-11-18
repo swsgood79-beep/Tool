@@ -1,0 +1,8 @@
+=== RUN   TestWorkerAppBrowser
+Worker installed-app flow checks passed 12
+--- PASS: TestWorkerAppBrowser (64.22s)
+=== RUN   TestWorkerAppServiceWorkerBrowser
+App service worker checks passed 3
+--- PASS: TestWorkerAppServiceWorkerBrowser (1.40s)
+PASS
+ok  	wanryotalk-reconstructed-server	66.081s
