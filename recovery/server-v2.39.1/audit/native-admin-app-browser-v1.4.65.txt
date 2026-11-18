@@ -1,0 +1,5 @@
+=== RUN   TestNativeAdminAppBrowser
+Native admin app shell checks passed 28
+--- PASS: TestNativeAdminAppBrowser (6.33s)
+PASS
+ok  	wanryotalk-reconstructed-server	6.590s

@@ -1,0 +1,165 @@
+{
+  "scope": "actual temporary Go server in Chromium with APK user-agent; 390/850, light/dark; not a physical Android execution or live Firebase test",
+  "results": [
+    {
+      "width": 390,
+      "scheme": "light",
+      "case": "APK opens work cards and exact five tabs; modern view even after old classic preference; no horizontal clipping",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "scheme": "light",
+      "case": "calendar opens directly with no work-list flash after deferred scripts",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "scheme": "light",
+      "case": "archive and return to calendar retain the administrator APK navigation",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "scheme": "light",
+      "case": "inspection tab reuses authenticated live requests and count badge",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "scheme": "light",
+      "case": "Talk uses worker-style categories and posting, not moderation-only view",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "scheme": "light",
+      "case": "whole menu exposes field tasks/account/notification controls; PC configuration absent; real admin logout CSRF retained",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "scheme": "dark",
+      "case": "APK opens work cards and exact five tabs; modern view even after old classic preference; no horizontal clipping",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "scheme": "dark",
+      "case": "calendar opens directly with no work-list flash after deferred scripts",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "scheme": "dark",
+      "case": "archive and return to calendar retain the administrator APK navigation",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "scheme": "dark",
+      "case": "inspection tab reuses authenticated live requests and count badge",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "scheme": "dark",
+      "case": "Talk uses worker-style categories and posting, not moderation-only view",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "scheme": "dark",
+      "case": "whole menu exposes field tasks/account/notification controls; PC configuration absent; real admin logout CSRF retained",
+      "result": "pass"
+    },
+    {
+      "width": 850,
+      "scheme": "light",
+      "case": "APK opens work cards and exact five tabs; modern view even after old classic preference; no horizontal clipping",
+      "result": "pass"
+    },
+    {
+      "width": 850,
+      "scheme": "light",
+      "case": "calendar opens directly with no work-list flash after deferred scripts",
+      "result": "pass"
+    },
+    {
+      "width": 850,
+      "scheme": "light",
+      "case": "archive and return to calendar retain the administrator APK navigation",
+      "result": "pass"
+    },
+    {
+      "width": 850,
+      "scheme": "light",
+      "case": "inspection tab reuses authenticated live requests and count badge",
+      "result": "pass"
+    },
+    {
+      "width": 850,
+      "scheme": "light",
+      "case": "Talk uses worker-style categories and posting, not moderation-only view",
+      "result": "pass"
+    },
+    {
+      "width": 850,
+      "scheme": "light",
+      "case": "whole menu exposes field tasks/account/notification controls; PC configuration absent; real admin logout CSRF retained",
+      "result": "pass"
+    },
+    {
+      "width": 850,
+      "scheme": "dark",
+      "case": "APK opens work cards and exact five tabs; modern view even after old classic preference; no horizontal clipping",
+      "result": "pass"
+    },
+    {
+      "width": 850,
+      "scheme": "dark",
+      "case": "calendar opens directly with no work-list flash after deferred scripts",
+      "result": "pass"
+    },
+    {
+      "width": 850,
+      "scheme": "dark",
+      "case": "archive and return to calendar retain the administrator APK navigation",
+      "result": "pass"
+    },
+    {
+      "width": 850,
+      "scheme": "dark",
+      "case": "inspection tab reuses authenticated live requests and count badge",
+      "result": "pass"
+    },
+    {
+      "width": 850,
+      "scheme": "dark",
+      "case": "Talk uses worker-style categories and posting, not moderation-only view",
+      "result": "pass"
+    },
+    {
+      "width": 850,
+      "scheme": "dark",
+      "case": "whole menu exposes field tasks/account/notification controls; PC configuration absent; real admin logout CSRF retained",
+      "result": "pass"
+    },
+    {
+      "case": "unchanged normal browser ",
+      "result": "pass"
+    },
+    {
+      "case": "unchanged normal browser work",
+      "result": "pass"
+    },
+    {
+      "case": "existing setting approval posts through app without leaving-site dialog",
+      "result": "pass"
+    },
+    {
+      "case": "Talk post persists using the original worker form without leaving-site dialog",
+      "result": "pass"
+    }
+  ]
+}

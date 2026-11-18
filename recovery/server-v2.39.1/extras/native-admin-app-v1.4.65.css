@@ -1,0 +1,18 @@
+/* APK-only. The PC and ordinary worker/browser pages keep their current assets. */
+html[data-admin-app=true] .design-header,
+html[data-admin-app=true] .design-classic-bar,
+html[data-admin-app=true] .design-orders-title .design-blue,
+html[data-admin-app=true] .design-home,
+html[data-admin-app=true] .electron-speech-toolbar{display:none!important}
+html[data-admin-app=true][data-alpha-design=modern] main{margin-top:18px}
+html[data-admin-app=true] .design-bottom-nav{grid-template-columns:repeat(5,minmax(0,1fr));padding-bottom:max(10px,env(safe-area-inset-bottom))}
+html[data-admin-app=true] .design-nav-item{position:relative;min-width:0}
+html[data-admin-app=true] .design-nav-item span:not(.talk-unread-badge):not(.native-inspection-badge){white-space:nowrap;font-size:11px}
+html[data-admin-app=true] .native-inspection-badge{position:absolute;top:0;left:calc(50% + 8px);display:flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 4px;border:2px solid var(--ui-surface);border-radius:20px;background:#ed6045;color:white;font-size:10px;font-weight:750;line-height:14px}
+html[data-admin-app=true] .native-inspection-badge[hidden]{display:none}
+html[data-admin-app=true] .admin-page[data-design-tab=orders] .design-orders-title h1{font-size:23px}
+html[data-admin-app=true] .admin-page[data-design-tab=inspection] main>.design-home{display:none!important}
+html[data-admin-app=true] .admin-orders-header>h2{font-size:20px}
+html[data-admin-app=true] .design-profile{margin-bottom:16px}
+html[data-admin-app=true][data-alpha-design=modern] h1{color:var(--ui-ink)}
+html[data-admin-app=true] #order-panel>.section-heading{display:none}

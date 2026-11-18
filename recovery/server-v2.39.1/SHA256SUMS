@@ -1,7 +1,7 @@
 717088d158337b8c85639d99a9a5acf4e67293e5622ed5fd116d6a4565205d50  .gitignore
-fab0661653a4fa1920bdb8d7e994754dec1041555d961499d58a74b8b2e036c6  ANDROID-ADMIN-SETUP.md
-f7aa53ccd66839bd75da03fa2bfb25ce947db8de52cd8570669c3af6766b5f7c  README.md
-306c1dade619d0fe980364e3daad4d237ec18865b389b2419ef49db784e89b1d  START-HERE.md
+31f5743533f1d1c320c5f3e9457800f3f7e16098724e15503a78d79b844630da  ANDROID-ADMIN-SETUP.md
+92b3efaa192b5ca10de14b457c083550240d7281d399bf8b37211ad138015696  README.md
+e083d84a9c4d7ce4edd9a5ee9ee79a1bc4b96c5527460f7aa95b675bd341f497  START-HERE.md
 8efa045e6a05bc787743d68e0e86aab002ffd777a7a1f0f89937ee97f01622ea  activity_rejection_test.go
 84082cc640c39b53309dc3ac8c134d00563e882a4e5d286dcf6d9455d747c281  admin_accounts.go
 0973b50db885b457b84d75711ec7b2005f2a1f24c98cdd52502751f00cb8ea05  admin_accounts_browser_test.go
@@ -9,17 +9,17 @@ f7aa53ccd66839bd75da03fa2bfb25ce947db8de52cd8570669c3af6766b5f7c  README.md
 fcf20d84a550eb3044082b5aef2776c2b7e2618d354a2ab04050894708afdc39  admin_accounts_validation_test.go
 560c9ebe1c70297fa1bc3bf3b8b5ad45115913f73bdca12158d7019768e0578c  admin_order_grid_browser_test.go
 5a83dcf9b0803db293def63472526906beb2d5cc85ab17e640c954db61650926  android-admin/.gitignore
-a61335425e6be93c24eb3f843cd2631d7d8499fd8b5e327e336150365221c464  android-admin/README.md
-9a4025bbe1591ad0399b8dcc46bbe8168cc2c81b43f4734685a28d57f0383ce9  android-admin/app/build.gradle
+32a0d4e151ba4f6b0feab989df76a309f1867cfb9e35bd4706381a163b986dad  android-admin/README.md
+dc6779c9e596144dcf3074b45439b8936f7a4bdfd72f0c898b2d13c82ba52f90  android-admin/app/build.gradle
 579926b6922c76a6fc38a448d752b862181160c524a97c22f130f567aa78df3c  android-admin/app/src/main/AndroidManifest.xml
 29e218201ecef8629afb68f41ad4e4daf6d13bfac2ae0681a735ba7167767225  android-admin/app/src/main/java/com/alpharobotics/admin/AdminMessagingService.java
 e9eb746841b8ecad92cfce3db9deccb34ac69414701acb1022662a9d381ecfe6  android-admin/app/src/main/java/com/alpharobotics/admin/AlphaApplication.java
 70a757b1048c965bed10de87d1fa1ae5b1078391f8bfcd1abbb134dd1a26c95a  android-admin/app/src/main/java/com/alpharobotics/admin/FirebaseSetup.java
-18f7c632c8faadf6ca6fba399df71f58d5fe0309b1c32de085e2c428f1155ac0  android-admin/app/src/main/java/com/alpharobotics/admin/MainActivity.java
+c80f22ec59ba6aaafb2dd57aa774715a976d1bb5bea290f4fb2ac0d19bc6f7f7  android-admin/app/src/main/java/com/alpharobotics/admin/MainActivity.java
 95a19d32401dae7ffb19caa035a217eea65618125457ef631ebd6adaf729f96e  android-admin/app/src/main/java/com/alpharobotics/admin/Net.java
 3a8422033db7ac77acd26c66b9e2ce2654808b34ff1885b0c316afd28fae56b7  android-admin/app/src/main/java/com/alpharobotics/admin/PersistentLogin.java
 614eb9f419b1c3a4f81d1fc5059e51e179955c785eb7c409b67ccb7496cf128f  android-admin/app/src/main/java/com/alpharobotics/admin/Store.java
-e89e5f52f58ed8a6a4b0eb0b03ba39abfe99d96e88c150ee9837823088972035  android-admin/app/src/main/java/com/alpharobotics/admin/UrlPolicy.java
+058bee6940768297f2f50bd71dc880dd29927a87d5179a0cf55017f57cc645a8  android-admin/app/src/main/java/com/alpharobotics/admin/UrlPolicy.java
 5b0c9a8aa54dc1302bd2776412e071100916f122865e5bd12354e7ca60439a56  android-admin/app/src/main/res/drawable/ic_launcher.xml
 38cb9371f7761a8d508f0645c73c171f7d11673d863a5ec92289c89e6fe0c128  android-admin/app/src/main/res/drawable/ic_notification.xml
 781a4c2b2ac93478adc04833acb8c3cbfc2ab4ce08a437524694f48b21e01f80  android-admin/app/src/main/res/values/styles.xml
@@ -28,7 +28,7 @@ e89e5f52f58ed8a6a4b0eb0b03ba39abfe99d96e88c150ee9837823088972035  android-admin/
 d8e93b9fdc289f8876861895418a234c1d04c0508ff0754250cd4dba487dbaf9  android-admin/app/src/main/res/xml/backup_rules.xml
 5a86c9d2bbe79bd2b87b830fc8d80af4d1780c25dbab285f4afa19ec7181dd47  android-admin/app/src/main/res/xml/data_extraction_rules.xml
 4b091bcf4c17b37fbaf8c6c279cfd6aa315e3ed935806dac1ff68510fcd9cf8c  android-admin/app/src/main/res/xml/file_paths.xml
-acb3525bcdbfb9ecb92032fd7ed12f0aa38d9c9754e96f1cb8a464c92989cfeb  android-admin/app/src/test/java/com/alpharobotics/admin/UrlPolicyTest.java
+d3cca328c682167063a9c2373fc80771fddb32bc0003ebd451e4a32b3f3a4e63  android-admin/app/src/test/java/com/alpharobotics/admin/UrlPolicyTest.java
 8789df0f70c2f57c30b42ee6833cce357fbb8437e44213e941684269f1ba9786  android-admin/build.gradle
 498495120a03b9a6ab5d155f5de3c8f0d986a449153702fb80fc80e134484f17  android-admin/gradle/wrapper/gradle-wrapper.jar
 7811b7e9709748edc54d01918ac1b2acce8a9884d5cdd29e42d204d7d052dbf1  android-admin/gradle/wrapper/gradle-wrapper.properties
@@ -108,6 +108,7 @@ fae14b2f8d0a3b2f1cf094bd529ba78e55bca988d7910f40f7b2341b65622519  audit/RECOVERY
 86f92f5bec9dada139a0dc934671a8d18ed89478dff1e1e211c472a1583fe31d  audit/RECOVERY-V1.4.62.md
 a28e1609cf974ffbfc3fc9252c3f2822a7eef93f278cbebbd16be72b3654c703  audit/RECOVERY-V1.4.63.md
 9503102d0a9935ed825b02a115e954ce9325a8d4827c16e1eb2a9469f0ea5451  audit/RECOVERY-V1.4.64.md
+dfbd092d67d2dff8f481f6b77e13f13ab2cd1de32ba596c9d6bc218fd1435104  audit/RECOVERY-V1.4.65.md
 33e2ce6a85a6a3bee52d72054c0bc9c5a818af6a4e1495f86bb6b292e9a1e429  audit/RECOVERY-V1.4.7.md
 71069efaaa2a53a078f0bcc99e7238d3691e1b6ab86681f96a7cd51c625ade56  audit/RECOVERY-V1.4.8.md
 c7605105b33552c1c843ed73e8355c2b28b4dcabf3d5335bc5d47e35e2022bb4  audit/RECOVERY-V1.4.9.md
@@ -148,10 +149,15 @@ b18e291865d2b95ccd9a34cc3843d4cb71407e5aec3e383459e94509a17270e1  audit/admin-in
 4d3a6cb40279587e45c1ac1344cfc1bd81bada5e8b500b2c46f97ed63d28b08e  audit/admin-inspection-light-1100-v1.4.24.png
 b8a157dadbe093aa06746b338d5164828d35e8856ba38ddb41a6fe18beab9378  audit/admin-inspection-light-390-v1.4.24.png
 215716d5876937f61c404e215c6c02cecec05901db6f938d40832a8587363698  audit/android-apk-manifest-v1.4.64.txt
+0706d91a3442714c3dc9fac15951865765cc78769109e281349651c51c5315cc  audit/android-apk-manifest-v1.4.65.txt
 d7949a8a72ee04213b366b88d58aed9788cb20cab953fb9fc008c7ccf438246b  audit/android-apk-signature-v1.4.64.txt
+d7949a8a72ee04213b366b88d58aed9788cb20cab953fb9fc008c7ccf438246b  audit/android-apk-signature-v1.4.65.txt
 ac5a92df7a5ec3c519084b2faa6fddabc12366a85307a7698e9c13c3b81a80ea  audit/android-lint-v1.4.64.txt
+1ec2b0cba6fae800de372f9dab98c13b80a8208081c6de7ce810c5b733b4e85c  audit/android-lint-v1.4.65.txt
 87dca6f2e773294a17dd40f167e50002219056478e4bccfe88393fea21919a83  audit/android-release-build-v1.4.64.txt
+32f9b8bf954d92ab9e5f68d8d0b49477fd6cce1f080a26f30301520148108f74  audit/android-release-build-v1.4.65.txt
 6ab57a415cd8aa624d66143bb74c1d4df9fd9258982f1c4779d59a24975d3001  audit/android-unit-v1.4.64.xml
+05656709f08fef4cb5bc65f549e51034af432ce64962edb52f3f11abc94807a1  audit/android-unit-v1.4.65.xml
 fe8196bd959dd416508d91cf961156505d826168215c719825e4f4f49ae5a09b  audit/announcements-admin-dark-v1.4.36.png
 fe8196bd959dd416508d91cf961156505d826168215c719825e4f4f49ae5a09b  audit/announcements-admin-dark-v1.4.37.png
 fe8196bd959dd416508d91cf961156505d826168215c719825e4f4f49ae5a09b  audit/announcements-admin-dark-v1.4.38.png
@@ -416,6 +422,8 @@ bd0b8d546b0339af4384e23ea62704c576cb8a93dc6263846cb283a62fce1145  audit/browser-
 ea5c2b00129274b0ccdffaf3c139b9f101b12750fa453a4c1dc8aa703e53d9f6  audit/browser-mobile-design-v1.4.21.json
 1ea45765b0fc8e9d4d08f90dd73ca6334f105e48471ee40cae76760ce3827f3c  audit/browser-mobile-design-v1.4.23.cjs
 778c24f6ecdac28b31206381d0e0693518ee6c178e794d634ed5a68fbae972f8  audit/browser-mobile-design-v1.4.23.json
+c4b45ffe69524a85a3f1d8edc8c4f687a04db735e5e546026a8e23f07c54de0a  audit/browser-native-admin-app-v1.4.65.cjs
+aa83e6794681570bd47a8582e9e05af0ffa9be289b00a172d9c9bc90f57016e4  audit/browser-native-admin-app-v1.4.65.json
 beb0428820d4929cbd8e16aa7a37411c312e48d5202018790b18bd8832a7ae1a  audit/browser-notice-broadcast-v1.4.44.cjs
 e3f2e0c432082763afd54280a15419f9e42673df244831150c240d06a1eb7002  audit/browser-notice-broadcast-v1.4.44.json
 b417202753cb31c503e15842f4c5221c836271ef384b3503663bce8ca2c0f001  audit/browser-notice-broadcast-v1.4.45.cjs
@@ -594,6 +602,7 @@ c8c51d59d2b0fe99af914d29dcb1354bd46d9bf17f27bc56a12f5e925dca3364  audit/build-ma
 ab51e6b72084b6133b71efe0c00fee9c9f9697bddd1a0c1d29092b43734ae529  audit/build-manifest-v1.4.62.json
 a32bb82d24590691788f106e29cacb181500286b034dccebec547bd89b447a74  audit/build-manifest-v1.4.63.json
 da041b3fbaf1304c0cb6fd2fb86f992cb0289789585a8839caf363045efadd68  audit/build-manifest-v1.4.64.json
+63a2de264b33afbf3ee3cc8d74b435dcbd26a433d3795a99f35f1eb401e6ee1d  audit/build-manifest-v1.4.65.json
 e5367115740107ee2e83777a9e3ff4fbc4794cdf5abfd4a0de2e6c03484adda8  audit/build-manifest-v1.4.7.json
 06373a5f6aa4002b4558c32a41283c973c20f50c69d9346cd55a52f88784a396  audit/build-manifest-v1.4.8.json
 78bd315a62a728969baaea7826a4a7c955d657bb34525d3c4583b889a5647de0  audit/build-manifest-v1.4.9.json
@@ -689,6 +698,7 @@ e809e3d9c9d41b4dab14fb2233bbdb9a0b44ccf22d660b20ca9d49f4303f7262  audit/go-test-
 4db8b0c3e0c171fcf411896e9a5accb8be15aef2a869729287284186e93afc4d  audit/go-test-final-v1.4.62.txt
 8e66d8b9731dd23288d52cae0c8963c23a93909f3cbe25a206063fe6de7e780c  audit/go-test-final-v1.4.63.txt
 99e6f2167f94fa63d679ff29dea7c4f1c134b7bf9b104f89bb98cb42a00626a3  audit/go-test-final-v1.4.64.txt
+bc627f4d623d852c7b84dff52a39f2dfdc0c3506c84fa2947b908b28e1d941ae  audit/go-test-final-v1.4.65.txt
 0967591287d3c9e8a32c6d63726dd453af6bd1a4d7bf80c211daa3e29c22132a  audit/go-test-race-v0.2.txt
 f397d5cd6d864092c0d219e572d2f0896b27c8a282af2ed719a175fabe45b2fd  audit/go-test-race-v1.0.txt
 28f3099e7e9d77de35c0ba29efdde980fa38758c82eed0beb35764c972fc47c3  audit/go-test-race-v1.1-test.txt
@@ -874,8 +884,17 @@ ea52e4e5ff1a29cda847d8d25d11f931b9ac297790e9c0ed2bfbe8a26a17e44f  audit/mobile-d
 35cd16390c12b2b58fe092b77cf511e717520596e876504373f03f51ee3d4386  audit/mobile-design-worker-orders-light-1100-v1.4.23.png
 e1f67ce3f9d1c2f3625eb662aba69784b13591a68ef2190980be4ee105a4d526  audit/mobile-design-worker-orders-light-320-v1.4.23.png
 c5fd29850af80894f06da2ba014f299fbcf1e7833f787523738b190dac27e858  audit/mobile-design-worker-orders-light-390-v1.4.23.png
+b7d09a9f208fb5d8c26eefd4e9b5346148d2c8aaa64a7dba4812bb1abb0861a7  audit/native-admin-app-browser-v1.4.65.txt
 1cdb196dd70ef46e29f0a9837bb6e626ac9a3dfaf40e4c55c71f8426ecd1082c  audit/native-admin-auth-push-v1.4.64.txt
+9a2f9a8e0950d29d4d4c34323f6d99b080e1d13e3a0df9abdcae437b0d109a9f  audit/native-admin-inspection-dark-v1.4.65.png
+1d8d830752da9030d6890969c3599031a938d2c52686899b7d61b303a93e1a4d  audit/native-admin-inspection-light-v1.4.65.png
+d7c62e073eb30509dfa5edf9afaa4caaa441c3294f9a897ce7316d0298ef32d2  audit/native-admin-menu-dark-v1.4.65.png
+e08acef6a8313dbf6d3312f65cf9c2c086dd1b1c217cfb9c0432d5bb660ac135  audit/native-admin-menu-light-v1.4.65.png
 fec770ce9ea8c88baa490cfcab0df110bc0df56e1d4635fae7522bf2af7f698e  audit/native-admin-race-v1.4.64.txt
+567d331359c7a6f3f21aa1d094d6665c4b8fff8a43f8116c25c55d5f759e6f26  audit/native-admin-race-v1.4.65.txt
+9ced7e9746cf4940cfd0cc17300982b75348db3b4a35bb8646e465daffdfad06  audit/native-admin-ui-isolation-v1.4.65.txt
+3c78fbda52ca9ea6023fdb98b42cfd0c03eb5e6eb67610228ec64c444653e459  audit/native-admin-work-dark-v1.4.65.png
+436c23ad0ec531d2c42eb2f5c468960b57d17558a41f0708b8453386ae12ec7b  audit/native-admin-work-light-v1.4.65.png
 51947098ee342cb3f8a501dc6dfe11bc99e50001a3a9d52ab9f4a5f803f9ade2  audit/native-ui-evidence-v1.0.json
 f6af5d251ab7c9178da84c4b893571960de0602d0c7b6ac60a0fc473de521152  audit/native-ui-original-assembly-v1.0.asm.gz
 50d87f07ac79a968d3d1ab3edc811fd8ab7480e4ec9e7ff8bb0ccc99f7e08f40  audit/navy-market-dark-1100-v1.4.26.png
@@ -954,6 +973,7 @@ eff938eabb07d426eeedbef0bb5ce2d337693e09efa4f9db59b62e2039d53b8c  audit/package-
 64dc7985a52bf5ff10e9d5782f162033abef6272026749a3cfe7fc0e79ef7853  audit/package-v1.4.62.py
 06b6c8010c29206bb3066a8ba8ff5326a5d6947b531505e54449936950796bb5  audit/package-v1.4.63.py
 c7e56d64d648ddd1045fa87f520f24cdf5ec4a37995af46a32b03214d7afef03  audit/package-v1.4.64.py
+f50701b933120885ed9b7e3f649ac17b32cab1b68072296c64a12454252a0589  audit/package-v1.4.65.py
 a438abb9fef96aeb06ec6a42f8c52f22eb90046d284ebae8bd38d01a689b7c0b  audit/package-v1.4.7.py
 0199a000a823c2af7d49b12b65f1162beb7534e1461025799a2dcf769b9939ff  audit/package-v1.4.8.py
 614b6badb88f3082d697913fcfb4fe0924b9a2c42728ac281d18e41ad76ba724  audit/package-v1.4.9.py
@@ -1296,7 +1316,7 @@ c2e339c55cecc6588c491f39dcb4a728c06223fc701bea0d5f402d55f6969f0d  direct_store_t
 292118d7ce39efc740e841df8b9f0dde251220c0a25bb956d63b466582c957ba  extras/admin-order-grid-v1.4.59.css
 68ef65c3a920f26ad007d3718dd9087bcf95fc73ae7de963b994db2ae2e4b605  extras/admin-v1.4.4.js
 1de5905da5f599d97920540bd52eab1809c2f067c2141d5e8dca1034f70e221e  extras/admin-v1.4.5.js
-a96009a495ae73f8a4675caab8f9a03f7b68d60af62aeac1f925cb4cdf34f345  extras/android-admin-settings.html
+d5788c854d9172a8c0bfbba528cc097b28c230578a4ce4c1c410a15d70572d89  extras/android-admin-settings.html
 3ddcefb5ba61ba455b5416feb68c2c5f76fa70e4c87902c15a1e8fa97841337a  extras/announcements-v1.4.36.css
 ed94dc126f99bf1b0af51897c1593450ad54d7091ff78393c5077058621d60c5  extras/announcements-v1.4.36.js
 aedcac01cfe10a1104fb120ad465140e7fa344f0f781f71924623ce8badf07c9  extras/announcements-v1.4.37.css
@@ -1318,6 +1338,7 @@ ba5e77e978f103de126e769e095192763bf41307c821f6e742178f471b7e84fd  extras/gtts-sp
 fedaeeefc89ba106391a3d7c2df4fca780f75e5390a2a96331916d81f54bc271  extras/inspection-reject-v1.4.12.css
 e1d4dc29533b846992fe7ce1106e053aea8d3c5d3604a6e2596c6a1d66644bf2  extras/market-calendar-v1.4.26.css
 a3cb9395e46ddb159cc088f09452b502e5301df1b68c3c0f2a034202292ce56d  extras/market-settings-v1.4.8.js
+8aefbec87e82c704c18c70b1f09ef0ccbda2392390aa317ff42147ee713f3c96  extras/mobile-design-app-v1.4.65.js
 f3dddd13c6d5ce6811db1219afb35227b1a8df025ed10227e799c71941ad049a  extras/mobile-design-v1.4.21.css
 c7a9d3895e36029db83a7853c124d5e9fbda49239eb4d3f8f3e492759e7d1a53  extras/mobile-design-v1.4.21.js
 8186e767c331ac7b49fda0add8dcd944aaf9be7884dbf1b1f4b139ff692f5113  extras/mobile-design-v1.4.23.css
@@ -1336,6 +1357,8 @@ a112af48975db404e31b4170741dda6b670a5abcf83dd99ef18952926a3e4133  extras/mobile-
 1a6f06cd055d0c8cd82796f4cc2e913a6ab402e049133b9e47db03c3bf98eaab  extras/mobile-design-v1.4.56.js
 9b0aad68dfa811ba2489c5e965a1099066d0f39b34b3a424fea3b0e81b92f4d4  extras/mobile-design-v1.4.63.js
 f10f5902e4e7cc5195a68a60e1d7f6693535f65206b79683b553b087dc80e6af  extras/mobile-design-v1.4.64.js
+e6674bd0ced8e9e442be6641442d422a2cf99477a3d8f5a8a072a8b5c17966fa  extras/native-admin-app-v1.4.65.css
+d6fa1239f5512bba20f92aab3abbeda23ad3dd8cd9f7b0c3c2cee2632788d8af  extras/native-admin-app-v1.4.65.js
 053a918de1b6accb7349de6c58762b71e669d01fab2e33e0d7a729fb58a7ff76  extras/notice-broadcast-v1.4.44.css
 bd2356c6ac87afef3933ff997d3c70cd55a53930060afe72aff5ed019381d6b5  extras/notice-broadcast-v1.4.44.html
 46199695926a550b4bfe1fa3fbc908a6f78950beb4e33887ce906eac2a411097  extras/notice-broadcast-v1.4.44.js
@@ -1408,6 +1431,7 @@ e54b4771b0a46238ce47e000d800599f0e059314c7f67aca54c7c38b09b913a4  extras/supplie
 f31113a162d7d26bb307f4792cb360797665535162511314fa932a912469e1f8  extras/talk-board-v1.4.40.css
 efc3c74524b201dd39db48d6629bdf972d61ab01d2b7bb8d5607fb6d964022d3  extras/talk-reader-bridge-v1.4.47.html
 3a92f94f09b8e2a2666afce2c6522a8a1e9961cc1dd10854b019fc9df0db61e5  extras/talk-reader-bridge-v1.4.47.js
+6cb0276ccf718ff3344be735bc21e4000c6189a7ed2d98096127f8e0ceb67eb1  extras/talk-unread-app-v1.4.65.js
 0ca39ea070aba636cc09031648352a04361508beff2db27a5c9b6df840f32fbe  extras/talk-unread-v1.4.39.js
 885017cc8d03a3a3d02876b0bda54dfdb08eb0dbb4a50a8e1438770b54545f20  extras/talk-unread-v1.4.47.js
 fe11db7c6af2f8b138b23a31314a8c3aaadcb88b4c52cf84335efc6f3787cd58  extras/talk-unread-v1.4.49.js
@@ -1440,6 +1464,7 @@ c70a796cb0fad75a8d1966a588c4a4ee353d9cba6beded1a3f1cc929e6f852dc  extras/worker-
 be4a7971b1fe115b940abac11c6c7afa5b9f33ee185a47a0d5d0545c63b55d77  extras/worker-directory-entry-v1.4.7.css
 201b0b5834136065ca0cb01c601735745a311c22cd9d5fe9cf638e493c27dc27  extras/worker-due-view-v1.4.35.js
 d70be54f1fae3d8a2f46ee233e0b937995bc0851e39b34deaf10f9e8f046ca10  extras/worker-entry-state.js
+2f2cf65972d5c90356cdfdd33b67e37dfaa3f137b0caad2dc5554951fa652fda  extras/worker-reconnect-app-v1.4.65.js
 21cb53360f1cf7534bc105b585e985ca0a11f6bc3f6387897d40998809001fcc  extras/worker-reconnect-sw-v1.4.42.js
 a23cf85a8a3412f123434b35be4b833b9449092adf181e5e3956b10328351b2f  extras/worker-reconnect-sw-v1.4.49.js
 bd9c3bf1c70d9b9f93de210af23fe6f9c21005e556f95fba145b7c522a5b3e71  extras/worker-reconnect-v1.4.42.css
@@ -1473,7 +1498,7 @@ f48f38005e6f5fb6093770d10dc1508d30231e357356c4d47916fb84cf0e6658  integration_ro
 872fa7a006e24bfa6e4dd4bcdeeb549f1a9d9a9f3aad28be3a142047a43e7e11  integrations.go
 a41c04bc9525679efd17b46c925831112713cf7877ff31b3dc92dddb4b4da558  legacy.go
 9504960cca970f8b5abdb82adf542c6271c5b97d9a6aebf95c96624e1ca19108  legacy_backup.go
-2f36593f21cffba7a96bba1f0b4ea56c688bd4adc8affca021907cb0aad9f344  main.go
+3e533ad91943d8580d4e293bcc465ae18fdc46f9179c0ab896852b3a3eeda10c  main.go
 a34d93bb882f28a72cdf16d7d72a1e982f85e521ed4cf294c4d03139fd9ec57f  market_minute.go
 e0e743bd6be421045f2e739bdb6b97ba7450f01be95fa8086daa919bf5760cd3  market_status.go
 0c7387c83d682c06cbe3bfecf404cbf6d295dc982890e56355cb4f6cc93d8cc8  market_status_test.go
@@ -1485,6 +1510,8 @@ b39e99353884088eaba452ecd9d35d2b7a4dc142aaa41d47c2b98aaf7b797040  material_recei
 ee2d5648394864aec3c185262ecb5cb31688609be5a81d248537eb5c2761cdf3  mobile_design.go
 f7103a930369ad951a85a92c9c5a650e02cc46ac0a64b178204447ff82229c31  mobile_design_test.go
 22112a38d352e9d7790ce447f7f3920af3b4c92d9adef3202bf3eee56a942351  model.go
+905a382ce46d912efe910113fb0c760f75a406869b8fb16059408b85b22b547b  native_admin_app.go
+82bbffff3edb0f3c7b90853cc5bb31e2d3528ea9b862bea5b12b623bd8df6657  native_admin_app_test.go
 6228ee0506c2c427f716ea4853f7003731cb2186d30ca93a69ad5f70e3be54aa  native_admin_login.go
 4d251bda3ca18ecc6ddbf595e2d16887b8bfd0be4c2549aba55d09719e1fd516  native_admin_login_test.go
 03ef1d4f68cb7049a5772716bdae07e9ef3e012afafea9a0be27a317dd28d550  native_admin_push.go
@@ -1494,7 +1521,7 @@ df6abc76a2d20eaa3529137009b87a16574648b823e574083976bf2261a7bb07  notice_broadca
 e058eaf4200cf9f211a4821e7ffcc58735865ef50ffd021e0dd384586b543687  order_import.go
 6082b5d2c373dd0537bc64a8eeb005c8921592dc6d7142d599011d4888f4fec6  platform_linux.go
 ba6a3e79a1bda871bbe5a38c93287db9c0d2268dd43f880726794429e17af00c  platform_windows.go
-d269a4709572afc820f76d72050948ca8e16d07ce3b6b386a1333d93b210a7af  production.go
+2238bd07cf32abead20a7b7c66320b9e161456fc28029af7b59af3fcf80cd1ab  production.go
 b49443054ce6547a846da900dcc3a2d0468cc345d4f170dc8041eb6e16a5861c  production_test.go
 6532a8f10ed62d6d661b4da34d90d7009697851d72fdba636af04e75f6dce3ec  project_info_layout_test.go
 74b315673f2367c14218922e44fb6e460aa29e45fa7fcf4767f67e0ec75ebc50  promote-test-to-production.cmd
