@@ -1,0 +1,5 @@
+=== RUN   TestWorkerAlarmAllPagesBrowser
+Worker all-page alarm checks passed 48
+--- PASS: TestWorkerAlarmAllPagesBrowser (32.78s)
+PASS
+ok  	wanryotalk-reconstructed-server	33.041s

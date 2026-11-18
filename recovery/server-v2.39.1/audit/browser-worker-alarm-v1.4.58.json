@@ -1,0 +1,337 @@
+{
+  "scope": "actual temporary Go server, real inspection requests and public poll; audio media and AudioContext simulated; no physical speaker test; phone/PC light/dark",
+  "results": [
+    {
+      "mobile": false,
+      "scheme": "light",
+      "path": "/work/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8?entry=skip",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "path": "/work/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8?entry=skip&design-tab=calendar",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "path": "/shipping-records/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "path": "/shipping-records/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/OqENCJflwU_2_klrdviX5M1InP6QlEvbz4zzjoElsBI",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/new",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/w-QtfxtUZkT4W-n-CWvFtQfpNAHUHE8TNkoK6-f1mz4",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "path": "/client-directory/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "path": "/project-info/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/1",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "path": "/notices/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "path": "/notices/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/56NT1hxWRoBsD7MmCBiZe2iqY39oaw_OR-YJ8s4xhJY",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "case": "explicit OFF survives page switch",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "path": "/work/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8?entry=skip",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "path": "/work/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8?entry=skip&design-tab=calendar",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "path": "/shipping-records/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "path": "/shipping-records/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/OqENCJflwU_2_klrdviX5M1InP6QlEvbz4zzjoElsBI",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/new",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/w-QtfxtUZkT4W-n-CWvFtQfpNAHUHE8TNkoK6-f1mz4",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "path": "/client-directory/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "path": "/project-info/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/1",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "path": "/notices/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "path": "/notices/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/56NT1hxWRoBsD7MmCBiZe2iqY39oaw_OR-YJ8s4xhJY",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "case": "explicit OFF survives page switch",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "path": "/work/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8?entry=skip",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "path": "/work/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8?entry=skip&design-tab=calendar",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "path": "/shipping-records/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "path": "/shipping-records/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/OqENCJflwU_2_klrdviX5M1InP6QlEvbz4zzjoElsBI",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/new",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/w-QtfxtUZkT4W-n-CWvFtQfpNAHUHE8TNkoK6-f1mz4",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "path": "/client-directory/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "path": "/project-info/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/1",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "path": "/notices/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "path": "/notices/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/56NT1hxWRoBsD7MmCBiZe2iqY39oaw_OR-YJ8s4xhJY",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "case": "explicit OFF survives page switch",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "path": "/work/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8?entry=skip",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "path": "/work/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8?entry=skip&design-tab=calendar",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "path": "/shipping-records/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "path": "/shipping-records/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/OqENCJflwU_2_klrdviX5M1InP6QlEvbz4zzjoElsBI",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/new",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/w-QtfxtUZkT4W-n-CWvFtQfpNAHUHE8TNkoK6-f1mz4",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "path": "/client-directory/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "path": "/project-info/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/1",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "path": "/notices/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "path": "/notices/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/56NT1hxWRoBsD7MmCBiZe2iqY39oaw_OR-YJ8s4xhJY",
+      "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "case": "explicit OFF survives page switch",
+      "result": "pass"
+    }
+  ]
+}
