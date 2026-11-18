@@ -1,0 +1,5 @@
+=== RUN   TestShipmentPhotoViewerBrowser
+Shipment photo viewer checks passed 24
+--- PASS: TestShipmentPhotoViewerBrowser (8.75s)
+PASS
+ok  	wanryotalk-reconstructed-server	8.992s

@@ -1,0 +1,173 @@
+{
+  "scope": "actual temporary Go server; admin/worker; PC/phone light/dark; actual Chromium CDP touch gestures; stored photos unchanged; physical phone not tested",
+  "results": [
+    {
+      "admin": false,
+      "mobile": false,
+      "scheme": "light",
+      "case": "middle photo opens; next/end boundary and keyboard; original download retained",
+      "result": "pass"
+    },
+    {
+      "admin": false,
+      "mobile": false,
+      "scheme": "light",
+      "case": "real browser touch swipe both directions; pinch zoom and one-finger pan do not advance photo",
+      "result": "pass"
+    },
+    {
+      "admin": false,
+      "mobile": false,
+      "scheme": "light",
+      "case": "close restores thumbnail focus; reopen resets; special group isolated; no script errors",
+      "result": "pass"
+    },
+    {
+      "admin": false,
+      "mobile": false,
+      "scheme": "dark",
+      "case": "middle photo opens; next/end boundary and keyboard; original download retained",
+      "result": "pass"
+    },
+    {
+      "admin": false,
+      "mobile": false,
+      "scheme": "dark",
+      "case": "real browser touch swipe both directions; pinch zoom and one-finger pan do not advance photo",
+      "result": "pass"
+    },
+    {
+      "admin": false,
+      "mobile": false,
+      "scheme": "dark",
+      "case": "close restores thumbnail focus; reopen resets; special group isolated; no script errors",
+      "result": "pass"
+    },
+    {
+      "admin": false,
+      "mobile": true,
+      "scheme": "light",
+      "case": "middle photo opens; next/end boundary and keyboard; original download retained",
+      "result": "pass"
+    },
+    {
+      "admin": false,
+      "mobile": true,
+      "scheme": "light",
+      "case": "real browser touch swipe both directions; pinch zoom and one-finger pan do not advance photo",
+      "result": "pass"
+    },
+    {
+      "admin": false,
+      "mobile": true,
+      "scheme": "light",
+      "case": "close restores thumbnail focus; reopen resets; special group isolated; no script errors",
+      "result": "pass"
+    },
+    {
+      "admin": false,
+      "mobile": true,
+      "scheme": "dark",
+      "case": "middle photo opens; next/end boundary and keyboard; original download retained",
+      "result": "pass"
+    },
+    {
+      "admin": false,
+      "mobile": true,
+      "scheme": "dark",
+      "case": "real browser touch swipe both directions; pinch zoom and one-finger pan do not advance photo",
+      "result": "pass"
+    },
+    {
+      "admin": false,
+      "mobile": true,
+      "scheme": "dark",
+      "case": "close restores thumbnail focus; reopen resets; special group isolated; no script errors",
+      "result": "pass"
+    },
+    {
+      "admin": true,
+      "mobile": false,
+      "scheme": "light",
+      "case": "middle photo opens; next/end boundary and keyboard; original download retained",
+      "result": "pass"
+    },
+    {
+      "admin": true,
+      "mobile": false,
+      "scheme": "light",
+      "case": "real browser touch swipe both directions; pinch zoom and one-finger pan do not advance photo",
+      "result": "pass"
+    },
+    {
+      "admin": true,
+      "mobile": false,
+      "scheme": "light",
+      "case": "close restores thumbnail focus; reopen resets; special group isolated; no script errors",
+      "result": "pass"
+    },
+    {
+      "admin": true,
+      "mobile": false,
+      "scheme": "dark",
+      "case": "middle photo opens; next/end boundary and keyboard; original download retained",
+      "result": "pass"
+    },
+    {
+      "admin": true,
+      "mobile": false,
+      "scheme": "dark",
+      "case": "real browser touch swipe both directions; pinch zoom and one-finger pan do not advance photo",
+      "result": "pass"
+    },
+    {
+      "admin": true,
+      "mobile": false,
+      "scheme": "dark",
+      "case": "close restores thumbnail focus; reopen resets; special group isolated; no script errors",
+      "result": "pass"
+    },
+    {
+      "admin": true,
+      "mobile": true,
+      "scheme": "light",
+      "case": "middle photo opens; next/end boundary and keyboard; original download retained",
+      "result": "pass"
+    },
+    {
+      "admin": true,
+      "mobile": true,
+      "scheme": "light",
+      "case": "real browser touch swipe both directions; pinch zoom and one-finger pan do not advance photo",
+      "result": "pass"
+    },
+    {
+      "admin": true,
+      "mobile": true,
+      "scheme": "light",
+      "case": "close restores thumbnail focus; reopen resets; special group isolated; no script errors",
+      "result": "pass"
+    },
+    {
+      "admin": true,
+      "mobile": true,
+      "scheme": "dark",
+      "case": "middle photo opens; next/end boundary and keyboard; original download retained",
+      "result": "pass"
+    },
+    {
+      "admin": true,
+      "mobile": true,
+      "scheme": "dark",
+      "case": "real browser touch swipe both directions; pinch zoom and one-finger pan do not advance photo",
+      "result": "pass"
+    },
+    {
+      "admin": true,
+      "mobile": true,
+      "scheme": "dark",
+      "case": "close restores thumbnail focus; reopen resets; special group isolated; no script errors",
+      "result": "pass"
+    }
+  ]
+}

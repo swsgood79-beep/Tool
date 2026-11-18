@@ -308,6 +308,9 @@ func (a *App) shippingRecordMarkup(s, name string, value any) string {
 		}
 		s = strings.Replace(s, "</head>", `<meta name="shipping-records-board" content="`+board+`"><script defer src="/shipping-records-v1.4.60.js"></script></head>`, 1)
 	}
+	if name == "shipping-records.html" {
+		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/shipment-photo-viewer-v1.4.62.css"><script defer src="/shipment-photo-viewer-v1.4.62.js"></script></head>`, 1)
+	}
 	if name == "shipping-records.html" || name == "work.html" || name == "admin.html" {
 		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/shipping-records-v1.4.52.css"></head>`, 1)
 	}
