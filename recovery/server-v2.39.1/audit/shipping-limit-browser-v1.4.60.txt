@@ -1,0 +1,5 @@
+=== RUN   TestShippingThirtyPhotoBrowser
+Thirty-photo browser checks passed 8
+--- PASS: TestShippingThirtyPhotoBrowser (10.69s)
+PASS
+ok  	wanryotalk-reconstructed-server	10.976s

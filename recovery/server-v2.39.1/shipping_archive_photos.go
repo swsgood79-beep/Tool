@@ -27,10 +27,10 @@ func (a *App) addShippingPhotos(id string, r *http.Request) error {
 	if r.MultipartForm != nil {
 		count = len(r.MultipartForm.File["photos"])
 	}
-	if count < 1 || len(record.Photos)+count > 20 {
-		return errors.New("기존 사진을 포함해 1장 이상, 최대 20장까지 저장할 수 있습니다.")
+	if count < 1 || len(record.Photos)+count > shippingPhotoLimit {
+		return errors.New("기존 사진을 포함해 1장 이상, 최대 30장까지 저장할 수 있습니다.")
 	}
-	photos, err := a.uploadReducedPhotos(r, 20-len(record.Photos))
+	photos, err := a.uploadReducedPhotos(r, shippingPhotoLimit-len(record.Photos))
 	if err != nil {
 		return err
 	}

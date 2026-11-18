@@ -1,0 +1,53 @@
+{
+  "scope": "actual temporary Go server; 8 records and 240 saved photos; PC/phone light/dark; no company data",
+  "results": [
+    {
+      "mobile": false,
+      "scheme": "light",
+      "case": "31 selection rejected; 30 initial photos archived; addition hidden at cap",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "case": "existing 20 retained; 11 additions rejected; 10 added to total30; no leave prompt",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "case": "31 selection rejected; 30 initial photos archived; addition hidden at cap",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "case": "existing 20 retained; 11 additions rejected; 10 added to total30; no leave prompt",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "case": "31 selection rejected; 30 initial photos archived; addition hidden at cap",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "case": "existing 20 retained; 11 additions rejected; 10 added to total30; no leave prompt",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "case": "31 selection rejected; 30 initial photos archived; addition hidden at cap",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "case": "existing 20 retained; 11 additions rejected; 10 added to total30; no leave prompt",
+      "result": "pass"
+    }
+  ]
+}

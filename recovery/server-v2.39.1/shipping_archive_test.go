@@ -57,8 +57,8 @@ func TestArchivePhotoAppendPreservesOriginalAndDate(t *testing.T) {
 		t.Fatal("stale second tab accepted")
 	}
 	record = &a.state.ShippingRecords[0]
-	if w := archivePhotoUpload(t, a, r.ID, token(), shippingPhotoRevision(record), 18); w.Code != 400 {
-		t.Fatal("total greater than 20 accepted")
+	if w := archivePhotoUpload(t, a, r.ID, token(), shippingPhotoRevision(record), 28); w.Code != 400 {
+		t.Fatal("total greater than 30 accepted")
 	}
 	if w := archivePhotoUpload(t, a, r.ID, token(), shippingPhotoRevision(record), 0); w.Code != 400 {
 		t.Fatal("empty addition accepted")

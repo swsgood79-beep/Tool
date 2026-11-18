@@ -100,17 +100,17 @@ func TestShippingSnapshotSurvivesSourceRemovalAndRestart(t *testing.T) {
 	}
 }
 func TestShippingUploadLimitsFailureAndDuplicate(t *testing.T) {
-	for _, count := range []int{0, 20, 21} {
+	for _, count := range []int{0, 30, 31} {
 		t.Run(fmtID(int64(count)), func(t *testing.T) {
 			a := fixture(t)
 			record := approveShipment(t, a)
 			w := shippingUpload(t, a, record.ID, count, false)
-			if count == 20 {
-				if w.Code != 303 || len(a.state.ShippingRecords[0].Photos) != 20 {
-					t.Fatal("20 must be accepted", w.Code, w.Body.String())
+			if count == 30 {
+				if w.Code != 303 || len(a.state.ShippingRecords[0].Photos) != 30 {
+					t.Fatal("30 must be accepted", w.Code, w.Body.String())
 				}
 				w = shippingUpload(t, a, record.ID, 1, false)
-				if w.Code != 303 || len(a.state.ShippingRecords[0].Photos) != 20 {
+				if w.Code != 303 || len(a.state.ShippingRecords[0].Photos) != 30 {
 					t.Fatal("duplicate replaced archive")
 				}
 			} else if w.Code != 400 || a.state.ShippingRecords[0].ArchivedAt != nil {

@@ -12,6 +12,8 @@ import (
 	"unicode/utf8"
 )
 
+const shippingPhotoLimit = 30
+
 // An independent snapshot, captured in the approval transaction. The live schedule
 // remains a projection of the connected sheet and never owns archive records.
 type ShippingRecord struct {
@@ -122,10 +124,10 @@ func (a *App) saveShippingRecord(id string, r *http.Request) error {
 	if r.MultipartForm != nil {
 		count = len(r.MultipartForm.File["photos"])
 	}
-	if count < 1 || count > 20 {
-		return errors.New("출하사진을 1장 이상, 최대 20장 등록해 주세요.")
+	if count < 1 || count > shippingPhotoLimit {
+		return errors.New("출하사진을 1장 이상, 최대 30장 등록해 주세요.")
 	}
-	photos, err := a.uploadReducedPhotos(r, 20)
+	photos, err := a.uploadReducedPhotos(r, shippingPhotoLimit)
 	if err != nil {
 		return err
 	}
@@ -265,7 +267,7 @@ func (a *App) shippingRecordsHTTP(w http.ResponseWriter, r *http.Request) bool {
 		}
 		if len(rest) == 1 && r.Method == "GET" {
 			view["ResetToPending"] = shippingSourceComplete(&a.state, *record)
-			view["CanAddPhotos"] = record.ArchivedAt != nil && len(record.Photos) < 20
+			view["CanAddPhotos"] = record.ArchivedAt != nil && len(record.Photos) < shippingPhotoLimit
 			view["PhotoRevision"], view["UploadKey"] = shippingPhotoRevision(record), token()
 			view["PhotosAdded"] = r.URL.Query().Get("photos_added") == "1"
 			view["ShippingPending"] = record.ArchivedAt == nil
@@ -304,7 +306,7 @@ func (a *App) shippingRecordMarkup(s, name string, value any) string {
 			link := `<a class="shipment-pending-link" href="` + base + `?pending=1">📷 출하사진 필요 <strong data-shipping-pending-count>` + fmt.Sprint(n) + `</strong><span>사진 등록 후 완료·보관 ›</span></a>`
 			s = strings.Replace(s, `<div class="search-meta">`, link+`<div class="search-meta">`, 1)
 		}
-		s = strings.Replace(s, "</head>", `<meta name="shipping-records-board" content="`+board+`"><script defer src="/shipping-records-v1.4.53.js"></script></head>`, 1)
+		s = strings.Replace(s, "</head>", `<meta name="shipping-records-board" content="`+board+`"><script defer src="/shipping-records-v1.4.60.js"></script></head>`, 1)
 	}
 	if name == "shipping-records.html" || name == "work.html" || name == "admin.html" {
 		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/shipping-records-v1.4.52.css"></head>`, 1)
