@@ -1,0 +1,153 @@
+{
+  "scope": "actual temporary Go server; PC, tablet breakpoints and phone; light/dark; no company data",
+  "results": [
+    {
+      "width": 1100,
+      "scheme": "light",
+      "case": "two columns >=760 and one on phone; no horizontal page overflow",
+      "result": "pass"
+    },
+    {
+      "width": 1100,
+      "scheme": "light",
+      "case": "admin details toggle and original edit/inspection links retained",
+      "result": "pass"
+    },
+    {
+      "width": 1100,
+      "scheme": "light",
+      "case": "search and today filter retained; date header spans both columns",
+      "result": "pass"
+    },
+    {
+      "width": 1100,
+      "scheme": "dark",
+      "case": "two columns >=760 and one on phone; no horizontal page overflow",
+      "result": "pass"
+    },
+    {
+      "width": 1100,
+      "scheme": "dark",
+      "case": "admin details toggle and original edit/inspection links retained",
+      "result": "pass"
+    },
+    {
+      "width": 1100,
+      "scheme": "dark",
+      "case": "search and today filter retained; date header spans both columns",
+      "result": "pass"
+    },
+    {
+      "width": 850,
+      "scheme": "light",
+      "case": "two columns >=760 and one on phone; no horizontal page overflow",
+      "result": "pass"
+    },
+    {
+      "width": 850,
+      "scheme": "light",
+      "case": "admin details toggle and original edit/inspection links retained",
+      "result": "pass"
+    },
+    {
+      "width": 850,
+      "scheme": "light",
+      "case": "search and today filter retained; date header spans both columns",
+      "result": "pass"
+    },
+    {
+      "width": 850,
+      "scheme": "dark",
+      "case": "two columns >=760 and one on phone; no horizontal page overflow",
+      "result": "pass"
+    },
+    {
+      "width": 850,
+      "scheme": "dark",
+      "case": "admin details toggle and original edit/inspection links retained",
+      "result": "pass"
+    },
+    {
+      "width": 850,
+      "scheme": "dark",
+      "case": "search and today filter retained; date header spans both columns",
+      "result": "pass"
+    },
+    {
+      "width": 760,
+      "scheme": "light",
+      "case": "two columns >=760 and one on phone; no horizontal page overflow",
+      "result": "pass"
+    },
+    {
+      "width": 760,
+      "scheme": "light",
+      "case": "admin details toggle and original edit/inspection links retained",
+      "result": "pass"
+    },
+    {
+      "width": 760,
+      "scheme": "light",
+      "case": "search and today filter retained; date header spans both columns",
+      "result": "pass"
+    },
+    {
+      "width": 760,
+      "scheme": "dark",
+      "case": "two columns >=760 and one on phone; no horizontal page overflow",
+      "result": "pass"
+    },
+    {
+      "width": 760,
+      "scheme": "dark",
+      "case": "admin details toggle and original edit/inspection links retained",
+      "result": "pass"
+    },
+    {
+      "width": 760,
+      "scheme": "dark",
+      "case": "search and today filter retained; date header spans both columns",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "scheme": "light",
+      "case": "two columns >=760 and one on phone; no horizontal page overflow",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "scheme": "light",
+      "case": "admin details toggle and original edit/inspection links retained",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "scheme": "light",
+      "case": "search and today filter retained; date header spans both columns",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "scheme": "dark",
+      "case": "two columns >=760 and one on phone; no horizontal page overflow",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "scheme": "dark",
+      "case": "admin details toggle and original edit/inspection links retained",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "scheme": "dark",
+      "case": "search and today filter retained; date header spans both columns",
+      "result": "pass"
+    },
+    {
+      "case": "classic administrator layout remains unchanged",
+      "result": "pass"
+    }
+  ]
+}

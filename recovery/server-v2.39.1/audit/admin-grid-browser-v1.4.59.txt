@@ -1,0 +1,5 @@
+=== RUN   TestAdminOrderGridBrowser
+Admin card grid checks passed 25
+--- PASS: TestAdminOrderGridBrowser (7.95s)
+PASS
+ok  	wanryotalk-reconstructed-server	8.212s
