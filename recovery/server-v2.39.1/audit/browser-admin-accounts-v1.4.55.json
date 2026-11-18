@@ -1,0 +1,81 @@
+{
+  "scope": "actual temporary Go server and separate Chromium contexts representing owner PC and colleague PC; PC/mobile light/dark incl 320px; no company data",
+  "results": [
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "owner creates named account, independent browser logs in, account ownership and forbidden controls enforced",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "colleague completes existing combined inspection and owner sees same result",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "own password, owner reset, disable and re-enable only affect target account; native saves have no leave prompt",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "owner creates named account, independent browser logs in, account ownership and forbidden controls enforced",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "colleague completes existing combined inspection and owner sees same result",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "own password, owner reset, disable and re-enable only affect target account; native saves have no leave prompt",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "owner creates named account, independent browser logs in, account ownership and forbidden controls enforced",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "colleague completes existing combined inspection and owner sees same result",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "own password, owner reset, disable and re-enable only affect target account; native saves have no leave prompt",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "owner creates named account, independent browser logs in, account ownership and forbidden controls enforced",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "colleague completes existing combined inspection and owner sees same result",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "own password, owner reset, disable and re-enable only affect target account; native saves have no leave prompt",
+      "result": "pass"
+    },
+    {
+      "case": "legacy owner password sign-in remains compatible after named accounts are created",
+      "result": "pass"
+    }
+  ]
+}

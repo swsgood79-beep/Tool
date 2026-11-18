@@ -67,7 +67,7 @@ func localRequest(r *http.Request) bool {
 	return true
 }
 
-const loginPage = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/admin-accounts-v1.4.54.css"><title>관리자 로그인 · 알파</title></head><body class="account-login-page"><header><span class="brand"><span class="mark">α</span> 알파 <small>관리자</small></span></header><main><section class="card account-login-card"><h1>{{if .Setup}}관리자 비밀번호 만들기{{else if .Legacy}}기존 관리자 로그인{{else}}관리자 로그인{{end}}</h1><p class="muted">{{if .Setup}}기존 관리자 비밀번호를 설정해 주세요.{{else if .Legacy}}지금 사용 중인 관리자 비밀번호로 로그인하세요.{{else}}개인 계정으로 같은 수주와 검사 업무를 이용하세요.{{end}}</p>{{if .Error}}<p class="account-error" role="alert">{{.Error}}</p>{{end}}<form method="post" action="/login"><input type="hidden" name="csrf" value="{{.CSRF}}">{{if not .Legacy}}<input type="hidden" name="login_mode" value="account"><label>아이디<input name="username" value="{{.Username}}" required maxlength="32" autocomplete="username" autocapitalize="none" spellcheck="false"></label>{{else}}<input type="hidden" name="login_mode" value="legacy">{{end}}<label>비밀번호<input type="password" name="password" minlength="12" maxlength="72" required autocomplete="{{if .Setup}}new-password{{else}}current-password{{end}}"></label>{{if .Setup}}<label>비밀번호 확인<input type="password" name="confirm" minlength="12" maxlength="72" required autocomplete="new-password"></label>{{end}}<button class="primary full">{{if .Setup}}비밀번호 설정{{else}}로그인{{end}}</button></form>{{if not .Setup}}<div class="account-login-options">{{if not .Legacy}}<a href="/login?mode=legacy&amp;next={{.Next}}">기존 관리자 로그인</a>{{else}}<a href="/login?mode=account&amp;next={{.Next}}">개별 계정 로그인</a><a href="/mobile-admin/passkey/start?next={{.Next}}">기존 관리자 지문·패스키 로그인</a>{{end}}</div>{{end}}</section></main></body></html>`
+const loginPage = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/admin-accounts-v1.4.54.css"><title>관리자 로그인 · 알파</title></head><body class="account-login-page"><header><span class="brand"><span class="mark">α</span> 알파 <small>관리자</small></span></header><main><section class="card account-login-card"><h1>{{if .Setup}}관리자 비밀번호 만들기{{else if .Legacy}}기존 관리자 로그인{{else}}관리자 로그인{{end}}</h1><p class="muted">{{if .Setup}}기존 관리자 비밀번호를 설정해 주세요.{{else if .Legacy}}지금 사용 중인 관리자 비밀번호로 로그인하세요.{{else}}개인 계정으로 같은 수주와 검사 업무를 이용하세요.{{end}}</p>{{if .Error}}<p class="account-error" role="alert">{{.Error}}</p>{{end}}<form method="post" action="/login"><input type="hidden" name="csrf" value="{{.CSRF}}">{{if not .Legacy}}<input type="hidden" name="login_mode" value="account"><label>아이디<input name="username" value="{{.Username}}" required maxlength="32" autocomplete="username" autocapitalize="none" spellcheck="false"></label>{{else}}<input type="hidden" name="login_mode" value="legacy">{{end}}<label>비밀번호<input type="password" name="password" minlength="{{if .Legacy}}12{{else}}8{{end}}" maxlength="72" required autocomplete="{{if .Setup}}new-password{{else}}current-password{{end}}"></label>{{if .Setup}}<label>비밀번호 확인<input type="password" name="confirm" minlength="12" maxlength="72" required autocomplete="new-password"></label>{{end}}<button class="primary full">{{if .Setup}}비밀번호 설정{{else}}로그인{{end}}</button></form>{{if not .Setup}}<div class="account-login-options">{{if not .Legacy}}<a href="/login?mode=legacy&amp;next={{.Next}}">기존 관리자 로그인</a>{{else}}<a href="/login?mode=account&amp;next={{.Next}}">개별 계정 로그인</a><a href="/mobile-admin/passkey/start?next={{.Next}}">기존 관리자 지문·패스키 로그인</a>{{end}}</div>{{end}}</section></main></body></html>`
 
 func (a *App) login(w http.ResponseWriter, r *http.Request) {
 	setup := a.state.PasswordHash == ""
@@ -102,8 +102,16 @@ func (a *App) login(w http.ResponseWriter, r *http.Request) {
 		named = !setup && (r.FormValue("login_mode") == "account" || username != "")
 		legacy = !named
 		password := r.FormValue("password")
-		if utf8.RuneCountInString(password) < 12 || utf8.RuneCountInString(password) > 72 {
-			message = "비밀번호는 12~72자여야 합니다."
+		minimum := 12
+		if named {
+			minimum = 8
+		}
+		if utf8.RuneCountInString(password) < minimum || utf8.RuneCountInString(password) > 72 {
+			if named {
+				message = "비밀번호는 8~72자여야 합니다."
+			} else {
+				message = "비밀번호는 12~72자여야 합니다."
+			}
 		} else if setup {
 			if password != r.FormValue("confirm") {
 				message = "비밀번호 확인이 다릅니다."

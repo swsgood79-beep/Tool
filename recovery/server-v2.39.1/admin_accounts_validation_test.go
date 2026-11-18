@@ -72,3 +72,31 @@ func TestRemoteNamedLoginRespectsExistingAccessSwitch(t *testing.T) {
 		t.Fatal("enabled remote member denied", w.Code, w.Body.String())
 	}
 }
+
+func TestAccountPasswordEightCharacterBoundary(t *testing.T) {
+	for _, password := range []string{"", "1234567", "가나다라마바사"} {
+		if accountPassword(password) == nil {
+			t.Fatalf("short password accepted: %d", len([]rune(password)))
+		}
+	}
+	for _, password := range []string{"12345678", "가나다라마바사아", strings.Repeat("a", 72)} {
+		if err := accountPassword(password); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if accountPassword(strings.Repeat("a", 73)) == nil {
+		t.Fatal("bcrypt byte limit bypassed")
+	}
+	a := accountFixture(t)
+	owner := adminCookie(a)
+	w := accountManageCall(a, owner, url.Values{"action": {"create"}, "name": {"검사자"}, "username": {"qa_short"}, "password": {"1234567"}, "confirm": {"1234567"}})
+	if w.Code == 303 || len(a.state.AdminAccounts) != 0 {
+		t.Fatal("short password persisted")
+	}
+	for _, path := range []string{"/admin-accounts"} {
+		body := call(a, "GET", path, nil, owner).Body.String()
+		if strings.Contains(body, `minlength="12"`) || !strings.Contains(body, `minlength="8"`) {
+			t.Fatal("form minimum mismatch")
+		}
+	}
+}

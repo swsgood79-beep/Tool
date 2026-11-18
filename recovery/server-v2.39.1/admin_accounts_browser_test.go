@@ -35,7 +35,7 @@ func TestIndividualAdminAccountsBrowser(t *testing.T) {
 	srv := httptest.NewServer(a)
 	defer srv.Close()
 	meta := map[string]any{"ids": ids, "owner": map[string]string{"name": owner.Name, "value": owner.Value}, "password": accountMemberPassword, "ownerPassword": accountOwnerPassword}
-	cmd := exec.Command("node", "audit/browser-admin-accounts-v1.4.54.cjs", srv.URL, string(jsonRaw(meta)))
+	cmd := exec.Command("node", "audit/browser-admin-accounts-v1.4.55.cjs", srv.URL, string(jsonRaw(meta)))
 	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
 	if err := cmd.Run(); err != nil {
 		t.Fatal(err)

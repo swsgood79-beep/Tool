@@ -67,8 +67,8 @@ func ownerOnlyAdminPath(path string) bool {
 	return false
 }
 func accountPassword(password string) error {
-	if utf8.RuneCountInString(password) < 12 {
-		return errors.New("비밀번호는 12자 이상 입력해 주세요.")
+	if utf8.RuneCountInString(password) < 8 {
+		return errors.New("비밀번호는 8자 이상 입력해 주세요.")
 	}
 	if len(password) > 72 {
 		return errors.New("비밀번호가 너무 깁니다. 조금 짧게 입력해 주세요.")

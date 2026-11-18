@@ -16,7 +16,7 @@ import (
 )
 
 const accountOwnerPassword = "owner-password-123"
-const accountMemberPassword = "member-password-123"
+const accountMemberPassword = "member12"
 
 func accountFixture(t *testing.T) *App {
 	t.Helper()
@@ -119,7 +119,7 @@ func TestAccountResetAndDisableOnlyTargetSessions(t *testing.T) {
 	one, _ := accountLogin(t, a, "qa02", accountMemberPassword)
 	two, _ := accountLogin(t, a, "qa02", accountMemberPassword)
 	other, _ := accountLogin(t, a, "qa03", accountMemberPassword)
-	w := accountManageCall(a, owner, url.Values{"action": {"reset"}, "id": {id}, "revision": {"1"}, "password": {"new-password-123"}, "confirm": {"new-password-123"}})
+	w := accountManageCall(a, owner, url.Values{"action": {"reset"}, "id": {id}, "revision": {"1"}, "password": {"reset123"}, "confirm": {"reset123"}})
 	if w.Code != 303 {
 		t.Fatal("reset", w.Code, w.Body.String())
 	}
@@ -133,7 +133,7 @@ func TestAccountResetAndDisableOnlyTargetSessions(t *testing.T) {
 			t.Fatal("reset logged out another account")
 		}
 	}
-	fresh, _ := accountLogin(t, a, "qa02", "new-password-123")
+	fresh, _ := accountLogin(t, a, "qa02", "reset123")
 	if fresh == nil {
 		t.Fatal("new password failed")
 	}
@@ -141,7 +141,7 @@ func TestAccountResetAndDisableOnlyTargetSessions(t *testing.T) {
 	if w.Code != 303 || call(a, "GET", "/", nil, fresh).Code != 303 {
 		t.Fatal("disable did not revoke")
 	}
-	if c, _ := accountLogin(t, a, "qa02", "new-password-123"); c != nil {
+	if c, _ := accountLogin(t, a, "qa02", "reset123"); c != nil {
 		t.Fatal("disabled account login")
 	}
 	if call(a, "GET", "/", nil, other).Code != 200 {
@@ -151,7 +151,7 @@ func TestAccountResetAndDisableOnlyTargetSessions(t *testing.T) {
 	if w.Code != 303 {
 		t.Fatal("enable")
 	}
-	if c, _ := accountLogin(t, a, "qa02", "new-password-123"); c == nil {
+	if c, _ := accountLogin(t, a, "qa02", "reset123"); c == nil {
 		t.Fatal("re-enabled account cannot login")
 	}
 }
@@ -178,7 +178,7 @@ func TestAccountOwnerBoundariesAndSelfPassword(t *testing.T) {
 	if w := call(a, "POST", "/my-password", url.Values{"csrf": {"wrong"}}, member); w.Code != 403 {
 		t.Fatal("self password CSRF missing")
 	}
-	w := call(a, "POST", "/my-password", url.Values{"csrf": {s.CSRF}, "current_password": {accountMemberPassword}, "password": {"self-password-123"}, "confirm": {"self-password-123"}}, member)
+	w := call(a, "POST", "/my-password", url.Values{"csrf": {s.CSRF}, "current_password": {accountMemberPassword}, "password": {"self1234"}, "confirm": {"self1234"}}, member)
 	if w.Code != 303 {
 		t.Fatal("self password", w.Code, w.Body.String())
 	}
