@@ -187,7 +187,7 @@ func (a *App) shippingRecordsHTTP(w http.ResponseWriter, r *http.Request) bool {
 		jsonReply(w, map[string]any{"pending": pending, "pending_signature": shippingPendingSignature(&a.state)})
 		return true
 	}
-	calendarURL := "/work/" + a.state.Board + "?design-tab=calendar"
+	calendarURL := "/work/" + a.state.Board + "?entry=skip&design-tab=calendar"
 	if admin {
 		calendarURL = "/?design-tab=calendar"
 	}
