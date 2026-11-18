@@ -1,0 +1,29 @@
+/workspace/Tool/recovery/server-v2.39.1/android-admin/app/src/main/java/com/alpharobotics/admin/MainActivity.java:27: Warning: Using setJavaScriptEnabled can introduce XSS vulnerabilities into your application, review carefully [SetJavaScriptEnabled]
+  WebSettings w=web.getSettings();w.setJavaScriptEnabled(true);w.setDomStorageEnabled(true);w.setBuiltInZoomControls(true);w.setDisplayZoomControls(false);w.setAllowFileAccess(false);w.setAllowContentAccess(true);w.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);w.setSupportMultipleWindows(true);w.setMediaPlaybackRequiresUserGesture(true);if(Build.VERSION.SDK_INT>=29){web.setForceDarkAllowed(false);w.setForceDark(WebSettings.FORCE_DARK_OFF);}if(WebViewFeature.isFeatureSupported(WebViewFeature.ALGORITHMIC_DARKENING))WebSettingsCompat.setAlgorithmicDarkeningAllowed(w,false);CookieManager.getInstance().setAcceptCookie(true);CookieManager.getInstance().setAcceptThirdPartyCookies(web,false);web.setWebViewClient(client());web.setWebChromeClient(chrome());web.setDownloadListener((u,ua,dis,mime,size)->download(u,dis,mime));connect(false);handler.postDelayed(ticker,15000);
+                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "SetJavaScriptEnabled":
+   Your code should not invoke setJavaScriptEnabled if you are not sure that
+   your app really requires JavaScript support.
+
+   https://goo.gle/SetJavaScriptEnabled
+   https://developer.android.com/training/articles/security-tips
+
+/workspace/Tool/recovery/server-v2.39.1/android-admin/app/src/main/java/com/alpharobotics/admin/MainActivity.java:26: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+ @Override public void onCreate(Bundle saved){super.onCreate(saved);store=new Store(this);intent(getIntent());LinearLayout layout=new LinearLayout(this);layout.setOrientation(LinearLayout.VERTICAL);layout.setBackgroundColor(Color.WHITE);LinearLayout top=new LinearLayout(this);top.setGravity(Gravity.CENTER_VERTICAL);TextView title=new TextView(this);title.setText("α  알파 관리자");title.setTextSize(20);title.setTextColor(Color.rgb(21,93,204));title.setPadding(dp(16),dp(8),dp(8),dp(8));top.addView(title,new LinearLayout.LayoutParams(0,dp(56),1));Button menu=new Button(this);menu.setText("⋮");menu.setContentDescription("앱 메뉴");top.addView(menu,new LinearLayout.LayoutParams(dp(56),dp(56)));menu.setOnClickListener(v->menu());layout.addView(top);state=new TextView(this);state.setTextSize(12);state.setTextColor(Color.rgb(61,80,105));state.setPadding(dp(14),dp(5),dp(14),dp(6));state.setText("회사 PC에 연결하고 있습니다…");layout.addView(state);web=new WebView(this);layout.addView(web,new LinearLayout.LayoutParams(-1,0,1));setContentView(layout);layout.setOnApplyWindowInsetsListener((v,insets)->{if(Build.VERSION.SDK_INT>=30){android.graphics.Insets bars=insets.getInsets(WindowInsets.Type.systemBars()|WindowInsets.Type.displayCutout());v.setPadding(bars.left,bars.top,bars.right,bars.bottom);}else v.setPadding(insets.getSystemWindowInsetLeft(),insets.getSystemWindowInsetTop(),insets.getSystemWindowInsetRight(),insets.getSystemWindowInsetBottom());return insets;});
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "SetTextI18n":
+   When calling TextView#setText
+   * Never call Number#toString() to format numbers; it will not handle
+   fraction separators and locale-specific digits properly. Consider using
+   String#format with proper format specifications (%d or %f) instead.
+   * Do not pass a string literal (e.g. "Hello") to display text. Hardcoded
+   text can not be properly translated to other languages. Consider using
+   Android resource strings instead.
+   * Do not build messages by concatenating text chunks. Such messages can not
+   be properly translated.
+
+   https://developer.android.com/guide/topics/resources/localization.html
+
+0 errors, 2 warnings

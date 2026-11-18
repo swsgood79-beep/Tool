@@ -49,6 +49,12 @@ func adminAccountByUsername(s *State, username string) *AdminAccount {
 	return nil
 }
 func validAccountSession(s *State, session Session) bool {
+	if session.NativeGrantID != "" {
+		g := nativeLogin(s, session.NativeGrantID)
+		if g == nil || !nativeLoginValid(s, *g) {
+			return false
+		}
+	}
 	if !session.Expires.After(time.Now()) {
 		return false
 	}
@@ -59,7 +65,7 @@ func validAccountSession(s *State, session Session) bool {
 	return u != nil && u.Enabled && u.Revision == session.AccountRevision
 }
 func ownerOnlyAdminPath(path string) bool {
-	for _, prefix := range []string{"/admin-accounts", "/mobile-access", "/mobile-admin/passkey", "/settings", "/connection", "/backup", "/phone", "/data-storage", "/schedule", "/market-settings"} {
+	for _, prefix := range []string{"/android-admin-settings", "/admin-accounts", "/mobile-access", "/mobile-admin/passkey", "/settings", "/connection", "/backup", "/phone", "/data-storage", "/schedule", "/market-settings"} {
 		if path == prefix || strings.HasPrefix(path, prefix+"/") {
 			return true
 		}

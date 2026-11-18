@@ -1,0 +1,20 @@
+=== RUN   TestSeparateAdminAccountsLoginAndOwnerCompatibility
+--- PASS: TestSeparateAdminAccountsLoginAndOwnerCompatibility (19.17s)
+=== RUN   TestNativeTicketOneUseAndAdminCookie
+--- PASS: TestNativeTicketOneUseAndAdminCookie (0.08s)
+=== RUN   TestNativePersistentLoginRestartLogoutAndBrowserIsolation
+--- PASS: TestNativePersistentLoginRestartLogoutAndBrowserIsolation (11.36s)
+=== RUN   TestNativePersistentLoginRevocationAndCapabilityBoundaries
+--- PASS: TestNativePersistentLoginRevocationAndCapabilityBoundaries (8.09s)
+=== RUN   TestNativeAdminSetupPermissionsAndPersistence
+--- PASS: TestNativeAdminSetupPermissionsAndPersistence (8.14s)
+=== RUN   TestNativeAdminAccountRevocationAndLogout
+--- PASS: TestNativeAdminAccountRevocationAndLogout (9.12s)
+=== RUN   TestNativeFCMDeliveryJWTFailureRetryAndDedup
+--- PASS: TestNativeFCMDeliveryJWTFailureRetryAndDedup (3.36s)
+=== RUN   TestNativeFirebaseRejectsMismatchedFiles
+--- PASS: TestNativeFirebaseRejectsMismatchedFiles (0.06s)
+=== RUN   TestTestNativeHandoffWorksWithoutOpeningExternalPasskeyLogin
+--- PASS: TestTestNativeHandoffWorksWithoutOpeningExternalPasskeyLogin (0.08s)
+PASS
+ok  	wanryotalk-reconstructed-server	63.371s

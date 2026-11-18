@@ -66,6 +66,8 @@ type Event struct {
 	RequestedAt, Completed                                   *time.Time
 }
 type State struct {
+	NativeAdminLogins         []NativeAdminLogin           `json:",omitempty"`
+	NativeAdminPush           *NativeAdminPushConfig       `json:",omitempty"`
 	AdminAccounts             []AdminAccount               `json:",omitempty"`
 	ShippingRecords           []ShippingRecord             `json:",omitempty"`
 	TalkReaders               map[string][]string          `json:",omitempty"`
@@ -92,6 +94,7 @@ type State struct {
 	Events                    []Event
 }
 type Session struct {
+	NativeGrantID   string
 	AccountID       string
 	AccountRevision int64
 	CSRF            string

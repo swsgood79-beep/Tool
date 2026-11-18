@@ -196,6 +196,10 @@ func (a *App) adminPOST(w http.ResponseWriter, r *http.Request, session Session)
 	p := strings.Split(strings.Trim(path, "/"), "/")
 	switch {
 	case path == "/logout" || path == "/mobile-admin/logout":
+		if err := a.revokeNativeSession(session); err != nil {
+			http.Error(w, "앱 알림 연결 해제를 저장하지 못했습니다. 다시 시도해 주세요.", 500)
+			return true
+		}
 		if c, e := r.Cookie(a.sessionCookie()); e == nil {
 			delete(a.sessions, hashToken(c.Value))
 		}

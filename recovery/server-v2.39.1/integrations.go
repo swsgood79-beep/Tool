@@ -72,35 +72,38 @@ type Handoff struct {
 	Expires     time.Time
 }
 type IntegrationRuntime struct {
-	NoticeReceivers      map[string]noticeReceiver
-	NoticeBroadcasts     []noticeBroadcast
-	SpeechLeases         map[string]speechLease
-	NativeSpeechSelected bool
-	Minutes              map[string]MinuteQuote
-	Flows                map[string]PasskeyFlow
-	Starts               map[string]PasskeyFlow
-	Handoffs             map[string]Handoff
-	Pair                 string
-	PairExpiry           time.Time
-	PhoneStatus          string
-	MarketResult         map[string]any
-	MarketStatus         string
-	MarketChecked        time.Time
-	AccessToken          string
-	TokenUntil           time.Time
-	Bases                map[string]float64
-	BaseDate             string
-	ScheduleStatus       map[string]any
-	BackupStatus         string
-	BackupBusy           bool
-	CancelTunnel         context.CancelFunc
-	TunnelStatus         string
-	TunnelSession        string
-	NativeSent           map[int64]bool
-	MarketNext           time.Time
-	FXCache              map[string]any
-	FXUntil              time.Time
-	ScheduleSequence     int64
+	NativeAdminOAuth         string
+	NativeAdminOAuthRevision int64
+	NativeAdminOAuthUntil    time.Time
+	NoticeReceivers          map[string]noticeReceiver
+	NoticeBroadcasts         []noticeBroadcast
+	SpeechLeases             map[string]speechLease
+	NativeSpeechSelected     bool
+	Minutes                  map[string]MinuteQuote
+	Flows                    map[string]PasskeyFlow
+	Starts                   map[string]PasskeyFlow
+	Handoffs                 map[string]Handoff
+	Pair                     string
+	PairExpiry               time.Time
+	PhoneStatus              string
+	MarketResult             map[string]any
+	MarketStatus             string
+	MarketChecked            time.Time
+	AccessToken              string
+	TokenUntil               time.Time
+	Bases                    map[string]float64
+	BaseDate                 string
+	ScheduleStatus           map[string]any
+	BackupStatus             string
+	BackupBusy               bool
+	CancelTunnel             context.CancelFunc
+	TunnelStatus             string
+	TunnelSession            string
+	NativeSent               map[int64]bool
+	MarketNext               time.Time
+	FXCache                  map[string]any
+	FXUntil                  time.Time
+	ScheduleSequence         int64
 }
 
 func (a *App) initIntegration() {
@@ -133,6 +136,18 @@ func readJSON(r *http.Request, v any) error {
 	return nil
 }
 func (a *App) startPumps(ctx context.Context) {
+	go func() {
+		t := time.NewTicker(5 * time.Second)
+		defer t.Stop()
+		for {
+			select {
+			case <-ctx.Done():
+				return
+			case <-t.C:
+				a.pumpNativeAdmin(ctx)
+			}
+		}
+	}()
 	go func() {
 		ticker := time.NewTicker(5 * time.Second)
 		defer ticker.Stop()
