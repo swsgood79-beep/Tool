@@ -17,9 +17,11 @@ func mobileDesignPreview(s, name string, v any) string {
 		return s
 	}
 	role, workerURL, mobile := "admin", "", false
+	initialCalendar := false
 	activeCount, dueCount := 0, 0
 	if root, ok := v.(map[string]any); ok {
 		workerURL, _ = root["WorkerURL"].(string)
+		initialCalendar = name == "work.html" && root["InitialDesignTab"] == "calendar"
 		mobile, _ = root["MobileAdmin"].(bool)
 		if projects, ok := root["Projects"].([]ProjectView); ok {
 			date, _ := root["BusinessDate"].(string)
@@ -69,6 +71,12 @@ func mobileDesignPreview(s, name string, v any) string {
 	}
 	assets := `<link rel="stylesheet" href="/community-v1.4.38.css"><link rel="stylesheet" href="/mobile-design-v1.4.24.css"><link rel="stylesheet" href="/market-calendar-v1.4.26.css"><link rel="stylesheet" href="/calendar-complete-v1.4.27.css"><link rel="stylesheet" href="/order-card-v1.4.41.css"><link rel="stylesheet" href="/calendar-flat-v1.4.32.css"><link rel="stylesheet" href="/talk-board-v1.4.40.css"><script defer src="/mobile-design-v1.4.56.js"></script><script defer src="/order-card-v1.4.41.js"></script><script defer src="/talk-unread-v1.4.49.js"></script>`
 	s = strings.Replace(s, "<html", `<html data-alpha-design="modern"`, 1)
+	if initialCalendar {
+		// Set the requested tab before the browser paints any worker content.
+		// Deferred design scripts still open the existing calendar normally.
+		s = strings.Replace(s, "<body", `<body data-design-tab="calendar"`, 1)
+		assets += `<style id="calendar-initial-view">html[data-alpha-design="modern"] body[data-design-tab="calendar"] main>:not(#shipping-calendar){display:none!important}</style>`
+	}
 	s = strings.Replace(s, "</head>", assets+"</head>", 1)
 	return strings.Replace(s, "</body>", metadata+"</body>", 1)
 }

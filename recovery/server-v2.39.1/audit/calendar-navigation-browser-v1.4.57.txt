@@ -1,0 +1,5 @@
+=== RUN   TestCalendarNavigationBrowser
+Calendar navigation checks passed 28
+--- PASS: TestCalendarNavigationBrowser (6.29s)
+PASS
+ok  	wanryotalk-reconstructed-server	6.544s

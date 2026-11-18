@@ -186,6 +186,9 @@ func (a *App) worker(w http.ResponseWriter, r *http.Request) bool {
 			if len(parts) == 2 {
 				v := view()
 				v["EntryGate"] = r.URL.Query().Get("entry") != "skip"
+				if r.URL.Query().Get("design-tab") == "calendar" {
+					v["InitialDesignTab"] = "calendar"
+				}
 				a.render(w, "work.html", v)
 				return true
 			}

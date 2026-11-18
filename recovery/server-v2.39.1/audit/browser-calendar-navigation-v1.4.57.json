@@ -1,0 +1,185 @@
+{
+  "scope": "actual temporary Go server; design script held until after two animation frames; initial worker list hidden before script; fresh session storage; phone/PC light/dark; no company data",
+  "results": [
+    {
+      "mobile": true,
+      "scheme": "light",
+      "source": "upper",
+      "phase": "before deferred design script; work list never exposed",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "source": "upper",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "source": "bottom",
+      "phase": "before deferred design script; work list never exposed",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "source": "bottom",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "source": "menu",
+      "phase": "before deferred design script; work list never exposed",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "source": "menu",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "light",
+      "source": "initial entry retained",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "source": "upper",
+      "phase": "before deferred design script; work list never exposed",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "source": "upper",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "source": "bottom",
+      "phase": "before deferred design script; work list never exposed",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "source": "bottom",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "source": "menu",
+      "phase": "before deferred design script; work list never exposed",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "source": "menu",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "scheme": "dark",
+      "source": "initial entry retained",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "source": "upper",
+      "phase": "before deferred design script; work list never exposed",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "source": "upper",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "source": "bottom",
+      "phase": "before deferred design script; work list never exposed",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "source": "bottom",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "source": "menu",
+      "phase": "before deferred design script; work list never exposed",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "source": "menu",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "light",
+      "source": "initial entry retained",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "source": "upper",
+      "phase": "before deferred design script; work list never exposed",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "source": "upper",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "source": "bottom",
+      "phase": "before deferred design script; work list never exposed",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "source": "bottom",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "source": "menu",
+      "phase": "before deferred design script; work list never exposed",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "source": "menu",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "scheme": "dark",
+      "source": "initial entry retained",
+      "result": "pass"
+    }
+  ]
+}
