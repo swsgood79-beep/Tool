@@ -66,7 +66,7 @@ func TestWorkerAllSubmissionsBrowser(t *testing.T) {
 	}))
 	defer server.Close()
 	metadata, _ := json.Marshal(map[string]any{"groups": groups, "native": native})
-	cmd := exec.Command("node", "audit/browser-worker-submissions-v1.4.51.cjs", server.URL, a.state.Board, string(metadata))
+	cmd := exec.Command("node", "audit/browser-worker-submissions-v1.4.54.cjs", server.URL, a.state.Board, string(metadata))
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	if e := cmd.Run(); e != nil {

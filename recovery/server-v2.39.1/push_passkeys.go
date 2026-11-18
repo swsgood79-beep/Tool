@@ -41,14 +41,17 @@ func safeNext(raw string) string {
 	if e != nil || u.IsAbs() || u.Host != "" || strings.HasPrefix(raw, "//") {
 		return "/"
 	}
-	if u.Path == "/" || u.Path == "/unread" || u.Path == "/settings" || u.Path == "/tts-settings" || u.Path == "/connection" || strings.HasPrefix(u.Path, "/records/") && strings.HasSuffix(u.Path, "/edit") || u.Path == "/inspection-requests" || strings.HasPrefix(u.Path, "/projects/") && strings.HasSuffix(u.Path, "/inspection") {
+	if u.Path == "/admin-accounts" || u.Path == "/my-password" || u.Path == "/" || u.Path == "/unread" || u.Path == "/settings" || u.Path == "/tts-settings" || u.Path == "/connection" || strings.HasPrefix(u.Path, "/records/") && strings.HasSuffix(u.Path, "/edit") || u.Path == "/inspection-requests" || strings.HasPrefix(u.Path, "/projects/") && strings.HasSuffix(u.Path, "/inspection") {
 		return u.RequestURI()
 	}
 	return "/"
 }
 func (a *App) newSession(w http.ResponseWriter, r *http.Request, next string) {
+	a.newSessionFor(w, r, next, Session{})
+}
+func (a *App) newSessionFor(w http.ResponseWriter, r *http.Request, next string, principal Session) {
 	value := token()
-	a.sessions[hashToken(value)] = Session{CSRF: token(), Expires: time.Now().Add(8 * time.Hour)}
+	a.sessions[hashToken(value)] = Session{CSRF: token(), Expires: time.Now().Add(8 * time.Hour), AccountID: principal.AccountID, AccountRevision: principal.AccountRevision}
 	http.SetCookie(w, &http.Cookie{Name: a.sessionCookie(), Value: value, Path: "/", MaxAge: 8 * 3600, HttpOnly: true, Secure: secureRequest(r), SameSite: http.SameSiteLaxMode})
 	jsonReply(w, map[string]any{"ok": true, "next": safeNext(next)})
 }
@@ -145,14 +148,16 @@ func (a *App) specialHTTP(w http.ResponseWriter, r *http.Request) bool {
 			passkeyFailure(w, "EXPIRED", 403)
 			return true
 		}
+		principal := Session{}
 		if ticket.Owner != "" {
 			owner, ok := a.sessions[ticket.Owner]
-			if !ok || !owner.Expires.After(time.Now()) {
+			if !ok || !validAccountSession(&a.state, owner) || owner.AccountID != "" {
 				passkeyFailure(w, "OWNER", 403)
 				return true
 			}
+			principal = owner
 		}
-		a.newSession(w, r, ticket.Next)
+		a.newSessionFor(w, r, ticket.Next, principal)
 		return true
 	}
 	parts := strings.Split(strings.Trim(path, "/"), "/")
@@ -184,7 +189,7 @@ func (a *App) specialHTTP(w http.ResponseWriter, r *http.Request) bool {
 		}
 		if mode == "register" {
 			owner, ok := a.sessions[start.Owner]
-			if !ok || !owner.Expires.After(time.Now()) {
+			if !ok || !validAccountSession(&a.state, owner) || owner.AccountID != "" {
 				passkeyFailure(w, "OWNER", 403)
 				return true
 			}
@@ -223,7 +228,7 @@ func (a *App) specialHTTP(w http.ResponseWriter, r *http.Request) bool {
 		}
 		if mode == "register" {
 			owner, ok := a.sessions[flow.Owner]
-			if !ok || !owner.Expires.After(time.Now()) {
+			if !ok || !validAccountSession(&a.state, owner) || owner.AccountID != "" {
 				passkeyFailure(w, "OWNER", 403)
 				return true
 			}

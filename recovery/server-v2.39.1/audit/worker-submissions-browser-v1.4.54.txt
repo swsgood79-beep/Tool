@@ -1,0 +1,6 @@
+=== RUN   TestWorkerAllSubmissionsBrowser
+Worker submission checks passed: 52
+    worker_submit_browser_test.go:98: Actual temporary Go app: 24 expected inspection/note events; all test posts/comments deleted and photo files cleaned; no company data
+--- PASS: TestWorkerAllSubmissionsBrowser (21.62s)
+PASS
+ok  	wanryotalk-reconstructed-server	21.870s

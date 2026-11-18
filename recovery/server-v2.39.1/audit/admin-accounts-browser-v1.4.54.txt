@@ -1,0 +1,5 @@
+=== RUN   TestIndividualAdminAccountsBrowser
+Individual account browser checks passed 13
+--- PASS: TestIndividualAdminAccountsBrowser (22.64s)
+PASS
+ok  	wanryotalk-reconstructed-server	22.914s

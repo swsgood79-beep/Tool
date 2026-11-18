@@ -1,0 +1,313 @@
+{
+  "scope": "Actual temporary Go app, real Chromium native/fetch submissions; mobile/PC light/dark; no company data; physical Samsung not tested",
+  "results": [
+    {
+      "case": "baseline reproduced",
+      "result": "pass",
+      "detail": "v46 helper shows beforeunload and blocks normal note POST"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "setting async inspection request",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "shipping async inspection request",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "combined async inspection request",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "native note message",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "Talk text post",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "Talk photo upload and edit",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "Talk comment",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "Talk like and unlike",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "Talk comment delete",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "Talk post delete; explicit delete confirm retained",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "search submit and category navigation after search input",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "light",
+      "case": "invalid and cancelled submit retains draft-exit guard",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "setting async inspection request",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "shipping async inspection request",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "combined async inspection request",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "native note message",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "Talk text post",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "Talk photo upload and edit",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "Talk comment",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "Talk like and unlike",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "Talk comment delete",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "Talk post delete; explicit delete confirm retained",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "search submit and category navigation after search input",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "scheme": "dark",
+      "case": "invalid and cancelled submit retains draft-exit guard",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "setting async inspection request",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "shipping async inspection request",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "combined async inspection request",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "native note message",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "Talk text post",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "Talk photo upload and edit",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "Talk comment",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "Talk like and unlike",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "Talk comment delete",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "Talk post delete; explicit delete confirm retained",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "search submit and category navigation after search input",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "light",
+      "case": "invalid and cancelled submit retains draft-exit guard",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "setting async inspection request",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "shipping async inspection request",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "combined async inspection request",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "native note message",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "Talk text post",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "Talk photo upload and edit",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "Talk comment",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "Talk like and unlike",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "Talk comment delete",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "Talk post delete; explicit delete confirm retained",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "search submit and category navigation after search input",
+      "result": "pass"
+    },
+    {
+      "device": "PC",
+      "scheme": "dark",
+      "case": "invalid and cancelled submit retains draft-exit guard",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "case": "setting native inspection fallback",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "case": "shipping native inspection fallback",
+      "result": "pass"
+    },
+    {
+      "device": "phone",
+      "case": "combined native inspection fallback",
+      "result": "pass"
+    }
+  ]
+}

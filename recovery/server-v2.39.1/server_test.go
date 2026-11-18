@@ -55,7 +55,7 @@ func call(a *App, method, path string, form url.Values, cookies ...*http.Cookie)
 }
 func adminCookie(a *App) *http.Cookie {
 	value := token()
-	a.sessions[hashToken(value)] = Session{"admin-csrf", time.Now().Add(time.Hour)}
+	a.sessions[hashToken(value)] = Session{CSRF: "admin-csrf", Expires: time.Now().Add(time.Hour)}
 	return &http.Cookie{Name: "aw_recovered_session", Value: value}
 }
 func TestInspectionApprovalAndRestart(t *testing.T) {

@@ -66,6 +66,7 @@ type Event struct {
 	RequestedAt, Completed                                   *time.Time
 }
 type State struct {
+	AdminAccounts             []AdminAccount               `json:",omitempty"`
 	ShippingRecords           []ShippingRecord             `json:",omitempty"`
 	TalkReaders               map[string][]string          `json:",omitempty"`
 	MaterialReceipts          map[string][]MaterialReceipt `json:",omitempty"`
@@ -91,8 +92,10 @@ type State struct {
 	Events                    []Event
 }
 type Session struct {
-	CSRF    string
-	Expires time.Time
+	AccountID       string
+	AccountRevision int64
+	CSRF            string
+	Expires         time.Time
 }
 type Ticket struct {
 	Expires time.Time
