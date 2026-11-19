@@ -1,0 +1,6 @@
+=== RUN   TestPurchasingPermissionsQueueAndPersistence
+--- PASS: TestPurchasingPermissionsQueueAndPersistence (1.46s)
+=== RUN   TestPurchasingNativePersistentLoginAndPushIsolation
+--- PASS: TestPurchasingNativePersistentLoginAndPushIsolation (1.66s)
+PASS
+ok  	wanryotalk-reconstructed-server	3.388s

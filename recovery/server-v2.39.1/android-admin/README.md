@@ -1,6 +1,6 @@
 # 알파 관리자 Android 1.0.3
 
-## 현재: APK 1.0.9 / PC 1.4.77
+## 현재: APK 1.0.10 / PC 1.4.78
 
 AppPalette로 Android 루트/상단/로그인/연결/버튼/상태·탐색바 색을 적용하고 Light/Dark 대화상자 테마를 사용합니다. 웹의 AlphaNativeTheme 브리지는 system/light/dark 외 값을 받지 않고 현재 WebView가 확인된 회사 origin일 때 외형 설정만 변경합니다. 비밀키·로그인·파일 접근 기능을 노출하지 않습니다. 웹 alpha-theme-change와 제한된 root 속성 관찰로 수동 테마와 네이티브 저장 설정을 연동합니다. 화면에 저장된 계정 자동 복원 및 FCM 채널은 그대로입니다. 실제 Android UI는 기기에서 확인해야 합니다.
 
@@ -41,3 +41,5 @@ APK 1.0.3: 네이티브 로그인 폼을 먼저 표시하고 실제 버튼 클�
 ## APK 1.0.4 / 서버 1.4.68
 
 인증된 bootstrap의 account_label을 상단 담당자 이름에 사용합니다. 상단 로그아웃 버튼은 로컬 로그인·알림을 즉시 차단하고 해당 세션/로그인 grant/푸시 기기만 해제합니다. 이전 비동기 응답은 AuthEpoch로 걸러서 로그아웃 후 이름이나 푸시 등록을 복원하지 않습니다. 기존 알림 채널 ID와 서명 키를 유지합니다. 실제 Android UI·지문 센서·설치·FCM 수신은 빌드 환경에서 실행하지 않았습니다.
+
+구매팀도 같은 APK를 사용합니다. bootstrap의 account_role을 표시 선택에 사용하되 권한은 서버 allowlist와 세션 계정에서 검사합니다. purchasing_calls_v1 채널과 call_id 클릭 경로는 기존 inspection_requests_v1·검사 경로와 분리합니다. 지연 도착한 다른 역할/계정 푸시는 RecipientPolicy로 버립니다. 로그인 유지와 Keystore 저장은 기존 코드를 사용합니다.

@@ -26,6 +26,7 @@ const nativeAndroidPackage = "com.alpharobotics.admin"
 type NativeFirebasePublic struct{ ProjectID, ApplicationID, SenderID, APIKey string }
 type NativeAdminDevice struct {
 	ID, Name, AccountID, Token, SecretHash, SessionHash string
+	Role                                                string `json:",omitempty"`
 	AccountRevision, OwnerRevision, Delivered           int64
 	Enabled, TestPending                                bool
 	LastStatus                                          string
@@ -66,10 +67,10 @@ func nativeAccountValid(s *State, d NativeAdminDevice) bool {
 		return false
 	}
 	if d.AccountID == "" {
-		return s.PasswordHash != "" && d.OwnerRevision == s.Integration.Revision
+		return d.Role != "purchasing" && s.PasswordHash != "" && d.OwnerRevision == s.Integration.Revision
 	}
 	u := adminAccount(s, d.AccountID)
-	return u != nil && u.Enabled && u.Revision == d.AccountRevision
+	return u != nil && u.Enabled && u.Revision == d.AccountRevision && (u.Role == "purchasing") == (d.Role == "purchasing")
 }
 func nativeAccountLabel(s *State, id string) string {
 	if id == "" {
@@ -97,6 +98,7 @@ func nativeRSA(raw string) (*rsa.PrivateKey, error) {
 	return nil, errors.New("2048비트 이상의 RSA 서비스 계정 키가 필요합니다.")
 }
 func nativeFirebaseFiles(clientJSON, serviceJSON []byte) (NativeAdminPushConfig, error) {
+
 	var g struct {
 		ProjectInfo struct {
 			ProjectID     string `json:"project_id"`
@@ -207,6 +209,7 @@ func (a *App) nativeAdminHTTP(w http.ResponseWriter, r *http.Request, session Se
 		http.Error(w, "격리 모드에서는 앱 푸시를 설정할 수 없습니다.", 403)
 		return true
 	}
+	purchase := purchasingSession(&a.state, session)
 	if path == "/native-admin/bootstrap" && r.Method == "GET" {
 		var public *NativeFirebasePublic
 		if nativePushReady(a.state.NativeAdminPush) {
@@ -221,7 +224,7 @@ func (a *App) nativeAdminHTTP(w http.ResponseWriter, r *http.Request, session Se
 		if account := adminAccount(&a.state, session.AccountID); account != nil {
 			username = account.Username
 		}
-		jsonReply(w, map[string]any{"worker_view_supported": true, "worker_view": nativeWorkerView(r, a.sessionCookie()), "account_username": username, "persistent_login": persistent, "cookie_name": a.sessionCookie(), "registered": registered, "ready": public != nil, "config": public, "csrf": session.CSRF, "release": releaseVersion, "account_key": session.AccountID, "account_label": nativeAccountLabel(&a.state, session.AccountID), "owner": session.AccountID == ""})
+		jsonReply(w, map[string]any{"account_role": map[bool]string{true: "purchasing", false: "admin"}[purchase], "worker_view_supported": !purchase, "worker_view": nativeWorkerView(r, a.sessionCookie()), "account_username": username, "persistent_login": persistent, "cookie_name": a.sessionCookie(), "registered": registered, "ready": public != nil, "config": public, "csrf": session.CSRF, "release": releaseVersion, "account_key": session.AccountID, "account_label": nativeAccountLabel(&a.state, session.AccountID), "owner": session.AccountID == ""})
 		return true
 	}
 	if path == "/native-admin/register" && r.Method == "POST" {
@@ -255,7 +258,11 @@ func (a *App) nativeAdminHTTP(w http.ResponseWriter, r *http.Request, session Se
 			if d != nil && d.AccountID == session.AccountID && d.AccountRevision == session.AccountRevision {
 				delivered = d.Delivered
 			}
-			next := NativeAdminDevice{ID: id, Name: name, AccountID: session.AccountID, AccountRevision: session.AccountRevision, OwnerRevision: s.Integration.Revision, Token: value, SecretHash: hashToken(secret), SessionHash: hashToken(session.CSRF), Enabled: true, Delivered: delivered, LastStatus: "앱 연결 완료"}
+			appKind := ""
+			if purchase {
+				appKind = "purchasing"
+			}
+			next := NativeAdminDevice{Role: appKind, ID: id, Name: name, AccountID: session.AccountID, AccountRevision: session.AccountRevision, OwnerRevision: s.Integration.Revision, Token: value, SecretHash: hashToken(secret), SessionHash: hashToken(session.CSRF), Enabled: true, Delivered: delivered, LastStatus: "앱 연결 완료"}
 			for i := range s.NativeAdminPush.Devices {
 				if s.NativeAdminPush.Devices[i].Token == value && s.NativeAdminPush.Devices[i].ID != id {
 					s.NativeAdminPush.Devices[i].Enabled = false
@@ -456,12 +463,6 @@ func (a *App) nativeOAuth(ctx context.Context, c NativeAdminPushConfig) (string,
 	return out.AccessToken, nil
 }
 func (a *App) sendNativeAdmin(ctx context.Context, c NativeAdminPushConfig, d NativeAdminDevice, e Event, test bool) (bool, error) {
-	ctx, cancel := context.WithTimeout(ctx, 12*time.Second)
-	defer cancel()
-	auth, err := a.nativeOAuth(ctx, c)
-	if err != nil {
-		return false, err
-	}
 	payload := notification(e)
 	title, body := "알파 관리자", nativePreview(text(payload["body"]))
 	if test {
@@ -471,7 +472,21 @@ func (a *App) sendNativeAdmin(ctx context.Context, c NativeAdminPushConfig, d Na
 	if test {
 		data["tag"] = "alpha-admin-test"
 	}
-	raw, _ := json.Marshal(map[string]any{"message": map[string]any{"token": d.Token, "data": data, "android": map[string]any{"priority": "HIGH", "ttl": "3600s"}}})
+	return a.sendNativeData(ctx, c, d, data)
+}
+func (a *App) sendNativeData(ctx context.Context, c NativeAdminPushConfig, d NativeAdminDevice, data map[string]string) (bool, error) {
+	ctx, cancel := context.WithTimeout(ctx, 12*time.Second)
+	defer cancel()
+	auth, err := a.nativeOAuth(ctx, c)
+	if err != nil {
+		return false, err
+	}
+	data["account_key"] = d.AccountID
+	android := map[string]any{"priority": "HIGH", "ttl": "3600s"}
+	if d.Role == "purchasing" {
+		android["restricted_package_name"] = nativeAndroidPackage
+	}
+	raw, _ := json.Marshal(map[string]any{"message": map[string]any{"token": d.Token, "data": data, "android": android}})
 	r, _ := http.NewRequestWithContext(ctx, "POST", "https://fcm.googleapis.com/v1/projects/"+c.Public.ProjectID+"/messages:send", strings.NewReader(string(raw)))
 	r.Header.Set("Authorization", "Bearer "+auth)
 	r.Header.Set("Content-Type", "application/json")
@@ -507,6 +522,9 @@ func (a *App) pumpNativeAdmin(ctx context.Context) {
 	a.mu.Unlock()
 	sort.Slice(events, func(i, j int) bool { return events[i].ID < events[j].ID })
 	for _, d := range cfg.Devices {
+		if d.Role == "purchasing" {
+			continue
+		}
 		a.mu.Lock()
 		valid := nativeAccountValid(&a.state, d)
 		a.mu.Unlock()

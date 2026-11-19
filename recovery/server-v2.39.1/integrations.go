@@ -145,6 +145,7 @@ func (a *App) startPumps(ctx context.Context) {
 				return
 			case <-t.C:
 				a.pumpNativeAdmin(ctx)
+				a.pumpPurchasing(ctx)
 			}
 		}
 	}()

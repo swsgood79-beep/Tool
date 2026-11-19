@@ -1,10 +1,10 @@
-# 빠른 시작 · PC v1.4.77 / 관리자 앱 v1.0.9
+# 빠른 시작 · PC v1.4.78 / 관리자 앱 v1.0.10
 
 전체 기능과 사용 순서는 [README.md](README.md)에 있습니다. 관리자 앱 Firebase 설정은 [ANDROID-ADMIN-SETUP.md](ANDROID-ADMIN-SETUP.md)를 참고하세요.
 
 ## 이미 사용 중인 회사 PC
 
-1. [최신 Windows ZIP](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.77.zip)을 내려받아 압축을 풉니다.
+1. [최신 Windows ZIP](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.78.zip)을 내려받아 압축을 풉니다.
 2. 기존 프로그램을 종료 버튼/트레이에서 완전히 종료합니다.
 3. 새 `AlphaWorkComplete-Recovered.exe`를 실행합니다. 기존 운영 자료와 지정한 저장 경로를 그대로 이어서 사용합니다.
 4. 수주·기록·사진과 외부 연결 상태를 확인합니다.
@@ -28,7 +28,7 @@
 
 ## 관리자 휴대폰
 
-1. [관리자 APK v1.0.9](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.9.apk)을 설치합니다. 기존 앱은 ⋮ → 앱 업데이트 확인을 사용합니다.
+1. [관리자 APK v1.0.10](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.10.apk)을 설치합니다. 기존 앱은 ⋮ → 앱 업데이트 확인을 사용합니다.
 2. 대표 관리자 wssong 또는 개인 관리자 아이디·비밀번호로 로그인합니다.
 3. 한 번 로그인하면 직접 로그아웃할 때까지 유지합니다. 다른 앱 복귀는 기존 화면을, 재실행은 저장된 계정을 사용합니다.
 4. 최초 Firebase 설정과 앱 알림 권한을 확인하고 시험 알림을 보냅니다.
@@ -42,4 +42,4 @@
 - 출하사진 필요/보관 완료 목록에서 사진과 수주 정보를 확인합니다.
 - 백업 설정과 복구키 보관 상태를 확인합니다.
 
-이번 사진별 삭제는 PC v1.4.77을 적용하면 관리자 앱에서도 사용할 수 있습니다. APK는 1.0.9 그대로이며 이 기능 때문에 다시 설치할 필요는 없습니다.
+구매팀 호출을 사용하려면 PC v1.4.78과 같은 관리자 앱 v1.0.10을 함께 적용하세요. 구매팀용 별도 앱은 없습니다. 대표 관리자에서 구매팀 권한 계정을 만들고 담당자를 지정합니다. [구매팀 호출 시작하기](PURCHASING-SETUP.md)를 참고하세요.

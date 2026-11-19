@@ -66,6 +66,8 @@ type Event struct {
 	RequestedAt, Completed                                   *time.Time
 }
 type State struct {
+	PurchasingCalls           []PurchasingCall             `json:",omitempty"`
+	PurchasingRecipient       string                       `json:",omitempty"`
 	NativeAdminLogins         []NativeAdminLogin           `json:",omitempty"`
 	NativeAdminPush           *NativeAdminPushConfig       `json:",omitempty"`
 	AdminAccounts             []AdminAccount               `json:",omitempty"`

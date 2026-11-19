@@ -1,0 +1,4495 @@
+{
+  "purchasing_browser": {
+    "scope": "actual temporary Go server + PC/mobile Chromium and shared APK user agent; native Android/real FCM not executed",
+    "results": [
+      {
+        "mobile": false,
+        "theme": "light",
+        "case": "name-only worker call with retry/no navigation/history; own chronological queue; restricted menus; failed completion retains current call; complete advances and archives; themes; no leave prompt",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "theme": "dark",
+        "case": "name-only worker call with retry/no navigation/history; own chronological queue; restricted menus; failed completion retains current call; complete advances and archives; themes; no leave prompt",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "theme": "light",
+        "case": "name-only worker call with retry/no navigation/history; own chronological queue; restricted menus; failed completion retains current call; complete advances and archives; themes; no leave prompt",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "theme": "dark",
+        "case": "name-only worker call with retry/no navigation/history; own chronological queue; restricted menus; failed completion retains current call; complete advances and archives; themes; no leave prompt",
+        "result": "pass"
+      }
+    ]
+  },
+  "current_native_and_purchasing_race": "1.4.78",
+  "purchasing_auth_and_fcm": "role allowlist, cookie+CSRF, persistent native login after restart, own FIFO calls, immutable snapshots, idempotency aliases, completion retry and mocked per-recipient FCM routing; physical phone untested",
+  "shared_apk": "same com.alpharobotics.admin package; server role controls UI and permissions; existing Firebase reused; no separate purchasing APK",
+  "individual_photo_delete_browser": {
+    "scope": "actual Go server + PC/mobile Chromium and APK user agent; native Android not executed",
+    "results": [
+      {
+        "mobile": false,
+        "theme": "light",
+        "case": "worker cannot delete; cancel and failure keep photos; delete middle only; original archive date preserved; upload draft protected; final deletion requeues without leave prompt",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "theme": "dark",
+        "case": "worker cannot delete; cancel and failure keep photos; delete middle only; original archive date preserved; upload draft protected; final deletion requeues without leave prompt",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "theme": "light",
+        "case": "worker cannot delete; cancel and failure keep photos; delete middle only; original archive date preserved; upload draft protected; final deletion requeues without leave prompt",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "theme": "dark",
+        "case": "worker cannot delete; cancel and failure keep photos; delete middle only; original archive date preserved; upload draft protected; final deletion requeues without leave prompt",
+        "result": "pass"
+      }
+    ]
+  },
+  "photo_mobile_browser": {
+    "scope": "Go server + Chromium PC/mobile and APK user agent; DataTransfer failure simulated; actual Samsung/Photos not executed",
+    "results": [
+      {
+        "mobile": false,
+        "app": false,
+        "brokenDataTransfer": false,
+        "addition": false,
+        "case": "generic MIME and normal photos preview, remove, server/network error preserves files, retry exactly once and no leave dialog",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "app": false,
+        "brokenDataTransfer": false,
+        "addition": true,
+        "case": "generic MIME and normal photos preview, remove, server/network error preserves files, retry exactly once and no leave dialog",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "app": false,
+        "brokenDataTransfer": true,
+        "addition": false,
+        "case": "generic MIME and normal photos preview, remove, server/network error preserves files, retry exactly once and no leave dialog",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "app": false,
+        "brokenDataTransfer": true,
+        "addition": true,
+        "case": "generic MIME and normal photos preview, remove, server/network error preserves files, retry exactly once and no leave dialog",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "app": true,
+        "brokenDataTransfer": false,
+        "addition": false,
+        "case": "generic MIME and normal photos preview, remove, server/network error preserves files, retry exactly once and no leave dialog",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "app": true,
+        "brokenDataTransfer": false,
+        "addition": true,
+        "case": "generic MIME and normal photos preview, remove, server/network error preserves files, retry exactly once and no leave dialog",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "app": true,
+        "brokenDataTransfer": true,
+        "addition": false,
+        "case": "generic MIME and normal photos preview, remove, server/network error preserves files, retry exactly once and no leave dialog",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "app": true,
+        "brokenDataTransfer": true,
+        "addition": true,
+        "case": "generic MIME and normal photos preview, remove, server/network error preserves files, retry exactly once and no leave dialog",
+        "result": "pass"
+      }
+    ]
+  },
+  "photo_limit_current_browser": {
+    "scope": "actual temporary Go server; 8 records and 240 saved photos; PC/phone light/dark; no company data",
+    "results": [
+      {
+        "mobile": false,
+        "scheme": "light",
+        "case": "31 selection rejected; 30 initial photos archived; addition hidden at cap",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "case": "existing 20 retained; 11 additions rejected; 10 added to total30; no leave prompt",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "case": "31 selection rejected; 30 initial photos archived; addition hidden at cap",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "case": "existing 20 retained; 11 additions rejected; 10 added to total30; no leave prompt",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "case": "31 selection rejected; 30 initial photos archived; addition hidden at cap",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "case": "existing 20 retained; 11 additions rejected; 10 added to total30; no leave prompt",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "case": "31 selection rejected; 30 initial photos archived; addition hidden at cap",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "case": "existing 20 retained; 11 additions rejected; 10 added to total30; no leave prompt",
+        "result": "pass"
+      }
+    ]
+  },
+  "native_gallery": "explicit Samsung Gallery ACTION_PICK when available; gallery chooser fallback; ACTION_OPEN_DOCUMENT for files; ClipData/data URI deduplicated; physical phone not executed",
+  "native_theme_browser": {
+    "scope": "temporary Go server + Chromium APK UA; native bridge simulated; no actual Android UI",
+    "results": [
+      {
+        "tag": "390/dark/system/mobile-admin",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/projects/1/edit",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/projects/1/inspection",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/client-notes",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/client-notes/a9AB_KjD9S-LE69ALXXiOB4iaAzIit5QKFLYq525Olw/edit",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/designers",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/announcements",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/community-admin",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/inspection-requests",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/shipping-archive-admin",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/android-admin-settings",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/admin-accounts",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/mobile-access",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/tts-settings",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/market-settings",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/schedule",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/backup",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/settings",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/orders/import",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/data-storage",
+        "restricted": true,
+        "status": 403
+      },
+      {
+        "tag": "390/dark/system/report-settings",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/community/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/notices/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/shipping-records/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/whole-menu",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/worker-view",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "390/dark/system/manual-dark-persists",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/dark/system/manual-light-persists",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/dark/mobile-admin",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/projects/1/edit",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/projects/1/inspection",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/client-notes",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/client-notes/a9AB_KjD9S-LE69ALXXiOB4iaAzIit5QKFLYq525Olw/edit",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/designers",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/announcements",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/community-admin",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/inspection-requests",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/shipping-archive-admin",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/android-admin-settings",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/admin-accounts",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/mobile-access",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/tts-settings",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/market-settings",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/schedule",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/backup",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/settings",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/orders/import",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/data-storage",
+        "restricted": true,
+        "status": 403
+      },
+      {
+        "tag": "390/light/dark/report-settings",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/community/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/notices/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/shipping-records/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/whole-menu",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/worker-view",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/manual-dark-persists",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/dark/manual-light-persists",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/mobile-admin",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/projects/1/edit",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/projects/1/inspection",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/client-notes",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/client-notes/a9AB_KjD9S-LE69ALXXiOB4iaAzIit5QKFLYq525Olw/edit",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/designers",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/announcements",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/community-admin",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/inspection-requests",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/shipping-archive-admin",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/android-admin-settings",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/admin-accounts",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/mobile-access",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/tts-settings",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/market-settings",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/schedule",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/backup",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/settings",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/orders/import",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/data-storage",
+        "restricted": true,
+        "status": 403
+      },
+      {
+        "tag": "390/dark/light/report-settings",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/community/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/notices/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/shipping-records/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/whole-menu",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/worker-view",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/dark/light/manual-dark-persists",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/dark/light/manual-light-persists",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/mobile-admin",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/projects/1/edit",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/projects/1/inspection",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/client-notes",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/client-notes/a9AB_KjD9S-LE69ALXXiOB4iaAzIit5QKFLYq525Olw/edit",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/designers",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/announcements",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/community-admin",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/inspection-requests",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/shipping-archive-admin",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/android-admin-settings",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/admin-accounts",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/mobile-access",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/tts-settings",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/market-settings",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/schedule",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/backup",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/settings",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/orders/import",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/data-storage",
+        "restricted": true,
+        "status": 403
+      },
+      {
+        "tag": "390/light/light/report-settings",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/community/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/notices/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/shipping-records/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/whole-menu",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/worker-view",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "390/light/light/manual-dark-persists",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "390/light/light/manual-light-persists",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/system/mobile-admin",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/projects/1/edit",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/projects/1/inspection",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/client-notes",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/client-notes/a9AB_KjD9S-LE69ALXXiOB4iaAzIit5QKFLYq525Olw/edit",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/designers",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/announcements",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/community-admin",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/inspection-requests",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/shipping-archive-admin",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/android-admin-settings",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/admin-accounts",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/mobile-access",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/tts-settings",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/market-settings",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/schedule",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/backup",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/settings",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/orders/import",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/data-storage",
+        "restricted": true,
+        "status": 403
+      },
+      {
+        "tag": "850/dark/system/report-settings",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/community/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/notices/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/shipping-records/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/whole-menu",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/worker-view",
+        "dark": true,
+        "mode": "system",
+        "body": "rgb(16, 20, 28)",
+        "native": "system"
+      },
+      {
+        "tag": "850/dark/system/manual-dark-persists",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/dark/system/manual-light-persists",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/dark/mobile-admin",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/projects/1/edit",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/projects/1/inspection",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/client-notes",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/client-notes/a9AB_KjD9S-LE69ALXXiOB4iaAzIit5QKFLYq525Olw/edit",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/designers",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/announcements",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/community-admin",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/inspection-requests",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/shipping-archive-admin",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/android-admin-settings",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/admin-accounts",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/mobile-access",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/tts-settings",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/market-settings",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/schedule",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/backup",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/settings",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/orders/import",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/data-storage",
+        "restricted": true,
+        "status": 403
+      },
+      {
+        "tag": "850/light/dark/report-settings",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/community/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/notices/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/shipping-records/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/whole-menu",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/worker-view",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/manual-dark-persists",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/dark/manual-light-persists",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/mobile-admin",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/projects/1/edit",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/projects/1/inspection",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/client-notes",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/client-notes/a9AB_KjD9S-LE69ALXXiOB4iaAzIit5QKFLYq525Olw/edit",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/designers",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/announcements",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/community-admin",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/inspection-requests",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/shipping-archive-admin",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/android-admin-settings",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/admin-accounts",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/mobile-access",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/tts-settings",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/market-settings",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/schedule",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/backup",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/settings",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/orders/import",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/data-storage",
+        "restricted": true,
+        "status": 403
+      },
+      {
+        "tag": "850/dark/light/report-settings",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/community/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/notices/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/shipping-records/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/whole-menu",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/worker-view",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/dark/light/manual-dark-persists",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/dark/light/manual-light-persists",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/mobile-admin",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/projects/1/edit",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/projects/1/inspection",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/client-notes",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/client-notes/a9AB_KjD9S-LE69ALXXiOB4iaAzIit5QKFLYq525Olw/edit",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/designers",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/announcements",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/community-admin",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/inspection-requests",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/shipping-archive-admin",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/android-admin-settings",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/admin-accounts",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/mobile-access",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/tts-settings",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/market-settings",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/schedule",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/backup",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/settings",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/orders/import",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/data-storage",
+        "restricted": true,
+        "status": 403
+      },
+      {
+        "tag": "850/light/light/report-settings",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/community/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/notices/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/shipping-records/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/whole-menu",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/worker-view",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      },
+      {
+        "tag": "850/light/light/manual-dark-persists",
+        "dark": true,
+        "mode": "dark",
+        "body": "rgb(16, 20, 28)",
+        "native": "dark"
+      },
+      {
+        "tag": "850/light/light/manual-light-persists",
+        "dark": false,
+        "mode": "light",
+        "body": "rgb(243, 245, 248)",
+        "native": "light"
+      }
+    ],
+    "issues": []
+  },
+  "documentation": "current operating manual in README and START-HERE; historical notes in CHANGELOG and docs/history",
+  "native_client_menu_browser": {
+    "scope": "temporary Go server + Chromium APK UA; real client-note multipart save; physical Android not executed",
+    "results": [
+      {
+        "role": "owner",
+        "width": 390,
+        "case": "whole menu opens client master, edits and saves source, worker directory reflects result with no leave dialog",
+        "result": "pass"
+      },
+      {
+        "role": "owner",
+        "width": 850,
+        "case": "whole menu opens client master, edits and saves source, worker directory reflects result with no leave dialog",
+        "result": "pass"
+      },
+      {
+        "role": "personal inspector",
+        "width": 390,
+        "case": "whole menu opens client master, edits and saves source, worker directory reflects result with no leave dialog",
+        "result": "pass"
+      },
+      {
+        "role": "personal inspector",
+        "width": 850,
+        "case": "whole menu opens client master, edits and saves source, worker directory reflects result with no leave dialog",
+        "result": "pass"
+      }
+    ]
+  },
+  "native_worker_view_browser": {
+    "scope": "temporary Go server and Chromium WebView-agent UI; Android toolbar/lifecycle/FCM not executed",
+    "results": [
+      {
+        "width": 390,
+        "scheme": "light",
+        "case": "whole menu opens actual worker cards and worker navigation without login",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "scheme": "light",
+        "case": "worker talk and return to administrator preserve session and inspection tab",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "scheme": "dark",
+        "case": "whole menu opens actual worker cards and worker navigation without login",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "scheme": "dark",
+        "case": "worker talk and return to administrator preserve session and inspection tab",
+        "result": "pass"
+      },
+      {
+        "width": 850,
+        "scheme": "light",
+        "case": "whole menu opens actual worker cards and worker navigation without login",
+        "result": "pass"
+      },
+      {
+        "width": 850,
+        "scheme": "light",
+        "case": "worker talk and return to administrator preserve session and inspection tab",
+        "result": "pass"
+      },
+      {
+        "width": 850,
+        "scheme": "dark",
+        "case": "whole menu opens actual worker cards and worker navigation without login",
+        "result": "pass"
+      },
+      {
+        "width": 850,
+        "scheme": "dark",
+        "case": "worker talk and return to administrator preserve session and inspection tab",
+        "result": "pass"
+      }
+    ]
+  },
+  "unchanged_market_reference_version": "1.4.70",
+  "unchanged_web_browser_reference_version": "1.4.66",
+  "native_password_https_contract": "pass",
+  "unified_login_and_fast_entry_browser": {
+    "scope": "actual temporary server in Chromium, example accounts only; no live company passwords or phone biometrics",
+    "results": [
+      {
+        "case": "unified owner login retains correct app identity and role without external passkey link",
+        "result": "pass"
+      },
+      {
+        "case": "owner displayed as wssong in account list",
+        "result": "pass"
+      },
+      {
+        "case": "unified member login retains correct app identity and role without external passkey link",
+        "result": "pass"
+      },
+      {
+        "case": "member cannot manage owner accounts",
+        "result": "pass"
+      },
+      {
+        "case": "light direct worker link immediately shows orders without requesting door animation assets",
+        "result": "pass"
+      },
+      {
+        "case": "light reload remains direct and order actions are available",
+        "result": "pass"
+      },
+      {
+        "case": "dark direct worker link immediately shows orders without requesting door animation assets",
+        "result": "pass"
+      },
+      {
+        "case": "dark reload remains direct and order actions are available",
+        "result": "pass"
+      }
+    ]
+  },
+  "native_admin_app_browser": {
+    "scope": "actual temporary Go server in Chromium with APK user-agent; 390/850, light/dark; not a physical Android execution or live Firebase test",
+    "results": [
+      {
+        "width": 390,
+        "scheme": "light",
+        "case": "APK opens work cards and exact five tabs; modern view even after old classic preference; no horizontal clipping",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "scheme": "light",
+        "case": "calendar opens directly with no work-list flash after deferred scripts",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "scheme": "light",
+        "case": "archive and return to calendar retain the administrator APK navigation",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "scheme": "light",
+        "case": "inspection tab reuses authenticated live requests and count badge",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "scheme": "light",
+        "case": "Talk uses worker-style categories and posting, not moderation-only view",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "scheme": "light",
+        "case": "whole menu exposes field tasks/account/notification controls; PC configuration absent; real admin logout CSRF retained",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "scheme": "dark",
+        "case": "APK opens work cards and exact five tabs; modern view even after old classic preference; no horizontal clipping",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "scheme": "dark",
+        "case": "calendar opens directly with no work-list flash after deferred scripts",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "scheme": "dark",
+        "case": "archive and return to calendar retain the administrator APK navigation",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "scheme": "dark",
+        "case": "inspection tab reuses authenticated live requests and count badge",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "scheme": "dark",
+        "case": "Talk uses worker-style categories and posting, not moderation-only view",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "scheme": "dark",
+        "case": "whole menu exposes field tasks/account/notification controls; PC configuration absent; real admin logout CSRF retained",
+        "result": "pass"
+      },
+      {
+        "width": 850,
+        "scheme": "light",
+        "case": "APK opens work cards and exact five tabs; modern view even after old classic preference; no horizontal clipping",
+        "result": "pass"
+      },
+      {
+        "width": 850,
+        "scheme": "light",
+        "case": "calendar opens directly with no work-list flash after deferred scripts",
+        "result": "pass"
+      },
+      {
+        "width": 850,
+        "scheme": "light",
+        "case": "archive and return to calendar retain the administrator APK navigation",
+        "result": "pass"
+      },
+      {
+        "width": 850,
+        "scheme": "light",
+        "case": "inspection tab reuses authenticated live requests and count badge",
+        "result": "pass"
+      },
+      {
+        "width": 850,
+        "scheme": "light",
+        "case": "Talk uses worker-style categories and posting, not moderation-only view",
+        "result": "pass"
+      },
+      {
+        "width": 850,
+        "scheme": "light",
+        "case": "whole menu exposes field tasks/account/notification controls; PC configuration absent; real admin logout CSRF retained",
+        "result": "pass"
+      },
+      {
+        "width": 850,
+        "scheme": "dark",
+        "case": "APK opens work cards and exact five tabs; modern view even after old classic preference; no horizontal clipping",
+        "result": "pass"
+      },
+      {
+        "width": 850,
+        "scheme": "dark",
+        "case": "calendar opens directly with no work-list flash after deferred scripts",
+        "result": "pass"
+      },
+      {
+        "width": 850,
+        "scheme": "dark",
+        "case": "archive and return to calendar retain the administrator APK navigation",
+        "result": "pass"
+      },
+      {
+        "width": 850,
+        "scheme": "dark",
+        "case": "inspection tab reuses authenticated live requests and count badge",
+        "result": "pass"
+      },
+      {
+        "width": 850,
+        "scheme": "dark",
+        "case": "Talk uses worker-style categories and posting, not moderation-only view",
+        "result": "pass"
+      },
+      {
+        "width": 850,
+        "scheme": "dark",
+        "case": "whole menu exposes field tasks/account/notification controls; PC configuration absent; real admin logout CSRF retained",
+        "result": "pass"
+      },
+      {
+        "case": "unchanged normal browser ",
+        "result": "pass"
+      },
+      {
+        "case": "unchanged normal browser work",
+        "result": "pass"
+      },
+      {
+        "case": "existing setting approval posts through app without leaving-site dialog",
+        "result": "pass"
+      },
+      {
+        "case": "Talk post persists using the original worker form without leaving-site dialog",
+        "result": "pass"
+      }
+    ]
+  },
+  "in_app_apk_update": "fixed source + SHA-256 + installed signer verification; explicit Android installer approval; real device installation untested",
+  "owner_username": "wssong",
+  "worker_door_animation": false,
+  "native_login_selection": "first login only; warm foreground preserves work and cold startup validates saved capability using connection UI instead of login form; logout/revocation disables restore; native lifecycle not executed",
+  "native_biometric_unlock": "manual OS authentication for the saved account; physical sensor not tested",
+  "native_admin_android": {
+    "version": "1.0.10",
+    "package": "com.alpharobotics.admin",
+    "min_sdk": 26,
+    "target_sdk": 35,
+    "apk_bytes": 2105640,
+    "apk_sha256": "6545ca86490231c16c734ca843bdc3a95894c8be18389409a99aa35ac0310942",
+    "release_build": "pass",
+    "junit_tests": 30,
+    "lint_errors": 0,
+    "lint_warnings": 3,
+    "signature_v2": "pass",
+    "physical_phone_and_live_fcm": "not tested; existing configured Firebase reused by purchasing; company PC and Android runtime verification required",
+    "persistent_login": "server capabilities stored hashed; Android Keystore AES-GCM; manual logout or account/device revocation invalidates; normal browser session TTL unchanged"
+  },
+  "native_auth_push_and_race": "pass",
+  "unchanged_worker_pwa_reference_version": "1.4.63",
+  "installed_app_theme_browser": {
+    "scope": "real Go server via simulated HTTPS app/tunnel origins; actual theme buttons; PC/phone device light/dark; delayed UI script first-paint check; no physical Android forced-night-mode test",
+    "results": [
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "case": "light button immediately makes worker and app shell light even with device dark; only-light color scheme",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "case": "light theme is present before deferred UI executes on next page",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "case": "app reload without QR preserves explicit light",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "case": "tunnel address change preserves light at shell and worker",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "case": "explicit dark also synchronizes regardless of light device",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "case": "system mode follows device after manual overrides; no script errors",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "case": "light button immediately makes worker and app shell light even with device dark; only-light color scheme",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "case": "light theme is present before deferred UI executes on next page",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "case": "app reload without QR preserves explicit light",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "case": "tunnel address change preserves light at shell and worker",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "case": "explicit dark also synchronizes regardless of light device",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "case": "system mode follows device after manual overrides; no script errors",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "case": "light button immediately makes worker and app shell light even with device dark; only-light color scheme",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "case": "light theme is present before deferred UI executes on next page",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "case": "app reload without QR preserves explicit light",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "case": "tunnel address change preserves light at shell and worker",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "case": "explicit dark also synchronizes regardless of light device",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "case": "system mode follows device after manual overrides; no script errors",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "case": "light button immediately makes worker and app shell light even with device dark; only-light color scheme",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "case": "light theme is present before deferred UI executes on next page",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "case": "app reload without QR preserves explicit light",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "case": "tunnel address change preserves light at shell and worker",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "case": "explicit dark also synchronizes regardless of light device",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "case": "system mode follows device after manual overrides; no script errors",
+        "result": "pass"
+      }
+    ]
+  },
+  "unchanged_shipment_viewer_reference_version": "1.4.62",
+  "shipment_photo_viewer_browser": {
+    "scope": "actual temporary Go server; admin/worker; PC/phone light/dark; actual Chromium CDP touch gestures; stored photos unchanged; physical phone not tested",
+    "results": [
+      {
+        "admin": false,
+        "mobile": false,
+        "scheme": "light",
+        "case": "middle photo opens; next/end boundary and keyboard; original download retained",
+        "result": "pass"
+      },
+      {
+        "admin": false,
+        "mobile": false,
+        "scheme": "light",
+        "case": "real browser touch swipe both directions; pinch zoom and one-finger pan do not advance photo",
+        "result": "pass"
+      },
+      {
+        "admin": false,
+        "mobile": false,
+        "scheme": "light",
+        "case": "close restores thumbnail focus; reopen resets; special group isolated; no script errors",
+        "result": "pass"
+      },
+      {
+        "admin": false,
+        "mobile": false,
+        "scheme": "dark",
+        "case": "middle photo opens; next/end boundary and keyboard; original download retained",
+        "result": "pass"
+      },
+      {
+        "admin": false,
+        "mobile": false,
+        "scheme": "dark",
+        "case": "real browser touch swipe both directions; pinch zoom and one-finger pan do not advance photo",
+        "result": "pass"
+      },
+      {
+        "admin": false,
+        "mobile": false,
+        "scheme": "dark",
+        "case": "close restores thumbnail focus; reopen resets; special group isolated; no script errors",
+        "result": "pass"
+      },
+      {
+        "admin": false,
+        "mobile": true,
+        "scheme": "light",
+        "case": "middle photo opens; next/end boundary and keyboard; original download retained",
+        "result": "pass"
+      },
+      {
+        "admin": false,
+        "mobile": true,
+        "scheme": "light",
+        "case": "real browser touch swipe both directions; pinch zoom and one-finger pan do not advance photo",
+        "result": "pass"
+      },
+      {
+        "admin": false,
+        "mobile": true,
+        "scheme": "light",
+        "case": "close restores thumbnail focus; reopen resets; special group isolated; no script errors",
+        "result": "pass"
+      },
+      {
+        "admin": false,
+        "mobile": true,
+        "scheme": "dark",
+        "case": "middle photo opens; next/end boundary and keyboard; original download retained",
+        "result": "pass"
+      },
+      {
+        "admin": false,
+        "mobile": true,
+        "scheme": "dark",
+        "case": "real browser touch swipe both directions; pinch zoom and one-finger pan do not advance photo",
+        "result": "pass"
+      },
+      {
+        "admin": false,
+        "mobile": true,
+        "scheme": "dark",
+        "case": "close restores thumbnail focus; reopen resets; special group isolated; no script errors",
+        "result": "pass"
+      },
+      {
+        "admin": true,
+        "mobile": false,
+        "scheme": "light",
+        "case": "middle photo opens; next/end boundary and keyboard; original download retained",
+        "result": "pass"
+      },
+      {
+        "admin": true,
+        "mobile": false,
+        "scheme": "light",
+        "case": "real browser touch swipe both directions; pinch zoom and one-finger pan do not advance photo",
+        "result": "pass"
+      },
+      {
+        "admin": true,
+        "mobile": false,
+        "scheme": "light",
+        "case": "close restores thumbnail focus; reopen resets; special group isolated; no script errors",
+        "result": "pass"
+      },
+      {
+        "admin": true,
+        "mobile": false,
+        "scheme": "dark",
+        "case": "middle photo opens; next/end boundary and keyboard; original download retained",
+        "result": "pass"
+      },
+      {
+        "admin": true,
+        "mobile": false,
+        "scheme": "dark",
+        "case": "real browser touch swipe both directions; pinch zoom and one-finger pan do not advance photo",
+        "result": "pass"
+      },
+      {
+        "admin": true,
+        "mobile": false,
+        "scheme": "dark",
+        "case": "close restores thumbnail focus; reopen resets; special group isolated; no script errors",
+        "result": "pass"
+      },
+      {
+        "admin": true,
+        "mobile": true,
+        "scheme": "light",
+        "case": "middle photo opens; next/end boundary and keyboard; original download retained",
+        "result": "pass"
+      },
+      {
+        "admin": true,
+        "mobile": true,
+        "scheme": "light",
+        "case": "real browser touch swipe both directions; pinch zoom and one-finger pan do not advance photo",
+        "result": "pass"
+      },
+      {
+        "admin": true,
+        "mobile": true,
+        "scheme": "light",
+        "case": "close restores thumbnail focus; reopen resets; special group isolated; no script errors",
+        "result": "pass"
+      },
+      {
+        "admin": true,
+        "mobile": true,
+        "scheme": "dark",
+        "case": "middle photo opens; next/end boundary and keyboard; original download retained",
+        "result": "pass"
+      },
+      {
+        "admin": true,
+        "mobile": true,
+        "scheme": "dark",
+        "case": "real browser touch swipe both directions; pinch zoom and one-finger pan do not advance photo",
+        "result": "pass"
+      },
+      {
+        "admin": true,
+        "mobile": true,
+        "scheme": "dark",
+        "case": "close restores thumbnail focus; reopen resets; special group isolated; no script errors",
+        "result": "pass"
+      }
+    ]
+  },
+  "installed_app_current_version": "1.4.63",
+  "installed_worker_app_browser": {
+    "scope": "real temporary Go application behind simulated HTTPS stable Pages/tunnel routes; actual Talk photo save, archive upload, partitioned cookies, address and version swaps; worker activation signal simulated (real cache install in separate test); redirect303 at the intercepted HTTPS boundary simulated with HTML refresh; desktop and phone; Android installer itself not run",
+    "results": [
+      {
+        "mobile": true,
+        "case": "stable app origin, board remembered, hash-free next launch opens worker without QR",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "case": "standalone manifest, app icons and manual installation guidance",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "case": "endpoint update held while post text/photo draft exists",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "case": "photo post saved without leave prompt, app reconnects, stable partitioned author can edit after address change",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "case": "same-server release deferred during selected photo; native save archives first and latest view opens",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "case": "app worker activation held during draft; shell restarts only after save and returns to saved record",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "case": "stable app origin, board remembered, hash-free next launch opens worker without QR",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "case": "standalone manifest, app icons and manual installation guidance",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "case": "endpoint update held while post text/photo draft exists",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "case": "photo post saved without leave prompt, app reconnects, stable partitioned author can edit after address change",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "case": "same-server release deferred during selected photo; native save archives first and latest view opens",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "case": "app worker activation held during draft; shell restarts only after save and returns to saved record",
+        "result": "pass"
+      }
+    ]
+  },
+  "app_service_worker_browser": {
+    "scope": "real localhost secure-context service worker install, app asset cache and offline relaunch; no worker orders/photos cached",
+    "results": [
+      {
+        "case": "worker installs and claims app scope",
+        "result": "pass"
+      },
+      {
+        "case": "only10 app shell assets cached",
+        "result": "pass"
+      },
+      {
+        "case": "offline shell reload and online return",
+        "result": "pass"
+      }
+    ]
+  },
+  "pages_app": {
+    "version": "1.4.63",
+    "destination": "https://swsgood79-beep.github.io/Tool/app/",
+    "assets": {
+      "app.css": "e90d2a311d1f652054219242b02ca28ba8d399ea0c9b6899f5a46dc6b6e7f89d",
+      "app.js": "6180eb7127d97d605db94899488cdd843b1b4fa2772ea628dca7d65ba4acb608",
+      "icon-192.png": "56c22fad8d356beac504383707c067ce5d65005a5c92af205bb2e97ca9b7c777",
+      "icon-512.png": "cc2f6870bfa10f231fef7a3b2e5cb1352ef443b271bff49c0ed5f9952321d0c6",
+      "icon-maskable.png": "16dabf875c55c54a19bd883c9babdd848fc9c3b5deb0ba219f784ef10f28c4db",
+      "icon.svg": "8602cada006ae2a7e21d60df85b477b87e6de473589006a49bdceeb6fbe71f2c",
+      "index.html": "e4ce87c7e677fc61bbc761e4c329e054f4ee2af44775e3b53b4545248720dd05",
+      "manifest.webmanifest": "b50f479a5050b705160448eb7693ec84823d8259643bcbadc2e55944a2a0763e",
+      "sw.js": "f418f1f6950efcca83118a1f7ebbf1ed833f2a1e536fe36a74e2fef59fcd71e7",
+      "theme-bootstrap.js": "c70140294ab723f725f1061e4ae330be71b64c27b3cf0bae33ababc36ebad75d"
+    },
+    "pages_previous_commit": "5bfcf57ec645f85a61102af0be5b58068755a394",
+    "pages_host_access": "environment proxy blocks direct Pages host; public raw asset hashes verified after publication",
+    "physical_android_forced_dark_mode": "not tested; actual theme buttons and computed colors verified in Chromium device-dark/light contexts",
+    "pages_commit": "cb498955bb7f8ee91b60d106d3cf1b521a649b14"
+  },
+  "unchanged_photo_limit_reference_version": "1.4.60",
+  "shipping_thirty_photo_browser": {
+    "scope": "actual temporary Go server; 8 records and 240 saved photos; PC/phone light/dark; no company data",
+    "results": [
+      {
+        "mobile": false,
+        "scheme": "light",
+        "case": "31 selection rejected; 30 initial photos archived; addition hidden at cap",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "case": "existing 20 retained; 11 additions rejected; 10 added to total30; no leave prompt",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "case": "31 selection rejected; 30 initial photos archived; addition hidden at cap",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "case": "existing 20 retained; 11 additions rejected; 10 added to total30; no leave prompt",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "case": "31 selection rejected; 30 initial photos archived; addition hidden at cap",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "case": "existing 20 retained; 11 additions rejected; 10 added to total30; no leave prompt",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "case": "31 selection rejected; 30 initial photos archived; addition hidden at cap",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "case": "existing 20 retained; 11 additions rejected; 10 added to total30; no leave prompt",
+        "result": "pass"
+      }
+    ]
+  },
+  "unchanged_admin_grid_reference_version": "1.4.59",
+  "admin_card_grid_browser": {
+    "scope": "actual temporary Go server; PC, tablet breakpoints and phone; light/dark; no company data",
+    "results": [
+      {
+        "width": 1100,
+        "scheme": "light",
+        "case": "two columns >=760 and one on phone; no horizontal page overflow",
+        "result": "pass"
+      },
+      {
+        "width": 1100,
+        "scheme": "light",
+        "case": "admin details toggle and original edit/inspection links retained",
+        "result": "pass"
+      },
+      {
+        "width": 1100,
+        "scheme": "light",
+        "case": "search and today filter retained; date header spans both columns",
+        "result": "pass"
+      },
+      {
+        "width": 1100,
+        "scheme": "dark",
+        "case": "two columns >=760 and one on phone; no horizontal page overflow",
+        "result": "pass"
+      },
+      {
+        "width": 1100,
+        "scheme": "dark",
+        "case": "admin details toggle and original edit/inspection links retained",
+        "result": "pass"
+      },
+      {
+        "width": 1100,
+        "scheme": "dark",
+        "case": "search and today filter retained; date header spans both columns",
+        "result": "pass"
+      },
+      {
+        "width": 850,
+        "scheme": "light",
+        "case": "two columns >=760 and one on phone; no horizontal page overflow",
+        "result": "pass"
+      },
+      {
+        "width": 850,
+        "scheme": "light",
+        "case": "admin details toggle and original edit/inspection links retained",
+        "result": "pass"
+      },
+      {
+        "width": 850,
+        "scheme": "light",
+        "case": "search and today filter retained; date header spans both columns",
+        "result": "pass"
+      },
+      {
+        "width": 850,
+        "scheme": "dark",
+        "case": "two columns >=760 and one on phone; no horizontal page overflow",
+        "result": "pass"
+      },
+      {
+        "width": 850,
+        "scheme": "dark",
+        "case": "admin details toggle and original edit/inspection links retained",
+        "result": "pass"
+      },
+      {
+        "width": 850,
+        "scheme": "dark",
+        "case": "search and today filter retained; date header spans both columns",
+        "result": "pass"
+      },
+      {
+        "width": 760,
+        "scheme": "light",
+        "case": "two columns >=760 and one on phone; no horizontal page overflow",
+        "result": "pass"
+      },
+      {
+        "width": 760,
+        "scheme": "light",
+        "case": "admin details toggle and original edit/inspection links retained",
+        "result": "pass"
+      },
+      {
+        "width": 760,
+        "scheme": "light",
+        "case": "search and today filter retained; date header spans both columns",
+        "result": "pass"
+      },
+      {
+        "width": 760,
+        "scheme": "dark",
+        "case": "two columns >=760 and one on phone; no horizontal page overflow",
+        "result": "pass"
+      },
+      {
+        "width": 760,
+        "scheme": "dark",
+        "case": "admin details toggle and original edit/inspection links retained",
+        "result": "pass"
+      },
+      {
+        "width": 760,
+        "scheme": "dark",
+        "case": "search and today filter retained; date header spans both columns",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "scheme": "light",
+        "case": "two columns >=760 and one on phone; no horizontal page overflow",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "scheme": "light",
+        "case": "admin details toggle and original edit/inspection links retained",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "scheme": "light",
+        "case": "search and today filter retained; date header spans both columns",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "scheme": "dark",
+        "case": "two columns >=760 and one on phone; no horizontal page overflow",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "scheme": "dark",
+        "case": "admin details toggle and original edit/inspection links retained",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "scheme": "dark",
+        "case": "search and today filter retained; date header spans both columns",
+        "result": "pass"
+      },
+      {
+        "case": "classic administrator layout remains unchanged",
+        "result": "pass"
+      }
+    ]
+  },
+  "unchanged_worker_alarm_reference_version": "1.4.58",
+  "worker_all_page_alarm_browser": {
+    "scope": "actual temporary Go server, real inspection requests and public poll; audio media and AudioContext simulated; no physical speaker test; phone/PC light/dark",
+    "results": [
+      {
+        "mobile": false,
+        "scheme": "light",
+        "path": "/work/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8?entry=skip",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "path": "/work/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8?entry=skip&design-tab=calendar",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "path": "/shipping-records/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "path": "/shipping-records/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/OqENCJflwU_2_klrdviX5M1InP6QlEvbz4zzjoElsBI",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/new",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/w-QtfxtUZkT4W-n-CWvFtQfpNAHUHE8TNkoK6-f1mz4",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "path": "/client-directory/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "path": "/project-info/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/1",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "path": "/notices/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "path": "/notices/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/56NT1hxWRoBsD7MmCBiZe2iqY39oaw_OR-YJ8s4xhJY",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "case": "explicit OFF survives page switch",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "path": "/work/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8?entry=skip",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "path": "/work/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8?entry=skip&design-tab=calendar",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "path": "/shipping-records/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "path": "/shipping-records/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/OqENCJflwU_2_klrdviX5M1InP6QlEvbz4zzjoElsBI",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/new",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/w-QtfxtUZkT4W-n-CWvFtQfpNAHUHE8TNkoK6-f1mz4",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "path": "/client-directory/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "path": "/project-info/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/1",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "path": "/notices/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "path": "/notices/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/56NT1hxWRoBsD7MmCBiZe2iqY39oaw_OR-YJ8s4xhJY",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "case": "explicit OFF survives page switch",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "path": "/work/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8?entry=skip",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "path": "/work/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8?entry=skip&design-tab=calendar",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "path": "/shipping-records/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "path": "/shipping-records/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/OqENCJflwU_2_klrdviX5M1InP6QlEvbz4zzjoElsBI",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/new",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/w-QtfxtUZkT4W-n-CWvFtQfpNAHUHE8TNkoK6-f1mz4",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "path": "/client-directory/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "path": "/project-info/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/1",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "path": "/notices/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "path": "/notices/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/56NT1hxWRoBsD7MmCBiZe2iqY39oaw_OR-YJ8s4xhJY",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "case": "explicit OFF survives page switch",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "path": "/work/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8?entry=skip",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "path": "/work/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8?entry=skip&design-tab=calendar",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "path": "/shipping-records/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "path": "/shipping-records/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/OqENCJflwU_2_klrdviX5M1InP6QlEvbz4zzjoElsBI",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/new",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "path": "/community/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/w-QtfxtUZkT4W-n-CWvFtQfpNAHUHE8TNkoK6-f1mz4",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "path": "/client-directory/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "path": "/project-info/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/1",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "path": "/notices/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "path": "/notices/DfMpbHRkIpzd1jagdRJbP7gehqiQzIlkE9fiic_y7K8/56NT1hxWRoBsD7MmCBiZe2iqY39oaw_OR-YJ8s4xhJY",
+        "case": "actual poll receives new inspection; ding-dong called and event audio requested",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "case": "explicit OFF survives page switch",
+        "result": "pass"
+      }
+    ]
+  },
+  "unchanged_calendar_reference_version": "1.4.57",
+  "calendar_navigation_browser": {
+    "scope": "actual temporary Go server; design script held until after two animation frames; initial worker list hidden before script; fresh session storage; phone/PC light/dark; no company data",
+    "results": [
+      {
+        "mobile": true,
+        "scheme": "light",
+        "source": "upper",
+        "phase": "before deferred design script; work list never exposed",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "source": "upper",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "source": "bottom",
+        "phase": "before deferred design script; work list never exposed",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "source": "bottom",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "source": "menu",
+        "phase": "before deferred design script; work list never exposed",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "source": "menu",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "light",
+        "source": "initial entry retained",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "source": "upper",
+        "phase": "before deferred design script; work list never exposed",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "source": "upper",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "source": "bottom",
+        "phase": "before deferred design script; work list never exposed",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "source": "bottom",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "source": "menu",
+        "phase": "before deferred design script; work list never exposed",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "source": "menu",
+        "result": "pass"
+      },
+      {
+        "mobile": true,
+        "scheme": "dark",
+        "source": "initial entry retained",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "source": "upper",
+        "phase": "before deferred design script; work list never exposed",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "source": "upper",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "source": "bottom",
+        "phase": "before deferred design script; work list never exposed",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "source": "bottom",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "source": "menu",
+        "phase": "before deferred design script; work list never exposed",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "source": "menu",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "light",
+        "source": "initial entry retained",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "source": "upper",
+        "phase": "before deferred design script; work list never exposed",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "source": "upper",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "source": "bottom",
+        "phase": "before deferred design script; work list never exposed",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "source": "bottom",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "source": "menu",
+        "phase": "before deferred design script; work list never exposed",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "source": "menu",
+        "result": "pass"
+      },
+      {
+        "mobile": false,
+        "scheme": "dark",
+        "source": "initial entry retained",
+        "result": "pass"
+      }
+    ]
+  },
+  "historical_accounts_reference_version": "1.4.55",
+  "unchanged_worker_submission_reference_version": "1.4.61",
+  "individual_account_browser": {
+    "scope": "actual temporary Go server and separate Chromium contexts representing owner PC and colleague PC; PC/mobile light/dark incl 320px; no company data",
+    "results": [
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "owner creates named account, independent browser logs in, account ownership and forbidden controls enforced",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "colleague completes existing combined inspection and owner sees same result",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "own password, owner reset, disable and re-enable only affect target account; native saves have no leave prompt",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "owner creates named account, independent browser logs in, account ownership and forbidden controls enforced",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "colleague completes existing combined inspection and owner sees same result",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "own password, owner reset, disable and re-enable only affect target account; native saves have no leave prompt",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "owner creates named account, independent browser logs in, account ownership and forbidden controls enforced",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "colleague completes existing combined inspection and owner sees same result",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "own password, owner reset, disable and re-enable only affect target account; native saves have no leave prompt",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "owner creates named account, independent browser logs in, account ownership and forbidden controls enforced",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "colleague completes existing combined inspection and owner sees same result",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "own password, owner reset, disable and re-enable only affect target account; native saves have no leave prompt",
+        "result": "pass"
+      },
+      {
+        "case": "legacy owner password sign-in remains compatible after named accounts are created",
+        "result": "pass"
+      }
+    ]
+  },
+  "unchanged_archive_cancel_reference_version": "1.4.53",
+  "archive_cancel_browser": {
+    "scope": "actual temporary Go server/Chromium admin archive photo delete -> photo pending -> inspection cancel -> pending removed; explicit recovery; company data untouched",
+    "results": [
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "admin archive deletion resets photo requirement instead of deleting completed order obligation",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "archive -> delete photos -> photo required -> admin cancels inspections -> pending task disappears and stale upload page is invalid",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "manual repair of record deleted in older release; live inspection state verified unchanged by Go",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "admin archive deletion resets photo requirement instead of deleting completed order obligation",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "archive -> delete photos -> photo required -> admin cancels inspections -> pending task disappears and stale upload page is invalid",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "manual repair of record deleted in older release; live inspection state verified unchanged by Go",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "admin archive deletion resets photo requirement instead of deleting completed order obligation",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "archive -> delete photos -> photo required -> admin cancels inspections -> pending task disappears and stale upload page is invalid",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "manual repair of record deleted in older release; live inspection state verified unchanged by Go",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "admin archive deletion resets photo requirement instead of deleting completed order obligation",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "archive -> delete photos -> photo required -> admin cancels inspections -> pending task disappears and stale upload page is invalid",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "manual repair of record deleted in older release; live inspection state verified unchanged by Go",
+        "result": "pass"
+      }
+    ]
+  },
+  "archive_reset_browser": {
+    "scope": "actual temporary Go server/Chromium admin delete -> worker pending -> photo reupload; explicit recovery; company data untouched",
+    "results": [
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "admin archive deletion resets photo requirement instead of deleting completed order obligation",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "worker sees restored pending task and can rearchive with photos without leave prompt",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "manual repair of record deleted in older release; live inspection state verified unchanged by Go",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "admin archive deletion resets photo requirement instead of deleting completed order obligation",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "worker sees restored pending task and can rearchive with photos without leave prompt",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "manual repair of record deleted in older release; live inspection state verified unchanged by Go",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "admin archive deletion resets photo requirement instead of deleting completed order obligation",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "worker sees restored pending task and can rearchive with photos without leave prompt",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "manual repair of record deleted in older release; live inspection state verified unchanged by Go",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "admin archive deletion resets photo requirement instead of deleting completed order obligation",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "worker sees restored pending task and can rearchive with photos without leave prompt",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "manual repair of record deleted in older release; live inspection state verified unchanged by Go",
+        "result": "pass"
+      }
+    ]
+  },
+  "unchanged_regression_reference_version": "1.4.51",
+  "archive_browser": {
+    "scope": "real temporary Go app + Chromium PC/mobile light/dark incl 320px; no company data; archive date verified by Go",
+    "results": [
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "20-row pages and month grouping with full month counts",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "archive-date periods and inclusive custom dates; sort and page preserve filters without leave prompts",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "append two packaging photos, retain originals and archive date, no beforeunload on valid native POST; cancel clears draft and real exit stays protected",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "duplicate append submission is harmless",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "20-row pages and month grouping with full month counts",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "archive-date periods and inclusive custom dates; sort and page preserve filters without leave prompts",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "append two packaging photos, retain originals and archive date, no beforeunload on valid native POST; cancel clears draft and real exit stays protected",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "duplicate append submission is harmless",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "20-row pages and month grouping with full month counts",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "archive-date periods and inclusive custom dates; sort and page preserve filters without leave prompts",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "append two packaging photos, retain originals and archive date, no beforeunload on valid native POST; cancel clears draft and real exit stays protected",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "duplicate append submission is harmless",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "20-row pages and month grouping with full month counts",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "archive-date periods and inclusive custom dates; sort and page preserve filters without leave prompts",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "append two packaging photos, retain originals and archive date, no beforeunload on valid native POST; cancel clears draft and real exit stays protected",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "duplicate append submission is harmless",
+        "result": "pass"
+      }
+    ]
+  },
+  "worker_submission_browser": {
+    "scope": "Actual temporary Go app, real Chromium native/fetch submissions; mobile/PC light/dark; no company data; physical Samsung not tested",
+    "results": [
+      {
+        "case": "baseline reproduced",
+        "result": "pass",
+        "detail": "v46 helper shows beforeunload and blocks normal note POST"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "setting async inspection request",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "shipping async inspection request",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "combined async inspection request",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "native note message",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "Talk text post",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "Talk photo upload and edit",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "Talk comment",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "Talk like and unlike",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "Talk comment delete",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "Talk post delete; explicit delete confirm retained",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "search submit and category navigation after search input",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "invalid and cancelled submit retains draft-exit guard",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "setting async inspection request",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "shipping async inspection request",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "combined async inspection request",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "native note message",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "Talk text post",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "Talk photo upload and edit",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "Talk comment",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "Talk like and unlike",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "Talk comment delete",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "Talk post delete; explicit delete confirm retained",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "search submit and category navigation after search input",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "invalid and cancelled submit retains draft-exit guard",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "setting async inspection request",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "shipping async inspection request",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "combined async inspection request",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "native note message",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "Talk text post",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "Talk photo upload and edit",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "Talk comment",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "Talk like and unlike",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "Talk comment delete",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "Talk post delete; explicit delete confirm retained",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "search submit and category navigation after search input",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "invalid and cancelled submit retains draft-exit guard",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "setting async inspection request",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "shipping async inspection request",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "combined async inspection request",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "native note message",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "Talk text post",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "Talk photo upload and edit",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "Talk comment",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "Talk like and unlike",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "Talk comment delete",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "Talk post delete; explicit delete confirm retained",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "search submit and category navigation after search input",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "invalid and cancelled submit retains draft-exit guard",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "case": "setting native inspection fallback",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "case": "shipping native inspection fallback",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "case": "combined native inspection fallback",
+        "result": "pass"
+      }
+    ]
+  },
+  "publication": "GitHub recovery-v2.39.1 source and Windows download package",
+  "shipping_browser": {
+    "scope": "actual temporary Go server and Chromium; company data untouched; source removed before all uploads",
+    "results": [
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "compact people information, phone call retained, responsive three-column or stacked rows and optional material scroll region",
+        "result": "pass"
+      },
+      {
+        "case": "immutable card designer call / material receipt after source removal",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "20 photos accumulated and mandatory completion without leave prompt; scroll and no horizontal overflow",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "simplified archive search, detail, thumbnail and shipping navigation",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "light",
+        "case": "archived detail retains people, inspection dates, Excel-colored material receipt table and uploaded photos",
+        "result": "pass"
+      },
+      {
+        "device": "320px phone",
+        "scheme": "light",
+        "case": "narrow phone has table-only horizontal scroll and no page overflow",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "compact people information, phone call retained, responsive three-column or stacked rows and optional material scroll region",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "20 photos accumulated and mandatory completion without leave prompt; scroll and no horizontal overflow",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "simplified archive search, detail, thumbnail and shipping navigation",
+        "result": "pass"
+      },
+      {
+        "device": "phone",
+        "scheme": "dark",
+        "case": "archived detail retains people, inspection dates, Excel-colored material receipt table and uploaded photos",
+        "result": "pass"
+      },
+      {
+        "device": "320px phone",
+        "scheme": "dark",
+        "case": "narrow phone has table-only horizontal scroll and no page overflow",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "compact people information, phone call retained, responsive three-column or stacked rows and optional material scroll region",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "20 photos accumulated and mandatory completion without leave prompt; scroll and no horizontal overflow",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "simplified archive search, detail, thumbnail and shipping navigation",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "light",
+        "case": "archived detail retains people, inspection dates, Excel-colored material receipt table and uploaded photos",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "compact people information, phone call retained, responsive three-column or stacked rows and optional material scroll region",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "20 photos accumulated and mandatory completion without leave prompt; scroll and no horizontal overflow",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "simplified archive search, detail, thumbnail and shipping navigation",
+        "result": "pass"
+      },
+      {
+        "device": "PC",
+        "scheme": "dark",
+        "case": "archived detail retains people, inspection dates, Excel-colored material receipt table and uploaded photos",
+        "result": "pass"
+      }
+    ]
+  },
+  "version": "1.4.78",
+  "change": "Add shared-APK purchasing role and restricted queue; workers send name-only order calls; designated recipient receives isolated purchasing FCM; complete oldest calls and advance; preserve existing administrator behavior and persistent login",
+  "exe_sha256": "b76c6a10ae4f11e6c0d7c139101f4f990c18719e07691f454c2b9153a0a0185c",
+  "exe_bytes": 49288192,
+  "target": "windows/amd64 GUI CGO_ENABLED=0",
+  "original_assets_verified": 57,
+  "go_test_all": "pass",
+  "go_test_race_reference_version": "1.4.54",
+  "optional_tests_skipped": [
+    "TestIndividualAdminAccountsBrowser (0.00s)",
+    "TestAdminOrderGridBrowser (0.00s)",
+    "TestCalendarNavigationBrowser (0.00s)",
+    "TestUploadedScheduleIfProvided (0.00s)",
+    "TestMaterialReceiptBrowserFixture (0.00s)",
+    "TestMaterialReceiptUploadedWorkbook (0.00s)",
+    "TestNativeAdminAppBrowser (0.00s)",
+    "TestNativeClientMenuBrowser (0.00s)",
+    "TestNativeThemeBrowser (0.00s)",
+    "TestNativeWorkerViewBrowser (0.00s)",
+    "TestPurchasingBrowser (0.00s)",
+    "TestShipmentPhotoViewerBrowser (0.00s)",
+    "TestShippingArchiveAddAndListBrowser (0.00s)",
+    "TestShippingArchiveCancelBrowser (0.00s)",
+    "TestShippingArchiveResetBrowser (0.00s)",
+    "TestShippingPhotoDeleteBrowser (0.00s)",
+    "TestShippingThirtyPhotoBrowser (0.00s)",
+    "TestShippingThirtyPhotoMobileCompatibilityBrowser (0.00s)",
+    "TestShippingMobilePhotoBrowser (0.00s)",
+    "TestShippingRecordsBrowser (0.00s)",
+    "TestTalkReadBrowserAcrossOrigins (0.00s)",
+    "TestTalkSubmitBrowserIntegration (0.00s)",
+    "TestUnifiedLoginAndFastWorkerBrowser (0.00s)",
+    "TestNativeAdminAppCurrentBrowser (0.00s)",
+    "TestWorkerAlarmAllPagesBrowser (0.00s)",
+    "TestWorkerAppThemeBrowser (0.00s)",
+    "TestWorkerAppBrowser (0.00s)",
+    "TestWorkerAppServiceWorkerBrowser (0.00s)",
+    "TestWorkerAllSubmissionsBrowser (0.00s)"
+  ],
+  "go_vet_linux": "pass",
+  "go_vet_windows": "pass",
+  "worker_reconnect_browser": {
+    "scope": "Real Chromium service worker on loopback secure context with Go-rendered worker HTML and actual shipped scripts; public endpoints mocked and DNS blocked; no company traffic",
+    "results": [
+      {
+        "width": 390,
+        "case": "manual reload while old origin offline",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "case": "automatic recovery of existing tab",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "case": "open inspection draft preserved with new-tab recovery",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "case": "POST not replayed and no content cache",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "case": "offline pointer waits and later recovers",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "case": "other worker pages preserve path and filters",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "case": "shipment archive recovery pending search",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "case": "shipment archive recovery detail",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "case": "admin/auth navigation remains untouched",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "case": "same-origin version refresh without loop",
+        "result": "pass"
+      },
+      {
+        "width": 390,
+        "case": "invalid pointer never redirects",
+        "result": "pass"
+      },
+      {
+        "width": 1100,
+        "case": "manual reload while old origin offline",
+        "result": "pass"
+      },
+      {
+        "width": 1100,
+        "case": "automatic recovery of existing tab",
+        "result": "pass"
+      },
+      {
+        "width": 1100,
+        "case": "open inspection draft preserved with new-tab recovery",
+        "result": "pass"
+      },
+      {
+        "width": 1100,
+        "case": "POST not replayed and no content cache",
+        "result": "pass"
+      },
+      {
+        "width": 1100,
+        "case": "offline pointer waits and later recovers",
+        "result": "pass"
+      },
+      {
+        "width": 1100,
+        "case": "other worker pages preserve path and filters",
+        "result": "pass"
+      },
+      {
+        "width": 1100,
+        "case": "shipment archive recovery pending search",
+        "result": "pass"
+      },
+      {
+        "width": 1100,
+        "case": "shipment archive recovery detail",
+        "result": "pass"
+      },
+      {
+        "width": 1100,
+        "case": "admin/auth navigation remains untouched",
+        "result": "pass"
+      },
+      {
+        "width": 1100,
+        "case": "same-origin version refresh without loop",
+        "result": "pass"
+      },
+      {
+        "width": 1100,
+        "case": "invalid pointer never redirects",
+        "result": "pass"
+      }
+    ]
+  },
+  "pages_bridge": {
+    "commit": "724c4ac",
+    "branch": "gh-pages",
+    "public_page": "https://swsgood79-beep.github.io/Tool/talk-reader.html",
+    "source_sha256": {
+      "talk-reader-bridge-v1.4.47.html": "efc3c74524b201dd39db48d6629bdf972d61ab01d2b7bb8d5607fb6d964022d3",
+      "talk-reader-bridge-v1.4.47.js": "3a92f94f09b8e2a2666afce2c6522a8a1e9961cc1dd10854b019fc9df0db61e5"
+    },
+    "public_raw_script_matches": true,
+    "live_pages_check": "existing root and new page both blocked by execution environment HTTP 403; not verified live"
+  },
+  "windows_execution": "not tested; cross-build only",
+  "operating_data": "existing operating directory or explicitly scheduled verified custom directory; existing configured data directory respected; new optional ShippingRecords extension and independent photos; no historical completed-order migration",
+  "preview_preference": "browser-local alpha-design-default-v2; default modern; optional legacy fallback; theme follows device with manual override",
+  "native_window": "existing Win32 layout preserved; this release promotes the modern web UI",
+  "source_files": {
+    "activity_rejection_test.go": "8efa045e6a05bc787743d68e0e86aab002ffd777a7a1f0f89937ee97f01622ea",
+    "admin_accounts.go": "f345bf91469c2f18efc3826fb20a113c92a1528182c004dbe0d8c30f4f7e1b6c",
+    "admin_accounts_browser_test.go": "0973b50db885b457b84d75711ec7b2005f2a1f24c98cdd52502751f00cb8ea05",
+    "admin_accounts_test.go": "9ec160e4aab72aa078260dfc2bf9cf26f89d084295f3dc55c8abc2b52d138262",
+    "admin_accounts_validation_test.go": "fcf20d84a550eb3044082b5aef2776c2b7e2618d354a2ab04050894708afdc39",
+    "admin_order_grid_browser_test.go": "560c9ebe1c70297fa1bc3bf3b8b5ad45115913f73bdca12158d7019768e0578c",
+    "announcements.go": "ce91075e1a3c4bc7f8ef797634982b7fbaf9d9b6458de38fd84bfb1cd8b69cba",
+    "announcements_test.go": "4c15820c46c3b949660231dd98d01a7d13e661d822b75d6593397e4f826d15b8",
+    "approved_order_card_test.go": "7ebed7368bde695f334e95bd348590f8db457ce141a4ae07e0419eed5824469a",
+    "auth.go": "e84f2cb40d262e0ec0d0f154b7c0b987989b5e98e6444f1e4bb660af578e0ed5",
+    "backup_sync.go": "58790161c8fd68c8ccbd8086001fa4fdc07661654d23f8f25c17fcb4f78ab0a0",
+    "browser_speech.go": "a3ce7c6d5ae77f6fd970144b2ef57d30e81b159e53c4aac1e81cd4a0a68f97ca",
+    "browser_speech_defaults_test.go": "aa53e5233f931b68de5b3bfd02947b8f7fac9bb14dbe31697cc9cb46b664f3a3",
+    "browser_speech_test.go": "7fbb2c217cc7c48bd40f4917a5aa429fe3f8adc2a5ccfe0d8450e4410abc2f6a",
+    "calendar_completed_test.go": "d8a9aab3aa7dcd13f80056b635cd846a6ff5dbc86dc23450e011716d32822554",
+    "calendar_designer_test.go": "497fcb4dc0a1fde17d0d92f5f4144cabf1bcb7c94686318928312210032fad86",
+    "calendar_navigation_browser_test.go": "7d0f708a3ed954cb9cb4f980232b7783be3fc6e5f5c5fd090812d86d09c806b7",
+    "calendar_return_test.go": "c36c58f736107edb908884d7e78be596957efa16acbda5085d7171d51d10da6d",
+    "calendar_undated_test.go": "f46dfbc8a93790746023001e4f2b7500e05b654fbc2830901dc4b61d1472a7a8",
+    "child_window_windows_test.go": "b4d30777cb73dce38999fb2059d778c8fe8725c5f830f60809b22b632e4c9fe3",
+    "community.go": "b6a43cfb66acb6efc3a1177dcd23c463cd0ca584650d7577db69eecafb63e83c",
+    "community_photos.go": "3d3704c0e77c581a269dfbc7f6dd0c3338bbfb378cc7f21091274ac44ffd7d2f",
+    "community_test.go": "d6dc09db7c99e630123afddbf33aa98422fa6b21747f3c5d4c079d2db86a532a",
+    "data_location.go": "06f4dc8cd7b92f8fe62f9df1a8ea11bb17e4847feac88b2a2d65df4d1ce40218",
+    "data_location_test.go": "9538e6228655dcaf085fdb37bffc6fda8051e8820ef9ffd11a1ecd2e2a08f0da",
+    "designer_call_test.go": "a5f9932230b87872c67925e218485988c9a1d56b217f60c19770edb0be975bfd",
+    "desktop.go": "ad15a8446643e70bc0d0cf3a900717f5e048f2ecc36dab0f3d445f89979e993b",
+    "desktop_abi.go": "d509f22b8a4e3e50d03d00159c5540d2662c639245697860344c8c57684ddf9d",
+    "desktop_abi_test.go": "e779d26791e2ea0ebd99649b2221d638d6ca9cc6e1331e4135e9e509e4c76c0f",
+    "desktop_notice_test.go": "3d3f13cba1c1bb9f8e73e7be4db2a74897a36b2f8611f6b4c98c8a88cb6c7219",
+    "desktop_speech.go": "8139a20d164140c9e57226dcce975435b145d09e2b4eae845c3ea99ec214e0f9",
+    "desktop_speech_linux.go": "b566b9f454948e52790fca027047901eb72a3d86a686eaf262ed99d7ad47f953",
+    "desktop_speech_test.go": "11d743efb07c3e54d3c9d5f28d35c83e44c65f9791af67ca2abf3bfbf8c0e745",
+    "desktop_speech_windows.go": "52ce05876dc2fa23244c4edd19b90466434360221c5c7fbadbac9161ee1e553e",
+    "desktop_windows.go": "6a7807e93e28deb04d308972e2171ef598b41f6181b62e88c8db878cf4925996",
+    "direct_journal.go": "c8cb278d39e718eddd680678102ba8125fe01a23e1ec5d57c9ccc6906e05dbbc",
+    "direct_photos.go": "06f842e23a3d7408fe06839c496b44c35958a26a6eb3fe1e17134406b2824883",
+    "direct_store.go": "e6b144286f36d58d677a40fcab28fbcfe7237fe5ff4e59079c7cefd70e2129ed",
+    "direct_store_test.go": "c2e339c55cecc6588c491f39dcb4a728c06223fc701bea0d5f402d55f6969f0d",
+    "duplicate_order.go": "10e85366c8ae524c51fe1605f611772a6bd1db009ef1784a576aebe7104ce07c",
+    "duplicate_order_test.go": "60c12e676e050d994faa9aa0b1068374d5b6a4b16734aefcf85445695011744c",
+    "external.go": "3fed5afffc27054e73389aef3e078a53458ff7e99daed2a61a73e7d54d26e86e",
+    "first_start_test.go": "f8715293f6bd75eb7542c65f8df33e462c2dc07bb09a241ef09cd6b337a9450d",
+    "folder_open.go": "07f2cdd81318b5e2c92fa50a7c27300ad48dea0815606db38fd62a3a70a422a4",
+    "folder_open_test.go": "dc327860c5717c0a84773c4a2a65aeed503f0272ad87feb4c6921c71256f7610",
+    "gtts_runtime.go": "8541c76790d22f313c9664e471c337ab6994674098ae60ed1f16230d83606828",
+    "inspection.go": "da6190d73e938aee4118351bc49b9919f99047cc2f8ea76d38ab0d051bb2fd8b",
+    "inspection_entry_test.go": "074cca856deefcbf46259f03908810434e317141ae37241fe560f247e520e6fd",
+    "inspection_reject.go": "4199835b7695e41bf1ff0badf91b63858565b7ce810e7a6f7c87ac3e852473fd",
+    "inspection_reject_test.go": "f110c1554425755017da6d481c732b22b46c652c6aba3a3f6a793c66b5619ee8",
+    "integration_routes.go": "f48f38005e6f5fb6093770d10dc1508d30231e357356c4d47916fb84cf0e6658",
+    "integration_test.go": "d01eb35458fb5846dad80ba206981bb599f589807465959599e7a44eb8a8d6a5",
+    "integrations.go": "22394f28d63b6a36461a4272653e8c259f3dce94fb918905e79b2e78784dbfd8",
+    "legacy.go": "a41c04bc9525679efd17b46c925831112713cf7877ff31b3dc92dddb4b4da558",
+    "legacy_backup.go": "9504960cca970f8b5abdb82adf542c6271c5b97d9a6aebf95c96624e1ca19108",
+    "main.go": "bb578b51d8bee0113d06ac6b9037041f2f2746da385e6031f918735a3d20b930",
+    "market_minute.go": "a34d93bb882f28a72cdf16d7d72a1e982f85e521ed4cf294c4d03139fd9ec57f",
+    "market_percent_test.go": "f6d1bd2533636ee3ff183364dcd438b83653612e071a83fd9cdf4231768d2028",
+    "market_status.go": "e0e743bd6be421045f2e739bdb6b97ba7450f01be95fa8086daa919bf5760cd3",
+    "market_status_test.go": "0c7387c83d682c06cbe3bfecf404cbf6d295dc982890e56355cb4f6cc93d8cc8",
+    "market_sync.go": "945d09b646e5252fd468bb5535dfc12bcdc38e55aab4b4cf671cf557fef3fac2",
+    "material_color_test.go": "5669080901499db9613400b0402cba164f731a62e852a3ac2e6a1ef6c42a4b69",
+    "material_receipts.go": "b39e99353884088eaba452ecd9d35d2b7a4dc142aaa41d47c2b98aaf7b797040",
+    "material_receipts_test.go": "8031bbbb2f244abcbabfc750ebfdcc5a60412b92c721c3c53e6a008b0dbd075b",
+    "missing_features_test.go": "52fee1dedbfd059408e0242284cb472b2b47c4653c1b050d1c24cc2c9261c22e",
+    "mobile_design.go": "ee2d5648394864aec3c185262ecb5cb31688609be5a81d248537eb5c2761cdf3",
+    "mobile_design_test.go": "f7103a930369ad951a85a92c9c5a650e02cc46ac0a64b178204447ff82229c31",
+    "model.go": "3befb5b5b588755eceb9852f7004afdc7414de4fa7ead6a538fb5a1073732a3a",
+    "native_admin_app.go": "a6663e9dd9453c27a55b2b9ca073f4572bd1a21b104c73a30306565b3cc2f216",
+    "native_admin_app_test.go": "10bba561ded9bd201b77e08ab848a2cb0c7c39a58d9bb867ccb87b462b5d4970",
+    "native_admin_login.go": "6228ee0506c2c427f716ea4853f7003731cb2186d30ca93a69ad5f70e3be54aa",
+    "native_admin_login_test.go": "4d251bda3ca18ecc6ddbf595e2d16887b8bfd0be4c2549aba55d09719e1fd516",
+    "native_admin_push.go": "eb02efc588ce271c415837c3b61eb6a945431d088fe4fb3f7cd079094c79de88",
+    "native_admin_push_test.go": "c5ab7d7b625a8800fb11336dfda571ed41ab4e9eded43d28ee6b15dd4e938677",
+    "native_client_menu_browser_test.go": "bc3bf00a6a404a28acd792f1cddd6a44c8b068d142b96de61d70294dcfdfe7b8",
+    "native_logout_isolation_test.go": "bab894782cda2cca7340759efdf5a98bc70723d80c475b6b8c0fa4674dfacd65",
+    "native_password_contract_test.go": "5b02f8d373e79ec522dac4589e488bd871f21b6f72bcd7fd60953ea699ea9a41",
+    "native_theme_browser_test.go": "d34cc12205124883841a28446bc71138434ce2f158d1b86eec05d7fea688a41d",
+    "native_worker_view_test.go": "ca4d155f934a368e2016f103eb489ebdb0e1ac0daa167d0150c1d1ddf5007988",
+    "notice_broadcast.go": "df6abc76a2d20eaa3529137009b87a16574648b823e574083976bf2261a7bb07",
+    "notice_broadcast_test.go": "0e870e35da82d887e0a418244a26496a48395335c1f5fa881bfba13bf68f633a",
+    "order_import.go": "e058eaf4200cf9f211a4821e7ffcc58735865ef50ffd021e0dd384586b543687",
+    "owner_identity_test.go": "4aaa6fbe14daabba90d4142d859749f93eddb2e9465509ce302a381569d04ae6",
+    "platform_linux.go": "6082b5d2c373dd0537bc64a8eeb005c8921592dc6d7142d599011d4888f4fec6",
+    "platform_windows.go": "ba6a3e79a1bda871bbe5a38c93287db9c0d2268dd43f880726794429e17af00c",
+    "production.go": "c8be39b2d4506633e7181112e3d26049181b6ace97223ebde059cb3d3bde1d1b",
+    "production_test.go": "b49443054ce6547a846da900dcc3a2d0468cc345d4f170dc8041eb6e16a5861c",
+    "project_info_layout_test.go": "6532a8f10ed62d6d661b4da34d90d7009697851d72fdba636af04e75f6dce3ec",
+    "purchasing.go": "cc4a5137ce468a7fefe88b8fb42e15b334689a37564943fa31c36c9b2c23e3cd",
+    "purchasing_push.go": "946b9e01580a1501d3c641c958deed14fa1a9de5e90f2c1ee89feea758d7c90f",
+    "purchasing_test.go": "79fbee21ccbe722f0bfd3ddfb561df09e05f93d9fbd00dfb4d58a688a3855aa4",
+    "push_passkeys.go": "4b1bb01cffdeba7595c6a6389337c9f1ec4fb7441aaee3735a36eff26aefc088",
+    "routes.go": "e26785bad6b1ee6d9709b9230524fe80b2000e5a97ebe1b9cb514e0b0c62fe51",
+    "schedule_download.go": "e747f86453d27c063063e2dbfa40ff1b4c21a666458d930387c513a702bb9e0e",
+    "schedule_download_test.go": "96f971c43d507ff2c3bb1b73bb630523a59b315022f4a39a7ccf15ddfc2a96c3",
+    "schedule_material_color.go": "f10d32d8206c631c2fab430703ddd2ce28d9fd03d60d8c2d4837581d4a799d2b",
+    "schedule_materials.go": "19f2b6f8fb0ad18029cae94f2f3336e04d4682b88f037780ae1e7526172b98e6",
+    "schedule_materials_test.go": "1cebf51f5279b69f3aed5a0a08958a21e5dc1566886a135de3bb22ed219a8c48",
+    "schedule_sync.go": "d56bb82ff72b5caee30b04c385e71cc5fc62c57df53980b83c3232ef5a5dfa8d",
+    "server_test.go": "b3729b33e81672c0da4e0d34a4a98bb91ef9b6ee4b9a59f2a38c67597d21ed5d",
+    "shared_order_card_test.go": "418137248c5210b55778660de5fa3f847d365ab6a067857fdc2a81e6ff64da20",
+    "shipment_photo_viewer_browser_test.go": "52e3a6b2f4c75d696da1fcae3a67d0d4cf723717d8274c54c2f4c14437dd0b5d",
+    "shipping_archive_browser_test.go": "773dcca762f294590b4c5e617abc0d41bebdd77ddc45a2382d685717a0d7e396",
+    "shipping_archive_cancel.go": "51200207d26299dd49ab9a7b3725a8aaecef39b06a3926fe6d12fa3a3e1c16a0",
+    "shipping_archive_cancel_browser_test.go": "e16101e32c39803613081ec0c7beb5b77097f8059a0433359708ec359caf214a",
+    "shipping_archive_cancel_test.go": "d6732f935f6987d171ea359a88bfc945a3e1f4e46323fd805f572dc41649a398",
+    "shipping_archive_list.go": "e6456cc1758d9f91693710dc419ba0d29526a4165faf30dbd91c6e96223e556e",
+    "shipping_archive_photos.go": "3a8822ce3573f4ee88b0f6e85b18513551a3fd7629bf1a2112cda98bd094e975",
+    "shipping_archive_reset.go": "208ea9df5641b51f6972e614ec750bd7375cd6d5b9b028c4cf201f8d8cfd9fec",
+    "shipping_archive_reset_browser_test.go": "38082b0628f35f54cdb5a35ef3efa29694862d59237462b4bb6f0876a4b5cee8",
+    "shipping_archive_reset_test.go": "dff8c99167b639e5a265ea5c6c9b474d6164120e2de7b8bb1ff021fc5da28ecd",
+    "shipping_archive_test.go": "04da23bea03d0ed0e91059593934fc5e54072105aa02bf78153f76f7344f6f34",
+    "shipping_photo_delete.go": "d96d287f15878969b7c3751a9874a1a644d713f182b9188acda7c1d25e43853a",
+    "shipping_photo_delete_test.go": "1c096646898fee8a754c8358baa7a523955d2069257f6870aafb8d137627c96a",
+    "shipping_photo_limit_browser_test.go": "9ecdd015404238da145839393725413dfdbed004929d8bace72054730ba9ec68",
+    "shipping_photo_limit_mobile_test.go": "3f1a0dbab6b1c12a92ca4543d0247bbb3c40ff46bcd87a0117cab2417b511b35",
+    "shipping_photo_mobile_test.go": "5c2f16cbdaef8ddc6a6d8131f2be2d86404e4216ddea556c741b4ee0986e31ad",
+    "shipping_records.go": "84ced425bb11974e1ecc7487203ad8cf5af7f29ad915b3083de544b7b9d5ea34",
+    "shipping_records_browser_test.go": "57f5efafc9986ae8c8803072ac4b40ba0f37de3babe004dd5f4ed8894a3a3350",
+    "shipping_records_test.go": "8eb5390ca75ecbb15f35b38a5e5b7ab40a1d18ed688abbed89db9742c57f16e8",
+    "speech_audio.go": "01fbd9d5af833765304ef89255fc7c8d1e6ce04e544f9808560afd9fbe253e3b",
+    "speech_audio_test.go": "050cdcc2d35180d95bb3051d37115ac65d3817fa41c5f3ba1a330d2d89eaf5b2",
+    "talk_read_browser_test.go": "ce9c855f6ed321cf3ae2284a296a418da315b30000d3cd8a59bbca5401229bc4",
+    "talk_read_state.go": "3b3f1aa09d7dadc40c3feb47fd7480dfa6a92b7dfe5588094601ef7cce28555a",
+    "talk_read_state_test.go": "ebaf43f2d2971baa53dc302bcc2643970af0a1e83327263487be3b63688bc27b",
+    "talk_submit_browser_test.go": "f9605f6f8ae33140446d80087131f94a5545024787f9565a999e2086f57ca8e2",
+    "talk_submit_test.go": "f6442fe1c2ce67ed19dcbf25b276090492d7d84fa0fd7fd0d632aa8bf28c3db7",
+    "talk_test.go": "2f69aaf30e87f02a3dc118ac29ee31e8514b2e89a1c4c28145917577cbd65c0e",
+    "test_copy.go": "a1c851d0bb44dfe23cdc0b424ef236f025bb377e8febe2bb1048a87df0f7ec0c",
+    "test_copy_test.go": "9ef94ca5a284f7162c808fdc6261e0783c8a17bd753875690c6b7ce79dbb0952",
+    "test_mode.go": "acf664dbbf55a1f9c3bf54cb7ca8e7e6bcf17eba4fde69c7f0a262318205c834",
+    "test_mode_test.go": "da51fa7cfcd22bc627fe54d1604883a485210040f99d720e593cd6aeb135aff9",
+    "tts_config.go": "e219e90c45137d7348d41bc83815c0f5090e0933f419c900c5aa4ee2645d63bd",
+    "tts_config_test.go": "8b62c39b4d1f3272ec43d226d8f1a6e41858faffa20b001ada6e15e6a3260e81",
+    "tts_handoff_test.go": "5b129f0ee6a105ac07f298d0d5baa875f51186a0e84ad3a9bfb468fa670f8dfa",
+    "unified_login_browser_test.go": "c08b320d11e7c14ca63269c23e296b313839487d11a45bd3d17f3aa99bdd60f6",
+    "workbook.go": "c08fadb6271f44a8649e420bcb5ec645ae9c57d444cadd98746d394784acdf53",
+    "workbook_match.go": "90f32ac31a3f08a9fc651a27e42228e4172b56a067e7f9968d85186a71dd2e1f",
+    "workbook_match_test.go": "09104a91a1558f117f412c06c0c3f28f31495e38ed5f62c41de275eace1f2eff",
+    "workbook_merge.go": "3014b889f0d27a573f87f0f0aeff0f32d8e8a86132dca06ce26f98ce9758bfff",
+    "worker_alarm_pages.go": "fede0fc26f6985f2ffefee9d256025e0a8dcdd432c3d1f3bde2dfd9cdc8d84db",
+    "worker_alarm_pages_test.go": "658c43e33d6265dcba8bc4beb340ff7ed7f3c06665b8d9084d1a5654ba024963",
+    "worker_app_theme_browser_test.go": "c6af7e3cea76a804c5b79a5403b9471491b9076bac1f44ecfe03bad9c78274f5",
+    "worker_pwa.go": "6c899e6edd8c905cacbdfdf757251f3ddcae1c494fca5fbe74d9b93d6d49c147",
+    "worker_pwa_test.go": "7bf6e83b9537b8f561cac99ff67a1d04f4e6be4495f3bda5025e28cda1a9c26d",
+    "worker_reconnect.go": "6519c6ee192c9601e582e47630e34489d152686635d49e78b1fc1c75ae4edfc9",
+    "worker_reconnect_test.go": "9207c2b76243e88c26432eab7ba7e32389d2e91e997b9178c709d885d6128713",
+    "worker_special_review_test.go": "c3d17c0c1f7cf6fbd5081107850402c5fbfef22d747b48a4394164c620fd150a",
+    "worker_speech_test.go": "e423e3ae17eccf714a795454b00ff8b86251206ba16530f5572ccb6fe3b64517",
+    "worker_submit_browser_test.go": "df650b78f0c6c94c2ebf6e3cc4692a5a2ada4eaf20a3c24c1ee6618e4f6033f0",
+    "worker_today_due_test.go": "ab26da993ddf57a8b1a925ccbd92a81aec1df6d2914d6c55fe19f7ac39dd90f0"
+  },
+  "extra_assets": {
+    "extras/admin-accounts-v1.4.54.css": "88353acba3240f146bc4052a2c2f1b03e19849ffc6e4c447fd4805f3a3cd9711",
+    "extras/admin-accounts.html": "1ced5b6994426ec7844db9e6ab6ed123cf8e59fbb1905557e0d6e60d9eba8e16",
+    "extras/admin-order-grid-v1.4.59.css": "292118d7ce39efc740e841df8b9f0dde251220c0a25bb956d63b466582c957ba",
+    "extras/admin-v1.4.4.js": "68ef65c3a920f26ad007d3718dd9087bcf95fc73ae7de963b994db2ae2e4b605",
+    "extras/admin-v1.4.5.js": "1de5905da5f599d97920540bd52eab1809c2f067c2141d5e8dca1034f70e221e",
+    "extras/android-admin-settings.html": "f77e3085f444911dee50ad22f147d88bb3a87bc43c29b20c6a5bd90793498648",
+    "extras/announcements-v1.4.36.css": "3ddcefb5ba61ba455b5416feb68c2c5f76fa70e4c87902c15a1e8fa97841337a",
+    "extras/announcements-v1.4.36.js": "ed94dc126f99bf1b0af51897c1593450ad54d7091ff78393c5077058621d60c5",
+    "extras/announcements-v1.4.37.css": "aedcac01cfe10a1104fb120ad465140e7fa344f0f781f71924623ce8badf07c9",
+    "extras/announcements.html": "820945019b05319f06702e5a9e2520b54cf818c054bc89f031959f1048110cd8",
+    "extras/calendar-complete-v1.4.27.css": "14f85225169d8b8b67e74ba9d5b6a3dee9a7edee35467de779d69fa96c8f525c",
+    "extras/calendar-flat-v1.4.32.css": "1421685378fc31f40b6c13ea9b4459cb57c2f841b779caec94a42687eed3d5fb",
+    "extras/community-v1.4.38.css": "95fd3545ae86b74394b41ed0c7fbc7ac4283fb94c9d712b2a3e11b10a72c96c8",
+    "extras/community-v1.4.38.js": "f2b6052f9419b56e32e89803d00c1c62e8ec683a456e0d1f97f7a685b12942d9",
+    "extras/community.html": "4d3cf5b6861d0beebfff529dfe0041587319f7bdf90850a540bc847967e420a4",
+    "extras/data-storage.html": "db717cef87270feed05ee64ee04f52b1c2384a7ae940b10fac2ba47cb3520a57",
+    "extras/due-view-v1.4.5.js": "19f63b368cf006770419cae24cae730069a27a250a6e24244b8369d18055f455",
+    "extras/duplicate-order.html": "7f511ecce451e82026a8f620bf2d48f6e7f6648eb75f7a553a6af2c8e6e1369a",
+    "extras/electron-speech-v1.4.14.css": "ba5e77e978f103de126e769e095192763bf41307c821f6e742178f471b7e84fd",
+    "extras/electron-speech-v1.4.14.js": "2a2d02b5b70e879cf4da0c33f319446acb85f7520ebd92beb7dfc0ecaf9834fd",
+    "extras/electron-speech-v1.4.15.css": "ba5e77e978f103de126e769e095192763bf41307c821f6e742178f471b7e84fd",
+    "extras/electron-speech-v1.4.15.js": "9d6f6bd793ce25486ea1b73aeaaa15e8932e4d131f4901631a5fd4eb38209a06",
+    "extras/gtts-speech-v1.4.16.css": "ba5e77e978f103de126e769e095192763bf41307c821f6e742178f471b7e84fd",
+    "extras/gtts-speech-v1.4.16.js": "773e933590ca343fc3252ab2e8b616cf3909224e1d0d9318c252f7ba058696f2",
+    "extras/inspection-reject-v1.4.12.css": "fedaeeefc89ba106391a3d7c2df4fca780f75e5390a2a96331916d81f54bc271",
+    "extras/market-calendar-v1.4.26.css": "e1d4dc29533b846992fe7ce1106e053aea8d3c5d3604a6e2596c6a1d66644bf2",
+    "extras/market-settings-v1.4.8.js": "a3cb9395e46ddb159cc088f09452b502e5301df1b68c3c0f2a034202292ce56d",
+    "extras/mobile-design-app-v1.4.65.js": "8aefbec87e82c704c18c70b1f09ef0ccbda2392390aa317ff42147ee713f3c96",
+    "extras/mobile-design-app-v1.4.73.js": "61143ff2ca2ce5e4dc13335d21bb3d5c66a4ec00a3060376975b88b123a08fbc",
+    "extras/mobile-design-app-v1.4.74.js": "84d58a13fe9a7371e08f24041c903c612ecdaf00e339dfb8e594e606d3d33877",
+    "extras/mobile-design-v1.4.21.css": "f3dddd13c6d5ce6811db1219afb35227b1a8df025ed10227e799c71941ad049a",
+    "extras/mobile-design-v1.4.21.js": "c7a9d3895e36029db83a7853c124d5e9fbda49239eb4d3f8f3e492759e7d1a53",
+    "extras/mobile-design-v1.4.23.css": "8186e767c331ac7b49fda0add8dcd944aaf9be7884dbf1b1f4b139ff692f5113",
+    "extras/mobile-design-v1.4.23.js": "8b59c585a098f6469dbfde29fb91535daf4be0c7724bcad59f68f4da2898094f",
+    "extras/mobile-design-v1.4.24.css": "d3c77dafde48132c918ed9e8ddd5b330c872ff299b76b468e6d702bbbfeb3606",
+    "extras/mobile-design-v1.4.24.js": "124621bc06e67f6c8a87f07bc56e1aa2b688e6ff14bc8a80d726a5ab0c1616b8",
+    "extras/mobile-design-v1.4.33.js": "b9d066bfe4bd766cc03ec0a901cf9e83ee9689d5da7c2712c619fa60f786d877",
+    "extras/mobile-design-v1.4.36.js": "cdd14fbb3f992e5df54e7cf2b12aec88d92d6d785de79c734b6d26541272f44e",
+    "extras/mobile-design-v1.4.38.js": "cef029583209b65f20c6a3b633ecec61cabd38343dbefa7c345128f57809bfa3",
+    "extras/mobile-design-v1.4.39.js": "1ee7981f98841f6243e3ec01d2f03a1b975eff088b4b9bc2c3281aa6d6055838",
+    "extras/mobile-design-v1.4.40.js": "92fcf3aa74ca9c24c0270aabc5ebbc0ec0149185784efd69dda6ef9753a443c2",
+    "extras/mobile-design-v1.4.41.js": "06ece662889cc6928de896372d8cd9994c44646c1035346953d462c7617f5a46",
+    "extras/mobile-design-v1.4.49.js": "e5248938ab2bad23ead52b6d2c87e53cf2f515c285f1d047252d524fda5e16aa",
+    "extras/mobile-design-v1.4.50.js": "653390dbc682d42f31a53c3d72222ffe807932556673d742a2358b77015838f0",
+    "extras/mobile-design-v1.4.54.js": "a112af48975db404e31b4170741dda6b670a5abcf83dd99ef18952926a3e4133",
+    "extras/mobile-design-v1.4.56.js": "1a6f06cd055d0c8cd82796f4cc2e913a6ab402e049133b9e47db03c3bf98eaab",
+    "extras/mobile-design-v1.4.63.js": "9b0aad68dfa811ba2489c5e965a1099066d0f39b34b3a424fea3b0e81b92f4d4",
+    "extras/mobile-design-v1.4.64.js": "f10f5902e4e7cc5195a68a60e1d7f6693535f65206b79683b553b087dc80e6af",
+    "extras/native-admin-app-v1.4.65.css": "e6674bd0ced8e9e442be6641442d422a2cf99477a3d8f5a8a072a8b5c17966fa",
+    "extras/native-admin-app-v1.4.65.js": "d6fa1239f5512bba20f92aab3abbeda23ad3dd8cd9f7b0c3c2cee2632788d8af",
+    "extras/native-theme-v1.4.75.css": "b81c7137ed1a8c0268a69b89c82e4669a67294f4462ee638c4d13c7106fe9ad7",
+    "extras/native-theme-v1.4.75.js": "e414013cfa29e797c3b45a1d7941ac51ae3360b2339e897e41ff051d681a7718",
+    "extras/native-view-menu-v1.4.72.js": "42dca1986f3d16715d5bcadd1c580adb0b34700e48f0e54e0d828ca3e044a1bb",
+    "extras/notice-broadcast-v1.4.44.css": "053a918de1b6accb7349de6c58762b71e669d01fab2e33e0d7a729fb58a7ff76",
+    "extras/notice-broadcast-v1.4.44.html": "bd2356c6ac87afef3933ff997d3c70cd55a53930060afe72aff5ed019381d6b5",
+    "extras/notice-broadcast-v1.4.44.js": "46199695926a550b4bfe1fa3fbc908a6f78950beb4e33887ce906eac2a411097",
+    "extras/order-card-v1.4.31.css": "fff7408e917b23bd4fb55ccde16b325c8d85aec9bd95abcfbb2b45bbbf33e391",
+    "extras/order-card-v1.4.31.js": "17e3d174004caa788f2cd6ae2c2015cd1c3fcced3d2407138535ab55ffb9dbeb",
+    "extras/order-card-v1.4.34.css": "839b78080bbafcd25d31d81cfec2ee39fe19f03d96946292fa017d7e7f974f48",
+    "extras/order-card-v1.4.34.js": "f4b34fb6c114cb402281f45320484c9dea070a55bf91cdc699b820158d76861f",
+    "extras/order-card-v1.4.35.css": "c7f26385a6abf649c422d24f94206a04d0e2ba7d5f089bfa496689ef25d4f1cd",
+    "extras/order-card-v1.4.35.js": "c98effeb87f83eb1a4b07b46d88ae96bdb93eee33a570e9824d14ab5b8e2abb2",
+    "extras/order-card-v1.4.41.css": "d9d86d76ddb8bc5c6a4e33730ee6e056693cd1fdef342109c819e8194efec5c6",
+    "extras/order-card-v1.4.41.js": "41838046866fb6f2797245f2a4d05a9457280a231f190fe59e2dab4830f9c795",
+    "extras/project-info-layout-v1.4.30.css": "81679babc95640e4af6294cf90ddbfde662e965df84dfd82bde8c8b1ec5a014f",
+    "extras/project-info-meta.html": "dd7f728c545867741faf69a5d8e5ac7cdcdd629b20f0c2aa2b868be86d3ffa35",
+    "extras/purchasing-settings.html": "9ec389c26e9a4ad1beeeab0a7c28777cf9f25c04552cf9d8e468d5971ef9f472",
+    "extras/purchasing-v1.4.78.css": "ee7019cf8e0a773f7a87c2b809b693d923026e605455c3fa675ac99ea96828fb",
+    "extras/purchasing-v1.4.78.js": "bceea1b09753d8923bcb0e2f1afc870779302eea3971fe20dc29429c697567cb",
+    "extras/purchasing-worker-v1.4.78.css": "8301c8524f25126723e272c0707ef4d36885726e0c835319abc936a3527b0fcd",
+    "extras/purchasing-worker-v1.4.78.js": "56298fdd692c12d5a0e021076cd7f88d61ece0951352dc3daa2e5b0b10d9e8b9",
+    "extras/purchasing.html": "d154256ba51559b41f8f6a2e64a267c3be2979d358a6acf646e01457df586f36",
+    "extras/pwa-v1.4.61/app.css": "52f7658234481a794c15357c9f71bbddbc493e4a14a663ce8273b55d5da32b9a",
+    "extras/pwa-v1.4.61/app.js": "e0a2e7ebfd6fdbb0f53825e0b91c07468d62a83ab7ed4bac6921fce531a20356",
+    "extras/pwa-v1.4.61/icon-192.png": "56c22fad8d356beac504383707c067ce5d65005a5c92af205bb2e97ca9b7c777",
+    "extras/pwa-v1.4.61/icon-512.png": "cc2f6870bfa10f231fef7a3b2e5cb1352ef443b271bff49c0ed5f9952321d0c6",
+    "extras/pwa-v1.4.61/icon-maskable.png": "16dabf875c55c54a19bd883c9babdd848fc9c3b5deb0ba219f784ef10f28c4db",
+    "extras/pwa-v1.4.61/icon.svg": "8602cada006ae2a7e21d60df85b477b87e6de473589006a49bdceeb6fbe71f2c",
+    "extras/pwa-v1.4.61/index.html": "c68e5cf5617c7e081e95ff2f43b4c16e876c7ba4bb7b532b820c7034251c13dd",
+    "extras/pwa-v1.4.61/manifest.webmanifest": "b50f479a5050b705160448eb7693ec84823d8259643bcbadc2e55944a2a0763e",
+    "extras/pwa-v1.4.61/sw.js": "22367b8a8480d7ad85e4d52d97c9744095b725da68cbdb19464245c2151691b0",
+    "extras/pwa-v1.4.63/app.css": "e90d2a311d1f652054219242b02ca28ba8d399ea0c9b6899f5a46dc6b6e7f89d",
+    "extras/pwa-v1.4.63/app.js": "6180eb7127d97d605db94899488cdd843b1b4fa2772ea628dca7d65ba4acb608",
+    "extras/pwa-v1.4.63/icon-192.png": "56c22fad8d356beac504383707c067ce5d65005a5c92af205bb2e97ca9b7c777",
+    "extras/pwa-v1.4.63/icon-512.png": "cc2f6870bfa10f231fef7a3b2e5cb1352ef443b271bff49c0ed5f9952321d0c6",
+    "extras/pwa-v1.4.63/icon-maskable.png": "16dabf875c55c54a19bd883c9babdd848fc9c3b5deb0ba219f784ef10f28c4db",
+    "extras/pwa-v1.4.63/icon.svg": "8602cada006ae2a7e21d60df85b477b87e6de473589006a49bdceeb6fbe71f2c",
+    "extras/pwa-v1.4.63/index.html": "e4ce87c7e677fc61bbc761e4c329e054f4ee2af44775e3b53b4545248720dd05",
+    "extras/pwa-v1.4.63/manifest.webmanifest": "b50f479a5050b705160448eb7693ec84823d8259643bcbadc2e55944a2a0763e",
+    "extras/pwa-v1.4.63/sw.js": "f418f1f6950efcca83118a1f7ebbf1ed833f2a1e536fe36a74e2fef59fcd71e7",
+    "extras/pwa-v1.4.63/theme-bootstrap.js": "c70140294ab723f725f1061e4ae330be71b64c27b3cf0bae33ababc36ebad75d",
+    "extras/rejected-record.html": "4b36c04b5ff29bc8ac36fc160740fd2f8b13f8f8278f168c1677048372f2925c",
+    "extras/report-settings.html": "404dce6aef42bcfb793b89fda73716256e3ab08c494199cd6baed8d47e398e38",
+    "extras/schedule-v1.4.10.js": "91d0fa2dda3b1522d3ccf36bb500822bd5391078f20373e8219500f716a8be07",
+    "extras/schedule-v1.4.11.js": "91d0fa2dda3b1522d3ccf36bb500822bd5391078f20373e8219500f716a8be07",
+    "extras/schedule-v1.4.9.js": "91d0fa2dda3b1522d3ccf36bb500822bd5391078f20373e8219500f716a8be07",
+    "extras/shipment-photo-delete-v1.4.77.css": "4f100479af203b58e71a69ffd85062de84c13c310aa91e78039a796c2a2dff07",
+    "extras/shipment-photo-delete-v1.4.77.js": "2a8884c14ae24baf97b287c82f2040f6f5c42951c5e587b884b8da6a6f49baab",
+    "extras/shipment-photo-viewer-v1.4.62.css": "466764e920eecb7111ceff5cfd292a010d455b3fc184f4cf82e9834312f70914",
+    "extras/shipment-photo-viewer-v1.4.62.js": "6fc51a8a18201b2f2d34864d45840beaf4283f2e6ba681dbc9afde7b7d77a402",
+    "extras/shipping-calendar-v1.4.10.js": "5c76494a83382255c84b8a0b6325d8854b1bd6cf3f17a1729d948081c0c0001d",
+    "extras/shipping-calendar-v1.4.11.js": "b6f7a8b6ecf9f0a6a88f99dd58bc38538adf77f8f8ea9546082078058ac86d08",
+    "extras/shipping-calendar-v1.4.2.js": "2ca108099634e013a9b8d76a35501c4c2fa545e6a15b51e46adca60e01e5a967",
+    "extras/shipping-calendar-v1.4.23.js": "b2905fa5d1810a128d32ac34fbb888513f6a995b69832f08c67b2fbcda61fa4f",
+    "extras/shipping-calendar-v1.4.27.js": "5b041d9e9e6c08fc5623b7c9bdc8517889c431a9f5190e2b666b614cb0ae50d8",
+    "extras/shipping-calendar-v1.4.28.js": "d5559c592ebeca37f2a23d5c5854a88292e76a105d94f378660470e7e341643c",
+    "extras/shipping-calendar-v1.4.31.js": "9743cdd2409917b1642e52b84b9299c4a12635a234e9461b3af7d09090afaddf",
+    "extras/shipping-calendar-v1.4.33.js": "65dbe29b4fc169dd1a4427c241e4433f8914f4598ba9e7779986ce89cd0c5389",
+    "extras/shipping-calendar-v1.4.5.js": "f742e8a50bae37e1c7b3353d0f0812cf7035519250f769a4b0a5953340b4c900",
+    "extras/shipping-calendar-v1.4.9.js": "448c44487d5334d43e904ab58c67cc36b2a3b4ace4a22972f4f5bbf138158620",
+    "extras/shipping-records-v1.4.49.css": "e0819c368a674e909ccdbd53b3acfd476d7971ff8f68471b3176fe5abaefe63b",
+    "extras/shipping-records-v1.4.49.js": "81e74bb84a6a3c3086452d917526762732689ef7617c6c445121c2bcd918c071",
+    "extras/shipping-records-v1.4.50.css": "b2e4c3427dac768cb2eada990096de0a0f1c968616a9ee6fda4f027412b84275",
+    "extras/shipping-records-v1.4.51.css": "8c76fa1aaa24e6b5c4c398bb191b679360d8f563d625c398488dc76a2094040f",
+    "extras/shipping-records-v1.4.51.js": "a6b3bc193eac058d4b401b2224a9bbc312875bc9526f32d91df5e36a844dec1d",
+    "extras/shipping-records-v1.4.52.css": "6fa3c428c07dbe212ea2aceb636850a58efb25a1bc2910c70bb737fdd557dcd4",
+    "extras/shipping-records-v1.4.53.js": "81f5a6cc2016a9b2feb787868d1e3a4e52ac08c2427d0a842ddaaee93ae40f5b",
+    "extras/shipping-records-v1.4.60.js": "f955bbf1fdc87443aa8a3c0cf1ba48f6a189cc9733f8bfe90be0e2741542a173",
+    "extras/shipping-records-v1.4.76.js": "076ec3f7a236c35e98f3151aabd50fd4f49028299d1eaca09d2a3dc5c51d7038",
+    "extras/shipping-records.html": "289f9531234f15e5b29c66c0483696fd92d9530a6eac2cdb83be068418a1457d",
+    "extras/supplied-materials-v1.4.10.css": "264cbd4ab7c073ef379261b274c1c73c3a676bef176c6d283e9745b53ec1980b",
+    "extras/supplied-materials-v1.4.10.js": "d63330eb69cb09e0faaadc6f0d1d27b98f29c8a57c7a561b6f898f7b1c72d82b",
+    "extras/supplied-materials-v1.4.11.css": "264cbd4ab7c073ef379261b274c1c73c3a676bef176c6d283e9745b53ec1980b",
+    "extras/supplied-materials-v1.4.11.js": "d63330eb69cb09e0faaadc6f0d1d27b98f29c8a57c7a561b6f898f7b1c72d82b",
+    "extras/supplied-materials-v1.4.23.js": "0d8d26bfe3df04a31679e39e3e6c8b5153d1d1c100d17a8daa44e2892544bc36",
+    "extras/supplied-materials-v1.4.43.css": "015a403666344308069c5ff601f036e8f53f6f3606a8142faf5a9dff9e1753dd",
+    "extras/supplied-materials-v1.4.43.js": "5c284661534416b5b4d462f23b23289e46e44595f392f09ef09963d97a81d4bf",
+    "extras/supplied-materials-v1.4.9.css": "af2d9f51eea067849846eb5ecd6d65d6dbd10802275a76413122b2b845e00a6a",
+    "extras/supplied-materials-v1.4.9.js": "e54b4771b0a46238ce47e000d800599f0e059314c7f67aca54c7c38b09b913a4",
+    "extras/talk-board-v1.4.39.css": "1283b24c034320afebc52f18cf21ce572e537c775817bc23bce85a410c59187b",
+    "extras/talk-board-v1.4.39.html": "20797acb4f18ba51bbbeffbd425037c0f602129c92a419430d018ec5a04294b4",
+    "extras/talk-board-v1.4.40.css": "f31113a162d7d26bb307f4792cb360797665535162511314fa932a912469e1f8",
+    "extras/talk-reader-bridge-v1.4.47.html": "efc3c74524b201dd39db48d6629bdf972d61ab01d2b7bb8d5607fb6d964022d3",
+    "extras/talk-reader-bridge-v1.4.47.js": "3a92f94f09b8e2a2666afce2c6522a8a1e9961cc1dd10854b019fc9df0db61e5",
+    "extras/talk-unread-app-v1.4.65.js": "6cb0276ccf718ff3344be735bc21e4000c6189a7ed2d98096127f8e0ceb67eb1",
+    "extras/talk-unread-v1.4.39.js": "0ca39ea070aba636cc09031648352a04361508beff2db27a5c9b6df840f32fbe",
+    "extras/talk-unread-v1.4.47.js": "885017cc8d03a3a3d02876b0bda54dfdb08eb0dbb4a50a8e1438770b54545f20",
+    "extras/talk-unread-v1.4.49.js": "fe11db7c6af2f8b138b23a31314a8c3aaadcb88b4c52cf84335efc6f3787cd58",
+    "extras/talk-unread-v1.4.61.js": "006a8e3fc396a0a12cbd2bcfbc9b297796d1ec180a556ac3342bc5cbda733f97",
+    "extras/tts-settings-v1.4.17.css": "0f9cdef7348985828c887db427d8f275e7f89b94180eff119d92212e8bdb9669",
+    "extras/tts-settings-v1.4.17.js": "0d24053411c8a7e7342fa7d799ec159ad65486d039f68cb7fdf4663546c0aadb",
+    "extras/tts-settings-v1.4.18.css": "0f9cdef7348985828c887db427d8f275e7f89b94180eff119d92212e8bdb9669",
+    "extras/tts-settings-v1.4.18.js": "6a307bb6ca2abce73f3911e99c6275be0478f7eeb092f6338c87d60e7a39bf2e",
+    "extras/tts-settings-v1.4.20.js": "f4df6ae31240689f5468c5695afd53ee8e792f48aa366d4241607590fb098c39",
+    "extras/tts-settings.html": "3962ec46f4fafcf58a5fa41c2467aa0d52f3d6f5192af736ecf21bebbd51ef45",
+    "extras/tts-speech-v1.4.17.css": "ba5e77e978f103de126e769e095192763bf41307c821f6e742178f471b7e84fd",
+    "extras/tts-speech-v1.4.17.js": "b3b743c5f19e6adc49df1b05ab7933b0184a9ee2bf9751825360106fff629e80",
+    "extras/tts-speech-v1.4.18.css": "ba5e77e978f103de126e769e095192763bf41307c821f6e742178f471b7e84fd",
+    "extras/tts-speech-v1.4.18.js": "5d41a41c5cadb413e385c7c8998c016d40302a666e161b3c899655d340905de4",
+    "extras/tts-speech-v1.4.20.js": "c52697b956b7713b845c8f64b7186989bd53f432282c618ae2860655df074121",
+    "extras/tts-speech-v1.4.22.js": "192f07558d29354ce72126efa90a57154bcf4158eb65b44dfba8b63633989230",
+    "extras/tts-speech-v1.4.44.js": "0b19dbf7e40ffe1696f826e11ecd8e94febcd1af405c6aadd661bf8802c03a52",
+    "extras/tts-speech-v1.4.45.js": "882230ce3f5235574a9d632f209979b050f50b1eef8a297be8de251fb102d08e",
+    "extras/worker-app-entry-v1.4.61.js": "2bee682f7e07b1850a8c4ab5177e6f18fc9719b82525973cc51f33eaf0dc156a",
+    "extras/worker-app-entry-v1.4.63.js": "38439ad0c7c817290de7629cd54316fa591f6d345c0880386a609c621b8bb47e",
+    "extras/worker-app-theme-bootstrap-v1.4.63.js": "dee98a612bda37e0610420690e52e83c6abdab493ae89e4e2f780658a01da9ec",
+    "extras/worker-app-v1.4.61.css": "37d478ce05b7f71858cb37db7cbfe17645bb68700c4868a8c93925624c72adfb",
+    "extras/worker-app-v1.4.61.js": "c0f4c05b5e8a615af9823546d3aa1b862fa1765e65bde7523432387c995ac3a5",
+    "extras/worker-app-v1.4.63.css": "500dc51ec50e3e2633076d40f7e411e6f6f413e0f66584ee8a8fe4b6f3515f8e",
+    "extras/worker-app-v1.4.63.js": "93037f71080fbea39980c01620ef7af32c28631e0f01b7a70019130d0c932eb4",
+    "extras/worker-client-directory.html": "ec95924f911d5e0f698d9a59ba8ae847d3a6fb6508b3736d06d439399ee1b287",
+    "extras/worker-client-directory.js": "c70a796cb0fad75a8d1966a588c4a4ee353d9cba6beded1a3f1cc929e6f852dc",
+    "extras/worker-dialog-v1.4.19.js": "56717c160d8fa88221b4b24b542d53ef9ac9a937ad22b17ca721ef6c377cee89",
+    "extras/worker-dialog-v1.4.41.js": "7b1ff48374663a7432e32c5dc1e618c38f69127f50d6352379539432581a5c74",
+    "extras/worker-directory-entry-v1.4.7.css": "be4a7971b1fe115b940abac11c6c7afa5b9f33ee185a47a0d5d0545c63b55d77",
+    "extras/worker-due-view-v1.4.35.js": "201b0b5834136065ca0cb01c601735745a311c22cd9d5fe9cf638e493c27dc27",
+    "extras/worker-entry-state.js": "d70be54f1fae3d8a2f46ee233e0b937995bc0851e39b34deaf10f9e8f046ca10",
+    "extras/worker-reconnect-app-v1.4.65.js": "2f2cf65972d5c90356cdfdd33b67e37dfaa3f137b0caad2dc5554951fa652fda",
+    "extras/worker-reconnect-sw-v1.4.42.js": "21cb53360f1cf7534bc105b585e985ca0a11f6bc3f6387897d40998809001fcc",
+    "extras/worker-reconnect-sw-v1.4.49.js": "a23cf85a8a3412f123434b35be4b833b9449092adf181e5e3956b10328351b2f",
+    "extras/worker-reconnect-v1.4.42.css": "bd9c3bf1c70d9b9f93de210af23fe6f9c21005e556f95fba145b7c522a5b3e71",
+    "extras/worker-reconnect-v1.4.42.js": "9c40699fc66c684bcc8f53c66011947418ec76337d67ec9fbf047fdc6083f910",
+    "extras/worker-reconnect-v1.4.46.js": "92adec214d0e762f541ab07f0426ca6ae996580c57e72d4ddabc0ce001f71ad3",
+    "extras/worker-reconnect-v1.4.48.js": "e147c2a3d518653fb045082e4ec8ea214b374c89f0373fbb18bfddb64edb2052",
+    "extras/worker-reconnect-v1.4.49.js": "1f53ec0e1affeb3e6685adc04a85fbfde97f31aac90c4ea5252d5b97095b6be1",
+    "extras/worker-reconnect-v1.4.51.js": "a211be8aa34106f6e87ed958b27121a3d0ff1d29c2bc78301581b8dfa67f45bc",
+    "extras/worker-reconnect-v1.4.61.js": "11a388d5100ff4c95d9d12d47211b7c95bb2c288e284970b0b79c8d4fc181bd5",
+    "extras/worker-special-review-v1.4.19.css": "d2967e2ed3aa8100af9948688a5949bf107cddff91b21875df198e4860a2b5bb",
+    "extras/worker-special-review.html": "cb56801916513bb248aa3c355a1f48e2d5c9ed32aa87319f971764a7c309cfc9",
+    "extras/worker-v1.4.10.js": "64851c2da3944f0c0faed8dca09e2033ad25657dd020ddf8e5dcaeb7c9329762",
+    "extras/worker-v1.4.11.js": "c1a70960d382f810f716046fdd7a33ce71f5be2b1e1e69a809f1342ecaeeed1a",
+    "extras/worker-v1.4.19.js": "a708927716e9e3a94807a1156835a297adafbf02c78b04d97b271ad60e840f50",
+    "extras/worker-v1.4.21.js": "72cbc34b9bc9cecad335f9b18572b2acd6ed423598de9cb3c1d45f1e08b09e7b",
+    "extras/worker-v1.4.35.js": "b76d8f621008ba9a08e4261f658fef198d8153670d84d6c6db66d0b275772591",
+    "extras/worker-v1.4.5.js": "d8e964554dd12477b0cac90f5a9c16270158d3e041a4a7c2c91fd369acd651ec",
+    "extras/worker-v1.4.9.js": "384380e94d132d57e44bedd1e112aa9588a4393f7df1a7858de2d2febec0d981"
+  }
+}

@@ -1,0 +1,5 @@
+=== RUN   TestPurchasingBrowser
+Purchasing browser checks passed 4
+--- PASS: TestPurchasingBrowser (8.64s)
+PASS
+ok  	wanryotalk-reconstructed-server	8.905s

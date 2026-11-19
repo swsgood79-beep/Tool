@@ -14,11 +14,13 @@ import (
 
 type AdminAccount struct {
 	ID, Username, Name, PasswordHash string
+	Role                             string `json:",omitempty"`
 	Enabled                          bool
 	Revision                         int64
 }
 type AdminAccountView struct {
 	ID, Username, Name string
+	Role               string
 	Enabled            bool
 	Revision           int64
 }
@@ -101,6 +103,10 @@ func (a *App) issueAccountSession(w http.ResponseWriter, r *http.Request, u *Adm
 func (a *App) manageAdminAccount(r *http.Request) error {
 	action := r.FormValue("action")
 	if action == "create" {
+		role := r.FormValue("role")
+		if role != "" && role != "admin" && role != "purchasing" {
+			return errors.New("계정 권한을 확인해 주세요.")
+		}
 		name, username := strings.TrimSpace(r.FormValue("name")), strings.ToLower(strings.TrimSpace(r.FormValue("username")))
 		if !validText(name, 40) {
 			return errors.New("이름을 40자 이내로 입력해 주세요.")
@@ -126,7 +132,10 @@ func (a *App) manageAdminAccount(r *http.Request) error {
 			return err
 		}
 		return a.commitAnnouncement(func(s *State) error {
-			s.AdminAccounts = append(s.AdminAccounts, AdminAccount{ID: token(), Name: name, Username: username, PasswordHash: string(hash), Enabled: true, Revision: 1})
+			s.AdminAccounts = append(s.AdminAccounts, AdminAccount{ID: token(), Name: name, Username: username, Role: role, PasswordHash: string(hash), Enabled: true, Revision: 1})
+			if role == "purchasing" && s.PurchasingRecipient == "" {
+				s.PurchasingRecipient = s.AdminAccounts[len(s.AdminAccounts)-1].ID
+			}
 			return nil
 		})
 	}
@@ -233,7 +242,7 @@ func (a *App) accountHTTP(w http.ResponseWriter, r *http.Request, session Sessio
 	v["AccountError"], v["AccountMessage"], v["PasswordOnly"], v["AccountOwner"] = problem, message, path == "/my-password", session.AccountID == ""
 	rows := []AdminAccountView{}
 	for _, u := range a.state.AdminAccounts {
-		rows = append(rows, AdminAccountView{u.ID, u.Username, u.Name, u.Enabled, u.Revision})
+		rows = append(rows, AdminAccountView{u.ID, u.Username, u.Name, u.Role, u.Enabled, u.Revision})
 	}
 	v["Accounts"] = rows
 	v["AccountCount"] = len(rows) + 1
