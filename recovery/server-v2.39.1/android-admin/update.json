@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "package_name": "com.alpharobotics.admin",
-  "version_code": 5,
-  "version_name": "1.0.4",
-  "apk_url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.4.apk",
-  "sha256": "e1a30bdd7d459ef7147f30537a935ee898814011d218c32351ca1baaaa621c59",
-  "notes": "상단 로그인 담당자 표시 · 로그아웃 버튼 · 해당 휴대폰 로그인과 알림 해제"
+  "version_code": 6,
+  "version_name": "1.0.5",
+  "apk_url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.5.apk",
+  "sha256": "2904c94bf6285b1758d28411ef1e95a974aed5cb72ad2052d1e3ab043beda871",
+  "notes": "로그아웃 전까지 로그인 유지 · 앱 전환 시 기존 화면 유지 · 재실행 시 저장된 로그인 자동 복원"
 }

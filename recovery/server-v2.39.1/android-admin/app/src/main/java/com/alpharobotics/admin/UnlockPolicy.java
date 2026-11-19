@@ -1,5 +1,5 @@
 package com.alpharobotics.admin;
-/** Process-local authentication is reset on background entry and is never persisted. */
+/** Process-local verified authentication survives background entry; logout/revocation locks it. Never persisted. */
 final class UnlockPolicy {
  private boolean open;
  boolean isOpen(){return open;}

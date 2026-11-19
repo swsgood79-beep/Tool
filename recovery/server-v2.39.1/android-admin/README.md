@@ -1,5 +1,9 @@
 # 알파 관리자 Android 1.0.3
 
+## 현재: APK 1.0.5 / 서버 1.4.69
+
+인증된 앱은 onStop에서 잠그지 않습니다. onResume은 같은 WebView/입력 상태를 유지합니다. 새 프로세스는 저장된 grant와 암호화된 secret으로 서버 복원 후 account_key를 확인하고 업무 화면을 엽니다. signed_out·누락된 키·진행 중 로그인은 자동 복원을 막고, 일시적인 연결 실패는 키를 지우지 않습니다. 직접 로그아웃과 서버 권한 검증은 유지합니다. 아래 이전 버전의 매번 로그인 선택 화면 설명은 이 버전에서 대체됩니다.
+
 관리자 전용 APK. 기존 관리자 웹 화면을 유지하면서 Android WebView·FCM 알림·시스템 카메라/파일 선택·다운로드를 사용합니다. 작업자 PWA와 별개입니다.
 
 - package: `com.alpharobotics.admin`, minSdk 26 / targetSdk 35

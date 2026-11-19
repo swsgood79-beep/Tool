@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.alpharobotics.admin.UnlockPolicyTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-19T02:26:24" hostname="7f85b2a8130e" time="0.001">
+  <properties/>
+  <testcase name="firstPasswordLoginAndExplicitOptOutDoNotRequirePriorFingerprint" classname="com.alpharobotics.admin.UnlockPolicyTest" time="0.001"/>
+  <testcase name="savedLoginDoesNotUnlockANewProcess" classname="com.alpharobotics.admin.UnlockPolicyTest" time="0.0"/>
+  <testcase name="explicitLogoutRequiresAuthenticationAgain" classname="com.alpharobotics.admin.UnlockPolicyTest" time="0.0"/>
+  <testcase name="cancellationAndNotificationDoNotOpenTheLockedApp" classname="com.alpharobotics.admin.UnlockPolicyTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

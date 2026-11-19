@@ -2,7 +2,7 @@ plugins { id 'com.android.application' }
 android {
  namespace 'com.alpharobotics.admin'
  compileSdk 35
- defaultConfig { applicationId 'com.alpharobotics.admin'; minSdk 26; targetSdk 35; versionCode 5; versionName '1.0.4'; testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner' }
+ defaultConfig { applicationId 'com.alpharobotics.admin'; minSdk 26; targetSdk 35; versionCode 6; versionName '1.0.5'; testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner' }
  compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
  signingConfigs { release { if (System.getenv('ALPHA_ADMIN_KEYSTORE')) { storeFile file(System.getenv('ALPHA_ADMIN_KEYSTORE')); storePassword System.getenv('ALPHA_ADMIN_STORE_PASSWORD'); keyAlias 'alpha-admin'; keyPassword System.getenv('ALPHA_ADMIN_KEY_PASSWORD') } } }
  buildTypes { release { signingConfig signingConfigs.release; minifyEnabled false } }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.alpharobotics.admin.SessionResumePolicyTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-19T02:26:24" hostname="7f85b2a8130e" time="0.0">
+  <properties/>
+  <testcase name="restartedProcessRestoresOnlyWithTheSavedCapabilityAndStillNeedsServerProof" classname="com.alpharobotics.admin.SessionResumePolicyTest" time="0.0"/>
+  <testcase name="backgroundAndInflightRequestsCannotStartDuplicateRestores" classname="com.alpharobotics.admin.SessionResumePolicyTest" time="0.0"/>
+  <testcase name="explicitLogoutOrMissingCredentialsCannotRestore" classname="com.alpharobotics.admin.SessionResumePolicyTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
