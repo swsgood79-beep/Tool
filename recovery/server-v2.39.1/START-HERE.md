@@ -1,10 +1,10 @@
-# 빠른 시작 · PC v1.4.75 / 관리자 앱 v1.0.8
+# 빠른 시작 · PC v1.4.76 / 관리자 앱 v1.0.9
 
 전체 기능과 사용 순서는 [README.md](README.md)에 있습니다. 관리자 앱 Firebase 설정은 [ANDROID-ADMIN-SETUP.md](ANDROID-ADMIN-SETUP.md)를 참고하세요.
 
 ## 이미 사용 중인 회사 PC
 
-1. [최신 Windows ZIP](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.75.zip)을 내려받아 압축을 풉니다.
+1. [최신 Windows ZIP](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.76.zip)을 내려받아 압축을 풉니다.
 2. 기존 프로그램을 종료 버튼/트레이에서 완전히 종료합니다.
 3. 새 `AlphaWorkComplete-Recovered.exe`를 실행합니다. 기존 운영 자료와 지정한 저장 경로를 그대로 이어서 사용합니다.
 4. 수주·기록·사진과 외부 연결 상태를 확인합니다.
@@ -28,7 +28,7 @@
 
 ## 관리자 휴대폰
 
-1. [관리자 APK v1.0.8](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.8.apk)을 설치합니다. 기존 앱은 ⋮ → 앱 업데이트 확인을 사용합니다.
+1. [관리자 APK v1.0.9](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.9.apk)을 설치합니다. 기존 앱은 ⋮ → 앱 업데이트 확인을 사용합니다.
 2. 대표 관리자 wssong 또는 개인 관리자 아이디·비밀번호로 로그인합니다.
 3. 한 번 로그인하면 직접 로그아웃할 때까지 유지합니다. 다른 앱 복귀는 기존 화면을, 재실행은 저장된 계정을 사용합니다.
 4. 최초 Firebase 설정과 앱 알림 권한을 확인하고 시험 알림을 보냅니다.
@@ -42,4 +42,4 @@
 - 출하사진 필요/보관 완료 목록에서 사진과 수주 정보를 확인합니다.
 - 백업 설정과 복구키 보관 상태를 확인합니다.
 
-이번 버전의 웹 다크모드 보완은 PC v1.4.75, 앱 상단·로그인·대화상자 테마 보완은 APK v1.0.8에 포함됩니다.
+이번 사진 추가 수정은 PC v1.4.76, 삼성 갤러리 직접 선택 메뉴는 APK v1.0.9에 포함됩니다. PC 프로그램 교체와 앱 ⋮ → 앱 업데이트 확인을 각각 진행하세요.

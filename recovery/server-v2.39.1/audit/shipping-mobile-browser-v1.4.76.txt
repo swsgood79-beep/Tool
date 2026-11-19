@@ -1,0 +1,5 @@
+=== RUN   TestShippingMobilePhotoBrowser
+Mobile photo browser checks passed 8
+--- PASS: TestShippingMobilePhotoBrowser (9.19s)
+PASS
+ok  	wanryotalk-reconstructed-server	9.444s

@@ -1,0 +1,69 @@
+{
+  "scope": "Go server + Chromium PC/mobile and APK user agent; DataTransfer failure simulated; actual Samsung/Photos not executed",
+  "results": [
+    {
+      "mobile": false,
+      "app": false,
+      "brokenDataTransfer": false,
+      "addition": false,
+      "case": "generic MIME and normal photos preview, remove, server/network error preserves files, retry exactly once and no leave dialog",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "app": false,
+      "brokenDataTransfer": false,
+      "addition": true,
+      "case": "generic MIME and normal photos preview, remove, server/network error preserves files, retry exactly once and no leave dialog",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "app": false,
+      "brokenDataTransfer": true,
+      "addition": false,
+      "case": "generic MIME and normal photos preview, remove, server/network error preserves files, retry exactly once and no leave dialog",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "app": false,
+      "brokenDataTransfer": true,
+      "addition": true,
+      "case": "generic MIME and normal photos preview, remove, server/network error preserves files, retry exactly once and no leave dialog",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "app": true,
+      "brokenDataTransfer": false,
+      "addition": false,
+      "case": "generic MIME and normal photos preview, remove, server/network error preserves files, retry exactly once and no leave dialog",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "app": true,
+      "brokenDataTransfer": false,
+      "addition": true,
+      "case": "generic MIME and normal photos preview, remove, server/network error preserves files, retry exactly once and no leave dialog",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "app": true,
+      "brokenDataTransfer": true,
+      "addition": false,
+      "case": "generic MIME and normal photos preview, remove, server/network error preserves files, retry exactly once and no leave dialog",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "app": true,
+      "brokenDataTransfer": true,
+      "addition": true,
+      "case": "generic MIME and normal photos preview, remove, server/network error preserves files, retry exactly once and no leave dialog",
+      "result": "pass"
+    }
+  ]
+}

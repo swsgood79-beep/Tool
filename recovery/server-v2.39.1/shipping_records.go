@@ -213,6 +213,9 @@ func (a *App) shippingRecordsHTTP(w http.ResponseWriter, r *http.Request) bool {
 		for key, value := range list {
 			view[key] = value
 		}
+		if policy := w.Header().Get("Content-Security-Policy"); !strings.Contains(policy, "data: blob:") {
+			w.Header().Set("Content-Security-Policy", strings.Replace(policy, "img-src 'self' data:", "img-src 'self' data: blob:", 1))
+		}
 		a.render(w, "shipping-records.html", view)
 		return true
 	}
@@ -236,7 +239,12 @@ func (a *App) shippingRecordsHTTP(w http.ResponseWriter, r *http.Request) bool {
 					http.Error(w, err.Error(), 400)
 					return true
 				}
-				http.Redirect(w, r, base+"/"+record.ID+"?photos_added=1", http.StatusSeeOther)
+				next := base + "/" + record.ID + "?photos_added=1"
+				if strings.Contains(r.Header.Get("Accept"), "application/json") {
+					jsonReply(w, map[string]any{"ok": true, "next": next})
+				} else {
+					http.Redirect(w, r, next, http.StatusSeeOther)
+				}
 				return true
 			}
 			if rest[1] == "save" && !admin {
@@ -244,7 +252,12 @@ func (a *App) shippingRecordsHTTP(w http.ResponseWriter, r *http.Request) bool {
 					http.Error(w, err.Error(), 400)
 					return true
 				}
-				http.Redirect(w, r, base+"/"+record.ID+"?saved=1", http.StatusSeeOther)
+				next := base + "/" + record.ID + "?saved=1"
+				if strings.Contains(r.Header.Get("Accept"), "application/json") {
+					jsonReply(w, map[string]any{"ok": true, "next": next})
+				} else {
+					http.Redirect(w, r, next, http.StatusSeeOther)
+				}
 				return true
 			}
 			if rest[1] == "delete" && admin {
@@ -276,6 +289,9 @@ func (a *App) shippingRecordsHTTP(w http.ResponseWriter, r *http.Request) bool {
 			if len(phone) >= 7 && len(phone) <= 30 {
 				view["CallURL"] = template.URL("tel:" + phone)
 			}
+			if policy := w.Header().Get("Content-Security-Policy"); !strings.Contains(policy, "data: blob:") {
+				w.Header().Set("Content-Security-Policy", strings.Replace(policy, "img-src 'self' data:", "img-src 'self' data: blob:", 1))
+			}
 			a.render(w, "shipping-records.html", view)
 			return true
 		}
@@ -306,7 +322,7 @@ func (a *App) shippingRecordMarkup(s, name string, value any) string {
 			link := `<a class="shipment-pending-link" href="` + base + `?pending=1">📷 출하사진 필요 <strong data-shipping-pending-count>` + fmt.Sprint(n) + `</strong><span>사진 등록 후 완료·보관 ›</span></a>`
 			s = strings.Replace(s, `<div class="search-meta">`, link+`<div class="search-meta">`, 1)
 		}
-		s = strings.Replace(s, "</head>", `<meta name="shipping-records-board" content="`+board+`"><script defer src="/shipping-records-v1.4.60.js"></script></head>`, 1)
+		s = strings.Replace(s, "</head>", `<meta name="shipping-records-board" content="`+board+`"><script defer src="/shipping-records-v1.4.76.js"></script></head>`, 1)
 	}
 	if name == "shipping-records.html" {
 		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/shipment-photo-viewer-v1.4.62.css"><script defer src="/shipment-photo-viewer-v1.4.62.js"></script></head>`, 1)

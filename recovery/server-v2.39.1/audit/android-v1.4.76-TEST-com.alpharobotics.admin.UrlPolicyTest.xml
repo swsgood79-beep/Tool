@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.alpharobotics.admin.UrlPolicyTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-19T08:30:20" hostname="7f85b2a8130e" time="0.025">
+  <properties/>
+  <testcase name="nativeMenuActionsAreFixed" classname="com.alpharobotics.admin.UrlPolicyTest" time="0.02"/>
+  <testcase name="permitsOnlyExactHttpsTunnel" classname="com.alpharobotics.admin.UrlPolicyTest" time="0.001"/>
+  <testcase name="browserFingerprintRoutesStayOutOfNativeLogin" classname="com.alpharobotics.admin.UrlPolicyTest" time="0.001"/>
+  <testcase name="rejectsCredentialAndHostInjection" classname="com.alpharobotics.admin.UrlPolicyTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

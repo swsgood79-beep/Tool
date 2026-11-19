@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.alpharobotics.admin.LoginPolicyTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-19T08:30:20" hostname="7f85b2a8130e" time="0.01">
+  <properties/>
+  <testcase name="proofUsesOnlyTheSuccessfulPasswordResponseCookie" classname="com.alpharobotics.admin.LoginPolicyTest" time="0.001"/>
+  <testcase name="restoresOnlyTheBoundAccountIncludingTheOwnerPrincipal" classname="com.alpharobotics.admin.LoginPolicyTest" time="0.0"/>
+  <testcase name="normalLoginRequiresTheActualFormCsrfToken" classname="com.alpharobotics.admin.LoginPolicyTest" time="0.006"/>
+  <testcase name="aDifferentTypedUserCannotUseTheSavedFingerprint" classname="com.alpharobotics.admin.LoginPolicyTest" time="0.0"/>
+  <testcase name="startingOrResumingNeverPromptsWithoutTheButton" classname="com.alpharobotics.admin.LoginPolicyTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
