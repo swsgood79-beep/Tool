@@ -1,0 +1,6 @@
+=== RUN   TestNativeThemeBrowser
+Theme pages 224 pages with issues 0
+[]
+--- PASS: TestNativeThemeBrowser (24.23s)
+PASS
+ok  	wanryotalk-reconstructed-server	24.484s

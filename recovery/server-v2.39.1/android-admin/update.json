@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "package_name": "com.alpharobotics.admin",
-  "version_code": 8,
-  "version_name": "1.0.7",
-  "apk_url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.7.apk",
-  "sha256": "c74d94d794f49853e9f4c77c24aa30f295e503d03177542372fec42b3e0bfbb5",
-  "notes": "로그아웃 전까지 로그인 유지 · 재실행 시 로그인 폼 없이 연결 · 관리자↔작업자 화면 전환"
+  "version_code": 9,
+  "version_name": "1.0.8",
+  "apk_url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.8.apk",
+  "sha256": "bfc9a7508b8342d60d96900feb9caa14b61dc7cc54cd3993a0e8c7c7fc0a9ead",
+  "notes": "다크모드 보완 · 앱 상단/로그인/연결/대화상자와 웹 테마 연동 · 밝게/어둡게/기기 설정 유지"
 }

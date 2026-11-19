@@ -1,0 +1,1558 @@
+{
+  "scope": "temporary Go server + Chromium APK UA; native bridge simulated; no actual Android UI",
+  "results": [
+    {
+      "tag": "390/dark/system/mobile-admin",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/projects/1/edit",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/projects/1/inspection",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/client-notes",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/client-notes/a9AB_KjD9S-LE69ALXXiOB4iaAzIit5QKFLYq525Olw/edit",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/designers",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/announcements",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/community-admin",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/inspection-requests",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/shipping-archive-admin",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/android-admin-settings",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/admin-accounts",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/mobile-access",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/tts-settings",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/market-settings",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/schedule",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/backup",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/settings",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/orders/import",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/data-storage",
+      "restricted": true,
+      "status": 403
+    },
+    {
+      "tag": "390/dark/system/report-settings",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/community/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/notices/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/shipping-records/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/whole-menu",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/worker-view",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "390/dark/system/manual-dark-persists",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/dark/system/manual-light-persists",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/dark/mobile-admin",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/projects/1/edit",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/projects/1/inspection",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/client-notes",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/client-notes/a9AB_KjD9S-LE69ALXXiOB4iaAzIit5QKFLYq525Olw/edit",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/designers",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/announcements",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/community-admin",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/inspection-requests",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/shipping-archive-admin",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/android-admin-settings",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/admin-accounts",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/mobile-access",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/tts-settings",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/market-settings",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/schedule",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/backup",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/settings",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/orders/import",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/data-storage",
+      "restricted": true,
+      "status": 403
+    },
+    {
+      "tag": "390/light/dark/report-settings",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/community/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/notices/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/shipping-records/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/whole-menu",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/worker-view",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/manual-dark-persists",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/dark/manual-light-persists",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/mobile-admin",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/projects/1/edit",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/projects/1/inspection",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/client-notes",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/client-notes/a9AB_KjD9S-LE69ALXXiOB4iaAzIit5QKFLYq525Olw/edit",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/designers",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/announcements",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/community-admin",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/inspection-requests",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/shipping-archive-admin",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/android-admin-settings",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/admin-accounts",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/mobile-access",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/tts-settings",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/market-settings",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/schedule",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/backup",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/settings",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/orders/import",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/data-storage",
+      "restricted": true,
+      "status": 403
+    },
+    {
+      "tag": "390/dark/light/report-settings",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/community/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/notices/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/shipping-records/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/whole-menu",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/worker-view",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/dark/light/manual-dark-persists",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/dark/light/manual-light-persists",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/mobile-admin",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/projects/1/edit",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/projects/1/inspection",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/client-notes",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/client-notes/a9AB_KjD9S-LE69ALXXiOB4iaAzIit5QKFLYq525Olw/edit",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/designers",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/announcements",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/community-admin",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/inspection-requests",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/shipping-archive-admin",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/android-admin-settings",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/admin-accounts",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/mobile-access",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/tts-settings",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/market-settings",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/schedule",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/backup",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/settings",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/orders/import",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/data-storage",
+      "restricted": true,
+      "status": 403
+    },
+    {
+      "tag": "390/light/light/report-settings",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/community/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/notices/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/shipping-records/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/whole-menu",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/worker-view",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "390/light/light/manual-dark-persists",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "390/light/light/manual-light-persists",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/system/mobile-admin",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/projects/1/edit",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/projects/1/inspection",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/client-notes",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/client-notes/a9AB_KjD9S-LE69ALXXiOB4iaAzIit5QKFLYq525Olw/edit",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/designers",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/announcements",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/community-admin",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/inspection-requests",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/shipping-archive-admin",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/android-admin-settings",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/admin-accounts",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/mobile-access",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/tts-settings",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/market-settings",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/schedule",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/backup",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/settings",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/orders/import",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/data-storage",
+      "restricted": true,
+      "status": 403
+    },
+    {
+      "tag": "850/dark/system/report-settings",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/community/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/notices/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/shipping-records/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/whole-menu",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/worker-view",
+      "dark": true,
+      "mode": "system",
+      "body": "rgb(16, 20, 28)",
+      "native": "system"
+    },
+    {
+      "tag": "850/dark/system/manual-dark-persists",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/dark/system/manual-light-persists",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/dark/mobile-admin",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/projects/1/edit",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/projects/1/inspection",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/client-notes",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/client-notes/a9AB_KjD9S-LE69ALXXiOB4iaAzIit5QKFLYq525Olw/edit",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/designers",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/announcements",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/community-admin",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/inspection-requests",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/shipping-archive-admin",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/android-admin-settings",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/admin-accounts",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/mobile-access",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/tts-settings",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/market-settings",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/schedule",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/backup",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/settings",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/orders/import",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/data-storage",
+      "restricted": true,
+      "status": 403
+    },
+    {
+      "tag": "850/light/dark/report-settings",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/community/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/notices/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/shipping-records/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/whole-menu",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/worker-view",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/manual-dark-persists",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/dark/manual-light-persists",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/mobile-admin",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/projects/1/edit",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/projects/1/inspection",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/client-notes",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/client-notes/a9AB_KjD9S-LE69ALXXiOB4iaAzIit5QKFLYq525Olw/edit",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/designers",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/announcements",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/community-admin",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/inspection-requests",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/shipping-archive-admin",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/android-admin-settings",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/admin-accounts",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/mobile-access",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/tts-settings",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/market-settings",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/schedule",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/backup",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/settings",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/orders/import",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/data-storage",
+      "restricted": true,
+      "status": 403
+    },
+    {
+      "tag": "850/dark/light/report-settings",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/community/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/notices/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/shipping-records/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/whole-menu",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/worker-view",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/dark/light/manual-dark-persists",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/dark/light/manual-light-persists",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/mobile-admin",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/projects/1/edit",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/projects/1/inspection",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/client-notes",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/client-notes/a9AB_KjD9S-LE69ALXXiOB4iaAzIit5QKFLYq525Olw/edit",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/designers",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/announcements",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/community-admin",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/inspection-requests",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/shipping-archive-admin",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/android-admin-settings",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/admin-accounts",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/mobile-access",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/tts-settings",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/market-settings",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/schedule",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/backup",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/settings",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/orders/import",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/data-storage",
+      "restricted": true,
+      "status": 403
+    },
+    {
+      "tag": "850/light/light/report-settings",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/community/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/notices/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/shipping-records/WuveGkKMGfktXaSyqduGp6eIdNvaRV2wQPb0xKex-KA",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/whole-menu",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/worker-view",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    },
+    {
+      "tag": "850/light/light/manual-dark-persists",
+      "dark": true,
+      "mode": "dark",
+      "body": "rgb(16, 20, 28)",
+      "native": "dark"
+    },
+    {
+      "tag": "850/light/light/manual-light-persists",
+      "dark": false,
+      "mode": "light",
+      "body": "rgb(243, 245, 248)",
+      "native": "light"
+    }
+  ],
+  "issues": []
+}

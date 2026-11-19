@@ -1,0 +1,85 @@
+/* Administrator APK and its authenticated worker view only; palette follows existing theme tokens. */
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) fieldset,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .designer-fields,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .designer-picker-tools,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .designer-create,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .designer-entry,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .client-create,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .client-picker-tools,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .client-note-row,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .edit-panel,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .phone-pair,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .backup-status,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .import-help,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .project-info,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .admin-settings-links,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .settings-panel,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .settings-section,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .data-storage-panel,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .storage-status{background:var(--ui-subtle);color:var(--ui-text);border-color:var(--ui-line)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) legend,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .designer-fields legend,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .client-picker-tools legend,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .designer-entry h3,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .import-choice-label{color:var(--ui-ink)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .designer-picker-tools select,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .client-picker-tools select,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .import-page select,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) input:not([type=checkbox]):not([type=radio]):not([type=range]),
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) select,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) textarea{background:var(--ui-input);color:var(--ui-ink);border-color:var(--ui-line-strong);color-scheme:inherit}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) input::placeholder,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) textarea::placeholder{color:var(--ui-muted);opacity:1}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .designer-book-links,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .client-picker-actions,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .project-edit-actions,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .client-picker-tools p,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .designer-picker-tools p,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .designer-fields p,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .client-note-row p{color:var(--ui-muted);border-color:var(--ui-line)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .designer-label,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .designer-call{background:var(--ui-green-soft);color:var(--ui-green-ink);border-color:var(--ui-green-line)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .inspection-row,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .inspection-locked,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .inspection-request-item,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .admin-settings-links a{background:var(--ui-subtle);color:var(--ui-text);border-color:var(--ui-line)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .inspection-row h3,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .inspection-locked h3,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .inspection-locked .stage-caption{color:var(--ui-ink)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .inspection-row.inspection-done,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .inspection-done{background:var(--ui-green-soft);color:var(--ui-green-ink);border-color:var(--ui-green-line)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .inspection-row.inspection-requested,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .inspection-waiting,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .combined-review-panel,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .stage-shipping:not(.inspection-locked):not(.inspection-done),
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) #restore-restart{background:var(--ui-amber-soft);color:var(--ui-amber-ink);border-color:var(--ui-amber-line)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .inspection-requested .stage-title h3,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .inspection-done h3{color:inherit}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) table{background:var(--ui-surface);color:var(--ui-text);border-color:var(--ui-line)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) th{background:var(--ui-subtle);color:var(--ui-ink);border-color:var(--ui-line)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) td{border-color:var(--ui-line)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) pre,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) code,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .import-result,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .backup-panel .backup-status{background:var(--ui-subtle);color:var(--ui-text);border-color:var(--ui-line)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) dialog{background:var(--ui-surface);color:var(--ui-text);border-color:var(--ui-line-strong)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) dialog>header,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .supplied-materials-dialog header,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .special-review-footer,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .special-review-content{background:var(--ui-subtle);color:var(--ui-ink);border-color:var(--ui-line)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .danger,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .delete-order{background:var(--ui-red-soft);color:var(--ui-red-ink);border-color:var(--ui-red-line)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .pill{background:var(--ui-blue-soft);color:var(--ui-link)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .tts-enabled{background:var(--ui-green-soft);color:var(--ui-green-ink);border-color:var(--ui-green-line)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) input[type=range]{background:transparent;accent-color:var(--ui-primary)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .tts-test-phrase,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .schedule-status{background:var(--ui-subtle);color:var(--ui-ink);border-color:var(--ui-line)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .error,
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) [role=alert]{color:var(--ui-red-ink)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .shipment-storage-note{color:var(--ui-muted)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) #market-admin-status{color:var(--ui-text)!important}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) #tts-speed{background:transparent;accent-color:var(--ui-primary)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) #tts-speed{color:var(--ui-ink)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .tts-settings-panel output{background:var(--ui-blue-soft);color:var(--ui-link)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .tts-speed-ends{color:var(--ui-muted)}
+html[data-alpha-design=modern]:is([data-admin-app=true],[data-native-worker-view=true]) .tts-error{background:var(--ui-red-soft);color:var(--ui-red-ink);border-color:var(--ui-red-line)}

@@ -110,8 +110,8 @@ func (w *nativeAdminPageWriter) Write(data []byte) (int, error) {
 		for _, script := range []string{`<script src="/worker-app-theme-bootstrap-v1.4.63.js"></script>`, `<script defer src="/worker-app-v1.4.63.js"></script>`} {
 			s = strings.ReplaceAll(s, script, "")
 		}
-		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/native-admin-app-v1.4.65.css"></head>`, 1)
-		s = strings.Replace(s, "</body>", marker+`<script defer src="/native-admin-app-v1.4.65.js"></script><script defer src="/native-view-menu-v1.4.72.js"></script></body>`, 1)
+		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/native-admin-app-v1.4.65.css"><link rel="stylesheet" href="/native-theme-v1.4.75.css"></head>`, 1)
+		s = strings.Replace(s, "</body>", marker+`<script defer src="/native-admin-app-v1.4.65.js"></script><script defer src="/native-view-menu-v1.4.72.js"></script><script defer src="/native-theme-v1.4.75.js"></script></body>`, 1)
 		w.Header().Del("Content-Length")
 		_, err := w.ResponseWriter.Write([]byte(s))
 		return len(data), err
@@ -137,8 +137,8 @@ func (w *nativeWorkerPageWriter) Write(data []byte) (int, error) {
 		for _, script := range []string{`<script src="/worker-app-theme-bootstrap-v1.4.63.js"></script>`, `<script defer src="/worker-app-v1.4.63.js"></script>`} {
 			s = strings.ReplaceAll(s, script, "")
 		}
-		s = strings.Replace(s, "</head>", `<style>html[data-native-worker-view=true] .design-header,html[data-native-worker-view=true] .design-classic-bar{display:none!important}</style></head>`, 1)
-		s = strings.Replace(s, "</body>", `<script defer src="/native-view-menu-v1.4.72.js"></script></body>`, 1)
+		s = strings.Replace(s, "</head>", `<style>html[data-native-worker-view=true] .design-header,html[data-native-worker-view=true] .design-classic-bar{display:none!important}</style><link rel="stylesheet" href="/native-theme-v1.4.75.css"></head>`, 1)
+		s = strings.Replace(s, "</body>", `<script defer src="/native-view-menu-v1.4.72.js"></script><script defer src="/native-theme-v1.4.75.js"></script></body>`, 1)
 		w.Header().Del("Content-Length")
 		_, err := w.ResponseWriter.Write([]byte(s))
 		return len(data), err

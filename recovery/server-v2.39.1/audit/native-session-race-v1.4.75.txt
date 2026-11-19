@@ -1,0 +1,12 @@
+=== RUN   TestNativePersistentLoginRestartLogoutAndBrowserIsolation
+--- PASS: TestNativePersistentLoginRestartLogoutAndBrowserIsolation (11.94s)
+=== RUN   TestNativePersistentLoginRevocationAndCapabilityBoundaries
+--- PASS: TestNativePersistentLoginRevocationAndCapabilityBoundaries (9.17s)
+=== RUN   TestNativeAdminAccountRevocationAndLogout
+--- PASS: TestNativeAdminAccountRevocationAndLogout (9.96s)
+=== RUN   TestNativeLogoutOnlyCurrentPhone
+--- PASS: TestNativeLogoutOnlyCurrentPhone (12.52s)
+=== RUN   TestNativeWorkerViewSwitchKeepsSessionAndPermissions
+--- PASS: TestNativeWorkerViewSwitchKeepsSessionAndPermissions (9.86s)
+PASS
+ok  	wanryotalk-reconstructed-server	57.272s
