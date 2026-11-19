@@ -1,0 +1,8 @@
+=== RUN   TestUnifiedLoginAndFastWorkerBrowser
+Unified login and fast worker entry checks passed 8
+--- PASS: TestUnifiedLoginAndFastWorkerBrowser (4.88s)
+=== RUN   TestNativeAdminAppCurrentBrowser
+Native admin app shell checks passed 28
+--- PASS: TestNativeAdminAppCurrentBrowser (6.66s)
+PASS
+ok  	wanryotalk-reconstructed-server	11.811s

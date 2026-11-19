@@ -41,7 +41,7 @@ func (a *App) admin(w http.ResponseWriter, r *http.Request) (Session, bool) {
 		return s, false
 	}
 	if s.AccountID != "" && ownerOnlyAdminPath(r.URL.Path) {
-		http.Error(w, "이 설정은 기존 관리자 계정에서 관리합니다.", 403)
+		http.Error(w, "이 설정은 대표 관리자 계정에서 관리합니다.", 403)
 		return s, false
 	}
 	if r.Method == "POST" && !equal(r.FormValue("csrf"), s.CSRF) {
@@ -67,12 +67,16 @@ func localRequest(r *http.Request) bool {
 	return true
 }
 
-const loginPage = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/admin-accounts-v1.4.54.css"><title>관리자 로그인 · 알파</title></head><body class="account-login-page"><header><span class="brand"><span class="mark">α</span> 알파 <small>관리자</small></span></header><main><section class="card account-login-card"><h1>{{if .Setup}}관리자 비밀번호 만들기{{else if .Legacy}}기존 관리자 로그인{{else}}관리자 로그인{{end}}</h1><p class="muted">{{if .Setup}}기존 관리자 비밀번호를 설정해 주세요.{{else if .Legacy}}지금 사용 중인 관리자 비밀번호로 로그인하세요.{{else}}개인 계정으로 같은 수주와 검사 업무를 이용하세요.{{end}}</p>{{if .Error}}<p class="account-error" role="alert">{{.Error}}</p>{{end}}<form method="post" action="/login"><input type="hidden" name="csrf" value="{{.CSRF}}">{{if not .Legacy}}<input type="hidden" name="login_mode" value="account"><label>아이디<input name="username" value="{{.Username}}" required maxlength="32" autocomplete="username" autocapitalize="none" spellcheck="false"></label>{{else}}<input type="hidden" name="login_mode" value="legacy">{{end}}<label>비밀번호<input type="password" name="password" minlength="{{if .Legacy}}12{{else}}8{{end}}" maxlength="72" required autocomplete="{{if .Setup}}new-password{{else}}current-password{{end}}"></label>{{if .Setup}}<label>비밀번호 확인<input type="password" name="confirm" minlength="12" maxlength="72" required autocomplete="new-password"></label>{{end}}<button class="primary full">{{if .Setup}}비밀번호 설정{{else}}로그인{{end}}</button></form>{{if not .Setup}}<div class="account-login-options">{{if not .Legacy}}<a href="/login?mode=legacy&amp;next={{.Next}}">기존 관리자 로그인</a>{{else}}<a href="/login?mode=account&amp;next={{.Next}}">개별 계정 로그인</a><a href="/mobile-admin/passkey/start?next={{.Next}}">기존 관리자 지문·패스키 로그인</a>{{end}}</div>{{end}}</section></main></body></html>`
+const ownerUsername = "wssong"
+const loginPage = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/admin-accounts-v1.4.54.css"><title>관리자 로그인 · 알파</title></head><body class="account-login-page"><header><span class="brand"><span class="mark">α</span> 알파 <small>관리자</small></span></header><main><section class="card account-login-card"><h1>{{if .Setup}}관리자 비밀번호 만들기{{else}}관리자 로그인{{end}}</h1><p class="muted">{{if .Setup}}관리자 아이디 wssong의 비밀번호를 설정해 주세요.{{else}}아이디와 비밀번호를 입력해 주세요.{{end}}</p>{{if .Error}}<p class="account-error" role="alert">{{.Error}}</p>{{end}}<form method="post" action="/login"><input type="hidden" name="csrf" value="{{.CSRF}}"><input type="hidden" name="login_mode" value="account"><label>아이디<input name="username" value="{{.Username}}" {{if .Setup}}readonly{{end}} required maxlength="32" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="아이디"></label><label>비밀번호<input type="password" name="password" minlength="{{if .Setup}}12{{else}}8{{end}}" maxlength="72" required autocomplete="{{if .Setup}}new-password{{else}}current-password{{end}}"></label>{{if .Setup}}<label>비밀번호 확인<input type="password" name="confirm" minlength="12" maxlength="72" required autocomplete="new-password"></label>{{end}}<button class="primary full">{{if .Setup}}비밀번호 설정{{else}}로그인{{end}}</button></form></section></main></body></html>`
 
 func (a *App) login(w http.ResponseWriter, r *http.Request) {
 	setup := a.state.PasswordHash == ""
-	legacy := setup || r.URL.Query().Get("mode") == "legacy" || (len(a.state.AdminAccounts) == 0 && r.URL.Query().Get("mode") != "account")
+
 	username := ""
+	if setup {
+		username = ownerUsername
+	}
 	var account *AdminAccount
 	named := false
 	message := ""
@@ -99,15 +103,26 @@ func (a *App) login(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		username = strings.ToLower(strings.TrimSpace(r.FormValue("username")))
-		named = !setup && (r.FormValue("login_mode") == "account" || username != "")
-		legacy = !named
 		password := r.FormValue("password")
-		minimum := 12
-		if named {
-			minimum = 8
+		named = !setup && (r.FormValue("login_mode") == "account" || username != "") && username != ownerUsername
+		// Preserve a pre-existing personal account with the reserved username,
+		// without granting it owner permissions or modifying either password.
+		if !setup && username == ownerUsername {
+			if collision := adminAccountByUsername(&a.state, username); collision != nil {
+				ownerValid := a.passwordMatches(password)
+				if ownerValid && collision.Enabled && bcrypt.CompareHashAndPassword([]byte(collision.PasswordHash), []byte(password)) == nil {
+					http.Error(w, "wssong 아이디가 개인 계정과 중복되어 로그인할 수 없습니다. PC에서 계정 구성을 확인해 주세요.", http.StatusConflict)
+					return
+				}
+				named = !ownerValid
+			}
+		}
+		minimum := 8
+		if setup {
+			minimum = 12
 		}
 		if utf8.RuneCountInString(password) < minimum || utf8.RuneCountInString(password) > 72 {
-			if named {
+			if !setup {
 				message = "비밀번호는 8~72자여야 합니다."
 			} else {
 				message = "비밀번호는 12~72자여야 합니다."
@@ -140,7 +155,7 @@ func (a *App) login(w http.ResponseWriter, r *http.Request) {
 			}
 		} else {
 			if !a.passwordMatches(password) {
-				message = "비밀번호가 맞지 않습니다."
+				message = "아이디 또는 비밀번호를 확인해 주세요."
 				a.failures[ip] = append(attempts, now)
 			}
 		}
@@ -175,6 +190,9 @@ func (a *App) login(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
+	if setup {
+		username = ownerUsername
+	}
 	nonce := token()
 	for k, t := range a.challenges {
 		if !t.Expires.After(time.Now()) {
@@ -188,7 +206,7 @@ func (a *App) login(w http.ResponseWriter, r *http.Request) {
 	a.challenges[nonce] = Ticket{Expires: time.Now().Add(10 * time.Minute), Next: safeNext(r.URL.Query().Get("next"))}
 	http.SetCookie(w, &http.Cookie{Name: a.nonceCookie(), Value: nonce, Path: "/login", HttpOnly: true, SameSite: http.SameSiteStrictMode, MaxAge: 600})
 	t := template.Must(template.New("login").Parse(loginPage))
-	a.renderTemplate(w, t, "login", map[string]any{"Setup": setup, "Error": message, "CSRF": nonce, "Legacy": legacy, "Username": username, "Next": safeNext(r.URL.Query().Get("next"))})
+	a.renderTemplate(w, t, "login", map[string]any{"Setup": setup, "Error": message, "CSRF": nonce, "Username": username, "Next": safeNext(r.URL.Query().Get("next"))})
 }
 
 func (a *App) passwordMatches(pw string) bool {

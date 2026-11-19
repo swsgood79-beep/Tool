@@ -73,7 +73,7 @@ func nativeAccountValid(s *State, d NativeAdminDevice) bool {
 }
 func nativeAccountLabel(s *State, id string) string {
 	if id == "" {
-		return "기존 관리자"
+		return ownerUsername
 	}
 	if u := adminAccount(s, id); u != nil {
 		return u.Name
@@ -293,7 +293,7 @@ func (a *App) nativeAdminHTTP(w http.ResponseWriter, r *http.Request, session Se
 	}
 	if path == "/android-admin-settings" {
 		if session.AccountID != "" {
-			http.Error(w, "기존 관리자만 설정할 수 있습니다.", 403)
+			http.Error(w, "대표 관리자만 설정할 수 있습니다.", 403)
 			return true
 		}
 		view := map[string]any{"CSRF": session.CSRF, "WorkerURL": "/work/" + a.state.Board, "Ready": nativePushReady(a.state.NativeAdminPush), "Configured": a.state.NativeAdminPush != nil && a.state.NativeAdminPush.PrivateKey != "", "Saved": r.URL.Query().Get("saved") == "1", "Package": nativeAndroidPackage}

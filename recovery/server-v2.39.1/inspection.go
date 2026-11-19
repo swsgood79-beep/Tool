@@ -185,7 +185,7 @@ func (a *App) worker(w http.ResponseWriter, r *http.Request) bool {
 		case "work":
 			if len(parts) == 2 {
 				v := view()
-				v["EntryGate"] = r.URL.Query().Get("entry") != "skip"
+				v["EntryGate"] = false // Open the order list immediately; no door animation.
 				if r.URL.Query().Get("design-tab") == "calendar" {
 					v["InitialDesignTab"] = "calendar"
 				}

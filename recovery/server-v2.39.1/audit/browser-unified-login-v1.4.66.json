@@ -1,0 +1,37 @@
+{
+  "scope": "actual temporary server in Chromium, example accounts only; no live company passwords or phone biometrics",
+  "results": [
+    {
+      "case": "unified owner login retains correct app identity and role without external passkey link",
+      "result": "pass"
+    },
+    {
+      "case": "owner displayed as wssong in account list",
+      "result": "pass"
+    },
+    {
+      "case": "unified member login retains correct app identity and role without external passkey link",
+      "result": "pass"
+    },
+    {
+      "case": "member cannot manage owner accounts",
+      "result": "pass"
+    },
+    {
+      "case": "light direct worker link immediately shows orders without requesting door animation assets",
+      "result": "pass"
+    },
+    {
+      "case": "light reload remains direct and order actions are available",
+      "result": "pass"
+    },
+    {
+      "case": "dark direct worker link immediately shows orders without requesting door animation assets",
+      "result": "pass"
+    },
+    {
+      "case": "dark reload remains direct and order actions are available",
+      "result": "pass"
+    }
+  ]
+}

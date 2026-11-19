@@ -259,8 +259,8 @@ func TestWorkerClientDirectoryReadOnlyBoardPhotosAndEscaping(t *testing.T) {
 			t.Fatal(err)
 		}
 	}
-	if r := call(a, "GET", "/work/"+a.state.Board, nil); !strings.Contains(r.Body.String(), "worker-client-directory") || !strings.Contains(r.Body.String(), "entry-motion.js") {
-		t.Fatal("directory entry or loading effect absent")
+	if r := call(a, "GET", "/work/"+a.state.Board, nil); !strings.Contains(r.Body.String(), "worker-client-directory") || strings.Contains(r.Body.String(), "entry-motion.js") || strings.Contains(r.Body.String(), `data-entry-gate`) {
+		t.Fatal("directory missing or removed entrance animation still present")
 	}
 }
 func TestWorkbookMergePreservesManualDataAndUpdatesOnlyChangedFields(t *testing.T) {

@@ -1,4 +1,4 @@
-# 알파 관리자 Android 1.0.1
+# 알파 관리자 Android 1.0.2
 
 관리자 전용 APK. 기존 관리자 웹 화면을 유지하면서 Android WebView·FCM 알림·시스템 카메라/파일 선택·다운로드를 사용합니다. 작업자 PWA와 별개입니다.
 
@@ -14,3 +14,7 @@
 - 설정 방법은 상위 폴더의 `ANDROID-ADMIN-SETUP.md`를 참조하세요. 실기기 FCM 시험은 사용자 Firebase 연결 후 필요합니다.
 
 APK 1.0.1의 User-Agent 표시로 현장 메뉴를 선택합니다. 서버는 인증된 세션에만 전용 자산을 제공하며 User-Agent를 권한 판단에 사용하지 않습니다. 일반 PC/작업자 페이지에는 기존 자산을 유지합니다.
+
+APK 1.0.2: BiometricPrompt(28+)/FingerprintManager(26~27)로 앱 잠금을 해제합니다. 인증 성공은 프로세스에만 보관하며 WebView·복원 호출은 해제 후 진행합니다. 저장된 로그인 연결과 FCM 수신은 유지합니다. 웹 패스키는 앱에서 브라우저로 연결하지 않습니다. OS 지문 센서의 실기기 시험은 별도로 필요합니다.
+
+앱 내부 업데이트: update.json을 고정 저장소에서 읽고, 새 version_code일 때만 안내합니다. 다운로드는 고정 raw GitHub APK 경로로 제한하고 SHA-256·패키지명·버전·기존 앱 서명을 확인합니다. FileProvider로 Android 설치 창을 열며 사용자 확인과 최초 설치 출처 허용이 필요합니다. 업무 입력 중에는 설치를 보류합니다. **새 APK를 배포할 때 update.json의 version_code/version_name/apk_url/sha256도 함께 갱신하세요.** 서버 화면만 바뀌는 릴리스에서는 이 manifest를 갱신하지 않습니다. 현재 APK에서 아직 없는 다음 버전은 원격 manifest 갱신 후 안내됩니다.

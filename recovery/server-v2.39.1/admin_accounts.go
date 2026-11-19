@@ -105,7 +105,7 @@ func (a *App) manageAdminAccount(r *http.Request) error {
 		if !validText(name, 40) {
 			return errors.New("이름을 40자 이내로 입력해 주세요.")
 		}
-		if !accountUsername.MatchString(username) || username == "admin" || username == "administrator" || username == "owner" || username == "root" {
+		if !accountUsername.MatchString(username) || username == ownerUsername || username == "admin" || username == "administrator" || username == "owner" || username == "root" {
 			return errors.New("아이디는 영문 소문자·숫자와 . _ - 로 3~32자 입력해 주세요. 관리자 예약 아이디는 사용할 수 없습니다.")
 		}
 		if adminAccountByUsername(&a.state, username) != nil {
@@ -176,7 +176,7 @@ func (a *App) accountHTTP(w http.ResponseWriter, r *http.Request, session Sessio
 		return false
 	}
 	if path == "/admin-accounts" && session.AccountID != "" {
-		http.Error(w, "계정 관리는 기존 관리자만 사용할 수 있습니다.", 403)
+		http.Error(w, "계정 관리는 대표 관리자만 사용할 수 있습니다.", 403)
 		return true
 	}
 	message := ""
@@ -189,7 +189,7 @@ func (a *App) accountHTTP(w http.ResponseWriter, r *http.Request, session Sessio
 		} else {
 			u := adminAccount(&a.state, session.AccountID)
 			if u == nil {
-				err = errors.New("기존 관리자 비밀번호는 ‘휴대폰 관리자 접속’ 설정에서 변경해 주세요.")
+				err = errors.New("대표 관리자 비밀번호는 ‘휴대폰 관리자 접속’ 설정에서 변경해 주세요.")
 			} else if bcrypt.CompareHashAndPassword([]byte(u.PasswordHash), []byte(r.FormValue("current_password"))) != nil {
 				err = errors.New("현재 비밀번호가 맞지 않습니다.")
 			} else if err = accountPassword(r.FormValue("password")); err == nil {
@@ -267,7 +267,7 @@ func (a *App) accountMarkup(s, name string, value any) string {
 	if !found {
 		return s
 	}
-	label, username, owner := "기존 관리자", "", true
+	label, username, owner := ownerUsername, ownerUsername, true
 	if u := adminAccount(&a.state, session.AccountID); u != nil {
 		label, username, owner = u.Name, u.Username, false
 	}
