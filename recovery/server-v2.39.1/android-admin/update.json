@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "package_name": "com.alpharobotics.admin",
-  "version_code": 11,
-  "version_name": "1.0.10",
-  "apk_url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.10.apk",
-  "sha256": "6545ca86490231c16c734ca843bdc3a95894c8be18389409a99aa35ac0310942",
-  "notes": "같은 앱에서 구매팀 전용 로그인·호출 목록·완료 내역 · 이름만 입력하는 구매팀 호출 · 담당자별 알림 분리 · 기존 로그인 유지 · PC v1.4.78과 함께 적용"
+  "version_code": 12,
+  "version_name": "1.0.11",
+  "apk_url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk",
+  "sha256": "afc14ea37edde0d3e9f78731f1ff60bc9eb75736a8f92aacc890b61ff73162ee",
+  "notes": "업데이트 누르면 즉시 다운로드 · 진행률·자동 재시도 · 작업 종료 후 설치 이어가기 · 다운로드 요청/완료 파일 보관 · PC 교체 없이 앱 업데이트로 적용"
 }

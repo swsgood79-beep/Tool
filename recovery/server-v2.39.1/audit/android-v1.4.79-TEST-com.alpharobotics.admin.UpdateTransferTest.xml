@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.alpharobotics.admin.UpdateTransferTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-19T23:43:05" hostname="5f0666ba05e2" time="0.034">
+  <properties/>
+  <testcase name="transientServerFailureRetriesWithoutReopeningApp" classname="com.alpharobotics.admin.UpdateTransferTest" time="0.014"/>
+  <testcase name="startsImmediatelyAndReportsVerifiedProgress" classname="com.alpharobotics.admin.UpdateTransferTest" time="0.003"/>
+  <testcase name="incompleteOrCorruptBodyNeverSurvivesAsReadyFile" classname="com.alpharobotics.admin.UpdateTransferTest" time="0.003"/>
+  <testcase name="successfulRetryReplacesPartialBytes" classname="com.alpharobotics.admin.UpdateTransferTest" time="0.003"/>
+  <testcase name="notFoundDoesNotRetryOrLeavePartialFile" classname="com.alpharobotics.admin.UpdateTransferTest" time="0.002"/>
+  <testcase name="digestMismatchRetriesButNeverAccepts" classname="com.alpharobotics.admin.UpdateTransferTest" time="0.005"/>
+  <testcase name="oversizedDownloadIsRejectedBeforeReading" classname="com.alpharobotics.admin.UpdateTransferTest" time="0.001"/>
+  <testcase name="timeoutRetriesAndDisconnectsFailedConnection" classname="com.alpharobotics.admin.UpdateTransferTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,20 @@
+{
+  "observed_code_issue": "previous gate discarded download-start actions during login/work busy; transient download errors had no retry or persistent status",
+  "fix": "start download immediately on consent; gate and queue only installation; progress, bounded retry, cache job and validate completed files on recovery",
+  "tests": [
+    {
+      "suite": "com.alpharobotics.admin.UpdateInstallQueueTest",
+      "tests": 3,
+      "failures": 0
+    },
+    {
+      "suite": "com.alpharobotics.admin.UpdateTransferTest",
+      "tests": 8,
+      "failures": 0
+    }
+  ],
+  "android_total_unit_tests": 41,
+  "lint_errors": 0,
+  "lint_warnings": 4,
+  "physical_phone_cause": "not reproduced on actual user phone; code paths and transport/queue policies validated"
+}

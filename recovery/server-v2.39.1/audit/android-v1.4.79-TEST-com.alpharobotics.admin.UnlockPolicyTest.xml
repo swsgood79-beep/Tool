@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.alpharobotics.admin.UnlockPolicyTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-19T23:43:04" hostname="5f0666ba05e2" time="0.001">
+  <properties/>
+  <testcase name="firstPasswordLoginAndExplicitOptOutDoNotRequirePriorFingerprint" classname="com.alpharobotics.admin.UnlockPolicyTest" time="0.0"/>
+  <testcase name="backgroundKeepsVerifiedAuthentication" classname="com.alpharobotics.admin.UnlockPolicyTest" time="0.0"/>
+  <testcase name="savedLoginDoesNotUnlockANewProcess" classname="com.alpharobotics.admin.UnlockPolicyTest" time="0.0"/>
+  <testcase name="cameraFilePickerAndNormalBackgroundPreserveWork" classname="com.alpharobotics.admin.UnlockPolicyTest" time="0.0"/>
+  <testcase name="cancellationAndNotificationDoNotOpenTheLockedApp" classname="com.alpharobotics.admin.UnlockPolicyTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

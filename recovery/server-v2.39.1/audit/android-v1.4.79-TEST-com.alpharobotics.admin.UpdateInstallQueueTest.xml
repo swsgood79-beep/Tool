@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.alpharobotics.admin.UpdateInstallQueueTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-19T23:43:04" hostname="5f0666ba05e2" time="0.01">
+  <properties/>
+  <testcase name="acceptedInstallSurvivesLoginAndWorkBusy" classname="com.alpharobotics.admin.UpdateInstallQueueTest" time="0.009"/>
+  <testcase name="backgroundDoesNotLaunchInstallerAndResumeRunsOnce" classname="com.alpharobotics.admin.UpdateInstallQueueTest" time="0.0"/>
+  <testcase name="replacementAndDestroyedActivityDoNotRunStaleActions" classname="com.alpharobotics.admin.UpdateInstallQueueTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

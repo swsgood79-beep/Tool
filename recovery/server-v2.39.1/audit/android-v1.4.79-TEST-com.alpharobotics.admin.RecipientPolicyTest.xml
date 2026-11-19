@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.alpharobotics.admin.RecipientPolicyTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-19T23:43:04" hostname="5f0666ba05e2" time="0.011">
+  <properties/>
+  <testcase name="administratorsKeepExistingMessages" classname="com.alpharobotics.admin.RecipientPolicyTest" time="0.0"/>
+  <testcase name="purchasingReceivesOnlyOwnCalls" classname="com.alpharobotics.admin.RecipientPolicyTest" time="0.0"/>
+  <testcase name="tapDestinationIsBoundedNumeric" classname="com.alpharobotics.admin.RecipientPolicyTest" time="0.009"/>
+  <testcase name="logoutAndMuteSuppressCalls" classname="com.alpharobotics.admin.RecipientPolicyTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
