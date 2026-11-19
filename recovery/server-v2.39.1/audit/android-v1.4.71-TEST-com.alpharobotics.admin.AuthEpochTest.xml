@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.alpharobotics.admin.AuthEpochTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-19T04:00:44" hostname="7f85b2a8130e" time="0.006">
+  <properties/>
+  <testcase name="logoutRejectsPendingAccountAndPushResponses" classname="com.alpharobotics.admin.AuthEpochTest" time="0.006"/>
+  <testcase name="newLoginCannotBeOverwrittenByThePreviousLogin" classname="com.alpharobotics.admin.AuthEpochTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
