@@ -28,7 +28,7 @@ func TestNativeClientMenuBrowser(t *testing.T) {
 	srv := httptest.NewServer(a)
 	defer srv.Close()
 	info := map[string]any{"cookies": []map[string]string{{"name": owner.Name, "value": owner.Value}, {"name": member.Name, "value": member.Value}}, "board": a.state.Board, "client": id}
-	cmd := exec.Command("node", "audit/browser-native-client-menu-v1.4.73.cjs", srv.URL, string(jsonRaw(info)))
+	cmd := exec.Command("node", "audit/browser-native-client-menu-v1.4.74.cjs", srv.URL, string(jsonRaw(info)))
 	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
 	if err := cmd.Run(); err != nil {
 		t.Fatal(err)

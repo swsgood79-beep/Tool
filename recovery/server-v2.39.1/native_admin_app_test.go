@@ -39,7 +39,7 @@ func TestNativeAdminAppPresentationIsolationAndAuthentication(t *testing.T) {
 			t.Fatal(path, w.Code, w.Body.String())
 		}
 		s := w.Body.String()
-		for _, want := range []string{`id="alpha-admin-app"`, `data-admin-app="true"`, "mobile-design-app-v1.4.73.js", "native-admin-app-v1.4.65.css", `data-csrf="` + a.sessions[hashToken(owner.Value)].CSRF + `"`} {
+		for _, want := range []string{`id="alpha-admin-app"`, `data-admin-app="true"`, "mobile-design-app-v1.4.74.js", "native-admin-app-v1.4.65.css", `data-csrf="` + a.sessions[hashToken(owner.Value)].CSRF + `"`} {
 			if !strings.Contains(s, want) {
 				t.Fatal("missing native app shell", path, want)
 			}
