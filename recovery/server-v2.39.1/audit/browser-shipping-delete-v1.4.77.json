@@ -1,0 +1,29 @@
+{
+  "scope": "actual Go server + PC/mobile Chromium and APK user agent; native Android not executed",
+  "results": [
+    {
+      "mobile": false,
+      "theme": "light",
+      "case": "worker cannot delete; cancel and failure keep photos; delete middle only; original archive date preserved; upload draft protected; final deletion requeues without leave prompt",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "theme": "dark",
+      "case": "worker cannot delete; cancel and failure keep photos; delete middle only; original archive date preserved; upload draft protected; final deletion requeues without leave prompt",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "theme": "light",
+      "case": "worker cannot delete; cancel and failure keep photos; delete middle only; original archive date preserved; upload draft protected; final deletion requeues without leave prompt",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "theme": "dark",
+      "case": "worker cannot delete; cancel and failure keep photos; delete middle only; original archive date preserved; upload draft protected; final deletion requeues without leave prompt",
+      "result": "pass"
+    }
+  ]
+}

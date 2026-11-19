@@ -1,0 +1,9 @@
+=== RUN   TestShippingPhotoDeletePermissionsPersistenceAndLastPhoto
+--- PASS: TestShippingPhotoDeletePermissionsPersistenceAndLastPhoto (0.12s)
+=== RUN   TestShippingPhotoDeleteLastHistoricalAndSnapshotProtection
+--- PASS: TestShippingPhotoDeleteLastHistoricalAndSnapshotProtection (0.08s)
+=== RUN   TestShippingPhotoDeleteBrowser
+Photo deletion browser checks passed 4
+--- PASS: TestShippingPhotoDeleteBrowser (12.67s)
+PASS
+ok  	wanryotalk-reconstructed-server	13.133s

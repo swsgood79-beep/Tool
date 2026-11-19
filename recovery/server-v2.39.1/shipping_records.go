@@ -193,7 +193,7 @@ func (a *App) shippingRecordsHTTP(w http.ResponseWriter, r *http.Request) bool {
 	if admin {
 		calendarURL = "/?design-tab=calendar"
 	}
-	view := map[string]any{"PhotoReset": r.URL.Query().Get("photo_reset") == "1", "Recovered": r.URL.Query().Get("recovered") == "1", "CalendarURL": calendarURL, "Board": a.state.Board, "CSRF": csrf, "Base": base, "ShippingAdmin": admin, "WorkerURL": "/work/" + a.state.Board}
+	view := map[string]any{"PhotoDeleted": r.URL.Query().Get("photo_deleted") == "1", "PhotoReset": r.URL.Query().Get("photo_reset") == "1", "Recovered": r.URL.Query().Get("recovered") == "1", "CalendarURL": calendarURL, "Board": a.state.Board, "CSRF": csrf, "Base": base, "ShippingAdmin": admin, "WorkerURL": "/work/" + a.state.Board}
 	if len(rest) == 0 && r.Method == "GET" {
 		if admin {
 			missing := []Project{}
@@ -253,6 +253,27 @@ func (a *App) shippingRecordsHTTP(w http.ResponseWriter, r *http.Request) bool {
 					return true
 				}
 				next := base + "/" + record.ID + "?saved=1"
+				if strings.Contains(r.Header.Get("Accept"), "application/json") {
+					jsonReply(w, map[string]any{"ok": true, "next": next})
+				} else {
+					http.Redirect(w, r, next, http.StatusSeeOther)
+				}
+				return true
+			}
+			if rest[1] == "delete-photo" && admin {
+				if r.FormValue("confirm") != "1" {
+					http.Error(w, "삭제 확인이 필요합니다.", 400)
+					return true
+				}
+				nextID, err := a.deleteShippingPhoto(record.ID, r.FormValue("photo"), r.FormValue("photo_revision"))
+				if err != nil {
+					http.Error(w, err.Error(), 400)
+					return true
+				}
+				next := base + "?photo_deleted=1"
+				if nextID != "" {
+					next = base + "/" + nextID + "?photo_deleted=1"
+				}
 				if strings.Contains(r.Header.Get("Accept"), "application/json") {
 					jsonReply(w, map[string]any{"ok": true, "next": next})
 				} else {
@@ -325,7 +346,7 @@ func (a *App) shippingRecordMarkup(s, name string, value any) string {
 		s = strings.Replace(s, "</head>", `<meta name="shipping-records-board" content="`+board+`"><script defer src="/shipping-records-v1.4.76.js"></script></head>`, 1)
 	}
 	if name == "shipping-records.html" {
-		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/shipment-photo-viewer-v1.4.62.css"><script defer src="/shipment-photo-viewer-v1.4.62.js"></script></head>`, 1)
+		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/shipment-photo-delete-v1.4.77.css"><script defer src="/shipment-photo-delete-v1.4.77.js"></script><link rel="stylesheet" href="/shipment-photo-viewer-v1.4.62.css"><script defer src="/shipment-photo-viewer-v1.4.62.js"></script></head>`, 1)
 	}
 	if name == "shipping-records.html" || name == "work.html" || name == "admin.html" {
 		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/shipping-records-v1.4.52.css"></head>`, 1)

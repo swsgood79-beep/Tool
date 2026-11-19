@@ -1,10 +1,10 @@
-# 빠른 시작 · PC v1.4.76 / 관리자 앱 v1.0.9
+# 빠른 시작 · PC v1.4.77 / 관리자 앱 v1.0.9
 
 전체 기능과 사용 순서는 [README.md](README.md)에 있습니다. 관리자 앱 Firebase 설정은 [ANDROID-ADMIN-SETUP.md](ANDROID-ADMIN-SETUP.md)를 참고하세요.
 
 ## 이미 사용 중인 회사 PC
 
-1. [최신 Windows ZIP](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.76.zip)을 내려받아 압축을 풉니다.
+1. [최신 Windows ZIP](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.77.zip)을 내려받아 압축을 풉니다.
 2. 기존 프로그램을 종료 버튼/트레이에서 완전히 종료합니다.
 3. 새 `AlphaWorkComplete-Recovered.exe`를 실행합니다. 기존 운영 자료와 지정한 저장 경로를 그대로 이어서 사용합니다.
 4. 수주·기록·사진과 외부 연결 상태를 확인합니다.
@@ -42,4 +42,4 @@
 - 출하사진 필요/보관 완료 목록에서 사진과 수주 정보를 확인합니다.
 - 백업 설정과 복구키 보관 상태를 확인합니다.
 
-이번 사진 추가 수정은 PC v1.4.76, 삼성 갤러리 직접 선택 메뉴는 APK v1.0.9에 포함됩니다. PC 프로그램 교체와 앱 ⋮ → 앱 업데이트 확인을 각각 진행하세요.
+이번 사진별 삭제는 PC v1.4.77을 적용하면 관리자 앱에서도 사용할 수 있습니다. APK는 1.0.9 그대로이며 이 기능 때문에 다시 설치할 필요는 없습니다.
