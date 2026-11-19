@@ -20,3 +20,8 @@ APK 1.0.2: BiometricPrompt(28+)/FingerprintManager(26~27)로 앱 잠금을 해�
 앱 내부 업데이트: update.json을 고정 저장소에서 읽고, 새 version_code일 때만 안내합니다. 다운로드는 고정 raw GitHub APK 경로로 제한하고 SHA-256·패키지명·버전·기존 앱 서명을 확인합니다. FileProvider로 Android 설치 창을 열며 사용자 확인과 최초 설치 출처 허용이 필요합니다. 업무 입력 중에는 설치를 보류합니다. **새 APK를 배포할 때 update.json의 version_code/version_name/apk_url/sha256도 함께 갱신하세요.** 서버 화면만 바뀌는 릴리스에서는 이 manifest를 갱신하지 않습니다. 현재 APK에서 아직 없는 다음 버전은 원격 manifest 갱신 후 안내됩니다.
 
 APK 1.0.3: 네이티브 로그인 폼을 먼저 표시하고 실제 버튼 클릭에서만 지문 인증을 요청합니다. PasswordLogin은 /login CSRF와 해당 경로의 쿠키로 정상 인증하며, 비밀번호는 저장하지 않습니다. LoginPolicy는 입력 아이디와 지문 연결 계정을 구분합니다. 서버 account_username은 표시 보조 필드로 v1.4.66 서버와도 호환합니다. 자동 APK 확인은 로그인 전에서도 앱 foreground에만 수행합니다.
+
+
+## APK 1.0.4 / 서버 1.4.68
+
+인증된 bootstrap의 account_label을 상단 담당자 이름에 사용합니다. 상단 로그아웃 버튼은 로컬 로그인·알림을 즉시 차단하고 해당 세션/로그인 grant/푸시 기기만 해제합니다. 이전 비동기 응답은 AuthEpoch로 걸러서 로그아웃 후 이름이나 푸시 등록을 복원하지 않습니다. 기존 알림 채널 ID와 서명 키를 유지합니다. 실제 Android UI·지문 센서·설치·FCM 수신은 빌드 환경에서 실행하지 않았습니다.

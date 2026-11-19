@@ -1,0 +1,30 @@
+=== RUN   TestNativeTicketOneUseAndAdminCookie
+--- PASS: TestNativeTicketOneUseAndAdminCookie (0.05s)
+=== RUN   TestNativeAdminAppPresentationIsolationAndAuthentication
+--- PASS: TestNativeAdminAppPresentationIsolationAndAuthentication (8.17s)
+=== RUN   TestNativeAdminAppBrowser
+    native_admin_app_test.go:87: optional actual browser APK-shell flow
+--- SKIP: TestNativeAdminAppBrowser (0.00s)
+=== RUN   TestNativePersistentLoginRestartLogoutAndBrowserIsolation
+--- PASS: TestNativePersistentLoginRestartLogoutAndBrowserIsolation (11.10s)
+=== RUN   TestNativePersistentLoginRevocationAndCapabilityBoundaries
+--- PASS: TestNativePersistentLoginRevocationAndCapabilityBoundaries (8.24s)
+=== RUN   TestNativeAdminSetupPermissionsAndPersistence
+--- PASS: TestNativeAdminSetupPermissionsAndPersistence (8.32s)
+=== RUN   TestNativeAdminAccountRevocationAndLogout
+--- PASS: TestNativeAdminAccountRevocationAndLogout (8.39s)
+=== RUN   TestNativeFCMDeliveryJWTFailureRetryAndDedup
+--- PASS: TestNativeFCMDeliveryJWTFailureRetryAndDedup (3.02s)
+=== RUN   TestNativeFirebaseRejectsMismatchedFiles
+--- PASS: TestNativeFirebaseRejectsMismatchedFiles (0.04s)
+=== RUN   TestNativeLogoutOnlyCurrentPhone
+--- PASS: TestNativeLogoutOnlyCurrentPhone (10.98s)
+=== RUN   TestNativePasswordFormContractAndAccountUsername
+--- PASS: TestNativePasswordFormContractAndAccountUsername (10.76s)
+=== RUN   TestTestNativeHandoffWorksWithoutOpeningExternalPasskeyLogin
+--- PASS: TestTestNativeHandoffWorksWithoutOpeningExternalPasskeyLogin (0.07s)
+=== RUN   TestNativeAdminAppCurrentBrowser
+    unified_login_browser_test.go:30: optional current native shell browser
+--- SKIP: TestNativeAdminAppCurrentBrowser (0.00s)
+PASS
+ok  	wanryotalk-reconstructed-server	72.824s
