@@ -217,7 +217,11 @@ func (a *App) nativeAdminHTTP(w http.ResponseWriter, r *http.Request, session Se
 		registered := d != nil && d.AccountID == session.AccountID && nativeAccountValid(&a.state, *d)
 		grant := nativeLogin(&a.state, session.NativeGrantID)
 		persistent := grant != nil && grant.DeviceID == r.URL.Query().Get("device") && nativeLoginValid(&a.state, *grant)
-		jsonReply(w, map[string]any{"persistent_login": persistent, "cookie_name": a.sessionCookie(), "registered": registered, "ready": public != nil, "config": public, "csrf": session.CSRF, "release": releaseVersion, "account_key": session.AccountID, "account_label": nativeAccountLabel(&a.state, session.AccountID), "owner": session.AccountID == ""})
+		username := ownerUsername
+		if account := adminAccount(&a.state, session.AccountID); account != nil {
+			username = account.Username
+		}
+		jsonReply(w, map[string]any{"account_username": username, "persistent_login": persistent, "cookie_name": a.sessionCookie(), "registered": registered, "ready": public != nil, "config": public, "csrf": session.CSRF, "release": releaseVersion, "account_key": session.AccountID, "account_label": nativeAccountLabel(&a.state, session.AccountID), "owner": session.AccountID == ""})
 		return true
 	}
 	if path == "/native-admin/register" && r.Method == "POST" {

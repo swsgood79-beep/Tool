@@ -1,0 +1,12 @@
+=== RUN   TestNativeAdminAppPresentationIsolationAndAuthentication
+--- PASS: TestNativeAdminAppPresentationIsolationAndAuthentication (8.63s)
+=== RUN   TestNativePersistentLoginRestartLogoutAndBrowserIsolation
+--- PASS: TestNativePersistentLoginRestartLogoutAndBrowserIsolation (11.12s)
+=== RUN   TestNativePersistentLoginRevocationAndCapabilityBoundaries
+--- PASS: TestNativePersistentLoginRevocationAndCapabilityBoundaries (8.66s)
+=== RUN   TestNativePasswordFormContractAndAccountUsername
+--- PASS: TestNativePasswordFormContractAndAccountUsername (11.22s)
+=== RUN   TestUnifiedOwnerUsernamePreservesPasswordPrivilegesAndAccountCount
+--- PASS: TestUnifiedOwnerUsernamePreservesPasswordPrivilegesAndAccountCount (16.54s)
+PASS
+ok  	wanryotalk-reconstructed-server	60.847s

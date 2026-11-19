@@ -5,5 +5,4 @@ final class UnlockPolicy {
  boolean isOpen(){return open;}
  void lock(){open=false;}
  void authenticated(){open=true;}
- static boolean needsUnlock(boolean hasGrant,boolean enabled){return hasGrant&&enabled;}
 }
