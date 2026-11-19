@@ -1,0 +1,6 @@
+=== RUN   TestNativeAdminAppPresentationIsolationAndAuthentication
+--- PASS: TestNativeAdminAppPresentationIsolationAndAuthentication (0.86s)
+=== RUN   TestNativeWorkerViewSwitchKeepsSessionAndPermissions
+--- PASS: TestNativeWorkerViewSwitchKeepsSessionAndPermissions (0.81s)
+PASS
+ok  	wanryotalk-reconstructed-server	1.925s

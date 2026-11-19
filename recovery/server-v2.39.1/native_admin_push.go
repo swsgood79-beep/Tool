@@ -221,7 +221,7 @@ func (a *App) nativeAdminHTTP(w http.ResponseWriter, r *http.Request, session Se
 		if account := adminAccount(&a.state, session.AccountID); account != nil {
 			username = account.Username
 		}
-		jsonReply(w, map[string]any{"account_username": username, "persistent_login": persistent, "cookie_name": a.sessionCookie(), "registered": registered, "ready": public != nil, "config": public, "csrf": session.CSRF, "release": releaseVersion, "account_key": session.AccountID, "account_label": nativeAccountLabel(&a.state, session.AccountID), "owner": session.AccountID == ""})
+		jsonReply(w, map[string]any{"worker_view_supported": true, "worker_view": nativeWorkerView(r, a.sessionCookie()), "account_username": username, "persistent_login": persistent, "cookie_name": a.sessionCookie(), "registered": registered, "ready": public != nil, "config": public, "csrf": session.CSRF, "release": releaseVersion, "account_key": session.AccountID, "account_label": nativeAccountLabel(&a.state, session.AccountID), "owner": session.AccountID == ""})
 		return true
 	}
 	if path == "/native-admin/register" && r.Method == "POST" {

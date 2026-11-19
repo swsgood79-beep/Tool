@@ -1,0 +1,53 @@
+{
+  "scope": "temporary Go server and Chromium WebView-agent UI; Android toolbar/lifecycle/FCM not executed",
+  "results": [
+    {
+      "width": 390,
+      "scheme": "light",
+      "case": "whole menu opens actual worker cards and worker navigation without login",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "scheme": "light",
+      "case": "worker talk and return to administrator preserve session and inspection tab",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "scheme": "dark",
+      "case": "whole menu opens actual worker cards and worker navigation without login",
+      "result": "pass"
+    },
+    {
+      "width": 390,
+      "scheme": "dark",
+      "case": "worker talk and return to administrator preserve session and inspection tab",
+      "result": "pass"
+    },
+    {
+      "width": 850,
+      "scheme": "light",
+      "case": "whole menu opens actual worker cards and worker navigation without login",
+      "result": "pass"
+    },
+    {
+      "width": 850,
+      "scheme": "light",
+      "case": "worker talk and return to administrator preserve session and inspection tab",
+      "result": "pass"
+    },
+    {
+      "width": 850,
+      "scheme": "dark",
+      "case": "whole menu opens actual worker cards and worker navigation without login",
+      "result": "pass"
+    },
+    {
+      "width": 850,
+      "scheme": "dark",
+      "case": "worker talk and return to administrator preserve session and inspection tab",
+      "result": "pass"
+    }
+  ]
+}

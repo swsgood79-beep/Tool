@@ -1,0 +1,5 @@
+=== RUN   TestNativeWorkerViewBrowser
+Native worker view browser checks passed 8
+--- PASS: TestNativeWorkerViewBrowser (4.89s)
+PASS
+ok  	wanryotalk-reconstructed-server	5.152s

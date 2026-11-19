@@ -3,8 +3,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 public class UnlockPolicyTest {
  @Test public void savedLoginDoesNotUnlockANewProcess(){UnlockPolicy state=new UnlockPolicy();assertFalse(LoginPolicy.mayPrompt(false,true,state.isOpen(),false));assertFalse(state.isOpen());}
- @Test public void backgroundRequiresExplicitAuthenticationAgain(){UnlockPolicy state=new UnlockPolicy();state.authenticated();assertTrue(state.isOpen());state.background(false);assertFalse(state.isOpen());assertTrue(LoginPolicy.mayPrompt(true,true,state.isOpen(),false));state.authenticated();assertTrue(state.isOpen());}
- @Test public void cameraAndFilePickerReturnPreservesWorkButLaterBackgroundLocks(){UnlockPolicy state=new UnlockPolicy();state.authenticated();state.background(true);assertTrue(state.isOpen());state.background(false);assertFalse(state.isOpen());}
+ @Test public void backgroundKeepsVerifiedAuthentication(){UnlockPolicy state=new UnlockPolicy();state.authenticated();assertTrue(state.isOpen());state.background(false);assertTrue(state.isOpen());assertFalse(LoginPolicy.mayPrompt(true,true,state.isOpen(),false));}
+ @Test public void cameraFilePickerAndNormalBackgroundPreserveWork(){UnlockPolicy state=new UnlockPolicy();state.authenticated();state.background(true);assertTrue(state.isOpen());state.background(false);assertTrue(state.isOpen());}
  @Test public void cancellationAndNotificationDoNotOpenTheLockedApp(){UnlockPolicy state=new UnlockPolicy();state.authenticated();state.lock();assertFalse(state.isOpen());assertFalse(LoginPolicy.mayPrompt(false,true,state.isOpen(),false));assertFalse(state.isOpen());}
  @Test public void firstPasswordLoginAndExplicitOptOutDoNotRequirePriorFingerprint(){assertFalse(LoginPolicy.mayPrompt(true,false,false,false));UnlockPolicy state=new UnlockPolicy();state.authenticated();assertTrue(state.isOpen());state.lock();assertFalse(state.isOpen());}
 }
