@@ -1,12 +1,12 @@
-# 알파작업완료확인 프로그램 v1.4.76
+# 알파작업완료확인 프로그램 v1.4.77
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.76** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.76.zip) |
+| **회사 PC 프로그램 v1.4.77** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.77.zip) |
 | **관리자 Android 앱 v1.0.9** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.9.apk) |
-| **현재 전체 소스 v1.4.76** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-v1.4.76.zip) |
+| **현재 전체 소스 v1.4.77** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-v1.4.77.zip) |
 | 처음 설치·업데이트 | [빠른 시작](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/CHANGELOG.md) |
@@ -45,7 +45,7 @@
 
 앱 상단 **⋮ → 앱 업데이트 확인 → 다운로드·설치**를 사용합니다. 기존 앱 위에 업데이트하면 로그인 연결과 설정을 이어서 사용합니다. Android의 설치 확인·앱 검사는 기기의 설치 절차입니다.
 
-일반 화면·기능은 회사 PC 프로그램 업데이트로 반영됩니다. 앱 상단·기기 기능처럼 APK 자체를 변경한 경우에는 APK 업데이트도 필요합니다. **이번 사진 추가 수정은 PC v1.4.76, 삼성 갤러리 직접 선택은 APK v1.0.9에 포함됩니다.**
+일반 화면·기능은 회사 PC 프로그램 업데이트로 반영됩니다. 앱 상단·기기 기능처럼 APK 자체를 변경한 경우에는 APK 업데이트도 필요합니다. **이번 사진별 삭제는 PC v1.4.77에 포함됩니다. 관리자 APK는 1.0.9 그대로이며 재설치할 필요가 없습니다.**
 
 ## 3. 수주 확인과 작업자 사용
 
@@ -157,7 +157,7 @@ GitHub 백업을 설정한 경우 자료와 사진을 암호화해 보관합니�
 | 앱을 열 때마다 비밀번호를 요구함 | APK 버전과 로그인 유지 상태, 직접 로그아웃/계정 연결 해제 여부 확인 |
 | 앱 알림이 오지 않음 | Firebase 최초 설정, 앱 알림 권한/앱 알림 켜짐, 개인 계정 상태, 시험 알림 |
 | 공용 PC 미리듣기는 되는데 신청 음성이 안 남 | 실제 신청 수신/음성 연결 상태, 브라우저 절전·백그라운드 상태 확인 |
-| 다크모드 일부가 밝게 보임 | 전체 → 화면 밝기 선택, PC v1.4.76과 APK v1.0.9 적용 여부 확인 |
+| 다크모드 일부가 밝게 보임 | 전체 → 화면 밝기 선택, PC v1.4.77과 APK v1.0.9 적용 여부 확인 |
 | 출하 기록이 검색되지 않음 | 출하사진 필요/보관 완료 탭, 검색어, 최초 보관 날짜 기간 조건 확인 |
 | 사진 파일이 탐색기에서 안 보임 | 운영 자료 경로와 프로그램 내 보관 자료 확인. 보호 파일 형식일 수 있음 |
 
@@ -183,3 +183,9 @@ Android는 Java 17·Android SDK 35와 별도 서명 설정을 사용합니다. �
 관리자 APK 1.0.9의 ‘앨범에서 선택’을 누르면 **갤러리에서 선택 · 파일에서 선택 · 카메라로 촬영**이 나옵니다. 삼성 갤러리가 설치되어 있고 사진 선택을 지원하면 직접 열며, 다른 기기는 갤러리 선택 창을 사용합니다. 촬영 버튼은 카메라를 바로 엽니다. 파일 선택은 Android 문서 선택기를 사용합니다. 갤러리·구글 포토에서 선택한 JPG/PNG/GIF/WebP를 추가할 수 있고, HEIC는 JPG로 변환해야 합니다.
 
 사진을 선택하면 추가 장수와 미리보기를 확인한 후 ‘추가 사진 저장’을 누릅니다. 모바일에서 가상 파일 목록 생성에 의존하던 처리를 제거했습니다. 오류가 나면 선택한 사진을 유지하므로 다시 저장할 수 있습니다. 성공이 확인된 뒤에만 화면을 이동합니다. 수주당 기존 사진과 합쳐 최대 30장, 각 8MB이며 원래 보관일과 기존 사진은 유지합니다. 실제 삼성 기기의 갤러리 실행은 기기에서 확인해야 합니다.
+
+### 출하사진 일부만 삭제
+
+관리자 앱·PC에서 **전체 → 출하 기록 → 보관 완료 → 해당 수주 → 사진 아래 ‘삭제’**를 누릅니다. 선택한 사진을 확인하고 ‘이 사진 삭제’를 누르면 한 장만 삭제합니다. 취소하면 변경하지 않습니다. 일반 작업자에게는 삭제 버튼이 없습니다. 나머지 사진·담당자·검사 완료 상태·최초 보관일은 유지됩니다. 추가하려고 선택해 둔 사진이 있으면 먼저 저장하거나 추가를 취소해야 합니다.
+
+마지막 사진 삭제는 기존 전체 삭제와 같은 기준입니다. 현재 검사 완료 수주에 연결되어 있으면 ‘출하사진 필요’로 되돌아갑니다. 현재 수주와 같은 검사 주기로 연결되지 않은 과거 보관 기록이면 마지막 사진과 보관 자료를 함께 삭제합니다. 확인창에 해당 동작을 표시합니다. 저장 성공 후 다른 곳에서 참조하지 않는 사진 파일도 정리합니다.
