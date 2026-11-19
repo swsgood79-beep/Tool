@@ -1,0 +1,23 @@
+=== RUN   TestMarketPercentUsesDisplayedPriceAndDailyClose
+=== RUN   TestMarketPercentUsesDisplayedPriceAndDailyClose/provider_positive_but_displayed_index_fell
+    market_percent_test.go:72: percent=0.32 known=true want=-0.314 known=true
+=== RUN   TestMarketPercentUsesDisplayedPriceAndDailyClose/provider_negative_but_displayed_index_rose
+    market_percent_test.go:72: percent=-0.7 known=true want=2 known=true
+=== RUN   TestMarketPercentUsesDisplayedPriceAndDailyClose/minute_price_replaces_different_snapshot
+    market_percent_test.go:72: percent=0.32 known=true want=-0.314 known=true
+=== RUN   TestMarketPercentUsesDisplayedPriceAndDailyClose/flat_market_stays_zero
+    market_percent_test.go:72: percent=0.32 known=true want=0 known=true
+=== RUN   TestMarketPercentUsesDisplayedPriceAndDailyClose/missing_daily_close_never_trusts_supplied_rate
+    market_percent_test.go:72: percent=0.32 known=true want=0 known=false
+=== RUN   TestMarketPercentUsesDisplayedPriceAndDailyClose/unknown_quote_date_never_guesses_from_fetch_date
+    market_percent_test.go:72: percent=0.32 known=true want=0 known=false
+--- FAIL: TestMarketPercentUsesDisplayedPriceAndDailyClose (0.14s)
+    --- FAIL: TestMarketPercentUsesDisplayedPriceAndDailyClose/provider_positive_but_displayed_index_fell (0.03s)
+    --- FAIL: TestMarketPercentUsesDisplayedPriceAndDailyClose/provider_negative_but_displayed_index_rose (0.03s)
+    --- FAIL: TestMarketPercentUsesDisplayedPriceAndDailyClose/minute_price_replaces_different_snapshot (0.03s)
+    --- FAIL: TestMarketPercentUsesDisplayedPriceAndDailyClose/flat_market_stays_zero (0.02s)
+    --- FAIL: TestMarketPercentUsesDisplayedPriceAndDailyClose/missing_daily_close_never_trusts_supplied_rate (0.02s)
+    --- FAIL: TestMarketPercentUsesDisplayedPriceAndDailyClose/unknown_quote_date_never_guesses_from_fetch_date (0.02s)
+FAIL
+FAIL	wanryotalk-reconstructed-server	0.395s
+FAIL

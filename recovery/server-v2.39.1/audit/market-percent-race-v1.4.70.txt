@@ -1,0 +1,32 @@
+=== RUN   TestMarketAPIAndPreviousCloseCache
+--- PASS: TestMarketAPIAndPreviousCloseCache (0.06s)
+=== RUN   TestMarketPercentUsesDisplayedPriceAndDailyClose
+=== RUN   TestMarketPercentUsesDisplayedPriceAndDailyClose/provider_positive_but_displayed_index_fell
+=== RUN   TestMarketPercentUsesDisplayedPriceAndDailyClose/provider_negative_but_displayed_index_rose
+=== RUN   TestMarketPercentUsesDisplayedPriceAndDailyClose/minute_price_replaces_different_snapshot
+=== RUN   TestMarketPercentUsesDisplayedPriceAndDailyClose/flat_market_stays_zero
+=== RUN   TestMarketPercentUsesDisplayedPriceAndDailyClose/missing_daily_close_never_trusts_supplied_rate
+=== RUN   TestMarketPercentUsesDisplayedPriceAndDailyClose/unknown_quote_date_never_guesses_from_fetch_date
+--- PASS: TestMarketPercentUsesDisplayedPriceAndDailyClose (0.38s)
+    --- PASS: TestMarketPercentUsesDisplayedPriceAndDailyClose/provider_positive_but_displayed_index_fell (0.12s)
+    --- PASS: TestMarketPercentUsesDisplayedPriceAndDailyClose/provider_negative_but_displayed_index_rose (0.06s)
+    --- PASS: TestMarketPercentUsesDisplayedPriceAndDailyClose/minute_price_replaces_different_snapshot (0.05s)
+    --- PASS: TestMarketPercentUsesDisplayedPriceAndDailyClose/flat_market_stays_zero (0.05s)
+    --- PASS: TestMarketPercentUsesDisplayedPriceAndDailyClose/missing_daily_close_never_trusts_supplied_rate (0.05s)
+    --- PASS: TestMarketPercentUsesDisplayedPriceAndDailyClose/unknown_quote_date_never_guesses_from_fetch_date (0.06s)
+=== RUN   TestMarketPreviousCloseUsesQuoteTradingDate
+=== RUN   TestMarketPreviousCloseUsesQuoteTradingDate/holiday_quote_keeps_its_own_session
+=== RUN   TestMarketPreviousCloseUsesQuoteTradingDate/UTC_candles_classified_in_Korea
+=== RUN   TestMarketPreviousCloseUsesQuoteTradingDate/equal_prior_close_is_not_evidence_for_changing_session
+=== RUN   TestMarketPreviousCloseUsesQuoteTradingDate/current_day_candle_alone_is_not_previous_close
+=== RUN   TestMarketPreviousCloseUsesQuoteTradingDate/missing_quote_time_cannot_select_a_session
+--- PASS: TestMarketPreviousCloseUsesQuoteTradingDate (0.24s)
+    --- PASS: TestMarketPreviousCloseUsesQuoteTradingDate/holiday_quote_keeps_its_own_session (0.05s)
+    --- PASS: TestMarketPreviousCloseUsesQuoteTradingDate/UTC_candles_classified_in_Korea (0.04s)
+    --- PASS: TestMarketPreviousCloseUsesQuoteTradingDate/equal_prior_close_is_not_evidence_for_changing_session (0.05s)
+    --- PASS: TestMarketPreviousCloseUsesQuoteTradingDate/current_day_candle_alone_is_not_previous_close (0.06s)
+    --- PASS: TestMarketPreviousCloseUsesQuoteTradingDate/missing_quote_time_cannot_select_a_session (0.05s)
+=== RUN   TestMarketStatusEndpointMatchesFrontendAndCachedQuotes
+--- PASS: TestMarketStatusEndpointMatchesFrontendAndCachedQuotes (0.05s)
+PASS
+ok  	wanryotalk-reconstructed-server	4.427s

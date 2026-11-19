@@ -151,6 +151,9 @@ func TestMarketAPIAndPreviousCloseCache(t *testing.T) {
 		case strings.HasSuffix(r.URL.Path, "/prices"):
 			return response(r, 200, []any{map[string]any{"symbol": "KOSPI", "lastPrice": "2100", "timestamp": "2026-11-12T10:00:00+09:00"}, map[string]any{"symbol": "KOSDAQ", "lastPrice": "900", "basePrice": 1000, "timestamp": "2026-11-12T10:00:00+09:00"}}), nil
 		case strings.Contains(r.URL.Path, "/candles"):
+			if strings.Contains(r.URL.Path, "KOSDAQ") {
+				return response(r, 200, []any{map[string]any{"timestamp": "2026-11-11T09:00:00+09:00", "closePrice": 1000}}), nil
+			}
 			return response(r, 200, []any{map[string]any{"timestamp": "2026-11-11T09:00:00+09:00", "closePrice": "2000"}, map[string]any{"timestamp": "2026-11-12T09:00:00+09:00", "closePrice": "2100"}}), nil
 		case strings.Contains(r.URL.Path, "exchange-rate"):
 			return response(r, 200, map[string]any{"midRate": "1400", "validFrom": "2026-11-12T10:00:00+09:00", "validUntil": "2026-11-12T10:01:00+09:00"}), nil
@@ -162,6 +165,9 @@ func TestMarketAPIAndPreviousCloseCache(t *testing.T) {
 	kospi := symbolRecord(q, "KOSPI")
 	if pct, _ := numeric(kospi["percent"]); pct != 5 {
 		t.Fatal("incorrect daily percent", kospi)
+	}
+	if pct, _ := numeric(symbolRecord(q, "KOSDAQ")["percent"]); pct != -10 {
+		t.Fatal("incorrect KOSDAQ percent", q)
 	}
 	a.integration.MarketChecked = time.Time{}
 	a.refreshMarkets(context.Background())

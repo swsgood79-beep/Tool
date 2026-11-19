@@ -163,10 +163,25 @@ func (a *App) tossToken(ctx context.Context, c MarketConfig) (string, error) {
 	}
 	return "", errors.New("토스 토큰 응답 누락")
 }
-func (a *App) previousClose(ctx context.Context, symbol, bearer, at string, price float64) (float64, error) {
-	key := symbol + ":" + at[:10]
+
+// Trading dates must use Korea time, including UTC provider timestamps.
+func marketTradingDate(at string) (string, error) {
+	t, err := time.Parse(time.RFC3339, at)
+	if err != nil {
+		return "", errors.New("지수 기준시각 미제공")
+	}
+	return t.In(kst).Format("2006-01-02"), nil
+}
+func (a *App) previousClose(ctx context.Context, symbol, bearer, at string) (float64, error) {
+	target, err := marketTradingDate(at)
+	if err != nil {
+		return 0, err
+	}
+	key := symbol + ":" + target
 	a.mu.Lock()
 	base, ok := a.integration.Bases[key]
+	epoch := a.epoch
+	revision := a.state.Integration.Market.Revision
 	a.mu.Unlock()
 	if ok {
 		return base, nil
@@ -183,26 +198,25 @@ func (a *App) previousClose(ctx context.Context, symbol, bearer, at string, pric
 	for _, m := range maps(v) {
 		p, valid := numeric(field(m, "close", "closePrice", "closingPrice"))
 		ts := stamp(field(m, "dt", "observation_date", "date", "timestamp", "time"))
-		if valid && p > 0 && len(ts) >= 10 {
-			candles = append(candles, candle{ts[:10], p})
+		date, err := marketTradingDate(ts)
+		if valid && p > 0 && err == nil {
+			candles = append(candles, candle{date, p})
 		}
 	}
 	sort.Slice(candles, func(i, j int) bool { return candles[i].date < candles[j].date })
-	target := at[:10]
-	if len(candles) > 0 {
-		last := candles[len(candles)-1]
-		if last.date < target && math.Abs(last.close-price) < 1e-7 {
-			target = last.date
-		}
-	}
 	for i := len(candles) - 1; i >= 0; i-- {
 		if candles[i].date < target {
 			base = candles[i].close
 			a.mu.Lock()
-			if len(a.integration.Bases) > 100 {
-				a.integration.Bases = map[string]float64{}
+			if a.epoch == epoch && a.state.Integration.Market.Revision == revision {
+				if len(a.integration.Bases) > 100 {
+					a.integration.Bases = map[string]float64{}
+				}
+				if a.integration.Bases == nil {
+					a.integration.Bases = map[string]float64{}
+				}
+				a.integration.Bases[key] = base
 			}
-			a.integration.Bases[key] = base
 			a.mu.Unlock()
 			return base, nil
 		}
@@ -271,24 +285,17 @@ func (a *App) refreshMarkets(ctx context.Context) {
 						}
 					}
 					q := map[string]any{"symbol": symbol, "price": p, "at": at, "checked_at": now, "source": "toss", "basis": basis}
-					percent, pok := numeric(field(m, "changeRate", "fluctuationRate", "percent"))
-					if !pok {
-						base, bok := numeric(field(m, "basePrice", "prevClose", "previousClose"))
-						if !bok || base <= 0 {
-							baseAt := at
-							if baseAt == "" {
-								baseAt = now
-							}
-							base, err = a.previousClose(ctx, symbol, bearer, baseAt, p)
-							bok = err == nil
-						}
-						if bok {
-							percent = (p - base) / base * 100
-							pok = true
-						}
-					}
-					if pok {
-						q["percent"] = percent
+					// Provider rates/basePrice can belong to the snapshot replaced by the
+					// minute fallback. Always calculate against daily closes for this quote's
+					// own Korean trading date; never reuse an unverified rate or fetch date.
+					base, err := a.previousClose(ctx, symbol, bearer, at)
+					if err == nil {
+						q["percent"] = (p - base) / base * 100
+						q["previous_close"] = base
+						q["percent_basis"] = "previous_trading_close"
+					} else {
+						q["percent_status"] = "previous_close_unavailable"
+						problems = append(problems, symbol+" 등락률 기준 종가 확인 불가")
 					}
 					quotes = append(quotes, q)
 				}
