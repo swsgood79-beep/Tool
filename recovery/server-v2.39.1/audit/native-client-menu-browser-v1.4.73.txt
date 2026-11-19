@@ -1,0 +1,5 @@
+=== RUN   TestNativeClientMenuBrowser
+Native client menu browser checks passed 4
+--- PASS: TestNativeClientMenuBrowser (5.89s)
+PASS
+ok  	wanryotalk-reconstructed-server	6.148s

@@ -1,0 +1,29 @@
+{
+  "scope": "temporary Go server + Chromium APK UA; real client-note multipart save; physical Android not executed",
+  "results": [
+    {
+      "role": "owner",
+      "width": 390,
+      "case": "whole menu opens client master, edits and saves source, worker directory reflects result with no leave dialog",
+      "result": "pass"
+    },
+    {
+      "role": "owner",
+      "width": 850,
+      "case": "whole menu opens client master, edits and saves source, worker directory reflects result with no leave dialog",
+      "result": "pass"
+    },
+    {
+      "role": "personal inspector",
+      "width": 390,
+      "case": "whole menu opens client master, edits and saves source, worker directory reflects result with no leave dialog",
+      "result": "pass"
+    },
+    {
+      "role": "personal inspector",
+      "width": 850,
+      "case": "whole menu opens client master, edits and saves source, worker directory reflects result with no leave dialog",
+      "result": "pass"
+    }
+  ]
+}
