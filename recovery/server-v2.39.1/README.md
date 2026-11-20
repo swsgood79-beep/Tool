@@ -1,12 +1,12 @@
-# 알파작업완료확인 프로그램 v1.4.79
+# 알파작업완료확인 · PC v1.4.78 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.79** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.79.zip) |
+| **회사 PC 프로그램 v1.4.78** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.78.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 v1.4.79** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-v1.4.79.zip) |
+| **현재 전체 소스 · PC 1.4.78 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.78-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](CHANGELOG.md) |
@@ -157,7 +157,7 @@ GitHub 백업을 설정한 경우 자료와 사진을 암호화해 보관합니�
 | 앱을 열 때마다 비밀번호를 요구함 | APK 버전과 로그인 유지 상태, 직접 로그아웃/계정 연결 해제 여부 확인 |
 | 앱 알림이 오지 않음 | Firebase 최초 설정, 앱 알림 권한/앱 알림 켜짐, 개인 계정 상태, 시험 알림 |
 | 공용 PC 미리듣기는 되는데 신청 음성이 안 남 | 실제 신청 수신/음성 연결 상태, 브라우저 절전·백그라운드 상태 확인 |
-| 다크모드 일부가 밝게 보임 | 전체 → 화면 밝기 선택, PC v1.4.79과 APK v1.0.11 적용 여부 확인 |
+| 다크모드 일부가 밝게 보임 | 전체 → 화면 밝기 선택, PC v1.4.78과 APK v1.0.11 적용 여부 확인 |
 | 출하 기록이 검색되지 않음 | 출하사진 필요/보관 완료 탭, 검색어, 최초 보관 날짜 기간 조건 확인 |
 | 사진 파일이 탐색기에서 안 보임 | 운영 자료 경로와 프로그램 내 보관 자료 확인. 보호 파일 형식일 수 있음 |
 

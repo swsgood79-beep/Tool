@@ -4512,5 +4512,6 @@
     "extras/worker-v1.4.35.js": "b76d8f621008ba9a08e4261f658fef198d8153670d84d6c6db66d0b275772591",
     "extras/worker-v1.4.5.js": "d8e964554dd12477b0cac90f5a9c16270158d3e041a4a7c2c91fd369acd651ec",
     "extras/worker-v1.4.9.js": "384380e94d132d57e44bedd1e112aa9588a4393f7df1a7858de2d2febec0d981"
-  }
+  },
+  "publication_status": "withdrawn as a PC release; current PC is 1.4.78 and current APK remains 1.0.11"
 }

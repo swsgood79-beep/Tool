@@ -1,6 +1,6 @@
 # 알파 관리자 Android 1.0.3
 
-## 현재: APK 1.0.11 / PC 1.4.79
+## 현재: APK 1.0.11 / PC 1.4.78
 
 AppPalette로 Android 루트/상단/로그인/연결/버튼/상태·탐색바 색을 적용하고 Light/Dark 대화상자 테마를 사용합니다. 웹의 AlphaNativeTheme 브리지는 system/light/dark 외 값을 받지 않고 현재 WebView가 확인된 회사 origin일 때 외형 설정만 변경합니다. 비밀키·로그인·파일 접근 기능을 노출하지 않습니다. 웹 alpha-theme-change와 제한된 root 속성 관찰로 수동 테마와 네이티브 저장 설정을 연동합니다. 화면에 저장된 계정 자동 복원 및 FCM 채널은 그대로입니다. 실제 Android UI는 기기에서 확인해야 합니다.
 
