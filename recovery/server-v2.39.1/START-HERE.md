@@ -1,10 +1,10 @@
-# 빠른 시작 · PC v1.4.78 / 관리자 앱 v1.0.11
+# 빠른 시작 · PC v1.4.80 / 관리자 앱 v1.0.11
 
 전체 기능과 사용 순서는 [README.md](README.md)에 있습니다. 관리자 앱 Firebase 설정은 [ANDROID-ADMIN-SETUP.md](ANDROID-ADMIN-SETUP.md)를 참고하세요.
 
 ## 이미 사용 중인 회사 PC
 
-1. [최신 Windows ZIP](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.78.zip)을 내려받아 압축을 풉니다.
+1. [최신 Windows ZIP](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.80.zip)을 내려받아 압축을 풉니다.
 2. 기존 프로그램을 종료 버튼/트레이에서 완전히 종료합니다.
 3. 새 `AlphaWorkComplete-Recovered.exe`를 실행합니다. 기존 운영 자료와 지정한 저장 경로를 그대로 이어서 사용합니다.
 4. 수주·기록·사진과 외부 연결 상태를 확인합니다.
@@ -42,6 +42,6 @@
 - 출하사진 필요/보관 완료 목록에서 사진과 수주 정보를 확인합니다.
 - 백업 설정과 복구키 보관 상태를 확인합니다.
 
-구매팀 호출을 사용하려면 PC v1.4.78과 같은 관리자 앱 v1.0.11을 함께 적용하세요. 구매팀용 별도 앱은 없습니다. 대표 관리자에서 구매팀 권한 계정을 만들고 담당자를 지정합니다. [구매팀 호출 시작하기](PURCHASING-SETUP.md)를 참고하세요.
+구매팀 호출을 사용하려면 PC v1.4.80과 같은 관리자 앱 v1.0.11을 함께 적용하세요. 구매팀용 별도 앱은 없습니다. 대표 관리자에서 구매팀 권한 계정을 만들고 담당자를 지정합니다. [구매팀 호출 시작하기](PURCHASING-SETUP.md)를 참고하세요.
 
-앱 v1.0.11의 업데이트 다운로드 개선은 앱만 업데이트하면 적용됩니다. PC v1.4.78은 그대로 사용해도 됩니다. 기존 앱에서 다운로드가 실패하면 상단 APK 링크로 받아 삭제 없이 덮어 설치하세요.
+앱 v1.0.11의 업데이트 다운로드 개선은 앱만 업데이트하면 적용됩니다. PC v1.4.80은 그대로 사용해도 됩니다. 기존 앱에서 다운로드가 실패하면 상단 APK 링크로 받아 삭제 없이 덮어 설치하세요.

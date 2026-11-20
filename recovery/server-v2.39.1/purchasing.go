@@ -158,6 +158,57 @@ func (a *App) completePurchasingCall(account string, id int64) (int64, error) {
 }
 func (a *App) purchasingHTTP(w http.ResponseWriter, r *http.Request) bool {
 	path := r.URL.Path
+	if strings.HasPrefix(path, "/purchasing-receipts/") {
+		if path != "/purchasing-receipts/"+a.state.Board {
+			http.NotFound(w, r)
+			return true
+		}
+		if r.Method != "POST" {
+			http.Error(w, "POST 요청이 필요합니다.", 405)
+			return true
+		}
+		r.Body = http.MaxBytesReader(w, r.Body, 32768)
+		if err := r.ParseForm(); err != nil {
+			http.Error(w, "요청이 너무 큽니다.", 400)
+			return true
+		}
+		if !equal(r.FormValue("csrf"), a.state.Board) {
+			http.Error(w, "요청 검증 실패", 403)
+			return true
+		}
+		keys := r.Form["key"]
+		if len(keys) > 500 {
+			http.Error(w, "요청이 너무 많습니다.", 400)
+			return true
+		}
+		for _, key := range keys {
+			if !validPhotoID.MatchString(key) {
+				http.Error(w, "요청 검증 실패", 400)
+				return true
+			}
+		}
+		ownedKeys := make(map[string]bool, len(keys))
+		for _, key := range keys {
+			ownedKeys[key] = true
+		}
+		now := time.Now()
+		rows := []map[string]any{}
+		for _, c := range a.state.PurchasingCalls {
+			if c.CompletedAt != nil && now.Sub(*c.CompletedAt) >= time.Minute {
+				continue
+			}
+			owned := ownedKeys[c.Key]
+			for _, alias := range c.RetryKeys {
+				owned = owned || ownedKeys[alias]
+			}
+			if owned {
+				rows = append(rows, map[string]any{"id": c.ID, "project": c.ProjectID, "worker": c.Worker, "created": c.CreatedAt, "completed": c.CompletedAt})
+			}
+		}
+		w.Header().Set("Cache-Control", "no-store")
+		jsonReply(w, map[string]any{"ok": true, "now": now, "calls": rows})
+		return true
+	}
 	if strings.HasPrefix(path, "/purchasing-call/") {
 		parts := strings.Split(strings.Trim(path, "/"), "/")
 		if len(parts) != 3 || !equal(parts[1], a.state.Board) {
@@ -257,7 +308,7 @@ func (a *App) purchasingWorkerMarkup(s, name string) string {
 	}
 	u := purchasingRecipient(&a.state)
 	marker := `<div id="purchasing-worker-config" hidden data-board="` + template.HTMLEscapeString(a.state.Board) + `" data-recipient="` + template.HTMLEscapeString(u.Name) + `"></div>`
-	s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/purchasing-worker-v1.4.78.css"><script defer src="/purchasing-worker-v1.4.78.js"></script></head>`, 1)
+	s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/purchasing-worker-v1.4.80.css"><script defer src="/purchasing-worker-v1.4.80.js"></script></head>`, 1)
 	return strings.Replace(s, "</body>", marker+"</body>", 1)
 }
 

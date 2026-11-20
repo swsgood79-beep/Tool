@@ -1,0 +1,29 @@
+{
+  "scope": "actual temporary Go server + PC/mobile Chromium and shared APK user agent; native Android/real FCM not executed",
+  "results": [
+    {
+      "mobile": false,
+      "theme": "light",
+      "case": "name-only worker call with retry/no navigation/history; own chronological queue; restricted menus; failed completion retains current call; complete advances and archives; themes; no leave prompt",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "theme": "dark",
+      "case": "name-only worker call with retry/no navigation/history; own chronological queue; restricted menus; failed completion retains current call; complete advances and archives; themes; no leave prompt",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "theme": "light",
+      "case": "name-only worker call with retry/no navigation/history; own chronological queue; restricted menus; failed completion retains current call; complete advances and archives; themes; no leave prompt",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "theme": "dark",
+      "case": "name-only worker call with retry/no navigation/history; own chronological queue; restricted menus; failed completion retains current call; complete advances and archives; themes; no leave prompt",
+      "result": "pass"
+    }
+  ]
+}
