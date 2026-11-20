@@ -389,7 +389,7 @@ func (a *App) saveProject(r *http.Request, id int64) error {
 						p.ClientPhotoIDs = append([]string{}, r.Form["template_photo"]...)
 						p.ClientPhotosSelected = true
 					}
-					if len(c.Photos)+len(p.Photos) > 5 {
+					if len(selectedClientPhotos(*p, c))+len(p.Photos) > 5 {
 						return errors.New("업체 사진을 포함해 최대 5장입니다.")
 					}
 				} else {

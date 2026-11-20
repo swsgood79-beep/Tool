@@ -1,0 +1,29 @@
+{
+  "scope": "temporary Go server + PC/mobile Chromium and APK user agent; real company data, Windows and native Android not executed",
+  "results": [
+    {
+      "mobile": false,
+      "theme": "light",
+      "case": "five company source photos, only three selected; append one order-only photo without reloading source or disabling sync; preserves original three, extra memo and source; admin and worker view; no leave prompt",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "theme": "dark",
+      "case": "five company source photos, only three selected; append one order-only photo without reloading source or disabling sync; preserves original three, extra memo and source; admin and worker view; no leave prompt",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "theme": "light",
+      "case": "five company source photos, only three selected; append one order-only photo without reloading source or disabling sync; preserves original three, extra memo and source; admin and worker view; no leave prompt",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "theme": "dark",
+      "case": "five company source photos, only three selected; append one order-only photo without reloading source or disabling sync; preserves original three, extra memo and source; admin and worker view; no leave prompt",
+      "result": "pass"
+    }
+  ]
+}

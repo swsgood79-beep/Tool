@@ -351,17 +351,7 @@ func (a *App) projectView(p Project) ProjectView {
 	for _, c := range a.state.ClientNotes {
 		if p.ClientID == c.ID {
 			p.SpecialInstructions = c.Text
-			sourcePhotos := c.Photos
-			if p.ClientPhotosSelected {
-				sourcePhotos = nil
-				for _, ph := range c.Photos {
-					for _, id := range p.ClientPhotoIDs {
-						if ph.ID == id {
-							sourcePhotos = append(sourcePhotos, ph)
-						}
-					}
-				}
-			}
+			sourcePhotos := selectedClientPhotos(p, c)
 			p.Photos = append(append([]Photo{}, sourcePhotos...), p.Photos...)
 		}
 	}

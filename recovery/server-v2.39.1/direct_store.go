@@ -153,16 +153,7 @@ func (a *App) projectOriginal(s *State) (map[string][]byte, error) {
 				}
 				sourceRevision = c.Revision
 				p.SpecialInstructions = c.Text
-				for _, source := range c.Photos {
-					selected := !p.ClientPhotosSelected
-					for _, id := range p.ClientPhotoIDs {
-						if id == source.ID {
-							selected = true
-						}
-					}
-					if !selected {
-						continue
-					}
+				for _, source := range selectedClientPhotos(*p, c) {
 					sourceIDs = append(sourceIDs, source.ID)
 					copy, e := a.materializeSourcePhoto(s, p.ID, source)
 					if e != nil {
