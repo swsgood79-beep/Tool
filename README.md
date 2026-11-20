@@ -1,21 +1,23 @@
-# 알파작업완료확인 · PC v1.4.80 / 앱 v1.0.11
+# 알파작업완료확인 · PC v1.4.81 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.80** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.80.zip) |
+| **회사 PC 프로그램 v1.4.81** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.81.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.80 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.80-App-v1.0.11.zip) |
+| **현재 전체 소스 · PC 1.4.81 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.81-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/CHANGELOG.md) |
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
 
-## 이번 업데이트 · PC 1.4.80
+## 이번 업데이트 · PC 1.4.81
 
-구매팀 호출을 보낸 작업자의 휴대폰에만 **호출 접수 완료**를 표시합니다. 구매팀에서 완료하면 **호출 처리 완료**로 바뀌고 1분 뒤 사라집니다. 다른 작업자는 같은 수주에서 계속 호출할 수 있습니다. 화면을 보고 있는 동안 약 5초 간격으로 처리 상태를 확인합니다. 휴대폰 알림 도착 확인을 뜻하지 않습니다. **PC 프로그램만 교체하면 되며 APK 1.0.11은 그대로 사용합니다.** 엑셀 일괄 내보내기는 후속 작업입니다. 자세한 안내는 [구매팀 호출](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/PURCHASING-SETUP.md)을 참고하세요.
+업체 특이사항에서 일부 사진만 골라 불러온 수주를 수정할 때, 업체 원본의 전체 사진 수를 세어 추가 사진 저장을 잘못 막던 문제를 수정했습니다. 예를 들어 업체 원본 5장 중 3장을 사용 중이면 수주 전용 사진을 2장까지 더 넣을 수 있습니다. **수주 수정 → 이 수주에만 사진 추가 → 수주 수정 저장**을 사용하세요. 업체 원본은 바뀌지 않으며 기존 연결·추가 메모와 사진은 함께 유지됩니다. 한 수주에 실제 첨부한 특이사항 사진은 합계 최대 5장입니다. 회사 PC만 업데이트하며 APK 1.0.11은 그대로 사용합니다.
+
+PC 1.4.80에서 추가한 구매팀 호출 접수·처리 완료 표시도 유지합니다. 알림 수신 지연의 실기기 진단과 엑셀 일괄 내보내기는 이번 사진 수정에 포함하지 않았습니다. [변경 이력](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/CHANGELOG.md)을 참고하세요.
 
 ## 1. 프로그램 구성과 실행 조건
 
@@ -49,7 +51,7 @@
 
 앱 상단 **⋮ → 앱 업데이트 확인 → 다운로드·설치**를 사용합니다. 기존 앱 위에 업데이트하면 로그인 연결과 설정을 이어서 사용합니다. Android의 설치 확인·앱 검사는 기기의 설치 절차입니다.
 
-일반 화면·기능은 회사 PC 프로그램 업데이트로 반영됩니다. 앱 상단·기기 기능처럼 APK 자체를 변경한 경우에는 APK 업데이트도 필요합니다. **앱 v1.0.11은 업데이트 다운로드를 개선합니다. 이 수정은 PC 교체 없이 앱 업데이트만으로 적용됩니다. 구매팀 기능은 PC v1.4.80 이상에서 사용할 수 있습니다.**
+일반 화면·기능은 회사 PC 프로그램 업데이트로 반영됩니다. 앱 상단·기기 기능처럼 APK 자체를 변경한 경우에는 APK 업데이트도 필요합니다. **앱 v1.0.11은 업데이트 다운로드를 개선합니다. 이 수정은 PC 교체 없이 앱 업데이트만으로 적용됩니다. 구매팀 기능은 PC v1.4.81 이상에서 사용할 수 있습니다.**
 
 ## 3. 수주 확인과 작업자 사용
 
@@ -161,7 +163,7 @@ GitHub 백업을 설정한 경우 자료와 사진을 암호화해 보관합니�
 | 앱을 열 때마다 비밀번호를 요구함 | APK 버전과 로그인 유지 상태, 직접 로그아웃/계정 연결 해제 여부 확인 |
 | 앱 알림이 오지 않음 | Firebase 최초 설정, 앱 알림 권한/앱 알림 켜짐, 개인 계정 상태, 시험 알림 |
 | 공용 PC 미리듣기는 되는데 신청 음성이 안 남 | 실제 신청 수신/음성 연결 상태, 브라우저 절전·백그라운드 상태 확인 |
-| 다크모드 일부가 밝게 보임 | 전체 → 화면 밝기 선택, PC v1.4.80과 APK v1.0.11 적용 여부 확인 |
+| 다크모드 일부가 밝게 보임 | 전체 → 화면 밝기 선택, PC v1.4.81과 APK v1.0.11 적용 여부 확인 |
 | 출하 기록이 검색되지 않음 | 출하사진 필요/보관 완료 탭, 검색어, 최초 보관 날짜 기간 조건 확인 |
 | 사진 파일이 탐색기에서 안 보임 | 운영 자료 경로와 프로그램 내 보관 자료 확인. 보호 파일 형식일 수 있음 |
 
@@ -210,4 +212,4 @@ Android는 Java 17·Android SDK 35와 별도 서명 설정을 사용합니다. �
 
 완료된 APK와 동의한 업데이트 요청을 앱 캐시에 보관합니다. 화면 재생성·재실행 시 상태를 읽고 파일을 다시 검증해 이어갑니다. 설치 창을 취소하거나 ‘나중에’를 누른 경우에는 **⋮ → 앱 업데이트 확인**에서 다시 설치할 수 있습니다. Android가 앱 프로세스를 종료한 미완료 다운로드는 재실행 후 다시 받으며, 파일 캐시를 Android가 삭제한 경우에도 다시 다운로드해야 합니다. 캐시 재사용 시에도 SHA-256·패키지·새 버전·기존 서명을 확인하고, Android 설치 확인은 사용자가 누릅니다.
 
-이 수정은 앱에 포함되므로 기존 앱에서 업데이트가 계속 실패한다면 표의 **APK 다운로드**로 v1.0.11을 받아 기존 앱 위에 설치하세요. 앱을 삭제할 필요가 없으며 기존 로그인·계정·알림 설정은 유지합니다. PC 프로그램이 v1.4.80이라면 이번 다운로드 수정만을 위해 PC를 교체할 필요는 없습니다. 실제 휴대폰의 설치·복귀 흐름은 기기 확인이 필요합니다.
+이 수정은 앱에 포함되므로 기존 앱에서 업데이트가 계속 실패한다면 표의 **APK 다운로드**로 v1.0.11을 받아 기존 앱 위에 설치하세요. 앱을 삭제할 필요가 없으며 기존 로그인·계정·알림 설정은 유지합니다. PC 프로그램이 v1.4.81이라면 이번 다운로드 수정만을 위해 PC를 교체할 필요는 없습니다. 실제 휴대폰의 설치·복귀 흐름은 기기 확인이 필요합니다.
