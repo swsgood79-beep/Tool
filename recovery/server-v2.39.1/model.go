@@ -107,6 +107,8 @@ type Ticket struct {
 	Next    string
 }
 type App struct {
+	shippingExports            map[string]*shippingExportJob
+	shippingExportPins         map[string]int
 	attachmentTransfers        shippingAttachmentTransfers
 	storageHome                string
 	ttsConfig                  TTSConfig

@@ -1,10 +1,10 @@
-# 빠른 시작 · PC v1.4.82 / 관리자 앱 v1.0.11
+# 빠른 시작 · PC v1.4.83 / 관리자 앱 v1.0.11
 
 전체 기능과 사용 순서는 [README.md](README.md)에 있습니다. 관리자 앱 Firebase 설정은 [ANDROID-ADMIN-SETUP.md](ANDROID-ADMIN-SETUP.md)를 참고하세요.
 
 ## 이미 사용 중인 회사 PC
 
-1. [최신 Windows ZIP](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.82.zip)을 내려받아 압축을 풉니다.
+1. [최신 Windows ZIP](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.83.zip)을 내려받아 압축을 풉니다.
 2. 기존 프로그램을 종료 버튼/트레이에서 완전히 종료합니다.
 3. 새 `AlphaWorkComplete-Recovered.exe`를 실행합니다. 기존 운영 자료와 지정한 저장 경로를 그대로 이어서 사용합니다.
 4. 수주·기록·사진과 외부 연결 상태를 확인합니다.
@@ -51,3 +51,7 @@ PC v1.4.81에서 수정한 기능도 유지합니다: 업체 원본에서 선택
 ## 출하 파일·동영상
 
 출하 기록 상세 → 파일·동영상에서 파라미터 파일이나 촬영한 영상을 선택합니다. 사진과 함께 선택한 첨부는 ‘사진 등록 후 완료·보관’을 누르면 먼저 저장됩니다. 이미 보관된 수주는 ‘파일·동영상 저장’을 누르세요. 20MB 초과 영상은 업로드 전에 자동 압축하며 화면을 켜 두어야 합니다. 원본 영상과 파라미터 파일 내용은 휴대폰에서 변경하지 않습니다. APK 재설치는 필요 없습니다. [첨부 안내](SHIPMENT-ATTACHMENTS.md)를 참고하세요.
+
+## 출하 기록 엑셀 저장
+
+관리자 출하 기록의 보관 완료 목록에서 **전체 보관 엑셀 저장**을 누르면 전체 목록과 월별 상세 엑셀을 ZIP으로 받습니다. ZIP은 전체 압축을 풀고 같은 폴더에서 사용합니다. 고객사에 한 수주만 전달하려면 해당 상세 화면의 **이 수주 엑셀 저장**을 사용합니다. 사진은 엑셀에 들어 있고, 파일·영상 원본은 별도 전달입니다. [엑셀 사용 안내](SHIPMENT-EXCEL.md)를 참고하세요. 회사 PC만 업데이트하며 APK 1.0.11은 그대로 사용합니다.

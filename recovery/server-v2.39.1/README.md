@@ -1,25 +1,25 @@
-# 알파작업완료확인 · PC v1.4.82 / 앱 v1.0.11
+# 알파작업완료확인 · PC v1.4.83 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.82** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.82.zip) |
+| **회사 PC 프로그램 v1.4.83** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.83.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.82 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.82-App-v1.0.11.zip) |
+| **현재 전체 소스 · PC 1.4.83 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.83-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](CHANGELOG.md) |
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
 
-## 이번 업데이트 · PC 1.4.82
+## 이번 업데이트 · PC 1.4.83
 
-출하 기록에 **파라미터·첨부파일과 동영상**을 보관합니다. 출하사진 필요 화면에서 사진과 함께 선택하거나, 보관 완료 후에도 **파일·동영상**에서 추가하세요. 파라미터 파일은 원본 그대로 다운로드하며 동영상은 화면에서 재생·다운로드합니다. 삭제는 관리자만 할 수 있습니다.
+완료·보관된 출하 기록을 사진이 포함된 엑셀로 저장합니다. 관리자 출하 기록 목록의 **전체 보관 엑셀 저장**은 `출하목록.xlsx`와 보관 월별 상세 엑셀을 ZIP 하나로 내려받습니다. 상세 화면의 **이 수주 엑셀 저장**은 해당 수주만 담은 엑셀 한 파일이며 다른 고객사 자료는 포함하지 않습니다.
 
-20MB를 넘는 영상은 휴대폰/브라우저에서 업로드용 사본을 자동 압축합니다. 원본은 갤러리에 유지하며 가로·세로 방향과 소리를 보존합니다. 압축하는 동안 화면을 켜 두세요. 지원 형식에 따라 MP4 또는 WebM으로 보관합니다. 파일당 100MB, 압축 후 동영상당 300MB, 한 수주 첨부 20개·총 1GB입니다. **회사 PC만 교체하며 APK 1.0.11은 그대로 사용합니다.** [파일·동영상 사용 안내](SHIPMENT-ATTACHMENTS.md)를 참고하세요.
+담당자·작업자·검사/보관 날짜·사급품 현황/수령내역·특이사항·추가 메모·출하 메모·사진을 담습니다. 사진은 용량을 줄인 미리보기로 엑셀 안에 넣고 원본은 유지합니다. **파일·동영상은 이름·종류·용량만 표시하고 원본은 엑셀에 넣지 않습니다.** 필요한 원본은 프로그램에서 내려받아 별도로 전달하세요. [출하 엑셀 사용 안내](SHIPMENT-EXCEL.md)를 참고하세요.
 
-첨부는 기존 회사 PC 자료 폴더에 보호 저장됩니다. 원격 백업에는 첨부도 포함하지만 기존 256MB 한도는 유지하므로, 한도 초과 시 백업을 생략하지 않고 실패 상태를 알립니다. 이 경우 자료 폴더의 별도 백업이 필요합니다. 기존 1.4.81 사진 추가 수정과 1.4.80 구매 호출 표시는 유지합니다.
+전체 자료는 같은 달도 사진량과 수주 수에 따라 자동으로 나눕니다. 엑셀을 준비하거나 다운로드하는 동안 검사 신청·알림은 계속 처리합니다. 준비된 다운로드는 2시간 동안 이용할 수 있으며 새로고침 후에도 해당 브라우저에서 준비 상태를 다시 확인합니다. **회사 PC만 업데이트하며 APK 1.0.11은 그대로 사용합니다.** 기존 파일·영상 보관과 자동 압축 기능도 유지합니다.
 
 ## 1. 프로그램 구성과 실행 조건
 

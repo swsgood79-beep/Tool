@@ -391,6 +391,11 @@ func (a *App) saveCommunity(r *http.Request, owner string) error {
 // Delete only unreferenced community attachment files after the state is durable.
 func (a *App) pruneCommunityPhotos(candidates []Photo) {
 	used := map[string]bool{}
+	for id, count := range a.shippingExportPins {
+		if count > 0 {
+			used[id] = true
+		}
+	}
 	for _, n := range a.state.Community {
 		for _, p := range n.Photos {
 			used[p.ID] = true
