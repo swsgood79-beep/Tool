@@ -1,0 +1,5 @@
+=== RUN   TestShippingExportBrowser
+Shipping Excel export browser checks passed 4
+--- PASS: TestShippingExportBrowser (19.11s)
+PASS
+ok  	wanryotalk-reconstructed-server	19.367s

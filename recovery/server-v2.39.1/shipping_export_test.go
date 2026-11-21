@@ -35,6 +35,7 @@ func exportFixture(t *testing.T) *App {
 		at := time.Date(2026, 11, 20, 15, 30, 0, 0, time.UTC)
 		r.ArchivedAt = &at
 		r.ClientName = "MOT"
+		r.Project.ShippingDueDate = "2026-11-21"
 		r.Project.Name = "MOT 리니어로봇"
 		r.Project.DesignerName = "김설계"
 		r.Project.Setting.Worker = "박세팅"

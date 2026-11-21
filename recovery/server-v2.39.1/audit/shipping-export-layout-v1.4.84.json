@@ -1,0 +1,12 @@
+{
+  "xlsx_open": "pass",
+  "renderer": "LibreOffice",
+  "detail_fit_to_page_width": true,
+  "pdf_pages": 2,
+  "detail_pages": 1,
+  "base_columns": 12,
+  "worker_columns_equal": true,
+  "overlapping_merges": false,
+  "fixture": "synthetic MOT metadata and two white test images; no company records",
+  "microsoft_excel_executed": false
+}

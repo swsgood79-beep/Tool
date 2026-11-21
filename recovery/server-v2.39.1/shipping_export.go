@@ -11,6 +11,7 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+	"strings"
 	"time"
 )
 
@@ -20,7 +21,7 @@ type shippingExportJob struct {
 	ID, Owner, Key, State, Message, Dir, SourceDir, FileName, RecordID string
 	CreatedAt                                                          time.Time
 	FinishedAt                                                         *time.Time
-	Total, Processed, Workbooks, Warnings, Readers                     int
+	Total, Processed, Workbooks, Warnings, Readers, MissingMetadata    int
 	Bytes                                                              int64
 	Photos                                                             []Photo
 }
@@ -85,6 +86,9 @@ func (a *App) newShippingExportLocked(owner, key, recordID string) (*shippingExp
 		return nil, nil, false, err
 	}
 	list = snapshot.ShippingRecords
+	for i := range list {
+		list[i] = shippingExportMetadata(&a.state, list[i])
+	}
 	sort.SliceStable(list, func(i, j int) bool {
 		if list[i].ArchivedAt.Equal(*list[j].ArchivedAt) {
 			return list[i].ID < list[j].ID
@@ -96,6 +100,11 @@ func (a *App) newShippingExportLocked(owner, key, recordID string) (*shippingExp
 		return nil, nil, false, err
 	}
 	j := &shippingExportJob{ID: token(), Owner: owner, Key: key, State: "building", Dir: dir, SourceDir: a.dir, CreatedAt: time.Now(), Total: len(list), RecordID: recordID}
+	for _, record := range list {
+		if strings.TrimSpace(record.ClientName) == "" || strings.TrimSpace(record.Project.ShippingDueDate) == "" {
+			j.MissingMetadata++
+		}
+	}
 	j.FileName = "출하기록_" + j.CreatedAt.In(kst).Format("20060102_1504") + ".zip"
 	if recordID != "" {
 		j.FileName = cleanAttachmentName(list[0].Project.Number + "_출하기록.xlsx")
@@ -160,7 +169,7 @@ func (a *App) runShippingExport(j *shippingExportJob, records []ShippingRecord) 
 	time.AfterFunc(shippingExportTTL+time.Second, func() { a.mu.Lock(); a.cleanupShippingExportsLocked(time.Now()); a.mu.Unlock() })
 }
 func shippingExportStatus(j *shippingExportJob) map[string]any {
-	return map[string]any{"id": j.ID, "state": j.State, "total": j.Total, "processed": j.Processed, "bytes": j.Bytes, "workbooks": j.Workbooks, "warnings": j.Warnings, "message": j.Message, "filename": j.FileName}
+	return map[string]any{"id": j.ID, "state": j.State, "total": j.Total, "processed": j.Processed, "bytes": j.Bytes, "workbooks": j.Workbooks, "warnings": j.Warnings, "missing_metadata": j.MissingMetadata, "message": j.Message, "filename": j.FileName}
 }
 
 // Runs before the main router's long-held lock. Neither ZIP building nor a slow

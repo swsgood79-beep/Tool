@@ -43,7 +43,7 @@ type exportEntry struct {
 	Warnings    int
 }
 type exportWarning struct{ Order, Project, Photo, Message string }
-type exportStyles struct{ Title, Section, Header, Body, Label, Link, Date, Stamp, Muted int }
+type exportStyles struct{ Title, CompactTitle, Section, Header, Body, Label, Link, Date, Stamp, Muted, Center, SmallCenter int }
 type exportBook struct {
 	File      *excelize.File
 	Style     exportStyles
@@ -97,8 +97,14 @@ func newExportBook(first string) *exportBook {
 	font := func(bold bool, c string, size float64) *excelize.Font {
 		return &excelize.Font{Family: "Malgun Gothic", Size: size, Color: c, Bold: bold}
 	}
-	border := []excelize.Border{{Type: "bottom", Color: "D9E2EF", Style: 1}}
+	border := []excelize.Border{}
+	for _, edge := range []string{"left", "right", "top", "bottom"} {
+		border = append(border, excelize.Border{Type: edge, Color: "D5DEEB", Style: 1})
+	}
 	b.Style.Title = style(&excelize.Style{Font: font(true, "FFFFFF", 20), Fill: excelize.Fill{Type: "pattern", Pattern: 1, Color: []string{"17365D"}}, Alignment: &excelize.Alignment{Vertical: "center", Indent: 1, WrapText: true}})
+	b.Style.CompactTitle = style(&excelize.Style{Font: font(true, "FFFFFF", 16), Fill: excelize.Fill{Type: "pattern", Pattern: 1, Color: []string{"17365D"}}, Alignment: &excelize.Alignment{Vertical: "center", WrapText: true, Indent: 1}})
+	b.Style.Center = style(&excelize.Style{Font: font(false, "172B46", 10), Alignment: &excelize.Alignment{Horizontal: "center", Vertical: "center", WrapText: true}, Border: border})
+	b.Style.SmallCenter = style(&excelize.Style{Font: font(false, "172B46", 9), Alignment: &excelize.Alignment{Horizontal: "center", Vertical: "center", WrapText: true}, Border: border})
 	b.Style.Section = style(&excelize.Style{Font: font(true, "FFFFFF", 11), Fill: excelize.Fill{Type: "pattern", Pattern: 1, Color: []string{"24466E"}}, Alignment: &excelize.Alignment{Vertical: "center", Indent: 1}})
 	b.Style.Header = style(&excelize.Style{Font: font(true, "FFFFFF", 10), Fill: excelize.Fill{Type: "pattern", Pattern: 1, Color: []string{"17365D"}}, Alignment: &excelize.Alignment{Horizontal: "center", Vertical: "center", WrapText: true}, Border: border})
 	b.Style.Body = style(&excelize.Style{Font: font(false, "172B46", 10), Alignment: &excelize.Alignment{Vertical: "center", WrapText: true}, Border: border})
@@ -106,8 +112,8 @@ func newExportBook(first string) *exportBook {
 	b.Style.Link = style(&excelize.Style{Font: &excelize.Font{Family: "Malgun Gothic", Size: 10, Color: "155DCC", Underline: "single"}, Alignment: &excelize.Alignment{Vertical: "center"}, Border: border})
 	date := "yyyy.mm.dd"
 	stamp := "yyyy.mm.dd hh:mm"
-	b.Style.Date = style(&excelize.Style{Font: font(false, "172B46", 10), CustomNumFmt: &date, Alignment: &excelize.Alignment{Vertical: "center"}, Border: border})
-	b.Style.Stamp = style(&excelize.Style{Font: font(false, "172B46", 10), CustomNumFmt: &stamp, Alignment: &excelize.Alignment{Vertical: "center"}, Border: border})
+	b.Style.Date = style(&excelize.Style{Font: font(false, "172B46", 10), CustomNumFmt: &date, Alignment: &excelize.Alignment{Horizontal: "left", Vertical: "center"}, Border: border})
+	b.Style.Stamp = style(&excelize.Style{Font: font(false, "172B46", 10), CustomNumFmt: &stamp, Alignment: &excelize.Alignment{Horizontal: "left", Vertical: "center"}, Border: border})
 	b.Style.Muted = style(&excelize.Style{Font: font(false, "64748B", 10), Alignment: &excelize.Alignment{Vertical: "center", WrapText: true}})
 	return b
 }
@@ -118,7 +124,7 @@ func (b *exportBook) sheet(name string, detail bool) {
 	}
 	widths := []float64{19, 32, 18, 17, 24, 10, 12, 18}
 	if detail {
-		widths = []float64{15, 15, 15, 15, 15, 15, 15, 15}
+		widths = []float64{13, 13, 13, 13, 13, 13, 13, 13}
 	}
 	for i, w := range widths {
 		col, _ := excelize.ColumnNumberToName(i + 1)
@@ -237,7 +243,7 @@ func (b *exportBook) index(sheet, title string, entries []exportEntry, external 
 	for i, e := range entries {
 		row := i + 6
 		r := e.Record
-		values := []string{r.Project.Number, r.Project.Name, r.ClientName, "", r.Project.Setting.Worker + " / " + r.Project.Shipping.Worker, fmt.Sprintf("%d장", len(r.Photos)), fmt.Sprintf("%d개", len(r.Attachments)), "상세 보기"}
+		values := []string{r.Project.Number, r.Project.Name, exportPresent(r.ClientName), "", r.Project.Setting.Worker + " / " + r.Project.Shipping.Worker, fmt.Sprintf("%d장", len(r.Photos)), fmt.Sprintf("%d개", len(r.Attachments)), "상세 보기"}
 		for c, text := range values {
 			cell, _ := excelize.CoordinatesToCellName(c+1, row)
 			b.str(sheet, cell, text)
@@ -260,7 +266,7 @@ func (b *exportBook) index(sheet, title string, entries []exportEntry, external 
 }
 func (b *exportBook) section(sheet string, row int, title string) {
 	b.merge(sheet, fmt.Sprintf("A%d", row), fmt.Sprintf("H%d", row), title, b.Style.Section)
-	b.height(sheet, row, 25)
+	b.height(sheet, row, 20)
 }
 func (b *exportBook) text(sheet string, row int, label, text string) int {
 	b.section(sheet, row, label)
@@ -286,120 +292,190 @@ func (b *exportBook) text(sheet string, row int, label, text string) int {
 func (b *exportBook) detail(entry exportEntry, photos []exportPhoto, standalone bool) {
 	r, sheet := entry.Record, entry.Sheet
 	b.sheet(sheet, true)
-	b.title(sheet, r.Project.Name+" · 출하 상세", "수주 "+r.Project.Number+" · 사진은 엑셀용 미리보기 · 파일·영상 원본 별도 전달")
+	b.check(b.File.SetColWidth(sheet, "A", "L", 9))
+	title := r.Project.Name + " · 출하 상세"
+	b.merge(sheet, "A1", "I2", title, b.Style.CompactTitle)
+	titleHeight := float64(max(34, ((utf8.RuneCountInString(title)+29)/30)*20+8))
+	b.height(sheet, 1, titleHeight/2)
+	b.height(sheet, 2, titleHeight/2)
+	b.merge(sheet, "J1", "L2", "", b.Style.Link)
 	if standalone {
-		b.link(sheet, "A4", "", exportLocation("목차"), "← 목차로")
+		b.link(sheet, "J1", "", exportLocation("목차"), "← 목차로")
 	} else {
-		b.link(sheet, "A4", "출하목록.xlsx", exportLocation("출하목록"), "← 전체 목록으로")
+		b.link(sheet, "J1", "출하목록.xlsx", exportLocation("출하목록"), "← 전체 목록")
 	}
-	if !standalone {
-		b.link(sheet, "F4", "", exportLocation("목차"), "월별 목차")
-	}
-	for row := 6; row <= 8; row++ {
+	b.height(sheet, 3, 5)
+	for row := 4; row <= 8; row++ {
+		b.merge(sheet, fmt.Sprintf("C%d", row), fmt.Sprintf("F%d", row), "", b.Style.Body)
 		b.merge(sheet, fmt.Sprintf("A%d", row), fmt.Sprintf("B%d", row), "", b.Style.Label)
-		b.merge(sheet, fmt.Sprintf("C%d", row), fmt.Sprintf("D%d", row), "", b.Style.Body)
-		b.merge(sheet, fmt.Sprintf("E%d", row), fmt.Sprintf("F%d", row), "", b.Style.Label)
-		b.merge(sheet, fmt.Sprintf("G%d", row), fmt.Sprintf("H%d", row), "", b.Style.Body)
-		b.height(sheet, row, 29)
+		b.height(sheet, row, 19)
 	}
-	for cell, text := range map[string]string{"A6": "고객사", "C6": r.ClientName, "E6": "출고 예정", "G6": r.Project.ShippingDueDate, "A7": "검사 완료", "E7": "보관 완료", "A8": "수주번호", "C8": r.Project.Number, "E8": "별도 전달 첨부", "G8": fmt.Sprintf("%d개", len(r.Attachments))} {
+	for cell, text := range map[string]string{"A4": "수주번호", "C4": r.Project.Number, "A5": "출고 예정", "A6": "검사 완료", "A7": "보관 완료", "A8": "고객사", "C8": exportPresent(r.ClientName)} {
 		b.str(sheet, cell, text)
 	}
-	b.date(sheet, "C7", &r.InspectedAt, true)
-	b.date(sheet, "G7", r.ArchivedAt, true)
-	b.section(sheet, 10, "담당자와 작업자")
-	for _, x := range []struct{ From, To, Label, Name, Date string }{{"A", "B", "설계담당자", r.Project.DesignerName, "—"}, {"C", "E", "세팅 작업자", r.Project.Setting.Worker, ""}, {"F", "H", "출하 작업자", r.Project.Shipping.Worker, ""}} {
-		b.merge(sheet, x.From+"11", x.To+"11", x.Label, b.Style.Label)
-		b.merge(sheet, x.From+"12", x.To+"12", x.Name, b.Style.Body)
-		b.merge(sheet, x.From+"13", x.To+"13", x.Date, b.Style.Muted)
+	if due, err := time.ParseInLocation("2006-01-02", r.Project.ShippingDueDate, kst); err == nil {
+		b.date(sheet, "C5", &due, false)
+	} else {
+		b.str(sheet, "C5", exportPresent(r.Project.ShippingDueDate))
 	}
-	nameLines := max((utf8.RuneCountInString(r.Project.DesignerName)+14)/15, max((utf8.RuneCountInString(r.Project.Setting.Worker)+20)/21, (utf8.RuneCountInString(r.Project.Shipping.Worker)+20)/21))
-	b.date(sheet, "C13", r.Project.Setting.Completed, true)
-	b.date(sheet, "F13", r.Project.Shipping.Completed, true)
-	for row := 11; row <= 13; row++ {
-		b.height(sheet, row, 26)
+	b.date(sheet, "C6", &r.InspectedAt, true)
+	b.date(sheet, "C7", r.ArchivedAt, true)
+	for _, x := range []struct {
+		From, To, Label, Name string
+		Date                  *time.Time
+	}{{"G", "H", "설계담당자", r.Project.DesignerName, nil}, {"I", "J", "세팅 작업자", r.Project.Setting.Worker, r.Project.Setting.Completed}, {"K", "L", "출하 작업자", r.Project.Shipping.Worker, r.Project.Shipping.Completed}} {
+		b.merge(sheet, x.From+"4", x.To+"4", x.Label, b.Style.Header)
+		b.merge(sheet, x.From+"5", x.To+"6", exportDash(x.Name), b.Style.Center)
+		text := "—"
+		if x.Date != nil {
+			text = x.Date.In(kst).Format("2006.01.02\n15:04")
+		}
+		b.merge(sheet, x.From+"7", x.To+"8", text, b.Style.SmallCenter)
 	}
-	b.height(sheet, 12, float64(max(26, nameLines*16+8)))
-	b.section(sheet, 15, "사급품 현황 · 수령내역")
+	maxName := max(utf8.RuneCountInString(r.Project.Setting.Worker), utf8.RuneCountInString(r.Project.Shipping.Worker))
+	if maxName > 7 {
+		b.height(sheet, 5, float64(min(70, ((maxName+6)/7)*12)))
+		b.height(sheet, 6, 19)
+	}
+	b.height(sheet, 9, 5)
+	row := 10
 	material := strings.TrimSpace(r.Project.SuppliedMaterials)
-	if material == "" {
-		if len(r.Receipts) > 0 {
-			material = "사급품 수령내역 있음"
-		} else {
-			material = "등록된 사급품 현황 없음"
-		}
+	heading := "사급품 현황 / 수령내역"
+	if material != "" {
+		heading += " · " + material
 	}
-	b.merge(sheet, "A16", "H16", material, b.Style.Body)
-	b.height(sheet, 16, 32)
-	row := 18
+	b.detailSection(sheet, row, heading)
+	row++
 	if len(r.Receipts) > 0 {
-		for _, x := range []struct{ From, To, Text string }{{"A", "B", "종류"}, {"C", "D", "제조사"}, {"E", "G", "품번"}, {"H", "H", "수량"}} {
-			b.merge(sheet, x.From+"17", x.To+"17", x.Text, b.Style.Header)
+		for _, x := range []struct{ From, To, Text string }{{"A", "C", "종류"}, {"D", "F", "제조사"}, {"G", "J", "품번"}, {"K", "L", "수량"}} {
+			b.merge(sheet, fmt.Sprintf("%s%d", x.From, row), fmt.Sprintf("%s%d", x.To, row), x.Text, b.Style.Header)
 		}
-		b.height(sheet, 17, 24)
+		b.height(sheet, row, 19)
+		row++
 		for _, item := range r.Receipts {
-			for _, x := range []struct{ From, To, Text string }{{"A", "B", item.Kind}, {"C", "D", item.Manufacturer}, {"E", "G", item.PartNumber}, {"H", "H", item.Quantity}} {
+			for _, x := range []struct{ From, To, Text string }{{"A", "C", item.Kind}, {"D", "F", item.Manufacturer}, {"G", "J", item.PartNumber}, {"K", "L", item.Quantity}} {
 				b.merge(sheet, fmt.Sprintf("%s%d", x.From, row), fmt.Sprintf("%s%d", x.To, row), x.Text, b.Style.Body)
 			}
-			b.height(sheet, row, 32)
+			b.height(sheet, row, 21)
 			row++
 		}
+	} else {
+		if material == "" {
+			material = "등록된 사급품 현황 없음"
+		}
+		b.merge(sheet, fmt.Sprintf("A%d", row), fmt.Sprintf("L%d", row), material, b.Style.Body)
+		b.height(sheet, row, 20)
 		row++
 	}
-	row = b.text(sheet, row, "업체 특이사항", r.Project.SpecialInstructions)
-	row = b.text(sheet, row, "수주별 추가 메모", r.Project.AdditionalInstructions)
-	row = b.text(sheet, row, "출하 메모", r.Memo)
+	notes := []string{}
+	for _, x := range []struct{ Label, Text string }{{"업체 특이사항", r.Project.SpecialInstructions}, {"수주별 추가 메모", r.Project.AdditionalInstructions}, {"출하 메모", r.Memo}} {
+		if strings.TrimSpace(x.Text) != "" {
+			notes = append(notes, x.Label+" · "+x.Text)
+		}
+	}
+	if len(notes) > 0 {
+		row = b.detailText(sheet, row, "특이사항 / 출하 메모", strings.Join(notes, "\n"))
+	}
 	currentKind := ""
 	for i, photo := range photos {
 		if photo.Kind != currentKind {
-			b.check(b.File.InsertPageBreak(sheet, fmt.Sprintf("A%d", row)))
-			b.section(sheet, row, photo.Kind+" · 미리보기")
+			b.detailSection(sheet, row, photo.Kind)
 			row++
 			currentKind = photo.Kind
 		}
-		// Two photos per row, restarting each gallery group independently.
 		left := photo.Number%2 == 1
 		if left && photo.Number > 1 && (photo.Number-1)%6 == 0 {
 			b.check(b.File.InsertPageBreak(sheet, fmt.Sprintf("A%d", row)))
 		}
-		col, end := "A", "D"
+		col, end := "A", "F"
 		if !left {
-			col, end = "E", "H"
+			col, end = "G", "L"
 		}
 		b.merge(sheet, fmt.Sprintf("%s%d", col, row), fmt.Sprintf("%s%d", end, row), fmt.Sprintf("%s %d · %s", photo.Kind, photo.Number, photo.Name), b.Style.Label)
-		b.height(sheet, row, float64(max(30, ((utf8.RuneCountInString(photo.Name)+9+29)/30)*14+8)))
-		for y := row + 1; y <= row+13; y++ {
-			b.height(sheet, y, 16)
+		b.height(sheet, row, float64(max(19, ((utf8.RuneCountInString(photo.Name)+9+29)/30)*12+5)))
+		for y := row + 1; y <= row+8; y++ {
+			b.height(sheet, y, 18)
 		}
+		b.height(sheet, row+9, 4)
 		if photo.Problem != "" {
-			b.merge(sheet, fmt.Sprintf("%s%d", col, row+1), fmt.Sprintf("%s%d", end, row+12), "사진 확인 필요\n"+photo.Problem, b.Style.Body)
+			b.merge(sheet, fmt.Sprintf("%s%d", col, row+1), fmt.Sprintf("%s%d", end, row+8), "사진 확인 필요\n"+photo.Problem, b.Style.Body)
 		} else {
-			scale := math.Min(400/float64(photo.Width), 256/float64(photo.Height))
-			offset := 8 + int((400-float64(photo.Width)*scale)/2)
-			b.check(b.File.AddPictureFromBytes(sheet, fmt.Sprintf("%s%d", col, row+1), &excelize.Picture{Extension: ".jpg", File: photo.Data, Format: &excelize.GraphicOptions{AltText: fmt.Sprintf("%s %d", photo.Kind, photo.Number), Name: fmt.Sprintf("Photo%d", i+1), LockAspectRatio: true, OffsetX: offset, OffsetY: 6, ScaleX: scale, ScaleY: scale, Positioning: "oneCell"}}))
+			scale := math.Min(350/float64(photo.Width), 180/float64(photo.Height))
+			offset := 5 + int((350-float64(photo.Width)*scale)/2)
+			b.check(b.File.AddPictureFromBytes(sheet, fmt.Sprintf("%s%d", col, row+1), &excelize.Picture{Extension: ".jpg", File: photo.Data, Format: &excelize.GraphicOptions{AltText: fmt.Sprintf("%s %d", photo.Kind, photo.Number), Name: fmt.Sprintf("Photo%d", i+1), LockAspectRatio: true, OffsetX: offset, OffsetY: 4, ScaleX: scale, ScaleY: scale, Positioning: "oneCell"}}))
 		}
 		last := i == len(photos)-1 || photos[i+1].Kind != photo.Kind
 		if !left || last {
-			row += 15
+			row += 10
 		}
 	}
-	row = b.text(sheet, row, "파일·동영상 · 원본 별도 전달", "아래 목록은 첨부 안내입니다. 파일·동영상 원본은 이 엑셀에 들어 있지 않으며 별도로 전달해야 합니다.")
-	if len(r.Attachments) == 0 {
-		b.merge(sheet, fmt.Sprintf("A%d", row), fmt.Sprintf("H%d", row), "등록된 파일·동영상 없음", b.Style.Muted)
-	} else {
+	if len(r.Attachments) > 0 {
+		b.detailSection(sheet, row, "첨부파일 / 동영상 · 원본 별도 전달")
+		row++
 		for _, file := range r.Attachments {
 			kind := "파일"
 			if file.Kind == "video" {
 				kind = "동영상"
 			}
 			b.merge(sheet, fmt.Sprintf("A%d", row), fmt.Sprintf("B%d", row), kind, b.Style.Label)
-			b.merge(sheet, fmt.Sprintf("C%d", row), fmt.Sprintf("F%d", row), file.Name, b.Style.Body)
-			b.merge(sheet, fmt.Sprintf("G%d", row), fmt.Sprintf("H%d", row), file.SizeLabel(), b.Style.Body)
-			b.height(sheet, row, 34)
+			b.merge(sheet, fmt.Sprintf("C%d", row), fmt.Sprintf("I%d", row), file.Name, b.Style.Body)
+			b.merge(sheet, fmt.Sprintf("J%d", row), fmt.Sprintf("L%d", row), exportSize(file.Size), b.Style.Body)
+			b.height(sheet, row, 23)
 			row++
 		}
 	}
-	b.check(b.File.SetPanes(sheet, &excelize.Panes{Freeze: true, YSplit: 3, TopLeftCell: "A4", ActivePane: "bottomLeft"}))
+	note := r.ExportSourceNote
+	if note != "" {
+		b.merge(sheet, fmt.Sprintf("A%d", row), fmt.Sprintf("L%d", row), note, b.Style.Muted)
+		b.height(sheet, row, 30)
+		row++
+	}
+	b.merge(sheet, fmt.Sprintf("A%d", row), fmt.Sprintf("L%d", row), "사진은 엑셀용 미리보기입니다. 파일·동영상 원본은 별도로 전달합니다.", b.Style.Muted)
+	b.height(sheet, row, 20)
+	b.check(b.File.SetPanes(sheet, &excelize.Panes{Freeze: true, YSplit: 2, TopLeftCell: "A3", ActivePane: "bottomLeft"}))
+}
+func (b *exportBook) detailSection(sheet string, row int, title string) {
+	b.merge(sheet, fmt.Sprintf("A%d", row), fmt.Sprintf("L%d", row), title, b.Style.Section)
+	b.height(sheet, row, 20)
+}
+func (b *exportBook) detailText(sheet string, row int, title, text string) int {
+	b.detailSection(sheet, row, title)
+	row++
+	for len(text) > 0 {
+		runes := []rune(text)
+		n := min(400, len(runes))
+		part := string(runes[:n])
+		text = string(runes[n:])
+		b.merge(sheet, fmt.Sprintf("A%d", row), fmt.Sprintf("L%d", row), part, b.Style.Body)
+		lines := 0
+		for _, line := range strings.Split(part, "\n") {
+			lines += max(1, (utf8.RuneCountInString(line)+53)/54)
+		}
+		b.height(sheet, row, float64(min(400, lines*15+8)))
+		row++
+	}
+	return row
+}
+func exportPresent(s string) string {
+	if strings.TrimSpace(s) == "" {
+		return "미등록"
+	}
+	return s
+}
+func exportDash(s string) string {
+	if strings.TrimSpace(s) == "" {
+		return "—"
+	}
+	return s
+}
+func exportSize(n int64) string {
+	if n < 1024 {
+		return fmt.Sprintf("%d B", n)
+	}
+	if n < 1<<20 {
+		return fmt.Sprintf("%.1f KB", float64(n)/1024)
+	}
+	return fmt.Sprintf("%.1f MB", float64(n)/(1<<20))
 }
 
 // Excel external workbook links need a relationship to the file plus a worksheet

@@ -1,0 +1,10 @@
+=== RUN   TestShippingExportMetadataOnlyFillsTrustedMissingFields
+--- PASS: TestShippingExportMetadataOnlyFillsTrustedMissingFields (0.08s)
+=== RUN   TestShippingExportCompactGridAndMissingMarkers
+--- PASS: TestShippingExportCompactGridAndMissingMarkers (0.07s)
+=== RUN   TestShippingExportCompactLayoutSample
+--- PASS: TestShippingExportCompactLayoutSample (0.09s)
+=== RUN   TestShippingFinalArchivePreservesLateKnownMetadata
+--- PASS: TestShippingFinalArchivePreservesLateKnownMetadata (0.08s)
+PASS
+ok  	wanryotalk-reconstructed-server	0.565s
