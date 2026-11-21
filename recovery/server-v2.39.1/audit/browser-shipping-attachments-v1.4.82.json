@@ -1,0 +1,61 @@
+{
+  "scope": "real temporary server and Chromium video encoder; 20MB+ portrait MP4 with audio; production compression threshold; PC/mobile viewport and unchanged APK user agent; not physical Android",
+  "results": [
+    {
+      "mobile": false,
+      "theme": "light",
+      "admin": false,
+      "dimensions": {
+        "width": 720,
+        "height": 1280,
+        "duration": 5,
+        "src": "/shipping-records/eQaHJAjWiZCXQRbcHadXi_emFA6J0f1V3GIp7nZUJKs/xkKzZ0ql8dK2tqQ1zlElXapOEQdpc6B29xamawYIyqc/attachment/file/SuMFALXEX80qOxPIEPR5NgKwg8x6f4p0k0ziamr4AhM/alpha-shipping-video.webm"
+      },
+      "sourceBytes": 22892862,
+      "compressedBytes": 917352,
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "theme": "dark",
+      "admin": true,
+      "dimensions": {
+        "width": 720,
+        "height": 1280,
+        "duration": 5,
+        "src": "/shipping-archive-admin/OtJnncN18sxFsmiO0jvy_ksjgO4VhIBgygljjnrppnE/attachment/file/v7IfWS41vQeX-hddskgebixg6ku6vCdSFvgdFRoIvzg/alpha-shipping-video.webm"
+      },
+      "sourceBytes": 22892862,
+      "compressedBytes": 1189257,
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "theme": "light",
+      "admin": false,
+      "dimensions": {
+        "width": 720,
+        "height": 1280,
+        "duration": 5,
+        "src": "/shipping-records/eQaHJAjWiZCXQRbcHadXi_emFA6J0f1V3GIp7nZUJKs/ZdcTFdYKIxMlVl1dUDuVeIzZc4m7Fx7hW4XBUEZ_lS0/attachment/file/kjNMTaiPdiFxIOk-tioMNo3N-APv2VLyawgpYamPhuM/alpha-shipping-video.webm"
+      },
+      "sourceBytes": 22892862,
+      "compressedBytes": 1187880,
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "theme": "dark",
+      "admin": true,
+      "dimensions": {
+        "width": 720,
+        "height": 1280,
+        "duration": 5,
+        "src": "/shipping-archive-admin/FTNkCn263jBd0AinOuG8nfDbWBt8z1oAHcRETMxHdQ0/attachment/file/yNHlmTAlb-4IqwuByUYGI3KWN0ZleOgiPkSKCBzGxCg/alpha-shipping-video.webm"
+      },
+      "sourceBytes": 22892862,
+      "compressedBytes": 1150557,
+      "result": "pass"
+    }
+  ]
+}

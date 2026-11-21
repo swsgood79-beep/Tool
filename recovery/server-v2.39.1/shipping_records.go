@@ -17,7 +17,8 @@ const shippingPhotoLimit = 30
 // An independent snapshot, captured in the approval transaction. The live schedule
 // remains a projection of the connected sheet and never owns archive records.
 type ShippingRecord struct {
-	PhotoUploadKeys []string `json:",omitempty"`
+	Attachments     []ShippingAttachment `json:",omitempty"`
+	PhotoUploadKeys []string             `json:",omitempty"`
 	ClientName      string
 	ID              string
 	Project         Project
@@ -346,7 +347,7 @@ func (a *App) shippingRecordMarkup(s, name string, value any) string {
 		s = strings.Replace(s, "</head>", `<meta name="shipping-records-board" content="`+board+`"><script defer src="/shipping-records-v1.4.76.js"></script></head>`, 1)
 	}
 	if name == "shipping-records.html" {
-		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/shipment-photo-delete-v1.4.77.css"><script defer src="/shipment-photo-delete-v1.4.77.js"></script><link rel="stylesheet" href="/shipment-photo-viewer-v1.4.62.css"><script defer src="/shipment-photo-viewer-v1.4.62.js"></script></head>`, 1)
+		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/shipment-attachments-v1.4.82.css"><script defer src="/fix-webm-duration-v1.0.6.js"></script><script defer src="/shipment-video-v1.4.82.js"></script><script defer src="/shipment-attachments-v1.4.82.js"></script><link rel="stylesheet" href="/shipment-photo-delete-v1.4.77.css"><script defer src="/shipment-photo-delete-v1.4.77.js"></script><link rel="stylesheet" href="/shipment-photo-viewer-v1.4.62.css"><script defer src="/shipment-photo-viewer-v1.4.62.js"></script></head>`, 1)
 	}
 	if name == "shipping-records.html" || name == "work.html" || name == "admin.html" {
 		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/shipping-records-v1.4.52.css"></head>`, 1)

@@ -15,6 +15,7 @@ func pruneCancelledShippingRecords(s *State) []Photo {
 		if cancelled {
 			removed = append(removed, r.Project.Photos...)
 			removed = append(removed, r.Photos...)
+			removed = append(removed, attachmentParts(r)...)
 		} else {
 			records = append(records, r)
 		}

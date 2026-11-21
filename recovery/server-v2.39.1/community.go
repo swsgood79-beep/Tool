@@ -412,7 +412,7 @@ func (a *App) pruneCommunityPhotos(candidates []Photo) {
 		}
 	}
 	for _, record := range a.state.ShippingRecords {
-		for _, p := range append(append([]Photo{}, record.Project.Photos...), record.Photos...) {
+		for _, p := range shippingStoredAssets(record) {
 			used[p.ID] = true
 		}
 	}

@@ -88,6 +88,25 @@ func testCopyInventory(source string) (map[string]string, error) {
 	} else if !os.IsNotExist(e) {
 		return nil, e
 	}
+	modernPhotos := filepath.Join(source, "photos")
+	if st, err := os.Lstat(modernPhotos); err == nil {
+		if !st.IsDir() || st.Mode()&os.ModeSymlink != 0 {
+			return nil, errors.New("첨부 자료 폴더가 일반 폴더가 아닙니다")
+		}
+		entries, err := os.ReadDir(modernPhotos)
+		if err != nil {
+			return nil, err
+		}
+		for _, entry := range entries {
+			if validPhotoID.MatchString(entry.Name()) {
+				if err := add("photos/" + entry.Name()); err != nil {
+					return nil, err
+				}
+			}
+		}
+	} else if !os.IsNotExist(err) {
+		return nil, err
+	}
 	return out, nil
 }
 func copyForTest(source, base string, hook func() error) (string, error) {

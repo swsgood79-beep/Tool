@@ -72,10 +72,11 @@ func (a *App) portable(s State) ([]byte, error) {
 		}
 	}
 	for _, record := range s.ShippingRecords {
-		for _, ph := range append(append([]Photo{}, record.Project.Photos...), record.Photos...) {
+		for _, ph := range shippingStoredAssets(record) {
 			entries["photos/"+ph.ID] = nil
 		}
 	}
+	var assetBytes int64
 	for name := range entries {
 		id := strings.TrimPrefix(name, "photos/")
 		if !validPhotoID.MatchString(id) {
@@ -99,6 +100,12 @@ func (a *App) portable(s State) ([]byte, error) {
 		}
 		if legacy {
 			p = filepath.Join(a.dir, "project-photos", id+".dat")
+		}
+		if st, err := os.Stat(p); err == nil {
+			assetBytes += st.Size()
+			if assetBytes > maxBackupBytes {
+				return nil, errors.New("첨부를 포함한 백업이 256MB를 초과합니다. 기존 원격 백업은 유지됩니다. 자료 저장 폴더의 별도 보관이 필요합니다.")
+			}
 		}
 		b, err := os.ReadFile(p)
 		if err == nil {
@@ -221,6 +228,24 @@ func decodePortable(encrypted []byte, key RecoveryKey) (PortableManifest, map[st
 		b, ok := entries[n]
 		if !ok || digest(b) != hash {
 			return m, nil, errors.New("백업 체크섬 불일치")
+		}
+	}
+	for _, record := range m.State.ShippingRecords {
+		for _, file := range record.Attachments {
+			if file.Size < 1 || len(file.Parts) != len(file.Hashes) || len(file.Parts) != int((file.Size+shippingAttachmentChunk-1)/shippingAttachmentChunk) {
+				return m, nil, errors.New("첨부 백업 정보 오류")
+			}
+			var size int64
+			for i, part := range file.Parts {
+				data, ok := entries["photos/"+part.ID]
+				if !ok || !validPhotoID.MatchString(part.ID) || int64(len(data)) != min(int64(shippingAttachmentChunk), file.Size-int64(i)*shippingAttachmentChunk) || digest(data) != file.Hashes[i] {
+					return m, nil, errors.New("첨부 백업 조각 누락·손상")
+				}
+				size += int64(len(data))
+			}
+			if size != file.Size {
+				return m, nil, errors.New("첨부 백업 용량 오류")
+			}
 		}
 	}
 	return m, entries, nil

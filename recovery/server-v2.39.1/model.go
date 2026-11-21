@@ -107,6 +107,7 @@ type Ticket struct {
 	Next    string
 }
 type App struct {
+	attachmentTransfers        shippingAttachmentTransfers
 	storageHome                string
 	ttsConfig                  TTSConfig
 	ttsConfigError             string

@@ -34,6 +34,7 @@ func (a *App) deleteShippingArchive(id string) (bool, error) {
 	removed := append([]Photo{}, record.Photos...)
 	if !reset {
 		removed = append(removed, record.Project.Photos...)
+		removed = append(removed, attachmentParts(*record)...)
 	}
 	err := a.commitAnnouncement(func(s *State) error {
 		for i := range s.ShippingRecords {

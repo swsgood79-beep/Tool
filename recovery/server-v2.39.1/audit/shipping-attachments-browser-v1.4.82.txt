@@ -1,0 +1,6 @@
+=== RUN   TestShippingAttachmentBrowser
+Shipping attachments and video compression browser passed 4
+4 compressed clips retain portrait orientation, full duration and audible audio
+--- PASS: TestShippingAttachmentBrowser (29.39s)
+PASS
+ok  	wanryotalk-reconstructed-server	29.704s

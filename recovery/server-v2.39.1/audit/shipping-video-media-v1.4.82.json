@@ -1,0 +1,49 @@
+{
+  "scope": "ffprobe and decoded PCM volume check of real browser-compressed 5-second portrait MP4 fixture; actual phone recording not tested",
+  "results": [
+    {
+      "case": 0,
+      "width": 720,
+      "height": 1280,
+      "video_codec": "vp8",
+      "audio_codec": "opus",
+      "duration": "5.000000",
+      "mean_volume_db": -21.1,
+      "bytes": 917352,
+      "result": "pass"
+    },
+    {
+      "case": 1,
+      "width": 720,
+      "height": 1280,
+      "video_codec": "vp8",
+      "audio_codec": "opus",
+      "duration": "5.000000",
+      "mean_volume_db": -21.1,
+      "bytes": 1189257,
+      "result": "pass"
+    },
+    {
+      "case": 2,
+      "width": 720,
+      "height": 1280,
+      "video_codec": "vp8",
+      "audio_codec": "opus",
+      "duration": "5.000000",
+      "mean_volume_db": -21.1,
+      "bytes": 1187880,
+      "result": "pass"
+    },
+    {
+      "case": 3,
+      "width": 720,
+      "height": 1280,
+      "video_codec": "vp8",
+      "audio_codec": "opus",
+      "duration": "5.000000",
+      "mean_volume_db": -21.1,
+      "bytes": 1150557,
+      "result": "pass"
+    }
+  ]
+}
