@@ -87,6 +87,9 @@ func (a *App) newShippingExportLocked(owner, key, recordID string) (*shippingExp
 	}
 	list = snapshot.ShippingRecords
 	for i := range list {
+		// Apply the user-defined order-name convention only to the export copy.
+		// Archived metadata and company notes remain unchanged.
+		list[i].ClientName = shippingExportClientName(list[i])
 		list[i] = shippingExportMetadata(&a.state, list[i])
 	}
 	sort.SliceStable(list, func(i, j int) bool {

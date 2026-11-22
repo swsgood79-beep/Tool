@@ -1,0 +1,12 @@
+{
+  "xlsx_open": "pass",
+  "renderer": "LibreOffice",
+  "detail_fit_to_page_width": true,
+  "detail_pages": 1,
+  "customer_cell_C8": "비엔에스",
+  "detail_navigation": "absent in both single and monthly workbooks",
+  "title_merge": "A1:L2",
+  "archive_source_unchanged": true,
+  "fixture": "synthetic order named as user example with white test photos; no company operational data",
+  "microsoft_excel_executed": false
+}

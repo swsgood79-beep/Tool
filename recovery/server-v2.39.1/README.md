@@ -1,27 +1,27 @@
-# 알파작업완료확인 · PC v1.4.84 / 앱 v1.0.11
+# 알파작업완료확인 · PC v1.4.85 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.84** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.84.zip) |
+| **회사 PC 프로그램 v1.4.85** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.85.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.84 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.84-App-v1.0.11.zip) |
+| **현재 전체 소스 · PC 1.4.85 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.85-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](CHANGELOG.md) |
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
 
-## 이번 업데이트 · PC 1.4.84
+## 이번 업데이트 · PC 1.4.85
 
-출하 상세 엑셀의 칸·줄·간격을 다시 정리했습니다. 왼쪽에는 수주번호·출고 예정·검사/보관 날짜·고객사를, 오른쪽에는 같은 폭의 설계담당자·세팅/출하 작업자와 날짜를 배치합니다. 그 아래에 사급품 표, 특이사항/메모, 두 장씩 나란히 배치한 사진을 넣습니다.
+출하 기록 엑셀의 고객사는 회사 수주명 규칙에 맞춰 **공백 뒤 숫자+축 앞부분**을 우선 표시합니다. 예를 들어 `비엔에스 4축 (선진행, 예가)`는 `비엔에스`, `은일 2축`은 `은일`로 표시합니다. 고객사 이름에 공백이 있어도 축 수 앞까지 이름 전체를 유지합니다. 이 형식이 없는 이름은 기존 고객사/확인 가능한 연결 업체 정보를 사용합니다. 전체 목록·월별 상세·수주별 엑셀에 같은 규칙을 적용하며 프로그램 보관 원본은 변경하지 않습니다.
 
-고객사·출고 예정일은 보관 당시 값을 우선합니다. 빈 항목만 동일 수주·동일 출하검사 완료가 확인되는 현재 자료에서 보완하고 출처를 표시합니다. 원자료에도 없으면 **미등록**으로 표시하며 프로젝트명으로 고객사를 추측하지 않습니다. 새로 사진을 등록해 보관할 때도 확인되는 빈 기본 정보를 함께 보관합니다. 기존 엑셀은 바뀌지 않으므로 PC 업데이트 후 **엑셀을 다시 저장**하세요.
+상세 엑셀 오른쪽 위의 **목차로/전체 목록 링크를 제거**하고 제목을 전체 너비로 넓혔습니다. 하단 목차 시트와 목록의 상세 보기 기능은 유지합니다. **PC 업데이트 후 엑셀을 다시 저장**해야 적용됩니다. 출고 예정일은 기존 보관값을 유지하고 빈 항목만 동일 수주·동일 검사 완료가 확인되는 현재 자료로 보완합니다.
 
 관리자 출하 기록 목록의 **전체 보관 엑셀 저장**은 전체 목록과 월별 상세 엑셀을 ZIP으로, 상세의 **이 수주 엑셀 저장**은 해당 수주만 XLSX 한 파일로 내려받습니다. 사진은 엑셀 안에 넣고 원본은 유지합니다. **파일·동영상은 이름·종류·용량만 표시하며 원본은 별도로 전달합니다.** [출하 엑셀 사용 안내](SHIPMENT-EXCEL.md)를 참고하세요.
 
-회사 PC만 업데이트하며 **APK 1.0.11은 그대로 사용합니다.** 기존 알림·파일/영상 보관·사진 원본·보관 날짜를 유지합니다. 실제 생성 파일을 LibreOffice로 열고 레이아웃을 확인했으며 Microsoft Excel과 실제 휴대폰은 실행하지 않았습니다.
+회사 PC만 업데이트하며 **APK 1.0.11은 그대로 사용합니다.** 전체 소스와 다운로드를 함께 제공합니다. 합성 수주 자료의 실제 엑셀과 브라우저 다운로드를 검사했으며 실제 회사 자료·Microsoft Excel/Android 기기는 이 환경에서 실행하지 않았습니다.
 
 ## 1. 프로그램 구성과 실행 조건
 

@@ -1,10 +1,10 @@
-# 빠른 시작 · PC v1.4.84 / 관리자 앱 v1.0.11
+# 빠른 시작 · PC v1.4.85 / 관리자 앱 v1.0.11
 
 전체 기능과 사용 순서는 [README.md](README.md)에 있습니다. 관리자 앱 Firebase 설정은 [ANDROID-ADMIN-SETUP.md](ANDROID-ADMIN-SETUP.md)를 참고하세요.
 
 ## 이미 사용 중인 회사 PC
 
-1. [최신 Windows ZIP](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.84.zip)을 내려받아 압축을 풉니다.
+1. [최신 Windows ZIP](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.85.zip)을 내려받아 압축을 풉니다.
 2. 기존 프로그램을 종료 버튼/트레이에서 완전히 종료합니다.
 3. 새 `AlphaWorkComplete-Recovered.exe`를 실행합니다. 기존 운영 자료와 지정한 저장 경로를 그대로 이어서 사용합니다.
 4. 수주·기록·사진과 외부 연결 상태를 확인합니다.

@@ -1,0 +1,30 @@
+=== RUN   TestShippingExportBrowser
+    shipping_export_browser_test.go:16: optional shipment Excel browser
+--- SKIP: TestShippingExportBrowser (0.00s)
+=== RUN   TestShippingExportCustomerNamingConvention
+--- PASS: TestShippingExportCustomerNamingConvention (0.00s)
+=== RUN   TestShippingExportCustomerAndNoDetailNavigation
+--- PASS: TestShippingExportCustomerAndNoDetailNavigation (0.12s)
+=== RUN   TestShippingExportMetadataOnlyFillsTrustedMissingFields
+--- PASS: TestShippingExportMetadataOnlyFillsTrustedMissingFields (0.09s)
+=== RUN   TestShippingExportCompactGridAndMissingMarkers
+--- PASS: TestShippingExportCompactGridAndMissingMarkers (0.09s)
+=== RUN   TestShippingExportCompactLayoutSample
+    shipping_export_metadata_test.go:116: optional real XLSX layout sample
+--- SKIP: TestShippingExportCompactLayoutSample (0.00s)
+=== RUN   TestShippingFinalArchivePreservesLateKnownMetadata
+--- PASS: TestShippingFinalArchivePreservesLateKnownMetadata (0.10s)
+=== RUN   TestShippingExportSnapshotMetadataIsReadOnly
+--- PASS: TestShippingExportSnapshotMetadataIsReadOnly (0.09s)
+=== RUN   TestShippingExportWorkbookPhotosLinksDatesAndFiles
+--- PASS: TestShippingExportWorkbookPhotosLinksDatesAndFiles (0.12s)
+=== RUN   TestShippingExportSingleMissingPhotoAndPins
+--- PASS: TestShippingExportSingleMissingPhotoAndPins (0.12s)
+=== RUN   TestShippingExportRoutesAccessAndExpiry
+--- PASS: TestShippingExportRoutesAccessAndExpiry (0.09s)
+=== RUN   TestShippingExportAccountsAndSlowDownload
+--- PASS: TestShippingExportAccountsAndSlowDownload (1.31s)
+=== RUN   TestShippingExportSplitsByPhotoBudget
+--- PASS: TestShippingExportSplitsByPhotoBudget (0.10s)
+PASS
+ok  	wanryotalk-reconstructed-server	2.494s

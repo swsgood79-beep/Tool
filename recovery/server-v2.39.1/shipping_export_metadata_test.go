@@ -58,7 +58,7 @@ func TestShippingExportCompactGridAndMissingMarkers(t *testing.T) {
 	b := newExportBook("목차")
 	defer b.File.Close()
 	entry := exportEntry{Record: r, Sheet: "상세"}
-	b.detail(entry, nil, true)
+	b.detail(entry, nil)
 	if b.Err != nil {
 		t.Fatal(b.Err)
 	}
@@ -103,7 +103,7 @@ func TestShippingExportCompactGridAndMissingMarkers(t *testing.T) {
 	r.Project.ShippingDueDate = ""
 	empty := newExportBook("목차")
 	defer empty.File.Close()
-	empty.detail(exportEntry{Record: r, Sheet: "상세"}, nil, true)
+	empty.detail(exportEntry{Record: r, Sheet: "상세"}, nil)
 	for _, cell := range []string{"C5", "C8"} {
 		got, _ := empty.File.GetCellValue("상세", cell)
 		if got != "미등록" {

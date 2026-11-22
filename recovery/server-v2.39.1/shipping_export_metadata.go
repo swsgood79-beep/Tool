@@ -1,9 +1,24 @@
 package main
 
 import (
+	"regexp"
 	"strings"
 	"time"
 )
+
+// Customer names may contain spaces. The customer's naming convention uses a
+// whitespace-delimited axis count, for example "비엔에스 4축 (선진행, 예가)".
+var shippingExportAxisSuffix = regexp.MustCompile(`\s+[0-9]+\s*축(?:$|[\s(（,，])`)
+
+func shippingExportClientName(record ShippingRecord) string {
+	name := strings.TrimSpace(record.Project.Name)
+	if loc := shippingExportAxisSuffix.FindStringIndex(name); loc != nil {
+		if client := strings.TrimSpace(name[:loc[0]]); client != "" {
+			return client
+		}
+	}
+	return strings.TrimSpace(record.ClientName)
+}
 
 // Fill only absent archive fields from the exact same live order and inspection
 // cycle. Never replace a recorded value or infer a customer from project text.

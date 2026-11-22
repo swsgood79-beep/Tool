@@ -289,21 +289,15 @@ func (b *exportBook) text(sheet string, row int, label, text string) int {
 	}
 	return row + 1
 }
-func (b *exportBook) detail(entry exportEntry, photos []exportPhoto, standalone bool) {
+func (b *exportBook) detail(entry exportEntry, photos []exportPhoto) {
 	r, sheet := entry.Record, entry.Sheet
 	b.sheet(sheet, true)
 	b.check(b.File.SetColWidth(sheet, "A", "L", 9))
 	title := r.Project.Name + " · 출하 상세"
-	b.merge(sheet, "A1", "I2", title, b.Style.CompactTitle)
-	titleHeight := float64(max(34, ((utf8.RuneCountInString(title)+29)/30)*20+8))
+	b.merge(sheet, "A1", "L2", title, b.Style.CompactTitle)
+	titleHeight := float64(max(34, ((utf8.RuneCountInString(title)+39)/40)*20+8))
 	b.height(sheet, 1, titleHeight/2)
 	b.height(sheet, 2, titleHeight/2)
-	b.merge(sheet, "J1", "L2", "", b.Style.Link)
-	if standalone {
-		b.link(sheet, "J1", "", exportLocation("목차"), "← 목차로")
-	} else {
-		b.link(sheet, "J1", "출하목록.xlsx", exportLocation("출하목록"), "← 전체 목록")
-	}
 	b.height(sheet, 3, 5)
 	for row := 4; row <= 8; row++ {
 		b.merge(sheet, fmt.Sprintf("C%d", row), fmt.Sprintf("F%d", row), "", b.Style.Body)
@@ -584,7 +578,7 @@ func (b *exportBook) save(path string) error {
 func (b *exportBook) guide(sheet string) {
 	b.sheet(sheet, true)
 	b.title(sheet, "출하 기록 · 사용 안내", "이 폴더의 엑셀 파일을 같은 위치에 두고 사용하세요.")
-	b.text(sheet, 5, "전체 목록과 상세 보기", "출하목록.xlsx에서 수주번호·프로젝트명·고객사로 필터하고 상세 보기를 누릅니다. 월별 상세 엑셀은 보관 날짜 기준이며 자료가 많으면 같은 달도 여러 파일로 나눕니다. 상세 시트의 전체 목록으로 링크로 돌아올 수 있습니다.")
+	b.text(sheet, 5, "전체 목록과 상세 보기", "출하목록.xlsx에서 수주번호·프로젝트명·고객사로 필터하고 상세 보기를 누릅니다. 월별 상세 엑셀은 보관 날짜 기준이며 자료가 많으면 같은 달도 여러 파일로 나눕니다. 다른 수주는 하단 목차 시트에서 선택하고 전체 목록은 출하목록.xlsx 창에서 확인합니다.")
 	b.text(sheet, 12, "사진과 별도 첨부", "사진은 용량을 줄인 미리보기로 엑셀 안에 포함합니다. 사진 원본은 프로그램 자료에서 유지됩니다. 파라미터 파일·동영상은 엑셀에 넣지 않으며 상세 시트에 이름·종류·용량을 표시합니다. 고객사에 필요할 때 원본을 따로 전달해 주세요.")
 	b.text(sheet, 20, "확인할 점", "다운로드한 ZIP은 먼저 전체 압축을 풉니다. 파일 이름과 폴더 위치를 유지해야 엑셀 간 상세 링크가 이어집니다. 엑셀에 표시되는 외부 파일 열기 확인은 사용하는 Excel의 설정에 따릅니다. 사진을 읽지 못한 항목은 상세 시트와 내보내기 확인 시트에 표시합니다.")
 }
@@ -638,7 +632,7 @@ func buildShippingExport(ctx context.Context, dir string, records []ShippingReco
 		b := newExportBook("목차")
 		defer b.File.Close()
 		entry := exportEntry{Record: r, Sheet: exportSheetName(1, r), Warnings: len(warnings)}
-		b.detail(entry, photos, true)
+		b.detail(entry, photos)
 		b.File.SetActiveSheet(1)
 		b.index("목차", "출하 기록 · "+r.Project.Name, []exportEntry{entry}, false, now)
 		b.warnings(warnings)
@@ -717,7 +711,7 @@ func buildShippingExport(ctx context.Context, dir string, records []ShippingReco
 			book = newExportBook("목차")
 		}
 		entry := exportEntry{Record: r, Book: filename, Sheet: exportSheetName(len(bookEntries)+1, r), Warnings: len(issues)}
-		book.detail(entry, photos, false)
+		book.detail(entry, photos)
 		if book.Err != nil {
 			return 0, 0, 0, book.Err
 		}
