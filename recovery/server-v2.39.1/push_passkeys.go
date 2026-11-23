@@ -157,6 +157,15 @@ func (a *App) specialHTTP(w http.ResponseWriter, r *http.Request) bool {
 			}
 			principal = owner
 		}
+		// A PC handoff must not rotate an already authenticated local owner's
+		// cookie: forms open in other tabs still carry that session's CSRF.
+		// The one-use ticket and account validation above remain mandatory.
+		if ticket.Owner == "" && localRequest(r) {
+			if current, valid := a.session(r); valid && current.AccountID == "" {
+				jsonReply(w, map[string]any{"ok": true, "next": safeNext(ticket.Next)})
+				return true
+			}
+		}
 		a.newSessionFor(w, r, ticket.Next, principal)
 		return true
 	}

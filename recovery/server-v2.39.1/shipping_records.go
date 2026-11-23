@@ -17,6 +17,9 @@ const shippingPhotoLimit = 30
 // An independent snapshot, captured in the approval transaction. The live schedule
 // remains a projection of the connected sheet and never owns archive records.
 type ShippingRecord struct {
+	ClientSourceRevision int64    `json:",omitempty"`
+	ClientSourceID       string   `json:",omitempty"`
+	ClientSourcePhotoIDs []string `json:",omitempty"`
 	// Export-only provenance. Never persisted into an archive snapshot.
 	ExportSourceNote string               `json:"-"`
 	Attachments      []ShippingAttachment `json:",omitempty"`
@@ -51,10 +54,13 @@ func (a *App) captureShippingRecord(s *State, p Project) ([]Photo, error) {
 		}
 	}
 	clientName := ""
+	clientSourceID, ownPhotoCount := p.ClientID, len(p.Photos)
+	var clientSourceRevision int64
 	source := append([]Photo{}, p.Photos...)
 	for _, c := range s.ClientNotes {
 		if c.ID == p.ClientID {
 			clientName = c.Name
+			clientSourceRevision = c.Revision
 			p.SpecialInstructions = c.Text
 			for _, ph := range c.Photos {
 				selected := !p.ClientPhotosSelected
@@ -108,7 +114,11 @@ func (a *App) captureShippingRecord(s *State, p Project) ([]Photo, error) {
 	p.SettingForm, p.ShippingForm, p.CombinedForm, p.NoteForm = "", "", "", ""
 	p.DesignerID, p.ClientID = "", ""
 	p.ClientPhotoIDs = nil
-	s.ShippingRecords = append(s.ShippingRecords, ShippingRecord{ID: token(), ClientName: clientName, Project: p, Receipts: append([]MaterialReceipt{}, s.MaterialReceipts[p.Number]...), InspectedAt: *p.Shipping.Completed})
+	sourceIDs := []string{}
+	for _, ph := range copies[ownPhotoCount:] {
+		sourceIDs = append(sourceIDs, ph.ID)
+	}
+	s.ShippingRecords = append(s.ShippingRecords, ShippingRecord{ClientSourceRevision: clientSourceRevision, ClientSourceID: clientSourceID, ClientSourcePhotoIDs: sourceIDs, ID: token(), ClientName: clientName, Project: p, Receipts: append([]MaterialReceipt{}, s.MaterialReceipts[p.Number]...), InspectedAt: *p.Shipping.Completed})
 	return copies, nil
 }
 func (a *App) saveShippingRecord(id string, r *http.Request) error {
@@ -232,7 +242,8 @@ func (a *App) shippingRecordsHTTP(w http.ResponseWriter, r *http.Request) bool {
 			return true
 		}
 		if len(rest) == 3 && rest[1] == "photo" && r.Method == "GET" {
-			photos := append(append([]Photo{}, record.Project.Photos...), record.Photos...)
+			current := shippingCurrentNotes(&a.state, *record)
+			photos := append(append(append([]Photo{}, current.Project.Photos...), record.Project.Photos...), record.Photos...)
 			if r.URL.Query().Get("download") == "1" {
 				w.Header().Set("Content-Disposition", `attachment; filename="shipment-photo.jpg"`)
 			}
@@ -311,7 +322,8 @@ func (a *App) shippingRecordsHTTP(w http.ResponseWriter, r *http.Request) bool {
 			view["PhotoRevision"], view["UploadKey"] = shippingPhotoRevision(record), token()
 			view["PhotosAdded"] = r.URL.Query().Get("photos_added") == "1"
 			view["ShippingPending"] = record.ArchivedAt == nil
-			view["Record"], view["Saved"] = record, r.URL.Query().Get("saved") == "1"
+			current := shippingCurrentNotes(&a.state, *record)
+			view["Record"], view["Saved"] = &current, r.URL.Query().Get("saved") == "1"
 			phone := cleanPhone(record.Project.DesignerPhone)
 			if len(phone) >= 7 && len(phone) <= 30 {
 				view["CallURL"] = template.URL("tel:" + phone)

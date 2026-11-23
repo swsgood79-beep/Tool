@@ -1,0 +1,5 @@
+=== RUN   TestInspectorBrowser
+Inspector browser checks passed 4
+--- PASS: TestInspectorBrowser (12.59s)
+PASS
+ok  	wanryotalk-reconstructed-server	12.881s

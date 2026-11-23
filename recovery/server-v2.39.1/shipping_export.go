@@ -75,7 +75,7 @@ func (a *App) newShippingExportLocked(owner, key, recordID string) (*shippingExp
 	list := []ShippingRecord{}
 	for _, r := range a.state.ShippingRecords {
 		if r.ArchivedAt != nil && (recordID == "" || r.ID == recordID) {
-			list = append(list, r)
+			list = append(list, shippingCurrentNotes(&a.state, r))
 		}
 	}
 	if len(list) == 0 {
@@ -88,7 +88,7 @@ func (a *App) newShippingExportLocked(owner, key, recordID string) (*shippingExp
 	list = snapshot.ShippingRecords
 	for i := range list {
 		// Apply the user-defined order-name convention only to the export copy.
-		// Archived metadata and company notes remain unchanged.
+		// Dates and completion metadata remain archived; notes follow the linked source.
 		list[i].ClientName = shippingExportClientName(list[i])
 		list[i] = shippingExportMetadata(&a.state, list[i])
 	}

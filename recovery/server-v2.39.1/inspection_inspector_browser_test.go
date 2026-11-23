@@ -14,6 +14,9 @@ func TestInspectorBrowser(t *testing.T) {
 		t.Skip("optional inspector browser")
 	}
 	a := exportFixture(t)
+	a.state.ClientNotes = []ClientNote{{ID: "browser-client", Name: "시험 고객사", Text: "수정 반영된 업체 특이사항", Revision: 2}}
+	a.state.Projects[0].ClientID = "browser-client"
+	a.state.Projects[0].AdditionalInstructions = "수주 전용 추가 메모"
 	owner := adminCookie(a)
 	u := createAccount(t, a, owner, "browser90")
 	member := memberInspectorCookie(a, u.ID)
@@ -63,7 +66,7 @@ func TestInspectorBrowser(t *testing.T) {
 	}))
 	defer srv.Close()
 	cfg, _ := json.Marshal(map[string]any{"owner": map[string]string{"name": owner.Name, "value": owner.Value}, "member": map[string]string{"name": member.Name, "value": member.Value}, "memberName": u.Name, "project": a.state.Projects[0].ID, "record": a.state.ShippingRecords[0].ID})
-	cmd := exec.Command("node", "audit/browser-inspector-v1.4.90.cjs", srv.URL, string(cfg))
+	cmd := exec.Command("node", "audit/browser-inspector-v1.4.91.cjs", srv.URL, string(cfg))
 	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
 	if e = cmd.Run(); e != nil {
 		t.Fatal(e)

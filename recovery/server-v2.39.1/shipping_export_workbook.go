@@ -345,15 +345,9 @@ func (b *exportBook) detail(entry exportEntry, photos []exportPhoto) {
 			text += "\n완료  " + slot.stage.Completed.In(kst).Format("2006.01.02 15:04")
 		}
 		b.merge(sheet, fmt.Sprintf("%s%d", slot.from, row+1), fmt.Sprintf("%s%d", slot.to, row+1), text, b.Style.Body)
-		source := inspectionSource(slot.stage.Inspector)
-		if slot.stage.Inspector != nil && slot.stage.Inspector.Source == "backfill" {
-			source += " · " + slot.stage.Inspector.RecordedAt.In(kst).Format("2006.01.02 15:04") + " · " + slot.stage.Inspector.RecordedByName
-		}
-		b.merge(sheet, fmt.Sprintf("%s%d", slot.from, row+2), fmt.Sprintf("%s%d", slot.to, row+2), source, b.Style.SmallCenter)
 	}
 	b.height(sheet, row+1, 42)
-	b.height(sheet, row+2, 30)
-	row += 4
+	row += 3
 	material := strings.TrimSpace(r.Project.SuppliedMaterials)
 	heading := "사급품 현황 / 수령내역"
 	if material != "" {

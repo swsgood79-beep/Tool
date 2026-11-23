@@ -172,7 +172,7 @@ func TestInspectorBackfillBulkDatesPermissionsAndBackup(t *testing.T) {
 	}
 	defer f.Close()
 	rows, _ := f.GetRows(f.GetSheetName(1))
-	if text := string(jsonRaw(rows)); !strings.Contains(text, "과거 검사자") || !strings.Contains(text, "과거 기록 보완") {
+	if text := string(jsonRaw(rows)); !strings.Contains(text, "과거 검사자") || strings.Contains(text, "과거 기록 보완") {
 		t.Fatal("shipping Excel missing inspector")
 	}
 	if os.Getenv("INSPECTOR_XLSX_SAMPLE") == "1" {

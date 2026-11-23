@@ -428,6 +428,7 @@ func (a *App) saveProject(r *http.Request, id int64) error {
 		if id == 0 {
 			s.Projects = append(s.Projects, *p)
 		}
+		syncShippingProjectNotes(s, p.ID)
 		return nil
 	})
 }
@@ -543,10 +544,20 @@ func (a *App) saveClient(r *http.Request) error {
 				}
 			}
 			if action == "delete" {
+				// Freeze the last source before removing it, including detached archives.
+				for j := range s.ShippingRecords {
+					r := shippingCurrentNotes(s, s.ShippingRecords[j])
+					if r.ClientSourceID == id {
+						r.ClientSourceID = ""
+						r.ClientSourcePhotoIDs = nil
+					}
+					s.ShippingRecords[j] = r
+				}
 				s.ClientNotes = append(s.ClientNotes[:i], s.ClientNotes[i+1:]...)
 			} else {
 				s.ClientNotes[i] = updated
 			}
+			syncShippingNotes(s)
 			return nil
 		}
 		return errors.New("업체 원본을 찾을 수 없습니다.")
