@@ -1,25 +1,25 @@
-# 알파작업완료확인 · PC v1.4.86 / 앱 v1.0.11
+# 알파작업완료확인 · PC v1.4.87 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.86** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.86.zip) |
+| **회사 PC 프로그램 v1.4.87** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.87.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.86 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.86-App-v1.0.11.zip) |
+| **현재 전체 소스 · PC 1.4.87 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.87-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](CHANGELOG.md) |
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
 
-## 이번 업데이트 · PC 1.4.86
+## 이번 업데이트 · PC 1.4.87
 
-회사 PC 프로그램에 **PC 업데이트 확인** 버튼을 추가했습니다. 실행할 때와 이후 5분마다 GitHub의 최신 PC 배포 정보를 확인하며 새 버전이 있으면 버튼이 **v버전 업데이트**로 바뀝니다. 누르면 다운로드·파일 검증 후 기존 프로그램을 정상 종료하고 실행 파일을 같은 위치에서 교체·재실행합니다. 다운로드 중에는 업무 처리를 계속하며 재시작하는 동안만 휴대폰 접속·알림이 잠시 중단됩니다.
+출고 일정은 **파란색**, 출하 기록은 **청록색**으로 구분했습니다. 출하 기록 메뉴는 선택 전 연한 청록색/진한 글자, 선택 후 진한 청록색/흰 글자로 표시합니다. 보관 완료 선택 탭·검색 버튼·보관일 배지·목록 강조색도 같은 계열로 맞췄습니다. 관리자/작업자 PC·휴대폰과 밝게/다크모드에 적용합니다. 기존 화면 구조와 기능은 유지합니다.
 
-**이번 v1.4.86은 처음 한 번 ZIP을 직접 받아 기존 프로그램 종료 후 실행하세요. 이후 배포부터 프로그램 안의 업데이트 버튼을 사용합니다.** 기존 수주·출하사진/파일·저장 경로·설정을 유지하며 설치 폴더는 쓰기 가능해야 합니다. 실행 실패로 새 프로그램이 종료되면 이전 실행 파일을 복원해 시작합니다. 시작 중인 프로세스를 강제로 종료하지 않으며 최근 성공 업데이트의 이전 실행 파일 두 개를 복구용으로 남깁니다. [PC 자동 업데이트 안내](PC-AUTO-UPDATE.md)를 참고하세요.
+**PC v1.4.86 사용자는 프로그램 아래 ‘PC 업데이트 확인 → v1.4.87 업데이트’를 누르세요.** 실행 시와 5분마다 자동 확인하므로 새 버전이 표시되면 바로 업데이트할 수도 있습니다. APK 1.0.11은 그대로 쓰며 서버가 갱신된 후 휴대폰 화면을 새로고침하면 새 색상이 적용됩니다.
 
-기존 출하 엑셀의 수주명 기준 고객사, 사진 포함 및 파일/영상 원본 별도 전달 기능을 유지합니다. 관리자 **APK 1.0.11은 그대로 사용**합니다. 다운로드 검증/취소/실패 복원·기존 자료 경로 유지·이전 파일 정리 및 전체 회귀 검사와 Windows 교차 빌드를 확인했습니다. 실제 Windows에서 교체·재실행은 이 환경에서 실행하지 않았습니다.
+v1.4.85 이하는 처음 한 번 최신 ZIP을 직접 받아 기존 프로그램을 완전히 종료한 뒤 실행해야 합니다. 이후 PC 내부 업데이트 기능을 사용합니다. [PC 자동 업데이트 안내](PC-AUTO-UPDATE.md). 기존 출하 기록·엑셀·알림 기능과 저장 자료를 유지합니다.
 
 ## 1. 프로그램 구성과 실행 조건
 
@@ -38,7 +38,7 @@
 
 ### 이미 사용 중인 회사 PC 업데이트
 
-PC v1.4.86을 처음 설치할 때만 아래 절차를 사용합니다.
+PC v1.4.86 이상에서는 프로그램 아래 **PC 업데이트 확인 → 새 버전 업데이트**를 사용합니다. v1.4.85 이하에서는 아래 절차를 처음 한 번 사용합니다.
 
 1. 위의 최신 Windows ZIP을 내려받아 쓰기 가능한 폴더에 압축을 풉니다.
 2. 기존 프로그램의 **종료 버튼 또는 트레이 종료**로 완전히 끝냅니다.

@@ -1,0 +1,15 @@
+/* Keep shipping schedule blue and identify shipment records with teal. */
+.shipment-tabs,[data-shipping-records-page]{--ship-record:#087f78;--ship-record-soft:#dff3ef;--ship-record-ink:#086c65;--ship-record-line:#9bcfc8;--ship-schedule-soft:#e8f0ff;--ship-schedule-ink:#1762d5;--ship-record-hover:#eef9f6}
+html[data-alpha-theme=dark] :is(.shipment-tabs,[data-shipping-records-page]){--ship-record:#117d74;--ship-record-soft:#193e3c;--ship-record-ink:#a4eade;--ship-record-line:#397a73;--ship-schedule-soft:#213653;--ship-schedule-ink:#bcd7ff;--ship-record-hover:#253d3b}
+@media(prefers-color-scheme:dark){html:not([data-alpha-theme=light]) :is(.shipment-tabs,[data-shipping-records-page]){--ship-record:#117d74;--ship-record-soft:#193e3c;--ship-record-ink:#a4eade;--ship-record-line:#397a73;--ship-schedule-soft:#213653;--ship-schedule-ink:#bcd7ff;--ship-record-hover:#253d3b}}
+html .shipment-tabs>[data-shipment-kind=schedule]{background:var(--ship-schedule-soft);color:var(--ship-schedule-ink)}
+html .shipment-tabs>[data-shipment-kind=schedule].selected{background:#1762d5;color:#fff}
+html .shipment-tabs>[data-shipment-kind=archive]{background:var(--ship-record-soft);color:var(--ship-record-ink);box-shadow:inset 0 0 0 1px var(--ship-record-line)}
+html .shipment-tabs>[data-shipment-kind=archive].selected{background:var(--ship-record);color:#fff;box-shadow:none}
+html [data-shipping-records-page]{--ui-action:var(--ship-record);--ui-primary:var(--ship-record);--ui-link:var(--ship-record-ink);--ui-blue-soft:var(--ship-record-soft)}
+html [data-shipping-records-page] .shipment-list-tabs [aria-current]{background:var(--ship-record);color:#fff}
+html [data-shipping-records-page] .shipment-search>.primary{background:var(--ship-record);border-color:var(--ship-record);color:#fff}
+html [data-shipping-records-page] .shipment-row{background:var(--ui-surface,#fff);border-left-color:var(--ship-record)}
+html [data-shipping-records-page] .shipment-row:hover{background:var(--ship-record-hover)}
+html [data-shipping-records-page] .shipment-date{background:var(--ship-record-soft);color:var(--ship-record-ink)}
+html .shipment-tabs>a:focus-visible{outline:3px solid var(--ship-record-ink);outline-offset:2px}

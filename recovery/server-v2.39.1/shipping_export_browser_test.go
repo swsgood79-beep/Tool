@@ -37,7 +37,7 @@ func TestShippingExportBrowser(t *testing.T) {
 	srv := httptest.NewServer(a)
 	defer srv.Close()
 	cfg := map[string]any{"cookie": map[string]string{"name": owner.Name, "value": owner.Value}, "board": a.state.Board, "record": record.ID}
-	cmd := exec.Command("node", "audit/browser-shipping-export-v1.4.85.cjs", srv.URL, string(jsonRaw(cfg)))
+	cmd := exec.Command("node", "audit/browser-shipping-export-v1.4.87.cjs", srv.URL, string(jsonRaw(cfg)))
 	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
 	if err := cmd.Run(); err != nil {
 		t.Fatal(err)

@@ -1,0 +1,29 @@
+{
+  "scope": "actual temporary Go server and real Chromium downloads; PC/mobile viewport and unchanged APK user agent; actual native Android and Microsoft Excel not executed",
+  "results": [
+    {
+      "mobile": false,
+      "theme": "light",
+      "case": "admin global ZIP and single XLSX downloads; failed start retry; ready link and reload without repeat download; worker has no export; no leave-site warning; blue schedule and teal archive navigation",
+      "result": "pass"
+    },
+    {
+      "mobile": false,
+      "theme": "dark",
+      "case": "admin global ZIP and single XLSX downloads; failed start retry; ready link and reload without repeat download; worker has no export; no leave-site warning; blue schedule and teal archive navigation",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "theme": "light",
+      "case": "admin global ZIP and single XLSX downloads; failed start retry; ready link and reload without repeat download; worker has no export; no leave-site warning; blue schedule and teal archive navigation",
+      "result": "pass"
+    },
+    {
+      "mobile": true,
+      "theme": "dark",
+      "case": "admin global ZIP and single XLSX downloads; failed start retry; ready link and reload without repeat download; worker has no export; no leave-site warning; blue schedule and teal archive navigation",
+      "result": "pass"
+    }
+  ]
+}

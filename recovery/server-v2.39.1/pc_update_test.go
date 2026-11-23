@@ -9,6 +9,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"net/http"
 	"os"
@@ -56,7 +57,9 @@ func pcTestZIP(t *testing.T, names []string, payload []byte) []byte {
 func pcTestUpdater(t *testing.T, zipData, exe []byte) *pcUpdater {
 	t.Helper()
 	u := newPCUpdater()
-	m := pcUpdateManifest{Version: "1.4.87", URL: pcUpdateBase + "AlphaWorkComplete-Recovered-Windows-x64-v1.4.87.zip", SHA256: pcTestHash(zipData), EXESHA256: pcTestHash(exe), Bytes: int64(len(zipData))}
+	v, _ := pcVersion(releaseVersion)
+	next := fmt.Sprintf("%d.%d.%d", v[0], v[1], v[2]+1)
+	m := pcUpdateManifest{Version: next, URL: pcUpdateBase + "AlphaWorkComplete-Recovered-Windows-x64-v" + next + ".zip", SHA256: pcTestHash(zipData), EXESHA256: pcTestHash(exe), Bytes: int64(len(zipData))}
 	// ZIP compression may be tiny for a header-only synthetic PE. Pad the ZIP
 	// archive comment, which remains covered by the archive digest.
 	if len(zipData) < 1024 {

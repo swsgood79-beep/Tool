@@ -1,8 +1,8 @@
 {
-  "version": "1.4.86",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.86.zip",
-  "sha256": "cec427a59046d30484171758371dbeb1218d6a3176f64f0834de523d383eb393",
-  "exe_sha256": "9eccb6aee4806d65ac098a6e07ad0653194ac9f2c384ba220c220376eab0e73e",
-  "bytes": 36878577,
-  "notes": "PC 자동 업데이트 확인/설치 · 기존 자료와 저장 위치 유지 · APK 1.0.11 유지"
+  "version": "1.4.87",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.87.zip",
+  "sha256": "27d2a079764725edcc1dea372dee5162387a4d1e3f23fb0afd3fba72dba352de",
+  "exe_sha256": "3c5f85dc027750dabf36b00ebc3e558bc57c9cebe63a56f2c512b9261bac93a9",
+  "bytes": 36879725,
+  "notes": "출고 일정 파랑 / 출하 기록 청록색 구분 · 밝게/다크모드 지원 · APK 1.0.11 유지"
 }

@@ -1,10 +1,12 @@
-# 빠른 시작 · PC v1.4.86 / 관리자 앱 v1.0.11
+# 빠른 시작 · PC v1.4.87 / 관리자 앱 v1.0.11
 
 전체 기능과 사용 순서는 [README.md](README.md)에 있습니다. 관리자 앱 Firebase 설정은 [ANDROID-ADMIN-SETUP.md](ANDROID-ADMIN-SETUP.md)를 참고하세요.
 
 ## 이미 사용 중인 회사 PC
 
-1. PC v1.4.86은 처음 한 번 [Windows ZIP](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.86.zip)을 내려받아 쓰기 가능한 폴더에 풉니다.
+**이미 PC v1.4.86 이상을 사용 중이면 PC 창 아래 업데이트 버튼으로 v1.4.87을 설치합니다.** 아래 ZIP 절차는 이전 버전에서 처음 전환할 때만 필요합니다.
+
+1. v1.4.85 이하에서는 처음 한 번 [Windows ZIP](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.87.zip)을 내려받아 쓰기 가능한 폴더에 풉니다.
 2. 기존 프로그램을 종료 버튼/트레이에서 완전히 끝내고 새 EXE를 실행합니다. 기존 운영 자료와 지정한 저장 경로를 이어서 사용합니다.
 3. **이후 새 버전은 PC 창 아래 ‘v버전 업데이트’를 누릅니다.** 시작 시와 5분마다 자동 확인하며 ‘PC 업데이트 확인’으로 수동 확인할 수도 있습니다.
 4. 검증된 다운로드가 완료되면 정상 종료·교체·재실행합니다. 재시작 동안 접속/알림이 잠시 중단됩니다. [자세한 안내](PC-AUTO-UPDATE.md).
