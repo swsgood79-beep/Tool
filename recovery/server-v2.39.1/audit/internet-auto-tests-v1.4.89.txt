@@ -1,0 +1,12 @@
+=== RUN   TestInternetAutoStartupRetryPauseAndRestart
+--- PASS: TestInternetAutoStartupRetryPauseAndRestart (0.06s)
+=== RUN   TestInternetAutoMissingSettingsAndTestIsolation
+--- PASS: TestInternetAutoMissingSettingsAndTestIsolation (0.05s)
+=== RUN   TestInternetAutoHungAttemptAndBackoff
+--- PASS: TestInternetAutoHungAttemptAndBackoff (0.02s)
+=== RUN   TestInternetAutoToolFailureClearsActiveAttempt
+--- PASS: TestInternetAutoToolFailureClearsActiveAttempt (0.02s)
+=== RUN   TestInternetAutoRestoreSuspendsAndDrainsOldTunnel
+--- PASS: TestInternetAutoRestoreSuspendsAndDrainsOldTunnel (0.12s)
+PASS
+ok  	wanryotalk-reconstructed-server	0.510s

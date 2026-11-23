@@ -78,7 +78,26 @@ func (a *App) startTunnel() {
 		a.mu.Unlock()
 		return
 	}
-	ctx, cancel := context.WithCancel(context.Background())
+	parent := context.Background()
+	if a.internetAuto != nil {
+		if a.internetAuto.Paused || a.internetAuto.Restoring {
+			a.mu.Unlock()
+			return
+		}
+		if a.internetAuto.Context != nil {
+			parent = a.internetAuto.Context
+		}
+	}
+	if parent.Err() != nil {
+		a.mu.Unlock()
+		return
+	}
+	ctx, cancel := context.WithCancel(parent)
+	if a.internetAuto != nil {
+		a.internetAuto.Attempt = time.Now()
+		a.internetAuto.Failures++
+		a.internetAuto.Next = time.Now().Add(internetRetryDelay(a.internetAuto.Failures))
+	}
 	a.integration.CancelTunnel = cancel
 	a.integration.TunnelStatus = "인터넷 연결 준비 중"
 	a.integration.TunnelSession = token()
@@ -88,7 +107,22 @@ func (a *App) startTunnel() {
 	}
 	a.mu.Unlock()
 	go func() {
-		defer func() { a.mu.Lock(); a.integration.CancelTunnel = nil; a.mu.Unlock() }()
+		defer func() {
+			cancel()
+			a.mu.Lock()
+			defer a.mu.Unlock()
+			a.integration.CancelTunnel = nil
+			if a.internetAuto != nil {
+				if parent.Err() != nil {
+					a.integration.TunnelStatus = "인터넷 연결 종료"
+				} else if a.internetAuto.Paused {
+					a.integration.TunnelStatus = "인터넷 연결 끔 · 다음 실행 시 자동 연결"
+				} else {
+					a.internetAuto.Next = time.Now().Add(internetRetryDelay(a.internetAuto.Failures))
+					a.integration.TunnelStatus += " · 자동 재연결 대기"
+				}
+			}
+		}()
 		tool, e := a.cloudTool(ctx)
 		if e != nil {
 			a.mu.Lock()
@@ -122,6 +156,7 @@ func (a *App) startTunnel() {
 		scan := bufio.NewScanner(pipe)
 		scan.Buffer(make([]byte, 4096), 128<<10)
 		published := ""
+		lastFailure := ""
 		for scan.Scan() {
 			endpoint := cloudURL.FindString(scan.Text())
 			if endpoint == "" || endpoint == published || !strings.Contains(strings.TrimSuffix(strings.TrimPrefix(endpoint, "https://"), ".trycloudflare.com"), "-") {
@@ -133,6 +168,7 @@ func (a *App) startTunnel() {
 			provider := a.state.Integration.Connection.Provider
 			a.mu.Unlock()
 			if e != nil {
+				lastFailure = e.Error()
 				cancel()
 				break
 			}
@@ -147,11 +183,20 @@ func (a *App) startTunnel() {
 			}
 			a.mu.Unlock()
 			published = endpoint
+			if e != nil {
+				lastFailure = e.Error()
+				cancel()
+				break
+			}
 		}
 		cmd.Wait()
 		a.mu.Lock()
 		a.state.Integration.Connection.PublicURL = ""
-		a.integration.TunnelStatus = "인터넷 연결 종료"
+		if lastFailure != "" {
+			a.integration.TunnelStatus = "연결 실패: " + lastFailure
+		} else {
+			a.integration.TunnelStatus = "인터넷 연결 종료"
+		}
 		a.mu.Unlock()
 		if published != "" {
 			c, cancel := context.WithTimeout(context.Background(), 15*time.Second)

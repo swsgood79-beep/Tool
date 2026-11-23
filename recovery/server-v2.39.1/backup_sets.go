@@ -374,6 +374,11 @@ func (a *App) restoreRemoteBackup(ctx context.Context, key RecoveryKey, bearer s
 	a.integration.BackupBusy = true
 	a.mu.Unlock()
 	defer func() { a.mu.Lock(); a.integration.BackupBusy = false; a.mu.Unlock() }()
+	resume, err := a.holdInternetForRestore(ctx)
+	defer resume()
+	if err != nil {
+		return err
+	}
 	rel, e := a.backupRelease(ctx, key, bearer, false)
 	if e != nil {
 		return e

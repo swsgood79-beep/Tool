@@ -153,11 +153,10 @@ func (a *App) integrationPOST(w http.ResponseWriter, r *http.Request, s Session)
 	case "/connection":
 		switch r.FormValue("action") {
 		case "start":
+			a.resumeInternetLocked()
 			go a.startTunnel()
 		case "stop":
-			if a.integration.CancelTunnel != nil {
-				a.integration.CancelTunnel()
-			}
+			a.pauseInternetLocked()
 		case "test":
 			nativeNotify("알파 알림 테스트", "PC 알림 기능을 확인하세요.", a.localURL+"/unread")
 		default:

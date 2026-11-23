@@ -1,0 +1,16 @@
+=== RUN   TestSegmentedBackupRoundTripAndCorruption
+--- PASS: TestSegmentedBackupRoundTripAndCorruption (0.50s)
+=== RUN   TestSegmentedBackupRetentionAndLegacyRestore
+--- PASS: TestSegmentedBackupRetentionAndLegacyRestore (0.79s)
+=== RUN   TestInternetAutoStartupRetryPauseAndRestart
+--- PASS: TestInternetAutoStartupRetryPauseAndRestart (0.09s)
+=== RUN   TestInternetAutoMissingSettingsAndTestIsolation
+--- PASS: TestInternetAutoMissingSettingsAndTestIsolation (0.10s)
+=== RUN   TestInternetAutoHungAttemptAndBackoff
+--- PASS: TestInternetAutoHungAttemptAndBackoff (0.04s)
+=== RUN   TestInternetAutoToolFailureClearsActiveAttempt
+--- PASS: TestInternetAutoToolFailureClearsActiveAttempt (0.03s)
+=== RUN   TestInternetAutoRestoreSuspendsAndDrainsOldTunnel
+--- PASS: TestInternetAutoRestoreSuspendsAndDrainsOldTunnel (0.14s)
+PASS
+ok  	wanryotalk-reconstructed-server	5.802s

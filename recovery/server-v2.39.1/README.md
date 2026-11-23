@@ -1,27 +1,25 @@
-# 알파작업완료확인 · PC v1.4.88 / 앱 v1.0.11
+# 알파작업완료확인 · PC v1.4.89 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.88** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.88.zip) |
+| **회사 PC 프로그램 v1.4.89** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.89.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.88 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.88-App-v1.0.11.zip) |
+| **현재 전체 소스 · PC 1.4.89 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.89-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](CHANGELOG.md) |
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
 
-## 이번 업데이트 · PC 1.4.88
+## 이번 업데이트 · PC 1.4.89
 
-원격 백업을 **200MiB 단위 분할 백업**으로 바꿔 전체 256MB 제한을 개선했습니다. 수주·검사·사진·동영상·첨부파일·연결 설정을 같은 복구키로 암호화하고, 모든 조각의 전송/체크섬 검증이 끝나야 복원 가능한 백업으로 등록합니다. 중간 실패 시 직전 정상 백업을 유지하며 최근 정상 3세트를 보관합니다. 예전 단일 파일 백업도 새 버전에서 복원할 수 있습니다.
+프로그램을 켜거나 PC 업데이트 후 재시작하면 **저장된 인터넷 연결 설정으로 자동 연결**합니다. 시작 시 인터넷이 준비되지 않거나 연결/주소 게시가 실패하면 약 5~60초 간격으로 다시 시도합니다. 진행 중인 연결을 중복 실행하지 않으며 2분 넘게 준비 상태에 머무르면 해당 시도를 종료하고 다시 준비합니다. 고정 QR의 GitHub 연결키가 없으면 설정 확인 안내를 표시합니다.
 
-백업은 회사 자료 폴더에 임시 파일을 만들어 처리하므로 대용량 전체를 RAM에 올리지 않습니다. 복원도 모든 조각과 내부 사진/첨부 체크섬을 검증한 뒤 자료가 없는 새 PC에 적용합니다. 백업 관리 화면에 마지막 성공/시도·전체 용량·조각 수·최근 실패 이유를 표시합니다. [분할 백업·복원 안내](BACKUP-SETS.md).
+**인터넷 끊기**를 직접 누르면 이번 실행 중에는 재연결을 멈춥니다. 인터넷 연결 버튼을 다시 누르면 재개하고, 다음 프로그램 실행/업데이트 재시작에서는 다시 자동 연결합니다. 고정 QR·수주·저장 위치와 기존 연결키는 유지합니다. 새 PC 백업 복원 중에는 자동 연결을 잠시 보류하고 기존 터널 종료를 기다린 뒤 자료를 복원하며, 끝나면 복원된 설정을 사용합니다.
 
-**저장 위치는 기존처럼 GitHub Tool 저장소의 Releases 안 암호화 백업 영역이며, 회사 PC의 원래 자료 저장 경로는 바꾸지 않습니다. 복구키를 다시 받으면 같은 키를 내려줍니다.** 자동 백업이 켜져 있어야 자동 실행됩니다. 업데이트 후 관리자 백업 화면에서 **지금 전체 백업**의 성공을 확인하세요.
-
-PC v1.4.86 이상은 **PC 업데이트 확인 → v1.4.88 업데이트**로 받습니다. APK 1.0.11은 그대로 사용합니다. 260MiB 합성 첨부의 실제 분할/복원, 손상/전송 실패·이전 세트 보존·기존 백업 복원·동시 업무·브라우저 화면 및 Windows 빌드를 검사했습니다. 회사 운영 자료의 실제 GitHub 업로드/새 Windows 계정 복원은 이 환경에서 실행하지 않았습니다.
+PC v1.4.86 이상은 **PC 업데이트 확인 → v1.4.89 업데이트**로 받습니다. APK 1.0.11은 그대로 사용합니다. [자동 인터넷 연결 안내](INTERNET-AUTO.md). 기존 분할 백업·출하 기록·엑셀 기능을 유지합니다. 모의 연결 수명주기·실패/재시도·수동 중지·재실행·복원/격리 모드 보호·race·전체 검사와 Windows 빌드로 확인했으며 실제 회사 PC의 Cloudflare 연결은 이 환경에서 실행하지 않았습니다.
 
 ## 1. 프로그램 구성과 실행 조건
 
@@ -32,7 +30,7 @@ PC v1.4.86 이상은 **PC 업데이트 확인 → v1.4.88 업데이트**로 받�
 | 관리자 웹 화면 | 회사 PC·다른 검사자 PC | 검사 완료·반려, 수주/업체 원본 수정, 공지·기록 관리 |
 | 관리자 Android 앱 | 검사자 휴대폰 | 현장 수주·검사·기록 관리, 앱 알림, 작업자 화면 보기 |
 
-회사 PC와 프로그램은 실행 중이어야 합니다. 외부 휴대폰·다른 장소에서 접속할 때는 회사 PC의 **인터넷 연결 및 휴대폰 관리자 접속 설정**도 켜져 있어야 합니다. 회사 PC가 꺼지면 이 프로그램의 웹 화면과 새 요청 처리는 사용할 수 없습니다.
+회사 PC와 프로그램은 실행 중이어야 합니다. 외부 휴대폰·다른 장소에서 접속할 때는 회사 PC의 인터넷 자동 연결이 완료되고 **휴대폰 관리자 접속 설정**도 켜져 있어야 합니다. 회사 PC가 꺼지면 이 프로그램의 웹 화면과 새 요청 처리는 사용할 수 없습니다.
 
 작업자용 설치 화면은 웹을 홈 화면 앱으로 사용하는 방식입니다. 관리자 APK는 Android 8 이상에서 사용하며 Firebase를 연결해 자체 앱 알림을 받습니다.
 

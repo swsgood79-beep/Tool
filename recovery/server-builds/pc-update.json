@@ -1,8 +1,8 @@
 {
-  "version": "1.4.88",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.88.zip",
-  "sha256": "28b13a627e8230343fb71a997f1596d137e977ce8adab8afbc0b401146d63cd1",
-  "exe_sha256": "0991a4995bf30ad2b328fef0a030c406a7125db33615afda07cd014eb98dd44c",
-  "bytes": 36914720,
-  "notes": "사진·영상·첨부 분할 백업 · 전체 256MB 제한 개선 · 기존 복구키 유지 · APK 1.0.11 유지"
+  "version": "1.4.89",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.89.zip",
+  "sha256": "b6efe1f35f383de4128a67cb2639e4009ef6f4c87120ae95e17a9d57fe8d5c54",
+  "exe_sha256": "3db13426bf7cb83cb6018d55381c02b22d3f9bd87d225c7f8f591c270d29ab56",
+  "bytes": 36923206,
+  "notes": "실행·업데이트 재시작 시 인터넷 자동 연결 · 연결 실패 자동 재시도 · APK 1.0.11 유지"
 }

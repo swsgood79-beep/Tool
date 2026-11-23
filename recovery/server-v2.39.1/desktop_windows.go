@@ -449,14 +449,14 @@ func (d *winDesktop) open(path string) { openBrowser(d.App.nativeAdminURL(path))
 func (d *winDesktop) command(id int) {
 	switch id {
 	case idConnect:
+		d.App.mu.Lock()
+		d.App.resumeInternetLocked()
+		d.App.mu.Unlock()
 		go d.App.startTunnel()
 	case idDisconnect:
 		d.App.mu.Lock()
-		cancel := d.App.integration.CancelTunnel
+		d.App.pauseInternetLocked()
 		d.App.mu.Unlock()
-		if cancel != nil {
-			cancel()
-		}
 	case idSettings:
 		d.open("/settings")
 	case idAdmin:
