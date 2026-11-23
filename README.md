@@ -1,27 +1,27 @@
-# 알파작업완료확인 · PC v1.4.90 / 앱 v1.0.11
+# 알파작업완료확인 · PC v1.4.91 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.90** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.90.zip) |
+| **회사 PC 프로그램 v1.4.91** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.91.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.90 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.90-App-v1.0.11.zip) |
+| **현재 전체 소스 · PC 1.4.91 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.91-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/CHANGELOG.md) |
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
 
-## 이번 업데이트 · PC 1.4.90
+## 이번 업데이트 · PC 1.4.91
 
-관리자가 검사 완료를 누르면 **로그인 계정의 등록 이름·아이디와 완료 시각을 검사자 기록으로 자동 저장**합니다. 작업자는 검사자를 선택하지 않으며 기존 신청 방법을 유지합니다. 세팅/출하검사 검사자는 각각 저장하고 통합검사·세팅만 완료도 실제 처리 계정으로 기록합니다. 계정 이름을 나중에 바꿔도 이미 저장한 이름은 유지합니다.
+업체 특이사항의 내용·사진 수정은 이미 보관 완료된 출하 기록과 새로 저장하는 출하 엑셀에도 반영합니다. 수주별 추가 메모·사진은 별도로 유지하고 명시적으로 수주 특이사항을 수정하면 동일 검사 건의 출하 상세도 갱신합니다. 출하사진·첨부·사급품·담당자·검사 완료일·보관일은 변경하지 않습니다. 업체 원본을 삭제하면 마지막 내용을 보관합니다.
 
-대표 관리자 계정 `wssong`의 이름은 **전체 → 관리자 계정 관리 → 본인 행의 이름 수정**에서 바꿉니다. 아이디·비밀번호·기존 로그인 연결은 유지합니다. 먼저 실제 이름을 저장해 새 검사 기록에 사용하세요.
+검사 완료 화면과 출하 상세에는 검사자 이름·실제 완료 일시만 표시합니다. 하단의 자동/과거 보완 방식·보완 처리 시각/계정 표시는 빼고 출하 상세 엑셀도 같은 방식으로 정리했습니다. 내부 보완 이력은 유지합니다. 신규 검사는 관리자 완료 버튼을 서버가 처리한 시각을 저장하며 신청 시각과 구분합니다. 기존 완료 시각은 바꾸지 않습니다. PC에서 관리자 화면을 다시 열 때 유효한 로컬 대표 관리자 세션을 재사용해 기존 탭의 CSRF가 바뀌지 않도록 했습니다. 일회용 접속 티켓·계정 권한·CSRF 검증은 유지합니다. APK 1.0.11은 그대로 사용합니다.
 
-기존 검사는 임의로 추정하지 않습니다. 대표 관리자만 계정 관리의 **기존 검사자 기록 보완**에서 실제 검사자 이름을 넣고 선택한 검사 또는 미기록 전체를 보완할 수 있습니다. 원래 완료 날짜·작업자·보관 날짜는 유지하며 **과거 기록 보완** 표시와 처리 계정/시각/대상을 남깁니다. 이미 검사자가 있는 항목은 덮어쓰지 않습니다. [검사자 기록 안내](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/INSPECTION-INSPECTORS.md).
+대표 관리자 이름은 **전체 → 관리자 계정 관리 → wssong 행의 이름 수정**에서 변경합니다. 과거 검사자는 같은 화면의 **기존 검사자 기록 보완**에서 선택 또는 미기록 전체에 실제 이름을 저장합니다. 이미 기록된 이름·원래 완료일·보관일은 유지합니다. [검사자 기록 안내](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/INSPECTION-INSPECTORS.md).
 
-출하 기록 상세와 수주별/월별 출하 엑셀에 검사 완료 기록을 표시합니다. 기존 검사 엑셀의 원래 6개 열은 유지하고 별도 **검사자 기록** 시트를 추가합니다. PC v1.4.86 이상은 **PC 업데이트 확인 → v1.4.90 업데이트**로 받으며 APK 1.0.11은 그대로 사용합니다. 모의 계정·기존 기록·권한/CSRF·재시작/백업·엑셀 및 Chromium PC/휴대폰 밝게/어둡게로 확인했습니다. 회사 운영 자료를 보완하거나 실제 Windows/Android 기기를 실행한 것은 아닙니다.
+PC v1.4.86 이상은 **PC 업데이트 확인 → v1.4.91 업데이트**로 설치하세요. 모의 자료의 완료 시각·PC 재접속/CSRF·원래 기록 보존·출하 XLSX 및 Chromium PC/휴대폰 밝게·어둡게 화면을 검증했습니다. 실제 회사 자료와 Windows/Android 기기 실행은 하지 않았습니다.
 
 ## 1. 프로그램 구성과 실행 조건
 
