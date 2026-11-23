@@ -1,0 +1,34 @@
+=== RUN   TestPCUpdateManifestAndVersion
+--- PASS: TestPCUpdateManifestAndVersion (0.00s)
+=== RUN   TestPCUpdateDownloadIntegrityAndIsolation
+=== RUN   TestPCUpdateDownloadIntegrityAndIsolation/verified
+=== RUN   TestPCUpdateDownloadIntegrityAndIsolation/ZIP_checksum
+=== RUN   TestPCUpdateDownloadIntegrityAndIsolation/EXE_checksum
+=== RUN   TestPCUpdateDownloadIntegrityAndIsolation/traversal
+=== RUN   TestPCUpdateDownloadIntegrityAndIsolation/duplicate
+=== RUN   TestPCUpdateDownloadIntegrityAndIsolation/invalid_PE
+--- PASS: TestPCUpdateDownloadIntegrityAndIsolation (0.02s)
+    --- PASS: TestPCUpdateDownloadIntegrityAndIsolation/verified (0.01s)
+    --- PASS: TestPCUpdateDownloadIntegrityAndIsolation/ZIP_checksum (0.00s)
+    --- PASS: TestPCUpdateDownloadIntegrityAndIsolation/EXE_checksum (0.00s)
+    --- PASS: TestPCUpdateDownloadIntegrityAndIsolation/traversal (0.00s)
+    --- PASS: TestPCUpdateDownloadIntegrityAndIsolation/duplicate (0.00s)
+    --- PASS: TestPCUpdateDownloadIntegrityAndIsolation/invalid_PE (0.00s)
+=== RUN   TestPCUpdateReplacementRollbackAndStartup
+=== RUN   TestPCUpdateReplacementRollbackAndStartup/success
+=== RUN   TestPCUpdateReplacementRollbackAndStartup/new_exits
+=== RUN   TestPCUpdateReplacementRollbackAndStartup/missing_new
+=== RUN   TestPCUpdateReplacementRollbackAndStartup/still_starting
+--- PASS: TestPCUpdateReplacementRollbackAndStartup (0.00s)
+    --- PASS: TestPCUpdateReplacementRollbackAndStartup/success (0.00s)
+    --- PASS: TestPCUpdateReplacementRollbackAndStartup/new_exits (0.00s)
+    --- PASS: TestPCUpdateReplacementRollbackAndStartup/missing_new (0.00s)
+    --- PASS: TestPCUpdateReplacementRollbackAndStartup/still_starting (0.00s)
+=== RUN   TestPCUpdatePlanAndRestartSettings
+--- PASS: TestPCUpdatePlanAndRestartSettings (0.00s)
+=== RUN   TestPCUpdateCompletedBackupRetention
+--- PASS: TestPCUpdateCompletedBackupRetention (0.00s)
+=== RUN   TestPCUpdateCancelledDownloadAllowsRetry
+--- PASS: TestPCUpdateCancelledDownloadAllowsRetry (0.00s)
+PASS
+ok  	wanryotalk-reconstructed-server	0.281s

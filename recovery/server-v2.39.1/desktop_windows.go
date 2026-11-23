@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"net/url"
+	"os"
 	"runtime"
 	"sort"
 	"strconv"
@@ -60,6 +61,7 @@ const (
 	wmTray          = 0x8001
 	wmNativeStop    = 0x8002
 	wmNotice        = 0x8003
+	wmPCUpdate      = 0x8004
 	wmDrawItem      = 0x2b
 )
 
@@ -86,6 +88,8 @@ const (
 	idSpeechToggle    = 114
 	idSpeechPreview   = 115
 	idSpeechStatus    = 116
+	idPCUpdate        = 117
+	idPCUpdateStatus  = 118
 )
 
 var desktopMu sync.RWMutex
@@ -116,6 +120,8 @@ type winDesktop struct {
 	Closing                                          bool
 	Speech                                           *inspectionAnnouncer
 	SpeechReady                                      bool
+	Updater                                          *pcUpdater
+	UpdateContext                                    context.Context
 }
 
 func colorref(r, g, b byte) uintptr { return uintptr(r) | uintptr(g)<<8 | uintptr(b)<<16 }
@@ -311,6 +317,28 @@ func (d *winDesktop) run(ready chan<- error) {
 	ready <- nil
 	if !d.App.testMode {
 		go func() { _, _ = prepareTTSRuntime() }()
+		go func() {
+			if target, err := os.Executable(); err == nil {
+				pcCleanCompletedUpdates(target)
+			}
+		}()
+		d.Updater = newPCUpdater()
+		ctx, cancel := context.WithCancel(context.Background())
+		d.UpdateContext = ctx
+		defer cancel()
+		go func() {
+			d.Updater.check(ctx)
+			tick := time.NewTicker(5 * time.Minute)
+			defer tick.Stop()
+			for {
+				select {
+				case <-ctx.Done():
+					return
+				case <-tick.C:
+					d.Updater.check(ctx)
+				}
+			}
+		}()
 	}
 	var m winMessage
 	for {
@@ -348,6 +376,8 @@ func (d *winDesktop) initControls() {
 	d.control(idConnectionBadge, "STATIC", "● 연결 안 됨", 0)
 	d.control(idStore, "STATIC", "", 0)
 	d.control(idSpeechStatus, "STATIC", "", 0)
+	d.control(idPCUpdate, "BUTTON", "PC 업데이트 확인", 0x0b)
+	d.control(idPCUpdateStatus, "STATIC", "", 0)
 	d.layout()
 }
 func (d *winDesktop) layout() {
@@ -381,8 +411,10 @@ func (d *winDesktop) layout() {
 	place(idSpeechToggle, 32, 423, 170, 25)
 	place(idSpeechPreview, 212, 423, 145, 25)
 	place(idSpeechStatus, 367, 425, w-399, 23)
-	place(idHistory, 32, 490, w-64, h-560)
+	place(idHistory, 32, 490, w-64, h-590)
+	place(idPCUpdateStatus, 32, h-93, w-64, 33)
 	place(idUnread, 32, h-52, 190, 34)
+	place(idPCUpdate, w-340, h-52, 195, 34)
 	place(idExit, w-130, h-52, 98, 34)
 	win("InvalidateRect", d.Window, 0, 1)
 }
@@ -449,6 +481,8 @@ func (d *winDesktop) command(id int) {
 		d.open("/tts-settings")
 	case idUnread:
 		d.replay()
+	case idPCUpdate:
+		d.pcUpdateCommand()
 	case idExit:
 		if win("MessageBoxW", d.Window, uintptr(unsafe.Pointer(wide(exitMessage(d.App.testMode)))), uintptr(unsafe.Pointer(wide(productTitle(d.App.testMode)+" 종료"))), 0x24) == 6 {
 			d.shutdown()
@@ -483,6 +517,19 @@ func (d *winDesktop) workArea() winRect {
 	return r
 }
 func (d *winDesktop) refresh() {
+	if d.Updater != nil {
+		u := d.Updater.snapshot()
+		d.set(idPCUpdateStatus, u.Message)
+		label := "PC 업데이트 확인"
+		if u.Busy {
+			label = fmt.Sprintf("업데이트 진행 중 %d%%", min(u.Percent, 100))
+		} else if u.Available {
+			label = "v" + u.Version + " 업데이트"
+		}
+		d.set(idPCUpdate, label)
+	} else if d.App.testMode {
+		d.set(idPCUpdateStatus, "격리 테스트 모드에서는 PC 자동 업데이트를 사용하지 않습니다")
+	}
 	v := d.App.desktopSnapshot()
 	if d.Speech != nil {
 		d.App.mu.Lock()
@@ -649,7 +696,7 @@ func (d *winDesktop) trayMenu() {
 	for _, m := range []struct {
 		id    uintptr
 		label string
-	}{{201, "프로그램 열기"}, {idUnread, "안 읽은 알림 다시 보기"}, {idAdmin, "관리자 화면"}, {idExit, "프로그램 종료"}} {
+	}{{201, "프로그램 열기"}, {idUnread, "안 읽은 알림 다시 보기"}, {idAdmin, "관리자 화면"}, {idPCUpdate, "PC 업데이트 확인 / 설치"}, {idExit, "프로그램 종료"}} {
 		win("AppendMenuW", menu, 0, m.id, uintptr(unsafe.Pointer(wide(m.label))))
 	}
 	var p winPoint
@@ -764,6 +811,9 @@ func nativeWindowProc(h, m, w, l uintptr) uintptr {
 			win("PostQuitMessage", 0)
 			return 0
 		case wmNativeStop:
+			d.shutdown()
+			return 0
+		case wmPCUpdate:
 			d.shutdown()
 			return 0
 		case wmNotice:
