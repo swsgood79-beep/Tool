@@ -443,28 +443,15 @@ func TestGitHubUploadVerificationAndPointerOwnership(t *testing.T) {
 	a.state.Integration.Connection.Provider = "pages"
 	a.state.Integration.Connection.PublicURL = "https://new-test.trycloudflare.com"
 	a.integration.TunnelSession = token()
-	var uploaded []byte
-	var uploadedName string
+	remote := newBackupTestRemote(t)
 	puts := 0
 	deletes := 0
 	a.client = &http.Client{Transport: transportFunc(func(r *http.Request) (*http.Response, error) {
-		if r.URL.Host == "uploads.github.com" {
-			uploaded, _ = io.ReadAll(r.Body)
-			uploadedName = r.URL.Query().Get("name")
-			if bytes.Contains(uploaded, []byte("TEST-ONLY")) {
-				t.Fatal("unencrypted backup upload")
+		if r.URL.Host == "uploads.github.com" || strings.Contains(r.URL.Path, "/releases/") {
+			if r.Method == "DELETE" {
+				deletes++
 			}
-			return response(r, 201, map[string]any{"id": 77}), nil
-		}
-		if strings.Contains(r.URL.Path, "/releases/tags/") {
-			assets := []any{}
-			if uploaded != nil {
-				assets = append(assets, map[string]any{"id": 77, "name": uploadedName, "label": "recovered-v2", "created_at": "2026-11-12T12:00:00Z"})
-			}
-			return response(r, 200, map[string]any{"id": 22, "body": "wanryotalk-reconstructed-v2", "assets": assets}), nil
-		}
-		if strings.HasSuffix(r.URL.Path, "/releases/assets/77") {
-			return &http.Response{StatusCode: 200, Body: io.NopCloser(bytes.NewReader(uploaded)), Header: http.Header{}, Request: r}, nil
+			return remote.roundTrip(r)
 		}
 		if strings.HasSuffix(r.URL.Path, "/qr-endpoint.json") {
 			if r.Method == "GET" {
@@ -490,7 +477,7 @@ func TestGitHubUploadVerificationAndPointerOwnership(t *testing.T) {
 		return nil, fmt.Errorf("unexpected GitHub operation %s %s", r.Method, r.URL)
 	})}
 	a.runBackup(context.Background())
-	if a.state.Integration.Backup.LastSuccess == "" || len(uploaded) == 0 {
+	if a.state.Integration.Backup.LastSuccess == "" || remote.uploads < 2 {
 		t.Fatal(a.integration.BackupStatus)
 	}
 	if e := a.publishPointer(context.Background(), false); e != nil {

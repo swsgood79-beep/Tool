@@ -48,6 +48,8 @@ type RecoveryKey struct {
 	Repository, BoxID, Identity string
 }
 type BackupConfig struct {
+	LastParts                                      int
+	LastAttempt, LastError                         string
 	Key                                            RecoveryKey
 	Enabled                                        bool
 	LastSuccess, LastSnapshot, LastHash, LastAsset string

@@ -1,25 +1,27 @@
-# 알파작업완료확인 · PC v1.4.87 / 앱 v1.0.11
+# 알파작업완료확인 · PC v1.4.88 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.87** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.87.zip) |
+| **회사 PC 프로그램 v1.4.88** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.88.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.87 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.87-App-v1.0.11.zip) |
+| **현재 전체 소스 · PC 1.4.88 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.88-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](CHANGELOG.md) |
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
 
-## 이번 업데이트 · PC 1.4.87
+## 이번 업데이트 · PC 1.4.88
 
-출고 일정은 **파란색**, 출하 기록은 **청록색**으로 구분했습니다. 출하 기록 메뉴는 선택 전 연한 청록색/진한 글자, 선택 후 진한 청록색/흰 글자로 표시합니다. 보관 완료 선택 탭·검색 버튼·보관일 배지·목록 강조색도 같은 계열로 맞췄습니다. 관리자/작업자 PC·휴대폰과 밝게/다크모드에 적용합니다. 기존 화면 구조와 기능은 유지합니다.
+원격 백업을 **200MiB 단위 분할 백업**으로 바꿔 전체 256MB 제한을 개선했습니다. 수주·검사·사진·동영상·첨부파일·연결 설정을 같은 복구키로 암호화하고, 모든 조각의 전송/체크섬 검증이 끝나야 복원 가능한 백업으로 등록합니다. 중간 실패 시 직전 정상 백업을 유지하며 최근 정상 3세트를 보관합니다. 예전 단일 파일 백업도 새 버전에서 복원할 수 있습니다.
 
-**PC v1.4.86 사용자는 프로그램 아래 ‘PC 업데이트 확인 → v1.4.87 업데이트’를 누르세요.** 실행 시와 5분마다 자동 확인하므로 새 버전이 표시되면 바로 업데이트할 수도 있습니다. APK 1.0.11은 그대로 쓰며 서버가 갱신된 후 휴대폰 화면을 새로고침하면 새 색상이 적용됩니다.
+백업은 회사 자료 폴더에 임시 파일을 만들어 처리하므로 대용량 전체를 RAM에 올리지 않습니다. 복원도 모든 조각과 내부 사진/첨부 체크섬을 검증한 뒤 자료가 없는 새 PC에 적용합니다. 백업 관리 화면에 마지막 성공/시도·전체 용량·조각 수·최근 실패 이유를 표시합니다. [분할 백업·복원 안내](BACKUP-SETS.md).
 
-v1.4.85 이하는 처음 한 번 최신 ZIP을 직접 받아 기존 프로그램을 완전히 종료한 뒤 실행해야 합니다. 이후 PC 내부 업데이트 기능을 사용합니다. [PC 자동 업데이트 안내](PC-AUTO-UPDATE.md). 기존 출하 기록·엑셀·알림 기능과 저장 자료를 유지합니다.
+**저장 위치는 기존처럼 GitHub Tool 저장소의 Releases 안 암호화 백업 영역이며, 회사 PC의 원래 자료 저장 경로는 바꾸지 않습니다. 복구키를 다시 받으면 같은 키를 내려줍니다.** 자동 백업이 켜져 있어야 자동 실행됩니다. 업데이트 후 관리자 백업 화면에서 **지금 전체 백업**의 성공을 확인하세요.
+
+PC v1.4.86 이상은 **PC 업데이트 확인 → v1.4.88 업데이트**로 받습니다. APK 1.0.11은 그대로 사용합니다. 260MiB 합성 첨부의 실제 분할/복원, 손상/전송 실패·이전 세트 보존·기존 백업 복원·동시 업무·브라우저 화면 및 Windows 빌드를 검사했습니다. 회사 운영 자료의 실제 GitHub 업로드/새 Windows 계정 복원은 이 환경에서 실행하지 않았습니다.
 
 ## 1. 프로그램 구성과 실행 조건
 
@@ -154,7 +156,7 @@ D드라이브 등으로 옮기려면 비어 있는 전용 폴더를 지정하고
 
 일부 업무 파일·사진은 보호된 형식으로 저장되어 탐색기에서 일반 JPG처럼 보이지 않을 수 있습니다. 사진 확인은 프로그램을 사용하고, 전체 자료 이전은 지원하는 백업/복원 절차를 사용하세요.
 
-GitHub 백업을 설정한 경우 자료와 사진을 암호화해 보관합니다. **공개 개발 소스 저장소와 회사 자료 백업은 구분됩니다.** 복구키는 PC 밖에도 보관합니다. 새 PC/다른 Windows 계정으로 주 서버를 옮길 때는 Windows 계정에 묶인 보호 자료를 고려해 암호화 백업 복원을 사용합니다.
+GitHub 백업을 설정한 경우 사진·동영상·첨부파일과 업무 자료를 200MiB 단위로 분할·암호화해 Releases에 보관합니다. 전체 256MB 제한을 없앴으며 최근 정상 3세트를 유지합니다. [분할 백업 안내](BACKUP-SETS.md)를 참고하세요. **공개 개발 소스 저장소와 회사 자료 백업은 구분됩니다.** 복구키는 PC 밖에도 보관합니다. 새 PC/다른 Windows 계정으로 주 서버를 옮길 때는 Windows 계정에 묶인 보호 자료를 고려해 암호화 백업 복원을 사용합니다.
 
 다른 검사자가 별도 PC에서 접속하려는 경우에는 주 서버를 옮길 필요 없이 현재 회사 서버의 관리자 주소에 자기 계정으로 로그인하면 됩니다.
 

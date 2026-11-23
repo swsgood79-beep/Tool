@@ -23,7 +23,7 @@ import (
 func timeValue(s string) *time.Time { t, _ := legacyTime(s); return t }
 func (a *App) backupView() map[string]any {
 	b := a.state.Integration.Backup
-	return map[string]any{"Enabled": b.Enabled, "Status": a.integration.BackupStatus, "LastSuccess": timeValue(b.LastSuccess), "SnapshotAt": timeValue(b.LastSnapshot), "LastSize": b.LastSize, "PendingChanges": snapshotHash(a.state) != b.LastHash, "PendingRestart": false}
+	return map[string]any{"Enabled": b.Enabled, "Status": a.integration.BackupStatus, "LastSuccess": timeValue(b.LastSuccess), "SnapshotAt": timeValue(b.LastSnapshot), "LastSize": b.LastSize, "LastParts": b.LastParts, "LastError": b.LastError, "LastAttempt": timeValue(b.LastAttempt), "Busy": a.integration.BackupBusy, "PendingChanges": snapshotHash(a.state) != b.LastHash, "PendingRestart": false}
 }
 func (a *App) integrationGET(w http.ResponseWriter, r *http.Request, v map[string]any) bool {
 	csrf := v["CSRF"].(string)
@@ -103,7 +103,7 @@ func (a *App) integrationGET(w http.ResponseWriter, r *http.Request, v map[strin
 		a.render(w, "backup.html", v)
 		return true
 	case "/backup/status":
-		jsonReply(w, map[string]any{"Enabled": b.Enabled, "Status": a.integration.BackupStatus, "LastSuccess": b.LastSuccess, "SnapshotAt": b.LastSnapshot, "PendingChanges": snapshotHash(a.state) != b.LastHash, "LastSize": b.LastSize, "PendingRestart": false})
+		jsonReply(w, map[string]any{"Enabled": b.Enabled, "Status": a.integration.BackupStatus, "LastSuccess": b.LastSuccess, "SnapshotAt": b.LastSnapshot, "PendingChanges": snapshotHash(a.state) != b.LastHash, "LastSize": b.LastSize, "LastParts": b.LastParts, "LastError": b.LastError, "LastAttempt": b.LastAttempt, "Busy": a.integration.BackupBusy, "PendingRestart": false})
 		return true
 	case "/mobile-access":
 		v["MobileAccess"] = map[string]any{"Enabled": a.state.Integration.MobileEnabled, "Sessions": len(a.sessions), "Revision": a.state.Integration.Revision, "HasPassword": a.state.PasswordHash != "", "Passkeys": len(a.state.Integration.Passkeys.Credentials)}
@@ -325,14 +325,11 @@ func (a *App) integrationPOST(w http.ResponseWriter, r *http.Request, s Session)
 			bearer = a.state.Integration.Connection.GitHubToken
 		}
 		go func() {
-			ctx, cancel := context.WithTimeout(context.Background(), 2*time.Minute)
+			ctx, cancel := context.WithTimeout(context.Background(), 2*time.Hour)
 			defer cancel()
-			encrypted, e := a.downloadBackup(ctx, key, bearer, generation)
+			e := a.restoreRemoteBackup(ctx, key, bearer, generation)
 			a.mu.Lock()
 			defer a.mu.Unlock()
-			if e == nil {
-				e = a.restorePortable(key, encrypted)
-			}
 			if e != nil {
 				a.integration.BackupStatus = "복원 실패: " + e.Error()
 			} else {

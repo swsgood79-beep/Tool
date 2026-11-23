@@ -1,0 +1,5 @@
+=== RUN   TestBackupSetsBrowser
+Backup browser checks passed 4
+--- PASS: TestBackupSetsBrowser (6.08s)
+PASS
+ok  	wanryotalk-reconstructed-server	6.326s

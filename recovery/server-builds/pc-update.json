@@ -1,8 +1,8 @@
 {
-  "version": "1.4.87",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.87.zip",
-  "sha256": "27d2a079764725edcc1dea372dee5162387a4d1e3f23fb0afd3fba72dba352de",
-  "exe_sha256": "3c5f85dc027750dabf36b00ebc3e558bc57c9cebe63a56f2c512b9261bac93a9",
-  "bytes": 36879725,
-  "notes": "출고 일정 파랑 / 출하 기록 청록색 구분 · 밝게/다크모드 지원 · APK 1.0.11 유지"
+  "version": "1.4.88",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.88.zip",
+  "sha256": "28b13a627e8230343fb71a997f1596d137e977ce8adab8afbc0b401146d63cd1",
+  "exe_sha256": "0991a4995bf30ad2b328fef0a030c406a7125db33615afda07cd014eb98dd44c",
+  "bytes": 36914720,
+  "notes": "사진·영상·첨부 분할 백업 · 전체 256MB 제한 개선 · 기존 복구키 유지 · APK 1.0.11 유지"
 }

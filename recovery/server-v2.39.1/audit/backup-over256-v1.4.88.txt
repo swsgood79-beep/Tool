@@ -1,0 +1,5 @@
+=== RUN   TestSegmentedBackupOver256MiB
+    backup_sets_test.go:347: verified 260.1 MiB encrypted, 2 parts, 3 uploaded assets; restored 260 MiB attachment
+--- PASS: TestSegmentedBackupOver256MiB (6.05s)
+PASS
+ok  	wanryotalk-reconstructed-server	6.305s

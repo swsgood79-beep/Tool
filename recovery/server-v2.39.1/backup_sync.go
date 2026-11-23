@@ -41,6 +41,9 @@ func snapshotHash(s State) string {
 	s.Integration.Backup.LastHash = ""
 	s.Integration.Backup.LastAsset = ""
 	s.Integration.Backup.LastSize = 0
+	s.Integration.Backup.LastParts = 0
+	s.Integration.Backup.LastAttempt = ""
+	s.Integration.Backup.LastError = ""
 	b, _ := json.Marshal(s)
 	return digest(b)
 }
@@ -255,15 +258,17 @@ type GitAsset struct {
 	ID                              int64
 	Name, Label, BrowserDownloadURL string `json:"-"`
 }
+type ReleaseAsset struct {
+	ID      int64  `json:"id"`
+	Name    string `json:"name"`
+	Label   string `json:"label"`
+	Created string `json:"created_at"`
+	Size    int64  `json:"size"`
+}
 type Release struct {
-	ID     int64  `json:"id"`
-	Body   string `json:"body"`
-	Assets []struct {
-		ID      int64  `json:"id"`
-		Name    string `json:"name"`
-		Label   string `json:"label"`
-		Created string `json:"created_at"`
-	} `json:"assets"`
+	ID     int64          `json:"id"`
+	Body   string         `json:"body"`
+	Assets []ReleaseAsset `json:"assets"`
 }
 
 func (a *App) github(ctx context.Context, method, path, token string, body []byte, ctype string) ([]byte, int, error) {
@@ -328,100 +333,6 @@ func (a *App) backupRelease(ctx context.Context, key RecoveryKey, token string, 
 		return rel, errors.New("다른 Release 형식은 변경하지 않습니다")
 	}
 	return rel, nil
-}
-func (a *App) runBackup(ctx context.Context) {
-	a.mu.Lock()
-	if a.integration.BackupBusy {
-		a.mu.Unlock()
-		return
-	}
-	s, e := clone(a.state)
-	if e != nil {
-		a.mu.Unlock()
-		return
-	}
-	if s.Integration.Backup.Key.Identity == "" || s.Integration.Connection.GitHubToken == "" {
-		a.integration.BackupStatus = "복구키와 GitHub 연결키를 먼저 설정하세요"
-		a.mu.Unlock()
-		return
-	}
-	a.integration.BackupBusy = true
-	a.integration.BackupStatus = "전체 자료 암호화 중"
-	a.mu.Unlock()
-	snapshotTime := time.Now().UTC().Format(time.RFC3339)
-	encrypted, e := a.portable(s)
-	var assetName string
-	if e == nil {
-		var rel Release
-		rel, e = a.backupRelease(ctx, s.Integration.Backup.Key, s.Integration.Connection.GitHubToken, true)
-		if e == nil {
-			assetName = "alpha-" + time.Now().UTC().Format("20060102T150405Z") + "-" + token()[:8] + ".age"
-			var status int
-			_, status, e = a.github(ctx, "POST", fmt.Sprintf("UPLOAD:/repos/%s/releases/%d/assets?name=%s&label=recovered-v2", repository, rel.ID, url.QueryEscape(assetName)), s.Integration.Connection.GitHubToken, encrypted, "application/octet-stream")
-			if e == nil && status != 201 {
-				e = fmt.Errorf("암호화 업로드 HTTP %d", status)
-			}
-			if e == nil {
-				fresh, err := a.backupRelease(ctx, s.Integration.Backup.Key, s.Integration.Connection.GitHubToken, false)
-				if err != nil {
-					e = err
-				} else {
-					found := int64(0)
-					for _, asset := range fresh.Assets {
-						if asset.Name == assetName {
-							found = asset.ID
-						}
-					}
-					if found == 0 {
-						e = errors.New("업로드한 백업 확인 실패")
-					} else {
-						download, err := a.fetchGitAsset(ctx, found, s.Integration.Connection.GitHubToken)
-						if err != nil {
-							e = err
-						} else if digest(download) != digest(encrypted) {
-							e = errors.New("전송된 백업 체크섬 불일치")
-						}
-						if e == nil {
-							if _, _, err = decodePortable(download, s.Integration.Backup.Key); err != nil {
-								e = err
-							}
-						}
-						if e == nil {
-							e = a.pruneBackups(ctx, fresh, s.Integration.Connection.GitHubToken, assetName)
-						}
-
-					}
-				}
-			}
-		}
-	}
-	a.mu.Lock()
-	defer a.mu.Unlock()
-	a.integration.BackupBusy = false
-	if e != nil {
-		a.integration.BackupStatus = "백업 실패: " + e.Error()
-		return
-	}
-	e = a.transaction(func(next *State) error {
-		if next.Integration.Backup.Key.BoxID != s.Integration.Backup.Key.BoxID {
-			return errors.New("백업 설정 변경됨")
-		}
-		b := &next.Integration.Backup
-		b.LastHash = snapshotHash(s)
-		b.LastSuccess = time.Now().UTC().Format(time.RFC3339)
-		b.LastSnapshot = snapshotTime
-		if b.LastSnapshot == "" {
-			b.LastSnapshot = time.Now().UTC().Format(time.RFC3339)
-		}
-		b.LastSize = int64(len(encrypted))
-		b.LastAsset = assetName
-		return nil
-	})
-	if e != nil {
-		a.integration.BackupStatus = "업로드 후 상태 저장 실패"
-	} else {
-		a.integration.BackupStatus = "암호화 백업 업로드 완료 · 원본 백업은 유지됩니다"
-	}
 }
 func (a *App) maybeBackup(ctx context.Context) {
 	a.mu.Lock()

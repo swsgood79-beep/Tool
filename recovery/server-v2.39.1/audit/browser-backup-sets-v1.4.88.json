@@ -1,0 +1,29 @@
+{
+  "scope": "local mock GitHub and Chromium PC/mobile viewport; remote administration policy unchanged; no actual company backups uploaded",
+  "results": [
+    {
+      "mobile": false,
+      "theme": "light",
+      "result": "pass",
+      "case": "real local backup UI start/status/success/failed commit; preserved last successful size/date; no leave-page warning"
+    },
+    {
+      "mobile": false,
+      "theme": "dark",
+      "result": "pass",
+      "case": "real local backup UI start/status/success/failed commit; preserved last successful size/date; no leave-page warning"
+    },
+    {
+      "mobile": true,
+      "theme": "light",
+      "result": "pass",
+      "case": "real local backup UI start/status/success/failed commit; preserved last successful size/date; no leave-page warning"
+    },
+    {
+      "mobile": true,
+      "theme": "dark",
+      "result": "pass",
+      "case": "real local backup UI start/status/success/failed commit; preserved last successful size/date; no leave-page warning"
+    }
+  ]
+}
