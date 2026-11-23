@@ -7,6 +7,7 @@ import "strings"
 // should present each identical image only once, preferring the current source.
 func (a *App) shippingCurrentNotes(s *State, record ShippingRecord) ShippingRecord {
 	r := shippingCurrentNotes(s, record)
+	r.ClientName = shippingCustomerName(s, r)
 	source := map[string]bool{}
 	for _, id := range r.ClientSourcePhotoIDs {
 		source[id] = true

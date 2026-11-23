@@ -1,0 +1,18 @@
+=== RUN   TestShippingCustomerConventionEverySurface
+=== RUN   TestShippingCustomerConventionEverySurface/은일_12축
+=== RUN   TestShippingCustomerConventionEverySurface/쿼드메디슨_3축,_긴급건
+=== RUN   TestShippingCustomerConventionEverySurface/비엔에스_4축_(선진행,_예가)
+=== RUN   TestShippingCustomerConventionEverySurface/고객_사명_2_축
+=== RUN   TestShippingCustomerConventionEverySurface/축_정보_없는_수주
+--- PASS: TestShippingCustomerConventionEverySurface (0.13s)
+    --- PASS: TestShippingCustomerConventionEverySurface/은일_12축 (0.01s)
+    --- PASS: TestShippingCustomerConventionEverySurface/쿼드메디슨_3축,_긴급건 (0.01s)
+    --- PASS: TestShippingCustomerConventionEverySurface/비엔에스_4축_(선진행,_예가) (0.01s)
+    --- PASS: TestShippingCustomerConventionEverySurface/고객_사명_2_축 (0.01s)
+    --- PASS: TestShippingCustomerConventionEverySurface/축_정보_없는_수주 (0.01s)
+=== RUN   TestShippingCustomerSavedWithoutTemplateAndRestart
+--- PASS: TestShippingCustomerSavedWithoutTemplateAndRestart (0.07s)
+=== RUN   TestShippingCustomerExplicitSourceAndUnknown
+--- PASS: TestShippingCustomerExplicitSourceAndUnknown (0.07s)
+PASS
+ok  	wanryotalk-reconstructed-server	0.526s

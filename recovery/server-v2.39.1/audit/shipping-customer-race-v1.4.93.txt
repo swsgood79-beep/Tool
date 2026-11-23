@@ -1,0 +1,66 @@
+=== RUN   TestShippingCustomerBrowser
+    shipping_customer_browser_test.go:13: optional shipping customer browser
+--- SKIP: TestShippingCustomerBrowser (0.00s)
+=== RUN   TestShippingCustomerConventionEverySurface
+=== RUN   TestShippingCustomerConventionEverySurface/은일_12축
+=== RUN   TestShippingCustomerConventionEverySurface/쿼드메디슨_3축,_긴급건
+=== RUN   TestShippingCustomerConventionEverySurface/비엔에스_4축_(선진행,_예가)
+=== RUN   TestShippingCustomerConventionEverySurface/고객_사명_2_축
+=== RUN   TestShippingCustomerConventionEverySurface/축_정보_없는_수주
+--- PASS: TestShippingCustomerConventionEverySurface (0.74s)
+    --- PASS: TestShippingCustomerConventionEverySurface/은일_12축 (0.12s)
+    --- PASS: TestShippingCustomerConventionEverySurface/쿼드메디슨_3축,_긴급건 (0.09s)
+    --- PASS: TestShippingCustomerConventionEverySurface/비엔에스_4축_(선진행,_예가) (0.10s)
+    --- PASS: TestShippingCustomerConventionEverySurface/고객_사명_2_축 (0.09s)
+    --- PASS: TestShippingCustomerConventionEverySurface/축_정보_없는_수주 (0.10s)
+=== RUN   TestShippingCustomerSavedWithoutTemplateAndRestart
+--- PASS: TestShippingCustomerSavedWithoutTemplateAndRestart (0.11s)
+=== RUN   TestShippingCustomerExplicitSourceAndUnknown
+--- PASS: TestShippingCustomerExplicitSourceAndUnknown (0.16s)
+=== RUN   TestShippingExportBrowser
+    shipping_export_browser_test.go:16: optional shipment Excel browser
+--- SKIP: TestShippingExportBrowser (0.00s)
+=== RUN   TestShippingExportCustomerNamingConvention
+--- PASS: TestShippingExportCustomerNamingConvention (0.00s)
+=== RUN   TestShippingExportCustomerAndNoDetailNavigation
+--- PASS: TestShippingExportCustomerAndNoDetailNavigation (0.37s)
+=== RUN   TestShippingExportMetadataOnlyFillsTrustedMissingFields
+--- PASS: TestShippingExportMetadataOnlyFillsTrustedMissingFields (0.15s)
+=== RUN   TestShippingExportCompactGridAndMissingMarkers
+--- PASS: TestShippingExportCompactGridAndMissingMarkers (0.17s)
+=== RUN   TestShippingExportCompactLayoutSample
+    shipping_export_metadata_test.go:116: optional real XLSX layout sample
+--- SKIP: TestShippingExportCompactLayoutSample (0.00s)
+=== RUN   TestShippingExportSnapshotMetadataIsReadOnly
+--- PASS: TestShippingExportSnapshotMetadataIsReadOnly (0.15s)
+=== RUN   TestShippingExportWorkbookPhotosLinksDatesAndFiles
+--- PASS: TestShippingExportWorkbookPhotosLinksDatesAndFiles (0.63s)
+=== RUN   TestShippingExportSingleMissingPhotoAndPins
+--- PASS: TestShippingExportSingleMissingPhotoAndPins (0.35s)
+=== RUN   TestShippingExportRoutesAccessAndExpiry
+--- PASS: TestShippingExportRoutesAccessAndExpiry (0.29s)
+=== RUN   TestShippingExportAccountsAndSlowDownload
+--- PASS: TestShippingExportAccountsAndSlowDownload (14.57s)
+=== RUN   TestShippingExportSplitsByPhotoBudget
+--- PASS: TestShippingExportSplitsByPhotoBudget (0.40s)
+=== RUN   TestShippingNotesPhotosBrowser
+    shipping_notes_photos_browser_test.go:13: optional shipping notes browser
+--- SKIP: TestShippingNotesPhotosBrowser (0.00s)
+=== RUN   TestShippingNotesDuplicateCopiesAndDateLabel
+=== RUN   TestShippingNotesDuplicateCopiesAndDateLabel/content_copy
+=== RUN   TestShippingNotesDuplicateCopiesAndDateLabel/known_materialized_copy
+--- PASS: TestShippingNotesDuplicateCopiesAndDateLabel (0.55s)
+    --- PASS: TestShippingNotesDuplicateCopiesAndDateLabel/content_copy (0.28s)
+    --- PASS: TestShippingNotesDuplicateCopiesAndDateLabel/known_materialized_copy (0.27s)
+=== RUN   TestShippingNotesDedupKeepsDifferentContentAndMissingFiles
+--- PASS: TestShippingNotesDedupKeepsDifferentContentAndMissingFiles (0.04s)
+=== RUN   TestShippingNotesFollowSourcePreserveEvidence
+=== RUN   TestShippingNotesFollowSourcePreserveEvidence/bound
+=== RUN   TestShippingNotesFollowSourcePreserveEvidence/legacy
+--- PASS: TestShippingNotesFollowSourcePreserveEvidence (0.72s)
+    --- PASS: TestShippingNotesFollowSourcePreserveEvidence/bound (0.31s)
+    --- PASS: TestShippingNotesFollowSourcePreserveEvidence/legacy (0.41s)
+=== RUN   TestShippingNotesLegacyDoesNotGuessAnotherCycle
+--- PASS: TestShippingNotesLegacyDoesNotGuessAnotherCycle (0.04s)
+PASS
+ok  	wanryotalk-reconstructed-server	23.916s

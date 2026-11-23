@@ -1,0 +1,117 @@
+{
+  "scope": "synthetic missing/present archived customers; Chromium admin/worker desktop/mobile APK user agent light/dark; actual Windows/Android not executed",
+  "results": [
+    {
+      "admin": true,
+      "mobile": false,
+      "theme": "light",
+      "customer": "은일",
+      "result": "pass"
+    },
+    {
+      "admin": true,
+      "mobile": false,
+      "theme": "light",
+      "customer": "쿼드메디슨",
+      "result": "pass"
+    },
+    {
+      "admin": false,
+      "mobile": false,
+      "theme": "light",
+      "customer": "은일",
+      "result": "pass"
+    },
+    {
+      "admin": false,
+      "mobile": false,
+      "theme": "light",
+      "customer": "쿼드메디슨",
+      "result": "pass"
+    },
+    {
+      "admin": true,
+      "mobile": false,
+      "theme": "dark",
+      "customer": "은일",
+      "result": "pass"
+    },
+    {
+      "admin": true,
+      "mobile": false,
+      "theme": "dark",
+      "customer": "쿼드메디슨",
+      "result": "pass"
+    },
+    {
+      "admin": false,
+      "mobile": false,
+      "theme": "dark",
+      "customer": "은일",
+      "result": "pass"
+    },
+    {
+      "admin": false,
+      "mobile": false,
+      "theme": "dark",
+      "customer": "쿼드메디슨",
+      "result": "pass"
+    },
+    {
+      "admin": true,
+      "mobile": true,
+      "theme": "light",
+      "customer": "은일",
+      "result": "pass"
+    },
+    {
+      "admin": true,
+      "mobile": true,
+      "theme": "light",
+      "customer": "쿼드메디슨",
+      "result": "pass"
+    },
+    {
+      "admin": false,
+      "mobile": true,
+      "theme": "light",
+      "customer": "은일",
+      "result": "pass"
+    },
+    {
+      "admin": false,
+      "mobile": true,
+      "theme": "light",
+      "customer": "쿼드메디슨",
+      "result": "pass"
+    },
+    {
+      "admin": true,
+      "mobile": true,
+      "theme": "dark",
+      "customer": "은일",
+      "result": "pass"
+    },
+    {
+      "admin": true,
+      "mobile": true,
+      "theme": "dark",
+      "customer": "쿼드메디슨",
+      "result": "pass"
+    },
+    {
+      "admin": false,
+      "mobile": true,
+      "theme": "dark",
+      "customer": "은일",
+      "result": "pass"
+    },
+    {
+      "admin": false,
+      "mobile": true,
+      "theme": "dark",
+      "customer": "쿼드메디슨",
+      "result": "pass"
+    }
+  ]
+}

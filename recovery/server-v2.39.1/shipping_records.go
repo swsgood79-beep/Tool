@@ -118,7 +118,9 @@ func (a *App) captureShippingRecord(s *State, p Project) ([]Photo, error) {
 	for _, ph := range copies[ownPhotoCount:] {
 		sourceIDs = append(sourceIDs, ph.ID)
 	}
-	s.ShippingRecords = append(s.ShippingRecords, ShippingRecord{ClientSourceRevision: clientSourceRevision, ClientSourceID: clientSourceID, ClientSourcePhotoIDs: sourceIDs, ID: token(), ClientName: clientName, Project: p, Receipts: append([]MaterialReceipt{}, s.MaterialReceipts[p.Number]...), InspectedAt: *p.Shipping.Completed})
+	record := ShippingRecord{ClientSourceRevision: clientSourceRevision, ClientSourceID: clientSourceID, ClientSourcePhotoIDs: sourceIDs, ID: token(), ClientName: clientName, Project: p, Receipts: append([]MaterialReceipt{}, s.MaterialReceipts[p.Number]...), InspectedAt: *p.Shipping.Completed}
+	record.ClientName = shippingCustomerName(s, record)
+	s.ShippingRecords = append(s.ShippingRecords, record)
 	return copies, nil
 }
 func (a *App) saveShippingRecord(id string, r *http.Request) error {
@@ -150,7 +152,7 @@ func (a *App) saveShippingRecord(id string, r *http.Request) error {
 			return errors.New("이미 변경된 보관 자료입니다.")
 		}
 		metadata := shippingExportMetadata(s, *record)
-		record.ClientName = metadata.ClientName
+		record.ClientName = shippingCustomerName(s, metadata)
 		record.Project.ShippingDueDate = metadata.Project.ShippingDueDate
 		now := time.Now()
 		record.Photos, record.Memo, record.ArchivedAt = photos, memo, &now

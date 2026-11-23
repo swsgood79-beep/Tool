@@ -66,6 +66,7 @@ func shippingListView(s *State, base string, q url.Values, now time.Time) (map[s
 	matches := []ShippingRecord{}
 	pendingCount, archiveCount := 0, 0
 	for _, record := range s.ShippingRecords {
+		record.ClientName = shippingCustomerName(s, record)
 		if record.ArchivedAt == nil {
 			pendingCount++
 		} else {
