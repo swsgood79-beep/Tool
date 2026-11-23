@@ -1,8 +1,8 @@
 {
-  "version": "1.4.93",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.93.zip",
-  "sha256": "ce97a2db31289b185439fe6bf007189f1a9a24550b8149f32a5ea3c1085570c1",
-  "exe_sha256": "e35074aacad2e20c12360959b840ff538fb4edae1816cdde0cba8d545c2a00a8",
-  "bytes": 36962973,
-  "notes": "출하 기록 고객사 표시 통일 · 은일 12축도 고객사 표시 · APK 1.0.11 유지"
+  "version": "1.4.94",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.94.zip",
+  "sha256": "bbd1d099801ffddbe8bc5a560f33e7b4f59c50aaf981616b6852d3c8d6f51831",
+  "exe_sha256": "9298902b417164fb41f873cc6849c3e9bcce40b83455ef7028133a0e2fe52fad",
+  "bytes": 36973238,
+  "notes": "출하 기록 세팅·출하 작업자 이름 수정 추가 · 검사자·날짜 유지 · APK 1.0.11 유지"
 }

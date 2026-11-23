@@ -1,0 +1,29 @@
+{
+  "scope": "synthetic archive; Chromium PC/mobile APK agent light/dark; actual Windows/Android not executed",
+  "results": [
+    {
+      "mobile": false,
+      "theme": "light",
+      "result": "pass",
+      "case": "admin edit/save; worker read-only; dates/inspectors unchanged; no leave prompts"
+    },
+    {
+      "mobile": false,
+      "theme": "dark",
+      "result": "pass",
+      "case": "admin edit/save; worker read-only; dates/inspectors unchanged; no leave prompts"
+    },
+    {
+      "mobile": true,
+      "theme": "light",
+      "result": "pass",
+      "case": "admin edit/save; worker read-only; dates/inspectors unchanged; no leave prompts"
+    },
+    {
+      "mobile": true,
+      "theme": "dark",
+      "result": "pass",
+      "case": "admin edit/save; worker read-only; dates/inspectors unchanged; no leave prompts"
+    }
+  ]
+}

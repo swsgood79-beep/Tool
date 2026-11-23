@@ -17,9 +17,11 @@ const shippingPhotoLimit = 30
 // An independent snapshot, captured in the approval transaction. The live schedule
 // remains a projection of the connected sheet and never owns archive records.
 type ShippingRecord struct {
-	ClientSourceRevision int64    `json:",omitempty"`
-	ClientSourceID       string   `json:",omitempty"`
-	ClientSourcePhotoIDs []string `json:",omitempty"`
+	WorkerRevision       int64                `json:",omitempty"`
+	WorkerEdits          []ShippingWorkerEdit `json:",omitempty"`
+	ClientSourceRevision int64                `json:",omitempty"`
+	ClientSourceID       string               `json:",omitempty"`
+	ClientSourcePhotoIDs []string             `json:",omitempty"`
 	// Export-only provenance. Never persisted into an archive snapshot.
 	ExportSourceNote string               `json:"-"`
 	Attachments      []ShippingAttachment `json:",omitempty"`
@@ -253,6 +255,26 @@ func (a *App) shippingRecordsHTTP(w http.ResponseWriter, r *http.Request) bool {
 			return true
 		}
 		if len(rest) == 2 && r.Method == "POST" {
+			if rest[1] == "edit-workers" {
+				if !admin {
+					http.Error(w, "작업자 이름 수정은 관리자만 할 수 있습니다.", 403)
+					return true
+				}
+				session, _ := a.session(r)
+				actor, err := inspectionActor(&a.state, session)
+				if err != nil {
+					http.Error(w, err.Error(), 403)
+					return true
+				}
+				err = a.saveShippingWorkers(record.ID, r.FormValue("workers_revision"), r.FormValue("setting_worker"), r.FormValue("shipping_worker"), actor)
+				if err == nil {
+					http.Redirect(w, r, base+"/"+record.ID+"?workers_saved=1", http.StatusSeeOther)
+					return true
+				}
+				view["WorkersError"], view["EditSettingWorker"], view["EditShippingWorker"] = err.Error(), r.FormValue("setting_worker"), r.FormValue("shipping_worker")
+				w.Header().Set("Content-Type", "text/html; charset=utf-8")
+				w.WriteHeader(http.StatusConflict)
+			}
 			if rest[1] == "add-photos" {
 				if err := a.addShippingPhotos(record.ID, r); err != nil {
 					http.Error(w, err.Error(), 400)
@@ -318,7 +340,15 @@ func (a *App) shippingRecordsHTTP(w http.ResponseWriter, r *http.Request) bool {
 				return true
 			}
 		}
-		if len(rest) == 1 && r.Method == "GET" {
+		if view["WorkersError"] != nil {
+			rest = rest[:1]
+		}
+		if len(rest) == 1 && (r.Method == "GET" || view["WorkersError"] != nil) {
+			view["WorkersSaved"] = r.URL.Query().Get("workers_saved") == "1"
+			view["WorkersRevision"] = shippingWorkersRevision(record)
+			if view["WorkersError"] == nil {
+				view["EditSettingWorker"], view["EditShippingWorker"] = record.Project.Setting.Worker, record.Project.Shipping.Worker
+			}
 			view["ResetToPending"] = shippingSourceComplete(&a.state, *record)
 			view["CanAddPhotos"] = record.ArchivedAt != nil && len(record.Photos) < shippingPhotoLimit
 			view["PhotoRevision"], view["UploadKey"] = shippingPhotoRevision(record), token()
@@ -366,7 +396,7 @@ func (a *App) shippingRecordMarkup(s, name string, value any) string {
 		s = strings.Replace(s, "</head>", `<meta name="shipping-records-board" content="`+board+`"><script defer src="/shipping-records-v1.4.76.js"></script></head>`, 1)
 	}
 	if name == "shipping-records.html" {
-		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/shipping-export-v1.4.83.css"><script defer src="/shipping-export-v1.4.84.js"></script><link rel="stylesheet" href="/shipment-attachments-v1.4.82.css"><script defer src="/fix-webm-duration-v1.0.6.js"></script><script defer src="/shipment-video-v1.4.82.js"></script><script defer src="/shipment-attachments-v1.4.82.js"></script><link rel="stylesheet" href="/shipment-photo-delete-v1.4.77.css"><script defer src="/shipment-photo-delete-v1.4.77.js"></script><link rel="stylesheet" href="/shipment-photo-viewer-v1.4.62.css"><script defer src="/shipment-photo-viewer-v1.4.62.js"></script></head>`, 1)
+		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/shipment-workers-v1.4.94.css"><link rel="stylesheet" href="/shipping-export-v1.4.83.css"><script defer src="/shipping-export-v1.4.84.js"></script><link rel="stylesheet" href="/shipment-attachments-v1.4.82.css"><script defer src="/fix-webm-duration-v1.0.6.js"></script><script defer src="/shipment-video-v1.4.82.js"></script><script defer src="/shipment-attachments-v1.4.82.js"></script><link rel="stylesheet" href="/shipment-photo-delete-v1.4.77.css"><script defer src="/shipment-photo-delete-v1.4.77.js"></script><link rel="stylesheet" href="/shipment-photo-viewer-v1.4.62.css"><script defer src="/shipment-photo-viewer-v1.4.62.js"></script></head>`, 1)
 	}
 	if name == "shipping-records.html" || name == "work.html" || name == "admin.html" {
 		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/shipping-records-v1.4.52.css"><link rel="stylesheet" href="/shipment-colors-v1.4.87.css"></head>`, 1)

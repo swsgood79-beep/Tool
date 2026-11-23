@@ -1,0 +1,8 @@
+=== RUN   TestShippingWorkersCorrectionPreservesEvidenceAndExport
+--- PASS: TestShippingWorkersCorrectionPreservesEvidenceAndExport (0.11s)
+=== RUN   TestShippingWorkersPermissionsValidationStaleAndNoop
+--- PASS: TestShippingWorkersPermissionsValidationStaleAndNoop (0.35s)
+=== RUN   TestShippingWorkersPendingAndSaveFailureDoNotMutate
+--- PASS: TestShippingWorkersPendingAndSaveFailureDoNotMutate (0.07s)
+PASS
+ok  	wanryotalk-reconstructed-server	0.791s
