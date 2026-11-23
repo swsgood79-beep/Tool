@@ -1,19 +1,23 @@
-# 알파작업완료확인 · PC v1.4.91 / 앱 v1.0.11
+# 알파작업완료확인 · PC v1.4.92 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.91** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.91.zip) |
+| **회사 PC 프로그램 v1.4.92** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.92.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.91 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.91-App-v1.0.11.zip) |
+| **현재 전체 소스 · PC 1.4.92 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.92-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/CHANGELOG.md) |
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
 
-## 이번 업데이트 · PC 1.4.91
+## 이번 업데이트 · PC 1.4.92
+
+출하 기록의 특이사항에서 업체 원본 사진과 기존 복사본이 중복으로 보이던 문제를 수정했습니다. 원본과 복사본의 ID가 달라도 같은 내용이면 화면과 새 출하 엑셀에는 한 번만 표시하고 현재 업체 원본을 우선합니다. 이름이 같아도 내용이 다른 사진은 유지하며 사진 파일·검사 기록·날짜는 삭제하거나 변경하지 않습니다. 출하 기록 상세와 출하 상세 엑셀의 날짜 제목만 **출고일자**로 바꿉니다. 수주 목록·출고 일정의 **출고 예정** 표시는 유지합니다. PC v1.4.86 이상은 PC 업데이트 확인으로 v1.4.92를 설치하며 APK 1.0.11은 그대로 사용합니다.
+
+## 이전 업데이트 · PC 1.4.91
 
 업체 특이사항의 내용·사진 수정은 이미 보관 완료된 출하 기록과 새로 저장하는 출하 엑셀에도 반영합니다. 수주별 추가 메모·사진은 별도로 유지하고 명시적으로 수주 특이사항을 수정하면 동일 검사 건의 출하 상세도 갱신합니다. 출하사진·첨부·사급품·담당자·검사 완료일·보관일은 변경하지 않습니다. 업체 원본을 삭제하면 마지막 내용을 보관합니다.
 
