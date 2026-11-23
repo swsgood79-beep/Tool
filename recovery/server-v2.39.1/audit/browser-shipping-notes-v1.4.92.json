@@ -1,0 +1,77 @@
+{
+  "scope": "synthetic copied/source photos; Chromium PC and mobile with APK user agent, light/dark; actual Windows/Android not executed",
+  "results": [
+    {
+      "admin": true,
+      "mobile": false,
+      "theme": "light",
+      "result": "pass",
+      "specialPhotos": 2,
+      "shippingPhotos": 1,
+      "dateLabel": "출고일자"
+    },
+    {
+      "admin": false,
+      "mobile": false,
+      "theme": "light",
+      "result": "pass",
+      "specialPhotos": 2,
+      "shippingPhotos": 1,
+      "dateLabel": "출고일자"
+    },
+    {
+      "admin": true,
+      "mobile": false,
+      "theme": "dark",
+      "result": "pass",
+      "specialPhotos": 2,
+      "shippingPhotos": 1,
+      "dateLabel": "출고일자"
+    },
+    {
+      "admin": false,
+      "mobile": false,
+      "theme": "dark",
+      "result": "pass",
+      "specialPhotos": 2,
+      "shippingPhotos": 1,
+      "dateLabel": "출고일자"
+    },
+    {
+      "admin": true,
+      "mobile": true,
+      "theme": "light",
+      "result": "pass",
+      "specialPhotos": 2,
+      "shippingPhotos": 1,
+      "dateLabel": "출고일자"
+    },
+    {
+      "admin": false,
+      "mobile": true,
+      "theme": "light",
+      "result": "pass",
+      "specialPhotos": 2,
+      "shippingPhotos": 1,
+      "dateLabel": "출고일자"
+    },
+    {
+      "admin": true,
+      "mobile": true,
+      "theme": "dark",
+      "result": "pass",
+      "specialPhotos": 2,
+      "shippingPhotos": 1,
+      "dateLabel": "출고일자"
+    },
+    {
+      "admin": false,
+      "mobile": true,
+      "theme": "dark",
+      "result": "pass",
+      "specialPhotos": 2,
+      "shippingPhotos": 1,
+      "dateLabel": "출고일자"
+    }
+  ]
+}

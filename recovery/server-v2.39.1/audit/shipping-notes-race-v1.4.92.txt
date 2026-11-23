@@ -1,0 +1,47 @@
+=== RUN   TestShippingExportBrowser
+    shipping_export_browser_test.go:16: optional shipment Excel browser
+--- SKIP: TestShippingExportBrowser (0.00s)
+=== RUN   TestShippingExportCustomerNamingConvention
+--- PASS: TestShippingExportCustomerNamingConvention (0.00s)
+=== RUN   TestShippingExportCustomerAndNoDetailNavigation
+--- PASS: TestShippingExportCustomerAndNoDetailNavigation (0.43s)
+=== RUN   TestShippingExportMetadataOnlyFillsTrustedMissingFields
+--- PASS: TestShippingExportMetadataOnlyFillsTrustedMissingFields (0.16s)
+=== RUN   TestShippingExportCompactGridAndMissingMarkers
+--- PASS: TestShippingExportCompactGridAndMissingMarkers (0.18s)
+=== RUN   TestShippingExportCompactLayoutSample
+    shipping_export_metadata_test.go:116: optional real XLSX layout sample
+--- SKIP: TestShippingExportCompactLayoutSample (0.00s)
+=== RUN   TestShippingExportSnapshotMetadataIsReadOnly
+--- PASS: TestShippingExportSnapshotMetadataIsReadOnly (0.16s)
+=== RUN   TestShippingExportWorkbookPhotosLinksDatesAndFiles
+--- PASS: TestShippingExportWorkbookPhotosLinksDatesAndFiles (0.51s)
+=== RUN   TestShippingExportSingleMissingPhotoAndPins
+--- PASS: TestShippingExportSingleMissingPhotoAndPins (0.43s)
+=== RUN   TestShippingExportRoutesAccessAndExpiry
+--- PASS: TestShippingExportRoutesAccessAndExpiry (0.26s)
+=== RUN   TestShippingExportAccountsAndSlowDownload
+--- PASS: TestShippingExportAccountsAndSlowDownload (14.57s)
+=== RUN   TestShippingExportSplitsByPhotoBudget
+--- PASS: TestShippingExportSplitsByPhotoBudget (0.39s)
+=== RUN   TestShippingNotesPhotosBrowser
+    shipping_notes_photos_browser_test.go:13: optional shipping notes browser
+--- SKIP: TestShippingNotesPhotosBrowser (0.00s)
+=== RUN   TestShippingNotesDuplicateCopiesAndDateLabel
+=== RUN   TestShippingNotesDuplicateCopiesAndDateLabel/content_copy
+=== RUN   TestShippingNotesDuplicateCopiesAndDateLabel/known_materialized_copy
+--- PASS: TestShippingNotesDuplicateCopiesAndDateLabel (0.58s)
+    --- PASS: TestShippingNotesDuplicateCopiesAndDateLabel/content_copy (0.28s)
+    --- PASS: TestShippingNotesDuplicateCopiesAndDateLabel/known_materialized_copy (0.30s)
+=== RUN   TestShippingNotesDedupKeepsDifferentContentAndMissingFiles
+--- PASS: TestShippingNotesDedupKeepsDifferentContentAndMissingFiles (0.04s)
+=== RUN   TestShippingNotesFollowSourcePreserveEvidence
+=== RUN   TestShippingNotesFollowSourcePreserveEvidence/bound
+=== RUN   TestShippingNotesFollowSourcePreserveEvidence/legacy
+--- PASS: TestShippingNotesFollowSourcePreserveEvidence (0.79s)
+    --- PASS: TestShippingNotesFollowSourcePreserveEvidence/bound (0.34s)
+    --- PASS: TestShippingNotesFollowSourcePreserveEvidence/legacy (0.45s)
+=== RUN   TestShippingNotesLegacyDoesNotGuessAnotherCycle
+--- PASS: TestShippingNotesLegacyDoesNotGuessAnotherCycle (0.04s)
+PASS
+ok  	wanryotalk-reconstructed-server	22.372s

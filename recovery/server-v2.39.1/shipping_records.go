@@ -322,7 +322,7 @@ func (a *App) shippingRecordsHTTP(w http.ResponseWriter, r *http.Request) bool {
 			view["PhotoRevision"], view["UploadKey"] = shippingPhotoRevision(record), token()
 			view["PhotosAdded"] = r.URL.Query().Get("photos_added") == "1"
 			view["ShippingPending"] = record.ArchivedAt == nil
-			current := shippingCurrentNotes(&a.state, *record)
+			current := a.shippingCurrentNotes(&a.state, *record)
 			view["Record"], view["Saved"] = &current, r.URL.Query().Get("saved") == "1"
 			phone := cleanPhone(record.Project.DesignerPhone)
 			if len(phone) >= 7 && len(phone) <= 30 {

@@ -1,0 +1,18 @@
+=== RUN   TestShippingNotesDuplicateCopiesAndDateLabel
+=== RUN   TestShippingNotesDuplicateCopiesAndDateLabel/content_copy
+=== RUN   TestShippingNotesDuplicateCopiesAndDateLabel/known_materialized_copy
+--- PASS: TestShippingNotesDuplicateCopiesAndDateLabel (0.18s)
+    --- PASS: TestShippingNotesDuplicateCopiesAndDateLabel/content_copy (0.10s)
+    --- PASS: TestShippingNotesDuplicateCopiesAndDateLabel/known_materialized_copy (0.08s)
+=== RUN   TestShippingNotesDedupKeepsDifferentContentAndMissingFiles
+--- PASS: TestShippingNotesDedupKeepsDifferentContentAndMissingFiles (0.02s)
+=== RUN   TestShippingNotesFollowSourcePreserveEvidence
+=== RUN   TestShippingNotesFollowSourcePreserveEvidence/bound
+=== RUN   TestShippingNotesFollowSourcePreserveEvidence/legacy
+--- PASS: TestShippingNotesFollowSourcePreserveEvidence (0.23s)
+    --- PASS: TestShippingNotesFollowSourcePreserveEvidence/bound (0.11s)
+    --- PASS: TestShippingNotesFollowSourcePreserveEvidence/legacy (0.12s)
+=== RUN   TestShippingNotesLegacyDoesNotGuessAnotherCycle
+--- PASS: TestShippingNotesLegacyDoesNotGuessAnotherCycle (0.02s)
+PASS
+ok  	wanryotalk-reconstructed-server	0.709s

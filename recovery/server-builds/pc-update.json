@@ -1,8 +1,8 @@
 {
-  "version": "1.4.91",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.91.zip",
-  "sha256": "98a80c417ac57e850b4d161bd90394047528547b7a5628cf48a3624d13119f6e",
-  "exe_sha256": "bdb7cc63fed0ae7ce2217932ba2b55f9870dce2109b354bdf018137842e882f6",
-  "bytes": 36957089,
-  "notes": "출하 특이사항 수정 반영 · 검사자 표시 정리 · PC 재접속 인증 유지 · APK 1.0.11 유지"
+  "version": "1.4.92",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.92.zip",
+  "sha256": "9440b7f9ecb5d5f42183acd93a5d9324405d54593456fd6ad5d5c2a7c65b8e16",
+  "exe_sha256": "676e01f2484f520dc319b44a9aae5df22a698dcfe5f563547f7b35876600dfbe",
+  "bytes": 36961234,
+  "notes": "출하 특이사항 중복 사진 표시 수정 · 출하 기록만 출고일자로 표시 · APK 1.0.11 유지"
 }

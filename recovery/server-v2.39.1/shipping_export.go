@@ -75,7 +75,7 @@ func (a *App) newShippingExportLocked(owner, key, recordID string) (*shippingExp
 	list := []ShippingRecord{}
 	for _, r := range a.state.ShippingRecords {
 		if r.ArchivedAt != nil && (recordID == "" || r.ID == recordID) {
-			list = append(list, shippingCurrentNotes(&a.state, r))
+			list = append(list, a.shippingCurrentNotes(&a.state, r))
 		}
 	}
 	if len(list) == 0 {

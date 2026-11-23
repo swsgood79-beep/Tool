@@ -304,7 +304,7 @@ func (b *exportBook) detail(entry exportEntry, photos []exportPhoto) {
 		b.merge(sheet, fmt.Sprintf("A%d", row), fmt.Sprintf("B%d", row), "", b.Style.Label)
 		b.height(sheet, row, 19)
 	}
-	for cell, text := range map[string]string{"A4": "수주번호", "C4": r.Project.Number, "A5": "출고 예정", "A6": "검사 완료", "A7": "보관 완료", "A8": "고객사", "C8": exportPresent(r.ClientName)} {
+	for cell, text := range map[string]string{"A4": "수주번호", "C4": r.Project.Number, "A5": "출고일자", "A6": "검사 완료", "A7": "보관 완료", "A8": "고객사", "C8": exportPresent(r.ClientName)} {
 		b.str(sheet, cell, text)
 	}
 	if due, err := time.ParseInLocation("2006-01-02", r.Project.ShippingDueDate, kst); err == nil {

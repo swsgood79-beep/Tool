@@ -1,0 +1,5 @@
+=== RUN   TestShippingNotesPhotosBrowser
+Shipping notes duplicate/date browser checks passed 8
+--- PASS: TestShippingNotesPhotosBrowser (4.74s)
+PASS
+ok  	wanryotalk-reconstructed-server	5.049s
