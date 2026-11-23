@@ -62,7 +62,7 @@ func (a *App) requestInspection(id int64, kind, worker, submission, combined str
 		return nil
 	})
 }
-func (a *App) approve(id int64, kind string, request int64) error {
+func (a *App) approve(id int64, kind string, request int64, actors ...InspectionInspector) error {
 	var copied []Photo
 	err := a.transaction(func(s *State) error {
 		p := s.project(id)
@@ -99,12 +99,20 @@ func (a *App) approve(id int64, kind string, request int64) error {
 			}
 			st.Pending = false
 			st.Completed = &now
+			if len(actors) > 0 {
+				value := actors[0]
+				value.Source = "auto"
+				value.RecordedAt = now
+				st.Inspector = &value
+				s.InspectionAudits = append(s.InspectionAudits, InspectionAudit{ID: token(), Action: "auto", Targets: []InspectionAuditTarget{{Order: p.Number, Project: p.Name, Kind: k, Completed: &now}}, InspectorName: value.Name, ActorAccountID: value.AccountID, ActorUsername: value.Username, ActorName: value.Name, When: now, Keys: []string{inspectionKey(p.ID, k, st.EventID, &now)}})
+			}
 			for i := range s.Events {
 				e := &s.Events[i]
 				if e.ID == st.EventID {
 					e.Pending = false
 					e.Unread = false
 					e.Completed = &now
+					e.Inspector = st.Inspector
 					e.InspectionName = stageLabel(k)
 					e.Revision++
 				}

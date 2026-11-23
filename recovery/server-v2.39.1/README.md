@@ -1,25 +1,27 @@
-# 알파작업완료확인 · PC v1.4.89 / 앱 v1.0.11
+# 알파작업완료확인 · PC v1.4.90 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.89** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.89.zip) |
+| **회사 PC 프로그램 v1.4.90** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.90.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.89 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.89-App-v1.0.11.zip) |
+| **현재 전체 소스 · PC 1.4.90 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.90-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](CHANGELOG.md) |
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
 
-## 이번 업데이트 · PC 1.4.89
+## 이번 업데이트 · PC 1.4.90
 
-프로그램을 켜거나 PC 업데이트 후 재시작하면 **저장된 인터넷 연결 설정으로 자동 연결**합니다. 시작 시 인터넷이 준비되지 않거나 연결/주소 게시가 실패하면 약 5~60초 간격으로 다시 시도합니다. 진행 중인 연결을 중복 실행하지 않으며 2분 넘게 준비 상태에 머무르면 해당 시도를 종료하고 다시 준비합니다. 고정 QR의 GitHub 연결키가 없으면 설정 확인 안내를 표시합니다.
+관리자가 검사 완료를 누르면 **로그인 계정의 등록 이름·아이디와 완료 시각을 검사자 기록으로 자동 저장**합니다. 작업자는 검사자를 선택하지 않으며 기존 신청 방법을 유지합니다. 세팅/출하검사 검사자는 각각 저장하고 통합검사·세팅만 완료도 실제 처리 계정으로 기록합니다. 계정 이름을 나중에 바꿔도 이미 저장한 이름은 유지합니다.
 
-**인터넷 끊기**를 직접 누르면 이번 실행 중에는 재연결을 멈춥니다. 인터넷 연결 버튼을 다시 누르면 재개하고, 다음 프로그램 실행/업데이트 재시작에서는 다시 자동 연결합니다. 고정 QR·수주·저장 위치와 기존 연결키는 유지합니다. 새 PC 백업 복원 중에는 자동 연결을 잠시 보류하고 기존 터널 종료를 기다린 뒤 자료를 복원하며, 끝나면 복원된 설정을 사용합니다.
+대표 관리자 계정 `wssong`의 이름은 **전체 → 관리자 계정 관리 → 본인 행의 이름 수정**에서 바꿉니다. 아이디·비밀번호·기존 로그인 연결은 유지합니다. 먼저 실제 이름을 저장해 새 검사 기록에 사용하세요.
 
-PC v1.4.86 이상은 **PC 업데이트 확인 → v1.4.89 업데이트**로 받습니다. APK 1.0.11은 그대로 사용합니다. [자동 인터넷 연결 안내](INTERNET-AUTO.md). 기존 분할 백업·출하 기록·엑셀 기능을 유지합니다. 모의 연결 수명주기·실패/재시도·수동 중지·재실행·복원/격리 모드 보호·race·전체 검사와 Windows 빌드로 확인했으며 실제 회사 PC의 Cloudflare 연결은 이 환경에서 실행하지 않았습니다.
+기존 검사는 임의로 추정하지 않습니다. 대표 관리자만 계정 관리의 **기존 검사자 기록 보완**에서 실제 검사자 이름을 넣고 선택한 검사 또는 미기록 전체를 보완할 수 있습니다. 원래 완료 날짜·작업자·보관 날짜는 유지하며 **과거 기록 보완** 표시와 처리 계정/시각/대상을 남깁니다. 이미 검사자가 있는 항목은 덮어쓰지 않습니다. [검사자 기록 안내](INSPECTION-INSPECTORS.md).
+
+출하 기록 상세와 수주별/월별 출하 엑셀에 검사 완료 기록을 표시합니다. 기존 검사 엑셀의 원래 6개 열은 유지하고 별도 **검사자 기록** 시트를 추가합니다. PC v1.4.86 이상은 **PC 업데이트 확인 → v1.4.90 업데이트**로 받으며 APK 1.0.11은 그대로 사용합니다. 모의 계정·기존 기록·권한/CSRF·재시작/백업·엑셀 및 Chromium PC/휴대폰 밝게/어둡게로 확인했습니다. 회사 운영 자료를 보완하거나 실제 Windows/Android 기기를 실행한 것은 아닙니다.
 
 ## 1. 프로그램 구성과 실행 조건
 

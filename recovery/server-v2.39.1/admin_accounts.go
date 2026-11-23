@@ -102,6 +102,20 @@ func (a *App) issueAccountSession(w http.ResponseWriter, r *http.Request, u *Adm
 }
 func (a *App) manageAdminAccount(r *http.Request) error {
 	action := r.FormValue("action")
+	if action == "owner-name" {
+		name := strings.TrimSpace(r.FormValue("name"))
+		if !validText(name, 40) {
+			return errors.New("대표 관리자 이름을 40자 이내로 입력해 주세요")
+		}
+		return a.transaction(func(s *State) error {
+			if r.FormValue("owner_original") != s.OwnerName {
+				return errors.New("이름이 다른 화면에서 변경되었습니다. 새로고침 후 다시 저장하세요")
+			}
+			s.OwnerName = name
+			return nil
+		})
+	}
+
 	if action == "create" {
 		role := r.FormValue("role")
 		if role != "" && role != "admin" && role != "purchasing" {
@@ -244,6 +258,7 @@ func (a *App) accountHTTP(w http.ResponseWriter, r *http.Request, session Sessio
 	for _, u := range a.state.AdminAccounts {
 		rows = append(rows, AdminAccountView{u.ID, u.Username, u.Name, u.Role, u.Enabled, u.Revision})
 	}
+	v["OwnerName"], v["OwnerOriginal"] = ownerDisplayName(&a.state), a.state.OwnerName
 	v["Accounts"] = rows
 	v["AccountCount"] = len(rows) + 1
 	if u := adminAccount(&a.state, session.AccountID); u != nil {
@@ -277,6 +292,9 @@ func (a *App) accountMarkup(s, name string, value any) string {
 		return s
 	}
 	label, username, owner := ownerUsername, ownerUsername, true
+	if a.state.OwnerName != "" {
+		label = a.state.OwnerName
+	}
 	if u := adminAccount(&a.state, session.AccountID); u != nil {
 		label, username, owner = u.Name, u.Username, false
 	}

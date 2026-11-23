@@ -20,6 +20,7 @@ import (
 )
 
 type Stage struct {
+	Inspector            *InspectionInspector `json:",omitempty"`
 	Worker               string
 	Pending              bool
 	Requested, Completed *time.Time
@@ -58,6 +59,7 @@ type ClientNote struct {
 	Photos         []Photo
 }
 type Event struct {
+	Inspector                                                *InspectionInspector `json:",omitempty"`
 	Rejected                                                 bool
 	RejectedAt                                               *time.Time
 	ID, BatchID, ProjectID, Revision                         int64
@@ -66,6 +68,8 @@ type Event struct {
 	RequestedAt, Completed                                   *time.Time
 }
 type State struct {
+	OwnerName                 string                       `json:",omitempty"`
+	InspectionAudits          []InspectionAudit            `json:",omitempty"`
 	PurchasingCalls           []PurchasingCall             `json:",omitempty"`
 	PurchasingRecipient       string                       `json:",omitempty"`
 	NativeAdminLogins         []NativeAdminLogin           `json:",omitempty"`

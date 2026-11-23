@@ -1,8 +1,8 @@
 {
-  "version": "1.4.89",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.89.zip",
-  "sha256": "b6efe1f35f383de4128a67cb2639e4009ef6f4c87120ae95e17a9d57fe8d5c54",
-  "exe_sha256": "3db13426bf7cb83cb6018d55381c02b22d3f9bd87d225c7f8f591c270d29ab56",
-  "bytes": 36923206,
-  "notes": "실행·업데이트 재시작 시 인터넷 자동 연결 · 연결 실패 자동 재시도 · APK 1.0.11 유지"
+  "version": "1.4.90",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.90.zip",
+  "sha256": "d7d601c8434d0ebd8f60cfc20f215ea14d905ae686903d16742c1242eab7974f",
+  "exe_sha256": "dc189a47edae585cd23f14c908a09a7f9748f2ad94ac87b25c2e5dead340a432",
+  "bytes": 36949430,
+  "notes": "로그인 계정으로 검사자 자동 기록 · 과거 검사자 보완 · 대표 관리자 이름 수정 · APK 1.0.11 유지"
 }

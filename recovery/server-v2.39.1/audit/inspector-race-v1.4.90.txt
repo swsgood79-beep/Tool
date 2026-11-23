@@ -1,0 +1,13 @@
+=== RUN   TestInspectorBrowser
+    inspection_inspector_browser_test.go:14: optional inspector browser
+--- SKIP: TestInspectorBrowser (0.00s)
+=== RUN   TestInspectorAutoUsesSessionAndPreservesSnapshot
+--- PASS: TestInspectorAutoUsesSessionAndPreservesSnapshot (3.02s)
+=== RUN   TestInspectorBackfillBulkDatesPermissionsAndBackup
+--- PASS: TestInspectorBackfillBulkDatesPermissionsAndBackup (3.37s)
+=== RUN   TestInspectorOwnerNameDoesNotChangeCredentials
+--- PASS: TestInspectorOwnerNameDoesNotChangeCredentials (0.06s)
+=== RUN   TestInspectorCombinedAndManualNeverOverwritesAuto
+--- PASS: TestInspectorCombinedAndManualNeverOverwritesAuto (0.10s)
+PASS
+ok  	wanryotalk-reconstructed-server	10.366s

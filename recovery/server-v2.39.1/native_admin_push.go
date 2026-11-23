@@ -74,6 +74,9 @@ func nativeAccountValid(s *State, d NativeAdminDevice) bool {
 }
 func nativeAccountLabel(s *State, id string) string {
 	if id == "" {
+		if s.OwnerName != "" {
+			return s.OwnerName
+		}
 		return ownerUsername
 	}
 	if u := adminAccount(s, id); u != nil {

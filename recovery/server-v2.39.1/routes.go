@@ -107,6 +107,11 @@ func (a *App) adminGET(w http.ResponseWriter, r *http.Request, v map[string]any)
 			a.render(w, "project-edit.html", v)
 		case "inspection":
 			v["Review"] = pv
+			if project.Setting.Pending || project.Shipping.Pending {
+				if actor, err := inspectionActorByCSRF(&a.state, a.sessions, v["CSRF"].(string)); err == nil {
+					v["InspectorToRecord"] = actor.Name
+				}
+			}
 			a.render(w, "inspection-review.html", v)
 		case "info":
 			v["AdminInfo"] = true
@@ -253,7 +258,12 @@ func (a *App) adminPOST(w http.ResponseWriter, r *http.Request, session Session)
 			if r.FormValue("action") == "reject" {
 				err = a.rejectInspection(id, r.FormValue("inspection"), number(r.FormValue("request")))
 			} else if r.FormValue("action") == "" || r.FormValue("action") == "approve" {
-				err = a.approve(id, r.FormValue("inspection"), number(r.FormValue("request")))
+				actor, actorErr := inspectionActor(&a.state, session)
+				if actorErr != nil {
+					err = actorErr
+				} else {
+					err = a.approve(id, r.FormValue("inspection"), number(r.FormValue("request")), actor)
+				}
 			} else {
 				err = errors.New("검사 처리 구분 오류")
 			}

@@ -57,6 +57,14 @@ func esc(s string) string {
 	return b.String()
 }
 func workbook(s State) ([]byte, error) {
+	raw, err := workbookCore(s)
+	if err != nil {
+		return nil, err
+	}
+	return withInspectorWorkbook(raw, s)
+}
+
+func workbookCore(s State) ([]byte, error) {
 	if len(s.WorkbookBase) > 0 {
 		return mergedWorkbook(s)
 	}

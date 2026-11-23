@@ -333,6 +333,27 @@ func (b *exportBook) detail(entry exportEntry, photos []exportPhoto) {
 	}
 	b.height(sheet, 9, 5)
 	row := 10
+	b.detailSection(sheet, row, "검사 완료 기록")
+	row++
+	for _, slot := range []struct {
+		from, to, label string
+		stage           Stage
+	}{{"A", "F", "세팅검사", r.Project.Setting}, {"G", "L", "출하검사", r.Project.Shipping}} {
+		b.merge(sheet, fmt.Sprintf("%s%d", slot.from, row), fmt.Sprintf("%s%d", slot.to, row), slot.label, b.Style.Header)
+		text := "검사자  " + inspectionName(slot.stage.Inspector)
+		if slot.stage.Completed != nil {
+			text += "\n완료  " + slot.stage.Completed.In(kst).Format("2006.01.02 15:04")
+		}
+		b.merge(sheet, fmt.Sprintf("%s%d", slot.from, row+1), fmt.Sprintf("%s%d", slot.to, row+1), text, b.Style.Body)
+		source := inspectionSource(slot.stage.Inspector)
+		if slot.stage.Inspector != nil && slot.stage.Inspector.Source == "backfill" {
+			source += " · " + slot.stage.Inspector.RecordedAt.In(kst).Format("2006.01.02 15:04") + " · " + slot.stage.Inspector.RecordedByName
+		}
+		b.merge(sheet, fmt.Sprintf("%s%d", slot.from, row+2), fmt.Sprintf("%s%d", slot.to, row+2), source, b.Style.SmallCenter)
+	}
+	b.height(sheet, row+1, 42)
+	b.height(sheet, row+2, 30)
+	row += 4
 	material := strings.TrimSpace(r.Project.SuppliedMaterials)
 	heading := "사급품 현황 / 수령내역"
 	if material != "" {

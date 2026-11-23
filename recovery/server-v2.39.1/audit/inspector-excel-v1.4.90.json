@@ -1,0 +1,9 @@
+{
+  "renderer": "LibreOffice",
+  "xlsx_open": "pass",
+  "inspector_cells": "setting/shipping names, original completion date and distinct historical backfill source",
+  "fixture": "synthetic inspector names and white test images; not company records",
+  "existing_order_metadata_grid": "preserved",
+  "monthly_six_columns": "preserved; inspector ledger added as separate owned sheet",
+  "microsoft_excel_executed": false
+}

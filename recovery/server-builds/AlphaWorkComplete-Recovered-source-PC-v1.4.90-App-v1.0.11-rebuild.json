@@ -1,0 +1,12 @@
+{
+  "pc_version": "1.4.90",
+  "app_version": "1.0.11",
+  "source_zip": "AlphaWorkComplete-Recovered-source-PC-v1.4.90-App-v1.0.11.zip",
+  "source_zip_sha256": "77236e0fb8cf1aae4dd2b29981fdcd564dd2edee40ed2a6e334327f7ef36d201",
+  "published_pc_exe_sha256": "dc189a47edae585cd23f14c908a09a7f9748f2ad94ac87b25c2e5dead340a432",
+  "rebuilt_pc_exe_sha256": "dc189a47edae585cd23f14c908a09a7f9748f2ad94ac87b25c2e5dead340a432",
+  "identical_to_existing_pc_release": true,
+  "apk_sha256": "afc14ea37edde0d3e9f78731f1ff60bc9eb75736a8f92aacc890b61ff73162ee",
+  "full_source_checksums": "pass",
+  "windows_execution": "cross-build verification only"
+}

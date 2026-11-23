@@ -1,0 +1,29 @@
+{
+  "scope": "real local Go server and Chromium PC/mobile viewport with APK agent; synthetic records only; actual Windows/Android not executed",
+  "results": [
+    {
+      "mobile": false,
+      "theme": "light",
+      "result": "pass",
+      "case": "owner name edit; historical bulk fill; archived inspectors/source; colleague auto approval from session; no leave-site prompts"
+    },
+    {
+      "mobile": false,
+      "theme": "dark",
+      "result": "pass",
+      "case": "owner name edit; historical bulk fill; archived inspectors/source; colleague auto approval from session; no leave-site prompts"
+    },
+    {
+      "mobile": true,
+      "theme": "light",
+      "result": "pass",
+      "case": "owner name edit; historical bulk fill; archived inspectors/source; colleague auto approval from session; no leave-site prompts"
+    },
+    {
+      "mobile": true,
+      "theme": "dark",
+      "result": "pass",
+      "case": "owner name edit; historical bulk fill; archived inspectors/source; colleague auto approval from session; no leave-site prompts"
+    }
+  ]
+}
