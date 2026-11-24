@@ -1,0 +1,5 @@
+=== RUN   TestRetentionClientBrowser
+Retention/client browser checks passed 4
+--- PASS: TestRetentionClientBrowser (4.47s)
+PASS
+ok  	wanryotalk-reconstructed-server	4.824s

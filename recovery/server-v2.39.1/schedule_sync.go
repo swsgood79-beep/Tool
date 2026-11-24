@@ -212,6 +212,7 @@ func (a *App) syncSchedule(ctx context.Context, force bool) {
 	}
 	matched, changed, materialChanged := 0, 0, 0
 	e = a.transaction(func(s *State) error {
+		previousReceipts := s.MaterialReceipts
 		s.MaterialReceipts = nil
 		s.MaterialReceiptsUpdated = ""
 		s.MaterialReceiptsError = "납기표에 사급품 수령 내역 시트가 없습니다."
@@ -224,6 +225,16 @@ func (a *App) syncSchedule(ctx context.Context, force bool) {
 			for _, p := range s.Projects {
 				if rows := receipts[strings.TrimSpace(p.Number)]; len(rows) > 0 {
 					s.MaterialReceipts[strings.TrimSpace(p.Number)] = rows
+				}
+			}
+		}
+		for _, p := range s.Projects {
+			if _, present := dates[p.Number]; !present && !conflicts[p.Number] && p.Shipping.Completed == nil && !p.LegacyCompleted && (p.ShippingDueManaged || p.ScheduleMissing) {
+				if rows := previousReceipts[p.Number]; len(rows) > 0 {
+					if s.MaterialReceipts == nil {
+						s.MaterialReceipts = map[string][]MaterialReceipt{}
+					}
+					s.MaterialReceipts[p.Number] = append([]MaterialReceipt{}, rows...)
 				}
 			}
 		}
@@ -245,6 +256,19 @@ func (a *App) syncSchedule(ctx context.Context, force bool) {
 				continue
 			}
 			d, ok := dates[p.Number]
+			if !ok && (p.ShippingDueManaged || p.ScheduleMissing) && p.Shipping.Completed == nil && !p.LegacyCompleted {
+				if !p.ScheduleMissing {
+					p.ScheduleMissing = true
+					p.touch()
+					changed++
+				}
+				continue
+			}
+			if ok && p.ScheduleMissing {
+				p.ScheduleMissing = false
+				p.touch()
+				changed++
+			}
 			if ok {
 				matched++
 			}

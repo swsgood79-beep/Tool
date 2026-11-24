@@ -33,6 +33,7 @@ type Photo struct {
 	Size           int
 }
 type Project struct {
+	ScheduleMissing                                       bool `json:",omitempty"`
 	RejectedInspection                                    string
 	ID, Revision, InfoRevision, Generation                int64
 	Number, Name, ShippingDueDate                         string

@@ -1,0 +1,28 @@
+=== RUN   TestScheduleMissingOrderRemovesCalendarDateAndExplicitUnknownIsLinked
+--- PASS: TestScheduleMissingOrderRemovesCalendarDateAndExplicitUnknownIsLinked (0.09s)
+=== RUN   TestScheduleDownloadApplyAndConflicts
+--- PASS: TestScheduleDownloadApplyAndConflicts (0.05s)
+=== RUN   TestClientDeletePhotoIgnoresOldSourceCopies
+=== RUN   TestClientDeletePhotoIgnoresOldSourceCopies/2
+=== RUN   TestClientDeletePhotoIgnoresOldSourceCopies/3
+--- PASS: TestClientDeletePhotoIgnoresOldSourceCopies (0.14s)
+    --- PASS: TestClientDeletePhotoIgnoresOldSourceCopies/2 (0.07s)
+    --- PASS: TestClientDeletePhotoIgnoresOldSourceCopies/3 (0.07s)
+=== RUN   TestClientPhotoLimitErrorRendersEditForm
+--- PASS: TestClientPhotoLimitErrorRendersEditForm (0.04s)
+=== RUN   TestMissingSheetKeepsUnfinishedOrderAndRecovers
+--- PASS: TestMissingSheetKeepsUnfinishedOrderAndRecovers (0.09s)
+=== RUN   TestScheduleDirectDownloadBeforeAPI
+--- PASS: TestScheduleDirectDownloadBeforeAPI (0.03s)
+=== RUN   TestScheduleModernRedeemFallbackAndStorageRedirect
+--- PASS: TestScheduleModernRedeemFallbackAndStorageRedirect (0.02s)
+=== RUN   TestScheduleHTMLFallbackAndFailureKeepsDatesPrivate
+--- PASS: TestScheduleHTMLFallbackAndFailureKeepsDatesPrivate (0.03s)
+=== RUN   TestScheduleRejectsForeignRedirectAndRedeem
+--- PASS: TestScheduleRejectsForeignRedirectAndRedeem (0.03s)
+=== RUN   TestScheduleMaterialsNColumnMergedBlankAndRepeatedOrders
+--- PASS: TestScheduleMaterialsNColumnMergedBlankAndRepeatedOrders (0.01s)
+=== RUN   TestScheduleMaterialsSyncPersistsAndDoesNotOverwriteManualNotes
+--- PASS: TestScheduleMaterialsSyncPersistsAndDoesNotOverwriteManualNotes (0.10s)
+PASS
+ok  	wanryotalk-reconstructed-server	0.889s

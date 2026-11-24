@@ -305,6 +305,23 @@ func (a *App) adminPOST(w http.ResponseWriter, r *http.Request, session Session)
 		return false
 	}
 	if err != nil {
+		if path == "/client-notes" {
+			v := a.view(session.CSRF)
+			v["Error"] = err.Error()
+			if r.FormValue("action") == "save" {
+				for _, c := range a.state.ClientNotes {
+					if c.ID == r.FormValue("id") {
+						c.Name = r.FormValue("client_name")
+						c.Text = r.FormValue("client_text")
+						v["ClientNote"] = c
+						w.Header().Set("Content-Type", "text/html; charset=utf-8")
+						w.WriteHeader(409)
+						a.render(w, "client-note-edit.html", v)
+						return true
+					}
+				}
+			}
+		}
 		var duplicate *duplicateOrderError
 		if errors.As(err, &duplicate) {
 			w.Header().Set("Content-Type", "text/html; charset=utf-8")
@@ -529,6 +546,7 @@ func (a *App) saveClient(r *http.Request) error {
 			for j := range s.Projects {
 				p := &s.Projects[j]
 				if p.ClientID == id {
+					p.Photos = a.clientOrderOnlyPhotos(s, *p, c)
 					if action == "delete" {
 						p.SpecialInstructions = c.Text
 						p.Photos = append(append([]Photo{}, c.Photos...), p.Photos...)

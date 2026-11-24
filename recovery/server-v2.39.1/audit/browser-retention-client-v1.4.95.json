@@ -1,0 +1,28 @@
+{
+  "results": [
+    {
+      "mobile": false,
+      "theme": "light",
+      "result": "pass",
+      "case": "source photo deletion succeeds with old copies; retained missing-sheet warning"
+    },
+    {
+      "mobile": false,
+      "theme": "dark",
+      "result": "pass",
+      "case": "source photo deletion succeeds with old copies; retained missing-sheet warning"
+    },
+    {
+      "mobile": true,
+      "theme": "light",
+      "result": "pass",
+      "case": "source photo deletion succeeds with old copies; retained missing-sheet warning"
+    },
+    {
+      "mobile": true,
+      "theme": "dark",
+      "result": "pass",
+      "case": "source photo deletion succeeds with old copies; retained missing-sheet warning"
+    }
+  ]
+}
