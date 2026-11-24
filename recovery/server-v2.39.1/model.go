@@ -113,6 +113,8 @@ type Ticket struct {
 	Next    string
 }
 type App struct {
+	manualTransferMu           sync.Mutex
+	manualTransfers            map[string]*manualTransfer
 	internetAuto               *internetAutoState
 	backupPins                 map[string]int
 	shippingExports            map[string]*shippingExportJob
@@ -247,6 +249,7 @@ func newApp(dir string) (*App, error) {
 	if len(removedPhotos) > 0 {
 		a.pruneCommunityPhotos(removedPhotos)
 	}
+	a.cleanupManualStages()
 	a.initIntegration()
 	a.loadTTSConfig()
 	return a, nil

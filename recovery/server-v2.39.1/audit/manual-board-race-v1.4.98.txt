@@ -1,0 +1,8 @@
+=== RUN   TestManualChunkedRangeAndRollback
+--- PASS: TestManualChunkedRangeAndRollback (0.86s)
+=== RUN   TestManualUploadDownloadOwnershipBackup
+--- PASS: TestManualUploadDownloadOwnershipBackup (2.43s)
+=== RUN   TestToolAndManualAuthAndLinks
+--- PASS: TestToolAndManualAuthAndLinks (0.08s)
+PASS
+ok  	wanryotalk-reconstructed-server	8.608s

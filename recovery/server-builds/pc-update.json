@@ -1,8 +1,8 @@
 {
-  "version": "1.4.97",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.97.zip",
-  "sha256": "5ba0cacef14411a6ad51165baebe17b71858c5f81cfbaec18b6166095fa65987",
-  "exe_sha256": "723f3d5d3c8ab2fa99ebbed4ea3adbfcc6ae07780ac2f1a94d709812128c6bf4",
-  "bytes": 37005226,
-  "notes": "작업 도구 벨트텐션값 확인 · 토크 매뉴얼 일반 파일 게시판 · APK 1.0.11 유지"
+  "version": "1.4.98",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.98.zip",
+  "sha256": "53be2475c0e5652e07ed3139e0c52cf15a3b6e2e368bb85268de441da631116a",
+  "exe_sha256": "ca1dfed9d0b792882116f762cc254e30151c3c6603ab97f098798183ea529d2a",
+  "bytes": 37020302,
+  "notes": "매뉴얼 일반 게시판 화면 · 파일당 300MB 첨부 · 진행률·조각 전송 · APK 1.0.11 유지"
 }

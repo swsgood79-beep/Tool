@@ -1,0 +1,5 @@
+=== RUN   TestToolsManualsBrowser
+Tools/manual browser checks passed 8
+--- PASS: TestToolsManualsBrowser (16.48s)
+PASS
+ok  	wanryotalk-reconstructed-server	16.741s

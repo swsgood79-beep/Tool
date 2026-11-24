@@ -1,0 +1,5 @@
+=== RUN   TestManualOver200MBUploadDownload
+    manual_large_test.go:154: Real upload/download: 210763776 bytes, 51 encrypted chunks, SHA256 2adcc0e3e55c011024a21d10123aa30f91182621a685c93f95e9c71ad7ad42f5
+--- PASS: TestManualOver200MBUploadDownload (2.98s)
+PASS
+ok  	wanryotalk-reconstructed-server	3.543s

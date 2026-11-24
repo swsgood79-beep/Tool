@@ -1,0 +1,60 @@
+{
+  "results": [
+    {
+      "admin": false,
+      "mobile": false,
+      "theme": "light",
+      "result": "pass",
+      "case": "work-tool menu; original table; Hz/minmax/AT5; talk manual upload and exact file download"
+    },
+    {
+      "admin": true,
+      "mobile": false,
+      "theme": "light",
+      "result": "pass",
+      "case": "work-tool menu; original table; Hz/minmax/AT5; talk manual upload and exact file download"
+    },
+    {
+      "admin": false,
+      "mobile": false,
+      "theme": "dark",
+      "result": "pass",
+      "case": "work-tool menu; original table; Hz/minmax/AT5; talk manual upload and exact file download"
+    },
+    {
+      "admin": true,
+      "mobile": false,
+      "theme": "dark",
+      "result": "pass",
+      "case": "work-tool menu; original table; Hz/minmax/AT5; talk manual upload and exact file download"
+    },
+    {
+      "admin": false,
+      "mobile": true,
+      "theme": "light",
+      "result": "pass",
+      "case": "work-tool menu; original table; Hz/minmax/AT5; talk manual upload and exact file download"
+    },
+    {
+      "admin": true,
+      "mobile": true,
+      "theme": "light",
+      "result": "pass",
+      "case": "work-tool menu; original table; Hz/minmax/AT5; talk manual upload and exact file download"
+    },
+    {
+      "admin": false,
+      "mobile": true,
+      "theme": "dark",
+      "result": "pass",
+      "case": "work-tool menu; original table; Hz/minmax/AT5; talk manual upload and exact file download"
+    },
+    {
+      "admin": true,
+      "mobile": true,
+      "theme": "dark",
+      "result": "pass",
+      "case": "work-tool menu; original table; Hz/minmax/AT5; talk manual upload and exact file download"
+    }
+  ]
+}

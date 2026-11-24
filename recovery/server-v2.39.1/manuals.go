@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bytes"
 	"fmt"
 	"io"
 	"mime"
@@ -12,6 +11,8 @@ import (
 	"time"
 	"unicode/utf8"
 )
+
+const manualFileLimit int64 = 300 << 20
 
 type ManualPost struct {
 	ID, Title, Text, Author, Owner string
@@ -101,7 +102,7 @@ func (a *App) manualHTTP(w http.ResponseWriter, r *http.Request) bool {
 			http.NotFound(w, r)
 			return true
 		}
-		if f.Size < 1 || f.Size > 20<<20 || len(f.Parts) != len(f.Hashes) || len(f.Parts) != int((f.Size+shippingAttachmentChunk-1)/shippingAttachmentChunk) {
+		if f.Size < 1 || f.Size > manualFileLimit || len(f.Parts) != len(f.Hashes) || len(f.Parts) != int((f.Size+shippingAttachmentChunk-1)/shippingAttachmentChunk) {
 			a.mu.Unlock()
 			http.Error(w, "첨부 정보가 올바르지 않습니다.", 500)
 			return true
@@ -125,32 +126,53 @@ func (a *App) manualHTTP(w http.ResponseWriter, r *http.Request) bool {
 			}
 			a.pruneCommunityPhotos(f.Parts)
 		}()
-		var data bytes.Buffer
+		var size int64
 		for i, ph := range f.Parts {
+			if r.Context().Err() != nil {
+				return true
+			}
 			raw, e := shippingExportPhoto(dir, ph)
-			if e != nil || i >= len(f.Hashes) || digest(raw) != f.Hashes[i] {
+			want := min(int64(shippingAttachmentChunk), f.Size-int64(i)*shippingAttachmentChunk)
+			if e != nil || digest(raw) != f.Hashes[i] || int64(len(raw)) != want {
 				http.Error(w, "첨부 파일을 확인할 수 없습니다.", 500)
 				return true
 			}
-			if int64(data.Len()+len(raw)) > f.Size {
-				http.Error(w, "첨부 용량이 일치하지 않습니다.", 500)
-				return true
-			}
-			data.Write(raw)
+			size += int64(len(raw))
 		}
-		if int64(data.Len()) != f.Size {
+		if size != f.Size {
 			http.Error(w, "첨부 용량이 일치하지 않습니다.", 500)
 			return true
 		}
 		w.Header().Set("Content-Type", "application/octet-stream")
 		w.Header().Set("Content-Disposition", mime.FormatMediaType("attachment", map[string]string{"filename": f.Name}))
-		http.ServeContent(w, r, f.Name, f.CreatedAt, bytes.NewReader(data.Bytes()))
+		http.ServeContent(w, r, f.Name, f.CreatedAt, &manualFileReader{dir: dir, file: *f, index: -1})
 		return true
 	}
-	if r.Method == "GET" && len(tail) == 0 {
+	if r.Method == "GET" && len(tail) <= 1 {
 		v := map[string]any{"Base": base, "Talk": "/community/" + board, "WorkerURL": "/work/" + board, "Board": board, "CSRF": csrf, "CommunityAdmin": admin, "Author": author, "UploadKey": token(), "Owner": owner, "Saved": r.URL.Query().Get("saved") == "1"}
 		if admin {
 			v["Talk"] = "/community-admin"
+		}
+		v["Mode"] = "list"
+		if len(tail) == 1 {
+			if tail[0] == "new" {
+				v["Mode"] = "new"
+			} else {
+				var post *ManualPost
+				for _, item := range a.state.Manuals {
+					if item.ID == tail[0] {
+						copy := item
+						post = &copy
+					}
+				}
+				if post == nil {
+					a.mu.Unlock()
+					http.NotFound(w, r)
+					return true
+				}
+				v["Mode"], v["Post"] = "detail", post
+				v["Saved"] = r.URL.Query().Get("saved") == "1"
+			}
 		}
 		q := strings.TrimSpace(r.URL.Query().Get("q"))
 		v["Query"] = q
@@ -180,25 +202,6 @@ func (a *App) manualHTTP(w http.ResponseWriter, r *http.Request) bool {
 		a.mu.Unlock()
 		return true
 	}
-	a.mu.Unlock()
-	if r.Method != "POST" || len(tail) != 1 || (tail[0] != "save" && tail[0] != "delete") {
-		http.NotFound(w, r)
-		return true
-	}
-	r.Body = http.MaxBytesReader(w, r.Body, 104<<20)
-	var err error
-	if strings.HasPrefix(r.Header.Get("Content-Type"), "multipart/form-data") {
-		err = r.ParseMultipartForm(2 << 20)
-		if r.MultipartForm != nil {
-			defer r.MultipartForm.RemoveAll()
-		}
-	} else {
-		err = r.ParseForm()
-	}
-	if err != nil {
-		http.Error(w, "첨부는 한 파일 20MB, 글당 5개까지 가능합니다.", 400)
-		return true
-	}
 	valid := func() bool {
 		if epoch != a.epoch || board != a.state.Board {
 			return false
@@ -209,6 +212,31 @@ func (a *App) manualHTTP(w http.ResponseWriter, r *http.Request) bool {
 		}
 		return owner != "" && equal(r.FormValue("csrf"), a.state.Board) && communityIdentity(w, r, false) == owner
 	}
+	if len(tail) == 1 && strings.HasPrefix(tail[0], "upload-") {
+		a.mu.Unlock()
+		a.manualTransferHTTP(w, r, tail[0], owner, board, epoch, valid)
+		return true
+	}
+	a.mu.Unlock()
+	if r.Method != "POST" || len(tail) != 1 || (tail[0] != "save" && tail[0] != "delete") {
+		http.NotFound(w, r)
+		return true
+	}
+	r.Body = http.MaxBytesReader(w, r.Body, 1504<<20)
+	var err error
+	if strings.HasPrefix(r.Header.Get("Content-Type"), "multipart/form-data") {
+		err = r.ParseMultipartForm(2 << 20)
+		if r.MultipartForm != nil {
+			defer r.MultipartForm.RemoveAll()
+		}
+	} else {
+		err = r.ParseForm()
+	}
+	if err != nil {
+		http.Error(w, "첨부는 한 파일 300MB, 글당 5개까지 가능합니다.", 400)
+		return true
+	}
+
 	a.mu.Lock()
 	if !valid() {
 		a.mu.Unlock()
@@ -250,17 +278,25 @@ func (a *App) manualHTTP(w http.ResponseWriter, r *http.Request) bool {
 		author = strings.TrimSpace(r.FormValue("author"))
 	}
 	key := r.FormValue("upload_key")
-	if !validText(title, 120) || !validText(author, 40) || utf8.RuneCountInString(text) > 5000 || !validPhotoID.MatchString(key) || r.MultipartForm == nil || len(r.MultipartForm.File["files"]) < 1 || len(r.MultipartForm.File["files"]) > 5 {
+	if !validText(title, 120) || !validText(author, 40) || utf8.RuneCountInString(text) > 5000 || !validPhotoID.MatchString(key) {
 		http.Error(w, "제목·작성자·파일(1~5개)을 확인해 주세요.", 400)
 		return true
 	}
 	post := ManualPost{ID: key, Title: title, Text: text, Author: author, Owner: owner, CreatedAt: time.Now()}
+	if len(r.Form["file_id"]) > 0 {
+		a.finishManualTransfer(w, r, base, post, valid)
+		return true
+	}
+	if r.MultipartForm == nil || len(r.MultipartForm.File["files"]) < 1 || len(r.MultipartForm.File["files"]) > 5 {
+		http.Error(w, "파일은 1~5개 등록해 주세요.", 400)
+		return true
+	}
 	written := []Photo{}
 	err = func() error {
 		for _, fh := range r.MultipartForm.File["files"] {
 			name := cleanAttachmentName(fh.Filename)
-			if name == "" || utf8.RuneCountInString(name) > 180 || fh.Size < 1 || fh.Size > 20<<20 {
-				return fmt.Errorf("파일은 한 개당 20MB 이하로 올려 주세요.")
+			if name == "" || utf8.RuneCountInString(name) > 180 || fh.Size < 1 || fh.Size > manualFileLimit {
+				return fmt.Errorf("파일은 한 개당 300MB 이하로 올려 주세요.")
 			}
 			src, e := fh.Open()
 			if e != nil {
@@ -274,7 +310,7 @@ func (a *App) manualHTTP(w http.ResponseWriter, r *http.Request) bool {
 				if n > 0 {
 					b = b[:n]
 					size += int64(n)
-					if size > 20<<20 {
+					if size > manualFileLimit {
 						src.Close()
 						return fmt.Errorf("파일 용량 초과")
 					}
@@ -334,7 +370,7 @@ func (a *App) manualHTTP(w http.ResponseWriter, r *http.Request) bool {
 	if err != nil {
 		http.Error(w, err.Error(), 400)
 	} else {
-		http.Redirect(w, r, base+"?saved=1", 303)
+		http.Redirect(w, r, base+"/"+post.ID+"?saved=1", 303)
 	}
 	return true
 }

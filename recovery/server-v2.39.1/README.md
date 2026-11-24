@@ -1,19 +1,23 @@
-# 알파작업완료확인 · PC v1.4.97 / 앱 v1.0.11
+# 알파작업완료확인 · PC v1.4.98 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.97** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.97.zip) |
+| **회사 PC 프로그램 v1.4.98** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.98.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.97 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.97-App-v1.0.11.zip) |
+| **현재 전체 소스 · PC 1.4.98 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.98-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](CHANGELOG.md) |
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
 
-## 이번 업데이트 · PC 1.4.97
+## 이번 업데이트 · PC 1.4.98
+
+매뉴얼을 **목록 → 글 상세 → 글쓰기** 형태의 일반 게시판으로 바꿨습니다. 목록에서 제목·작성자·등록일·첨부 개수를 확인하고 글을 눌러 내용을 보거나 파일을 받습니다. 글쓰기 내용 칸은 전체 폭으로 표시합니다. 첨부 한도는 **파일당 300MB, 글당 5개**입니다. 작은 조각으로 업로드하고 진행률을 표시하며 같은 조각 재전송은 중복 저장하지 않습니다. 다운로드는 큰 파일 전체를 메모리에 모으지 않고 구간 다운로드를 지원합니다. 기존 매뉴얼/첨부/권한·암호화 백업은 유지하고 APK 1.0.11은 그대로 사용합니다. PC v1.4.98을 업데이트한 뒤 매뉴얼 화면을 새로고침하세요.
+
+## 이전 업데이트 · PC 1.4.97
 
 **전체 → 작업 도구 → 벨트텐션값 확인 프로그램**을 관리자·작업자 공용으로 추가했습니다. 첨부 HTML의 기준표·수식을 유지하고 CSP에 맞춰 CSS/JS를 분리했습니다. 단일 Hz·Polychain MIN/MAX와 AT5 계산 불가 표시를 원본대로 제공합니다. **토크 → 매뉴얼 게시판**에는 PDF·엑셀·한글·ZIP 같은 일반 파일을 제목·설명과 함께 등록/검색/다운로드할 수 있습니다. 파일은 한 개당 20MB, 글당 최대 5개이며 관리자와 작업자 모두 등록합니다. 작업자는 작성한 브라우저의 글을 삭제하고 관리자는 전체 글을 관리합니다. 파일은 회사 PC에서 암호화 저장하고 기존 암호화 백업을 사용할 때 함께 포함합니다. 전송 중에는 업무 잠금을 잡지 않습니다. PC v1.4.97로 업데이트하고 APK 1.0.11은 그대로 사용합니다.
 
