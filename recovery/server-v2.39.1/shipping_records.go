@@ -17,6 +17,8 @@ const shippingPhotoLimit = 30
 // An independent snapshot, captured in the approval transaction. The live schedule
 // remains a projection of the connected sheet and never owns archive records.
 type ShippingRecord struct {
+	DateRevision         int64                `json:",omitempty"`
+	DateEdits            []ShippingDateEdit   `json:",omitempty"`
 	WorkerRevision       int64                `json:",omitempty"`
 	WorkerEdits          []ShippingWorkerEdit `json:",omitempty"`
 	ClientSourceRevision int64                `json:",omitempty"`
@@ -255,6 +257,26 @@ func (a *App) shippingRecordsHTTP(w http.ResponseWriter, r *http.Request) bool {
 			return true
 		}
 		if len(rest) == 2 && r.Method == "POST" {
+			if rest[1] == "edit-date" {
+				if !admin {
+					http.Error(w, "출고일자 수정은 관리자만 할 수 있습니다.", 403)
+					return true
+				}
+				session, _ := a.session(r)
+				actor, err := inspectionActor(&a.state, session)
+				if err != nil {
+					http.Error(w, err.Error(), 403)
+					return true
+				}
+				err = a.saveShippingDate(record.ID, r.FormValue("date_revision"), r.FormValue("shipping_date"), actor)
+				if err == nil {
+					http.Redirect(w, r, base+"/"+record.ID+"?date_saved=1", 303)
+					return true
+				}
+				view["DateError"], view["EditShippingDate"] = err.Error(), r.FormValue("shipping_date")
+				w.Header().Set("Content-Type", "text/html; charset=utf-8")
+				w.WriteHeader(409)
+			}
 			if rest[1] == "edit-workers" {
 				if !admin {
 					http.Error(w, "작업자 이름 수정은 관리자만 할 수 있습니다.", 403)
@@ -340,10 +362,14 @@ func (a *App) shippingRecordsHTTP(w http.ResponseWriter, r *http.Request) bool {
 				return true
 			}
 		}
-		if view["WorkersError"] != nil {
+		if view["WorkersError"] != nil || view["DateError"] != nil {
 			rest = rest[:1]
 		}
-		if len(rest) == 1 && (r.Method == "GET" || view["WorkersError"] != nil) {
+		if len(rest) == 1 && (r.Method == "GET" || view["WorkersError"] != nil || view["DateError"] != nil) {
+			view["DateSaved"], view["DateRevision"] = r.URL.Query().Get("date_saved") == "1", shippingDateRevision(record)
+			if view["DateError"] == nil {
+				view["EditShippingDate"] = record.Project.ShippingDueDate
+			}
 			view["WorkersSaved"] = r.URL.Query().Get("workers_saved") == "1"
 			view["WorkersRevision"] = shippingWorkersRevision(record)
 			if view["WorkersError"] == nil {
@@ -396,7 +422,7 @@ func (a *App) shippingRecordMarkup(s, name string, value any) string {
 		s = strings.Replace(s, "</head>", `<meta name="shipping-records-board" content="`+board+`"><script defer src="/shipping-records-v1.4.76.js"></script></head>`, 1)
 	}
 	if name == "shipping-records.html" {
-		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/shipment-workers-v1.4.94.css"><link rel="stylesheet" href="/shipping-export-v1.4.83.css"><script defer src="/shipping-export-v1.4.84.js"></script><link rel="stylesheet" href="/shipment-attachments-v1.4.82.css"><script defer src="/fix-webm-duration-v1.0.6.js"></script><script defer src="/shipment-video-v1.4.82.js"></script><script defer src="/shipment-attachments-v1.4.82.js"></script><link rel="stylesheet" href="/shipment-photo-delete-v1.4.77.css"><script defer src="/shipment-photo-delete-v1.4.77.js"></script><link rel="stylesheet" href="/shipment-photo-viewer-v1.4.62.css"><script defer src="/shipment-photo-viewer-v1.4.62.js"></script></head>`, 1)
+		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/shipment-date-v1.4.96.css"><link rel="stylesheet" href="/shipment-workers-v1.4.94.css"><link rel="stylesheet" href="/shipping-export-v1.4.83.css"><script defer src="/shipping-export-v1.4.84.js"></script><link rel="stylesheet" href="/shipment-attachments-v1.4.82.css"><script defer src="/fix-webm-duration-v1.0.6.js"></script><script defer src="/shipment-video-v1.4.82.js"></script><script defer src="/shipment-attachments-v1.4.82.js"></script><link rel="stylesheet" href="/shipment-photo-delete-v1.4.77.css"><script defer src="/shipment-photo-delete-v1.4.77.js"></script><link rel="stylesheet" href="/shipment-photo-viewer-v1.4.62.css"><script defer src="/shipment-photo-viewer-v1.4.62.js"></script></head>`, 1)
 	}
 	if name == "shipping-records.html" || name == "work.html" || name == "admin.html" {
 		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/shipping-records-v1.4.52.css"><link rel="stylesheet" href="/shipment-colors-v1.4.87.css"></head>`, 1)

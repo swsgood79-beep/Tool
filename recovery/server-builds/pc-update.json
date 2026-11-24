@@ -1,8 +1,8 @@
 {
-  "version": "1.4.95",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.95.zip",
-  "sha256": "11c1298cae35409a4ae8c51ada8279e94d70e5b4eabba1f1bbd7f5d9b45df468",
-  "exe_sha256": "379703d5b9c5792ae66092f62dc63c7de9f1a2b77c99899d5fe38649a3b61521",
-  "bytes": 36976660,
-  "notes": "업체 사진 수 오판 수정 · 엑셀 제외 미완료 수주·납기 보존 · APK 1.0.11 유지"
+  "version": "1.4.96",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.96.zip",
+  "sha256": "b4e0478b5bb96c7505ebe36a944b365224168223e9f0ffc40a3faac385248a8c",
+  "exe_sha256": "7d463bcf6fdda40c4d74a5d1802b319a845010a4077168b61edf5c7f02ffa43d",
+  "bytes": 36979431,
+  "notes": "출하 기록 출고일자 입력·수정 추가 · 미정 날짜 직접 입력 · APK 1.0.11 유지"
 }

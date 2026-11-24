@@ -1,0 +1,5 @@
+=== RUN   TestShippingDateBrowser
+Shipping date browser checks passed 4
+--- PASS: TestShippingDateBrowser (4.89s)
+PASS
+ok  	wanryotalk-reconstructed-server	5.165s

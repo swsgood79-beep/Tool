@@ -1,0 +1,28 @@
+{
+  "results": [
+    {
+      "mobile": false,
+      "theme": "light",
+      "result": "pass",
+      "date": "2026-11-24"
+    },
+    {
+      "mobile": false,
+      "theme": "dark",
+      "result": "pass",
+      "date": "2026-11-25"
+    },
+    {
+      "mobile": true,
+      "theme": "light",
+      "result": "pass",
+      "date": "2026-11-26"
+    },
+    {
+      "mobile": true,
+      "theme": "dark",
+      "result": "pass",
+      "date": "2026-11-27"
+    }
+  ]
+}

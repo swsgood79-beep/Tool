@@ -1,0 +1,41 @@
+=== RUN   TestShippingCustomerBrowser
+    shipping_customer_browser_test.go:13: optional shipping customer browser
+--- SKIP: TestShippingCustomerBrowser (0.00s)
+=== RUN   TestShippingCustomerConventionEverySurface
+=== RUN   TestShippingCustomerConventionEverySurface/은일_12축
+=== RUN   TestShippingCustomerConventionEverySurface/쿼드메디슨_3축,_긴급건
+=== RUN   TestShippingCustomerConventionEverySurface/비엔에스_4축_(선진행,_예가)
+=== RUN   TestShippingCustomerConventionEverySurface/고객_사명_2_축
+=== RUN   TestShippingCustomerConventionEverySurface/축_정보_없는_수주
+--- PASS: TestShippingCustomerConventionEverySurface (0.84s)
+    --- PASS: TestShippingCustomerConventionEverySurface/은일_12축 (0.14s)
+    --- PASS: TestShippingCustomerConventionEverySurface/쿼드메디슨_3축,_긴급건 (0.12s)
+    --- PASS: TestShippingCustomerConventionEverySurface/비엔에스_4축_(선진행,_예가) (0.12s)
+    --- PASS: TestShippingCustomerConventionEverySurface/고객_사명_2_축 (0.11s)
+    --- PASS: TestShippingCustomerConventionEverySurface/축_정보_없는_수주 (0.13s)
+=== RUN   TestShippingCustomerSavedWithoutTemplateAndRestart
+--- PASS: TestShippingCustomerSavedWithoutTemplateAndRestart (0.19s)
+=== RUN   TestShippingCustomerExplicitSourceAndUnknown
+--- PASS: TestShippingCustomerExplicitSourceAndUnknown (0.19s)
+=== RUN   TestShippingDateBrowser
+    shipping_date_browser_test.go:13: optional browser
+--- SKIP: TestShippingDateBrowser (0.00s)
+=== RUN   TestShippingDatePendingArchiveAndPreservation
+=== RUN   TestShippingDatePendingArchiveAndPreservation/pending
+=== RUN   TestShippingDatePendingArchiveAndPreservation/archived
+--- PASS: TestShippingDatePendingArchiveAndPreservation (0.79s)
+    --- PASS: TestShippingDatePendingArchiveAndPreservation/pending (0.45s)
+    --- PASS: TestShippingDatePendingArchiveAndPreservation/archived (0.35s)
+=== RUN   TestShippingDateSecurityAndInvalid
+--- PASS: TestShippingDateSecurityAndInvalid (0.18s)
+=== RUN   TestShippingWorkersBrowser
+    shipping_workers_browser_test.go:13: optional shipping workers browser
+--- SKIP: TestShippingWorkersBrowser (0.00s)
+=== RUN   TestShippingWorkersCorrectionPreservesEvidenceAndExport
+--- PASS: TestShippingWorkersCorrectionPreservesEvidenceAndExport (0.39s)
+=== RUN   TestShippingWorkersPermissionsValidationStaleAndNoop
+--- PASS: TestShippingWorkersPermissionsValidationStaleAndNoop (4.50s)
+=== RUN   TestShippingWorkersPendingAndSaveFailureDoNotMutate
+--- PASS: TestShippingWorkersPendingAndSaveFailureDoNotMutate (0.24s)
+PASS
+ok  	wanryotalk-reconstructed-server	11.708s

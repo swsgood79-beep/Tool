@@ -1,0 +1,10 @@
+=== RUN   TestShippingDatePendingArchiveAndPreservation
+=== RUN   TestShippingDatePendingArchiveAndPreservation/pending
+=== RUN   TestShippingDatePendingArchiveAndPreservation/archived
+--- PASS: TestShippingDatePendingArchiveAndPreservation (0.26s)
+    --- PASS: TestShippingDatePendingArchiveAndPreservation/pending (0.15s)
+    --- PASS: TestShippingDatePendingArchiveAndPreservation/archived (0.10s)
+=== RUN   TestShippingDateSecurityAndInvalid
+--- PASS: TestShippingDateSecurityAndInvalid (0.08s)
+PASS
+ok  	wanryotalk-reconstructed-server	0.583s
