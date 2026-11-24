@@ -69,6 +69,9 @@ func (a *App) portable(s State) ([]byte, error) {
 			entries["photos/"+ph.ID] = nil
 		}
 	}
+	for _, ph := range manualParts(s) {
+		entries["photos/"+ph.ID] = nil
+	}
 	for _, post := range s.Community {
 		for _, ph := range post.Photos {
 			entries["photos/"+ph.ID] = nil
@@ -233,7 +236,11 @@ func decodePortable(encrypted []byte, key RecoveryKey) (PortableManifest, map[st
 			return m, nil, errors.New("백업 체크섬 불일치")
 		}
 	}
-	for _, record := range m.State.ShippingRecords {
+	records := append([]ShippingRecord{}, m.State.ShippingRecords...)
+	for _, post := range m.State.Manuals {
+		records = append(records, ShippingRecord{Attachments: post.Files})
+	}
+	for _, record := range records {
 		for _, file := range record.Attachments {
 			if file.Size < 1 || len(file.Parts) != len(file.Hashes) || len(file.Parts) != int((file.Size+shippingAttachmentChunk-1)/shippingAttachmentChunk) {
 				return m, nil, errors.New("첨부 백업 정보 오류")
@@ -346,7 +353,7 @@ func (a *App) maybeBackup(ctx context.Context) {
 	}
 }
 func (a *App) restorePortable(key RecoveryKey, encrypted []byte) error {
-	if len(a.state.PurchasingCalls) > 0 || len(a.state.AdminAccounts) > 0 || len(a.state.ShippingRecords) > 0 || len(a.state.Community) > 0 || len(a.state.Announcements) > 0 || len(a.state.Projects) > 0 || len(a.state.Events) > 0 || len(a.state.Designers) > 0 || len(a.state.ClientNotes) > 0 || a.state.Integration.Phone.Subscription != nil {
+	if len(a.state.Manuals) > 0 || len(a.state.PurchasingCalls) > 0 || len(a.state.AdminAccounts) > 0 || len(a.state.ShippingRecords) > 0 || len(a.state.Community) > 0 || len(a.state.Announcements) > 0 || len(a.state.Projects) > 0 || len(a.state.Events) > 0 || len(a.state.Designers) > 0 || len(a.state.ClientNotes) > 0 || a.state.Integration.Phone.Subscription != nil {
 		return errors.New("자료가 없는 새 복구 서버에서만 복원할 수 있습니다")
 	}
 	m, entries, e := decodePortable(encrypted, key)

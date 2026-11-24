@@ -38,6 +38,7 @@ func backupAssets(s State) []Photo {
 			}
 		}
 	}
+	add(manualParts(s))
 	for _, p := range s.Projects {
 		add(p.Photos)
 	}
@@ -278,7 +279,11 @@ func verifyPortableFile(ctx context.Context, path, dir string, key RecoveryKey) 
 			return out, errors.New("참조된 백업 사진/첨부 조각 누락")
 		}
 	}
-	for _, r := range m.State.ShippingRecords {
+	records := append([]ShippingRecord{}, m.State.ShippingRecords...)
+	for _, post := range m.State.Manuals {
+		records = append(records, ShippingRecord{Attachments: post.Files})
+	}
+	for _, r := range records {
 		for _, a := range r.Attachments {
 			if a.Size < 1 || a.Size > 1<<30 || len(a.Parts) != len(a.Hashes) || len(a.Parts) != int((a.Size+shippingAttachmentChunk-1)/shippingAttachmentChunk) {
 				return out, errors.New("첨부 백업 정보 오류")
@@ -321,7 +326,7 @@ func copyBackup(ctx context.Context, w io.Writer, r io.Reader, limit int64) (int
 	}
 }
 func backupEmpty(s State) bool {
-	return len(s.PurchasingCalls) == 0 && len(s.AdminAccounts) == 0 && len(s.ShippingRecords) == 0 && len(s.Community) == 0 && len(s.Announcements) == 0 && len(s.Projects) == 0 && len(s.Events) == 0 && len(s.Designers) == 0 && len(s.ClientNotes) == 0 && len(s.NativeAdminLogins) == 0 && (s.NativeAdminPush == nil || len(s.NativeAdminPush.Devices) == 0) && s.Integration.Phone.Subscription == nil
+	return len(s.Manuals) == 0 && len(s.PurchasingCalls) == 0 && len(s.AdminAccounts) == 0 && len(s.ShippingRecords) == 0 && len(s.Community) == 0 && len(s.Announcements) == 0 && len(s.Projects) == 0 && len(s.Events) == 0 && len(s.Designers) == 0 && len(s.ClientNotes) == 0 && len(s.NativeAdminLogins) == 0 && (s.NativeAdminPush == nil || len(s.NativeAdminPush.Devices) == 0) && s.Integration.Phone.Subscription == nil
 }
 func (a *App) applyVerifiedPortable(v verifiedPortable) error {
 	if !backupEmpty(a.state) {

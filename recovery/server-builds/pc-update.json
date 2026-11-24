@@ -1,8 +1,8 @@
 {
-  "version": "1.4.96",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.96.zip",
-  "sha256": "b4e0478b5bb96c7505ebe36a944b365224168223e9f0ffc40a3faac385248a8c",
-  "exe_sha256": "7d463bcf6fdda40c4d74a5d1802b319a845010a4077168b61edf5c7f02ffa43d",
-  "bytes": 36979431,
-  "notes": "출하 기록 출고일자 입력·수정 추가 · 미정 날짜 직접 입력 · APK 1.0.11 유지"
+  "version": "1.4.97",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.97.zip",
+  "sha256": "5ba0cacef14411a6ad51165baebe17b71858c5f81cfbaec18b6166095fa65987",
+  "exe_sha256": "723f3d5d3c8ab2fa99ebbed4ea3adbfcc6ae07780ac2f1a94d709812128c6bf4",
+  "bytes": 37005226,
+  "notes": "작업 도구 벨트텐션값 확인 · 토크 매뉴얼 일반 파일 게시판 · APK 1.0.11 유지"
 }

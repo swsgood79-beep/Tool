@@ -69,6 +69,7 @@ type Event struct {
 	RequestedAt, Completed                                   *time.Time
 }
 type State struct {
+	Manuals                   []ManualPost                 `json:",omitempty"`
 	OwnerName                 string                       `json:",omitempty"`
 	InspectionAudits          []InspectionAudit            `json:",omitempty"`
 	PurchasingCalls           []PurchasingCall             `json:",omitempty"`

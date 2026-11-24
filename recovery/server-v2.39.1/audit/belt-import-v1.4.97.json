@@ -1,0 +1,5 @@
+{
+  "original_sha256": "6700ed47f81061b5befdd314cf219a15b6661e7a8c2e33fe75f7b329221a31cf",
+  "original_bytes": 14030,
+  "formula_and_data": "unchanged; scripts/styles separated for CSP; inline click bound with event listener"
+}

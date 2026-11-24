@@ -12,7 +12,7 @@ func nativeAdminAgent(r *http.Request) bool {
 	return strings.Contains(r.UserAgent(), "AlphaAdminAndroid/")
 }
 func nativeAdminWorkerPath(path string) bool {
-	for _, p := range []string{"/work/", "/community/", "/notices/", "/client-directory/", "/shipping-records/", "/project-info/"} {
+	for _, p := range []string{"/work/", "/community/", "/notices/", "/client-directory/", "/shipping-records/", "/project-info/", "/belt-tension/", "/manuals/"} {
 		if strings.HasPrefix(path, p) {
 			return true
 		}

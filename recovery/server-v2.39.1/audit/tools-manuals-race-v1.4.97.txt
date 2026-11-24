@@ -1,0 +1,6 @@
+=== RUN   TestManualUploadDownloadOwnershipBackup
+--- PASS: TestManualUploadDownloadOwnershipBackup (2.21s)
+=== RUN   TestToolAndManualAuthAndLinks
+--- PASS: TestToolAndManualAuthAndLinks (0.06s)
+PASS
+ok  	wanryotalk-reconstructed-server	7.922s

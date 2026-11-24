@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>UNITTA 벨트 장력 계산기</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a1d23; --muted:#6b7280;
+  --line:#e5e7eb; --accent:#c8102e; --accent-soft:#fdecee;
+  --input-bg:#fafafa;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121316; --card:#1b1d22; --text:#eef0f2; --muted:#9aa1ab;
+    --line:#2c2f36; --accent:#ff5a6e; --accent-soft:#2a1418; --input-bg:#101114;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121316; --card:#1b1d22; --text:#eef0f2; --muted:#9aa1ab;
+  --line:#2c2f36; --accent:#ff5a6e; --accent-soft:#2a1418; --input-bg:#101114;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Pretendard","Apple SD Gothic Neo",Roboto,sans-serif;
+  padding:24px 16px 48px;
+}
+.wrap{max-width:640px;margin:0 auto}
+h1{font-size:1.25rem;margin:0 0 4px}
+.sub{color:var(--muted);font-size:.83rem;margin:0 0 20px;line-height:1.55}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:18px;margin-bottom:14px;
+}
+.card h2{font-size:.95rem;margin:0 0 14px;color:var(--text)}
+label{display:block;font-size:.82rem;color:var(--muted);margin:12px 0 6px}
+label:first-of-type{margin-top:0}
+select,input[type=number]{
+  width:100%;padding:10px 12px;border-radius:9px;border:1px solid var(--line);
+  background:var(--input-bg);color:var(--text);font-size:1rem;
+}
+select:focus,input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.hint{font-size:.75rem;color:var(--muted);margin-top:5px}
+.mass-preview{
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;
+  background:var(--accent-soft);border-radius:9px;padding:10px 12px;margin-top:12px;
+  font-size:.85rem;
+}
+.mass-preview b{color:var(--accent)}
+.tension-preview{
+  background:var(--input-bg);border:1px dashed var(--line);border-radius:9px;
+  padding:10px 12px;margin-top:10px;font-size:.85rem;display:flex;justify-content:space-between;
+}
+.tension-preview b{color:var(--text);font-size:1rem}
+button{
+  width:100%;padding:14px;border:none;border-radius:10px;background:var(--accent);
+  color:#fff;font-size:1rem;font-weight:600;cursor:pointer;margin-top:16px;
+}
+button:disabled{opacity:.5;cursor:not-allowed}
+button:active:not(:disabled){opacity:.85}
+.result{text-align:center;padding:22px 10px 18px}
+.result .num{font-size:2.2rem;font-weight:700;color:var(--accent);letter-spacing:-1px}
+.result .unit{font-size:1rem;color:var(--muted);margin-left:4px}
+.result .label{font-size:.8rem;color:var(--muted);margin-bottom:4px}
+.breakdown{
+  border-top:1px solid var(--line);margin-top:14px;padding-top:12px;
+  font-size:.78rem;color:var(--muted);line-height:1.9;text-align:left;
+}
+.breakdown code{background:var(--input-bg);padding:1px 6px;border-radius:5px;color:var(--text)}
+.note{font-size:.74rem;color:var(--muted);line-height:1.65;margin-top:18px;border-top:1px solid var(--line);padding-top:14px}
+.tag{display:inline-block;font-size:.68rem;background:var(--input-bg);border:1px solid var(--line);border-radius:6px;padding:2px 7px;color:var(--muted);margin-right:5px}
+.warn{color:var(--accent);font-weight:600}
+footer{text-align:center;color:var(--muted);font-size:.72rem;margin-top:22px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>UNITTA 벨트 장력 계산기</h1>
+  <p class="sub">GATES UNITTA ASIA · U-508 Operation Manual의 <b>Unit mass table</b>과 <b>Standard installation tension table</b>을 그대로 적용합니다.<br>
+  벨트 종류와 폭을 고르면 해당하는 기준(표준) 설치장력이 자동으로 조회되고, 스팬 길이만 입력하면 U-508에서 확인해야 할 기준 주파수(Hz)가 계산됩니다.</p>
+
+  <div class="card">
+    <h2>① 벨트 스펙</h2>
+    <label>벨트 대분류</label>
+    <select id="category"></select>
+
+    <label>벨트 종류</label>
+    <select id="beltType"></select>
+
+    <label>폭 (mm)</label>
+    <select id="width"></select>
+
+    <div class="mass-preview">
+      <span>단위중량 M</span><b id="massValue">-</b>
+    </div>
+    <div class="tension-preview">
+      <span>기준(표준) 설치장력 To</span><b id="tensionValue">-</b>
+    </div>
+    <div class="hint" id="dataHint"></div>
+  </div>
+
+  <div class="card">
+    <h2>② 측정 조건</h2>
+    <label>스팬 길이 S (mm)</label>
+    <input type="number" id="span" placeholder="예: 350">
+    <div class="hint">풀리 접점 사이 거리</div>
+    <button id="calcBtn" onclick="calc()">기준 주파수 계산</button>
+  </div>
+
+  <div class="card result" id="resultCard" style="display:none">
+    <div class="label">기준 주파수 f</div>
+    <div><span class="num" id="tensionOut">-</span><span class="unit">Hz</span></div>
+    <div class="breakdown" id="breakdown"></div>
+  </div>
+
+  <div class="note">
+    <span class="tag">공식</span> To = 4 × M × W × S² × f² × 10⁻⁹  →  f = √( To ÷ (4×M×W×S²×10⁻⁹) )<br><br>
+    <span class="tag">참고</span> M: 단위중량(g/mm폭×m길이) · W: 벨트 폭(mm, 표의 폭과 동일 값 사용) · S: 스팬(mm) · To: 매뉴얼 기준 설치장력(N) · f: 그에 해당하는 특성진동수(Hz)<br><br>
+    ※ 이 데이터는 U-508 매뉴얼에 표기된 GUA(Gates Unitta Asia) 표준 설치장력입니다. BANDO 등 타 제조사 벨트에 적용할 때는 해당 제조사의 설치장력 기준과 일치하는지 별도 확인해야 합니다.<br><br>
+    ※ Polychain GT Carbon 벨트는 MIN/MAX 두 기준값이 있어 주파수도 범위로 표시됩니다.<br>
+    ※ AT5는 매뉴얼에 단위중량이 기재되어 있지 않아 기준장력(N)만 표시되고 Hz 계산은 지원되지 않습니다.
+  </div>
+
+  <footer>Data: GATES UNITTA ASIA U-508 Operation Manual (Table 1/2/3, Table 10)</footer>
+</div>
+
+<script>
+// ---- Standard installation tension table (Table 10) + Unit mass (Table 1/2) ----
+const DATA = {
+  timing: {
+    label: "타이밍 벨트 (MXL~XXH)",
+    mode: "single",
+    belts: {
+      "MXL": {M:1.2, row:{3.2:2.9,4.8:5.1,6.4:7.6,7.9:10.3,9.5:11.8,12.7:16.4}},
+      "XL":  {M:2.1, row:{6.4:13.7,7.9:19.6,9.5:24.5,12.7:34.5,19.1:55.0,25.4:75.1}},
+      "L":   {M:3.1, row:{12.7:52.0,19.1:87.3,25.4:123.0,38.1:198.8,50.8:271.6}},
+      "H":   {M:3.8, row:{19.1:222,25.4:312,38.1:486,50.8:668,76.2:1050,101.6:1030}},
+      "XH":  {M:11.1, row:{50.8:909,76.2:1430,101.6:2020}},
+      "XXH": {M:14.8, row:{50.8:1120,76.2:1750,101.6:2480,127.0:3190}}
+    }
+  },
+  gthtd: {
+    label: "GT & HTD 벨트",
+    mode: "single",
+    belts: {
+      "1.5GT": {M:0.9, row:{1.5:2.3,2.0:3.4,2.5:4.4,3.0:5.6,4.0:7.8,6.0:12.6,9.0:19.6}},
+      "2GT":   {M:1.3, row:{2.0:4.3,2.5:5.2,3.0:6.4,4.0:9.4,6.0:15.8,9.0:25.2,12:34.6,15:44.1}},
+      "3GT":   {M:2.5, row:{4.0:20,6.0:29,9.0:44,12:59,15:74,20:98}},
+      "3M":    {M:2.4, row:{4.0:20,6.0:29,9.0:44,12:59,15:74,20:98}},
+      "5GT":   {M:4.0, row:{9.0:55,12:75.9,15:96,20:137,25:178,30:220,40:302}},
+      "5M":    {M:3.8, row:{9.0:55,12:75.9,15:96,20:137,25:178,30:220,40:302}},
+      "EV5GT": {M:4.0, row:{9.0:71,12:98,15:125,20:178,25:232,30:286,40:393}},
+      "8YU":   {M:5.2, row:{20:235,25:294,30:343,40:500,50:637,55:701,60:765,70:892,85:1100}},
+      "8M":    {M:6.1, row:{20:235,25:294,30:343,40:500,50:637,55:701,60:765,70:892,85:1100}},
+      "EV8YU": {M:5.1, row:{15:210,20:285,25:350,30:410,40:600,50:760,55:836.7,60:920,70:1100,85:1300}},
+      "14M":   {M:10.0, row:{30:441,40:618,50:775,55:902,60:1000,70:1190,85:1470,100:1790,115:2090}},
+      "EV14M": {M:8.7, row:{30:560,40:740,50:963.5,55:1100,60:1200,70:1400,85:1800,100:2100,115:2500,130:2900,150:3400,170:3800}}
+    }
+  },
+  polychain: {
+    label: "Polychain GT Carbon 벨트",
+    mode: "minmax",
+    belts: {
+      "8MGT":  {M:4.7, row:{12:{min:190,max:260},15:{min:240,max:330},20:{min:320,max:430},21:{min:340,max:460},25:{min:400,max:540},30:{min:480,max:650},36:{min:580,max:780},40:{min:640,max:870},50:{min:800,max:1080},60:{min:970,max:1300},62:{min:1000,max:1340},70:{min:1130,max:1520},80:{min:1290,max:1730}}},
+      "14MGT": {M:8.0, row:{20:{min:820,max:1100},30:{min:1230,max:1670},37:{min:1520,max:2050},40:{min:1640,max:2220},50:{min:2050,max:2780},60:{min:2460,max:3330},68:{min:2790,max:3770},70:{min:2870,max:3890},80:{min:3280,max:4440},90:{min:3690,max:5000},100:{min:4100,max:5550},115:{min:4720,max:6380},125:{min:5130,max:6940},130:{min:5330,max:7220}}}
+    }
+  },
+  mectrol: {
+    label: "Mectrol 벨트 (장척 우레탄)",
+    mode: "single",
+    belts: {
+      "T5 (아라미드/Kevlar)":  {M:2.0, row:{10:20,15:29,20:39,25:49,30:59,50:98,100:196}},
+      "T5 (스틸심선/Steel)":   {M:2.2, row:{10:20,15:29,20:39,25:49,30:59,50:98,100:196}},
+      "T10 (아라미드/Kevlar)": {M:3.6, row:{15:129,20:173,25:216,30:259,50:431,100:863}},
+      "T10 (스틸심선/Steel)":  {M:4.3, row:{15:129,20:173,25:216,30:259,50:431,100:863}},
+      "AT5 (단위중량 미기재)":  {M:null, row:{10:60,15:99,20:137,25:178,30:220,50:376,100:773}},
+      "AT10": {M:5.6, row:{15:183,20:235,25:294,30:343,50:637,100:1301}},
+      "AT20": {M:9.9, row:{50:775,100:1792}},
+      "5M":   {M:4.1, row:{10:60,20:137,30:220,50:376}},
+      "8M":   {M:5.9, row:{20:235,30:343,50:637,100:1301}},
+      "14M":  {M:10.7, row:{40:618,55:902,85:1470,100:1792}},
+      "8YU":  {M:5.2, row:{20:235,25:294,30:343,50:637,60:637,80:1020,100:1275}},
+      "XL (아라미드/Kevlar)": {M:1.9, row:{12.7:114,19.1:172,25.4:229,50.8:457,101.6:914}},
+      "XL (스틸심선/Steel)":  {M:2.1, row:{12.7:114,19.1:172,25.4:229,50.8:457,101.6:914}},
+      "L (아라미드/Kevlar)":  {M:3.0, row:{12.7:165,19.1:248,25.4:330,50.8:660,101.6:1321}},
+      "L (스틸심선/Steel)":   {M:3.5, row:{12.7:165,19.1:248,25.4:330,50.8:660,101.6:1321}},
+      "H (아라미드/Kevlar)":  {M:3.2, row:{19.1:296,25.4:394,50.8:787,101.6:1575}},
+      "H (스틸심선/Steel)":   {M:3.9, row:{19.1:296,25.4:394,50.8:787,101.6:1575}}
+    }
+  }
+};
+
+const catSel = document.getElementById('category');
+const typeSel = document.getElementById('beltType');
+const widthSel = document.getElementById('width');
+const massValue = document.getElementById('massValue');
+const tensionValue = document.getElementById('tensionValue');
+const dataHint = document.getElementById('dataHint');
+const calcBtn = document.getElementById('calcBtn');
+
+Object.keys(DATA).forEach(k=>{
+  const o=document.createElement('option'); o.value=k; o.textContent=DATA[k].label; catSel.appendChild(o);
+});
+
+function fillTypes(){
+  const cat = DATA[catSel.value];
+  typeSel.innerHTML='';
+  Object.keys(cat.belts).forEach(k=>{
+    const o=document.createElement('option'); o.value=k; o.textContent=k; typeSel.appendChild(o);
+  });
+  fillWidths();
+}
+
+function fillWidths(){
+  const cat = DATA[catSel.value];
+  const belt = cat.belts[typeSel.value];
+  widthSel.innerHTML='';
+  Object.keys(belt.row).forEach(w=>{
+    const o=document.createElement('option'); o.value=w; o.textContent=w+' mm'; widthSel.appendChild(o);
+  });
+  updatePreview();
+}
+
+function updatePreview(){
+  const cat = DATA[catSel.value];
+  const belt = cat.belts[typeSel.value];
+  const w = widthSel.value;
+  const entry = belt.row[w];
+
+  massValue.textContent = (belt.M===null? '미기재' : belt.M + ' g/mm×m');
+
+  if(cat.mode==='minmax'){
+    tensionValue.innerHTML = `MIN <b>${entry.min}</b> N &nbsp;~&nbsp; MAX <b>${entry.max}</b> N`;
+  } else {
+    tensionValue.innerHTML = `<b>${entry}</b> N`;
+  }
+
+  if(belt.M===null){
+    dataHint.innerHTML = '<span class="warn">이 벨트는 매뉴얼에 단위중량이 기재되어 있지 않아 Hz 계산이 불가합니다. 기준장력(N) 참고용으로만 표시됩니다.</span>';
+    calcBtn.disabled = true;
+  } else {
+    dataHint.textContent = '표에 없는 폭은 지원되지 않습니다(매뉴얼 기재값만 선택 가능).';
+    calcBtn.disabled = false;
+  }
+  document.getElementById('resultCard').style.display='none';
+}
+
+catSel.addEventListener('change', fillTypes);
+typeSel.addEventListener('change', fillWidths);
+widthSel.addEventListener('change', updatePreview);
+fillTypes();
+
+function calc(){
+  const cat = DATA[catSel.value];
+  const belt = cat.belts[typeSel.value];
+  const w = widthSel.value;
+  const W = parseFloat(w);
+  const M = belt.M;
+  const S = parseFloat(document.getElementById('span').value);
+
+  if(M===null){ alert('이 벨트는 단위중량이 없어 계산할 수 없습니다.'); return; }
+  if(isNaN(S)||S<=0){ alert('스팬 길이를 올바르게 입력해 주세요.'); return; }
+
+  const denom = 4 * M * W * S*S * 1e-9;
+  const entry = belt.row[w];
+
+  function freqOf(To){ return Math.sqrt(To/denom); }
+  function fmt(v){ return v>=100? v.toFixed(1) : v.toFixed(2); }
+
+  const resultCard = document.getElementById('resultCard');
+  const out = document.getElementById('tensionOut');
+  const bd = document.getElementById('breakdown');
+
+  if(cat.mode==='minmax'){
+    const fMin = freqOf(entry.min), fMax = freqOf(entry.max);
+    out.innerHTML = `${fmt(fMin)} ~ ${fmt(fMax)}`;
+    bd.innerHTML =
+      `M = <code>${M} g/mm×m</code> · W = <code>${W} mm</code> · S = <code>${S} mm</code><br>` +
+      `To(MIN) = <code>${entry.min} N</code> → f(MIN) = <b>${fmt(fMin)} Hz</b><br>` +
+      `To(MAX) = <code>${entry.max} N</code> → f(MAX) = <b>${fmt(fMax)} Hz</b>`;
+  } else {
+    const f = freqOf(entry);
+    out.textContent = fmt(f);
+    bd.innerHTML =
+      `M = <code>${M} g/mm×m</code> · W = <code>${W} mm</code> · S = <code>${S} mm</code> · To = <code>${entry} N</code><br>` +
+      `f = √( To ÷ (4×M×W×S²×10⁻⁹) ) = <b>${fmt(f)} Hz</b>`;
+  }
+  resultCard.style.display='block';
+  resultCard.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+</script>
+</body>
+</html>

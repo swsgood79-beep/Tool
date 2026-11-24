@@ -421,6 +421,9 @@ func (a *App) pruneCommunityPhotos(candidates []Photo) {
 			used[p.ID] = true
 		}
 	}
+	for _, ph := range manualParts(a.state) {
+		used[ph.ID] = true
+	}
 	for _, record := range a.state.ShippingRecords {
 		for _, p := range shippingStoredAssets(record) {
 			used[p.ID] = true

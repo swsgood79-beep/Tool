@@ -1,0 +1,52 @@
+{{define "belt-tension.html"}}<!doctype html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>벨트텐션값 확인 프로그램 · 알파</title><link rel="stylesheet" href="/belt-tension-v1.4.97.css"><script defer src="/belt-tension-v1.4.97.js"></script></head><body><a class="belt-back" href="{{.Back}}">‹ 전체 메뉴로</a>
+<main class="wrap">
+  <h1>벨트텐션값 확인 프로그램</h1>
+  <p class="sub">GATES UNITTA ASIA · U-508 Operation Manual의 <b>Unit mass table</b>과 <b>Standard installation tension table</b>을 그대로 적용합니다.<br>
+  벨트 종류와 폭을 고르면 해당하는 기준(표준) 설치장력이 자동으로 조회되고, 스팬 길이만 입력하면 U-508에서 확인해야 할 기준 주파수(Hz)가 계산됩니다.</p>
+
+  <div class="card">
+    <h2>① 벨트 스펙</h2>
+    <label>벨트 대분류</label>
+    <select id="category"></select>
+
+    <label>벨트 종류</label>
+    <select id="beltType"></select>
+
+    <label>폭 (mm)</label>
+    <select id="width"></select>
+
+    <div class="mass-preview">
+      <span>단위중량 M</span><b id="massValue">-</b>
+    </div>
+    <div class="tension-preview">
+      <span>기준(표준) 설치장력 To</span><b id="tensionValue">-</b>
+    </div>
+    <div class="hint" id="dataHint"></div>
+  </div>
+
+  <div class="card">
+    <h2>② 측정 조건</h2>
+    <label>스팬 길이 S (mm)</label>
+    <input type="number" id="span" placeholder="예: 350">
+    <div class="hint">풀리 접점 사이 거리</div>
+    <button id="calcBtn" >기준 주파수 계산</button>
+  </div>
+
+  <div class="card result" id="resultCard" style="display:none">
+    <div class="label">기준 주파수 f</div>
+    <div><span class="num" id="tensionOut">-</span><span class="unit">Hz</span></div>
+    <div class="breakdown" id="breakdown"></div>
+  </div>
+
+  <div class="note">
+    <span class="tag">공식</span> To = 4 × M × W × S² × f² × 10⁻⁹  →  f = √( To ÷ (4×M×W×S²×10⁻⁹) )<br><br>
+    <span class="tag">참고</span> M: 단위중량(g/mm폭×m길이) · W: 벨트 폭(mm, 표의 폭과 동일 값 사용) · S: 스팬(mm) · To: 매뉴얼 기준 설치장력(N) · f: 그에 해당하는 특성진동수(Hz)<br><br>
+    ※ 이 데이터는 U-508 매뉴얼에 표기된 GUA(Gates Unitta Asia) 표준 설치장력입니다. BANDO 등 타 제조사 벨트에 적용할 때는 해당 제조사의 설치장력 기준과 일치하는지 별도 확인해야 합니다.<br><br>
+    ※ Polychain GT Carbon 벨트는 MIN/MAX 두 기준값이 있어 주파수도 범위로 표시됩니다.<br>
+    ※ AT5는 매뉴얼에 단위중량이 기재되어 있지 않아 기준장력(N)만 표시되고 Hz 계산은 지원되지 않습니다.
+  </div>
+
+  <footer>Data: GATES UNITTA ASIA U-508 Operation Manual (Table 1/2/3, Table 10)</footer>
+</main>
+
+</body></html>{{end}}

@@ -16,7 +16,7 @@ func workerFramePath(path, board string) bool {
 		return false
 	}
 	switch p[0] {
-	case "work", "shipping-records", "community", "client-directory", "project-info", "notices", "worker-app-entry":
+	case "belt-tension", "manuals", "work", "shipping-records", "community", "client-directory", "project-info", "notices", "worker-app-entry":
 		return true
 	}
 	return false
