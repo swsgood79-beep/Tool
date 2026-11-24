@@ -1,0 +1,196 @@
+{
+  "results": [
+    {
+      "mode": "modern",
+      "width": 320,
+      "theme": "light",
+      "admin": false,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    },
+    {
+      "mode": "modern",
+      "width": 320,
+      "theme": "light",
+      "admin": true,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    },
+    {
+      "mode": "modern",
+      "width": 320,
+      "theme": "dark",
+      "admin": false,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    },
+    {
+      "mode": "modern",
+      "width": 320,
+      "theme": "dark",
+      "admin": true,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    },
+    {
+      "mode": "modern",
+      "width": 390,
+      "theme": "light",
+      "admin": false,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    },
+    {
+      "mode": "modern",
+      "width": 390,
+      "theme": "light",
+      "admin": true,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    },
+    {
+      "mode": "modern",
+      "width": 390,
+      "theme": "dark",
+      "admin": false,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    },
+    {
+      "mode": "modern",
+      "width": 390,
+      "theme": "dark",
+      "admin": true,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    },
+    {
+      "mode": "modern",
+      "width": 1100,
+      "theme": "light",
+      "admin": false,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    },
+    {
+      "mode": "modern",
+      "width": 1100,
+      "theme": "light",
+      "admin": true,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    },
+    {
+      "mode": "modern",
+      "width": 1100,
+      "theme": "dark",
+      "admin": false,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    },
+    {
+      "mode": "modern",
+      "width": 1100,
+      "theme": "dark",
+      "admin": true,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    },
+    {
+      "mode": "classic",
+      "width": 320,
+      "theme": "light",
+      "admin": false,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    },
+    {
+      "mode": "classic",
+      "width": 320,
+      "theme": "light",
+      "admin": true,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    },
+    {
+      "mode": "classic",
+      "width": 320,
+      "theme": "dark",
+      "admin": false,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    },
+    {
+      "mode": "classic",
+      "width": 320,
+      "theme": "dark",
+      "admin": true,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    },
+    {
+      "mode": "classic",
+      "width": 390,
+      "theme": "light",
+      "admin": false,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    },
+    {
+      "mode": "classic",
+      "width": 390,
+      "theme": "light",
+      "admin": true,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    },
+    {
+      "mode": "classic",
+      "width": 390,
+      "theme": "dark",
+      "admin": false,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    },
+    {
+      "mode": "classic",
+      "width": 390,
+      "theme": "dark",
+      "admin": true,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    },
+    {
+      "mode": "classic",
+      "width": 1100,
+      "theme": "light",
+      "admin": false,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    },
+    {
+      "mode": "classic",
+      "width": 1100,
+      "theme": "light",
+      "admin": true,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    },
+    {
+      "mode": "classic",
+      "width": 1100,
+      "theme": "dark",
+      "admin": false,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    },
+    {
+      "mode": "classic",
+      "width": 1100,
+      "theme": "dark",
+      "admin": true,
+      "result": "pass",
+      "scope": "list/categories/detail five compact tabs; touch size; active underline; manual link"
+    }
+  ]
+}

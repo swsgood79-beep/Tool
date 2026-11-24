@@ -1,0 +1,5 @@
+=== RUN   TestTalkTabsPreview
+Talk tabs browser checks passed: 24
+--- PASS: TestTalkTabsPreview (26.28s)
+PASS
+ok  	wanryotalk-reconstructed-server	26.606s

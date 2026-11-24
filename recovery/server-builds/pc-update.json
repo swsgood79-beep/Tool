@@ -1,8 +1,8 @@
 {
-  "version": "1.4.98",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.98.zip",
-  "sha256": "53be2475c0e5652e07ed3139e0c52cf15a3b6e2e368bb85268de441da631116a",
-  "exe_sha256": "ca1dfed9d0b792882116f762cc254e30151c3c6603ab97f098798183ea529d2a",
-  "bytes": 37020302,
-  "notes": "매뉴얼 일반 게시판 화면 · 파일당 300MB 첨부 · 진행률·조각 전송 · APK 1.0.11 유지"
+  "version": "1.4.99",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.99.zip",
+  "sha256": "25913c86b4ffa0c14279b71189e14c7f62e6d27f236e37fd227b142baeef05bf",
+  "exe_sha256": "b9ea289ba0a3fda867cefaef5cbb4b05721a27e873e2b59eebbe92c248bdf1d8",
+  "bytes": 37020621,
+  "notes": "토크 게시판 5개 메뉴 한 줄 정리 · PC/휴대폰 간격 조정 · APK 1.0.11 유지"
 }

@@ -1,0 +1,11 @@
+package main
+import("encoding/json";"net/http/httptest";"os";"os/exec";"testing";"time")
+func TestTalkTabsPreview(t *testing.T){
+ if os.Getenv("TALK_TABS_PREVIEW")!="1"{t.Skip("optional visual check")}
+ a:=fixture(t);owner:=adminCookie(a);id:=token()
+ a.state.Community=[]CommunityPost{{ID:id,Title:"작업안내 확인",Text:"게시판 간격 확인",Author:"관리자",Category:"work",CreatedAt:time.Now(),UpdatedAt:time.Now()}}
+ srv:=httptest.NewServer(a);defer srv.Close()
+ cfg,_:=json.Marshal(map[string]any{"cookie":map[string]string{"name":owner.Name,"value":owner.Value},"board":a.state.Board,"post":id})
+ cmd:=exec.Command("node","audit/browser-talk-tabs-v1.4.99.cjs",srv.URL,string(cfg));cmd.Stdout=os.Stdout;cmd.Stderr=os.Stderr
+ if e:=cmd.Run();e!=nil{t.Fatal(e)}
+}
