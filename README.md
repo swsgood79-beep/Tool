@@ -1,19 +1,23 @@
-# 알파작업완료확인 · PC v1.4.99 / 앱 v1.0.11
+# 알파작업완료확인 · PC v1.4.100 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.99** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.99.zip) |
+| **회사 PC 프로그램 v1.4.100** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.100.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.99 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.99-App-v1.0.11.zip) |
+| **현재 전체 소스 · PC 1.4.100 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.100-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/CHANGELOG.md) |
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
 
-## 이번 업데이트 · PC 1.4.99
+## 이번 업데이트 · PC 1.4.100
+
+매뉴얼 게시판도 다른 분류와 같은 **토크 제목·설명 → 다섯 게시판 메뉴 → 검색·글쓰기 → 글 목록** 구조로 통일했습니다. 매뉴얼 목록·글쓰기·상세에서도 전체/작업안내/건의사항/일상생활/매뉴얼 게시판 메뉴가 유지되고 **매뉴얼 게시판**에 선택 밑줄이 표시됩니다. 각 메뉴를 눌러 다른 게시판으로 바로 이동할 수 있으며 관리자·작업자별 경로를 유지합니다. 본문 폭과 목록 여백을 맞추고 휴대폰 작업자·앱의 하단 토크 선택 표시도 유지합니다. 기존 매뉴얼 글·첨부파일과 **파일당 300MB/글당 5개** 한도는 그대로입니다. **회사 PC를 v1.4.100으로 업데이트한 뒤 토크 화면을 새로고침하세요. APK는 v1.0.11 그대로 사용합니다.**
+
+## 이전 업데이트 · PC 1.4.99
 
 토크 상단의 **전체 · 작업안내 · 건의사항 · 일상생활 · 매뉴얼 게시판**을 한 줄로 정리했습니다. 넓게 나뉘던 4칸 고정 배치를 없애고 글자 길이에 맞춰 좌우 여백과 간격을 줄였습니다. 작은 휴대폰에서는 간격을 더 줄이고, 화면이 아주 좁으면 메뉴 안에서만 좌우로 이동합니다. 관리자·작업자, 밝은 화면·다크모드에 함께 적용하며 선택한 게시판의 파란 밑줄은 유지합니다. **회사 PC를 v1.4.99로 업데이트한 뒤 토크 화면을 새로고침하세요. 휴대폰 APK는 v1.0.11 그대로 사용합니다.**
 
