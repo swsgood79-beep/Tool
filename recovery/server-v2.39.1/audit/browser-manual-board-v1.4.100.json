@@ -1,0 +1,60 @@
+{
+  "results": [
+    {
+      "admin": false,
+      "mobile": false,
+      "theme": "light",
+      "result": "pass",
+      "case": "shared talk shell; all five tabs/active state and role links on list/compose/detail; roundtrip daily/manual; uploaded file byte equality; retained tools and dark mode"
+    },
+    {
+      "admin": true,
+      "mobile": false,
+      "theme": "light",
+      "result": "pass",
+      "case": "shared talk shell; all five tabs/active state and role links on list/compose/detail; roundtrip daily/manual; uploaded file byte equality; retained tools and dark mode"
+    },
+    {
+      "admin": false,
+      "mobile": false,
+      "theme": "dark",
+      "result": "pass",
+      "case": "shared talk shell; all five tabs/active state and role links on list/compose/detail; roundtrip daily/manual; uploaded file byte equality; retained tools and dark mode"
+    },
+    {
+      "admin": true,
+      "mobile": false,
+      "theme": "dark",
+      "result": "pass",
+      "case": "shared talk shell; all five tabs/active state and role links on list/compose/detail; roundtrip daily/manual; uploaded file byte equality; retained tools and dark mode"
+    },
+    {
+      "admin": false,
+      "mobile": true,
+      "theme": "light",
+      "result": "pass",
+      "case": "shared talk shell; all five tabs/active state and role links on list/compose/detail; roundtrip daily/manual; uploaded file byte equality; retained tools and dark mode"
+    },
+    {
+      "admin": true,
+      "mobile": true,
+      "theme": "light",
+      "result": "pass",
+      "case": "shared talk shell; all five tabs/active state and role links on list/compose/detail; roundtrip daily/manual; uploaded file byte equality; retained tools and dark mode"
+    },
+    {
+      "admin": false,
+      "mobile": true,
+      "theme": "dark",
+      "result": "pass",
+      "case": "shared talk shell; all five tabs/active state and role links on list/compose/detail; roundtrip daily/manual; uploaded file byte equality; retained tools and dark mode"
+    },
+    {
+      "admin": true,
+      "mobile": true,
+      "theme": "dark",
+      "result": "pass",
+      "case": "shared talk shell; all five tabs/active state and role links on list/compose/detail; roundtrip daily/manual; uploaded file byte equality; retained tools and dark mode"
+    }
+  ]
+}

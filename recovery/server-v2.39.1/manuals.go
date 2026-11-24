@@ -149,7 +149,7 @@ func (a *App) manualHTTP(w http.ResponseWriter, r *http.Request) bool {
 		return true
 	}
 	if r.Method == "GET" && len(tail) <= 1 {
-		v := map[string]any{"Base": base, "Talk": "/community/" + board, "WorkerURL": "/work/" + board, "Board": board, "CSRF": csrf, "CommunityAdmin": admin, "Author": author, "UploadKey": token(), "Owner": owner, "Saved": r.URL.Query().Get("saved") == "1"}
+		v := map[string]any{"Base": base, "Category": "manual", "Talk": "/community/" + board, "WorkerURL": "/work/" + board, "Board": board, "CSRF": csrf, "CommunityAdmin": admin, "Author": author, "UploadKey": token(), "Owner": owner, "Saved": r.URL.Query().Get("saved") == "1"}
 		if admin {
 			v["Talk"] = "/community-admin"
 		}

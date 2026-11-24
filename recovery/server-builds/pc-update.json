@@ -1,8 +1,8 @@
 {
-  "version": "1.4.99",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.99.zip",
-  "sha256": "25913c86b4ffa0c14279b71189e14c7f62e6d27f236e37fd227b142baeef05bf",
-  "exe_sha256": "b9ea289ba0a3fda867cefaef5cbb4b05721a27e873e2b59eebbe92c248bdf1d8",
-  "bytes": 37020621,
-  "notes": "토크 게시판 5개 메뉴 한 줄 정리 · PC/휴대폰 간격 조정 · APK 1.0.11 유지"
+  "version": "1.4.100",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.100.zip",
+  "sha256": "54525f02554b4d6328017ed4fa77c3fb7e15faa3bc04bad93e474d67ee7bbd04",
+  "exe_sha256": "8a01bcf9db47a954c6a073ab8695c06789ba0c48941e0c4f6a013c635e06b396",
+  "bytes": 37023136,
+  "notes": "매뉴얼도 토크 메뉴 유지 · 제목·검색·목록 배치 통일 · APK 1.0.11 유지"
 }

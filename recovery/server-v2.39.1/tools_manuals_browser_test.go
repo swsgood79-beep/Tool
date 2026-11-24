@@ -17,7 +17,7 @@ func TestToolsManualsBrowser(t *testing.T) {
 	srv := httptest.NewServer(a)
 	defer srv.Close()
 	cfg, _ := json.Marshal(map[string]any{"cookie": map[string]string{"name": owner.Name, "value": owner.Value}, "board": a.state.Board})
-	cmd := exec.Command("node", "audit/browser-manual-board-v1.4.98.cjs", srv.URL, string(cfg))
+	cmd := exec.Command("node", "audit/browser-manual-board-v1.4.100.cjs", srv.URL, string(cfg))
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	if e := cmd.Run(); e != nil {
