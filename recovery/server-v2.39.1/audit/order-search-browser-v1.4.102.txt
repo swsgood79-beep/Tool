@@ -1,0 +1,5 @@
+=== RUN   TestOrderSearchPreview
+Order search checks passed: 7
+--- PASS: TestOrderSearchPreview (13.75s)
+PASS
+ok  	wanryotalk-reconstructed-server	14.016s

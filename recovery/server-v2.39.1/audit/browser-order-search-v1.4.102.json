@@ -1,0 +1,46 @@
+{
+  "scope": "temporary app/Chromium emulated touch viewport; Android/Samsung keyboard hardware not executed",
+  "results": [
+    {
+      "role": "worker",
+      "theme": "light",
+      "result": "pass",
+      "scope": "mobile Enter/native search blur+result scroll; IME guard; no matches; empty search keeps typing; query retained"
+    },
+    {
+      "role": "worker",
+      "theme": "dark",
+      "result": "pass",
+      "scope": "mobile Enter/native search blur+result scroll; IME guard; no matches; empty search keeps typing; query retained"
+    },
+    {
+      "role": "admin",
+      "theme": "light",
+      "result": "pass",
+      "scope": "mobile Enter/native search blur+result scroll; IME guard; no matches; empty search keeps typing; query retained"
+    },
+    {
+      "role": "admin",
+      "theme": "dark",
+      "result": "pass",
+      "scope": "mobile Enter/native search blur+result scroll; IME guard; no matches; empty search keeps typing; query retained"
+    },
+    {
+      "role": "native",
+      "theme": "light",
+      "result": "pass",
+      "scope": "mobile Enter/native search blur+result scroll; IME guard; no matches; empty search keeps typing; query retained"
+    },
+    {
+      "role": "native",
+      "theme": "dark",
+      "result": "pass",
+      "scope": "mobile Enter/native search blur+result scroll; IME guard; no matches; empty search keeps typing; query retained"
+    },
+    {
+      "role": "PC",
+      "result": "pass",
+      "scope": "desktop search retains focus"
+    }
+  ]
+}
