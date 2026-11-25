@@ -1,0 +1,6 @@
+=== RUN   TestFixedLabelsOnly
+--- PASS: TestFixedLabelsOnly (0.00s)
+=== RUN   TestOutputDoesNotOverwriteFiles
+--- PASS: TestOutputDoesNotOverwriteFiles (0.00s)
+PASS
+ok  	alpha-erp-bridge-check	0.003s

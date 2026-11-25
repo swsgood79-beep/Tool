@@ -1,0 +1,17 @@
+{
+  "tool": "Alpha ERP Connection Check",
+  "version": "0.1",
+  "exe_sha256": "539c3b5d6e7da125c337d33bf1fe9d1048e9d037eab75be85f1b5e4b07ddd0c8",
+  "exe_bytes": 3022848,
+  "scope": "Windows x64 cross-build; label privacy and data-file preservation tests passed; real company Windows/ERP execution pending",
+  "source_sha256": {
+    "go.mod": "5a9f31940a5cc0cafec5569558ffec63b48bad69dd340caf79fd21f20316c970",
+    "main.go": "ea6d4bc5fe87cd4e6f3778fcc7f16cbe148a9773d0ec5ca3a0f390e91da2da38",
+    "windows.go": "c4e08f2bec3d4c2cb115388911e003c74ae153ed542761066e14714f29e3b856",
+    "other.go": "eaefa3514bd12a5195efee8f2353788db76ff9859fef66f859294e869b9c557c",
+    "main_test.go": "0ba233e35464bc7d4016dc83fe1babfa42a21003fb101721449ffb8453300999",
+    "inspect-uia.ps1": "effffd37de7bd9e73503c3f88329a028ed75b08ba0aba4e29935b1ca066f6d6a",
+    "README.md": "6bbab248545b5544f7896e3e37e15bde34d59ac830b890419e449c0d354b9686",
+    "test-results.txt": "d8e2d7ff5d5657f8b7d1f005af92a029fd18c61d23f9406b8c97ca28667eb91c"
+  }
+}
