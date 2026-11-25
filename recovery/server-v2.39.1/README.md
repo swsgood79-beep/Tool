@@ -6,12 +6,16 @@
 |---|---|
 | **회사 PC 프로그램 v1.4.100** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.100.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.100 / 앱 1.0.11** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.100-App-v1.0.11.zip) |
+| **현재 전체 소스 · PC 1.4.100 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.100-App-v1.0.11-Web-v1.4.101.zip) |
 | 처음 설치·업데이트 | [빠른 시작](START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](CHANGELOG.md) |
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
+
+## 작업자 앱 설치 화면 개선 · Web 1.4.101
+
+작업자 **앱 설치 버튼이 반응하지 않던 문제**를 수정했습니다. 네이버에서 Chrome으로 브라우저를 바꾸어 작업장 연결 정보가 없어진 경우에도 설치 안내는 항상 열립니다. 연결된 설치 주소를 복사하거나 Android에서 Chrome으로 여는 기능을 추가하고 일반 브라우저 주소의 작업장 키를 유지합니다. 브라우저가 설치 창을 제공하면 사용하고, 제공하지 않거나 취소·실패하면 메뉴로 설치하는 방법을 표시합니다. 작업자 설치 페이지를 다시 열거나 새로고침하면 적용되며 **회사 PC v1.4.100과 관리자 APK v1.0.11은 그대로 사용합니다.** [설치 안내](WORKER-APP-INSTALL.md)
 
 ## 이번 업데이트 · PC 1.4.100
 

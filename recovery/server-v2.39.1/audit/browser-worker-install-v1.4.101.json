@@ -1,0 +1,49 @@
+{
+  "scope": "real temporary HTTP server/Chromium; remote worker and pointer are synthetic, no company traffic; native Android prompt/handoff not executed",
+  "results": [
+    {
+      "case": "missing board button always opens connection guidance",
+      "result": "pass"
+    },
+    {
+      "case": "valid board preserved in URL/copy/reload",
+      "result": "pass"
+    },
+    {
+      "case": "native prompt accepted",
+      "result": "pass",
+      "scope": "synthetic prompt event; actual Android install dialog not exercised"
+    },
+    {
+      "case": "native prompt dismissed",
+      "result": "pass",
+      "scope": "synthetic prompt event; actual Android install dialog not exercised"
+    },
+    {
+      "case": "native prompt error",
+      "result": "pass",
+      "scope": "synthetic prompt event; actual Android install dialog not exercised"
+    },
+    {
+      "case": "Naver guidance, Chrome intent preserves board, clipboard denial fallback",
+      "result": "pass",
+      "scope": "Android handoff URI checked; OS launch not exercised"
+    },
+    {
+      "case": "install guidance independent of connection-script failure",
+      "result": "pass"
+    },
+    {
+      "case": "legacy dialog open/close fallback",
+      "result": "pass"
+    },
+    {
+      "case": "real service worker installs eleven shell assets; offline guidance works",
+      "result": "pass"
+    },
+    {
+      "case": "old v63 worker cache updates to v101 with board/identity retained",
+      "result": "pass"
+    }
+  ]
+}

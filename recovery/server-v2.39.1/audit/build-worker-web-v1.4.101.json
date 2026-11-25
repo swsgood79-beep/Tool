@@ -1,0 +1,27 @@
+{
+  "web_version": "1.4.101",
+  "pc_version": "1.4.100",
+  "pc_changed": false,
+  "apk_version": "1.0.11",
+  "apk_changed": false,
+  "pc_zip_sha256": "54525f02554b4d6328017ed4fa77c3fb7e15faa3bc04bad93e474d67ee7bbd04",
+  "pc_exe_sha256": "8a01bcf9db47a954c6a073ab8695c06789ba0c48941e0c4f6a013c635e06b396",
+  "apk_sha256": "afc14ea37edde0d3e9f78731f1ff60bc9eb75736a8f92aacc890b61ff73162ee",
+  "browser_cases": 10,
+  "original_web_assets_verified": 57,
+  "runtime_sources_unchanged": true,
+  "static_app_files": {
+    "app.css": "8a0d7cd629fd57614656bd123dc42c9501ab72cf4fdf59c6e57441a5443869cc",
+    "app.js": "f55462eae33166b082a58d2216362ace488a231de4f2cb8a30405c6ee73c60ee",
+    "icon-192.png": "56c22fad8d356beac504383707c067ce5d65005a5c92af205bb2e97ca9b7c777",
+    "icon-512.png": "cc2f6870bfa10f231fef7a3b2e5cb1352ef443b271bff49c0ed5f9952321d0c6",
+    "icon-maskable.png": "16dabf875c55c54a19bd883c9babdd848fc9c3b5deb0ba219f784ef10f28c4db",
+    "icon.svg": "8602cada006ae2a7e21d60df85b477b87e6de473589006a49bdceeb6fbe71f2c",
+    "index.html": "fa92617604c960242844f5385c29e325ace9dfcd807ca5c1b868771c416a891a",
+    "install.js": "2a6d75119cc9f5c6b064a30142b6ca4a11f62df43d3000372e8ad62017cd19ef",
+    "manifest.webmanifest": "b50f479a5050b705160448eb7693ec84823d8259643bcbadc2e55944a2a0763e",
+    "sw.js": "d04a0b54ec7ab1070fe1f631080b6aad66e43b8cc193f094555dace51649cd29",
+    "theme-bootstrap.js": "c70140294ab723f725f1061e4ae330be71b64c27b3cf0bae33ababc36ebad75d"
+  },
+  "scope": "Local Chromium tests; Android install prompt/intent execution and company data not exercised."
+}
