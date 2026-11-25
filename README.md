@@ -13,6 +13,12 @@
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
 
+## 가공팀 ERP 연동 준비 · 별도 진단 도구
+
+[ERP 연결 진단 도구 v0.1 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/Alpha-ERP-Connection-Check-v0.1.zip) · [전체 도구 소스와 사용법](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/erp-bridge-check)
+
+ERP와 알파가 실행되는 회사 PC에서 PrimeERP 발주현황 화면의 버튼·목록을 자동 식별할 수 있는지 확인하는 별도 도구입니다. ZIP을 풀고 ERP 발주현황을 연 뒤 EXE를 실행하면 결과 폴더가 열립니다. 그 안 ERP-connection-check.json을 대화에 첨부합니다. 화면 구조만 로컬 저장하며 ERP 버튼 조작/자료 변경/자동 전송은 하지 않습니다. **실제 자동 수집 기능은 아직 포함하지 않습니다.** PC 프로그램 v1.4.102와 APK v1.0.11은 그대로 사용하며 ZIP에 진단 도구 전체 소스를 포함합니다. 실제 Windows/PrimeERP 실행은 현장 확인이 필요합니다.
+
 ## 이번 업데이트 · PC 1.4.102
 
 휴대폰 수주 검색에서 키보드의 **검색/Enter를 누르면 키보드를 닫고 검색 결과 위치로 이동**하도록 수정했습니다. 관리자 브라우저·관리자 앱·작업자 화면에 함께 적용합니다. 입력 중 실시간 검색과 한글 조합, 검색어·단계 필터를 유지하고, 결과가 없으면 결과 없음 안내로 이동합니다. 검색어 지우기는 키보드를 유지하며 PC에서는 입력 포커스를 그대로 둡니다. **회사 PC를 v1.4.102로 업데이트한 뒤 휴대폰 화면을 다시 열거나 새로고침하세요. APK v1.0.11은 그대로 사용합니다.**
