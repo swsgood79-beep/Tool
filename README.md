@@ -1,23 +1,27 @@
-# 알파작업완료확인 · PC v1.4.100 / 앱 v1.0.11
+# 알파작업완료확인 · PC v1.4.102 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.100** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.100.zip) |
+| **회사 PC 프로그램 v1.4.102** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.102.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.100 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.100-App-v1.0.11-Web-v1.4.101.zip) |
+| **현재 전체 소스 · PC 1.4.102 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.102-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/CHANGELOG.md) |
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
 
+## 이번 업데이트 · PC 1.4.102
+
+휴대폰 수주 검색에서 키보드의 **검색/Enter를 누르면 키보드를 닫고 검색 결과 위치로 이동**하도록 수정했습니다. 관리자 브라우저·관리자 앱·작업자 화면에 함께 적용합니다. 입력 중 실시간 검색과 한글 조합, 검색어·단계 필터를 유지하고, 결과가 없으면 결과 없음 안내로 이동합니다. 검색어 지우기는 키보드를 유지하며 PC에서는 입력 포커스를 그대로 둡니다. **회사 PC를 v1.4.102로 업데이트한 뒤 휴대폰 화면을 다시 열거나 새로고침하세요. APK v1.0.11은 그대로 사용합니다.**
+
 ## 작업자 앱 설치 화면 개선 · Web 1.4.101
 
 작업자 **앱 설치 버튼이 반응하지 않던 문제**를 수정했습니다. 네이버에서 Chrome으로 브라우저를 바꾸어 작업장 연결 정보가 없어진 경우에도 설치 안내는 항상 열립니다. 연결된 설치 주소를 복사하거나 Android에서 Chrome으로 여는 기능을 추가하고 일반 브라우저 주소의 작업장 키를 유지합니다. 브라우저가 설치 창을 제공하면 사용하고, 제공하지 않거나 취소·실패하면 메뉴로 설치하는 방법을 표시합니다. 작업자 설치 페이지를 다시 열거나 새로고침하면 적용되며 **회사 PC v1.4.100과 관리자 APK v1.0.11은 그대로 사용합니다.** [설치 안내](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/WORKER-APP-INSTALL.md)
 
-## 이번 업데이트 · PC 1.4.100
+## 이전 업데이트 · PC 1.4.100
 
 매뉴얼 게시판도 다른 분류와 같은 **토크 제목·설명 → 다섯 게시판 메뉴 → 검색·글쓰기 → 글 목록** 구조로 통일했습니다. 매뉴얼 목록·글쓰기·상세에서도 전체/작업안내/건의사항/일상생활/매뉴얼 게시판 메뉴가 유지되고 **매뉴얼 게시판**에 선택 밑줄이 표시됩니다. 각 메뉴를 눌러 다른 게시판으로 바로 이동할 수 있으며 관리자·작업자별 경로를 유지합니다. 본문 폭과 목록 여백을 맞추고 휴대폰 작업자·앱의 하단 토크 선택 표시도 유지합니다. 기존 매뉴얼 글·첨부파일과 **파일당 300MB/글당 5개** 한도는 그대로입니다. **회사 PC를 v1.4.100으로 업데이트한 뒤 토크 화면을 새로고침하세요. APK는 v1.0.11 그대로 사용합니다.**
 
