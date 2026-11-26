@@ -27,9 +27,9 @@
 
 ## ERP 가려진 창 내보내기 시험 · 별도 도구
 
-[가려진 ERP 창 시험 v0.1 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/Alpha-ERP-Background-Test-v0.1.zip) · [전체 소스·사용법](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/erp-bridge-check/BACKGROUND-TEST.md)
+[가려진 ERP 창 시험 v0.2 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/Alpha-ERP-Background-Test-v0.2.zip) · [전체 소스·사용법](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/erp-bridge-check/BACKGROUND-TEST.md)
 
-처음 한 번 ERP Excel 버튼에 마우스를 올리고 F8로 위치를 지정합니다. 다음 안내 확인 후 Chrome 등으로 ERP Excel 버튼을 완전히 가리고 F9를 누릅니다. 실제 마우스·키보드 입력 대신 지정한 도구 모음 내부 메시지와 UI Automation 저장을 시험합니다. 결과 폴더의 **ERP-background-test.json**을 대화에 첨부합니다. ERP/저장창 자체가 앞으로 나타나는지도 관찰합니다. **실제 Windows ERP에서의 백그라운드 지원은 이 시험으로 확인해야 하며, 최소화·화면 잠금·ERP 정기 자동 수집은 아직 지원한다고 확인하지 않았습니다.** PC 1.4.104와 APK 1.0.11은 그대로 사용하며 ZIP에 도구 전체 소스를 포함합니다.
+처음 한 번 ERP Excel 버튼에 마우스를 올리고 F8로 위치를 지정합니다. 다음 안내 확인 후 Chrome 등으로 ERP Excel 버튼을 완전히 가리고 F9를 누릅니다. 실제 마우스·키보드 입력 대신 도구 모음 내부 메시지와 Win32 파일명 문자 전달·저장 명령을 시험합니다. v0.1은 내보내기 요청까지 성공했지만 UIA 저장 단계가 실패했습니다. v0.2는 Win32 저장 처리를 먼저 하고, ERP가 앞에 나타났을 때 원래 업무 창으로 돌아가도록 제한된 복귀 요청을 추가합니다. 결과 폴더의 **ERP-background-test.json**을 대화에 첨부합니다. ERP/저장창 자체가 앞으로 나타나는지도 관찰합니다. **v0.2의 실제 파일 저장·업무 방해 여부는 현장 결과로 확인해야 하며, 최소화·화면 잠금·ERP 정기 자동 수집은 아직 지원한다고 확인하지 않았습니다.** PC 1.4.104와 APK 1.0.11은 그대로 사용하며 ZIP에 도구 전체 소스를 포함합니다.
 
 ## ERP 엑셀 자동 저장 현장 시험
 
