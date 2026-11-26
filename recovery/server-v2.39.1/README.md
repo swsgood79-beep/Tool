@@ -15,7 +15,7 @@
 
 ## ERP 엑셀 자동 저장 현장 시험
 
-[ERP 엑셀 저장 테스트 v0.1 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/Alpha-ERP-Export-Test-v0.1.zip) · [전체 소스·사용법](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/erp-bridge-check/EXPORT-TEST.md)
+[ERP 엑셀 저장 테스트 v0.2 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/Alpha-ERP-Export-Test-v0.2.zip) · [전체 소스·사용법](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/erp-bridge-check/EXPORT-TEST.md)
 
 ERP 발주대비미입고현황을 조회해 두고, 저장창은 취소한 뒤 ZIP을 풀어 EXE를 실행합니다. 안내 확인 후 Excel 버튼에 마우스를 올리고 F8을 누르면 그 위치를 클릭하고 표준 저장창에 새 파일 경로를 입력해 저장을 시험합니다. 결과 폴더의 ERP-export-test.json을 대화에 첨부합니다. 현재 조회 목록을 내보내는 시험 단계이며 정기 수집/조회 조건 자동 설정/가공팀 업무 화면은 아직 포함하지 않습니다. ZIP에 실행 파일과 전체 소스를 포함하며 실제 회사 PC에서의 클릭·저장 검증이 필요합니다. PC v1.4.102와 APK v1.0.11은 그대로 사용합니다.
 

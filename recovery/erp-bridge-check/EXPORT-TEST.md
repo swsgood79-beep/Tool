@@ -1,4 +1,4 @@
-# ERP 엑셀 저장 테스트 v0.1
+# ERP 엑셀 저장 테스트 v0.2
 
 현재 조회한 ERP 목록을 Excel 버튼으로 내보내고, 다른 이름으로 저장 창에 새 파일 경로를 입력해 저장하는 현장 시험 도구입니다. 현재 알파 PC/휴대폰 앱 업데이트는 필요 없습니다. ERP 조회 조건의 자동 설정, 정기 수집, 가공팀 화면은 아직 포함하지 않습니다.
 
@@ -14,3 +14,5 @@
 위치 지정은 Excel 버튼을 마우스로 식별하는 1회 테스트 단계입니다. ERP 화면 크기·배율·도구 모음 위치가 바뀌면 위치를 재확인해야 합니다. Windows 잠금 상태나 다른 창에 가려진 상태에서는 이 방식의 자동 수집이 불가능할 수 있어 별도 운영 조건을 검증해야 합니다. 확인된 HWND/숫자 AutomationId가 영구 식별값이라는 가정은 하지 않습니다.
 
 검증: Linux의 XLSX 구조·파일 손상 거부, 한글 PowerShell 전달, JSON 인코딩, 고정 라벨·원본 파일 보존 시험과 Windows x64 vet/교차 빌드. Windows ERP의 실제 클릭·저장은 현장 시험 전입니다. ZIP source 폴더에 전체 소스가 있습니다. 빌드: `GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build -trimpath -buildvcs=false -ldflags="-s -w -X main.operation=export" -o Alpha-ERP-Export-Test.exe .`
+
+F8/Esc는 위치 지정 중 도구가 전역 단축키로 확보해 ERP 단축키로 전달되지 않도록 합니다. 키 확보에 실패하면 클릭하지 않고 중단합니다. v0.1 시험본 대신 v0.2를 사용하세요.

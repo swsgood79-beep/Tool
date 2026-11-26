@@ -1,8 +1,8 @@
 {
   "tool": "ERP export test",
-  "version": "0.1",
+  "version": "0.2",
   "operation": "export",
-  "exe_sha256": "329a51dcd79ff424f7ec36f8b01884ad9904c1cd989075d18c3e864dae7026ca",
+  "exe_sha256": "a91e2cd1d68cb35dc4007fc9bdfab187517016ef0ea97afd4d4ae1424eb6910a",
   "source_sha256": {
     "go.mod": "5a9f31940a5cc0cafec5569558ffec63b48bad69dd340caf79fd21f20316c970",
     "main.go": "dbf07664464f65c39c6a039ef988a9d5ca478b4471654c6c3d6ff6f646f9dd76",
@@ -10,12 +10,12 @@
     "other.go": "fed9957fa7ae77bbb08abd4c79cfa38469cf7f229a5072ad52046ac8213d9fef",
     "main_test.go": "d4dbcabdc789873bd1d742ccd91f8ba123c52c02a2f76a7621e248f981e9548d",
     "export.go": "361518ba181fd11ea9e867c04f3da848db39da72f00efca200c31eb74825b174",
-    "export_windows.go": "2ecff36fcc368d65ce1a5ff9a1cdac90f17e35ee663a77279b93497133e6d3e1",
+    "export_windows.go": "e8ee73b4f4815e3f51c8be97cca755759aeb83a81c38d4d9cd56b5853372c604",
     "export_test.go": "7dcd9f7edb5b49da7384fa966fcf9702e625338450bbb8db92f76bcc517d424b",
     "inspect-uia.ps1": "effffd37de7bd9e73503c3f88329a028ed75b08ba0aba4e29935b1ca066f6d6a",
     "save-dialog.ps1": "b502417ef871d2b9083e99e0662fbb5a32d4ca1c72870a742563bc5783c3976e",
     "README.md": "9b265c9261017525a1de811476409d2f27fede9982fa4acc34f9ceb711116d39",
-    "EXPORT-TEST.md": "79d8a95c0ca2d98d73c34bf9edcd3199a51d39c052ba3908bdf5b49d0ec367b8",
+    "EXPORT-TEST.md": "ef4b221742c8ac814b1eebe1cd88ce343e8cf2e268a48e40dbcb67a6f5ae6e20",
     "test-results.txt": "7f3395dd75718ab7527148c9e10b6faebddfae3094a306431357429c4acc7aa1"
   },
   "validation": "unit tests and Windows vet/cross-build; actual Windows/ERP click-save pending"

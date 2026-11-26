@@ -10,6 +10,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"syscall"
 	"time"
@@ -58,6 +59,9 @@ func saveDialog(pid uint32) uintptr {
 	return result
 }
 func exportTest() error {
+	runtime.LockOSThread()
+	defer runtime.UnlockOSThread()
+
 	h := findERP()
 	if h == 0 {
 		return fmt.Errorf("ERP 발주대비미입고현황 화면을 먼저 열어 주세요")
@@ -68,6 +72,15 @@ func exportTest() error {
 		return fmt.Errorf("현재 떠 있는 저장창을 취소하고, 이 도구를 다시 실행해 주세요")
 	}
 	message("ERP 엑셀 저장 테스트\n\n1. ERP에서 발주대비미입고현황을 열고 가공사업부를 조회해 두세요.\n2. 확인을 누른 뒤, ERP 오른쪽 위 Excel 버튼 위에 마우스를 올리고 F8을 누르세요.\n\n선택한 위치를 클릭하고 새 XLSX 파일 저장을 시도합니다. Excel 이외의 버튼을 선택하지 마세요.\n취소는 Esc, 대기 시간은 60초입니다.")
+	// Capture calibration keys globally so ERP never receives F8/Esc as its own shortcuts.
+	if api("RegisterHotKey", 0, 0x4101, 0x4000, 0x77) == 0 {
+		return fmt.Errorf("F8 키가 다른 프로그램에서 사용 중입니다. 테스트를 중단했습니다")
+	}
+	defer api("UnregisterHotKey", 0, 0x4101)
+	if api("RegisterHotKey", 0, 0x4102, 0x4000, 0x1b) == 0 {
+		return fmt.Errorf("Esc 키를 확보하지 못해 테스트를 중단했습니다")
+	}
+	defer api("UnregisterHotKey", 0, 0x4102)
 	api("ShowWindowAsync", h, 9)
 	api("SetForegroundWindow", h)
 	time.Sleep(300 * time.Millisecond)
@@ -89,6 +102,15 @@ func exportTest() error {
 	if !selected {
 		return fmt.Errorf("F8 입력을 기다리다 종료했습니다")
 	}
+	released := time.Now().Add(2 * time.Second)
+	for api("GetAsyncKeyState", 0x77)&0x8000 != 0 && time.Now().Before(released) {
+		time.Sleep(30 * time.Millisecond)
+	}
+	if api("GetAsyncKeyState", 0x77)&0x8000 != 0 {
+		return fmt.Errorf("F8 키를 놓고 다시 실행해 주세요")
+	}
+	api("UnregisterHotKey", 0, 0x4101)
+	api("UnregisterHotKey", 0, 0x4102)
 	bounds := rectOf(h)
 	x, y := cursor.X-bounds.Left, cursor.Y-bounds.Top
 	packed := uintptr(uint64(uint32(cursor.X)) | uint64(uint32(cursor.Y))<<32)
@@ -104,7 +126,7 @@ func exportTest() error {
 	if e != nil {
 		return e
 	}
-	report := map[string]any{"tool": "ERP export test v0.1", "when": time.Now().Format(time.RFC3339), "success": false, "mode": "one user-calibrated Excel click and Save As; no purchasing/receipt edits", "offset_x": x, "offset_y": y, "window_width": bounds.Right - bounds.Left, "window_height": bounds.Bottom - bounds.Top}
+	report := map[string]any{"tool": "ERP export test v0.2", "when": time.Now().Format(time.RFC3339), "success": false, "mode": "one user-calibrated Excel click and Save As; no purchasing/receipt edits", "offset_x": x, "offset_y": y, "window_width": bounds.Right - bounds.Left, "window_height": bounds.Bottom - bounds.Top}
 	finish := func(err error) error {
 		if err != nil {
 			report["error"] = err.Error()
