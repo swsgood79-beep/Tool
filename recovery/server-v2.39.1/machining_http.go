@@ -140,12 +140,13 @@ func (a *App) machiningHTTP(w http.ResponseWriter, r *http.Request, s Session) b
 		http.NotFound(w, r)
 		return true
 	}
-	if path == "/machining" && !machine {
+	ownerPreview := path == "/machining" && s.AccountID == "" && r.URL.Query().Get("preview") == "1"
+	if path == "/machining" && !machine && !ownerPreview {
 		http.Redirect(w, r, "/machining-admin", 303)
 		return true
 	}
 	actor := machiningActor(&a.state, s)
-	a.renderTemplate(w, templates, "machining.html", map[string]any{"CSRF": s.CSRF, "Name": actor.Name, "Account": actor.ID, "Admin": !machine, "Saved": r.URL.Query().Get("saved") == "1", "NativeApp": nativeAdminAgent(r)})
+	a.renderTemplate(w, templates, "machining.html", map[string]any{"CSRF": s.CSRF, "Name": actor.Name, "Account": actor.ID, "Admin": !machine && !ownerPreview, "Owner": s.AccountID == "", "ReadOnly": ownerPreview, "Saved": r.URL.Query().Get("saved") == "1", "NativeApp": nativeAdminAgent(r)})
 	return true
 }
 func machiningLastImport(s *State) *MachiningImport {

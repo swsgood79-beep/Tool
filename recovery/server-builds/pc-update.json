@@ -1,8 +1,8 @@
 {
-  "version": "1.4.103",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.103.zip",
-  "sha256": "677cc469b8dfe3eb49fa61bb23f778a811c128155674fbe856e1c94d266de74b",
-  "exe_sha256": "627ec9de219cc82593358347d3a6de2c1b6908eabb6d1e83f3b1c38f6d9a62da",
-  "bytes": 37064906,
-  "notes": "가공팀 전용 화면 · ERP BASE 엑셀 가져오기 · 절단/가공 시작·완료 기록 · ERP 입고 확인 · APK 1.0.11 유지"
+  "version": "1.4.104",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.104.zip",
+  "sha256": "9beb5bc50affcd2c6c2bd38912db268913c00e33e4fb32741c5db1489309bdfd",
+  "exe_sha256": "451015ef0968d6dc26ca8d7d703ce77777595a2534fdd0696c9e51a44de50413",
+  "bytes": 37065788,
+  "notes": "대표 관리자 가공팀 화면 보기 · 작업 기록 변경 없는 미리보기 · APK 1.0.11 유지"
 }

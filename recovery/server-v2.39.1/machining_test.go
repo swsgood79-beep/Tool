@@ -361,3 +361,24 @@ func TestMachiningDurableFailureAndBackup(t *testing.T) {
 		t.Fatal("backup lost machining work")
 	}
 }
+
+func TestMachiningOwnerWorkerPreviewIsReadOnly(t *testing.T) {
+	a := fixture(t)
+	owner := adminCookie(a)
+	w := call(a, "GET", "/machining-admin", nil, owner)
+	if w.Code != 200 || !strings.Contains(w.Body.String(), `id="machining-worker-preview"`) {
+		t.Fatal("missing preview entry", w.Code)
+	}
+	w = call(a, "GET", "/machining?preview=1", nil, owner)
+	if w.Code != 200 || !strings.Contains(w.Body.String(), `data-readonly="true"`) || !strings.Contains(w.Body.String(), "가공 관리로 돌아가기") || strings.Contains(w.Body.String(), "ERP 엑셀 가져오기") {
+		t.Fatal("owner preview layout", w.Code, w.Body.String())
+	}
+	if e := a.importMachining(machiningDraft(t, machiningSampleRows()), MachiningActor{}); e != nil {
+		t.Fatal(e)
+	}
+	j := a.state.MachiningJobs[0]
+	w = call(a, "POST", "/machining/action", url.Values{"csrf": {"admin-csrf"}, "id": {j.ID}, "phase": {"cutting"}, "action": {"start"}, "revision": {fmtID(j.Revision)}, "quantity": {"1"}}, owner)
+	if w.Code != 409 || len(a.state.MachiningJobs[0].Cutting) != 0 {
+		t.Fatal("owner preview changed work")
+	}
+}
