@@ -1,9 +1,11 @@
-# ERP 연결 진단 도구 v0.1
+# ERP 연결 진단 도구 v0.2
+
+이 문서는 기본 진단 모드의 설명입니다. 별도 엑셀 저장 시험 모드는 [EXPORT-TEST.md](EXPORT-TEST.md)를 참고하세요.
 
 현재 알파 PC 프로그램과 별도로 실행하는 Windows x64 확인용 도구입니다. PrimeERP의 버튼·목록을 자동으로 식별할 수 있는지 확인합니다. **ERP 자동 수집 기능은 아직 포함하지 않습니다.** 이 결과로 엑셀 내보내기 자동화를 구체화합니다.
 
 1. ZIP을 내려받아 폴더에 압축을 풉니다.
-2. PrimeERP에서 **발주현황** 화면을 열어 둡니다.
+2. PrimeERP에서 **발주대비미입고현황** 화면을 열어 둡니다.
 3. `Alpha-ERP-Connection-Check.exe`를 실행합니다.
 4. 확인 메시지에서 확인을 누르면 결과 폴더가 열립니다.
 5. 폴더 안 **ERP-connection-check.json**을 대화에 첨부합니다.
@@ -22,3 +24,7 @@ ZIP의 source 폴더에 전체 도구 소스를 포함합니다. 추가 Go 라�
 Go 1.24 이상
 GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build -trimpath -buildvcs=false -ldflags="-s -w" -o Alpha-ERP-Connection-Check.exe .
 ```
+
+## v0.2 보완
+
+최소화된 ERP 창은 펼친 뒤 화면 구조를 읽습니다. UIA JSON의 UTF-8 BOM/UTF-16 인코딩을 정규화합니다. 기존 v0.1 결과에서는 ERP 실행/컨트롤155개가 확인됐지만 최소화 좌표와 UIA 해석 실패가 있어 자동 추출 가능 여부를 확정하지 않았습니다. 인코딩 보완이 해당 PC의 UIA 실패 원인이라는 점은 아직 확정되지 않았습니다. ERP 발주/입고 자료와 버튼은 수정·실행하지 않습니다.

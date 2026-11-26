@@ -2,15 +2,18 @@
 package main
 
 import (
+	"bytes"
+	"encoding/binary"
 	"encoding/json"
 	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
 	"time"
+	"unicode/utf16"
 )
 
-const version = "0.1"
+const version = "0.2"
 
 type Rect struct{ Left, Top, Right, Bottom int32 }
 type Control struct {
@@ -50,7 +53,29 @@ func safeLabel(s string) string {
 	}
 	return ""
 }
-func jsonValid(raw []byte) bool { return json.Valid(raw) }
+func normalizeJSON(raw []byte) ([]byte, error) {
+	raw = bytes.TrimPrefix(raw, []byte{0xef, 0xbb, 0xbf})
+	if len(raw) >= 2 && (bytes.Equal(raw[:2], []byte{0xff, 0xfe}) || bytes.Equal(raw[:2], []byte{0xfe, 0xff})) {
+		var order binary.ByteOrder = binary.LittleEndian
+		if raw[0] == 0xfe {
+			order = binary.BigEndian
+		}
+		raw = raw[2:]
+		if len(raw)%2 != 0 {
+			return nil, fmt.Errorf("invalid UTF16 length")
+		}
+		units := make([]uint16, len(raw)/2)
+		for i := range units {
+			units[i] = order.Uint16(raw[i*2:])
+		}
+		raw = []byte(string(utf16.Decode(units)))
+	}
+	raw = bytes.TrimSpace(raw)
+	if !json.Valid(raw) {
+		return nil, fmt.Errorf("invalid JSON")
+	}
+	return raw, nil
+}
 func outputFolder(base string) (string, error) {
 	for _, candidate := range []string{base, filepath.Join(os.TempDir(), "AlphaERPCheck")} {
 		if err := os.MkdirAll(candidate, 0700); err != nil {
@@ -98,6 +123,13 @@ func run() (string, error) {
 }
 func main() {
 	prepareConsole()
+	if operation == "export" {
+		if err := exportTest(); err != nil {
+			showResult(err.Error(), "")
+			os.Exit(1)
+		}
+		return
+	}
 	path, err := run()
 	if err != nil {
 		showResult("ERP 진단 실패: "+err.Error(), "")

@@ -88,6 +88,19 @@ func collectWindows(folder string) ([]Window, error) {
 	})
 	api("EnumWindows", callback, 0)
 	for i := range out {
+		if api("IsIconic", uintptr(out[i].Handle)) != 0 {
+			api("ShowWindowAsync", uintptr(out[i].Handle), 9)
+			until := time.Now().Add(2 * time.Second)
+			for api("IsIconic", uintptr(out[i].Handle)) != 0 && time.Now().Before(until) {
+				time.Sleep(100 * time.Millisecond)
+			}
+			out[i].Bounds = rectOf(uintptr(out[i].Handle))
+			for j := range out[i].Controls {
+				c := &out[i].Controls[j]
+				c.Bounds = rectOf(uintptr(c.Handle))
+				c.Visible = api("IsWindowVisible", uintptr(c.Handle)) != 0
+			}
+		}
 		fmt.Printf("확인한 ERP 창 %d: 화면 구조를 읽는 중…\n", i+1)
 		collectUIA(&out[i], folder, i)
 	}
@@ -101,8 +114,7 @@ func collectUIA(w *Window, folder string, index int) {
 	script := fmt.Sprintf("$TargetHandle=[long]%d\n$Destination=%s\n", w.Handle, quoted) + uiaScript + "\n"
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
-	cmd := exec.CommandContext(ctx, powershell, "-NoLogo", "-NoProfile", "-NonInteractive", "-Command", "-")
-	cmd.Stdin = strings.NewReader(script)
+	cmd := exec.CommandContext(ctx, powershell, "-NoLogo", "-NoProfile", "-NonInteractive", "-EncodedCommand", encodePSScript(script))
 	cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true}
 	if err := cmd.Run(); err != nil {
 		if ctx.Err() != nil {
@@ -117,11 +129,12 @@ func collectUIA(w *Window, folder string, index int) {
 		w.UIAStatus = "No UI Automation metadata; Win32 metadata retained"
 		return
 	}
-	if !jsonValid(raw) {
+	normalized, parseErr := normalizeJSON(raw)
+	if parseErr != nil {
 		w.UIAStatus = "Invalid UI Automation output; Win32 metadata retained"
 		return
 	}
-	w.UIA = raw
+	w.UIA = normalized
 	w.UIAStatus = "Read-only metadata collected"
 }
 func showResult(message, folder string) {

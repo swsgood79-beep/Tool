@@ -35,3 +35,16 @@ func TestOutputDoesNotOverwriteFiles(t *testing.T) {
 		t.Fatal("existing file changed")
 	}
 }
+
+func TestUIAJSONEncodings(t *testing.T) {
+	for _, raw := range [][]byte{[]byte(`{"Count":1}`), append([]byte{0xef, 0xbb, 0xbf}, []byte(`{"Count":1}`)...), {0xff, 0xfe, 123, 0, 125, 0}, {0xfe, 0xff, 0, 123, 0, 125}} {
+		normalized, e := normalizeJSON(raw)
+		if e != nil || !jsonValidForTest(normalized) {
+			t.Fatalf("encoding normalization failed %v", e)
+		}
+	}
+	if _, e := normalizeJSON([]byte("provider error")); e == nil {
+		t.Fatal("invalid provider output accepted")
+	}
+}
+func jsonValidForTest(raw []byte) bool { return len(raw) > 0 && raw[0] == '{' }
