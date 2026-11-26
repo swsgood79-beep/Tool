@@ -65,3 +65,11 @@ func validateWorkbook(path string) error {
 	}
 	return nil
 }
+
+// Standard Save As controls only; exclude Explorer's search/address fields.
+func filenameCandidate(c Control, dialog Rect) bool {
+	return c.Visible && c.Enabled && strings.Contains(strings.ToLower(c.Class), "edit") && (c.ID == 1001 || c.ID == 1152) && c.Bounds.Top >= dialog.Top+(dialog.Bottom-dialog.Top)*55/100 && c.Bounds.Bottom <= dialog.Bottom && c.Bounds.Right > c.Bounds.Left
+}
+func saveButtonCandidate(c Control, dialog Rect) bool {
+	return c.Visible && c.Enabled && c.ID == 1 && strings.Contains(strings.ToLower(c.Class), "button") && c.Bounds.Top >= dialog.Top+(dialog.Bottom-dialog.Top)/2 && (strings.Contains(c.Label, "저장") || strings.Contains(strings.ToLower(c.Label), "save"))
+}

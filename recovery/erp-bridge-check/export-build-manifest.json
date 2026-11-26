@@ -1,22 +1,23 @@
 {
   "tool": "ERP export test",
-  "version": "0.2",
+  "version": "0.3",
   "operation": "export",
-  "exe_sha256": "a91e2cd1d68cb35dc4007fc9bdfab187517016ef0ea97afd4d4ae1424eb6910a",
+  "exe_sha256": "e0a7dffb6c17567926b13c18cc4a357ec8185627305b9afd90d215e352b25bb2",
   "source_sha256": {
     "go.mod": "5a9f31940a5cc0cafec5569558ffec63b48bad69dd340caf79fd21f20316c970",
     "main.go": "dbf07664464f65c39c6a039ef988a9d5ca478b4471654c6c3d6ff6f646f9dd76",
     "windows.go": "45e4d2fe1b017659f752262f66b2201e675464534d1f775e2e9508d8d890ea1b",
     "other.go": "fed9957fa7ae77bbb08abd4c79cfa38469cf7f229a5072ad52046ac8213d9fef",
     "main_test.go": "d4dbcabdc789873bd1d742ccd91f8ba123c52c02a2f76a7621e248f981e9548d",
-    "export.go": "361518ba181fd11ea9e867c04f3da848db39da72f00efca200c31eb74825b174",
-    "export_windows.go": "e8ee73b4f4815e3f51c8be97cca755759aeb83a81c38d4d9cd56b5853372c604",
-    "export_test.go": "7dcd9f7edb5b49da7384fa966fcf9702e625338450bbb8db92f76bcc517d424b",
+    "export.go": "accac60dcd8ebd952bab597d5931c7dd3242a12dcf1e6429d6a945927ba1fcb2",
+    "export_windows.go": "c9d3de213cb094d6c810dd2580d9f2044f5d8772942aaaae26ac12a7d25372ff",
+    "export_test.go": "e94510730fae7e91de6cee7342bb1921400fec4bc150e30e5e3bdaa2f3723bab",
     "inspect-uia.ps1": "effffd37de7bd9e73503c3f88329a028ed75b08ba0aba4e29935b1ca066f6d6a",
-    "save-dialog.ps1": "b502417ef871d2b9083e99e0662fbb5a32d4ca1c72870a742563bc5783c3976e",
+    "save-dialog.ps1": "5cdbe7e3a23ff69e8cca35b797177180b71f58332e62c2c668793f485a4f1530",
     "README.md": "9b265c9261017525a1de811476409d2f27fede9982fa4acc34f9ceb711116d39",
-    "EXPORT-TEST.md": "ef4b221742c8ac814b1eebe1cd88ce343e8cf2e268a48e40dbcb67a6f5ae6e20",
-    "test-results.txt": "7f3395dd75718ab7527148c9e10b6faebddfae3094a306431357429c4acc7aa1"
+    "EXPORT-TEST.md": "57771c7d2e639c5e21796df7550373b57d53ef4fc95e4e05585ba52bbc980afe",
+    "test-results.txt": "6a747f64c305151f30793023b2ff4a71571161cf890955d30275ffcff8bf8a4a",
+    "save_win32_windows.go": "3f9a6e201afe3e7f93d68b89dfafce117102c4e7c6aa83e5324d8850fc1f5ebe"
   },
   "validation": "unit tests and Windows vet/cross-build; actual Windows/ERP click-save pending"
 }

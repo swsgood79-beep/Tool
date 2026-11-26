@@ -126,7 +126,7 @@ func exportTest() error {
 	if e != nil {
 		return e
 	}
-	report := map[string]any{"tool": "ERP export test v0.2", "when": time.Now().Format(time.RFC3339), "success": false, "mode": "one user-calibrated Excel click and Save As; no purchasing/receipt edits", "offset_x": x, "offset_y": y, "window_width": bounds.Right - bounds.Left, "window_height": bounds.Bottom - bounds.Top}
+	report := map[string]any{"tool": "ERP export test v0.3", "when": time.Now().Format(time.RFC3339), "success": false, "mode": "one user-calibrated Excel click and Save As; no purchasing/receipt edits", "offset_x": x, "offset_y": y, "window_width": bounds.Right - bounds.Left, "window_height": bounds.Bottom - bounds.Top}
 	finish := func(err error) error {
 		if err != nil {
 			report["error"] = err.Error()
@@ -162,13 +162,37 @@ func exportTest() error {
 		return finish(fmt.Errorf("ERP의 다른 이름으로 저장 창을 찾지 못했습니다"))
 	}
 	file := filepath.Join(folder, "ERP_BASE_"+time.Now().Format("20060102_150405")+".xlsx")
-	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
-	defer cancel()
-	script := fmt.Sprintf("$DialogHandle=[long]%d\n$ExportPath=%s\n", dialog, escapePS(file)) + saveScript + "\n"
-	cmd := exec.CommandContext(ctx, filepath.Join(os.Getenv("SystemRoot"), "System32", "WindowsPowerShell", "v1.0", "powershell.exe"), "-NoLogo", "-NoProfile", "-NonInteractive", "-EncodedCommand", encodePSScript(script))
-	cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true}
-	if e = cmd.Run(); e != nil {
-		return finish(fmt.Errorf("저장창의 파일 이름/저장 버튼을 자동 처리하지 못했습니다. 저장창을 확인해 주세요"))
+	handled, nativeDetails, saveErr := tryNativeSave(dialog, file)
+	report["native_save"] = nativeDetails
+	if handled && saveErr != nil {
+		return finish(saveErr)
+	}
+	if !handled {
+		detailFile := filepath.Join(folder, ".save-details.json")
+		ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
+		defer cancel()
+		script := fmt.Sprintf("$DialogHandle=[long]%d\n$ExportPath=%s\n$ResultPath=%s\n", dialog, escapePS(file), escapePS(detailFile)) + saveScript + "\n"
+		cmd := exec.CommandContext(ctx, filepath.Join(os.Getenv("SystemRoot"), "System32", "WindowsPowerShell", "v1.0", "powershell.exe"), "-NoLogo", "-NoProfile", "-NonInteractive", "-EncodedCommand", encodePSScript(script))
+		cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true}
+		runErr := cmd.Run()
+		if cmd.ProcessState != nil {
+			report["uia_exit_code"] = cmd.ProcessState.ExitCode()
+		}
+		if raw, e := os.ReadFile(detailFile); e == nil && len(raw) < 32768 {
+			if normalized, e := normalizeJSON(raw); e == nil {
+				report["uia_save"] = json.RawMessage(normalized)
+			}
+		}
+		os.Remove(detailFile)
+		if runErr != nil {
+			if _, ok := report["uia_save"]; !ok {
+				report["uia_status"] = "no_stage_details"
+			}
+			if ctx.Err() != nil {
+				report["uia_status"] = "timeout"
+			}
+			return finish(fmt.Errorf("저장창 처리 실패: 결과 파일의 단계 정보를 확인해 주세요"))
+		}
 	}
 	until = time.Now().Add(30 * time.Second)
 	var last int64 = -1

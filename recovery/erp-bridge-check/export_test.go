@@ -47,3 +47,32 @@ func TestPowerShellUnicodeTransport(t *testing.T) {
 		t.Fatal("Korean transport changed")
 	}
 }
+
+func TestSaveControlSelection(t *testing.T) {
+	d := Rect{Left: 0, Top: 0, Right: 960, Bottom: 560}
+	c := Control{ID: 1152, Class: "Edit", Visible: true, Enabled: true, Bounds: Rect{Left: 130, Top: 450, Right: 940, Bottom: 475}}
+	if !filenameCandidate(c, d) {
+		t.Fatal("classic filename not recognized")
+	}
+	c.ID = 1001
+	if !filenameCandidate(c, d) {
+		t.Fatal("modern filename not recognized")
+	}
+	c.Bounds.Top = 60
+	if filenameCandidate(c, d) {
+		t.Fatal("search bar accepted")
+	}
+	c.Bounds.Top = 450
+	c.ID = 999
+	if filenameCandidate(c, d) {
+		t.Fatal("unidentified input accepted")
+	}
+	b := Control{ID: 1, Class: "Button", Label: "Save", Visible: true, Enabled: true, Bounds: Rect{Left: 750, Top: 520, Right: 830, Bottom: 545}}
+	if !saveButtonCandidate(b, d) {
+		t.Fatal("save rejected")
+	}
+	b.Label = "Cancel"
+	if saveButtonCandidate(b, d) {
+		t.Fatal("cancel accepted")
+	}
+}
