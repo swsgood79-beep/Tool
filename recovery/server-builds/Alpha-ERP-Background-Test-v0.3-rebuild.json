@@ -1,0 +1,8 @@
+{
+  "tool": "ERP background test v0.3",
+  "zip_sha256": "b3e269612813530ffa6e2fa34848313aa25724286a9909c379e8f2a84ff212e4",
+  "exe_sha256": "ec99c7ba4141d1c7fb853f0a2a5f1d6cfa8a90043da83b98c343361aa6a3a847",
+  "rebuilt_exe_sha256": "ec99c7ba4141d1c7fb853f0a2a5f1d6cfa8a90043da83b98c343361aa6a3a847",
+  "identical": true,
+  "windows_execution": "pending field test"
+}

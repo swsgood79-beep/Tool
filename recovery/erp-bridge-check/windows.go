@@ -142,7 +142,7 @@ func showResult(message, folder string) {
 	msg, _ := syscall.UTF16PtrFromString(message)
 	label := "알파 ERP 연결 진단 v" + version
 	if operation == "background" {
-		label = "알파 ERP 가려진 창 시험 v0.2"
+		label = "알파 ERP 가려진 창 시험 v0.3"
 	}
 	title, _ := syscall.UTF16PtrFromString(label)
 	api("MessageBoxW", 0, uintptr(unsafe.Pointer(msg)), uintptr(unsafe.Pointer(title)), 0x40)

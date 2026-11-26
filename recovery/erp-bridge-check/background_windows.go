@@ -83,7 +83,7 @@ func backgroundTest() error {
 	if saveDialog(pid) != 0 {
 		return fmt.Errorf("ERP에 열려 있는 저장창을 취소하고 다시 실행해 주세요")
 	}
-	p, e := waitBackgroundKey(0x77, 0x4201, "ERP 가려진 창 내보내기 시험 v0.2\n\n1. 발주대비미입고현황 → 가공사업부 → 검색한 목록을 열어 두세요.\n2. 이 안내에서 확인을 누른 뒤 ERP Excel 버튼에 마우스를 올리고 F8을 누르세요.\n\n이번에는 실제 마우스 클릭 대신 창 내부 메시지를 보냅니다. Excel 이외의 위치를 지정하지 마세요.\n취소: Esc")
+	p, e := waitBackgroundKey(0x77, 0x4201, "ERP 가려진 창 내보내기 시험 v0.3\n\n1. 발주대비미입고현황 → 가공사업부 → 검색한 목록을 열어 두세요.\n2. 이 안내에서 확인을 누른 뒤 ERP Excel 버튼에 마우스를 올리고 F8을 누르세요.\n\n이번에는 실제 마우스 클릭 대신 창 내부 메시지를 보냅니다. Excel 이외의 위치를 지정하지 마세요.\n취소: Esc")
 	if e != nil {
 		return e
 	}
@@ -106,7 +106,7 @@ func backgroundTest() error {
 	if e != nil {
 		return e
 	}
-	report := map[string]any{"tool": "ERP background test v0.2", "when": time.Now().Format(time.RFC3339), "success": false, "mode": "calibrated toolbar messages; targeted filename input/Save; guarded work-window foreground restore; no global mouse/keyboard input", "toolbar_class": c.Class, "toolbar_width": c.Bounds.Right - c.Bounds.Left, "toolbar_height": c.Bounds.Bottom - c.Bounds.Top, "local_x": local.X, "local_y": local.Y}
+	report := map[string]any{"tool": "ERP background test v0.3", "when": time.Now().Format(time.RFC3339), "success": false, "mode": "calibrated toolbar messages; targeted filename input/Save; guarded work-window foreground restore; no global mouse/keyboard input", "toolbar_class": c.Class, "toolbar_width": c.Bounds.Right - c.Bounds.Left, "toolbar_height": c.Bounds.Bottom - c.Bounds.Top, "local_x": local.X, "local_y": local.Y}
 	finish := func(err error) error {
 		if err != nil {
 			report["error"] = err.Error()
@@ -120,7 +120,7 @@ func backgroundTest() error {
 		showResult(msg, folder)
 		return nil
 	}
-	_, e = waitBackgroundKey(0x78, 0x4211, "Excel 위치를 지정했습니다. 아직 내보내기를 실행하지 않았습니다.\n\n1. 확인을 누릅니다.\n2. Chrome 등 다른 창으로 ERP의 Excel 버튼을 완전히 가려 주세요.\n3. ERP 크기·위치·탭은 바꾸지 말고, 다른 창에서 F9를 누르세요.\n\nF9 뒤에는 최대 약 90초간 기다려 주세요. 자동 저장창이 생길 수 있습니다. 그 창에는 입력하지 마세요.\n최소화·화면 잠금은 이번 시험 대상이 아닙니다. 취소: Esc")
+	_, e = waitBackgroundKey(0x78, 0x4211, "Excel 위치를 지정했습니다. 아직 내보내기를 실행하지 않았습니다.\n\n1. 확인을 누릅니다.\n2. Chrome 등 다른 창으로 ERP의 Excel 버튼을 완전히 가려 주세요.\n3. ERP 크기·위치·탭은 바꾸지 말고, 다른 창에서 F9를 누르세요.\n\nF9 뒤에는 최대 약 110초간 기다려 주세요. 자동 저장창이나 엑셀이 생길 수 있습니다. 자동으로 열린 시험 엑셀은 수정하지 마세요.\n최소화·화면 잠금은 이번 시험 대상이 아닙니다. 취소: Esc")
 	if e != nil {
 		return finish(e)
 	}
@@ -263,6 +263,19 @@ func backgroundTest() error {
 				report["success"] = true
 				report["file"] = filepath.Base(file)
 				report["bytes"] = st.Size()
+				cleanup, cleanupErr := cleanupExportExcel(file, folder)
+				report["export_excel_cleanup"] = map[string]any{"stage": cleanup.Stage, "matched": cleanup.Matched, "closed": cleanup.Closed, "remaining": cleanup.Remaining, "skipped_unsaved": cleanup.SkippedUnsaved, "errors": cleanup.Errors, "close_verified": cleanup.CloseVerified, "owned_workbook_was_foreground": cleanup.OwnedForegroundPID != 0}
+				if cleanupErr != nil {
+					report["export_excel_cleanup_error"] = cleanupErr.Error()
+				}
+				attempted, restored := backgroundRestoreAfterExport(before, cleanup)
+				report["export_excel_work_restore_attempted"] = attempted
+				report["export_excel_work_restore_confirmed"] = restored
+				if e := validateWorkbook(file); e != nil {
+					report["success"] = false
+					observe()
+					return finish(fmt.Errorf("엑셀 닫기 처리 후 저장 파일 검증 실패: %v", e))
+				}
 				observe()
 				return finish(nil)
 			}

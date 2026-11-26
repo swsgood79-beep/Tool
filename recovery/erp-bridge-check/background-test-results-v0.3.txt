@@ -1,0 +1,26 @@
+=== RUN   TestExportRestoreRequiresClosedOwnedWorkbook
+--- PASS: TestExportRestoreRequiresClosedOwnedWorkbook (0.00s)
+=== RUN   TestExportCleanupOnlyClosesExactSavedWorkbook
+--- PASS: TestExportCleanupOnlyClosesExactSavedWorkbook (0.00s)
+=== RUN   TestBackgroundCalibrationRejectsNonToolbarTargets
+--- PASS: TestBackgroundCalibrationRejectsNonToolbarTargets (0.00s)
+=== RUN   TestBackgroundRunnerNeverUsesForegroundOrGlobalInputFallback
+--- PASS: TestBackgroundRunnerNeverUsesForegroundOrGlobalInputFallback (0.00s)
+=== RUN   TestBackgroundFocusRestoreOnlyForERPInterruption
+--- PASS: TestBackgroundFocusRestoreOnlyForERPInterruption (0.00s)
+=== RUN   TestBackgroundSaveLabelsAndInputIsolation
+--- PASS: TestBackgroundSaveLabelsAndInputIsolation (0.00s)
+=== RUN   TestExportWorkbookValidation
+--- PASS: TestExportWorkbookValidation (0.00s)
+=== RUN   TestPowerShellUnicodeTransport
+--- PASS: TestPowerShellUnicodeTransport (0.00s)
+=== RUN   TestSaveControlSelection
+--- PASS: TestSaveControlSelection (0.00s)
+=== RUN   TestFixedLabelsOnly
+--- PASS: TestFixedLabelsOnly (0.00s)
+=== RUN   TestOutputDoesNotOverwriteFiles
+--- PASS: TestOutputDoesNotOverwriteFiles (0.00s)
+=== RUN   TestUIAJSONEncodings
+--- PASS: TestUIAJSONEncodings (0.00s)
+PASS
+ok  	alpha-erp-bridge-check	0.006s
