@@ -1,0 +1,9 @@
+{
+  "tool": "ERP background test v0.1",
+  "zip_sha256": "491c0e565c66a03769e4de5f32ecbd5b20daad5e6cc9b3aad83a50870931c2a9",
+  "delivered_exe_sha256": "eb50cac515c9e4415cfb8021ae7b815c251bfb717064da276c9d586c707882f4",
+  "rebuilt_exe_sha256": "eb50cac515c9e4415cfb8021ae7b815c251bfb717064da276c9d586c707882f4",
+  "identical": true,
+  "source_checksums": "all verified",
+  "windows_execution": "not performed; covered ERP export and UIA save pending field test"
+}

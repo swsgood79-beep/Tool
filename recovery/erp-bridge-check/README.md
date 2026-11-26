@@ -1,6 +1,6 @@
 # ERP 연결 진단 도구 v0.2
 
-이 문서는 기본 진단 모드의 설명입니다. 별도 엑셀 저장 시험 모드는 [EXPORT-TEST.md](EXPORT-TEST.md)를 참고하세요.
+이 문서는 기본 진단 모드의 설명입니다. 별도 엑셀 저장 시험 모드는 [EXPORT-TEST.md](EXPORT-TEST.md), 가려진 창 내보내기 시험은 [BACKGROUND-TEST.md](BACKGROUND-TEST.md)를 참고하세요.
 
 현재 알파 PC 프로그램과 별도로 실행하는 Windows x64 확인용 도구입니다. PrimeERP의 버튼·목록을 자동으로 식별할 수 있는지 확인합니다. **ERP 자동 수집 기능은 아직 포함하지 않습니다.** 이 결과로 엑셀 내보내기 자동화를 구체화합니다.
 

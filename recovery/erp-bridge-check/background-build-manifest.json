@@ -1,0 +1,28 @@
+{
+  "tool": "ERP background test",
+  "version": "0.1",
+  "operation": "background",
+  "exe_sha256": "eb50cac515c9e4415cfb8021ae7b815c251bfb717064da276c9d586c707882f4",
+  "source_sha256": {
+    "BACKGROUND-TEST.md": "1daecd93b3d1f4451b403e71be8e865c126ea9fc220fd62e1cdd26b645562716",
+    "EXPORT-TEST.md": "6f9d0cee94f5d514babcd0dcea6075a205533b362b1f03792573c4b8d00aa30e",
+    "README.md": "a86b5b7ede911dbcf3f9cbef29d5bb36b899d3721fb5f5465abbaed42fb1cc56",
+    "background-test-results.txt": "4b757fae5d3d1a4c915c5328508904966ef63f070889d6c5bc29c28a379fe33f",
+    "background.go": "40200b5c00fa95f0f3032814da52a6ae8f76060ed0e27d1d96bd7570db2ef771",
+    "background_test.go": "3aa76cb1424506c67a009f6bd681a7784e0ee7e5110ee45b486ce27bf82c3215",
+    "background_windows.go": "b141794929972ea8cc85e607f13c661b2f133cf60647f8c4ad3098fe3a5475bc",
+    "export.go": "accac60dcd8ebd952bab597d5931c7dd3242a12dcf1e6429d6a945927ba1fcb2",
+    "export_test.go": "e94510730fae7e91de6cee7342bb1921400fec4bc150e30e5e3bdaa2f3723bab",
+    "export_windows.go": "0e12f7b5b585bdae22645a05746a57d2f6ed7a41049393c4935230b33dcf520f",
+    "go.mod": "5a9f31940a5cc0cafec5569558ffec63b48bad69dd340caf79fd21f20316c970",
+    "inspect-uia.ps1": "effffd37de7bd9e73503c3f88329a028ed75b08ba0aba4e29935b1ca066f6d6a",
+    "main.go": "f6e6c539b62e7fa27654abb45c5a844793c5e15d4e58dc1f69ac3a6522306159",
+    "main_test.go": "d4dbcabdc789873bd1d742ccd91f8ba123c52c02a2f76a7621e248f981e9548d",
+    "other.go": "2853d70c1f058444abd265b75657f87e855e71080bb3f0138b8ca37fbf566e5b",
+    "save-dialog.ps1": "5cdbe7e3a23ff69e8cca35b797177180b71f58332e62c2c668793f485a4f1530",
+    "save_win32_windows.go": "a70d3a139aa93e436db352841d2188e2b703d5caa848e0d6156a3f410a4c0b63",
+    "windows.go": "f5fa30013f350fc1eb375fc2a4a1a7b1f095aae2d61f7e0b1fa617aeb4ed817a"
+  },
+  "validation": "8 Linux unit tests, Linux/Windows amd64 vet and cross-build passed; actual covered Windows ERP export/UIA-save pending user test",
+  "foreground_observation": "50ms samples; application/provider may activate itself; no proof of uninterrupted background use until field results"
+}

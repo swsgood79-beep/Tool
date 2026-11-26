@@ -123,6 +123,13 @@ func run() (string, error) {
 }
 func main() {
 	prepareConsole()
+	if operation == "background" {
+		if err := backgroundTest(); err != nil {
+			showResult(err.Error(), "")
+			os.Exit(1)
+		}
+		return
+	}
 	if operation == "export" {
 		if err := exportTest(); err != nil {
 			showResult(err.Error(), "")

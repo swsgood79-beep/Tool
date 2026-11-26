@@ -10,3 +10,7 @@ func collectWindows(string) ([]Window, error) {
 }
 func showResult(message, folder string) {}
 func exportTest() error                 { return errors.New("엑셀 저장 테스트는 Windows PC 전용입니다") }
+
+func backgroundTest() error {
+	return errors.New("가려진 ERP 창 시험은 Windows PC 전용입니다")
+}
