@@ -123,6 +123,10 @@ func run() (string, error) {
 }
 func main() {
 	prepareConsole()
+	if operation == "bridge" {
+		runBridge()
+		return
+	}
 	if operation == "background" {
 		if err := backgroundTest(); err != nil {
 			showResult(err.Error(), "")

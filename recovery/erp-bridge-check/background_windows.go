@@ -83,21 +83,49 @@ func backgroundTest() error {
 	if saveDialog(pid) != 0 {
 		return fmt.Errorf("ERP에 열려 있는 저장창을 취소하고 다시 실행해 주세요")
 	}
-	p, e := waitBackgroundKey(0x77, 0x4201, "ERP 가려진 창 내보내기 시험 v0.3\n\n1. 발주대비미입고현황 → 가공사업부 → 검색한 목록을 열어 두세요.\n2. 이 안내에서 확인을 누른 뒤 ERP Excel 버튼에 마우스를 올리고 F8을 누르세요.\n\n이번에는 실제 마우스 클릭 대신 창 내부 메시지를 보냅니다. Excel 이외의 위치를 지정하지 마세요.\n취소: Esc")
-	if e != nil {
-		return e
+	var p, local point
+	var packed, target uintptr
+	var c Control
+	var rootBounds Rect
+	var e error
+	if operation == "bridge" && bridgeCal != nil {
+		if bridgeCal.root != root {
+			return fmt.Errorf("ERP 창이 변경됐습니다. 연결 도구를 다시 실행해 주세요")
+		}
+		p, local, target, c, rootBounds = bridgeCal.screen, bridgeCal.local, bridgeCal.target, bridgeCal.c, bridgeCal.bounds
+		packed = uintptr(uint64(uint32(p.X)) | uint64(uint32(p.Y))<<32)
+	} else {
+		p, e = waitBackgroundKey(0x77, 0x4201, "ERP Excel 버튼 위치 지정\n\n1. 발주대비미입고현황 → 가공사업부 → 검색한 목록을 열어 두세요.\n2. 이 안내에서 확인을 누른 뒤 ERP Excel 버튼에 마우스를 올리고 F8을 누르세요.\n\n이번에는 실제 마우스 클릭 대신 창 내부 메시지를 보냅니다. Excel 이외의 위치를 지정하지 마세요.\n취소: Esc")
+		if e != nil {
+			return e
+		}
+		packed = uintptr(uint64(uint32(p.X)) | uint64(uint32(p.Y))<<32)
+		target = api("WindowFromPoint", packed)
+		c = Control{Handle: uint64(target), Class: classOf(target), Visible: api("IsWindowVisible", target) != 0, Enabled: api("IsWindowEnabled", target) != 0, Bounds: rectOf(target)}
+		rootBounds = rectOf(root)
+		if api("GetAncestor", target, 2) != root || !backgroundTargetValid(c, rootBounds, p.X, p.Y) {
+			return fmt.Errorf("ERP 상단 Excel 도구 모음 위치를 확인하지 못했습니다. 화면 크기를 유지하고 다시 지정해 주세요")
+		}
+		local = p
+		if api("ScreenToClient", target, uintptr(unsafe.Pointer(&local))) == 0 {
+			return fmt.Errorf("도구 모음 내부 좌표를 확인하지 못했습니다")
+		}
+		if operation == "bridge" {
+			search, e := waitBackgroundKey(0x76, 0x4221, "조회 갱신 위치 지정\n\nERP의 같은 상단 도구 모음에서 검색 버튼 위에 마우스를 올리고 F7을 누르세요. 거래처 가공사업부·발주대비미입고현황을 확인해 주세요.")
+			if e != nil {
+				return e
+			}
+			sp := uintptr(uint64(uint32(search.X)) | uint64(uint32(search.Y))<<32)
+			if api("WindowFromPoint", sp) != target || search.X >= p.X-35 || p.X-search.X > 100 || search.Y < c.Bounds.Top || search.Y >= c.Bounds.Bottom {
+				return fmt.Errorf("같은 도구 모음의 Excel 왼쪽 검색 버튼을 지정해 주세요")
+			}
+			if api("ScreenToClient", target, uintptr(unsafe.Pointer(&search))) == 0 {
+				return fmt.Errorf("검색 위치 확인 실패")
+			}
+			bridgeCal = &bridgeCalibration{root: root, target: target, c: c, bounds: rootBounds, screen: p, local: local, search: search}
+		}
 	}
-	packed := uintptr(uint64(uint32(p.X)) | uint64(uint32(p.Y))<<32)
-	target := api("WindowFromPoint", packed)
-	c := Control{Handle: uint64(target), Class: classOf(target), Visible: api("IsWindowVisible", target) != 0, Enabled: api("IsWindowEnabled", target) != 0, Bounds: rectOf(target)}
-	rootBounds := rectOf(root)
-	if api("GetAncestor", target, 2) != root || !backgroundTargetValid(c, rootBounds, p.X, p.Y) {
-		return fmt.Errorf("ERP 상단 Excel 도구 모음 위치를 확인하지 못했습니다. 화면 크기를 유지하고 다시 지정해 주세요")
-	}
-	local := p
-	if api("ScreenToClient", target, uintptr(unsafe.Pointer(&local))) == 0 {
-		return fmt.Errorf("도구 모음 내부 좌표를 확인하지 못했습니다")
-	}
+
 	exe, _ := os.Executable()
 	folder, e := os.MkdirTemp(filepath.Dir(exe), "ERP-background-test-")
 	if e != nil {
@@ -107,6 +135,9 @@ func backgroundTest() error {
 		return e
 	}
 	report := map[string]any{"tool": "ERP background test v0.3", "when": time.Now().Format(time.RFC3339), "success": false, "mode": "calibrated toolbar messages; targeted filename input/Save; guarded work-window foreground restore; no global mouse/keyboard input", "toolbar_class": c.Class, "toolbar_width": c.Bounds.Right - c.Bounds.Left, "toolbar_height": c.Bounds.Bottom - c.Bounds.Top, "local_x": local.X, "local_y": local.Y}
+	if operation == "bridge" {
+		report["tool"] = "ERP automatic bridge v0.1"
+	}
 	finish := func(err error) error {
 		if err != nil {
 			report["error"] = err.Error()
@@ -117,12 +148,20 @@ func backgroundTest() error {
 		if err != nil {
 			msg = "가려진 창 내보내기 시험이 완료되지 않았습니다.\n\n" + err.Error() + "\n\nERP-background-test.json을 대화에 첨부해 주세요.\nERP 저장창이 남아 있으면 직접 취소해 주세요."
 		}
+		if operation == "bridge" {
+			if err == nil {
+				os.RemoveAll(folder)
+			}
+			return err
+		}
 		showResult(msg, folder)
 		return nil
 	}
-	_, e = waitBackgroundKey(0x78, 0x4211, "Excel 위치를 지정했습니다. 아직 내보내기를 실행하지 않았습니다.\n\n1. 확인을 누릅니다.\n2. Chrome 등 다른 창으로 ERP의 Excel 버튼을 완전히 가려 주세요.\n3. ERP 크기·위치·탭은 바꾸지 말고, 다른 창에서 F9를 누르세요.\n\nF9 뒤에는 최대 약 110초간 기다려 주세요. 자동 저장창이나 엑셀이 생길 수 있습니다. 자동으로 열린 시험 엑셀은 수정하지 마세요.\n최소화·화면 잠금은 이번 시험 대상이 아닙니다. 취소: Esc")
-	if e != nil {
-		return finish(e)
+	if operation != "bridge" || !bridgeStarted {
+		_, e = waitBackgroundKey(0x78, 0x4211, "Excel 위치를 지정했습니다. 아직 내보내기를 실행하지 않았습니다.\n\n1. 확인을 누릅니다.\n2. Chrome 등 다른 창으로 ERP의 Excel 버튼을 완전히 가려 주세요.\n3. ERP 크기·위치·탭은 바꾸지 말고, 다른 창에서 F9를 누르세요.\n\nF9 뒤에는 최대 약 110초간 기다려 주세요. 자동 저장창이나 엑셀이 생길 수 있습니다. 자동으로 열린 시험 엑셀은 수정하지 마세요.\n최소화·화면 잠금은 이번 시험 대상이 아닙니다. 취소: Esc")
+		if e != nil {
+			return finish(e)
+		}
 	}
 	if api("IsWindow", target) == 0 || api("IsIconic", root) != 0 || !backgroundGeometrySame(c.Bounds, rectOf(target)) || !backgroundGeometrySame(rootBounds, rectOf(root)) || api("GetAncestor", target, 2) != root || api("IsWindowEnabled", target) == 0 || api("IsWindowVisible", target) == 0 {
 		return finish(fmt.Errorf("ERP 창이나 도구 모음이 바뀌어 실행을 중단했습니다"))
@@ -199,6 +238,21 @@ func backgroundTest() error {
 		observed = true
 	}
 	defer observe()
+	if operation == "bridge" {
+		q := bridgeCal.search
+		qp := uintptr(uint32(uint16(q.X)) | uint32(uint16(q.Y))<<16)
+		for _, m := range []struct{ id, w uintptr }{{0x200, 0}, {0x201, 1}, {0x202, 0}} {
+			if api("PostMessageW", target, m.id, m.w, qp) == 0 {
+				return finish(fmt.Errorf("ERP 검색 요청 실패"))
+			}
+		}
+		// ERP has no accessible grid-ready signal. Recheck the live toolbar after a
+		// conservative wait; workbook structure/filter validation remains server-side.
+		time.Sleep(3 * time.Second)
+		if api("IsWindow", target) == 0 || api("IsWindowEnabled", target) == 0 || !backgroundGeometrySame(c.Bounds, rectOf(target)) {
+			return finish(fmt.Errorf("ERP 조회 갱신 대기 또는 화면 변경. 다시 실행해 주세요"))
+		}
+	}
 	requestPoint := uintptr(uint32(uint16(local.X)) | uint32(uint16(local.Y))<<16)
 	// One calibrated Excel request only. No foreground/global-input fallback.
 	for _, msg := range []struct{ id, w uintptr }{{0x0200, 0}, {0x0201, 1}, {0x0202, 0}} {
@@ -275,6 +329,12 @@ func backgroundTest() error {
 					report["success"] = false
 					observe()
 					return finish(fmt.Errorf("엑셀 닫기 처리 후 저장 파일 검증 실패: %v", e))
+				}
+				if operation == "bridge" {
+					if e := bridgePublish(file); e != nil {
+						observe()
+						return finish(e)
+					}
 				}
 				observe()
 				return finish(nil)

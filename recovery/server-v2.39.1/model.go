@@ -121,6 +121,7 @@ type Ticket struct {
 	Next    string
 }
 type App struct {
+	machiningBridgeMessage     string
 	machiningDrafts            map[string]MachiningDraft
 	manualTransferMu           sync.Mutex
 	manualTransfers            map[string]*manualTransfer

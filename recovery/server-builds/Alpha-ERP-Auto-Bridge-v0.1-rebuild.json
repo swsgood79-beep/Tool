@@ -1,0 +1,8 @@
+{
+  "zip_sha256": "0ee5edec23d05c24700360f511cc3daee0f161723e975c28f88c592caa7bcd97",
+  "exe_sha256": "135fa15087250875c1852589a29ed8bbd85c18796327c3f9b6d9e4c7538538d2",
+  "rebuilt_exe_sha256": "135fa15087250875c1852589a29ed8bbd85c18796327c3f9b6d9e4c7538538d2",
+  "identical": true,
+  "source_checksums": "pass",
+  "actual_periodic_ERP_query": "pending field test"
+}

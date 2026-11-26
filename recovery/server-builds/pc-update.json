@@ -1,8 +1,8 @@
 {
-  "version": "1.4.105",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.105.zip",
-  "sha256": "e0bda92a111802a5d8b0564a53485b8b01f79b508e003efde3d54fcb3287295e",
-  "exe_sha256": "9cc1a072c99917c6f048a749045782b66fe5cb3233bc11a703207d1fd406c34b",
-  "bytes": 37106967,
-  "notes": "분할 출고 · 수주 하나에 차수별 출하검사·사진 · 모든 차수 후 최종 보관 · APK 1.0.11 유지"
+  "version": "1.4.106",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.106.zip",
+  "sha256": "035a3fdd2a8262243be0e9d89b6ca6f851dd175fb91cb2ae36024aad1e9de2fe",
+  "exe_sha256": "5eb68225b7e6b1d991daf18e4a9b42958f0a68609a559d38c5049f85562c5ba2",
+  "bytes": 37111581,
+  "notes": "ERP 자동 반영 설정 · 가공사업부 BASE 필터 · 작업 기록 유지 · 별도 연결 도구 사용 · 최소화 수집 미지원 · APK 유지"
 }

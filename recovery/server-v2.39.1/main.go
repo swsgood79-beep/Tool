@@ -518,6 +518,7 @@ func run() error {
 	}
 	a.startPumps(ctx)
 	a.startInternetAuto(ctx)
+	a.startMachiningBridge(ctx)
 
 	go func() {
 		<-ctx.Done()

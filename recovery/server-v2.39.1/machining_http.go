@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"os"
 	"path/filepath"
 	"strings"
 	"time"
@@ -45,12 +46,38 @@ func (a *App) machiningHTTP(w http.ResponseWriter, r *http.Request, s Session) b
 		return true
 	}
 	if path == "/machining/status" && r.Method == "GET" {
-		jsonReply(w, map[string]any{"jobs": machiningSorted(&a.state), "unreceived": machiningUnreceived(&a.state), "last_import": machiningLastImport(&a.state)})
+		jsonReply(w, map[string]any{"jobs": machiningSorted(&a.state), "unreceived": machiningUnreceived(&a.state), "last_import": machiningLastImport(&a.state), "bridge_status": func() string {
+			if machine {
+				return ""
+			}
+			return a.machiningBridgeStatus()
+		}()})
 		return true
 	}
 	if r.Method == "POST" {
 		var err error
 		switch path {
+		case "/machining-admin/bridge":
+			if s.AccountID != "" {
+				http.Error(w, "대표 관리자만 설정할 수 있습니다", 403)
+				return true
+			}
+			marker := filepath.Join(a.dir, "erp-bridge-enabled")
+			if r.FormValue("enabled") == "1" {
+				err = atomicFile(marker, []byte("enabled"))
+			} else {
+				err = os.Remove(marker)
+				if os.IsNotExist(err) {
+					err = nil
+				}
+			}
+			if err != nil {
+				http.Error(w, "자동 연결 설정 저장 실패", 500)
+			} else {
+				a.machiningBridgeMessage = ""
+				http.Redirect(w, r, "/machining-admin", 303)
+			}
+			return true
 		case "/machining/action":
 			err = a.actMachining(s, r.FormValue("id"), r.FormValue("phase"), r.FormValue("action"), r.FormValue("run"), number(r.FormValue("revision")), int(number(r.FormValue("quantity"))))
 			if err != nil {
@@ -146,7 +173,7 @@ func (a *App) machiningHTTP(w http.ResponseWriter, r *http.Request, s Session) b
 		return true
 	}
 	actor := machiningActor(&a.state, s)
-	a.renderTemplate(w, templates, "machining.html", map[string]any{"CSRF": s.CSRF, "Name": actor.Name, "Account": actor.ID, "Admin": !machine && !ownerPreview, "Owner": s.AccountID == "", "ReadOnly": ownerPreview, "Saved": r.URL.Query().Get("saved") == "1", "NativeApp": nativeAdminAgent(r)})
+	a.renderTemplate(w, templates, "machining.html", map[string]any{"CSRF": s.CSRF, "Name": actor.Name, "Account": actor.ID, "Admin": !machine && !ownerPreview, "Owner": s.AccountID == "", "ReadOnly": ownerPreview, "Saved": r.URL.Query().Get("saved") == "1", "BridgeEnabled": a.machiningBridgeEnabled(), "BridgeStatus": a.machiningBridgeStatus(), "NativeApp": nativeAdminAgent(r)})
 	return true
 }
 func machiningLastImport(s *State) *MachiningImport {
