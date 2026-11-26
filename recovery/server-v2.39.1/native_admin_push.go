@@ -67,10 +67,10 @@ func nativeAccountValid(s *State, d NativeAdminDevice) bool {
 		return false
 	}
 	if d.AccountID == "" {
-		return d.Role != "purchasing" && s.PasswordHash != "" && d.OwnerRevision == s.Integration.Revision
+		return d.Role != "purchasing" && d.Role != "machining" && s.PasswordHash != "" && d.OwnerRevision == s.Integration.Revision
 	}
 	u := adminAccount(s, d.AccountID)
-	return u != nil && u.Enabled && u.Revision == d.AccountRevision && (u.Role == "purchasing") == (d.Role == "purchasing")
+	return u != nil && u.Enabled && u.Revision == d.AccountRevision && (u.Role == "purchasing") == (d.Role == "purchasing") && (u.Role == "machining") == (d.Role == "machining")
 }
 func nativeAccountLabel(s *State, id string) string {
 	if id == "" {
@@ -213,6 +213,7 @@ func (a *App) nativeAdminHTTP(w http.ResponseWriter, r *http.Request, session Se
 		return true
 	}
 	purchase := purchasingSession(&a.state, session)
+	machine := machiningSession(&a.state, session)
 	if path == "/native-admin/bootstrap" && r.Method == "GET" {
 		var public *NativeFirebasePublic
 		if nativePushReady(a.state.NativeAdminPush) {
@@ -227,7 +228,7 @@ func (a *App) nativeAdminHTTP(w http.ResponseWriter, r *http.Request, session Se
 		if account := adminAccount(&a.state, session.AccountID); account != nil {
 			username = account.Username
 		}
-		jsonReply(w, map[string]any{"account_role": map[bool]string{true: "purchasing", false: "admin"}[purchase], "worker_view_supported": !purchase, "worker_view": nativeWorkerView(r, a.sessionCookie()), "account_username": username, "persistent_login": persistent, "cookie_name": a.sessionCookie(), "registered": registered, "ready": public != nil, "config": public, "csrf": session.CSRF, "release": releaseVersion, "account_key": session.AccountID, "account_label": nativeAccountLabel(&a.state, session.AccountID), "owner": session.AccountID == ""})
+		jsonReply(w, map[string]any{"account_role": nativeSessionRole(&a.state, session), "worker_view_supported": !purchase && !machine, "worker_view": nativeWorkerView(r, a.sessionCookie()), "account_username": username, "persistent_login": persistent, "cookie_name": a.sessionCookie(), "registered": registered, "ready": public != nil, "config": public, "csrf": session.CSRF, "release": releaseVersion, "account_key": session.AccountID, "account_label": nativeAccountLabel(&a.state, session.AccountID), "owner": session.AccountID == ""})
 		return true
 	}
 	if path == "/native-admin/register" && r.Method == "POST" {
@@ -262,6 +263,9 @@ func (a *App) nativeAdminHTTP(w http.ResponseWriter, r *http.Request, session Se
 				delivered = d.Delivered
 			}
 			appKind := ""
+			if machine {
+				appKind = "machining"
+			}
 			if purchase {
 				appKind = "purchasing"
 			}
@@ -525,7 +529,7 @@ func (a *App) pumpNativeAdmin(ctx context.Context) {
 	a.mu.Unlock()
 	sort.Slice(events, func(i, j int) bool { return events[i].ID < events[j].ID })
 	for _, d := range cfg.Devices {
-		if d.Role == "purchasing" {
+		if d.Role == "purchasing" || d.Role == "machining" {
 			continue
 		}
 		a.mu.Lock()
@@ -652,4 +656,14 @@ func nativePreview(value string) string {
 		out += string(r)
 	}
 	return out + "…"
+}
+
+func nativeSessionRole(s *State, session Session) string {
+	if machiningSession(s, session) {
+		return "machining"
+	}
+	if purchasingSession(s, session) {
+		return "purchasing"
+	}
+	return "admin"
 }

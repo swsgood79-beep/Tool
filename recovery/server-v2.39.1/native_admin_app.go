@@ -21,7 +21,7 @@ func nativeAdminWorkerPath(path string) bool {
 }
 func (a *App) nativeAdminPresentation(w http.ResponseWriter, r *http.Request) (http.ResponseWriter, bool) {
 	session, ok := a.session(r)
-	if ok && purchasingSession(&a.state, session) {
+	if ok && (purchasingSession(&a.state, session) || machiningSession(&a.state, session)) {
 		return w, false
 	}
 	app := nativeAdminAgent(r) || (ok && session.NativeGrantID != "")

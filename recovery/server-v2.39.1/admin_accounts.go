@@ -118,7 +118,7 @@ func (a *App) manageAdminAccount(r *http.Request) error {
 
 	if action == "create" {
 		role := r.FormValue("role")
-		if role != "" && role != "admin" && role != "purchasing" {
+		if role != "" && role != "admin" && role != "purchasing" && role != "machining" {
 			return errors.New("계정 권한을 확인해 주세요.")
 		}
 		name, username := strings.TrimSpace(r.FormValue("name")), strings.ToLower(strings.TrimSpace(r.FormValue("username")))
@@ -253,6 +253,7 @@ func (a *App) accountHTTP(w http.ResponseWriter, r *http.Request, session Sessio
 		message = "내 비밀번호를 변경했습니다. 이 계정의 다른 기기는 다시 로그인해야 합니다."
 	}
 	v := a.view(session.CSRF)
+	v["MachiningAccount"] = machiningSession(&a.state, session)
 	v["AccountError"], v["AccountMessage"], v["PasswordOnly"], v["AccountOwner"] = problem, message, path == "/my-password", session.AccountID == ""
 	rows := []AdminAccountView{}
 	for _, u := range a.state.AdminAccounts {

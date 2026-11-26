@@ -69,6 +69,9 @@ type Event struct {
 	RequestedAt, Completed                                   *time.Time
 }
 type State struct {
+	MachiningJobs             []MachiningJob               `json:",omitempty"`
+	MachiningImports          []MachiningImport            `json:",omitempty"`
+	MachiningAdjustments      []MachiningAdjustment        `json:",omitempty"`
 	Manuals                   []ManualPost                 `json:",omitempty"`
 	OwnerName                 string                       `json:",omitempty"`
 	InspectionAudits          []InspectionAudit            `json:",omitempty"`
@@ -113,6 +116,7 @@ type Ticket struct {
 	Next    string
 }
 type App struct {
+	machiningDrafts            map[string]MachiningDraft
 	manualTransferMu           sync.Mutex
 	manualTransfers            map[string]*manualTransfer
 	internetAuto               *internetAutoState

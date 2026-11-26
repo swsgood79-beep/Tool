@@ -1,0 +1,53 @@
+{
+  "scope": "temporary synthetic app/Chromium; real Android/Windows runtime pending",
+  "results": [
+    {
+      "viewport": 360,
+      "theme": "light",
+      "result": "pass",
+      "scope": "dedicated role redirect, order modal table, robot/part codes, no horizontal overflow, search keyboard blur and own account menu"
+    },
+    {
+      "viewport": 360,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "dedicated role redirect, order modal table, robot/part codes, no horizontal overflow, search keyboard blur and own account menu"
+    },
+    {
+      "viewport": 390,
+      "theme": "light",
+      "result": "pass",
+      "scope": "dedicated role redirect, order modal table, robot/part codes, no horizontal overflow, search keyboard blur and own account menu"
+    },
+    {
+      "viewport": 390,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "dedicated role redirect, order modal table, robot/part codes, no horizontal overflow, search keyboard blur and own account menu"
+    },
+    {
+      "viewport": 430,
+      "theme": "light",
+      "result": "pass",
+      "scope": "dedicated role redirect, order modal table, robot/part codes, no horizontal overflow, search keyboard blur and own account menu"
+    },
+    {
+      "viewport": 430,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "dedicated role redirect, order modal table, robot/part codes, no horizontal overflow, search keyboard blur and own account menu"
+    },
+    {
+      "result": "pass",
+      "scope": "cut start 5, cut complete, milling start 5, milling complete, partial quantities and immutable worker/times in history"
+    },
+    {
+      "result": "pass",
+      "scope": "admin receipt acknowledgement, XLSX preview/import and repeat import preserves work/receipt"
+    },
+    {
+      "result": "pass",
+      "scope": "existing native app role routing and own password screen has no administrator navigation"
+    }
+  ]
+}

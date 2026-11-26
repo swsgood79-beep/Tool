@@ -49,7 +49,7 @@ func inspectionSource(i *InspectionInspector) string {
 	return "로그인 계정 자동 기록"
 }
 func inspectionActor(s *State, session Session) (InspectionInspector, error) {
-	if !validAccountSession(s, session) || purchasingSession(s, session) {
+	if !validAccountSession(s, session) || purchasingSession(s, session) || machiningSession(s, session) {
 		return InspectionInspector{}, errors.New("검사 관리자 로그인이 필요합니다")
 	}
 	actor := InspectionInspector{AccountID: session.AccountID, Username: ownerUsername, Name: ownerDisplayName(s)}

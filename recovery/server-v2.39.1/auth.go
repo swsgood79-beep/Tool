@@ -40,6 +40,10 @@ func (a *App) admin(w http.ResponseWriter, r *http.Request) (Session, bool) {
 		}
 		return s, false
 	}
+	if machiningSession(&a.state, s) && !machiningAllowedPath(r.URL.Path) {
+		http.Error(w, "가공팀 계정은 가공 업무만 이용할 수 있습니다", 403)
+		return s, false
+	}
 	if purchasingSession(&a.state, s) && !purchasingAllowedPath(r.URL.Path) {
 		http.Error(w, "구매팀 계정은 호출 업무만 이용할 수 있습니다.", 403)
 		return s, false
@@ -178,6 +182,10 @@ func (a *App) login(w http.ResponseWriter, r *http.Request) {
 			delete(a.failures, ip)
 			if named {
 				a.issueAccountSession(w, r, account)
+				if account.Role == "machining" {
+					http.Redirect(w, r, "/machining", 303)
+					return
+				}
 				if account.Role == "purchasing" {
 					http.Redirect(w, r, "/purchasing", 303)
 					return

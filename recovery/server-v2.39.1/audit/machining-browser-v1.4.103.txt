@@ -1,0 +1,5 @@
+=== RUN   TestMachiningBrowser
+Machining browser cases: 9
+--- PASS: TestMachiningBrowser (6.01s)
+PASS
+ok  	wanryotalk-reconstructed-server	6.283s

@@ -1,8 +1,8 @@
 {
-  "version": "1.4.102",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.102.zip",
-  "sha256": "1cf0eb7362eddfd1d1342bbcde0b7fadf02663088fab58cfccaa8a06ed676d7f",
-  "exe_sha256": "d3de26fcbb8cfabfd4ff8cbe240a3edd7cdd002228fba577e231259b4f11e196",
-  "bytes": 37026346,
-  "notes": "휴대폰 수주 검색 시 키보드 닫기·결과 이동 · 한글 조합·필터 유지 · APK 1.0.11 유지"
+  "version": "1.4.103",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.103.zip",
+  "sha256": "677cc469b8dfe3eb49fa61bb23f778a811c128155674fbe856e1c94d266de74b",
+  "exe_sha256": "627ec9de219cc82593358347d3a6de2c1b6908eabb6d1e83f3b1c38f6d9a62da",
+  "bytes": 37064906,
+  "notes": "가공팀 전용 화면 · ERP BASE 엑셀 가져오기 · 절단/가공 시작·완료 기록 · ERP 입고 확인 · APK 1.0.11 유지"
 }

@@ -1,23 +1,27 @@
-# 알파작업완료확인 · PC v1.4.102 / 앱 v1.0.11
+# 알파작업완료확인 · PC v1.4.103 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.102** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.102.zip) |
+| **회사 PC 프로그램 v1.4.103** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.103.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.102 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.102-App-v1.0.11.zip) |
+| **현재 전체 소스 · PC 1.4.103 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.103-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](CHANGELOG.md) |
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
 
+## 이번 업데이트 · PC 1.4.103 · 가공팀 작업 기록
+
+가공팀 계정으로 로그인하면 전용 화면이 열립니다. ERP 발주대비미입고현황 XLSX에서 **가공사업부 · BASE**만 읽고 발주번호·수주번호·가공품번별 수량을 합산합니다. 수주를 누르면 로봇품번/가공품번·수량·절단·가공 표가 열리고, 공정별 시작/완료 작업자와 실제 시간을 기록합니다. 일부 수량만 진행할 수 있으며 절단 완료 수량부터 가공을 시작합니다. 관리자에게 가공 완료/ERP 입고 확인 목록과 작업 기록 CSV를 제공합니다. 같은 파일 재등록·ERP 목록 누락으로 기존 작업 기록이 중복되거나 삭제되지 않습니다. **첫 단계는 XLSX 가져오기 방식이며 ERP 정기 자동 수집은 아직 연결하지 않았습니다.** 기존 APK 1.0.11은 유지합니다. [가공팀 사용법](MACHINING.md)
+
 ## ERP 엑셀 자동 저장 현장 시험
 
 [ERP 엑셀 저장 테스트 v0.4 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/Alpha-ERP-Export-Test-v0.4.zip) · [전체 소스·사용법](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/erp-bridge-check/EXPORT-TEST.md)
 
-ERP 발주대비미입고현황을 조회해 두고, 저장창은 취소한 뒤 ZIP을 풀어 EXE를 실행합니다. 안내 확인 후 Excel 버튼에 마우스를 올리고 F8을 누르면 그 위치를 클릭하고 표준 저장창에 새 파일 경로를 입력해 저장을 시험합니다. 결과 폴더의 ERP-export-test.json을 대화에 첨부합니다. v0.4는 실제 키보드 입력으로 저장 경로를 전달하고 저장 결과 진단을 보완합니다. 현재 조회 목록을 내보내는 시험 단계이며 정기 수집/조회 조건 자동 설정/가공팀 업무 화면은 아직 포함하지 않습니다. ZIP에 실행 파일과 전체 소스를 포함하며 실제 회사 PC에서의 클릭·저장 검증이 필요합니다. PC v1.4.102와 APK v1.0.11은 그대로 사용합니다.
+ERP 발주대비미입고현황을 조회해 두고, 저장창은 취소한 뒤 ZIP을 풀어 EXE를 실행합니다. 안내 확인 후 Excel 버튼에 마우스를 올리고 F8을 누르면 그 위치를 클릭하고 표준 저장창에 새 파일 경로를 입력해 저장을 시험합니다. 결과 폴더의 ERP-export-test.json을 대화에 첨부합니다. v0.4는 실제 키보드 입력으로 저장 경로를 전달하며 실제 회사 PC에서 XLSX 저장 성공을 확인했습니다. 저장한 파일은 PC 1.4.103의 가공 작업 관리에서 가져올 수 있습니다. 시험 도구 자체에 정기 수집/조회 조건 자동 설정/가공팀 업무 화면은 포함하지 않습니다. ZIP에 실행 파일과 전체 소스를 포함하며 실제 회사 PC에서의 클릭·저장 검증이 필요합니다. PC v1.4.102와 APK v1.0.11은 그대로 사용합니다.
 
 ## 가공팀 ERP 연동 준비 · 별도 진단 도구
 
@@ -25,7 +29,7 @@ ERP 발주대비미입고현황을 조회해 두고, 저장창은 취소한 뒤 
 
 ERP와 알파가 실행되는 회사 PC에서 PrimeERP 발주현황 화면의 버튼·목록을 자동 식별할 수 있는지 확인하는 별도 도구입니다. ZIP을 풀고 ERP 발주현황을 연 뒤 EXE를 실행하면 결과 폴더가 열립니다. 그 안 ERP-connection-check.json을 대화에 첨부합니다. 화면 구조만 로컬 저장하며 ERP 버튼 조작/자료 변경/자동 전송은 하지 않습니다. **실제 자동 수집 기능은 아직 포함하지 않습니다.** PC 프로그램 v1.4.102와 APK v1.0.11은 그대로 사용하며 ZIP에 진단 도구 전체 소스를 포함합니다. 실제 Windows/PrimeERP 실행은 현장 확인이 필요합니다.
 
-## 이번 업데이트 · PC 1.4.102
+## 이전 업데이트 · PC 1.4.102
 
 휴대폰 수주 검색에서 키보드의 **검색/Enter를 누르면 키보드를 닫고 검색 결과 위치로 이동**하도록 수정했습니다. 관리자 브라우저·관리자 앱·작업자 화면에 함께 적용합니다. 입력 중 실시간 검색과 한글 조합, 검색어·단계 필터를 유지하고, 결과가 없으면 결과 없음 안내로 이동합니다. 검색어 지우기는 키보드를 유지하며 PC에서는 입력 포커스를 그대로 둡니다. **회사 PC를 v1.4.102로 업데이트한 뒤 휴대폰 화면을 다시 열거나 새로고침하세요. APK v1.0.11은 그대로 사용합니다.**
 
