@@ -21,6 +21,7 @@ var uiaScript string
 var user32 = syscall.NewLazyDLL("user32.dll")
 var kernel32 = syscall.NewLazyDLL("kernel32.dll")
 
+//go:uintptrescapes
 func api(name string, args ...uintptr) uintptr {
 	r, _, _ := user32.NewProc(name).Call(args...)
 	return r
@@ -141,7 +142,7 @@ func showResult(message, folder string) {
 	msg, _ := syscall.UTF16PtrFromString(message)
 	label := "알파 ERP 연결 진단 v" + version
 	if operation == "background" {
-		label = "알파 ERP 가려진 창 시험 v0.1"
+		label = "알파 ERP 가려진 창 시험 v0.2"
 	}
 	title, _ := syscall.UTF16PtrFromString(label)
 	api("MessageBoxW", 0, uintptr(unsafe.Pointer(msg)), uintptr(unsafe.Pointer(title)), 0x40)

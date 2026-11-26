@@ -1,0 +1,9 @@
+{
+  "tool": "ERP background test v0.2",
+  "zip_sha256": "dd049649153cc555688c0f89f60b3b5da64c5a7d2f00e2b485d146f1ff7182d5",
+  "exe_sha256": "ef092c4726b7add68be145a065344ddbc123ded27cb0cb478c773c4db343a114",
+  "rebuilt_exe_sha256": "ef092c4726b7add68be145a065344ddbc123ded27cb0cb478c773c4db343a114",
+  "identical": true,
+  "source_checksums": "all verified",
+  "windows_execution": "not run; targeted save and guarded work-window return need field result"
+}

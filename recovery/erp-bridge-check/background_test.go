@@ -46,3 +46,54 @@ func TestBackgroundRunnerNeverUsesForegroundOrGlobalInputFallback(t *testing.T) 
 		t.Fatal("background execution evidence missing")
 	}
 }
+
+func TestBackgroundFocusRestoreOnlyForERPInterruption(t *testing.T) {
+	cases := []struct {
+		current, work, erp, tool uint32
+		want                     bool
+	}{
+		{10, 20, 10, 30, true},  // ERP appeared over the previously selected work app.
+		{40, 20, 10, 30, false}, // User switched to another application: do not interfere.
+		{10, 10, 10, 30, false}, // Never activate ERP as the return window.
+		{10, 30, 10, 30, false}, // Never activate this test tool as the return window.
+		{0, 20, 10, 30, false}, {10, 0, 10, 30, false}, {10, 20, 0, 30, false},
+	}
+	for _, c := range cases {
+		if got := shouldRestoreBackground(c.current, c.work, c.erp, c.tool); got != c.want {
+			t.Fatal(c, got)
+		}
+	}
+}
+func TestBackgroundSaveLabelsAndInputIsolation(t *testing.T) {
+	for _, label := range []string{"저장(&S)", "저장", "&Save", "Save"} {
+		if safeSaveLabel(label) != "Save" {
+			t.Fatal("save label rejected", label)
+		}
+	}
+	for _, label := range []string{"취소", "Cancel", "저장 확인", "Save As", "another file"} {
+		if safeSaveLabel(label) != "" {
+			t.Fatal("unapproved control accepted", label)
+		}
+	}
+	for _, file := range []string{"background_windows.go", "background_save_windows.go", "background_focus_windows.go"} {
+		b, e := os.ReadFile(file)
+		if e != nil {
+			t.Fatal(e)
+		}
+		s := string(b)
+		for _, bad := range []string{`api("SetCursorPos"`, `api("mouse_event"`, `api("SendInput"`, `api("keybd_event"`, `tryNativeSave(`, `typeFilename(`, `clickDialogControl(`} {
+			if strings.Contains(s, bad) {
+				t.Fatal(file, bad)
+			}
+		}
+		if file != "background_focus_windows.go" && strings.Contains(s, `api("SetForegroundWindow"`) {
+			t.Fatal("unexpected foreground request", file)
+		}
+		if file == "background_focus_windows.go" {
+			guard, activate := strings.Index(s, "if !shouldRestoreBackground("), strings.Index(s, `api("SetForegroundWindow", previous)`)
+			if guard < 0 || activate < guard {
+				t.Fatal("foreground restore bypasses process guard")
+			}
+		}
+	}
+}

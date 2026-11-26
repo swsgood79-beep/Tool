@@ -13,6 +13,7 @@ import (
 	"unsafe"
 )
 
+//go:uintptrescapes
 func sendTimeout(h, msg, w, l uintptr) (uintptr, bool) {
 	var value uintptr
 	ok := api("SendMessageTimeoutW", h, msg, w, l, 2, 2000, uintptr(unsafe.Pointer(&value)))

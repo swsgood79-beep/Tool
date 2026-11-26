@@ -83,7 +83,7 @@ func backgroundTest() error {
 	if saveDialog(pid) != 0 {
 		return fmt.Errorf("ERP에 열려 있는 저장창을 취소하고 다시 실행해 주세요")
 	}
-	p, e := waitBackgroundKey(0x77, 0x4201, "ERP 가려진 창 내보내기 시험 v0.1\n\n1. 발주대비미입고현황 → 가공사업부 → 검색한 목록을 열어 두세요.\n2. 이 안내에서 확인을 누른 뒤 ERP Excel 버튼에 마우스를 올리고 F8을 누르세요.\n\n이번에는 실제 마우스 클릭 대신 창 내부 메시지를 보냅니다. Excel 이외의 위치를 지정하지 마세요.\n취소: Esc")
+	p, e := waitBackgroundKey(0x77, 0x4201, "ERP 가려진 창 내보내기 시험 v0.2\n\n1. 발주대비미입고현황 → 가공사업부 → 검색한 목록을 열어 두세요.\n2. 이 안내에서 확인을 누른 뒤 ERP Excel 버튼에 마우스를 올리고 F8을 누르세요.\n\n이번에는 실제 마우스 클릭 대신 창 내부 메시지를 보냅니다. Excel 이외의 위치를 지정하지 마세요.\n취소: Esc")
 	if e != nil {
 		return e
 	}
@@ -106,7 +106,7 @@ func backgroundTest() error {
 	if e != nil {
 		return e
 	}
-	report := map[string]any{"tool": "ERP background test v0.1", "when": time.Now().Format(time.RFC3339), "success": false, "mode": "calibrated toolbar-local window messages and UIA save; no global mouse/keyboard input or explicit foreground activation API", "toolbar_class": c.Class, "toolbar_width": c.Bounds.Right - c.Bounds.Left, "toolbar_height": c.Bounds.Bottom - c.Bounds.Top, "local_x": local.X, "local_y": local.Y}
+	report := map[string]any{"tool": "ERP background test v0.2", "when": time.Now().Format(time.RFC3339), "success": false, "mode": "calibrated toolbar messages; targeted filename input/Save; guarded work-window foreground restore; no global mouse/keyboard input", "toolbar_class": c.Class, "toolbar_width": c.Bounds.Right - c.Bounds.Left, "toolbar_height": c.Bounds.Bottom - c.Bounds.Top, "local_x": local.X, "local_y": local.Y}
 	finish := func(err error) error {
 		if err != nil {
 			report["error"] = err.Error()
@@ -120,7 +120,7 @@ func backgroundTest() error {
 		showResult(msg, folder)
 		return nil
 	}
-	_, e = waitBackgroundKey(0x78, 0x4211, "Excel 위치를 지정했습니다. 아직 내보내기를 실행하지 않았습니다.\n\n1. 확인을 누릅니다.\n2. Chrome 등 다른 창으로 ERP의 Excel 버튼을 완전히 가려 주세요.\n3. ERP 크기·위치·탭은 바꾸지 말고, 다른 창에서 F9를 누르세요.\n\nF9 뒤에는 최대 약 1분간 기다려 주세요. 자동 저장창이 생길 수 있습니다. 그 창에는 입력하지 마세요.\n최소화·화면 잠금은 이번 시험 대상이 아닙니다. 취소: Esc")
+	_, e = waitBackgroundKey(0x78, 0x4211, "Excel 위치를 지정했습니다. 아직 내보내기를 실행하지 않았습니다.\n\n1. 확인을 누릅니다.\n2. Chrome 등 다른 창으로 ERP의 Excel 버튼을 완전히 가려 주세요.\n3. ERP 크기·위치·탭은 바꾸지 말고, 다른 창에서 F9를 누르세요.\n\nF9 뒤에는 최대 약 90초간 기다려 주세요. 자동 저장창이 생길 수 있습니다. 그 창에는 입력하지 마세요.\n최소화·화면 잠금은 이번 시험 대상이 아닙니다. 취소: Esc")
 	if e != nil {
 		return finish(e)
 	}
@@ -140,6 +140,8 @@ func backgroundTest() error {
 	// Observe foreground changes without recording unrelated window titles/processes.
 	var mu sync.Mutex
 	changes, erpSamples, saveSamples := 0, 0, 0
+	restoreAttempts, restoreSuccess := 0, 0
+	restoredWindows := map[uintptr]bool{}
 	previous := before
 	stop, stopped := make(chan struct{}), make(chan struct{})
 	go func() {
@@ -165,6 +167,16 @@ func backgroundTest() error {
 				if p == pid && fg != root {
 					saveSamples++
 				}
+				if p == pid && !restoredWindows[fg] {
+					attempted, restored := backgroundRestoreWorkWindow(before, pid)
+					if attempted {
+						restoredWindows[fg] = true
+						restoreAttempts++
+						if restored {
+							restoreSuccess++
+						}
+					}
+				}
 				mu.Unlock()
 			}
 		}
@@ -177,6 +189,8 @@ func backgroundTest() error {
 		close(stop)
 		<-stopped
 		mu.Lock()
+		report["foreground_restore_attempts"] = restoreAttempts
+		report["foreground_restore_successes"] = restoreSuccess
 		report["foreground_change_samples"] = changes
 		report["erp_foreground_samples"] = erpSamples
 		report["erp_child_foreground_samples"] = saveSamples
@@ -209,22 +223,30 @@ func backgroundTest() error {
 	}
 	report["save_dialog_found"] = true
 	file := filepath.Join(folder, "ERP_BASE_"+time.Now().Format("20060102_150405")+".xlsx")
-	details := filepath.Join(folder, ".uia-save.json")
-	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
-	defer cancel()
-	script := fmt.Sprintf("$DialogHandle=[long]%d\n$ExportPath=%s\n$ResultPath=%s\n", dialog, escapePS(file), escapePS(details)) + saveScript + "\n"
-	cmd := exec.CommandContext(ctx, filepath.Join(os.Getenv("SystemRoot"), "System32", "WindowsPowerShell", "v1.0", "powershell.exe"), "-NoLogo", "-NoProfile", "-NonInteractive", "-EncodedCommand", encodePSScript(script))
-	cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true}
-	err := cmd.Run()
-	if raw, e := os.ReadFile(details); e == nil {
-		if raw, e = normalizeJSON(raw); e == nil {
-			report["uia_save"] = json.RawMessage(raw)
-		}
-	}
-	os.Remove(details)
-	if err != nil {
+	handled, nativeDetail, nativeErr := backgroundNativeSave(dialog, file)
+	report["native_save"] = nativeDetail
+	if handled && nativeErr != nil {
 		observe()
-		return finish(fmt.Errorf("ERP 저장창의 UI Automation 처리를 완료하지 못했습니다. 실제 클릭으로 전환하지 않고 중단했습니다"))
+		return finish(nativeErr)
+	}
+	if !handled {
+		details := filepath.Join(folder, ".uia-save.json")
+		ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
+		defer cancel()
+		script := fmt.Sprintf("$DialogHandle=[long]%d\n$ExportPath=%s\n$ResultPath=%s\n", dialog, escapePS(file), escapePS(details)) + saveScript + "\n"
+		cmd := exec.CommandContext(ctx, filepath.Join(os.Getenv("SystemRoot"), "System32", "WindowsPowerShell", "v1.0", "powershell.exe"), "-NoLogo", "-NoProfile", "-NonInteractive", "-EncodedCommand", encodePSScript(script))
+		cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true}
+		err := cmd.Run()
+		if raw, e := os.ReadFile(details); e == nil {
+			if raw, e = normalizeJSON(raw); e == nil {
+				report["uia_save"] = json.RawMessage(raw)
+			}
+		}
+		os.Remove(details)
+		if err != nil {
+			observe()
+			return finish(fmt.Errorf("ERP 저장창의 UI Automation 처리를 완료하지 못했습니다. 실제 클릭으로 전환하지 않고 중단했습니다"))
+		}
 	}
 	until = time.Now().Add(30 * time.Second)
 	var last int64 = -1

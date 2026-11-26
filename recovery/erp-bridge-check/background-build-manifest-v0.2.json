@@ -1,0 +1,31 @@
+{
+  "tool": "ERP background test",
+  "version": "0.2",
+  "operation": "background",
+  "exe_sha256": "ef092c4726b7add68be145a065344ddbc123ded27cb0cb478c773c4db343a114",
+  "source_sha256": {
+    "BACKGROUND-TEST.md": "abf50b0b22c85409477ae33d97abf6e87e8e3d45d73b722f9390142dbdbfbc2c",
+    "EXPORT-TEST.md": "6f9d0cee94f5d514babcd0dcea6075a205533b362b1f03792573c4b8d00aa30e",
+    "README.md": "a86b5b7ede911dbcf3f9cbef29d5bb36b899d3721fb5f5465abbaed42fb1cc56",
+    "background-test-results-v0.2.txt": "cc4819a8fd0fcff36a3018af12ae9d5c0f863dca5d3cdc6b9cc37a33cdb6cef6",
+    "background.go": "40200b5c00fa95f0f3032814da52a6ae8f76060ed0e27d1d96bd7570db2ef771",
+    "background_focus.go": "f2da7332651a2c09be0526466459c17ed5870ddc64ed462460a4c656518516e7",
+    "background_focus_windows.go": "9864f5979525233e6da7cadcf972af0bd4ce30dc06e73d0bf3407bba5ebceb80",
+    "background_save_windows.go": "5d43227f9b9fc37d14c886209cb09f007bd37d0ffb7cc9b7264ec404281e3c90",
+    "background_test.go": "84be35634408e6ace0ea31873911c7527149cc7c844170f76d9d1ff5bc249230",
+    "background_windows.go": "c966600880b94b2df415b7a0e98f9d5a315c0f95b5858da5c497b9c51c114458",
+    "export.go": "accac60dcd8ebd952bab597d5931c7dd3242a12dcf1e6429d6a945927ba1fcb2",
+    "export_test.go": "e94510730fae7e91de6cee7342bb1921400fec4bc150e30e5e3bdaa2f3723bab",
+    "export_windows.go": "0e12f7b5b585bdae22645a05746a57d2f6ed7a41049393c4935230b33dcf520f",
+    "go.mod": "5a9f31940a5cc0cafec5569558ffec63b48bad69dd340caf79fd21f20316c970",
+    "inspect-uia.ps1": "effffd37de7bd9e73503c3f88329a028ed75b08ba0aba4e29935b1ca066f6d6a",
+    "main.go": "f6e6c539b62e7fa27654abb45c5a844793c5e15d4e58dc1f69ac3a6522306159",
+    "main_test.go": "d4dbcabdc789873bd1d742ccd91f8ba123c52c02a2f76a7621e248f981e9548d",
+    "other.go": "2853d70c1f058444abd265b75657f87e855e71080bb3f0138b8ca37fbf566e5b",
+    "save-dialog.ps1": "5cdbe7e3a23ff69e8cca35b797177180b71f58332e62c2c668793f485a4f1530",
+    "save_win32_windows.go": "dab68750fb9978102df36be72a5d9ac0e5ae90187a7f93a7e24d03ef0e4b8a13",
+    "windows.go": "c47afb010be3e96676831f01f06f7a85f97452cfa41e13615a9e3f253c5a53a6"
+  },
+  "validation": "10 Linux tests and Linux/Windows amd64 vet passed; Windows cross-build; real ERP targeted filename/save and guarded work-window restoration pending field test",
+  "foreground_scope": "No global mouse or keyboard input; guarded return to pre-F9 non-ERP work window only when ERP owns foreground; transient popup and Excel workbook changes not ruled out"
+}
