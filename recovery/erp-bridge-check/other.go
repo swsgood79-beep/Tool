@@ -16,3 +16,5 @@ func backgroundTest() error {
 }
 
 func runBridge() {}
+
+func runManagedBridge(bool) bool { return false }

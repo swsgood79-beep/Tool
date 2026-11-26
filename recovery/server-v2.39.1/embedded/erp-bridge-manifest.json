@@ -1,0 +1,37 @@
+{
+  "version": "0.2",
+  "entrypoints": [
+    "--managed-setup",
+    "--managed-capture"
+  ],
+  "payload_sha256": "3987d211a4a037548d7af93ea5fd749a941bc6416011d38298a0de7a579d37da",
+  "source_sha256": {
+    "README.md": "a86b5b7ede911dbcf3f9cbef29d5bb36b899d3721fb5f5465abbaed42fb1cc56",
+    "background.go": "40200b5c00fa95f0f3032814da52a6ae8f76060ed0e27d1d96bd7570db2ef771",
+    "background_excel.go": "a0a900067e8d10ed04a39703395751e6f629ee0e40466627bbce5f797c6e6488",
+    "background_excel_test.go": "5bb5ab3b4ec61862ac5dbee9058b198cb41c1e7c444fe023fef374eebd185548",
+    "background_excel_windows.go": "0884045367c236850d5eb11897b05418eda151bb8011d56e1c77d8450d04cee3",
+    "background_focus.go": "f2da7332651a2c09be0526466459c17ed5870ddc64ed462460a4c656518516e7",
+    "background_focus_windows.go": "9864f5979525233e6da7cadcf972af0bd4ce30dc06e73d0bf3407bba5ebceb80",
+    "background_save_windows.go": "5d43227f9b9fc37d14c886209cb09f007bd37d0ffb7cc9b7264ec404281e3c90",
+    "background_test.go": "84be35634408e6ace0ea31873911c7527149cc7c844170f76d9d1ff5bc249230",
+    "background_windows.go": "37521c38bc2c11ad858ceff4c36621ffa2960d723e76745478dde9d828811b5e",
+    "bridge_windows.go": "1f5a0fa4fe4787fc55d0865827d0aa2dda3856b36288615cf385a37ad245054b",
+    "close-export-excel.ps1": "c20e2194037c70cd0b0aae7f52eb890cf70a2fe05df496285207b39798090200",
+    "export.go": "accac60dcd8ebd952bab597d5931c7dd3242a12dcf1e6429d6a945927ba1fcb2",
+    "export_test.go": "e94510730fae7e91de6cee7342bb1921400fec4bc150e30e5e3bdaa2f3723bab",
+    "export_windows.go": "0e12f7b5b585bdae22645a05746a57d2f6ed7a41049393c4935230b33dcf520f",
+    "go.mod": "5a9f31940a5cc0cafec5569558ffec63b48bad69dd340caf79fd21f20316c970",
+    "inspect-uia.ps1": "effffd37de7bd9e73503c3f88329a028ed75b08ba0aba4e29935b1ca066f6d6a",
+    "main.go": "c7a85ea7effde0935a0ad16a23e72e6b68fdf6b0c8215e173e886936eda75476",
+    "main_test.go": "d4dbcabdc789873bd1d742ccd91f8ba123c52c02a2f76a7621e248f981e9548d",
+    "other.go": "78910661793f150e24954fba603682d8a280a4d2039a2deea830d87697d60576",
+    "profile.go": "dbcede25f064572fdd5753a34a93b373ccee2a73c39e691bfd13b9585c71fec2",
+    "profile_test.go": "77daac44566a44a2b6f74c1c2c35d09ff1d7412a9a36d437e57433ef6864fbc7",
+    "profile_windows.go": "a34190bfe0807e92ae72e454bb6b97817686a9d65363d95805510566605a97c4",
+    "save-dialog.ps1": "5cdbe7e3a23ff69e8cca35b797177180b71f58332e62c2c668793f485a4f1530",
+    "save_win32_windows.go": "dab68750fb9978102df36be72a5d9ac0e5ae90187a7f93a7e24d03ef0e4b8a13",
+    "windows.go": "8e6871df1c6d62ba5393915ab75907ce93bee089250e0c22b05d4889324964cf"
+  },
+  "field_execution": "new saved-profile rebinding and parent-managed execution pending actual Windows ERP confirmation"
+}

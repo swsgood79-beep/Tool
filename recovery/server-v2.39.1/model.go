@@ -121,6 +121,9 @@ type Ticket struct {
 	Next    string
 }
 type App struct {
+	machiningBridgeDone        chan struct{}
+	machiningBridgeSetup       bool
+	machiningBridgeSetting     bool
 	machiningBridgeMessage     string
 	machiningDrafts            map[string]MachiningDraft
 	manualTransferMu           sync.Mutex

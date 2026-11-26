@@ -1,12 +1,12 @@
-# 알파작업완료확인 · PC v1.4.106 / 앱 v1.0.11
+# 알파작업완료확인 · PC v1.4.107 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.106** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.106.zip) |
+| **회사 PC 프로그램 v1.4.107** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.107.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.106 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.106-App-v1.0.11.zip) |
+| **현재 전체 소스 · PC 1.4.107 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.107-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](CHANGELOG.md) |
@@ -25,11 +25,11 @@
 
 가공팀 계정으로 로그인하면 전용 화면이 열립니다. ERP 발주대비미입고현황 XLSX에서 **가공사업부 · BASE**만 읽고 발주번호·수주번호·가공품번별 수량을 합산합니다. 수주를 누르면 로봇품번/가공품번·수량·절단·가공 표가 열리고, 공정별 시작/완료 작업자와 실제 시간을 기록합니다. 일부 수량만 진행할 수 있으며 절단 완료 수량부터 가공을 시작합니다. 관리자에게 가공 완료/ERP 입고 확인 목록과 작업 기록 CSV를 제공합니다. 같은 파일 재등록·ERP 목록 누락으로 기존 작업 기록이 중복되거나 삭제되지 않습니다. **첫 단계는 XLSX 가져오기 방식이며 ERP 정기 자동 수집은 아직 연결하지 않았습니다.** 기존 APK 1.0.11은 유지합니다. [가공팀 사용법](MACHINING.md)
 
-## ERP 자동 연결 · PC 1.4.106
+## ERP 자동 연결 · PC 1.4.107 본 프로그램 통합
 
-[PC 1.4.106 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.106.zip) · [ERP 연결 도구 v0.1](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/Alpha-ERP-Auto-Bridge-v0.1.zip) · [설정 순서와 범위](BRIDGE.md)
+[설정 순서와 범위](BRIDGE.md)
 
-대표 관리자 → 가공 작업 관리 → ERP 자동 연결에서 자동 반영을 켭니다. 연결 도구에서 Excel F8·검색 F7 위치 지정 후 다른 창으로 ERP를 가리고 F9를 누르면 이후 5분마다 조회·저장을 요청합니다. 서버는 저장된 파일에서 가공사업부 BASE만 자동 반영합니다. 기존 가공 기록을 보존하며 최소화 중 수집은 건너뜁니다. **새 정기 조회 연결은 현장 확인이 필요합니다.** 전체 가이드의 실행 조건을 확인하세요. APK 1.0.11은 그대로 사용합니다.
+별도 연결 도구 없이 본 프로그램이 수집 기능을 자동 실행·종료합니다. 대표 관리자 → 가공 작업 · 입고 확인 → ERP 자동 연결 → **ERP 최초 설정**에서 처음 한 번 지정하면 저장 설정으로 재연결합니다. 성공 시 약 5분 간격으로 수집하고, ERP 미실행·최소화는 기다렸다가 재확인합니다. 자동 반영 끄기와 프로그램 종료 시 소유한 수집 프로세스도 종료합니다. 가공사업부 BASE만 반영하며 기존 작업 기록을 보존합니다. ERP는 해당 보고서를 열어 두어야 하고 메뉴·로그인·조회 조건은 자동 설정하지 않습니다. 새 통합 흐름은 실제 ERP에서 최초 결과 확인이 필요합니다. APK 1.0.11은 유지합니다.
 
 ## ERP 가려진 창 내보내기 시험 · 별도 도구
 

@@ -122,6 +122,12 @@ func run() (string, error) {
 	return filename, nil
 }
 func main() {
+	if len(os.Args) == 2 && (os.Args[1] == "--managed-capture" || os.Args[1] == "--managed-setup") {
+		if !runManagedBridge(os.Args[1] == "--managed-setup") {
+			os.Exit(1)
+		}
+		return
+	}
 	prepareConsole()
 	if operation == "bridge" {
 		runBridge()

@@ -170,7 +170,10 @@ func backgroundTest() error {
 	covered := api("GetAncestor", api("WindowFromPoint", packed), 2) != root
 	report["covered_at_start"] = covered
 	report["erp_foreground_at_start"] = api("GetAncestor", before, 2) == root
-	if !covered || api("GetAncestor", before, 2) == root {
+	if bridgeManagedCapture && api("GetAncestor", before, 2) == root {
+		return finish(fmt.Errorf("ERP 사용 중 · 다른 프로그램으로 전환하면 자동 수집합니다"))
+	}
+	if !bridgeManagedCapture && (!covered || api("GetAncestor", before, 2) == root) {
 		return finish(fmt.Errorf("Excel 버튼이 다른 창에 가려진 상태가 아닙니다. 다른 창으로 덮고 다시 시험해 주세요"))
 	}
 	if saveDialog(pid) != 0 {

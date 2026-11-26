@@ -24,6 +24,9 @@ func (a *App) machiningBridgeStatus() string {
 	if !a.machiningBridgeEnabled() {
 		return "자동 반영 꺼짐"
 	}
+	if a.machiningBridgeSetting || a.machiningBridgeSetup {
+		return "ERP 최초 설정 진행 중 · 열린 안내 창을 확인해 주세요"
+	}
 	dir, e := machiningBridgeDir()
 	if e == nil {
 		if b, e := os.ReadFile(filepath.Join(dir, "status.json")); e == nil && len(b) < 8192 {
@@ -33,7 +36,7 @@ func (a *App) machiningBridgeStatus() string {
 			}
 			if json.Unmarshal(b, &status) == nil && status.Message != "" {
 				if time.Since(status.At) > 7*time.Minute {
-					return "ERP 연결 도구 상태가 오래됐습니다. 실행 상태를 확인해 주세요"
+					return "ERP 자동 연결 상태를 확인 중입니다"
 				}
 				return status.Message + " · " + a.machiningBridgeMessage
 			}
@@ -42,7 +45,7 @@ func (a *App) machiningBridgeStatus() string {
 	if a.machiningBridgeMessage != "" {
 		return a.machiningBridgeMessage
 	}
-	return "연결 도구의 새 ERP 엑셀을 기다리고 있습니다"
+	return "ERP 자동 연결 시작 대기"
 }
 func (a *App) importBridgeFile(path string) error {
 	st, e := os.Lstat(path)
@@ -80,6 +83,7 @@ func (a *App) startMachiningBridge(ctx context.Context) {
 	if a.testMode {
 		return
 	}
+	a.startManagedERP(ctx)
 	go func() {
 		tick := time.NewTicker(10 * time.Second)
 		defer tick.Stop()
@@ -101,7 +105,7 @@ func (a *App) startMachiningBridge(ctx context.Context) {
 				if e != nil {
 					a.mu.Lock()
 					if os.IsNotExist(e) {
-						a.machiningBridgeMessage = "연결 도구에서 ERP 수집을 시작해 주세요"
+						a.machiningBridgeMessage = "ERP 자동 연결 대기 · 최초 설정이 필요하면 아래 설정 버튼을 눌러 주세요"
 					} else {
 						a.machiningBridgeMessage = "자동 반영 보류: " + e.Error()
 					}
@@ -110,4 +114,10 @@ func (a *App) startMachiningBridge(ctx context.Context) {
 			}
 		}
 	}()
+}
+
+func (a *App) waitManagedERP() {
+	if a.machiningBridgeDone != nil {
+		<-a.machiningBridgeDone
+	}
 }

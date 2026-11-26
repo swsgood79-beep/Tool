@@ -519,6 +519,7 @@ func run() error {
 	a.startPumps(ctx)
 	a.startInternetAuto(ctx)
 	a.startMachiningBridge(ctx)
+	defer func() { stop(); a.waitManagedERP() }()
 
 	go func() {
 		<-ctx.Done()

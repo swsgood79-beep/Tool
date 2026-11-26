@@ -63,6 +63,24 @@ func (a *App) machiningHTTP(w http.ResponseWriter, r *http.Request, s Session) b
 				return true
 			}
 			marker := filepath.Join(a.dir, "erp-bridge-enabled")
+			if r.FormValue("action") == "setup" {
+				if a.testMode {
+					http.Error(w, "격리 테스트에서는 실제 ERP 설정을 실행하지 않습니다", 409)
+					return true
+				}
+				if a.machiningBridgeSetup || a.machiningBridgeSetting {
+					http.Error(w, "ERP 최초 설정이 이미 진행 중입니다", 409)
+					return true
+				}
+				if err = atomicFile(marker, []byte("enabled")); err != nil {
+					http.Error(w, "설정 저장 실패", 500)
+					return true
+				}
+				a.machiningBridgeSetup = true
+				http.Redirect(w, r, "/machining-admin", 303)
+				return true
+			}
+
 			if r.FormValue("enabled") == "1" {
 				err = atomicFile(marker, []byte("enabled"))
 			} else {

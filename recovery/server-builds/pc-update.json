@@ -1,8 +1,8 @@
 {
-  "version": "1.4.106",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.106.zip",
-  "sha256": "035a3fdd2a8262243be0e9d89b6ca6f851dd175fb91cb2ae36024aad1e9de2fe",
-  "exe_sha256": "5eb68225b7e6b1d991daf18e4a9b42958f0a68609a559d38c5049f85562c5ba2",
-  "bytes": 37111581,
-  "notes": "ERP 자동 반영 설정 · 가공사업부 BASE 필터 · 작업 기록 유지 · 별도 연결 도구 사용 · 최소화 수집 미지원 · APK 유지"
+  "version": "1.4.107",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.107.zip",
+  "sha256": "afd1412f0d516984a2d82856526f2a90867dd1bed0e986ffcc696028e17d8053",
+  "exe_sha256": "7d12f40dc236ad8449d8ae8ee45fe5bf5f9fdc7177bf5ba579b91354543515e2",
+  "bytes": 38602777,
+  "notes": "ERP 자동 반영 설정 · 가공사업부 BASE 필터 · 작업 기록 유지 · 본 프로그램에 수집 도구 내장 · 최초 설정 후 자동 실행 · 최소화 수집 미지원 · APK 유지"
 }
