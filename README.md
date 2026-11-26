@@ -1,19 +1,23 @@
-# 알파작업완료확인 · PC v1.4.104 / 앱 v1.0.11
+# 알파작업완료확인 · PC v1.4.105 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.104** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.104.zip) |
+| **회사 PC 프로그램 v1.4.105** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.105.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.104 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.104-App-v1.0.11.zip) |
+| **현재 전체 소스 · PC 1.4.105 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.105-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/CHANGELOG.md) |
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
 
-## 이번 업데이트 · PC 1.4.104 · 대표 관리자 가공팀 화면 보기
+## 이번 업데이트 · PC 1.4.105 · 차수별 분할 출고
+
+같은 수주의 출고 예정일이 여러 개이면 엑셀 갱신 시 **수주 카드 하나 안에 날짜순 1차·2차 출하검사**를 자동 구성합니다. 세팅검사는 공통 한 번, 출하검사·검사자·실제 완료시각·사진은 차수별로 남깁니다. 1차 사진 저장 후에도 수주는 진행 중으로 남고 모든 차수의 검사·사진을 마치면 전체 완료·보관됩니다. 최종 기록 목록은 수주 한 건이며 안에서 각 차수를 확인합니다. 일반 출고로 이미 신청/완료한 수주에 날짜가 추가돼도 기존 검사·사진을 유지하고 새 차수만 붙입니다. 달력은 각 날짜에 표시하고 수주 엑셀은 한 파일 안에 차수별 상세를 저장합니다. APK 1.0.11은 유지합니다. [분할 출고 사용법](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/SPLIT-SHIPMENT.md)
+
+## 이전 업데이트 · PC 1.4.104 · 대표 관리자 가공팀 화면 보기
 
 대표 관리자도 **전체 → 가공 작업 · 입고 확인 → 가공팀 화면 보기**에서 작업자 전용 화면을 볼 수 있습니다. 수주별 표·로봇품번·수량·절단/가공 진행 및 작업 기록을 같은 화면으로 확인합니다. 미리보기에서는 시작/완료를 변경하지 않으며 **가공 관리로 돌아가기**로 ERP 엑셀 가져오기·입고 확인 화면에 복귀합니다. 관리자 APK 1.0.11은 유지합니다.
 
