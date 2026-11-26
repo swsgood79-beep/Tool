@@ -243,7 +243,11 @@ func (b *exportBook) index(sheet, title string, entries []exportEntry, external 
 	for i, e := range entries {
 		row := i + 6
 		r := e.Record
-		values := []string{r.Project.Number, r.Project.Name, exportPresent(r.ClientName), "", r.Project.Setting.Worker + " / " + r.Project.Shipping.Worker, fmt.Sprintf("%d장", len(r.Photos)), fmt.Sprintf("%d개", len(r.Attachments)), "상세 보기"}
+		displayName := r.Project.Name
+		if r.DeliveryNumber > 0 {
+			displayName += " · " + r.DeliveryTitle()
+		}
+		values := []string{r.Project.Number, displayName, exportPresent(r.ClientName), "", r.Project.Setting.Worker + " / " + r.Project.Shipping.Worker, fmt.Sprintf("%d장", len(r.Photos)), fmt.Sprintf("%d개", len(r.Attachments)), "상세 보기"}
 		for c, text := range values {
 			cell, _ := excelize.CoordinatesToCellName(c+1, row)
 			b.str(sheet, cell, text)
@@ -294,6 +298,9 @@ func (b *exportBook) detail(entry exportEntry, photos []exportPhoto) {
 	b.sheet(sheet, true)
 	b.check(b.File.SetColWidth(sheet, "A", "L", 9))
 	title := r.Project.Name + " · 출하 상세"
+	if r.DeliveryNumber > 0 {
+		title += " · " + r.DeliveryTitle()
+	}
 	b.merge(sheet, "A1", "L2", title, b.Style.CompactTitle)
 	titleHeight := float64(max(34, ((utf8.RuneCountInString(title)+39)/40)*20+8))
 	b.height(sheet, 1, titleHeight/2)
@@ -307,7 +314,10 @@ func (b *exportBook) detail(entry exportEntry, photos []exportPhoto) {
 	for cell, text := range map[string]string{"A4": "수주번호", "C4": r.Project.Number, "A5": "출고일자", "A6": "검사 완료", "A7": "보관 완료", "A8": "고객사", "C8": exportPresent(r.ClientName)} {
 		b.str(sheet, cell, text)
 	}
-	if due, err := time.ParseInLocation("2006-01-02", r.Project.ShippingDueDate, kst); err == nil {
+	if r.Project.SplitShipment() {
+		b.str(sheet, "C5", r.Project.ShippingDueLabel())
+		b.height(sheet, 5, 32)
+	} else if due, err := time.ParseInLocation("2006-01-02", r.Project.ShippingDueDate, kst); err == nil {
 		b.date(sheet, "C5", &due, false)
 	} else {
 		b.str(sheet, "C5", exportPresent(r.Project.ShippingDueDate))
@@ -633,6 +643,9 @@ func buildShippingExport(ctx context.Context, dir string, records []ShippingReco
 	records = append([]ShippingRecord{}, records...)
 	sort.SliceStable(records, func(i, j int) bool { return records[i].ArchivedAt.After(*records[j].ArchivedAt) })
 	if limits.Single {
+		if len(records) > 1 {
+			return buildSplitShippingExport(ctx, dir, records, now, read, progress, limits)
+		}
 		if len(records) != 1 || records[0].ArchivedAt == nil {
 			return 0, 0, 0, errors.New("invalid single export")
 		}

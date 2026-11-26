@@ -102,7 +102,7 @@ func TestWorkerTodayDueFixturesIncludeScheduledCompletions(t *testing.T) {
 			}
 			if name == "work.html" {
 				s := w.Body.String()
-				if !strings.Contains(s, "worker-v1.4.35.js") || !strings.Contains(s, "worker-due-view-v1.4.35.js") || strings.Contains(s, `data-project="7"`) {
+				if !strings.Contains(s, "worker-v1.4.105.js") || !strings.Contains(s, "worker-due-view-v1.4.105.js") || strings.Contains(s, `data-project="7"`) {
 					t.Fatal("wrong worker assets or hidden order exposed")
 				}
 			}

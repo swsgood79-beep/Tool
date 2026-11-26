@@ -12,6 +12,9 @@ func pruneCancelledShippingRecords(s *State) []Photo {
 	for _, r := range s.ShippingRecords {
 		p := s.project(r.Project.ID)
 		cancelled := r.ArchivedAt == nil && p != nil && (p.Setting.Completed == nil || p.Shipping.Completed == nil || p.Shipping.EventID != r.Project.Shipping.EventID)
+		if r.DeliveryID != "" && p != nil {
+			cancelled = r.ArchivedAt == nil && !splitRecordMatches(s, r)
+		}
 		if cancelled {
 			removed = append(removed, r.Project.Photos...)
 			removed = append(removed, r.Photos...)

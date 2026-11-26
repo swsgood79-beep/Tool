@@ -5,6 +5,9 @@ import "errors"
 // Match the current inspection cycle, not merely an order number or old archive.
 func shippingSourceComplete(s *State, record ShippingRecord) bool {
 	p := s.project(record.Project.ID)
+	if record.DeliveryID != "" {
+		return p != nil && !p.Hidden && p.Setting.Completed != nil && splitRecordMatches(s, record)
+	}
 	return p != nil && !p.Hidden && p.Setting.Completed != nil && p.Shipping.Completed != nil && p.Shipping.EventID == record.Project.Shipping.EventID
 }
 func shippingRecordForProject(s *State, p Project) *ShippingRecord {

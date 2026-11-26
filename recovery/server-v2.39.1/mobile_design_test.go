@@ -47,7 +47,7 @@ func TestMobileDesignPreviewPagesAndFragments(t *testing.T) {
 	for name, path := range paths {
 		w := call(a, "GET", path, nil, c)
 		s := w.Body.String()
-		if w.Code != 200 || strings.Count(s, `id="alpha-design"`) != 1 || !strings.Contains(s, "mobile-design-v1.4.64.js") {
+		if w.Code != 200 || strings.Count(s, `id="alpha-design"`) != 1 || !strings.Contains(s, "mobile-design-worker-v1.4.105.js") {
 			t.Fatal("missing preview entry", name, w.Code)
 		}
 		if !strings.Contains(s, `data-alpha-design="modern"`) {

@@ -20,6 +20,9 @@ func (a *App) requestInspection(id int64, kind, worker, submission, combined str
 		if p == nil || p.Hidden || p.LegacyCompleted || p.Shipping.Completed != nil {
 			return errors.New("신청 가능한 수주가 아닙니다.")
 		}
+		if len(p.DeliveryLots) > 0 && kind != "setting" {
+			return errors.New("분할 출고는 차수별 출하검사를 신청해 주세요")
+		}
 		if kind != "setting" && kind != "shipping" && kind != "combined" {
 			return errors.New("검사 구분 오류")
 		}
@@ -63,6 +66,9 @@ func (a *App) requestInspection(id int64, kind, worker, submission, combined str
 	})
 }
 func (a *App) approve(id int64, kind string, request int64, actors ...InspectionInspector) error {
+	if p := a.state.project(id); p != nil && kind == "shipping" && deliveryForRequest(p, request) != nil {
+		return a.approveDelivery(id, request, actors...)
+	}
 	var copied []Photo
 	err := a.transaction(func(s *State) error {
 		p := s.project(id)

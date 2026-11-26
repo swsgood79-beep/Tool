@@ -6,6 +6,12 @@ import "strings"
 // archive's source link. A re-used order number is never a source binding.
 func shippingNotesSource(s *State, r ShippingRecord) *Project {
 	p := s.project(r.Project.ID)
+	if r.DeliveryID != "" {
+		if splitRecordMatches(s, r) {
+			return p
+		}
+		return nil
+	}
 	if p == nil || p.Number != r.Project.Number || r.Project.Shipping.EventID == 0 || p.Shipping.EventID != r.Project.Shipping.EventID || p.Shipping.Completed == nil || r.Project.Shipping.Completed == nil || !p.Shipping.Completed.Equal(*r.Project.Shipping.Completed) {
 		return nil
 	}

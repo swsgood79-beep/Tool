@@ -6,6 +6,9 @@ import (
 )
 
 func (a *App) rejectInspection(id int64, kind string, request int64) error {
+	if p := a.state.project(id); p != nil && kind == "shipping" && deliveryForRequest(p, request) != nil {
+		return a.rejectDelivery(id, request)
+	}
 	return a.transaction(func(s *State) error {
 		p := s.project(id)
 		if p == nil || p.Hidden || p.LegacyCompleted || p.Shipping.Completed != nil {

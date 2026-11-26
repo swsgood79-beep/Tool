@@ -33,7 +33,10 @@ type Photo struct {
 	Size           int
 }
 type Project struct {
-	ScheduleMissing                                       bool `json:",omitempty"`
+	DeliveryGroup                                         string        `json:",omitempty"`
+	DeliveryLots                                          []DeliveryLot `json:",omitempty"`
+	ShippingDueDates                                      []string      `json:",omitempty"`
+	ScheduleMissing                                       bool          `json:",omitempty"`
 	RejectedInspection                                    string
 	ID, Revision, InfoRevision, Generation                int64
 	Number, Name, ShippingDueDate                         string
@@ -60,6 +63,8 @@ type ClientNote struct {
 	Photos         []Photo
 }
 type Event struct {
+	DeliveryID                                               string               `json:",omitempty"`
+	DeliveryNumber                                           int                  `json:",omitempty"`
 	Inspector                                                *InspectionInspector `json:",omitempty"`
 	Rejected                                                 bool
 	RejectedAt                                               *time.Time
@@ -281,7 +286,7 @@ func atomicFile(path string, b []byte) error {
 	}
 	return os.Rename(name, path)
 }
-func (a *App) persist(s *State) error { return a.writeOriginalGroup(s) }
+func (a *App) persist(s *State) error { refreshAllDeliveries(s); return a.writeOriginalGroup(s) }
 
 // Caller holds a.mu. Changes become visible only after durable state succeeds.
 func (a *App) transaction(fn func(*State) error) error {
@@ -349,6 +354,7 @@ type InspectionView struct {
 	Locked            bool
 }
 type ProjectView struct {
+	LotViews              []DeliveryView
 	ShippingRecordMissing bool
 	RejectionMessage      string
 	Project
@@ -384,8 +390,12 @@ func (a *App) projectView(p Project) ProjectView {
 	if p.RejectedInspection == "setting" || p.RejectedInspection == "shipping" || p.RejectedInspection == "combined" {
 		v.RejectionMessage = stageLabel(p.RejectedInspection) + " 신청이 반려되었습니다. 확인 후 다시 신청해 주세요."
 	}
+	v.LotViews = a.deliveryViews(p)
 	v.ShippingRecordMissing = shippingRecordRecoverable(&a.state, p)
 	v.Inspections = []InspectionView{{"setting", "세팅검사", p.SettingForm, 1, p.Setting, false}, {"shipping", "출하검사", p.ShippingForm, 2, p.Shipping, p.Setting.Completed == nil}}
+	if len(p.DeliveryLots) > 0 {
+		v.Inspections = v.Inspections[:1]
+	}
 	return v
 }
 func (a *App) view(csrf string) map[string]any {
@@ -425,7 +435,7 @@ func (a *App) view(csrf string) map[string]any {
 			e.Unread = false
 		}
 		if e.Rejected {
-			e.InspectionName = stageLabel(e.Inspection) + " 반려"
+			e.InspectionName = eventInspectionLabel(e) + " 반려"
 		}
 		if p := a.state.project(e.ProjectID); p != nil {
 			e.Order = p.Number

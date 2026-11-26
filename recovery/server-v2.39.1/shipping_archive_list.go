@@ -65,13 +65,18 @@ func shippingListView(s *State, base string, q url.Values, now time.Time) (map[s
 	}
 	matches := []ShippingRecord{}
 	pendingCount, archiveCount := 0, 0
-	for _, record := range s.ShippingRecords {
-		record.ClientName = shippingCustomerName(s, record)
-		if record.ArchivedAt == nil {
+	for _, r := range s.ShippingRecords {
+		if r.ArchivedAt == nil {
 			pendingCount++
-		} else {
+		}
+	}
+	for _, r := range splitListRecords(s, false) {
+		if r.ArchivedAt != nil {
 			archiveCount++
 		}
+	}
+	for _, record := range splitListRecords(s, pending) {
+		record.ClientName = shippingCustomerName(s, record)
 		if (record.ArchivedAt == nil) != pending {
 			continue
 		}

@@ -1,0 +1,53 @@
+{
+  "scope": "temporary synthetic data and Chromium touch emulation; real phone/Windows not run",
+  "results": [
+    {
+      "viewport": 360,
+      "theme": "light",
+      "result": "pass",
+      "scope": "single order, two lot sections and dates, common setting once, no combined shortcut, no horizontal overflow"
+    },
+    {
+      "viewport": 360,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "single order, two lot sections and dates, common setting once, no combined shortcut, no horizontal overflow"
+    },
+    {
+      "viewport": 390,
+      "theme": "light",
+      "result": "pass",
+      "scope": "single order, two lot sections and dates, common setting once, no combined shortcut, no horizontal overflow"
+    },
+    {
+      "viewport": 390,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "single order, two lot sections and dates, common setting once, no combined shortcut, no horizontal overflow"
+    },
+    {
+      "viewport": 430,
+      "theme": "light",
+      "result": "pass",
+      "scope": "single order, two lot sections and dates, common setting once, no combined shortcut, no horizontal overflow"
+    },
+    {
+      "viewport": 430,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "single order, two lot sections and dates, common setting once, no combined shortcut, no horizontal overflow"
+    },
+    {
+      "result": "pass",
+      "scope": "common setting request/approval, 1st request/approval/photo keeps order active, 2nd request/approval/photo finishes whole order"
+    },
+    {
+      "result": "pass",
+      "scope": "single final archive overview with two independent lot record links"
+    },
+    {
+      "result": "pass",
+      "scope": "same order on both months/dates and second-date today matching"
+    }
+  ]
+}

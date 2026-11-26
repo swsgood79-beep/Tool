@@ -109,6 +109,8 @@ func (w *nativeAdminPageWriter) Write(data []byte) (int, error) {
 		}
 		s = strings.ReplaceAll(s, "/mobile-design-v1.4.64.js", "/mobile-design-app-v1.4.74.js")
 		s = strings.ReplaceAll(s, "/mobile-design-v1.4.100.js", "/mobile-design-app-v1.4.100.js")
+		s = strings.ReplaceAll(s, "/mobile-design-worker-v1.4.105.js", "/mobile-design-app-v1.4.105.js")
+		s = strings.ReplaceAll(s, "/mobile-design-v1.4.105.js", "/mobile-design-app-v1.4.105.js")
 		s = strings.ReplaceAll(s, "/talk-unread-v1.4.61.js", "/talk-unread-app-v1.4.65.js")
 		s = strings.ReplaceAll(s, "/worker-reconnect-v1.4.61.js", "/worker-reconnect-app-v1.4.65.js")
 		for _, script := range []string{`<script src="/worker-app-theme-bootstrap-v1.4.63.js"></script>`, `<script defer src="/worker-app-v1.4.63.js"></script>`} {

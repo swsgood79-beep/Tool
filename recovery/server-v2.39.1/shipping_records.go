@@ -17,13 +17,15 @@ const shippingPhotoLimit = 30
 // An independent snapshot, captured in the approval transaction. The live schedule
 // remains a projection of the connected sheet and never owns archive records.
 type ShippingRecord struct {
-	DateRevision         int64                `json:",omitempty"`
-	DateEdits            []ShippingDateEdit   `json:",omitempty"`
-	WorkerRevision       int64                `json:",omitempty"`
-	WorkerEdits          []ShippingWorkerEdit `json:",omitempty"`
-	ClientSourceRevision int64                `json:",omitempty"`
-	ClientSourceID       string               `json:",omitempty"`
-	ClientSourcePhotoIDs []string             `json:",omitempty"`
+	DeliveryGroup, DeliveryID     string               `json:",omitempty"`
+	DeliveryNumber, DeliveryTotal int                  `json:",omitempty"`
+	DateRevision                  int64                `json:",omitempty"`
+	DateEdits                     []ShippingDateEdit   `json:",omitempty"`
+	WorkerRevision                int64                `json:",omitempty"`
+	WorkerEdits                   []ShippingWorkerEdit `json:",omitempty"`
+	ClientSourceRevision          int64                `json:",omitempty"`
+	ClientSourceID                string               `json:",omitempty"`
+	ClientSourcePhotoIDs          []string             `json:",omitempty"`
 	// Export-only provenance. Never persisted into an archive snapshot.
 	ExportSourceNote string               `json:"-"`
 	Attachments      []ShippingAttachment `json:",omitempty"`
@@ -158,6 +160,7 @@ func (a *App) saveShippingRecord(id string, r *http.Request) error {
 		metadata := shippingExportMetadata(s, *record)
 		record.ClientName = shippingCustomerName(s, metadata)
 		record.Project.ShippingDueDate = metadata.Project.ShippingDueDate
+		record.Project.ShippingDueDates = append([]string(nil), metadata.Project.ShippingDueDates...)
 		now := time.Now()
 		record.Photos, record.Memo, record.ArchivedAt = photos, memo, &now
 		return nil
@@ -216,6 +219,7 @@ func (a *App) shippingRecordsHTTP(w http.ResponseWriter, r *http.Request) bool {
 		calendarURL = "/?design-tab=calendar"
 	}
 	view := map[string]any{"PhotoDeleted": r.URL.Query().Get("photo_deleted") == "1", "PhotoReset": r.URL.Query().Get("photo_reset") == "1", "Recovered": r.URL.Query().Get("recovered") == "1", "CalendarURL": calendarURL, "Board": a.state.Board, "CSRF": csrf, "Base": base, "ShippingAdmin": admin, "WorkerURL": "/work/" + a.state.Board}
+	view["SplitInProgress"] = splitUnfinishedRecords(&a.state)
 	if len(rest) == 0 && r.Method == "GET" {
 		if admin {
 			missing := []Project{}
@@ -246,6 +250,10 @@ func (a *App) shippingRecordsHTTP(w http.ResponseWriter, r *http.Request) bool {
 		if record == nil {
 			http.NotFound(w, r)
 			return true
+		}
+		if record.DeliveryID != "" {
+			view["SplitSiblings"] = splitSiblings(&a.state, *record)
+			view["SplitOverallDone"] = splitArchiveDone(&a.state, record.DeliveryGroup)
 		}
 		if len(rest) == 3 && rest[1] == "photo" && r.Method == "GET" {
 			current := shippingCurrentNotes(&a.state, *record)

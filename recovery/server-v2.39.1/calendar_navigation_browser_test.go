@@ -14,7 +14,7 @@ func TestCalendarNavigationBrowser(t *testing.T) {
 	a := fixture(t)
 	srv := httptest.NewServer(a)
 	defer srv.Close()
-	cmd := exec.Command("node", "audit/browser-calendar-navigation-v1.4.57.cjs", srv.URL, a.state.Board)
+	cmd := exec.Command("node", "audit/browser-calendar-navigation-v1.4.105.cjs", srv.URL, a.state.Board)
 	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
 	if err := cmd.Run(); err != nil {
 		t.Fatal(err)

@@ -8,6 +8,7 @@ import (
 	"io"
 	"net/url"
 	"os"
+	"sort"
 	"strings"
 	"time"
 )
@@ -57,7 +58,7 @@ func scheduleDate(s string) (date string, unknown bool, err error) {
 	}
 	return "", false, errors.New("날짜 확인 필요")
 }
-func parseSchedule(data []byte) (map[string]string, map[string]bool, error) {
+func parseScheduleDates(data []byte) (map[string][]string, map[string]bool, error) {
 	book, e := excelize.OpenReader(bytes.NewReader(data))
 	if e != nil {
 		return nil, nil, e
@@ -126,8 +127,7 @@ func parseSchedule(data []byte) (map[string]string, map[string]bool, error) {
 			}
 		}
 	}
-	dates := map[string]string{}
-	blankOrders := map[string]bool{}
+	dates := map[string][]string{}
 	conflicts := map[string]bool{}
 	for _, row := range rows[head+1:] {
 		if len(row) <= numberCol {
@@ -141,27 +141,47 @@ func parseSchedule(data []byte) (map[string]string, map[string]bool, error) {
 		if len(row) > dateCol {
 			value = row[dateCol]
 		}
-		if strings.TrimSpace(value) == "" {
-			blankOrders[n] = true
-			continue
-		}
-		d, _, e := scheduleDate(value)
-		if e != nil {
+		parsed, err := scheduleCellDates(value)
+		if err != nil {
 			conflicts[n] = true
 			continue
 		}
-		if old, ok := dates[n]; ok && old != d {
-			conflicts[n] = true
-		} else {
-			dates[n] = d
+		if _, ok := dates[n]; !ok {
+			dates[n] = []string{}
+		}
+		for _, d := range parsed {
+			found := false
+			for _, old := range dates[n] {
+				if old == d {
+					found = true
+					break
+				}
+			}
+			if !found {
+				dates[n] = append(dates[n], d)
+			}
 		}
 	}
-	for n := range blankOrders {
-		if _, ok := dates[n]; !ok && !conflicts[n] {
-			dates[n] = ""
-		}
+	for n := range dates {
+		sort.Strings(dates[n])
 	}
 	return dates, conflicts, nil
+}
+
+// Scalar compatibility for existing callers; sync uses the complete date list.
+func parseSchedule(data []byte) (map[string]string, map[string]bool, error) {
+	dates, conflicts, err := parseScheduleDates(data)
+	if err != nil {
+		return nil, nil, err
+	}
+	primary := map[string]string{}
+	for n, ds := range dates {
+		primary[n] = ""
+		if len(ds) > 0 {
+			primary[n] = ds[0]
+		}
+	}
+	return primary, conflicts, nil
 }
 func (a *App) syncSchedule(ctx context.Context, force bool) {
 	a.mu.Lock()
@@ -184,12 +204,12 @@ func (a *App) syncSchedule(ctx context.Context, force bool) {
 		return
 	}
 	data, e := a.readSchedule(ctx, c)
-	var dates map[string]string
+	var dates map[string][]string
 	var conflicts map[string]bool
 	var materials map[string]scheduleMaterial
 	var materialAvailable bool
 	if e == nil {
-		dates, conflicts, e = parseSchedule(data)
+		dates, conflicts, e = parseScheduleDates(data)
 	}
 	if e == nil {
 		materials, materialAvailable, e = parseScheduleMaterialDetails(data)
@@ -275,8 +295,11 @@ func (a *App) syncSchedule(ctx context.Context, force bool) {
 			if !ok && !p.ShippingDueManaged {
 				continue
 			}
-			if p.ShippingDueDate != d {
-				p.ShippingDueDate = d
+			if ok {
+				reconcileDeliveries(s, p, d)
+			}
+			if strings.Join(p.DueDates(), "|") != strings.Join(d, "|") {
+				setProjectDueDates(p, d)
 				p.touch()
 				changed++
 			} else if p.ShippingDueManaged != ok {
@@ -297,7 +320,7 @@ func (a *App) syncSchedule(ctx context.Context, force bool) {
 	}
 	dated, unset := 0, 0
 	for _, d := range dates {
-		if d == "" {
+		if len(d) == 0 {
 			unset++
 		} else {
 			dated++

@@ -318,7 +318,7 @@ func validSubscription(s webpush.Subscription) bool {
 	return e == nil
 }
 func notification(e Event) map[string]any {
-	title := stageLabel(e.Inspection)
+	title := eventInspectionLabel(e)
 	if e.IsNote {
 		title = "비고 메시지"
 	} else if e.Pending {

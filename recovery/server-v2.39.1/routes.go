@@ -229,6 +229,9 @@ func (a *App) adminPOST(w http.ResponseWriter, r *http.Request, session Session)
 				p.LegacyCompleted = false
 				p.Setting = Stage{}
 				p.Shipping = Stage{}
+				p.DeliveryLots = nil
+				p.DeliveryGroup = ""
+				reconcileDeliveries(s, p, p.DueDates())
 				p.CombinedPending = false
 				p.Hidden = false
 				p.rotate()
@@ -372,6 +375,12 @@ func (a *App) saveProject(r *http.Request, id int64) error {
 		}
 		p.Number = n
 		p.Name = name
+		if len(p.DeliveryLots) > 0 && p.ShippingDueDate != due {
+			return errors.New("분할 출고 일정은 연결된 엑셀에서 수정해 주세요")
+		}
+		if p.ShippingDueDate != due {
+			p.ShippingDueDates = nil
+		}
 		p.ShippingDueDate = due
 		p.SpecialInstructions = instructions
 		p.AdditionalInstructions = additional
@@ -714,7 +723,13 @@ func (a *App) editRecord(r *http.Request, id int64) error {
 			return errors.New("기록이 변경되었습니다. 다시 열어 주세요.")
 		}
 		action := r.FormValue("action")
+		if e.DeliveryID != "" {
+			return errors.New("차수별 검사 기록은 해당 검사·출하 기록 화면에서 관리해 주세요")
+		}
 		p := s.project(e.ProjectID)
+		if p != nil && len(p.DeliveryLots) > 0 && !e.IsNote && action != "rename" {
+			return errors.New("분할 출고의 공통 검사는 수주 전체 다시 열기로 관리해 주세요")
+		}
 		if action == "rename" {
 			worker := strings.TrimSpace(r.FormValue("worker"))
 			if !validText(worker, 40) {

@@ -52,7 +52,7 @@ func TestExplicitInspectionEntryPendingFixture(t *testing.T) {
 			}
 			if name == "work.html" {
 				body := w.Body.String()
-				if !strings.Contains(body, "02 출하검사 확인 대기") || !strings.Contains(body, "worker-dialog-v1.4.41.js") || !strings.Contains(body, "order-card-v1.4.41.js") {
+				if !strings.Contains(body, "02 출하검사 확인 대기") || !strings.Contains(body, "worker-dialog-v1.4.41.js") || !strings.Contains(body, "order-card-v1.4.105.js") {
 					t.Fatal("pending state or entry assets missing")
 				}
 			}

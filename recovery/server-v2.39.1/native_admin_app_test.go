@@ -39,12 +39,12 @@ func TestNativeAdminAppPresentationIsolationAndAuthentication(t *testing.T) {
 			t.Fatal(path, w.Code, w.Body.String())
 		}
 		s := w.Body.String()
-		for _, want := range []string{`id="alpha-admin-app"`, `data-admin-app="true"`, "mobile-design-app-v1.4.74.js", "native-admin-app-v1.4.65.css", `data-csrf="` + a.sessions[hashToken(owner.Value)].CSRF + `"`} {
+		for _, want := range []string{`id="alpha-admin-app"`, `data-admin-app="true"`, "mobile-design-app-v1.4.105.js", "native-admin-app-v1.4.65.css", `data-csrf="` + a.sessions[hashToken(owner.Value)].CSRF + `"`} {
 			if !strings.Contains(s, want) {
 				t.Fatal("missing native app shell", path, want)
 			}
 		}
-		if strings.Contains(s, `src="/worker-app-v1.4.63.js"`) || strings.Contains(s, `src="/mobile-design-v1.4.64.js"`) {
+		if strings.Contains(s, `src="/worker-app-v1.4.63.js"`) || strings.Contains(s, `src="/mobile-design-worker-v1.4.105.js"`) {
 			t.Fatal("app used browser shell", path)
 		}
 	}
@@ -54,7 +54,7 @@ func TestNativeAdminAppPresentationIsolationAndAuthentication(t *testing.T) {
 	}
 	for _, path := range []string{"/", "/mobile-admin", "/inspection-requests", "/community/" + board, "/shipping-archive-admin"} {
 		w := call(a, "GET", path, nil, owner)
-		if w.Code != 200 || strings.Contains(w.Body.String(), `id="alpha-admin-app"`) || !strings.Contains(w.Body.String(), "mobile-design-v1.4.64.js") {
+		if w.Code != 200 || strings.Contains(w.Body.String(), `id="alpha-admin-app"`) || !strings.Contains(w.Body.String(), "mobile-design-worker-v1.4.105.js") {
 			t.Fatal("PC or normal worker changed", path, w.Code)
 		}
 	}

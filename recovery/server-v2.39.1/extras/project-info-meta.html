@@ -1,5 +1,5 @@
 {{define "project-info-meta"}}<div class="special-info-meta">
-{{if .ShippingDueDate}}<div class="special-info-due"><span class="shipping-due-chip">출고 예정 {{.ShippingDueDate}}</span></div>{{end}}
+{{if .ShippingDueDate}}<div class="special-info-due"><span class="shipping-due-chip">출고 예정 {{.ShippingDueLabel}}{{if .SplitShipment}} · 분할 출고{{end}}</span></div>{{end}}
 {{if or .DesignerName .SuppliedMaterials}}<div class="special-info-actions">
 {{if .DesignerName}}{{if .DesignerCallURL}}<a class="designer-call special-info-designer" href="{{.DesignerCallURL}}" aria-label="설계담당자 {{.DesignerName}}에게 전화">☎ {{.DesignerName}}</a>{{else}}<span class="designer-label special-info-designer">☎ {{.DesignerName}}</span>{{end}}{{end}}
 {{if .SuppliedMaterials}}<button type="button" class="supplied-materials" data-material-color="{{.SuppliedMaterialsColor}}" aria-haspopup="dialog" title="사급품 전체 내용 보기"><span class="supplied-materials-text">{{.SuppliedMaterials}}</span></button>{{end}}

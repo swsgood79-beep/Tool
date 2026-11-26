@@ -87,7 +87,7 @@ func withInspectorWorkbook(raw []byte, s State) ([]byte, error) {
 		if event.Inspector != nil && event.Inspector.Source == "backfill" {
 			actor, username = event.Inspector.RecordedByName, event.Inspector.RecordedByUsername
 		}
-		values := []string{event.Order, event.Project, stageLabel(event.Inspection), event.Worker, name, "", source, "", actor, username}
+		values := []string{event.Order, event.Project, eventInspectionLabel(event), event.Worker, name, "", source, "", actor, username}
 		for i, v := range values {
 			cell, _ := excelize.CoordinatesToCellName(i+1, row)
 			if e = f.SetCellStr(sheet, cell, v); e != nil {

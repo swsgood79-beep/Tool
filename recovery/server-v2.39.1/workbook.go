@@ -45,7 +45,7 @@ func eventRow(s State, e Event) []string {
 		d = e.Completed.In(kst).Format("2006-01-02")
 		t = e.Completed.In(kst).Format("15:04:05")
 	}
-	return []string{order, name, stageLabel(e.Inspection), e.Worker, d, t}
+	return []string{order, name, eventInspectionLabel(e), e.Worker, d, t}
 }
 func esc(s string) string {
 	var b bytes.Buffer

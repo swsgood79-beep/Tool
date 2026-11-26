@@ -93,7 +93,7 @@ func TestScheduleDownloadApplyAndConflicts(t *testing.T) {
 	a := fixture(t)
 	data := scheduleFixture(t)
 	dates, conflicts, e := parseSchedule(data)
-	if e != nil || dates["ASAP-1"] != "" || !conflicts["CONFLICT"] {
+	if e != nil || dates["ASAP-1"] != "" || conflicts["CONFLICT"] || dates["CONFLICT"] != "2026-11-21" {
 		t.Fatal(e, dates, conflicts)
 	}
 	path := filepath.Join(a.dir, "schedule.xlsx")

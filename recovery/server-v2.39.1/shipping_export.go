@@ -72,9 +72,13 @@ func (a *App) newShippingExportLocked(owner, key, recordID string) (*shippingExp
 		os.RemoveAll(oldest.Dir)
 		delete(a.shippingExports, oldest.ID)
 	}
+	targetGroup := ""
+	if target := shippingRecord(&a.state, recordID); target != nil {
+		targetGroup = target.DeliveryGroup
+	}
 	list := []ShippingRecord{}
 	for _, r := range a.state.ShippingRecords {
-		if r.ArchivedAt != nil && (recordID == "" || r.ID == recordID) {
+		if r.ArchivedAt != nil && (recordID == "" || r.ID == recordID || targetGroup != "" && r.DeliveryGroup == targetGroup) {
 			list = append(list, a.shippingCurrentNotes(&a.state, r))
 		}
 	}

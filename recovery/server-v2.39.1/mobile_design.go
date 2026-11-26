@@ -28,7 +28,7 @@ func mobileDesignPreview(s, name string, v any) string {
 			for _, p := range projects {
 				if p.Active {
 					activeCount++
-					if date != "" && p.ShippingDueDate == date {
+					if date != "" && p.DueOn(date) {
 						dueCount++
 					}
 				}
@@ -69,9 +69,9 @@ func mobileDesignPreview(s, name string, v any) string {
 	if role == "admin" {
 		metadata = strings.Replace(metadata, ` data-mobile=`, ` data-active-count="`+strconv.Itoa(activeCount)+`" data-due-count="`+strconv.Itoa(dueCount)+`" data-mobile=`, 1)
 	}
-	assets := `<link rel="stylesheet" href="/community-v1.4.38.css"><link rel="stylesheet" href="/mobile-design-v1.4.24.css"><link rel="stylesheet" href="/market-calendar-v1.4.26.css"><link rel="stylesheet" href="/calendar-complete-v1.4.27.css"><link rel="stylesheet" href="/order-card-v1.4.41.css"><link rel="stylesheet" href="/calendar-flat-v1.4.32.css"><link rel="stylesheet" href="/talk-board-v1.4.40.css"><link rel="stylesheet" href="/talk-tabs-v1.4.99.css"><script defer src="/mobile-design-v1.4.64.js"></script><script defer src="/order-card-v1.4.41.js"></script><script defer src="/talk-unread-v1.4.61.js"></script>`
+	assets := `<link rel="stylesheet" href="/community-v1.4.38.css"><link rel="stylesheet" href="/mobile-design-v1.4.24.css"><link rel="stylesheet" href="/market-calendar-v1.4.26.css"><link rel="stylesheet" href="/calendar-complete-v1.4.27.css"><link rel="stylesheet" href="/order-card-v1.4.41.css"><link rel="stylesheet" href="/calendar-flat-v1.4.32.css"><link rel="stylesheet" href="/talk-board-v1.4.40.css"><link rel="stylesheet" href="/talk-tabs-v1.4.99.css"><script defer src="/mobile-design-worker-v1.4.105.js"></script><script defer src="/order-card-v1.4.105.js"></script><script defer src="/talk-unread-v1.4.61.js"></script>`
 	if name == "manuals.html" {
-		assets = strings.Replace(assets, "/mobile-design-v1.4.64.js", "/mobile-design-v1.4.100.js", 1)
+		assets = strings.Replace(assets, "/mobile-design-worker-v1.4.105.js", "/mobile-design-v1.4.105.js", 1)
 	}
 	assets += `<script defer src="/schedule-retention-v1.4.95.js"></script><script defer src="/work-tools-v1.4.97.js"></script>`
 	if name == "admin.html" {

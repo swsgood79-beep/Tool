@@ -1,0 +1,13 @@
+=== RUN   TestCalendarNavigationBrowser
+Calendar navigation checks passed 28
+--- PASS: TestCalendarNavigationBrowser (7.42s)
+=== RUN   TestNativeThemeBrowser
+Theme pages 224 pages with issues 0
+[]
+--- PASS: TestNativeThemeBrowser (25.16s)
+=== RUN   TestWorkerAllSubmissionsBrowser
+Worker submission checks passed: 52
+    worker_submit_browser_test.go:98: Actual temporary Go app: 24 expected inspection/note events; all test posts/comments deleted and photo files cleaned; no company data
+--- PASS: TestWorkerAllSubmissionsBrowser (30.25s)
+PASS
+ok  	wanryotalk-reconstructed-server	63.122s

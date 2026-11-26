@@ -1,0 +1,5 @@
+=== RUN   TestSplitDeliveryBrowser
+Split shipment browser cases: 9
+--- PASS: TestSplitDeliveryBrowser (11.03s)
+PASS
+ok  	wanryotalk-reconstructed-server	11.327s
