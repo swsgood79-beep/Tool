@@ -1,17 +1,21 @@
-# 알파작업완료확인 · PC v1.4.107 / 앱 v1.0.11
+# 알파작업완료확인 · PC v1.4.108 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.107** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.107.zip) |
+| **회사 PC 프로그램 v1.4.108** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.108.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.107 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.107-App-v1.0.11.zip) |
+| **현재 전체 소스 · PC 1.4.108 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.108-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](CHANGELOG.md) |
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
+
+## 이번 업데이트 · PC 1.4.108 · 가공 화면 시간 표시
+
+작업자 화면에서는 공정 시작·완료 시각과 상세 시간 기록을 숨깁니다. 관리자 화면에서는 시작·완료 시각과 작업 기록을 확인합니다. 저장 기록과 CSV는 유지합니다.
 
 ## 이전 업데이트 · PC 1.4.105 · 차수별 분할 출고
 
@@ -25,7 +29,7 @@
 
 가공팀 계정으로 로그인하면 전용 화면이 열립니다. ERP 발주대비미입고현황 XLSX에서 **가공사업부 · BASE**만 읽고 발주번호·수주번호·가공품번별 수량을 합산합니다. 수주를 누르면 로봇품번/가공품번·수량·절단·가공 표가 열리고, 공정별 시작/완료 작업자와 실제 시간을 기록합니다. 일부 수량만 진행할 수 있으며 절단 완료 수량부터 가공을 시작합니다. 관리자에게 가공 완료/ERP 입고 확인 목록과 작업 기록 CSV를 제공합니다. 같은 파일 재등록·ERP 목록 누락으로 기존 작업 기록이 중복되거나 삭제되지 않습니다. **첫 단계는 XLSX 가져오기 방식이며 ERP 정기 자동 수집은 아직 연결하지 않았습니다.** 기존 APK 1.0.11은 유지합니다. [가공팀 사용법](MACHINING.md)
 
-## ERP 자동 연결 · PC 1.4.107 본 프로그램 통합
+## ERP 자동 연결 · PC 1.4.108 본 프로그램 통합
 
 [설정 순서와 범위](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/BRIDGE.md)
 
