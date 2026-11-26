@@ -21,6 +21,12 @@
 
 가공팀 계정으로 로그인하면 전용 화면이 열립니다. ERP 발주대비미입고현황 XLSX에서 **가공사업부 · BASE**만 읽고 발주번호·수주번호·가공품번별 수량을 합산합니다. 수주를 누르면 로봇품번/가공품번·수량·절단·가공 표가 열리고, 공정별 시작/완료 작업자와 실제 시간을 기록합니다. 일부 수량만 진행할 수 있으며 절단 완료 수량부터 가공을 시작합니다. 관리자에게 가공 완료/ERP 입고 확인 목록과 작업 기록 CSV를 제공합니다. 같은 파일 재등록·ERP 목록 누락으로 기존 작업 기록이 중복되거나 삭제되지 않습니다. **첫 단계는 XLSX 가져오기 방식이며 ERP 정기 자동 수집은 아직 연결하지 않았습니다.** 기존 APK 1.0.11은 유지합니다. [가공팀 사용법](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/MACHINING.md)
 
+## ERP 가려진 창 내보내기 시험 · 별도 도구
+
+[가려진 ERP 창 시험 v0.1 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/Alpha-ERP-Background-Test-v0.1.zip) · [전체 소스·사용법](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/erp-bridge-check/BACKGROUND-TEST.md)
+
+처음 한 번 ERP Excel 버튼에 마우스를 올리고 F8로 위치를 지정합니다. 다음 안내 확인 후 Chrome 등으로 ERP Excel 버튼을 완전히 가리고 F9를 누릅니다. 실제 마우스·키보드 입력 대신 지정한 도구 모음 내부 메시지와 UI Automation 저장을 시험합니다. 결과 폴더의 **ERP-background-test.json**을 대화에 첨부합니다. ERP/저장창 자체가 앞으로 나타나는지도 관찰합니다. **실제 Windows ERP에서의 백그라운드 지원은 이 시험으로 확인해야 하며, 최소화·화면 잠금·ERP 정기 자동 수집은 아직 지원한다고 확인하지 않았습니다.** PC 1.4.104와 APK 1.0.11은 그대로 사용하며 ZIP에 도구 전체 소스를 포함합니다.
+
 ## ERP 엑셀 자동 저장 현장 시험
 
 [ERP 엑셀 저장 테스트 v0.4 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/Alpha-ERP-Export-Test-v0.4.zip) · [전체 소스·사용법](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/erp-bridge-check/EXPORT-TEST.md)
