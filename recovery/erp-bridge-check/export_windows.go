@@ -126,7 +126,7 @@ func exportTest() error {
 	if e != nil {
 		return e
 	}
-	report := map[string]any{"tool": "ERP export test v0.3", "when": time.Now().Format(time.RFC3339), "success": false, "mode": "one user-calibrated Excel click and Save As; no purchasing/receipt edits", "offset_x": x, "offset_y": y, "window_width": bounds.Right - bounds.Left, "window_height": bounds.Bottom - bounds.Top}
+	report := map[string]any{"tool": "ERP export test v0.4", "when": time.Now().Format(time.RFC3339), "success": false, "mode": "one user-calibrated Excel click and Save As; no purchasing/receipt edits", "offset_x": x, "offset_y": y, "window_width": bounds.Right - bounds.Left, "window_height": bounds.Bottom - bounds.Top}
 	finish := func(err error) error {
 		if err != nil {
 			report["error"] = err.Error()
@@ -215,5 +215,16 @@ func exportTest() error {
 		}
 		time.Sleep(500 * time.Millisecond)
 	}
-	return finish(fmt.Errorf("유효한 XLSX 파일 저장을 확인하지 못했습니다"))
+	report["expected_file"] = filepath.Base(file)
+	report["save_dialog_open"] = saveDialog(pid) != 0
+	if st, err := os.Stat(file); err == nil {
+		report["file_exists"] = true
+		report["bytes"] = st.Size()
+		if err := validateWorkbook(file); err != nil {
+			report["validation_error"] = err.Error()
+		}
+	} else {
+		report["file_exists"] = false
+	}
+	return finish(fmt.Errorf("지정한 폴더에서 정상 XLSX 파일을 확인하지 못했습니다"))
 }
