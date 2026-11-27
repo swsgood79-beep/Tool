@@ -15,6 +15,7 @@ func TestMachiningBrowser(t *testing.T) {
 	}
 	a := fixture(t)
 	worker, _ := machiningWorker(t, a, "machinebrowser")
+	a.state.AdminAccounts[len(a.state.AdminAccounts)-1].Name = "김가공"
 	owner := adminCookie(a)
 	rows := machiningSampleRows()
 	rows[0][5] = "TEST-ROBOT-PR2-400(530)-20N-N-EL-V3"
@@ -31,7 +32,7 @@ func TestMachiningBrowser(t *testing.T) {
 	srv := httptest.NewServer(a)
 	defer srv.Close()
 	cfg := map[string]any{"worker": map[string]string{"name": worker.Name, "value": worker.Value}, "admin": map[string]string{"name": owner.Name, "value": owner.Value}, "file": file}
-	cmd := exec.Command("node", "audit/browser-machining-v1.4.113.cjs", srv.URL, string(jsonRaw(cfg)))
+	cmd := exec.Command("node", "audit/browser-machining-v1.4.114.cjs", srv.URL, string(jsonRaw(cfg)))
 	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
 	if e := cmd.Run(); e != nil {
 		t.Fatal(e)
@@ -62,7 +63,7 @@ func TestMachiningMissingAndDBBrowser(t *testing.T) {
 	srv := httptest.NewServer(a)
 	defer srv.Close()
 	cfg := map[string]any{"worker": map[string]string{"name": worker.Name, "value": worker.Value}, "admin": map[string]string{"name": owner.Name, "value": owner.Value}}
-	cmd := exec.Command("node", "audit/browser-machining-missing-db-v1.4.113.cjs", srv.URL, string(jsonRaw(cfg)))
+	cmd := exec.Command("node", "audit/browser-machining-missing-db-v1.4.114.cjs", srv.URL, string(jsonRaw(cfg)))
 	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
 	if e := cmd.Run(); e != nil {
 		t.Fatal(e)
@@ -82,7 +83,7 @@ func TestMachiningDBSyncBrowser(t *testing.T) {
 	srv := httptest.NewServer(a)
 	defer srv.Close()
 	cfg := map[string]any{"admin": map[string]string{"name": owner.Name, "value": owner.Value}}
-	cmd := exec.Command("node", "audit/browser-db-sync-v1.4.113.cjs", srv.URL, string(jsonRaw(cfg)))
+	cmd := exec.Command("node", "audit/browser-db-sync-v1.4.114.cjs", srv.URL, string(jsonRaw(cfg)))
 	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
 	if e := cmd.Run(); e != nil {
 		t.Fatal(e)

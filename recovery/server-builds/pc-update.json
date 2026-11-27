@@ -1,8 +1,8 @@
 {
-  "version": "1.4.113",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.113.zip",
-  "sha256": "35153e39fe821cc046fb96b06cbf3d1efbd7208221e52a2cd065655e889fc90d",
-  "exe_sha256": "e9c4a8e42368315f2fa6aa8c5568948f15faa25cf47c99c1b9cde285e21c0147",
-  "bytes": 38651157,
-  "notes": "ERP DB 자동 연결 · 화면 없이 BASE 미입고 5분 갱신 · 로봇품번 연결 검증 · 작업 기록 보존 · APK 유지"
+  "version": "1.4.114",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.114.zip",
+  "sha256": "41905d594276419d47d28f37c01524f24c39dab9d0f5a066711b67fabc7781a6",
+  "exe_sha256": "f0fdcca9509a4f9a4d9a5c1d13b569e197939c1225b5ec8efa608204a164c152",
+  "bytes": 38661642,
+  "notes": "가공 완료 시 실제 수량 입력 · 부분 완료·잔여 수량 · 시작·완료 기록 보존 · DB 자동 연결 유지"
 }

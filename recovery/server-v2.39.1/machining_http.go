@@ -107,6 +107,19 @@ func (a *App) machiningHTTP(w http.ResponseWriter, r *http.Request, s Session) b
 			}
 			return true
 		case "/machining/action":
+			if machine && r.FormValue("action") == "complete" && r.FormValue("quantity_entry") != "actual" {
+				if j := machiningFind(&a.state, r.FormValue("id")); j != nil {
+					for _, runs := range [][]MachiningRun{j.Cutting, j.MillingFirst, j.Milling} {
+						for _, run := range runs {
+							if run.ID == r.FormValue("run") && run.QuantityOnComplete && run.Completed == nil {
+								w.WriteHeader(409)
+								jsonReply(w, map[string]any{"ok": false, "error": "완료 수량 입력 방식이 변경됐습니다. 화면을 새로고침해 주세요"})
+								return true
+							}
+						}
+					}
+				}
+			}
 			err = a.actMachining(s, r.FormValue("id"), r.FormValue("phase"), r.FormValue("action"), r.FormValue("run"), number(r.FormValue("revision")), int(number(r.FormValue("quantity"))))
 			if err != nil {
 				w.WriteHeader(409)
@@ -245,7 +258,12 @@ func (a *App) machiningCSV(w http.ResponseWriter) {
 						return "기존 가공"
 					}
 					return []string{"절단", "가공 1차", "가공 2차"}[i]
-				}(), fmt.Sprint(r.Quantity), r.StartedBy.Name, stamp(&r.Started), complete, stamp(r.Completed), receipt, stamp(r.ReceiptAt)}
+				}(), func() string {
+					if r.QuantityOnComplete && r.Completed == nil {
+						return ""
+					}
+					return fmt.Sprint(r.Quantity)
+				}(), r.StartedBy.Name, stamp(&r.Started), complete, stamp(r.Completed), receipt, stamp(r.ReceiptAt)}
 				for k, v := range row {
 					if strings.HasPrefix(v, "=") || strings.HasPrefix(v, "+") || strings.HasPrefix(v, "-") || strings.HasPrefix(v, "@") || strings.HasPrefix(v, "\t") || strings.HasPrefix(v, "\r") {
 						row[k] = "'" + v

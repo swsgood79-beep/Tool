@@ -17,14 +17,15 @@ type MachiningSource struct {
 	Quantity, Received                         int
 }
 type MachiningRun struct {
-	ID          string
-	Quantity    int
-	Started     time.Time
-	StartedBy   MachiningActor
-	Completed   *time.Time      `json:",omitempty"`
-	CompletedBy *MachiningActor `json:",omitempty"`
-	ReceiptAt   *time.Time      `json:",omitempty"`
-	ReceiptBy   *MachiningActor `json:",omitempty"`
+	ID                 string
+	QuantityOnComplete bool `json:",omitempty"`
+	Quantity           int
+	Started            time.Time
+	StartedBy          MachiningActor
+	Completed          *time.Time      `json:",omitempty"`
+	CompletedBy        *MachiningActor `json:",omitempty"`
+	ReceiptAt          *time.Time      `json:",omitempty"`
+	ReceiptBy          *MachiningActor `json:",omitempty"`
 }
 type MachiningJob struct {
 	ID, Purchase, Order, Project, Part string
@@ -210,10 +211,10 @@ func (a *App) actMachining(session Session, id, phase, action, runID string, rev
 			if active != nil {
 				return errors.New("이미 진행 중인 작업입니다")
 			}
-			if quantity < 1 || quantity > available {
+			if quantity < 0 || quantity > available || available < 1 {
 				return fmt.Errorf("시작할 수량은 1~%d개입니다", available)
 			}
-			*runs = append(*runs, MachiningRun{ID: token(), Quantity: quantity, Started: now, StartedBy: actor})
+			*runs = append(*runs, MachiningRun{ID: token(), Quantity: quantity, QuantityOnComplete: quantity == 0, Started: now, StartedBy: actor})
 		case "complete":
 			if phase == "milling" && !machiningLegacy(j, runID) {
 				return errors.New("가공 공정을 다시 확인해 주세요")
@@ -223,6 +224,25 @@ func (a *App) actMachining(session Session, id, phase, action, runID string, rev
 			}
 			if active.StartedBy.ID != actor.ID {
 				return errors.New("작업을 시작한 계정에서 완료해 주세요")
+			}
+			if active.QuantityOnComplete {
+				if quantity < 1 || quantity > available {
+					return fmt.Errorf("완료 수량은 1~%d개로 입력해 주세요", available)
+				}
+				active.Quantity = quantity
+			} else if quantity != 0 {
+				// Existing pre-update runs keep their start time and can complete
+				// a smaller actual batch; old clients can still submit zero for full.
+				limit := active.Quantity
+				if !(phase == "milling" || phase == "milling2") || !machiningLegacy(j, active.ID) {
+					if available < limit {
+						limit = available
+					}
+				}
+				if quantity < 1 || quantity > limit {
+					return fmt.Errorf("완료 수량은 1~%d개로 입력해 주세요", limit)
+				}
+				active.Quantity = quantity
 			}
 			active.Completed = &now
 			active.CompletedBy = &actor
