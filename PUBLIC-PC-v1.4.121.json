@@ -1,0 +1,26 @@
+{
+  "version": "1.4.121",
+  "release_commit": "6e4afa8",
+  "verified_at_utc": "2026-11-27T23:18:25.247154+00:00",
+  "manifest_verified": true,
+  "source_rebuild_verified": true,
+  "downloads": [
+    {
+      "file": "AlphaWorkComplete-Recovered-Windows-x64-v1.4.121.zip",
+      "bytes": 38678799,
+      "sha256": "0027fec7795971e4287fc91ea24458b352ccc4c03efc4946b2f66a7d7ce8b7d9",
+      "verified": true
+    },
+    {
+      "file": "AlphaWorkComplete-Recovered-source-PC-v1.4.121-App-v1.0.11.zip",
+      "bytes": 35808638,
+      "sha256": "ae54295a9a966718a31ffdf100a3c0c9c768d597833385e1a4db14ed50508f2d",
+      "verified": true
+    }
+  ],
+  "field_verification_pending": [
+    "Native Windows/SQL Extended Events capture",
+    "ERP actor mapping and receipt write integration",
+    "Transaction commit and row-state equivalence not proven by trace"
+  ]
+}
