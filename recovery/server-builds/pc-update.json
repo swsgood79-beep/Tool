@@ -1,8 +1,8 @@
 {
-  "version": "1.4.117",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.117.zip",
-  "sha256": "a941d1403f00d11bfa50d4caba7fdc1cdb857da7ef04621982ed6ef798932fe2",
-  "exe_sha256": "7ef2a715a9c8eccf721974ba4c91a94956ab4c00b4599c96634b06d4c878acfe",
-  "bytes": 38643772,
-  "notes": "미입고 거래처명 연결 보완 · 행별 거래처 우선·공통 마스터 확인 · 기존 기록·설정 유지 · APK 1.0.11"
+  "version": "1.4.118",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.118.zip",
+  "sha256": "ccf3663290b7e65786908c0bba50872b6951dd6e83f097eb23eae45abd777bdb",
+  "exe_sha256": "71fd7095a70ec486fd45d7bb1f45dffb8b86ff6e5eebb14e2b9003ccc239f2a0",
+  "bytes": 38645341,
+  "notes": "ERP 조회 실행 길이 초과 수정 · 자동 연결·미입고 조회 복구 · 실패 원인 표시 · APK 1.0.11"
 }
