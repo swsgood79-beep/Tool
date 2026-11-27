@@ -10,7 +10,7 @@
 
 ## 이미 사용 중인 회사 PC
 
-**이미 PC v1.4.86 이상을 사용 중이면 PC 창 아래 업데이트 버튼의 PC 업데이트 확인으로 v1.4.119을 설치합니다.** 아래 ZIP 절차는 이전 버전에서 처음 전환할 때만 필요합니다.
+**이미 PC v1.4.86 이상을 사용 중이면 PC 창 아래 업데이트 버튼의 PC 업데이트 확인으로 v1.4.119를 설치합니다.** 아래 ZIP 절차는 이전 버전에서 처음 전환할 때만 필요합니다.
 
 1. v1.4.85 이하에서는 처음 한 번 [Windows ZIP](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.105.zip)을 내려받아 쓰기 가능한 폴더에 풉니다.
 2. 기존 프로그램을 종료 버튼/트레이에서 완전히 끝내고 새 EXE를 실행합니다. 기존 운영 자료와 지정한 저장 경로를 이어서 사용합니다.

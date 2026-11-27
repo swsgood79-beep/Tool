@@ -1,0 +1,5 @@
+=== RUN   TestRelease119BasicOrderCardsBrowser
+Basic order card browser checks passed 23
+--- PASS: TestRelease119BasicOrderCardsBrowser (53.45s)
+PASS
+ok  	wanryotalk-reconstructed-server	53.745s
