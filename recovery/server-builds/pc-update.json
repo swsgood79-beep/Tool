@@ -1,8 +1,8 @@
 {
-  "version": "1.4.120",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.120.zip",
-  "sha256": "88812573823e79726699126d1df4a5147596409a81faacbd65df3fabc1d833b4",
-  "exe_sha256": "d0d2d57c5d752c8d302cffc590ffced53bbf83d5db6882e7bec1f826e6c4e123",
-  "bytes": 38666779,
-  "notes": "대표 관리자용 입고 연동 구조 진단 · 읽기 전용 · 실제 입고 처리 없음 · APK 1.0.11"
+  "version": "1.4.121",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.121.zip",
+  "sha256": "0027fec7795971e4287fc91ea24458b352ccc4c03efc4946b2f66a7d7ce8b7d9",
+  "exe_sha256": "b4c3938e0412283ab1192c5acb810f8a3ce9921d0ff2950248171a871aded94f",
+  "bytes": 38678799,
+  "notes": "대표 관리자용 입고 과정 관찰 · 시작/종료/보호 저장 · ERP 자동 입고 없음 · APK1.0.11"
 }
