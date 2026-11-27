@@ -76,13 +76,13 @@ func TestOutstandingSupplierQueryScope(t *testing.T) {
 		t.Fatal(e)
 	}
 	s := string(raw)
-	start := strings.Index(s, "if($OutstandingOrder)")
+	start := strings.Index(s, "if($OutstandingOrder -or $OutstandingOrders)")
 	end := strings.Index(s, "}elseif($PurchasePreview)")
 	if start < 0 || end < start {
 		t.Fatal("missing scoped query")
 	}
 	s = s[start:end]
-	for _, part := range []string{"COL_LENGTH('dbo.PURORD_HIS','CST_CD')", "COALESCE(NULLIF(LTRIM(RTRIM(h.CST_CD)),''),m.CST_CD)", "WHERE EXISTS", "ORDER_EXPR=@Order", "LTRIM(RTRIM(c.CST_CD))=LTRIM(RTRIM(CUSTOMER_EXPR))", "customer_candidates", "customer_code", "$report.truncated=$true"} {
+	for _, part := range []string{"COL_LENGTH('dbo.PURORD_HIS','CST_CD')", "COALESCE(NULLIF(LTRIM(RTRIM(h.CST_CD)),''),m.CST_CD)", "WHERE EXISTS", "ORDER_EXPR IN (", "WHERE ORDER_FILTER", "Add-OutstandingParameters $cmd", "LTRIM(RTRIM(c.CST_CD))=LTRIM(RTRIM(CUSTOMER_EXPR))", "customer_candidates", "customer_code", "$report.truncated=$true"} {
 		if !strings.Contains(s, part) {
 			t.Fatal("missing query safeguard", part)
 		}

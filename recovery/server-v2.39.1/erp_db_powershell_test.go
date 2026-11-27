@@ -22,6 +22,7 @@ func TestERPDBPowerShellCommandLineBounded(t *testing.T) {
 		{"metadata", context.Background(), "$PurchasePreview=$false"},
 		{"preview", context.WithValue(context.Background(), erpDBPreviewKey{}, erpDBPreviewRange{From: "2026-11-01", To: "2026-12-31"}), "$DateFrom='20261101'"},
 		{"sync", context.WithValue(context.WithValue(context.Background(), erpDBPreviewKey{}, erpDBPreviewRange{From: "2026-11-01", To: "2026-12-31"}), erpDBSyncKey{}, true), "$SyncOnly=$true"},
+		{"batch", context.WithValue(context.Background(), erpOrderOutstandingBatchKey{}, []string{"TEST-001", "TEST-수주'002"}), "$OutstandingOrders=@('TEST-001','TEST-수주''002')"},
 		{"outstanding", context.WithValue(context.Background(), erpOrderOutstandingKey{}, "TEST-수주'001"), "$OutstandingOrder='TEST-수주''001'"},
 	}
 	var encoded string

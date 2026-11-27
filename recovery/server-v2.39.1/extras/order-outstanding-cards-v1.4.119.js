@@ -86,7 +86,8 @@
         }
         for (const card of group) {
           const id = card.dataset.project;
-          const value = values[id] || {state: 'error', error: '수주 조회 결과를 확인할 수 없습니다'};
+          let value = values[id] || {state: 'error', error: '수주 조회 결과를 확인할 수 없습니다'};
+          if (value.number && value.number !== card.dataset.order) value = {state: 'error', error: '수주 정보가 변경됐습니다. 목록을 새로고침해 주세요'};
           latest.set(id, {...value, number: card.dataset.order});
           if (value.state === 'pending') pending = true;
         }
@@ -177,6 +178,7 @@
       if (current !== generation) return;
       const value = result.projects?.[selected.id];
       if (!result.ok || !value) throw Error('수주 조회 결과를 확인할 수 없습니다');
+      if (value.number !== selected.number) throw Error('수주 정보가 변경됐습니다. 목록을 새로고침해 주세요');
       latest.set(selected.id, {...value, number: selected.number});
       for (const card of cards().filter(card => card.dataset.project === selected.id)) paint(card, value);
       if (value.state === 'pending') {

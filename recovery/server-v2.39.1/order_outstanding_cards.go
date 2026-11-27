@@ -17,11 +17,12 @@ type orderOutstandingEntry struct {
 	At, Expires         time.Time
 }
 type orderOutstandingView struct {
-	State string                `json:"state"`
-	Count int                   `json:"count"`
-	At    *time.Time            `json:"at,omitempty"`
-	Error string                `json:"error,omitempty"`
-	Rows  []OrderOutstandingRow `json:"rows,omitempty"`
+	Number string                `json:"number"`
+	State  string                `json:"state"`
+	Count  int                   `json:"count"`
+	At     *time.Time            `json:"at,omitempty"`
+	Error  string                `json:"error,omitempty"`
+	Rows   []OrderOutstandingRow `json:"rows,omitempty"`
 }
 
 func (a *App) outstandingScope() string {
@@ -135,9 +136,9 @@ func (a *App) orderOutstandingCardsHTTP(w http.ResponseWriter, r *http.Request) 
 	views := map[string]orderOutstandingView{}
 	for id, order := range projects {
 		entry, found := a.outstandingCards[order]
-		view := orderOutstandingView{State: "pending"}
+		view := orderOutstandingView{Number: order, State: "pending"}
 		if found && entry.Scope == scope && (entry.State == "pending" || now.Before(entry.Expires)) && !(r.URL.Query().Get("refresh") == "1" && entry.State != "pending") {
-			view = orderOutstandingView{State: entry.State, Count: len(entry.Rows), Error: entry.Error}
+			view = orderOutstandingView{Number: order, State: entry.State, Count: len(entry.Rows), Error: entry.Error}
 			if !entry.At.IsZero() {
 				at := entry.At
 				view.At = &at
