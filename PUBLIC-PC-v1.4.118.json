@@ -1,0 +1,26 @@
+{
+  "version": "1.4.118",
+  "release_commit": "1e64eff",
+  "verified_at_utc": "2026-11-27T07:21:41.238072+00:00",
+  "manifest_verified": true,
+  "source_rebuild_verified": true,
+  "downloads": [
+    {
+      "file": "AlphaWorkComplete-Recovered-Windows-x64-v1.4.118.zip",
+      "bytes": 38645341,
+      "sha256": "ccf3663290b7e65786908c0bba50872b6951dd6e83f097eb23eae45abd777bdb",
+      "verified": true
+    },
+    {
+      "file": "AlphaWorkComplete-Recovered-source-PC-v1.4.118-App-v1.0.11.zip",
+      "bytes": 36026129,
+      "sha256": "9cfab2277b0bc6476f81b8c53c1f4c8a35fbc7538d2597326ae9cfab2b370d65",
+      "verified": true
+    }
+  ],
+  "field_verification_pending": [
+    "Company ERP comparison",
+    "Physical Windows GUI and DPAPI",
+    "Actual Android receipt"
+  ]
+}
