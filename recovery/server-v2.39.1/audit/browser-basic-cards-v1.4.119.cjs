@@ -9,7 +9,7 @@ const config = JSON.parse(raw);
  const path = role => role === 'worker' ? `/work/${config.board}` : '/?design-tab=orders';
  try {
   for (const role of ['worker','admin']) for (const width of [320,360,390,430,1100]) for (const theme of ['light','dark']) {
-   const context = await browser.newContext({viewport:{width,height:1000},isMobile:width<500,hasTouch:width<500,colorScheme:theme});
+   const context = await browser.newContext({viewport:{width,height:1000},isMobile:width<500,hasTouch:width<500,colorScheme:theme,...(role==='admin' && width===390 && theme==='light' ? {userAgent:'Mozilla/5.0 (Linux; Android 14) Chrome/131 Mobile Safari/537.36 AlphaAdminAndroid/1.0.11'} : {})});
    if (role === 'admin') await context.addCookies([{...config.owner,url:origin}]);
    const page = await context.newPage();
    const errors = [];
@@ -26,6 +26,7 @@ const config = JSON.parse(raw);
     const button = document.querySelector(`[data-project="${id}"] .order-outstanding-button`);
     return button?.dataset.state === 'ready' && button.hidden;
    }, config.second);
+   await card.evaluate(element=>element.scrollIntoView({block:'center',behavior:'instant'}));
    const inspection = card.locator(role==='worker'?'.design-order-footer .expand-hint':'.e-admin-footer .e-action');
    const position = await button.boundingBox();
    const target = await inspection.boundingBox();
@@ -113,6 +114,21 @@ const config = JSON.parse(raw);
    await card.locator('.order-outstanding-button').click();
    await dialog.getByText('2품목',{exact:true}).waitFor();
    results.push({role:'worker',width:390,result:'pass',scope:'Truncated query remains retryable, confirmed zero hides button, normal recovery and polled-card replacement retain one working popup button'});
+   await context.close();
+  }
+  for (const role of ['worker','admin']) {
+   const context=await browser.newContext({viewport:{width:390,height:1000}});
+   await context.addInitScript(()=>localStorage.setItem('alpha-design-default-v2','classic'));
+   if(role==='admin') await context.addCookies([{...config.owner,url:origin}]);
+   const page=await context.newPage();
+   await page.goto(origin+path(role));
+   const card=page.locator(`${role==='worker'?'.work-item':'.admin-project'}[data-project="${config.first}"]`);
+   const button=card.locator('.order-outstanding-button');
+   await page.waitForFunction(id=>document.querySelector(`[data-project="${id}"] .order-outstanding-button`)?.dataset.state==='ready',config.first);
+   await button.click();
+   await page.locator('.outstanding-dialog').getByText('2품목',{exact:true}).waitFor();
+   assert.equal(await page.locator('dialog[open]').count(),1);
+   results.push({role,width:390,result:'pass',scope:'Existing classic design preference retains independent basic-card popup'});
    await context.close();
   }
   fs.writeFileSync('audit/browser-release-v1.4.119.json',JSON.stringify({scope:'Actual Chromium implementation with synthetic order/ERP data, worker public-board and authenticated administrator entry points. Company ERP/physical Windows/Android remain field checks.',results},null,2)+'\n');
