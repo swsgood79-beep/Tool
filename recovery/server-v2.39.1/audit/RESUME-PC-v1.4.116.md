@@ -21,3 +21,9 @@
 사용자 추가 지시에 따라 미완성 작업 브랜치는 work-pc-v1.4.116입니다. recovery-v2.39.1에는 중간 소스 커밋을 되돌리는 커밋을 올려 v1.4.115로 유지했습니다. 최종 배포 시 작업 브랜치의 기능 변경을 다시 적용해야 합니다. 업데이트 메타데이터는 아직 v1.4.115입니다. 루트 AGENTS.md에 사용자 지속 작업 기준을 저장했습니다.
 
 수정 파일은 machining_reset.go, model.go, machining_http.go, order_outstanding.go, erp_db_probe.go, erp_db_probe_windows.go, erp-db-probe.ps1, extras/machining*.html/js, extras/order-outstanding-v1.4.116.css/js입니다. 초기 구현 전 전체 Go 테스트는 통과했습니다. 신규 기능 테스트는 작성 중입니다.
+
+## 합성 단위 검증
+
+초기화 대표 관리자/CSRF/명시 확인, 백업 실패 시 불변, 미리보기 이후 revision 변경 거부, 동명이인 ID 구분, 다른 작업자 후속 공정/입고 확인 보류, 대상 외 계정/로그인/수주/수량 보존, 백업 복호화 일치 및 재시작 후 이력 보존 테스트가 통과했습니다. 미입고 조회의 수주 범위/소수 잔량/읽기 전용/실패/잘림 처리가 통과했습니다. ERP 원본 입고 수량이 있는 작업도 초기화를 보류하도록 강화했습니다.
+
+추가 파일은 machining_reset_test.go, order_outstanding_test.go, release116_browser_test.go, audit/browser-release-v1.4.116.cjs입니다. 백업 emptiness 판정에 초기화 이력도 포함합니다. Chromium 320/360/390/430/1100px 검증 및 실제 구현 캡처를 실행 중입니다. 다음 단계는 화면 확인, 전체 Go 테스트/race/vet, Windows 빌드, 패키징 및 ZIP 소스 재빌드입니다. 정식 업데이트는 아직 v1.4.115입니다.

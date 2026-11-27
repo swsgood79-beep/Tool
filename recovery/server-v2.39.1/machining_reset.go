@@ -34,6 +34,11 @@ func machiningResetPlan(s *State, account string) MachiningResetPreview {
 		stages := [][]MachiningRun{j.Cutting, j.MillingFirst, j.Milling}
 		earliest := 3
 		reason := ""
+		for _, source := range j.Sources {
+			if source.Received > 0 {
+				reason = "ERP 입고 수량이 있는 작업"
+			}
+		}
 		for phase, runs := range stages {
 			for _, run := range runs {
 				if run.StartedBy.ID == account || run.CompletedBy != nil && run.CompletedBy.ID == account {
@@ -131,7 +136,7 @@ func (a *App) resetMachining(account, fingerprint string, actor MachiningActor) 
 			j := &s.MachiningJobs[i]
 			changed := false
 			for _, runs := range []*[]MachiningRun{&j.Cutting, &j.MillingFirst, &j.Milling} {
-				kept := []MachiningRun{}
+				kept := (*runs)[:0:0]
 				for _, run := range *runs {
 					if remove[resetRunKey(j.ID, run.ID)] {
 						changed = true
@@ -141,7 +146,7 @@ func (a *App) resetMachining(account, fingerprint string, actor MachiningActor) 
 				}
 				*runs = kept
 			}
-			legacy := []string{}
+			legacy := j.LegacyMilling[:0:0]
 			for _, id := range j.LegacyMilling {
 				if !remove[resetRunKey(j.ID, id)] {
 					legacy = append(legacy, id)
