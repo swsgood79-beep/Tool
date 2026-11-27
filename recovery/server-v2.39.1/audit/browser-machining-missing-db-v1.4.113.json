@@ -1,0 +1,4 @@
+{
+  "result": "pass",
+  "scope": "synthetic fixtures only; normal/missing split incl mixed order; correct modal subsets; owner DB async UI and metadata download; actual SQL Server connection not run"
+}

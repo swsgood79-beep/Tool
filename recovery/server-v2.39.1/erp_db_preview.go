@@ -9,6 +9,8 @@ import (
 type erpDBPreviewKey struct{}
 type erpDBPreviewRange struct{ From, To string }
 type ERPDBPurchase struct {
+	Robot           string `json:"robot"`
+	RobotMatches    int    `json:"robot_matches"`
 	Unit            string `json:"unit"`
 	PurchaseDate    string `json:"purchase_date"`
 	Purchase        string `json:"purchase"`

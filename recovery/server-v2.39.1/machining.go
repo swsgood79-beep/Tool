@@ -121,10 +121,8 @@ func machiningGroups(rows []MachiningSource) []MachiningJob {
 	return out
 }
 func (a *App) importMachining(d MachiningDraft, actor MachiningActor) error {
-	for _, v := range a.state.MachiningImports {
-		if v.Hash == d.Hash {
-			return nil
-		}
+	if n := len(a.state.MachiningImports); n > 0 && a.state.MachiningImports[n-1].Hash == d.Hash {
+		return nil
 	}
 	groups := machiningGroups(d.Rows)
 	if len(groups) == 0 {

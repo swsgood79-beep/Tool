@@ -1,0 +1,15 @@
+{
+  "pc_version": "1.4.113",
+  "app_version": "1.0.11",
+  "source_zip": "AlphaWorkComplete-Recovered-source-PC-v1.4.113-App-v1.0.11.zip",
+  "source_zip_sha256": "35e2ba75107277654079c2f7eafd29f7221030c72f213247c51a0516fa20c49a",
+  "published_pc_exe_sha256": "e9c4a8e42368315f2fa6aa8c5568948f15faa25cf47c99c1b9cde285e21c0147",
+  "rebuilt_pc_exe_sha256": "e9c4a8e42368315f2fa6aa8c5568948f15faa25cf47c99c1b9cde285e21c0147",
+  "identical_to_existing_pc_release": true,
+  "apk_sha256": "afc14ea37edde0d3e9f78731f1ff60bc9eb75736a8f92aacc890b61ff73162ee",
+  "full_source_checksums": "pass",
+  "windows_execution": "cross-build verification only",
+  "embedded_helper_sha256": "3987d211a4a037548d7af93ea5fd749a941bc6416011d38298a0de7a579d37da",
+  "embedded_helper_rebuild_identical": true,
+  "saved_profile_windows_field_test": "pending"
+}

@@ -19,9 +19,12 @@ import (
 var erpDBScript string
 
 func platformERPDBProbe(ctx context.Context, folder string) ERPDBReport {
-	prefix := "$PurchasePreview=$false\n"
+	prefix := "$SyncOnly=$false\n$PurchasePreview=$false\n"
 	if dates, ok := erpDBPreviewOptions(ctx); ok {
 		prefix = "$PurchasePreview=$true\n$DateFrom='" + strings.ReplaceAll(dates.From, "-", "") + "'\n$DateTo='" + strings.ReplaceAll(dates.To, "-", "") + "'\n"
+	}
+	if syncOnly, _ := ctx.Value(erpDBSyncKey{}).(bool); syncOnly {
+		prefix += "$SyncOnly=$true\n"
 	}
 	script := prefix + "$ERPFolder='" + strings.ReplaceAll(folder, "'", "''") + "'\n" + erpDBScript
 	u := utf16.Encode([]rune(script))

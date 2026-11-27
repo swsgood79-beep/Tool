@@ -121,6 +121,10 @@ type Ticket struct {
 	Next    string
 }
 type App struct {
+	erpDBSyncDone              chan struct{}
+	erpDBSyncMessage           string
+	erpDBSyncNow               bool
+	erpDBSyncGeneration        uint64
 	erpDBContext               context.Context
 	erpDBPreview               bool
 	erpDBBusy                  bool

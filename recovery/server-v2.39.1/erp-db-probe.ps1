@@ -52,19 +52,24 @@ try {
   $purchaseSql=@'
 SELECT TOP (2001) h.UNT_CD,h.PURORD_DATE,h.PURORD_NO,h.PURORD_SEQ,m.RCVORD_NO,m.PROJECT,
  h.ITM_CD,h.PARTS_TYPE,h.ITM_SIZE,h.BOM_CODE,h.SCH_DATE,ISNULL(h.PUR_QTY,0),ISNULL(h.IN_QTY,0),h.WHS_STS,
- i.ITM_NM,i.ITM_SIZE,i.PART_NO
+ i.ITM_NM,i.ITM_SIZE,i.PART_NO,robot.MITM_CD,robot.matches
 FROM dbo.PURORD_MST m JOIN dbo.PURORD_HIS h
  ON h.UNT_CD=m.UNT_CD AND h.PURORD_DATE=m.PURORD_DATE AND h.PURORD_NO=m.PURORD_NO
 LEFT JOIN dbo.ITMMST_INFO i ON i.ITM_CD=h.ITM_CD AND i.PARTS_TYPE=h.PARTS_TYPE
+OUTER APPLY (SELECT MIN(d.MITM_CD) AS MITM_CD,COUNT(*) AS matches FROM dbo.DEMREQ_HIS d
+ WHERE d.UNT_CD=h.UNT_CD AND d.DEMREQ_DATE=h.DEMREQ_DATE AND d.DEMREQ_NO=h.DEMREQ_NO AND d.DEMREQ_SEQ=h.DEMREQ_SEQ
+ AND d.TITM_CD=h.ITM_CD AND d.PARTS_TYPE=h.PARTS_TYPE AND d.RCVORD_NO=m.RCVORD_NO) robot
 WHERE m.CST_CD=@Customer AND LEFT(REPLACE(REPLACE(REPLACE(LTRIM(RTRIM(h.SCH_DATE)),'-',''),'/',''),'.',''),8) BETWEEN @From AND @To
+AND (@BaseOnly=0 OR (UPPER(LTRIM(RTRIM(i.ITM_NM)))='BASE' AND ISNULL(h.PUR_QTY,0)>ISNULL(h.IN_QTY,0)))
 ORDER BY h.UNT_CD,h.PURORD_DATE,h.PURORD_NO,h.PURORD_SEQ
 '@
   $cmd=$conn.CreateCommand();$cmd.CommandText=$purchaseSql;$cmd.CommandTimeout=12
   [void]$cmd.Parameters.Add('@Customer',[Data.SqlDbType]::VarChar,20);$cmd.Parameters['@Customer'].Value='00530'
   [void]$cmd.Parameters.Add('@From',[Data.SqlDbType]::VarChar,8);$cmd.Parameters['@From'].Value=$DateFrom
   [void]$cmd.Parameters.Add('@To',[Data.SqlDbType]::VarChar,8);$cmd.Parameters['@To'].Value=$DateTo
+  [void]$cmd.Parameters.Add('@BaseOnly',[Data.SqlDbType]::Bit);$cmd.Parameters['@BaseOnly'].Value=[bool]$SyncOnly
   $rd=$cmd.ExecuteReader();$rows=New-Object 'Collections.Generic.List[object]'
-  try{while($rd.Read()){if($rows.Count -ge 2000){$report.truncated=$true;break};$rows.Add([ordered]@{unit=[string]$rd[0];purchase_date=[string]$rd[1];purchase=[string]$rd[2];sequence=[int]$rd[3];order=[string]$rd[4];project=[string]$rd[5];item=[string]$rd[6];parts_type=[string]$rd[7];line_size=[string]$rd[8];bom=[string]$rd[9];due=[string]$rd[10];quantity=[int]$rd[11];received=[int]$rd[12];warehouse_status=[string]$rd[13];item_name=[string]$rd[14];master_size=[string]$rd[15];part_no=[string]$rd[16]})}}finally{$rd.Close();$cmd.Dispose()}
+  try{while($rd.Read()){if($rows.Count -ge 2000){$report.truncated=$true;break};$rows.Add([ordered]@{unit=[string]$rd[0];purchase_date=[string]$rd[1];purchase=[string]$rd[2];sequence=[int]$rd[3];order=[string]$rd[4];project=[string]$rd[5];item=[string]$rd[6];parts_type=[string]$rd[7];line_size=[string]$rd[8];bom=[string]$rd[9];due=[string]$rd[10];quantity=[int]$rd[11];received=[int]$rd[12];warehouse_status=[string]$rd[13];item_name=[string]$rd[14];master_size=[string]$rd[15];part_no=[string]$rd[16];robot=[string]$rd[17];robot_matches=[int]$rd[18]})}}finally{$rd.Close();$cmd.Dispose()}
   $report.purchase_rows=@($rows.ToArray());$report.status='purchase_preview';$report.stage='done'
  }else{
  $report.stage='columns'

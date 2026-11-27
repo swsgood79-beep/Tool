@@ -17,6 +17,9 @@ func machiningBridgeDir() (string, error) {
 	return filepath.Join(h, "AlphaERPBridge"), e
 }
 func (a *App) machiningBridgeEnabled() bool {
+	if a.erpDBSyncConfig().Enabled {
+		return false
+	}
 	_, e := os.Stat(filepath.Join(a.dir, "erp-bridge-enabled"))
 	return e == nil
 }
@@ -83,6 +86,7 @@ func (a *App) startMachiningBridge(ctx context.Context) {
 	if a.testMode {
 		return
 	}
+	a.startDBSync(ctx)
 	a.startManagedERP(ctx)
 	go func() {
 		tick := time.NewTicker(10 * time.Second)
@@ -117,6 +121,9 @@ func (a *App) startMachiningBridge(ctx context.Context) {
 }
 
 func (a *App) waitManagedERP() {
+	if a.erpDBSyncDone != nil {
+		<-a.erpDBSyncDone
+	}
 	if a.machiningBridgeDone != nil {
 		<-a.machiningBridgeDone
 	}

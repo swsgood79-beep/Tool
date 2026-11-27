@@ -40,6 +40,9 @@ func (a *App) machiningHTTP(w http.ResponseWriter, r *http.Request, s Session) b
 	if path != "/machining" && !strings.HasPrefix(path, "/machining/") && path != "/machining-admin" && !strings.HasPrefix(path, "/machining-admin/") {
 		return false
 	}
+	if a.erpDBSyncHTTP(w, r, s) {
+		return true
+	}
 	if a.erpDBHTTP(w, r, s) {
 		return true
 	}
@@ -63,6 +66,10 @@ func (a *App) machiningHTTP(w http.ResponseWriter, r *http.Request, s Session) b
 		case "/machining-admin/bridge":
 			if s.AccountID != "" {
 				http.Error(w, "대표 관리자만 설정할 수 있습니다", 403)
+				return true
+			}
+			if a.erpDBSyncConfig().Enabled {
+				http.Error(w, "DB 자동 연결을 끈 뒤 화면 수집을 설정해 주세요", 409)
 				return true
 			}
 			marker := filepath.Join(a.dir, "erp-bridge-enabled")

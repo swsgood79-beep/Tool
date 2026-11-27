@@ -1,8 +1,8 @@
 {
-  "version": "1.4.112",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.112.zip",
-  "sha256": "c9bf26da58a4d43794f0ef3f618fcdaa308e447b48cbe2b6546c15ff426ced89",
-  "exe_sha256": "9a382bb924770b2125f277e5e8261859d949151f4d7f86a3ada6a24a95e11714",
-  "bytes": 38640910,
-  "notes": "DB 발주 미리보기 · 가공사업부/입고예정일 제한 · 작업목록 미반영 검증용 · APK 유지"
+  "version": "1.4.113",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.113.zip",
+  "sha256": "35153e39fe821cc046fb96b06cbf3d1efbd7208221e52a2cd065655e889fc90d",
+  "exe_sha256": "e9c4a8e42368315f2fa6aa8c5568948f15faa25cf47c99c1b9cde285e21c0147",
+  "bytes": 38651157,
+  "notes": "ERP DB 자동 연결 · 화면 없이 BASE 미입고 5분 갱신 · 로봇품번 연결 검증 · 작업 기록 보존 · APK 유지"
 }

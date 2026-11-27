@@ -31,7 +31,7 @@ func TestMachiningBrowser(t *testing.T) {
 	srv := httptest.NewServer(a)
 	defer srv.Close()
 	cfg := map[string]any{"worker": map[string]string{"name": worker.Name, "value": worker.Value}, "admin": map[string]string{"name": owner.Name, "value": owner.Value}, "file": file}
-	cmd := exec.Command("node", "audit/browser-machining-v1.4.112.cjs", srv.URL, string(jsonRaw(cfg)))
+	cmd := exec.Command("node", "audit/browser-machining-v1.4.113.cjs", srv.URL, string(jsonRaw(cfg)))
 	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
 	if e := cmd.Run(); e != nil {
 		t.Fatal(e)
@@ -62,7 +62,27 @@ func TestMachiningMissingAndDBBrowser(t *testing.T) {
 	srv := httptest.NewServer(a)
 	defer srv.Close()
 	cfg := map[string]any{"worker": map[string]string{"name": worker.Name, "value": worker.Value}, "admin": map[string]string{"name": owner.Name, "value": owner.Value}}
-	cmd := exec.Command("node", "audit/browser-machining-missing-db-v1.4.112.cjs", srv.URL, string(jsonRaw(cfg)))
+	cmd := exec.Command("node", "audit/browser-machining-missing-db-v1.4.113.cjs", srv.URL, string(jsonRaw(cfg)))
+	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
+	if e := cmd.Run(); e != nil {
+		t.Fatal(e)
+	}
+}
+
+func TestMachiningDBSyncBrowser(t *testing.T) {
+	if os.Getenv("MACHINING_BROWSER") != "1" {
+		t.Skip("optional Chromium")
+	}
+	a := fixture(t)
+	owner := adminCookie(a)
+	a.erpDBProbe = func(context.Context, string) ERPDBReport { return dbSyncSample() }
+	ctx, cancel := context.WithCancel(context.Background())
+	a.startDBSync(ctx)
+	defer func() { cancel(); <-a.erpDBSyncDone }()
+	srv := httptest.NewServer(a)
+	defer srv.Close()
+	cfg := map[string]any{"admin": map[string]string{"name": owner.Name, "value": owner.Value}}
+	cmd := exec.Command("node", "audit/browser-db-sync-v1.4.113.cjs", srv.URL, string(jsonRaw(cfg)))
 	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
 	if e := cmd.Run(); e != nil {
 		t.Fatal(e)
