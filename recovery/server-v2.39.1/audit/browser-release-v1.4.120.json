@@ -1,0 +1,24 @@
+{
+  "results": [
+    {
+      "width": 320,
+      "result": "pass",
+      "scope": "actual implementation; synthetic metadata; no live ERP"
+    },
+    {
+      "width": 390,
+      "result": "pass",
+      "scope": "actual implementation; synthetic metadata; no live ERP"
+    },
+    {
+      "width": 430,
+      "result": "pass",
+      "scope": "actual implementation; synthetic metadata; no live ERP"
+    },
+    {
+      "width": 1100,
+      "result": "pass",
+      "scope": "actual implementation; synthetic metadata; no live ERP"
+    }
+  ]
+}
