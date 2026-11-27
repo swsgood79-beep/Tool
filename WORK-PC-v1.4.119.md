@@ -55,3 +55,9 @@ README.md, START-HERE.md, CHANGELOG.md, audit/RECOVERY-V1.4.119.md와 패키징/
 ## 최종 전체 검증 통과
 
 보정 후 전체 go test ./... (63.081초), 관련 race (12.137초), Linux/Windows vet, Windows GUI 교차 빌드, 실제 Chromium 23개 사례가 모두 통과했습니다. 로그는 audit/*v1.4.119.txt에 저장했습니다. 실행파일은 /workspace/work/AlphaWorkComplete-Recovered-v1.4.119.exe입니다. 제품 소스 변경 없이 전체 추적 소스를 패키징하고 동일 Windows 실행파일 해시 재빌드를 진행합니다. 실제 회사 ERP/Windows/Android 실행은 현장 확인 대상입니다. 공개 업데이트는 아직 v1.4.118입니다.
+
+## 패키징과 소스 일치 확인
+
+Windows ZIP과 전체 추적 소스 ZIP을 생성했습니다. 소스 ZIP의 모든 SHA256SUMS 확인, Windows 실행파일 동일 해시 재빌드, 내장 ERP 도우미 동일 재빌드, APK v1.0.11 기존 해시 확인이 모두 일치했습니다. 증빙은 recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.119-App-v1.0.11-rebuild.json입니다.
+
+다음 단계는 정식 브랜치가 여전히 e40a267인지 확인하고 work-pc-v1.4.119를 fast-forward 반영한 뒤 공개 업데이트 JSON과 Windows/소스 ZIP 전체 다운로드를 검증하는 것입니다. 기존 배포 버전 파일은 수정하지 않습니다. 현재는 공개 배포 확인 전이며, 실제 회사 ERP/Windows/Android 실기는 현장 확인 대상입니다.

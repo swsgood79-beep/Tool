@@ -1,8 +1,8 @@
 {
-  "version": "1.4.118",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.118.zip",
-  "sha256": "ccf3663290b7e65786908c0bba50872b6951dd6e83f097eb23eae45abd777bdb",
-  "exe_sha256": "71fd7095a70ec486fd45d7bb1f45dffb8b86ff6e5eebb14e2b9003ccc239f2a0",
-  "bytes": 38645341,
-  "notes": "ERP 조회 실행 길이 초과 수정 · 자동 연결·미입고 조회 복구 · 실패 원인 표시 · APK 1.0.11"
+  "version": "1.4.119",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.119.zip",
+  "sha256": "93bb531c23b34c5ebf2403b0fc2ea2d2a00e6b17cac597ff6977c1914109fe18",
+  "exe_sha256": "2e2b021b4c2e26edc8737e4e67b054f1df1cfa2b9b9abd1f13de4ca6cc751e19",
+  "bytes": 38660235,
+  "notes": "기본 수주카드 미입고 현황 · 검사 버튼 옆 배치 · 정상 0건 숨김 · 출하기록·엑셀 제외 · APK 1.0.11"
 }
