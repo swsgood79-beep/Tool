@@ -1,0 +1,30 @@
+{
+  "scope": "Actual Chromium implementation using synthetic ERP probe records. Actual company ERP not accessed.",
+  "results": [
+    {
+      "width": 320,
+      "result": "pass",
+      "scope": "Synthetic probe JSON decoded and resolved through the actual endpoint. Shared-unit supplier, exact-unit priority, conflicting names left unknown, quantities and row counts preserved, no overflow, refresh."
+    },
+    {
+      "width": 360,
+      "result": "pass",
+      "scope": "Synthetic probe JSON decoded and resolved through the actual endpoint. Shared-unit supplier, exact-unit priority, conflicting names left unknown, quantities and row counts preserved, no overflow, refresh."
+    },
+    {
+      "width": 390,
+      "result": "pass",
+      "scope": "Synthetic probe JSON decoded and resolved through the actual endpoint. Shared-unit supplier, exact-unit priority, conflicting names left unknown, quantities and row counts preserved, no overflow, refresh."
+    },
+    {
+      "width": 430,
+      "result": "pass",
+      "scope": "Synthetic probe JSON decoded and resolved through the actual endpoint. Shared-unit supplier, exact-unit priority, conflicting names left unknown, quantities and row counts preserved, no overflow, refresh."
+    },
+    {
+      "width": 1100,
+      "result": "pass",
+      "scope": "Synthetic probe JSON decoded and resolved through the actual endpoint. Shared-unit supplier, exact-unit priority, conflicting names left unknown, quantities and row counts preserved, no overflow, refresh."
+    }
+  ]
+}

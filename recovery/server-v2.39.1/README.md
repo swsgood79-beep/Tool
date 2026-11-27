@@ -1,19 +1,23 @@
-# 알파작업완료확인 · PC v1.4.116 / 앱 v1.0.11
+# 알파작업완료확인 · PC v1.4.117 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.116** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.116.zip) |
+| **회사 PC 프로그램 v1.4.117** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.117.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.116 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.116-App-v1.0.11.zip) |
+| **현재 전체 소스 · PC 1.4.117 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.117-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](CHANGELOG.md) |
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
 
-## 이번 업데이트 · PC 1.4.116 · 테스트 기록 초기화와 수주별 미입고 조회
+## 이번 업데이트 · PC 1.4.117 · 미입고 거래처명 연결
+
+기존 프로그램의 **PC 업데이트 확인**으로 설치합니다. 미입고 조회에서 발주 행 거래처 코드가 있으면 우선 사용합니다. 해당 사업장 거래처 이름을 먼저 확인하고, 공통/다른 사업장의 같은 코드 이름이 하나로 확인되면 표시합니다. 여러 이름이 충돌하면 확인 불가로 남깁니다. 거래처 마스터를 품목에 직접 조인하지 않아 거래처 연결로 수량이 늘어나지 않습니다. 회사 ERP 실제 결과 대조는 현장에서 필요합니다.
+
+## 이전 업데이트 · PC 1.4.116 · 테스트 기록 초기화와 수주별 미입고 조회
 
 기존 프로그램의 **PC 업데이트 확인**으로 설치합니다.
 
