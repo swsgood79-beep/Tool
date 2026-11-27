@@ -43,3 +43,7 @@ README.md, START-HERE.md, CHANGELOG.md 및 audit/RECOVERY-V1.4.116.md에 사용 
 ## 패키징 스크립트 저장
 
 패키징은 audit/package-pc-v1.4.116.py, 소스 동일 재빌드는 audit/verify-source-pc-v1.4.116.py를 사용합니다. 패키징 스크립트는 테스트 통과 로그와 APK 기존 해시, 원본 웹 자산 해시를 확인하며 Git 추적 파일만 소스 ZIP에 포함합니다. 신규 로컬 런타임 자료/백업을 포함하지 않습니다. 아직 스크립트 실행 전입니다. 다음 단계는 최종 검증 로그를 audit에 복사·커밋한 뒤 패키징, 소스 재빌드, 최종 공개 브랜치 반영입니다.
+
+## 최종 화면/동시성/빌드 로그 저장
+
+화면 보정 후 브라우저 7개 사례가 재통과했습니다. 최신 스크린샷 8장, 관련 race 테스트, Linux/Windows vet 및 Windows GUI 교차 빌드 로그를 저장했습니다. 현재 소스의 전체 Go 테스트 최종 실행은 진행 중입니다. 실행파일 경로는 /workspace/work/AlphaWorkComplete-Recovered-v1.4.116.exe이며 정식 브랜치에 아직 배포되지 않았습니다. 다음 단계는 전체 테스트 성공 확인 후 go-full-v1.4.116.txt 저장과 패키징 스크립트 실행입니다.

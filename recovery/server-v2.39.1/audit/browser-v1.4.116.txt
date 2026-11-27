@@ -1,0 +1,5 @@
+=== RUN   TestRelease116Browser
+Release 116 browser checks passed 7
+--- PASS: TestRelease116Browser (31.69s)
+PASS
+ok  	wanryotalk-reconstructed-server	32.215s
