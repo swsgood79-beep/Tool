@@ -1,7 +1,7 @@
 $ErrorActionPreference='Stop'
 $ProgressPreference='SilentlyContinue'
 [Console]::OutputEncoding=New-Object Text.UTF8Encoding($false)
-$report=[ordered]@{status='failed';stage='config_path';connected=$false;error_code=0;columns=@();foreign_keys=@();truncated=$false}
+$report=[ordered]@{status='failed';stage='config_path';config_reason='';connected=$false;error_code=0;columns=@();foreign_keys=@();truncated=$false}
 $conn=$null
 try {
  Add-Type -AssemblyName System.Data
@@ -20,20 +20,29 @@ try {
  $report.stage='config_read'
  $reader=New-Object IO.StreamReader($files[0],[Text.Encoding]::Default,$true)
  try{$text=$reader.ReadToEnd()}finally{$reader.Dispose()}
+ $report.config_reason='active_key_missing'
  $section='';$connections=New-Object 'Collections.Generic.List[string]'
  foreach($line in ($text -split '\r?\n')){
   $t=$line.Trim();if(!$t -or $t.StartsWith('//') -or $t.StartsWith(';') -or $t.StartsWith('#')){continue}
   if($t -match '^\[([^\]]+)\]$'){$section=$Matches[1];continue}
   if($section -eq 'DB_Information' -and $t -match '^DatabasePath\s*=(.*)$'){$connections.Add($Matches[1].Trim())}
  }
- if($connections.Count -ne 1){$report.status='config_invalid';throw 'stop'}
- $report.status='config_invalid'
- $builder=New-Object Data.SqlClient.SqlConnectionStringBuilder($connections[0])
- if($builder.AttachDBFilename -or $builder.UserInstance -or $builder.ContextConnection -or !$builder.DataSource -or !$builder.InitialCatalog){$report.status='config_invalid';throw 'stop'}
- $builder.ConnectTimeout=8;$builder.ApplicationName='Alpha ERP Metadata Check';$builder.Pooling=$false;$builder.PersistSecurityInfo=$false
- $builder.ApplicationIntent=[Data.SqlClient.ApplicationIntent]::ReadOnly
- $builder.Encrypt=$true;$builder.TrustServerCertificate=$true
- $conn=New-Object Data.SqlClient.SqlConnection($builder.ConnectionString)
+ if($connections.Count -ne 1){$report.status='config_invalid';if($connections.Count -gt 1){$report.config_reason='active_key_multiple'};throw 'stop'}
+ $report.status='config_invalid';$report.stage='config_parse';$report.config_reason='setting_format'
+ # SqlConnectionStringBuilder implements IDictionary. PowerShell dot-property
+ # adaptation can treat property names as connection keywords (DataSource vs
+ # Data Source). Call the CLR accessors explicitly, including ConnectionString.
+ $builder=New-Object System.Data.SqlClient.SqlConnectionStringBuilder
+ $builder.set_ConnectionString($connections[0])
+ if($builder.get_AttachDBFilename() -or $builder.get_UserInstance() -or $builder.get_ContextConnection()){$report.config_reason='unsupported_options';throw 'stop'}
+ if(!$builder.get_DataSource() -or !$builder.get_InitialCatalog()){$report.config_reason='missing_server_or_database';throw 'stop'}
+ $report.stage='connection_options';$report.config_reason='unsupported_options'
+ $builder.set_ConnectTimeout(8);$builder.set_ApplicationName('Alpha ERP Metadata Check');$builder.set_Pooling($false);$builder.set_PersistSecurityInfo($false)
+ $builder.set_ApplicationIntent([System.Data.SqlClient.ApplicationIntent]::ReadOnly)
+ $builder.set_Encrypt($true);$builder.set_TrustServerCertificate($true)
+ $conn=New-Object System.Data.SqlClient.SqlConnection
+ $conn.set_ConnectionString($builder.get_ConnectionString())
+ $report.config_reason=''
  $connections.Clear();$text=$null;$builder=$null
  $report.status='failed'
  $report.stage='connect'

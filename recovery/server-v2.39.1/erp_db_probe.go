@@ -28,15 +28,16 @@ type ERPDBForeignKey struct {
 	RefColumn string `json:"ref_column"`
 }
 type ERPDBReport struct {
-	Stage       string            `json:"stage,omitempty"`
-	Version     string            `json:"program_version"`
-	At          time.Time         `json:"at"`
-	Status      string            `json:"status"`
-	Connected   bool              `json:"connected"`
-	ErrorCode   int               `json:"error_code,omitempty"`
-	Columns     []ERPDBColumn     `json:"columns"`
-	ForeignKeys []ERPDBForeignKey `json:"foreign_keys"`
-	Truncated   bool              `json:"truncated"`
+	ConfigReason string            `json:"config_reason,omitempty"`
+	Stage        string            `json:"stage,omitempty"`
+	Version      string            `json:"program_version"`
+	At           time.Time         `json:"at"`
+	Status       string            `json:"status"`
+	Connected    bool              `json:"connected"`
+	ErrorCode    int               `json:"error_code,omitempty"`
+	Columns      []ERPDBColumn     `json:"columns"`
+	ForeignKeys  []ERPDBForeignKey `json:"foreign_keys"`
+	Truncated    bool              `json:"truncated"`
 }
 type ERPDBView struct {
 	Busy     bool   `json:"busy"`
@@ -56,6 +57,18 @@ func dbProbeMessage(r ERPDBReport) string {
 	case "ambiguous":
 		return "ERP 설치 경로가 여러 개입니다. 사용할 설치 폴더를 지정해 주세요"
 	case "config_invalid":
+		switch r.ConfigReason {
+		case "active_key_missing":
+			return "ERP 설정에서 활성 DatabasePath 항목을 찾지 못했습니다"
+		case "active_key_multiple":
+			return "활성 DB 설정이 여러 개라 중단했습니다. ERP 설정을 확인해 주세요"
+		case "setting_format":
+			return "ERP DB 연결 문자열을 해석하지 못했습니다. 진단 결과 파일을 확인해 주세요"
+		case "unsupported_options":
+			return "ERP DB 연결 옵션을 처리하지 못했습니다. 진단 결과 파일을 확인해 주세요"
+		case "missing_server_or_database":
+			return "ERP DB 설정에서 서버 또는 데이터베이스 항목을 확인하지 못했습니다"
+		}
 		return "ERP의 활성 DB 설정을 확인할 수 없습니다. 설정 파일을 수정하지 말고 담당자에게 확인해 주세요"
 	case "timeout":
 		return "DB 진단 시간이 초과됐습니다. 회사 네트워크 연결을 확인해 주세요"
@@ -78,8 +91,13 @@ func decodeDBProbe(raw []byte) ERPDBReport {
 	if len(raw) > 8<<20 || json.Unmarshal([]byte(strings.TrimPrefix(string(raw), "\ufeff")), &r) != nil {
 		return ERPDBReport{Status: "failed"}
 	}
+	switch r.ConfigReason {
+	case "active_key_missing", "active_key_multiple", "setting_format", "unsupported_options", "missing_server_or_database":
+	default:
+		r.ConfigReason = ""
+	}
 	switch r.Stage {
-	case "config_path", "config_read", "connect", "columns", "relations", "done":
+	case "config_path", "config_read", "config_parse", "connection_options", "connect", "columns", "relations", "done":
 	default:
 		r.Stage = ""
 	}

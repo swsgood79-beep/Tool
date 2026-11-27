@@ -1,3 +1,7 @@
+# 1.4.111 수정
+
+config_read/config_invalid 결과는 접속 전 설정 해석 실패입니다. SQL 접속 차단이나 비밀번호 오류로 확정할 수 없습니다. PowerShell의 SqlConnectionStringBuilder 사전/속성 접근 충돌을 피하도록 CLR getter/setter로 처리하며, config_parse/connection_options 단계와 고정 config_reason을 추가했습니다. 실제 값·오류 원문은 계속 제외합니다. 업데이트 후 같은 버튼으로 다시 진단합니다. 회사 ERP 설정 파일은 변경하지 않습니다. 실제 Windows SQL 접속은 현장 재확인 전입니다.
+
 # DB 연결 확인 · PC 1.4.110
 
 이 기능은 **회사 Windows PC에서 실행하는 연결·구조 진단**입니다. 현재 ERP 화면 수집을 DB 자동 수집으로 바꾼 기능은 아닙니다. 실제 연결 결과와 자료 구조를 확인한 다음 필요한 발주·입고 조회를 설계합니다.

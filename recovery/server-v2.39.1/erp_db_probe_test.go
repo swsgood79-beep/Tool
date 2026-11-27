@@ -106,3 +106,29 @@ func TestERPDBOutputLimit(t *testing.T) {
 		t.Fatal("output exceeded cap")
 	}
 }
+
+func TestERPDBBuilderUsesCLRAccessors(t *testing.T) {
+	b, e := os.ReadFile("erp-db-probe.ps1")
+	if e != nil {
+		t.Fatal(e)
+	}
+	s := string(b)
+	// SqlConnectionStringBuilder is IDictionary: PowerShell dot lookup can treat
+	// CLR property names as unsupported connection keywords.
+	if regexp.MustCompile(`\$builder\.(ConnectionString|DataSource|InitialCatalog|ConnectTimeout|ApplicationName|PersistSecurityInfo|ApplicationIntent|TrustServerCertificate)\b`).MatchString(s) {
+		t.Fatal("ambiguous PowerShell dictionary property access returned")
+	}
+	for _, required := range []string{".set_ConnectionString($connections[0])", ".get_DataSource()", ".get_InitialCatalog()", ".set_ConnectTimeout(8)", ".get_ConnectionString()"} {
+		if !strings.Contains(s, required) {
+			t.Fatal("missing CLR accessor", required)
+		}
+	}
+	r := decodeDBProbe([]byte(`{"status":"config_invalid","stage":"config_parse","config_reason":"setting_format","connected":false}`))
+	if r.Stage != "config_parse" || r.ConfigReason != "setting_format" || !strings.Contains(dbProbeMessage(r), "문자열") {
+		t.Fatal("configuration failure detail lost")
+	}
+	r = decodeDBProbe([]byte(`{"status":"config_invalid","config_reason":"fixture-secret"}`))
+	if strings.Contains(string(jsonRaw(r)), "fixture-secret") {
+		t.Fatal("unknown reason leaked")
+	}
+}
