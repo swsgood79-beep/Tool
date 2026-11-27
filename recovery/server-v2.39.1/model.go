@@ -123,6 +123,8 @@ type Ticket struct {
 	Next    string
 }
 type App struct {
+	outstandingCards           map[string]orderOutstandingEntry
+	outstandingBusy            bool
 	teamNativeDesktop          bool
 	erpDBSyncDone              chan struct{}
 	erpDBSyncMessage           string

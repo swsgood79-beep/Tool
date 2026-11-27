@@ -47,8 +47,19 @@ try {
  $report.status='failed'
  $report.stage='connect'
  $conn.Open();$report.connected=$true
- if($OutstandingOrder){
+ if($OutstandingOrder -or $OutstandingOrders){
   $report.stage='order_outstanding'
+  $orderNumbers=@($OutstandingOrders)
+  if($OutstandingOrder){$orderNumbers=@($OutstandingOrder)}
+  if($orderNumbers.Count -lt 1 -or $orderNumbers.Count -gt 10){throw 'invalid order count'}
+  $orderParameters=@(for($index=0;$index -lt $orderNumbers.Count;$index++){"@Order$index"})
+  $orderFilter='ORDER_EXPR IN ('+($orderParameters -join ',')+')'
+  function Add-OutstandingParameters($command){
+   for($index=0;$index -lt $orderNumbers.Count;$index++){
+    [void]$command.Parameters.Add($orderParameters[$index],[Data.SqlDbType]::NVarChar,100)
+    $command.Parameters[$orderParameters[$index]].Value=$orderNumbers[$index]
+   }
+  }
   # Discover optional line-level order and unit keys. Schema mismatch fails the
   # query rather than returning an empty success or falling back to BASE rows.
   $schema=$conn.CreateCommand()
@@ -66,7 +77,7 @@ try {
 SELECT TOP (2001)
  CASE WHEN robot.matches=1 THEN robot.MITM_CD ELSE '' END AS robot,
  i.ITM_NM,ISNULL(h.PUR_QTY,0)-ISNULL(h.IN_QTY,0) AS outstanding,
- CAST('' AS nvarchar(1)) AS customer,h.SCH_DATE,CUSTOMER_EXPR,h.UNT_CD
+ CAST('' AS nvarchar(1)) AS customer,h.SCH_DATE,CUSTOMER_EXPR,h.UNT_CD,ORDER_EXPR AS order_number
 FROM dbo.PURORD_MST m JOIN dbo.PURORD_HIS h
  ON h.UNT_CD=m.UNT_CD AND h.PURORD_DATE=m.PURORD_DATE AND h.PURORD_NO=m.PURORD_NO
 LEFT JOIN dbo.ITMMST_INFO i ON i.ITM_CD=h.ITM_CD AND i.PARTS_TYPE=h.PARTS_TYPE
@@ -74,15 +85,15 @@ OUTER APPLY (SELECT MIN(d.MITM_CD) AS MITM_CD,COUNT(DISTINCT NULLIF(LTRIM(RTRIM(
  FROM dbo.DEMREQ_HIS d
  WHERE d.UNT_CD=h.UNT_CD AND d.DEMREQ_DATE=h.DEMREQ_DATE AND d.DEMREQ_NO=h.DEMREQ_NO AND d.DEMREQ_SEQ=h.DEMREQ_SEQ
  AND d.TITM_CD=h.ITM_CD AND d.PARTS_TYPE=h.PARTS_TYPE AND d.RCVORD_NO=ORDER_EXPR) robot
-WHERE ORDER_EXPR=@Order AND ISNULL(h.PUR_QTY,0)>ISNULL(h.IN_QTY,0)
+WHERE ORDER_FILTER AND ISNULL(h.PUR_QTY,0)>ISNULL(h.IN_QTY,0)
 ORDER BY h.UNT_CD,h.PURORD_DATE,h.PURORD_NO,h.PURORD_SEQ
 '@
-  $cmd=$conn.CreateCommand();$cmd.CommandText=$sql.Replace('CUSTOMER_EXPR',$customerExpr).Replace('ORDER_EXPR',$orderExpr);$cmd.CommandTimeout=20
-  [void]$cmd.Parameters.Add('@Order',[Data.SqlDbType]::NVarChar,100);$cmd.Parameters['@Order'].Value=$OutstandingOrder
+  $cmd=$conn.CreateCommand();$cmd.CommandText=$sql.Replace('CUSTOMER_EXPR',$customerExpr).Replace('ORDER_FILTER',$orderFilter).Replace('ORDER_EXPR',$orderExpr);$cmd.CommandTimeout=20
+  Add-OutstandingParameters $cmd
   $rd=$cmd.ExecuteReader();$rows=New-Object 'Collections.Generic.List[object]'
   try{while($rd.Read()){
    if($rows.Count -ge 2000){$report.truncated=$true;break}
-   $rows.Add([ordered]@{robot=[string]$rd[0];item=[string]$rd[1];quantity=[decimal]$rd[2];customer=[string]$rd[3];due=[string]$rd[4];customer_code=[string]$rd[5];unit=[string]$rd[6]})
+   $rows.Add([ordered]@{robot=[string]$rd[0];item=[string]$rd[1];quantity=[decimal]$rd[2];customer=[string]$rd[3];due=[string]$rd[4];customer_code=[string]$rd[5];unit=[string]$rd[6];order=[string]$rd[7]})
   }}finally{$rd.Close();$cmd.Dispose()}
   $report.outstanding_rows=@($rows.ToArray())
   # Restrict master candidates to supplier codes on this order's outstanding
@@ -92,12 +103,12 @@ SELECT DISTINCT TOP (20001) c.CST_CD,c.CST_NM,CUSTOMER_UNIT
 FROM dbo.CSTMST_INFO c
 WHERE EXISTS (SELECT 1 FROM dbo.PURORD_MST m JOIN dbo.PURORD_HIS h
  ON h.UNT_CD=m.UNT_CD AND h.PURORD_DATE=m.PURORD_DATE AND h.PURORD_NO=m.PURORD_NO
- WHERE ORDER_EXPR=@Order AND ISNULL(h.PUR_QTY,0)>ISNULL(h.IN_QTY,0)
+ WHERE ORDER_FILTER AND ISNULL(h.PUR_QTY,0)>ISNULL(h.IN_QTY,0)
  AND LTRIM(RTRIM(c.CST_CD))=LTRIM(RTRIM(CUSTOMER_EXPR)))
 ORDER BY c.CST_CD,c.CST_NM
 '@
-  $cmd=$conn.CreateCommand();$cmd.CommandText=$customerSql.Replace('CUSTOMER_UNIT',$customerUnitExpr).Replace('CUSTOMER_EXPR',$customerExpr).Replace('ORDER_EXPR',$orderExpr);$cmd.CommandTimeout=12
-  [void]$cmd.Parameters.Add('@Order',[Data.SqlDbType]::NVarChar,100);$cmd.Parameters['@Order'].Value=$OutstandingOrder
+  $cmd=$conn.CreateCommand();$cmd.CommandText=$customerSql.Replace('CUSTOMER_UNIT',$customerUnitExpr).Replace('CUSTOMER_EXPR',$customerExpr).Replace('ORDER_FILTER',$orderFilter).Replace('ORDER_EXPR',$orderExpr);$cmd.CommandTimeout=12
+  Add-OutstandingParameters $cmd
   $rd=$cmd.ExecuteReader();$customers=New-Object 'Collections.Generic.List[object]'
   try{while($rd.Read()){
    if($customers.Count -ge 20000){$report.truncated=$true;break}

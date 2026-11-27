@@ -30,6 +30,13 @@ func erpDBPowerShellCommand(ctx context.Context, folder string) *exec.Cmd {
 	if order, ok := ctx.Value(erpOrderOutstandingKey{}).(string); ok {
 		prefix += "$OutstandingOrder='" + strings.ReplaceAll(order, "'", "''") + "'\n"
 	}
+	if orders, ok := ctx.Value(erpOrderOutstandingBatchKey{}).([]string); ok {
+		values := make([]string, len(orders))
+		for i, order := range orders {
+			values[i] = "'" + strings.ReplaceAll(order, "'", "''") + "'"
+		}
+		prefix += "$OutstandingOrders=@(" + strings.Join(values, ",") + ")\n"
+	}
 	script := prefix + "$ERPFolder='" + strings.ReplaceAll(folder, "'", "''") + "'\n" + erpDBScript
 	units := utf16.Encode([]rune(erpDBBootstrap))
 	encoded := make([]byte, len(units)*2)

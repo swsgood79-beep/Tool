@@ -10,6 +10,7 @@ import (
 
 type erpOrderOutstandingKey struct{}
 type OrderOutstandingRow struct {
+	Order        string  `json:"order,omitempty"`
 	CustomerCode string  `json:"customer_code,omitempty"`
 	Unit         string  `json:"unit,omitempty"`
 	Robot        string  `json:"robot"`
