@@ -28,6 +28,7 @@ type ERPDBForeignKey struct {
 	RefColumn string `json:"ref_column"`
 }
 type ERPDBReport struct {
+	Customers       []ERPDBCustomer       `json:"customer_candidates,omitempty"`
 	OutstandingRows []OrderOutstandingRow `json:"outstanding_rows,omitempty"`
 	PurchaseRows    []ERPDBPurchase       `json:"purchase_rows,omitempty"`
 	DateFrom        string                `json:"date_from,omitempty"`
@@ -114,6 +115,10 @@ func decodeDBProbe(raw []byte) ERPDBReport {
 	case "order_outstanding", "purchase_preview", "ok", "config_missing", "ambiguous", "config_invalid", "timeout", "unsupported", "login_failed", "database_denied", "tls_failed", "metadata_failed", "failed":
 	default:
 		r.Status = "failed"
+	}
+	if len(r.Customers) > 20000 {
+		r.Customers = r.Customers[:20000]
+		r.Truncated = true
 	}
 	if len(r.OutstandingRows) > 2000 {
 		r.OutstandingRows = r.OutstandingRows[:2000]

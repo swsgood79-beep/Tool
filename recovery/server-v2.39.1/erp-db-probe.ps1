@@ -1,7 +1,7 @@
 $ErrorActionPreference='Stop'
 $ProgressPreference='SilentlyContinue'
 [Console]::OutputEncoding=New-Object Text.UTF8Encoding($false)
-$report=[ordered]@{status='failed';stage='config_path';config_reason='';connected=$false;error_code=0;columns=@();foreign_keys=@();purchase_rows=@();outstanding_rows=@();truncated=$false}
+$report=[ordered]@{status='failed';stage='config_path';config_reason='';connected=$false;error_code=0;columns=@();foreign_keys=@();purchase_rows=@();outstanding_rows=@();customer_candidates=@();truncated=$false}
 $conn=$null
 try {
  Add-Type -AssemblyName System.Data
@@ -52,23 +52,24 @@ try {
   # Discover optional line-level order and unit keys. Schema mismatch fails the
   # query rather than returning an empty success or falling back to BASE rows.
   $schema=$conn.CreateCommand()
-  $schema.CommandText="SELECT COL_LENGTH('dbo.PURORD_HIS','RCVORD_NO'),COL_LENGTH('dbo.CSTMST_INFO','UNT_CD')"
+  $schema.CommandText="SELECT COL_LENGTH('dbo.PURORD_HIS','RCVORD_NO'),COL_LENGTH('dbo.CSTMST_INFO','UNT_CD'),COL_LENGTH('dbo.PURORD_HIS','CST_CD')"
   $reader=$schema.ExecuteReader();[void]$reader.Read()
-  $lineOrder=!$reader.IsDBNull(0);$customerUnit=!$reader.IsDBNull(1)
+  $lineOrder=!$reader.IsDBNull(0);$customerUnit=!$reader.IsDBNull(1);$lineCustomer=!$reader.IsDBNull(2)
   $reader.Close();$schema.Dispose()
   $orderExpr='m.RCVORD_NO'
   if($lineOrder){$orderExpr="COALESCE(NULLIF(LTRIM(RTRIM(h.RCVORD_NO)),''),m.RCVORD_NO)"}
-  $customerJoin='c.CST_CD=m.CST_CD'
-  if($customerUnit){$customerJoin+=' AND c.UNT_CD=m.UNT_CD'}
+  $customerExpr='m.CST_CD'
+  if($lineCustomer){$customerExpr="COALESCE(NULLIF(LTRIM(RTRIM(h.CST_CD)),''),m.CST_CD)"}
+  $customerUnitExpr="CAST('' AS nvarchar(20))"
+  if($customerUnit){$customerUnitExpr='c.UNT_CD'}
   $sql=@'
 SELECT TOP (2001)
  CASE WHEN robot.matches=1 THEN robot.MITM_CD ELSE '' END AS robot,
  i.ITM_NM,ISNULL(h.PUR_QTY,0)-ISNULL(h.IN_QTY,0) AS outstanding,
- c.CST_NM,h.SCH_DATE
+ CAST('' AS nvarchar(1)) AS customer,h.SCH_DATE,CUSTOMER_EXPR,h.UNT_CD
 FROM dbo.PURORD_MST m JOIN dbo.PURORD_HIS h
  ON h.UNT_CD=m.UNT_CD AND h.PURORD_DATE=m.PURORD_DATE AND h.PURORD_NO=m.PURORD_NO
 LEFT JOIN dbo.ITMMST_INFO i ON i.ITM_CD=h.ITM_CD AND i.PARTS_TYPE=h.PARTS_TYPE
-LEFT JOIN dbo.CSTMST_INFO c ON CUSTOMER_JOIN
 OUTER APPLY (SELECT MIN(d.MITM_CD) AS MITM_CD,COUNT(DISTINCT NULLIF(LTRIM(RTRIM(d.MITM_CD)),'')) AS matches
  FROM dbo.DEMREQ_HIS d
  WHERE d.UNT_CD=h.UNT_CD AND d.DEMREQ_DATE=h.DEMREQ_DATE AND d.DEMREQ_NO=h.DEMREQ_NO AND d.DEMREQ_SEQ=h.DEMREQ_SEQ
@@ -76,14 +77,33 @@ OUTER APPLY (SELECT MIN(d.MITM_CD) AS MITM_CD,COUNT(DISTINCT NULLIF(LTRIM(RTRIM(
 WHERE ORDER_EXPR=@Order AND ISNULL(h.PUR_QTY,0)>ISNULL(h.IN_QTY,0)
 ORDER BY h.UNT_CD,h.PURORD_DATE,h.PURORD_NO,h.PURORD_SEQ
 '@
-  $cmd=$conn.CreateCommand();$cmd.CommandText=$sql.Replace('CUSTOMER_JOIN',$customerJoin).Replace('ORDER_EXPR',$orderExpr);$cmd.CommandTimeout=20
+  $cmd=$conn.CreateCommand();$cmd.CommandText=$sql.Replace('CUSTOMER_EXPR',$customerExpr).Replace('ORDER_EXPR',$orderExpr);$cmd.CommandTimeout=20
   [void]$cmd.Parameters.Add('@Order',[Data.SqlDbType]::NVarChar,100);$cmd.Parameters['@Order'].Value=$OutstandingOrder
   $rd=$cmd.ExecuteReader();$rows=New-Object 'Collections.Generic.List[object]'
   try{while($rd.Read()){
    if($rows.Count -ge 2000){$report.truncated=$true;break}
-   $rows.Add([ordered]@{robot=[string]$rd[0];item=[string]$rd[1];quantity=[decimal]$rd[2];customer=[string]$rd[3];due=[string]$rd[4]})
+   $rows.Add([ordered]@{robot=[string]$rd[0];item=[string]$rd[1];quantity=[decimal]$rd[2];customer=[string]$rd[3];due=[string]$rd[4];customer_code=[string]$rd[5];unit=[string]$rd[6]})
   }}finally{$rd.Close();$cmd.Dispose()}
-  $report.outstanding_rows=@($rows.ToArray());$report.status='order_outstanding';$report.stage='done'
+  $report.outstanding_rows=@($rows.ToArray())
+  # Restrict master candidates to supplier codes on this order's outstanding
+  # lines. Resolve unit-specific/shared masters without multiplying item rows.
+  $customerSql=@'
+SELECT DISTINCT TOP (20001) c.CST_CD,c.CST_NM,CUSTOMER_UNIT
+FROM dbo.CSTMST_INFO c
+WHERE EXISTS (SELECT 1 FROM dbo.PURORD_MST m JOIN dbo.PURORD_HIS h
+ ON h.UNT_CD=m.UNT_CD AND h.PURORD_DATE=m.PURORD_DATE AND h.PURORD_NO=m.PURORD_NO
+ WHERE ORDER_EXPR=@Order AND ISNULL(h.PUR_QTY,0)>ISNULL(h.IN_QTY,0)
+ AND LTRIM(RTRIM(c.CST_CD))=LTRIM(RTRIM(CUSTOMER_EXPR)))
+ORDER BY c.CST_CD,c.CST_NM
+'@
+  $cmd=$conn.CreateCommand();$cmd.CommandText=$customerSql.Replace('CUSTOMER_UNIT',$customerUnitExpr).Replace('CUSTOMER_EXPR',$customerExpr).Replace('ORDER_EXPR',$orderExpr);$cmd.CommandTimeout=12
+  [void]$cmd.Parameters.Add('@Order',[Data.SqlDbType]::NVarChar,100);$cmd.Parameters['@Order'].Value=$OutstandingOrder
+  $rd=$cmd.ExecuteReader();$customers=New-Object 'Collections.Generic.List[object]'
+  try{while($rd.Read()){
+   if($customers.Count -ge 20000){$report.truncated=$true;break}
+   $customers.Add([ordered]@{code=[string]$rd[0];name=[string]$rd[1];unit=[string]$rd[2]})
+  }}finally{$rd.Close();$cmd.Dispose()}
+  $report.customer_candidates=@($customers.ToArray());$report.status='order_outstanding';$report.stage='done' 
  }elseif($PurchasePreview){
   $report.stage='purchase_preview'
   $purchaseSql=@'

@@ -10,11 +10,13 @@ import (
 
 type erpOrderOutstandingKey struct{}
 type OrderOutstandingRow struct {
-	Robot    string  `json:"robot"`
-	Item     string  `json:"item"`
-	Quantity float64 `json:"quantity"`
-	Customer string  `json:"customer"`
-	Due      string  `json:"due"`
+	CustomerCode string  `json:"customer_code,omitempty"`
+	Unit         string  `json:"unit,omitempty"`
+	Robot        string  `json:"robot"`
+	Item         string  `json:"item"`
+	Quantity     float64 `json:"quantity"`
+	Customer     string  `json:"customer"`
+	Due          string  `json:"due"`
 }
 
 func (a *App) orderOutstandingHTTP(w http.ResponseWriter, r *http.Request, s Session) bool {
@@ -71,7 +73,7 @@ func (a *App) orderOutstandingHTTP(w http.ResponseWriter, r *http.Request, s Ses
 			return true
 		}
 	}
-	rows := report.OutstandingRows
+	rows := resolveOutstandingCustomers(report.OutstandingRows, report.Customers)
 	if rows == nil {
 		rows = []OrderOutstandingRow{}
 	}
