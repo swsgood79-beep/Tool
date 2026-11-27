@@ -28,6 +28,16 @@ type ERPDBForeignKey struct {
 	RefColumn string `json:"ref_column"`
 }
 type erpDBReceiptKey struct{}
+type erpDBObserveKey struct{}
+type ERPDBObservationAccess struct {
+	ViewServerState             bool `json:"view_server_state"`
+	ViewServerPerformanceState  bool `json:"view_server_performance_state"`
+	AlterAnyEventSession        bool `json:"alter_any_event_session"`
+	CreateAnyEventSession       bool `json:"create_any_event_session"`
+	AlterAnyEventSessionEnabled bool `json:"alter_any_event_session_enable"`
+	DropAnyEventSession         bool `json:"drop_any_event_session"`
+	ExtendedEventsAvailable     bool `json:"extended_events_available"`
+}
 
 type ERPDBReceiptMetadata struct {
 	Kind     string `json:"kind"`
@@ -42,6 +52,8 @@ type ERPDBReceiptMetadata struct {
 }
 
 type ERPDBReport struct {
+	ObservationAccess *ERPDBObservationAccess `json:"observation_access,omitempty"`
+
 	ReceiptMetadata       []ERPDBReceiptMetadata `json:"receipt_metadata,omitempty"`
 	ReceiptRequested      bool                   `json:"receipt_requested,omitempty"`
 	ReceiptViewDefinition bool                   `json:"receipt_view_definition,omitempty"`
@@ -70,6 +82,8 @@ type ERPDBView struct {
 
 func dbProbeMessage(r ERPDBReport) string {
 	switch r.Status {
+	case "observation_access":
+		return "입고 관찰 권한 확인 완료 · 아직 DB 호출 기록을 시작하지 않았습니다"
 	case "receipt_metadata":
 		message := fmt.Sprintf("입고 연동 구조 진단 완료 · 메타데이터 %d개 · 실제 입고는 실행하지 않았습니다", len(r.ReceiptMetadata))
 		if !r.ReceiptViewDefinition {
@@ -147,12 +161,12 @@ func decodeDBProbe(raw []byte) ERPDBReport {
 		r.ConfigReason = ""
 	}
 	switch r.Stage {
-	case "process_job", "process_start", "process_attach", "process_wait", "process_exit", "response_decode", "order_outstanding", "purchase_preview", "config_path", "config_read", "config_parse", "connection_options", "connect", "columns", "relations", "receipt_metadata", "done":
+	case "process_job", "process_start", "process_attach", "process_wait", "process_exit", "response_decode", "order_outstanding", "purchase_preview", "config_path", "config_read", "config_parse", "connection_options", "connect", "columns", "relations", "receipt_metadata", "observation_access", "done":
 	default:
 		r.Stage = ""
 	}
 	switch r.Status {
-	case "receipt_metadata", "order_outstanding", "purchase_preview", "ok", "config_missing", "ambiguous", "config_invalid", "timeout", "unsupported", "login_failed", "database_denied", "tls_failed", "metadata_failed", "failed":
+	case "observation_access", "receipt_metadata", "order_outstanding", "purchase_preview", "ok", "config_missing", "ambiguous", "config_invalid", "timeout", "unsupported", "login_failed", "database_denied", "tls_failed", "metadata_failed", "failed":
 	default:
 		r.Status = "failed"
 	}
@@ -248,9 +262,12 @@ func (a *App) erpDBHTTP(w http.ResponseWriter, r *http.Request, s Session) bool 
 			parent = context.Background()
 		}
 		mode := r.FormValue("mode")
-		if mode != "" && mode != "preview" && mode != "receipt" {
+		if mode != "" && mode != "preview" && mode != "receipt" && mode != "observe-access" {
 			http.Error(w, "지원하지 않는 진단 방식입니다", 400)
 			return true
+		}
+		if mode == "observe-access" {
+			parent = context.WithValue(parent, erpDBObserveKey{}, true)
 		}
 		if mode == "receipt" {
 			parent = context.WithValue(parent, erpDBReceiptKey{}, true)

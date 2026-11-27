@@ -12,6 +12,9 @@ import (
 	"unicode/utf16"
 )
 
+//go:embed erp-observation-access.ps1
+var erpObservationAccessScript string
+
 //go:embed erp-receipt-metadata.ps1
 var erpReceiptMetadataScript string
 
@@ -43,7 +46,10 @@ func erpDBPowerShellCommand(ctx context.Context, folder string) *exec.Cmd {
 	if receipt, _ := ctx.Value(erpDBReceiptKey{}).(bool); receipt {
 		prefix += "$ReceiptMetadata=$true\n"
 	}
-	script := prefix + "$ERPFolder='" + strings.ReplaceAll(folder, "'", "''") + "'\n" + strings.Replace(erpDBScript, "# RECEIPT_METADATA_SCRIPT", erpReceiptMetadataScript, 1)
+	if observe, _ := ctx.Value(erpDBObserveKey{}).(bool); observe {
+		prefix += "$ObservationAccess=$true\n"
+	}
+	script := prefix + "$ERPFolder='" + strings.ReplaceAll(folder, "'", "''") + "'\n" + strings.Replace(strings.Replace(erpDBScript, "# RECEIPT_METADATA_SCRIPT", erpReceiptMetadataScript, 1), "# OBSERVATION_ACCESS_SCRIPT", erpObservationAccessScript, 1)
 	units := utf16.Encode([]rune(erpDBBootstrap))
 	encoded := make([]byte, len(units)*2)
 	for i, unit := range units {
