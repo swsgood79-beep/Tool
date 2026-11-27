@@ -27,3 +27,7 @@ recovery/server-v2.39.1/erp-db-probe.ps1, erp_db_probe.go, order_outstanding.go,
 실제 Chromium 320/360/390/430/1100px 5개 사례가 통과했습니다. 가상 원본 코드/마스터 후보를 ERP JSON 디코더와 실제 HTTP로 처리한 이름이 화면에 표시됩니다. 공통/동일 사업장 이름, 충돌 시 확인 불가, 소수 수량/행 수 보존, 가로 넘침 없음, 새로고침을 확인했습니다. 5장 스크린샷은 모두 합성 자료입니다.
 
 README.md/START-HERE.md/CHANGELOG.md/audit/RECOVERY-V1.4.117.md를 갱신하고 패키징/동일 소스 재빌드 스크립트를 준비했습니다. 전체 Go 테스트, race, Linux/Windows vet와 Windows 교차 빌드가 진행 중입니다. 공개 업데이트는 아직 v1.4.116입니다.
+
+## 최종 검증 통과
+
+전체 go test ./... (68.490초), 관련 race (5.493초), Linux/Windows vet, Windows GUI 교차 빌드와 실제 Chromium 5개 사례가 통과했습니다. 로그를 audit/*v1.4.117.txt에 저장했습니다. 실행파일은 /workspace/work/AlphaWorkComplete-Recovered-v1.4.117.exe입니다. 신규 코드 변경 없이 패키징 및 ZIP 소스 동일 재빌드를 진행합니다. 정식 브랜치의 공개 업데이트는 아직 v1.4.116입니다.
