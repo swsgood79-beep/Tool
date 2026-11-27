@@ -123,6 +123,9 @@ type Ticket struct {
 	Next    string
 }
 type App struct {
+	erpCertificates     *erpCertificateJob
+	erpCertificateProbe func(context.Context, string) ERPDBReport
+
 	erpObservation      *erpObservationJob
 	erpObservationProbe func(context.Context, string) ERPDBReport
 

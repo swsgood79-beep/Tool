@@ -1,0 +1,7 @@
+# PC1.4.122 recovery
+
+Requested owner ERP order-specific inspection certificate list→XLSX. Implemented fixed parameterized SELECT using PDTCMD_MST/HIS four-key production rows, LEFT INSCER_MST full key; order header join includes business unit/date/no, customer PK confirmed schema. All dates/units; unregistered rows explicitly included. This matches known available structure, but actual ERP menu row semantics need field comparison. No stored module execution/ERP writes. No actual uploaded schema/business screenshot added to repo.
+
+New erp_certificates.go, erp-certificates.ps1, extras/erp-certificates.html and versioned JS/CSS. Existing INI/powershell transport reused. Owner only, CSRF protected async, failure/truncation/duplicates/order mismatch block export; token bound10min snapshot and new query clears prior result. In-memory only, separate XLSX string cells prevents formulas and preserves serial zeros. Main owner header and machining owner link, no accounts/permissions changed. Existing production/machining history export unchanged. No measurement details/print template.
+
+Remaining tests, synthetic browser/screenshots, full Go/race/vet/Windows/source rebuild, new immutable release/update manifest/public verification. Public121 remains until validated. ERP field comparison is pending and must be labeled, not claimed verified. Earlier machining XLSX request remains separate unfinished feature.

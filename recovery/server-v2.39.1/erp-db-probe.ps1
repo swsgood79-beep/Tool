@@ -47,7 +47,9 @@ try {
  $report.status='failed'
  $report.stage='connect'
  $conn.Open();$report.connected=$true
- if($Observe){
+ if($CertificateOrder){
+ # CERTIFICATE_SCRIPT
+ }elseif($Observe){
  # OBSERVATION_SCRIPT
  }elseif($ObservationAccess){
  # OBSERVATION_ACCESS_SCRIPT
