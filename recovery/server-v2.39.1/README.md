@@ -1,19 +1,25 @@
-# 알파작업완료확인 · PC v1.4.117 / 앱 v1.0.11
+# 알파작업완료확인 · PC v1.4.118 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.117** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.117.zip) |
+| **회사 PC 프로그램 v1.4.118** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.118.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.117 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.117-App-v1.0.11.zip) |
+| **현재 전체 소스 · PC 1.4.118 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.118-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](CHANGELOG.md) |
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
 
-## 이번 업데이트 · PC 1.4.117 · 미입고 거래처명 연결
+## 이번 업데이트 · PC 1.4.118 · ERP 조회 실행 복구
+
+기존 프로그램의 **PC 업데이트 확인**으로 설치합니다. v1.4.117에서 전체 ERP 스크립트를 Windows 실행 인자로 인코딩하면 명령 길이 한도를 넘겨 DB 조회 프로그램이 시작되지 않는 회귀를 수정했습니다. 짧은 고정 실행 인자와 UTF-8 표준입력으로 스크립트를 전달합니다. 기존 INI와 저장된 DB 설정을 재사용하며 같은 화면에서 **설정 적용 · 지금 갱신**으로 조회할 수 있습니다.
+
+실패 시 실행 단계와 오류 번호를 표시하고 자동 반영 보류는 경고색으로 구분합니다. 실패와 재시도 동안 기존 수주·수량·작업 기록을 보존합니다. 실행 인자 길이, 전체 스크립트 전달, 합성 화면과 Windows 교차 빌드를 검증합니다. 실제 회사 Windows PC에서 DB 조회 재시도는 현장 확인이 필요합니다. APK v1.0.11입니다.
+
+## 이전 업데이트 · PC 1.4.117 · 미입고 거래처명 연결
 
 기존 프로그램의 **PC 업데이트 확인**으로 설치합니다. 미입고 조회에서 발주 행 거래처 코드가 있으면 우선 사용합니다. 해당 사업장 거래처 이름을 먼저 확인하고, 공통/다른 사업장의 같은 코드 이름이 하나로 확인되면 표시합니다. 여러 이름이 충돌하면 확인 불가로 남깁니다. 거래처 마스터를 품목에 직접 조인하지 않아 거래처 연결로 수량이 늘어나지 않습니다. 회사 ERP 실제 결과 대조는 현장에서 필요합니다.
 

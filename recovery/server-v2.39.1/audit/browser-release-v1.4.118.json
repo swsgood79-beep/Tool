@@ -1,0 +1,30 @@
+{
+  "scope": "Actual Chromium UI with synthetic process failure and injected successful ERP query. Real company database not accessed.",
+  "results": [
+    {
+      "width": 320,
+      "result": "pass",
+      "scope": "Synthetic Windows launch error 206, detailed warning and diagnostics, existing order preserved, no horizontal overflow"
+    },
+    {
+      "width": 390,
+      "result": "pass",
+      "scope": "Synthetic Windows launch error 206, detailed warning and diagnostics, existing order preserved, no horizontal overflow"
+    },
+    {
+      "width": 430,
+      "result": "pass",
+      "scope": "Synthetic Windows launch error 206, detailed warning and diagnostics, existing order preserved, no horizontal overflow"
+    },
+    {
+      "width": 1100,
+      "result": "pass",
+      "scope": "Synthetic Windows launch error 206, detailed warning and diagnostics, existing order preserved, no horizontal overflow"
+    },
+    {
+      "width": 1100,
+      "result": "pass",
+      "scope": "Synthetic successful retry through normal settings button and sync scheduler; saved settings, original order and quantities preserved"
+    }
+  ]
+}
