@@ -1,8 +1,8 @@
 {
-  "version": "1.4.119",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.119.zip",
-  "sha256": "93bb531c23b34c5ebf2403b0fc2ea2d2a00e6b17cac597ff6977c1914109fe18",
-  "exe_sha256": "2e2b021b4c2e26edc8737e4e67b054f1df1cfa2b9b9abd1f13de4ca6cc751e19",
-  "bytes": 38660235,
-  "notes": "기본 수주카드 미입고 현황 · 검사 버튼 옆 배치 · 정상 0건 숨김 · 출하기록·엑셀 제외 · APK 1.0.11"
+  "version": "1.4.120",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.120.zip",
+  "sha256": "88812573823e79726699126d1df4a5147596409a81faacbd65df3fabc1d833b4",
+  "exe_sha256": "d0d2d57c5d752c8d302cffc590ffced53bbf83d5db6882e7bec1f826e6c4e123",
+  "bytes": 38666779,
+  "notes": "대표 관리자용 입고 연동 구조 진단 · 읽기 전용 · 실제 입고 처리 없음 · APK 1.0.11"
 }
