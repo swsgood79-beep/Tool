@@ -107,8 +107,11 @@ func (a *App) erpDBSyncHTTP(w http.ResponseWriter, r *http.Request, s Session) b
 // All lines must validate before a single work record is changed. A missing
 // robot is never guessed from another row with the same base part number.
 func machiningDBRows(r ERPDBReport) ([]MachiningSource, error) {
-	if !r.Connected || r.Status != "purchase_preview" || r.Truncated {
-		return nil, fmt.Errorf("DB 전체 조회가 완료되지 않아 기존 목록을 유지합니다")
+	if r.Truncated {
+		return nil, fmt.Errorf("DB 조회 결과가 한도를 초과해 일부가 잘렸습니다. 기존 목록을 유지합니다")
+	}
+	if !r.Connected || r.Status != "purchase_preview" {
+		return nil, fmt.Errorf("%s · 기존 목록을 유지합니다", dbProbeMessage(r))
 	}
 	rows := []MachiningSource{}
 	seen := map[string]bool{}

@@ -92,14 +92,27 @@ func dbProbeMessage(r ERPDBReport) string {
 			return "DB에는 연결됐지만 발주 미리보기 조회를 완료하지 못했습니다"
 		}
 		return "DB에는 연결됐지만 구조 조회를 완료하지 못했습니다"
-	default:
-		return "DB 진단에 실패했습니다. 결과 파일의 오류 코드를 확인해 주세요"
+	case "failed":
+		switch r.Stage {
+		case "process_start":
+			if r.ErrorCode != 0 {
+				return fmt.Sprintf("ERP 조회 프로그램 시작 실패 · Windows 오류 %d", r.ErrorCode)
+			}
+			return "ERP 조회 프로그램을 시작하지 못했습니다"
+		case "process_job", "process_attach":
+			return "ERP 조회 프로세스 관리 준비를 완료하지 못했습니다"
+		case "process_exit":
+			return fmt.Sprintf("ERP 조회 프로그램 실행 실패 · 종료 코드 %d", r.ErrorCode)
+		case "response_decode":
+			return "ERP 조회 결과를 읽지 못했습니다"
+		}
 	}
+	return "DB 진단에 실패했습니다. 결과 파일의 오류 코드를 확인해 주세요"
 }
 func decodeDBProbe(raw []byte) ERPDBReport {
 	var r ERPDBReport
 	if len(raw) > 8<<20 || json.Unmarshal([]byte(strings.TrimPrefix(string(raw), "\ufeff")), &r) != nil {
-		return ERPDBReport{Status: "failed"}
+		return ERPDBReport{Status: "failed", Stage: "response_decode"}
 	}
 	switch r.ConfigReason {
 	case "active_key_missing", "active_key_multiple", "setting_format", "unsupported_options", "missing_server_or_database":
@@ -107,7 +120,7 @@ func decodeDBProbe(raw []byte) ERPDBReport {
 		r.ConfigReason = ""
 	}
 	switch r.Stage {
-	case "purchase_preview", "config_path", "config_read", "config_parse", "connection_options", "connect", "columns", "relations", "done":
+	case "process_job", "process_start", "process_attach", "process_wait", "process_exit", "response_decode", "order_outstanding", "purchase_preview", "config_path", "config_read", "config_parse", "connection_options", "connect", "columns", "relations", "done":
 	default:
 		r.Stage = ""
 	}
