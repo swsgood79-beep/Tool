@@ -1,0 +1,24 @@
+{
+  "results": [
+    {
+      "width": 320,
+      "result": "pass",
+      "scope": "actual implementation with synthetic ERP rows, XLSX download and dashboard link; native SQL not executed"
+    },
+    {
+      "width": 390,
+      "result": "pass",
+      "scope": "actual implementation with synthetic ERP rows, XLSX download and dashboard link; native SQL not executed"
+    },
+    {
+      "width": 430,
+      "result": "pass",
+      "scope": "actual implementation with synthetic ERP rows, XLSX download and dashboard link; native SQL not executed"
+    },
+    {
+      "width": 1100,
+      "result": "pass",
+      "scope": "actual implementation with synthetic ERP rows, XLSX download and dashboard link; native SQL not executed"
+    }
+  ]
+}

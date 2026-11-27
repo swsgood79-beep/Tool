@@ -1,0 +1,1 @@
+PowerShell7 AST expanded-script parse pass; native Windows/SQL query pending

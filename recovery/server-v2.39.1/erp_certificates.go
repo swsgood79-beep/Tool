@@ -157,6 +157,14 @@ func (a *App) erpCertificateHTTP(w http.ResponseWriter, r *http.Request, s Sessi
 	}
 	return true
 }
+func certificateDate(s string) string {
+	if len(s) == 8 {
+		if t, e := time.Parse("20060102", s); e == nil {
+			return t.Format("2006-01-02")
+		}
+	}
+	return s
+}
 func certificateWorkbook(j *erpCertificateJob) ([]byte, error) {
 	f := excelize.NewFile()
 	defer f.Close()
@@ -176,7 +184,7 @@ func certificateWorkbook(j *erpCertificateJob) ([]byte, error) {
 		if r.Registered {
 			registered = "등록"
 		}
-		values := []string{r.Unit, r.Order, r.Customer, r.Client, r.Project, r.Item, r.Serial, r.Remark, r.CommandDate, r.CommandNo, fmt.Sprint(r.Sequence), r.InspectionDate, r.Judgment, registered, r.Certificate}
+		values := []string{r.Unit, r.Order, r.Customer, r.Client, r.Project, r.Item, r.Serial, r.Remark, certificateDate(r.CommandDate), r.CommandNo, fmt.Sprint(r.Sequence), certificateDate(r.InspectionDate), r.Judgment, registered, r.Certificate}
 		for c, v := range values {
 			cell, _ := excelize.CoordinatesToCellName(c+1, n+2)
 			if e := f.SetCellStr(sheet, cell, v); e != nil {
