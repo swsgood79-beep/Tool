@@ -123,11 +123,25 @@ func TestMachiningProcessPartialOvernightAndReceipt(t *testing.T) {
 		t.Fatal(e)
 	}
 	id := a.state.MachiningJobs[0].ID
-	act := func(phase, action string, qty int) error {
+	var act func(string, string, int) error
+	act = func(phase, action string, qty int) error {
+		if phase == "milling" {
+			if action == "start" {
+				if e := act("milling1", "start", qty); e != nil {
+					return e
+				}
+				if e := act("milling1", "complete", 0); e != nil {
+					return e
+				}
+			}
+			phase = "milling2"
+		}
 		j := machiningFind(&a.state, id)
 		run := ""
 		rs := j.Cutting
-		if phase == "milling" {
+		if phase == "milling1" {
+			rs = j.MillingFirst
+		} else if phase == "milling2" {
 			rs = j.Milling
 		}
 		if r := machiningActive(rs); r != nil {

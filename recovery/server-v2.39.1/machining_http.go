@@ -221,7 +221,7 @@ func (a *App) machiningCSV(w http.ResponseWriter) {
 				seen[s.Robot] = true
 			}
 		}
-		for i, runs := range [][]MachiningRun{j.Cutting, j.Milling} {
+		for i, runs := range [][]MachiningRun{j.Cutting, j.MillingFirst, j.Milling} {
 			for _, r := range runs {
 				complete, receipt := "", ""
 				if r.CompletedBy != nil {
@@ -230,7 +230,12 @@ func (a *App) machiningCSV(w http.ResponseWriter) {
 				if r.ReceiptBy != nil {
 					receipt = r.ReceiptBy.Name
 				}
-				row := []string{j.Order, j.Project, j.Purchase, strings.Join(robots, " / "), j.Part, []string{"절단", "가공"}[i], fmt.Sprint(r.Quantity), r.StartedBy.Name, stamp(&r.Started), complete, stamp(r.Completed), receipt, stamp(r.ReceiptAt)}
+				row := []string{j.Order, j.Project, j.Purchase, strings.Join(robots, " / "), j.Part, func() string {
+					if i == 2 && machiningLegacy(&j, r.ID) {
+						return "기존 가공"
+					}
+					return []string{"절단", "가공 1차", "가공 2차"}[i]
+				}(), fmt.Sprint(r.Quantity), r.StartedBy.Name, stamp(&r.Started), complete, stamp(r.Completed), receipt, stamp(r.ReceiptAt)}
 				for k, v := range row {
 					if strings.HasPrefix(v, "=") || strings.HasPrefix(v, "+") || strings.HasPrefix(v, "-") || strings.HasPrefix(v, "@") || strings.HasPrefix(v, "\t") || strings.HasPrefix(v, "\r") {
 						row[k] = "'" + v

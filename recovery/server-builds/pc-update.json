@@ -1,8 +1,8 @@
 {
-  "version": "1.4.108",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.108.zip",
-  "sha256": "03b94388eb23b26a035a38b79bc39a996f421fd49821508d3399300eb963b3e7",
-  "exe_sha256": "dfca2845bf6e0d1d3372efd9f91656cfe0aa2ed9859d3f6a8c52e577a26397cc",
-  "bytes": 38605976,
-  "notes": "가공 작업자 화면 시각 숨김 · 관리자 시작/완료 시각 및 기록 유지 · APK 1.0.11 유지"
+  "version": "1.4.109",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.109.zip",
+  "sha256": "044de61fd0cff8bbaa32717df6261303b0a139513328ca19a3c4d08a28b46cab",
+  "exe_sha256": "4af156636a5ee6374216742c36ab1d9469156af20771f017c50da780de6af1ba",
+  "bytes": 38615890,
+  "notes": "절단·가공 1차·가공 2차 분리 · 기존 가공 이력 보존 · 휴대폰 팝업 크기 유지 · APK 유지"
 }

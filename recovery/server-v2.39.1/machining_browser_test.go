@@ -30,7 +30,7 @@ func TestMachiningBrowser(t *testing.T) {
 	srv := httptest.NewServer(a)
 	defer srv.Close()
 	cfg := map[string]any{"worker": map[string]string{"name": worker.Name, "value": worker.Value}, "admin": map[string]string{"name": owner.Name, "value": owner.Value}, "file": file}
-	cmd := exec.Command("node", "audit/browser-machining-v1.4.108.cjs", srv.URL, string(jsonRaw(cfg)))
+	cmd := exec.Command("node", "audit/browser-machining-v1.4.109.cjs", srv.URL, string(jsonRaw(cfg)))
 	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
 	if e := cmd.Run(); e != nil {
 		t.Fatal(e)

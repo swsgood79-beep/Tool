@@ -31,6 +31,9 @@ type MachiningJob struct {
 	Required                           int
 	Sources                            []MachiningSource
 	Cutting, Milling                   []MachiningRun
+	MillingFirst                       []MachiningRun
+	Workflow                           int
+	LegacyMilling                      []string
 	Revision                           int64
 	LastSeen                           time.Time
 	Missing, SourceChanged             bool
@@ -107,7 +110,7 @@ func machiningGroups(rows []MachiningSource) []MachiningJob {
 		if !ok {
 			i = len(out)
 			indices[key] = i
-			out = append(out, MachiningJob{ID: key, Purchase: r.Purchase, Order: r.Order, Project: r.Project, Part: r.Part})
+			out = append(out, MachiningJob{Workflow: 2, ID: key, Purchase: r.Purchase, Order: r.Order, Project: r.Project, Part: r.Part})
 		}
 		out[i].Sources = append(out[i].Sources, r)
 		out[i].Required += r.Quantity - r.Received
@@ -145,7 +148,7 @@ func (a *App) importMachining(d MachiningDraft, actor MachiningActor) error {
 				continue
 			}
 			// Never reset process history, even if the ERP report's outstanding amount shrinks.
-			if len(j.Cutting) == 0 && len(j.Milling) == 0 {
+			if len(j.Cutting) == 0 && len(j.Milling) == 0 && len(j.MillingFirst) == 0 {
 				j.Required = g.Required
 			}
 			j.ReportOutstanding = g.Required
@@ -184,11 +187,18 @@ func (a *App) actMachining(session Session, id, phase, action, runID string, rev
 		if j.Revision != revision {
 			return errors.New("다른 화면에서 작업이 변경됐습니다. 새로고침 후 확인해 주세요")
 		}
+		machiningUpgrade(j)
 		runs := &j.Cutting
 		available := j.Required - machiningDone(j.Cutting)
-		if phase == "milling" {
+		if phase == "milling1" {
+			runs = &j.MillingFirst
+			available = machiningDone(j.Cutting) - machiningDone(j.MillingFirst) - machiningFirstCredit(j, false)
+		} else if phase == "milling2" || phase == "milling" {
+			if phase == "milling" && action != "complete" {
+				return errors.New("가공 공정이 변경됐습니다. 화면을 새로고침해 주세요")
+			}
 			runs = &j.Milling
-			available = machiningDone(j.Cutting) - machiningDone(j.Milling)
+			available = machiningFirstDone(j) - machiningDone(j.Milling)
 		} else if phase != "cutting" {
 			return errors.New("공정을 확인해 주세요")
 		}
@@ -207,6 +217,9 @@ func (a *App) actMachining(session Session, id, phase, action, runID string, rev
 			}
 			*runs = append(*runs, MachiningRun{ID: token(), Quantity: quantity, Started: now, StartedBy: actor})
 		case "complete":
+			if phase == "milling" && !machiningLegacy(j, runID) {
+				return errors.New("가공 공정을 다시 확인해 주세요")
+			}
 			if active == nil || active.ID != runID {
 				return errors.New("진행 중인 작업을 다시 확인해 주세요")
 			}

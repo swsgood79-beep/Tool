@@ -1,19 +1,23 @@
-# 알파작업완료확인 · PC v1.4.108 / 앱 v1.0.11
+# 알파작업완료확인 · PC v1.4.109 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.108** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.108.zip) |
+| **회사 PC 프로그램 v1.4.109** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.109.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.108 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.108-App-v1.0.11.zip) |
+| **현재 전체 소스 · PC 1.4.109 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.109-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](CHANGELOG.md) |
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
 
-## 이번 업데이트 · PC 1.4.108 · 가공 화면 시간 표시
+## 이번 업데이트 · PC 1.4.109 · 가공 1차/2차
+
+절단 → 가공 1차 → 가공 2차로 나눠 기록합니다. 앞 공정의 완료 수량만큼 다음 공정을 시작하고 2차 완료분만 ERP 입고 확인에 집계합니다. 팝업 너비·최대 높이를 유지하고 작은 휴대폰 화면에 다섯 열을 배치했습니다. 기존 완료·입고 기록과 진행 중 단일 가공을 보존하며 가공 1차의 과거 시각을 만들어 넣지 않습니다. 작업자 시간 숨김과 관리자 시간 기록은 유지합니다. [공정 구분과 기존 자료 처리](MACHINING-STAGES.md)
+
+## 이전 업데이트 · PC 1.4.108 · 가공 화면 시간 표시
 
 작업자 화면에서는 공정 시작·완료 시각과 상세 시간 기록을 숨깁니다. 관리자 화면에서는 시작·완료 시각과 작업 기록을 확인합니다. 저장 기록과 CSV는 유지합니다.
 
