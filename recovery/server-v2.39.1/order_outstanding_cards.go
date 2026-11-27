@@ -102,6 +102,10 @@ func (a *App) orderOutstandingCardsHTTP(w http.ResponseWriter, r *http.Request) 
 	for _, order := range projects {
 		entry, found := a.outstandingCards[order]
 		if r.URL.Query().Get("refresh") == "1" && entry.State != "pending" {
+			entry.Expires = time.Time{}
+			if found {
+				a.outstandingCards[order] = entry
+			}
 			found = false
 		}
 		if !found || entry.Scope != scope {

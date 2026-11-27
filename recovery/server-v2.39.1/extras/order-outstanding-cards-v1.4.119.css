@@ -1,0 +1,60 @@
+.order-outstanding-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 1 auto;
+  min-width: 0;
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 1px solid #0759cc;
+  border-radius: 7px;
+  background: #eff6ff;
+  color: #0759cc;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 18px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.order-outstanding-button[hidden] {
+  display: none !important;
+}
+.order-outstanding-button:disabled {
+  cursor: wait;
+  opacity: .65;
+}
+.order-outstanding-button[data-state=error] {
+  background: #fff1d6;
+  border-color: #b78024;
+  color: #754400;
+}
+html[data-alpha-design=modern] .e-card.has-order-outstanding .e-card-bottom {
+  display: flex !important;
+  flex-direction: column;
+  align-items: stretch;
+}
+html[data-alpha-design=modern] .e-card.has-order-outstanding .e-card-bottom > .design-order-footer,
+html[data-alpha-design=modern] .admin-project.has-order-outstanding .e-admin-footer {
+  width: 100%;
+  padding-left: 0;
+  justify-content: space-between !important;
+  gap: 8px;
+  min-height: 44px;
+}
+html[data-alpha-design=modern] .e-card.has-order-outstanding .e-action {
+  min-height: 44px;
+}
+.outstanding-dialog {
+  background: var(--ui-surface, #fff);
+  color: var(--ui-text, #172b4d);
+}
+.outstanding-dialog th,
+.outstanding-dialog td {
+  border-color: var(--ui-line, #b9c2cb);
+}
+@media (max-width: 360px) {
+  .order-outstanding-button {
+    font-size: 11px;
+    padding: 6px 8px;
+  }
+}
