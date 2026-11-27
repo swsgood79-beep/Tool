@@ -1,0 +1,12 @@
+=== RUN   TestMachiningResetAuthorizationAndCSRF
+--- PASS: TestMachiningResetAuthorizationAndCSRF (0.07s)
+=== RUN   TestMachiningResetPreservesOtherWorkAndBacksUp
+--- PASS: TestMachiningResetPreservesOtherWorkAndBacksUp (0.14s)
+=== RUN   TestMachiningResetStaleAndBackupFailure
+--- PASS: TestMachiningResetStaleAndBackupFailure (0.10s)
+=== RUN   TestOrderOutstandingReadOnlyAndFailures
+--- PASS: TestOrderOutstandingReadOnlyAndFailures (0.08s)
+=== RUN   TestTeamNativePushPartialBatchAndDedup
+--- PASS: TestTeamNativePushPartialBatchAndDedup (10.38s)
+PASS
+ok  	wanryotalk-reconstructed-server	17.302s

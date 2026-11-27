@@ -38,7 +38,14 @@ func (a *App) pumpNativeMachining(ctx context.Context) {
 				continue
 			}
 			a.mu.Lock()
-			allowed := nativeAccountValid(&a.state, d) && teamNoticeVisible(&a.state, n, Session{AccountID: d.AccountID})
+			currentNotice := false
+			for _, current := range a.state.TeamNotices {
+				if current.ID == n.ID && current.JobID == n.JobID && current.RunID == n.RunID {
+					currentNotice = true
+					break
+				}
+			}
+			allowed := currentNotice && nativeAccountValid(&a.state, d) && teamNoticeVisible(&a.state, n, Session{AccountID: d.AccountID})
 			a.mu.Unlock()
 			if allowed {
 				bad, e := a.sendNativeData(ctx, cfg, d, teamNativeData(n))

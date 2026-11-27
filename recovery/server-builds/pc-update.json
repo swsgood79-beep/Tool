@@ -1,8 +1,8 @@
 {
-  "version": "1.4.115",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.115.zip",
-  "sha256": "7ca04cd5f2dea47607dd824a9e47caa5f580341b59f8b58b0e0fb04605d9287f",
-  "exe_sha256": "aae52a251e43d09ce3c03495d0b7b15f31895d563124b5c4fb7a08148b0a4cb2",
-  "bytes": 38682764,
-  "notes": "관리자별 팀 메뉴 권한 · 2차 부분 완료 PC·휴대폰 알림 · 기존 관리자 계정·로그인 유지 · DB 연결 유지"
+  "version": "1.4.116",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.116.zip",
+  "sha256": "2b8cc3d57abea9b08078f66ac4cc58b5e379f0abb649012ec48b30b38c507c53",
+  "exe_sha256": "56d67bd8edfd8096d44bcaf83e2a743e832074931599d517c6a28301c501d510",
+  "bytes": 38641770,
+  "notes": "대표 관리자 가공 테스트 기록 초기화 · 보호 백업·미리보기 · 수주 전체 거래처 미입고 조회 · APK 1.0.11"
 }

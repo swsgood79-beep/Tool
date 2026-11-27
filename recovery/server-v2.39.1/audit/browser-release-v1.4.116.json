@@ -1,0 +1,40 @@
+{
+  "scope": "Actual implementation in Chromium with synthetic records and injected synthetic ERP response. Company ERP and physical Windows/Android remain untested.",
+  "results": [
+    {
+      "width": 320,
+      "result": "pass",
+      "scope": "real synthetic ERP response, full robot heading, four columns, no overflow, truncated error and refresh recovery"
+    },
+    {
+      "width": 360,
+      "result": "pass",
+      "scope": "real synthetic ERP response, full robot heading, four columns, no overflow, truncated error and refresh recovery"
+    },
+    {
+      "width": 390,
+      "result": "pass",
+      "scope": "real synthetic ERP response, full robot heading, four columns, no overflow, truncated error and refresh recovery"
+    },
+    {
+      "width": 430,
+      "result": "pass",
+      "scope": "real synthetic ERP response, full robot heading, four columns, no overflow, truncated error and refresh recovery"
+    },
+    {
+      "width": 1100,
+      "result": "pass",
+      "scope": "real synthetic ERP response, full robot heading, four columns, no overflow, truncated error and refresh recovery"
+    },
+    {
+      "width": 390,
+      "result": "pass",
+      "scope": "owner reset preview with held dependencies and receipt, explicit unchecked confirmation"
+    },
+    {
+      "width": 1100,
+      "result": "pass",
+      "scope": "owner reset preview with held dependencies and receipt, explicit unchecked confirmation, synthetic backup/reset/audit"
+    }
+  ]
+}

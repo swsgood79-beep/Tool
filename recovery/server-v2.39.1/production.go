@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-const releaseVersion = "1.4.115"
+const releaseVersion = "1.4.116"
 const productionFolderName = "AlphaWorkCompleteRecovered"
 const productionListen = "127.0.0.1:18791"
 const productionMarker = ".alpha-recovered-production-v1"
@@ -167,15 +167,15 @@ func startProductionApp(base, source string, promote bool, original string) (*Ap
 
 func (a *App) modeNotice() string {
 	if a.testMode {
-		return notice
+		return strings.ReplaceAll(notice, "v1.4.105", "v"+releaseVersion)
 	}
-	return `<aside class="recovery-banner">알파작업완료확인 v1.4.105 · 복구 운영판 <a href="/recovery-status">구현·검증 상태</a> · <a href="/">관리자</a></aside>`
+	return `<aside class="recovery-banner">알파작업완료확인 v` + releaseVersion + ` · 복구 운영판 <a href="/recovery-status">구현·검증 상태</a> · <a href="/">관리자</a></aside>`
 }
 func (a *App) modeStatus() string {
 	if a.testMode {
-		return statusPage
+		return strings.ReplaceAll(statusPage, "v1.4.105", "v"+releaseVersion)
 	}
-	s := strings.ReplaceAll(statusPage, "격리 테스트판 v1.4.105", "복구 운영판 v1.4.105")
+	s := strings.ReplaceAll(statusPage, "격리 테스트판 v1.4.105", "복구 운영판 v"+releaseVersion)
 	s = strings.ReplaceAll(s, "이 버전은 전용 테스트 폴더·포트·트레이·로그인 쿠키를 사용합니다. 기존 운영 자료를 자동으로 읽지 않습니다. 아래 원본 저장 형식 설명은 테스트 폴더 안에서만 적용되며 외부 연동은 차단되어 있습니다.", "이 운영판은 별도 운영 폴더의 복사본에 저장하며 기존 WanryoTalk 원본은 보존합니다. 외부 접속·알림·시세·일정·백업은 저장된 설정에 따라 사용할 수 있습니다. 이전 프로그램을 종료한 뒤 운영하세요.")
 	return s
 }

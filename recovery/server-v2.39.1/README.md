@@ -1,19 +1,29 @@
-# 알파작업완료확인 · PC v1.4.115 / 앱 v1.0.11
+# 알파작업완료확인 · PC v1.4.116 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.115** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.115.zip) |
+| **회사 PC 프로그램 v1.4.116** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.116.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.115 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.115-App-v1.0.11.zip) |
+| **현재 전체 소스 · PC 1.4.116 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.116-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](CHANGELOG.md) |
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
 
-## 이번 업데이트 · PC 1.4.115 · 관리자 팀 메뉴 권한과 가공 완료 알림
+## 이번 업데이트 · PC 1.4.116 · 테스트 기록 초기화와 수주별 미입고 조회
+
+기존 프로그램의 **PC 업데이트 확인**으로 설치합니다.
+
+대표 관리자는 가공 작업 관리의 **가공 테스트 기록 초기화**에서 계정 ID로 대상을 선택하고 기록 미리보기와 확인 체크 후 실행합니다. 로컬 보호 백업을 저장·복호화 검증한 뒤 대상 시작·완료 기록과 연결 알림을 제거합니다. 다른 작업자의 후속 공정이나 ERP 입고 확인/입고 수량이 있는 작업은 보류하며 실행 이력을 남깁니다.
+
+수주카드의 **미입고 현황 보기**는 해당 수주의 모든 거래처와 품목을 조회합니다. 로봇품번별로 품명, 발주 수량에서 입고 수량을 뺀 잔량, 거래처, 입고예정일을 표시하며 조회 시각과 새로고침을 제공합니다. ERP INI의 기존 연결을 사용합니다. 실제 회사 ERP 결과와 대조가 필요하며 조회 실패와 결과 잘림은 오류로 표시합니다.
+
+APK는 v1.0.11입니다. 합성 자료로 검증하며 실제 업무 기록 초기화는 실행하지 않았습니다. 실제 Windows 실행과 회사 ERP 결과 대조는 현장 확인이 필요합니다.
+
+## 이전 업데이트 · PC 1.4.115 · 관리자 팀 메뉴 권한과 가공 완료 알림
 
 대표 관리자가 일반 관리자별 구매·생산·가공 메뉴 접근을 따로 저장할 수 있습니다. 기존 계정/인증 리비전/비밀번호/로그인은 자동 변경하지 않고 종전 접근을 유지합니다. 가공 2차 부분 완료 시 권한 있는 관리자 각각에게 이번 완료 수량과 잔여량을 알리고 확인 상태를 별도 보관합니다. 대표 PC는 Windows 팝업, 다른 관리자 PC는 로그인한 관리자 화면의 팝업과 선택한 브라우저 OS 알림, 등록된 휴대폰은 기존 관리자 앱 푸시를 사용합니다. 절단·1차는 알림 없이 진행 기록을 유지합니다. [설정과 동작 범위](TEAM-PERMISSIONS.md)
 
