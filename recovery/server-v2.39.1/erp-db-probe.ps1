@@ -47,7 +47,9 @@ try {
  $report.status='failed'
  $report.stage='connect'
  $conn.Open();$report.connected=$true
- if($OutstandingOrder -or $OutstandingOrders){
+ if($ReceiptMetadata){
+ # RECEIPT_METADATA_SCRIPT
+ }elseif($OutstandingOrder -or $OutstandingOrders){
   $report.stage='order_outstanding'
   $orderNumbers=@($OutstandingOrders)
   if($OutstandingOrder){$orderNumbers=@($OutstandingOrder)}

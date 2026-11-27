@@ -27,7 +27,25 @@ type ERPDBForeignKey struct {
 	RefObject string `json:"ref_object"`
 	RefColumn string `json:"ref_column"`
 }
+type erpDBReceiptKey struct{}
+
+type ERPDBReceiptMetadata struct {
+	Kind     string `json:"kind"`
+	Schema   string `json:"schema"`
+	Object   string `json:"object"`
+	Parent   string `json:"parent"`
+	Name     string `json:"name"`
+	Type     string `json:"type"`
+	Position int    `json:"position"`
+	Flag     bool   `json:"flag"`
+	Detail   string `json:"detail"`
+}
+
 type ERPDBReport struct {
+	ReceiptMetadata       []ERPDBReceiptMetadata `json:"receipt_metadata,omitempty"`
+	ReceiptRequested      bool                   `json:"receipt_requested,omitempty"`
+	ReceiptViewDefinition bool                   `json:"receipt_view_definition,omitempty"`
+
 	Customers       []ERPDBCustomer       `json:"customer_candidates,omitempty"`
 	OutstandingRows []OrderOutstandingRow `json:"outstanding_rows,omitempty"`
 	PurchaseRows    []ERPDBPurchase       `json:"purchase_rows,omitempty"`
@@ -52,6 +70,15 @@ type ERPDBView struct {
 
 func dbProbeMessage(r ERPDBReport) string {
 	switch r.Status {
+	case "receipt_metadata":
+		message := fmt.Sprintf("입고 연동 구조 진단 완료 · 메타데이터 %d개 · 실제 입고는 실행하지 않았습니다", len(r.ReceiptMetadata))
+		if !r.ReceiptViewDefinition {
+			message += " · 정의 조회 권한 제한: 일부 구조가 보이지 않을 수 있습니다"
+		}
+		if r.Truncated {
+			message += " · 결과 일부 잘림: 전체 분석 미완료"
+		}
+		return message
 	case "purchase_preview":
 		return fmt.Sprintf("가공사업부 발주 미리보기 %d행 조회 완료 · 실제 작업 목록에는 반영하지 않았습니다", len(r.PurchaseRows))
 	case "ok":
@@ -120,14 +147,18 @@ func decodeDBProbe(raw []byte) ERPDBReport {
 		r.ConfigReason = ""
 	}
 	switch r.Stage {
-	case "process_job", "process_start", "process_attach", "process_wait", "process_exit", "response_decode", "order_outstanding", "purchase_preview", "config_path", "config_read", "config_parse", "connection_options", "connect", "columns", "relations", "done":
+	case "process_job", "process_start", "process_attach", "process_wait", "process_exit", "response_decode", "order_outstanding", "purchase_preview", "config_path", "config_read", "config_parse", "connection_options", "connect", "columns", "relations", "receipt_metadata", "done":
 	default:
 		r.Stage = ""
 	}
 	switch r.Status {
-	case "order_outstanding", "purchase_preview", "ok", "config_missing", "ambiguous", "config_invalid", "timeout", "unsupported", "login_failed", "database_denied", "tls_failed", "metadata_failed", "failed":
+	case "receipt_metadata", "order_outstanding", "purchase_preview", "ok", "config_missing", "ambiguous", "config_invalid", "timeout", "unsupported", "login_failed", "database_denied", "tls_failed", "metadata_failed", "failed":
 	default:
 		r.Status = "failed"
+	}
+	if len(r.ReceiptMetadata) > 5000 {
+		r.ReceiptMetadata = r.ReceiptMetadata[:5000]
+		r.Truncated = true
 	}
 	if len(r.Customers) > 20000 {
 		r.Customers = r.Customers[:20000]
@@ -192,7 +223,11 @@ func (a *App) erpDBHTTP(w http.ResponseWriter, r *http.Request, s Session) bool 
 			return true
 		}
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
-		w.Header().Set("Content-Disposition", `attachment; filename="ERP-db-check.json"`)
+		filename := "ERP-db-check.json"
+		if a.erpDBReport.ReceiptRequested {
+			filename = "ERP-receipt-check.json"
+		}
+		w.Header().Set("Content-Disposition", `attachment; filename="`+filename+`"`)
 		json.NewEncoder(w).Encode(a.erpDBReport)
 	case r.URL.Path == "/machining-admin/db-check" && r.Method == "POST":
 		if a.erpDBBusy {
@@ -213,9 +248,12 @@ func (a *App) erpDBHTTP(w http.ResponseWriter, r *http.Request, s Session) bool 
 			parent = context.Background()
 		}
 		mode := r.FormValue("mode")
-		if mode != "" && mode != "preview" {
+		if mode != "" && mode != "preview" && mode != "receipt" {
 			http.Error(w, "지원하지 않는 진단 방식입니다", 400)
 			return true
+		}
+		if mode == "receipt" {
+			parent = context.WithValue(parent, erpDBReceiptKey{}, true)
 		}
 		var preview erpDBPreviewRange
 		if mode == "preview" {
@@ -245,6 +283,7 @@ func (a *App) erpDBHTTP(w http.ResponseWriter, r *http.Request, s Session) bool 
 				result.DateFrom = preview.From
 				result.DateTo = preview.To
 			}
+			result.ReceiptRequested = mode == "receipt"
 			result.Version = releaseVersion
 			result.At = time.Now()
 			a.mu.Lock()
