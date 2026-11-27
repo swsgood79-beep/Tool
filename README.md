@@ -1,21 +1,21 @@
-# 알파작업완료확인 · PC v1.4.113 / 앱 v1.0.11
+# 알파작업완료확인 · PC v1.4.114 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.113** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.113.zip) |
+| **회사 PC 프로그램 v1.4.114** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.114.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.113 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.113-App-v1.0.11.zip) |
+| **현재 전체 소스 · PC 1.4.114 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.114-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/CHANGELOG.md) |
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
 
-## 이번 업데이트 · PC 1.4.113 · ERP DB 자동 연결
+## 이번 업데이트 · PC 1.4.114 · 완료 시 실제 수량 입력
 
-ERP 화면 없이 가공사업부 BASE 미입고 목록을 5분마다 조회합니다. 대표 관리자가 기간을 정해 한 번 시작하면 재시작·업데이트 후에도 유지됩니다. 가공의뢰의 원본 행 키로 로봇품번을 연결하며, 연결·수량·전체 조회 검증에 실패하면 기존 목록을 보존합니다. 작업 이력은 유지하고 화면 수집과 동시 실행하지 않습니다. 실제 회사의 새 로봇품번 조인은 첫 실행 상태를 확인해야 합니다. [사용법과 검증 범위](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/ERP-DB-AUTO.md)
+가공팀의 시작 버튼은 수량 입력 없이 시각·작업자를 기록합니다. 완료 수량은 공정 옆 빈칸에 적고 완료 버튼을 눌러 저장합니다. 32개 중 12개 완료 시 완료12/32·남음20을 표시하며 나머지는 다시 시작해 회차별로 기록합니다. 앞 공정 완료분을 넘겨 완료할 수 없으며 기존 시작 기록과 ERP DB 자동 연동은 유지합니다. [사용법](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/MACHINING-COMPLETION.md)
 
 ## 이전 업데이트 · PC 1.4.111 · DB 설정 해석 수정
 
