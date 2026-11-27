@@ -74,7 +74,6 @@ type Event struct {
 	RequestedAt, Completed                                   *time.Time
 }
 type State struct {
-	MachiningResets           []MachiningResetAudit        `json:",omitempty"`
 	TeamNotices               []TeamNotice                 `json:",omitempty"`
 	MachiningJobs             []MachiningJob               `json:",omitempty"`
 	MachiningImports          []MachiningImport            `json:",omitempty"`

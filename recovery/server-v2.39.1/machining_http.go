@@ -13,7 +13,7 @@ import (
 
 func machiningAllowedPath(path string) bool {
 	switch path {
-	case "/machining", "/machining/status", "/machining/outstanding", "/machining/action", "/my-password", "/login", "/mobile-admin/login", "/logout", "/mobile-admin/logout":
+	case "/machining", "/machining/status", "/machining/action", "/my-password", "/login", "/mobile-admin/login", "/logout", "/mobile-admin/logout":
 		return true
 	}
 	for _, p := range []string{"/native-admin/bootstrap", "/native-admin/register", "/native-admin/test", "/native-admin/device-disable", "/native-admin/token-refresh", "/native-admin/session/enroll", "/native-admin/session/restore", "/native-admin/session/revoke"} {
@@ -39,9 +39,6 @@ func (a *App) machiningHTTP(w http.ResponseWriter, r *http.Request, s Session) b
 	path := r.URL.Path
 	if path != "/machining" && !strings.HasPrefix(path, "/machining/") && path != "/machining-admin" && !strings.HasPrefix(path, "/machining-admin/") {
 		return false
-	}
-	if a.machiningResetHTTP(w, r, s) {
-		return true
 	}
 	if a.erpDBSyncHTTP(w, r, s) {
 		return true
