@@ -48,7 +48,7 @@ func TestERPDBPowerShellCommandLineBounded(t *testing.T) {
 				t.Fatal(e)
 			}
 			script := string(raw)
-			if !strings.HasSuffix(script, strings.Replace(strings.Replace(erpDBScript, "# RECEIPT_METADATA_SCRIPT", erpReceiptMetadataScript, 1), "# OBSERVATION_ACCESS_SCRIPT", erpObservationAccessScript, 1)) || !strings.Contains(script, tc.want) || !strings.Contains(script, "$ERPFolder='C:\\가상 ERP''폴더'") {
+			if !strings.HasSuffix(script, strings.Replace(strings.Replace(strings.Replace(erpDBScript, "# RECEIPT_METADATA_SCRIPT", erpReceiptMetadataScript, 1), "# OBSERVATION_ACCESS_SCRIPT", erpObservationAccessScript, 1), "# OBSERVATION_SCRIPT", erpObservationScript, 1)) || !strings.Contains(script, tc.want) || !strings.Contains(script, "$ERPFolder='C:\\가상 ERP''폴더'") {
 				t.Fatal("script/prefix or Unicode path was changed")
 			}
 			// This is the released 1.4.117 regression: the existing complete query is

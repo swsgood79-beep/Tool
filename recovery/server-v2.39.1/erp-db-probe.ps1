@@ -47,7 +47,9 @@ try {
  $report.status='failed'
  $report.stage='connect'
  $conn.Open();$report.connected=$true
- if($ObservationAccess){
+ if($Observe){
+ # OBSERVATION_SCRIPT
+ }elseif($ObservationAccess){
  # OBSERVATION_ACCESS_SCRIPT
  }elseif($ReceiptMetadata){
  # RECEIPT_METADATA_SCRIPT

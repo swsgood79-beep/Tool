@@ -123,6 +123,9 @@ type Ticket struct {
 	Next    string
 }
 type App struct {
+	erpObservation      *erpObservationJob
+	erpObservationProbe func(context.Context, string) ERPDBReport
+
 	outstandingCards           map[string]orderOutstandingEntry
 	outstandingBusy            bool
 	teamNativeDesktop          bool

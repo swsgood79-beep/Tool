@@ -52,6 +52,8 @@ type ERPDBReceiptMetadata struct {
 }
 
 type ERPDBReport struct {
+	Observation *ERPObservationReport `json:"observation,omitempty"`
+
 	ObservationAccess *ERPDBObservationAccess `json:"observation_access,omitempty"`
 
 	ReceiptMetadata       []ERPDBReceiptMetadata `json:"receipt_metadata,omitempty"`
@@ -161,14 +163,18 @@ func decodeDBProbe(raw []byte) ERPDBReport {
 		r.ConfigReason = ""
 	}
 	switch r.Stage {
-	case "process_job", "process_start", "process_attach", "process_wait", "process_exit", "response_decode", "order_outstanding", "purchase_preview", "config_path", "config_read", "config_parse", "connection_options", "connect", "columns", "relations", "receipt_metadata", "observation_access", "done":
+	case "process_job", "process_start", "process_attach", "process_wait", "process_exit", "response_decode", "order_outstanding", "purchase_preview", "config_path", "config_read", "config_parse", "connection_options", "connect", "columns", "relations", "receipt_metadata", "observation_access", "observation", "done":
 	default:
 		r.Stage = ""
 	}
 	switch r.Status {
-	case "observation_access", "receipt_metadata", "order_outstanding", "purchase_preview", "ok", "config_missing", "ambiguous", "config_invalid", "timeout", "unsupported", "login_failed", "database_denied", "tls_failed", "metadata_failed", "failed":
+	case "observation", "observation_access", "receipt_metadata", "order_outstanding", "purchase_preview", "ok", "config_missing", "ambiguous", "config_invalid", "timeout", "unsupported", "login_failed", "database_denied", "tls_failed", "metadata_failed", "failed":
 	default:
 		r.Status = "failed"
+	}
+	if r.Observation != nil && len(r.Observation.Events) > 2000 {
+		r.Observation.Events = r.Observation.Events[:2000]
+		r.Observation.Truncated = true
 	}
 	if len(r.ReceiptMetadata) > 5000 {
 		r.ReceiptMetadata = r.ReceiptMetadata[:5000]

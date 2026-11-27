@@ -46,6 +46,9 @@ func (a *App) machiningHTTP(w http.ResponseWriter, r *http.Request, s Session) b
 	if a.erpDBSyncHTTP(w, r, s) {
 		return true
 	}
+	if a.erpObservationHTTP(w, r, s) {
+		return true
+	}
 	if a.erpDBHTTP(w, r, s) {
 		return true
 	}
