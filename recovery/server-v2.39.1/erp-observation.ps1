@@ -22,7 +22,7 @@ ADD EVENT sqlserver.sp_statement_completed(ACTION(sqlserver.session_id) WHERE $f
 ADD TARGET package0.ring_buffer(SET max_memory=2048)
 WITH(MAX_MEMORY=2048 KB,EVENT_RETENTION_MODE=ALLOW_SINGLE_EVENT_LOSS,MAX_DISPATCH_LATENCY=1 SECONDS,TRACK_CAUSALITY=ON,STARTUP_STATE=OFF)
 "@
-  Observer-Command $create;$created=$true
+  $created=$true;Observer-Command $create
   Observer-Command "ALTER EVENT SESSION [$ObserveSession] ON SERVER STATE=START"
   [IO.File]::WriteAllText((Join-Path $ObserveDirectory 'phase'),'ready');$ob.ready=$true;$ob.reason='recording'
   $end=[DateTime]::UtcNow.AddSeconds(90)
@@ -50,6 +50,6 @@ WITH(MAX_MEMORY=2048 KB,EVENT_RETENTION_MODE=ALLOW_SINGLE_EVENT_LOSS,MAX_DISPATC
   if($ob.reason -eq 'preparing' -or $ob.reason -eq 'recording'){$ob.reason='observer_failed'}
   $ex=$_.Exception;while($ex.InnerException -and !($ex -is [Data.SqlClient.SqlException])){$ex=$ex.InnerException};if($ex -is [Data.SqlClient.SqlException]){$report.error_code=[int]$ex.Number}
  }finally{
-  if($created){try{Observer-Command "DROP EVENT SESSION [$ObserveSession] ON SERVER";$ob.cleanup=$true}catch{$ob.cleanup=$false;$ob.reason='cleanup_failed'}}elseif(!$ObserveRecover){$ob.cleanup=$true}
+  if($created){try{Observer-Command "IF EXISTS(SELECT 1 FROM sys.server_event_sessions WHERE name=N'$ObserveSession') DROP EVENT SESSION [$ObserveSession] ON SERVER";$ob.cleanup=$true}catch{$ob.cleanup=$false;$ob.reason='cleanup_failed'}}elseif(!$ObserveRecover){$ob.cleanup=$true}
   $report.status='observation';$report.stage='done'
  }

@@ -1,0 +1,24 @@
+{
+  "results": [
+    {
+      "width": 320,
+      "result": "pass",
+      "scope": "synthetic actual browser; ready/stop/protected-save/download; no real ERP"
+    },
+    {
+      "width": 390,
+      "result": "pass",
+      "scope": "synthetic actual browser; ready/stop/protected-save/download; no real ERP"
+    },
+    {
+      "width": 430,
+      "result": "pass",
+      "scope": "synthetic actual browser; ready/stop/protected-save/download; no real ERP"
+    },
+    {
+      "width": 1100,
+      "result": "pass",
+      "scope": "synthetic actual browser; ready/stop/protected-save/download; no real ERP"
+    }
+  ]
+}

@@ -136,7 +136,7 @@ func (a *App) erpObservationHTTP(w http.ResponseWriter, r *http.Request, s Sessi
 			break
 		}
 		// Refuse another observer after an unclean exit until its server session is recovered.
-		if _, e := os.Stat(filepath.Join(a.dir, "erp-observer-pending.dat")); e == nil {
+		if _, e := os.Stat(filepath.Join(a.dir, "erp-observer-pending.dat")); !os.IsNotExist(e) {
 			http.Error(w, "이전 관찰의 정리 확인이 필요합니다. 관찰 결과와 복구 메모를 확인해 주세요", 409)
 			break
 		}
@@ -152,6 +152,12 @@ func (a *App) erpObservationHTTP(w http.ResponseWriter, r *http.Request, s Sessi
 		}
 		j := &erpObservationJob{Directory: directory, Session: "AlphaReceipt_" + hex.EncodeToString(b), Phase: "preparing", Message: "추적 권한·ERP 실행 상태 확인 중입니다. 아직 입고하지 마세요"}
 		journal, e := protect(jsonRaw(map[string]string{"session": j.Session, "folder": folder, "directory": directory}))
+		if e == nil {
+			check, err := unprotect(journal)
+			if err != nil || !json.Valid(check) {
+				e = fmt.Errorf("recovery verification failed")
+			}
+		}
 		if e == nil {
 			e = atomicFile(filepath.Join(a.dir, "erp-observer-pending.dat"), journal)
 		}
@@ -235,6 +241,12 @@ func (a *App) runObservation(j *erpObservationJob, folder string) {
 			}
 			if result.Observation.Truncated || result.Observation.Dropped > 0 {
 				j.Message += " · 일부 기록 누락/잘림: 전체 과정 분석 불가"
+			}
+			if result.Observation.Reason != "captured" && result.Observation.Ready {
+				j.Message += " · 수집 실패: 기록을 완전한 결과로 사용할 수 없습니다"
+			}
+			if result.Observation.Reason == "trace_permission_denied" {
+				j.Message += " · SQL Server 관찰 권한 부족 (자동 권한 변경 없음)"
 			}
 			if result.Observation.Ready && len(result.Observation.Events) == 0 {
 				j.Message += " · 호출 0건: 입고 성공을 의미하지 않습니다"
