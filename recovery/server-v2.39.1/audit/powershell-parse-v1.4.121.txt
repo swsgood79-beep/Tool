@@ -1,0 +1,1 @@
+PowerShell7 AST parse of expanded script passed; native Windows5 and SQL execution pending

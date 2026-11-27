@@ -175,3 +175,36 @@ func TestERPObserverBrowser121(t *testing.T) {
 		t.Fatal(e)
 	}
 }
+
+func TestERPObserverBackupFailureAndStopBeforeReady(t *testing.T) {
+	a := fixture(t)
+	owner := adminCookie(a)
+	csrf := a.sessions[hashToken(owner.Value)].CSRF
+	entered := make(chan erpObservationOptions, 1)
+	release := make(chan struct{})
+	a.erpObservationProbe = func(ctx context.Context, _ string) ERPDBReport {
+		o := ctx.Value(erpObservationKey{}).(erpObservationOptions)
+		entered <- o
+		<-release
+		return ERPDBReport{Status: "observation", Observation: &ERPObservationReport{Cleanup: true, Reason: "captured"}}
+	}
+	f := url.Values{"csrf": {csrf}, "action": {"start"}}
+	call(a, "POST", observerPath, f, owner)
+	o := <-entered
+	// A directory at the exact output name forces atomic backup replacement to fail.
+	if e := os.Mkdir(filepath.Join(a.dir, "ERP-receipt-observation-"+o.Session+".dat"), 0700); e != nil {
+		t.Fatal(e)
+	}
+	f.Set("action", "stop")
+	if w := call(a, "POST", observerPath, f, owner); w.Code != 200 {
+		t.Fatal(w.Code)
+	}
+	close(release)
+	observerWait(t, a, "finished")
+	if w := call(a, "GET", observerPath+"/download", nil, owner); w.Code != 409 {
+		t.Fatal("failed backup downloadable")
+	}
+	if w := call(a, "GET", observerPath, nil, owner); !strings.Contains(w.Body.String(), "저장 실패") {
+		t.Fatal("failure hidden")
+	}
+}
