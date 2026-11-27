@@ -1,19 +1,23 @@
-# 알파작업완료확인 · PC v1.4.110 / 앱 v1.0.11
+# 알파작업완료확인 · PC v1.4.111 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.110** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.110.zip) |
+| **회사 PC 프로그램 v1.4.111** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.111.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.110 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.110-App-v1.0.11.zip) |
+| **현재 전체 소스 · PC 1.4.111 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.111-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/CHANGELOG.md) |
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
 
-## 이번 업데이트 · PC 1.4.110 · DB 진단과 제외 목록 분리
+## 이번 업데이트 · PC 1.4.111 · DB 설정 해석 수정
+
+DB 진단이 접속 전에 config_read/config_invalid로 중단되는 경우를 확인해 SQL 연결 문자열 빌더의 PowerShell 속성 접근을 .NET 접근자 호출로 변경했습니다. 설정 형식과 연결 옵션 단계를 구분하고 비밀정보 없이 고정 오류 사유만 결과에 추가합니다. 회사 ERP 설정 파일은 변경하지 않습니다. 실제 회사 DB 접속 성공은 업데이트 후 다시 진단해 확인해야 합니다. [DB 진단 사용법](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/ERP-DB-PROBE.md)
+
+## 이전 업데이트 · PC 1.4.110 · DB 진단과 제외 목록 분리
 
 대표 관리자 → 가공 작업 · 입고 확인 → ERP 자동 연결에 **DB 연결 확인**을 추가했습니다. 회사 PC의 기존 ERP 설정으로 연결과 테이블·열 구조만 확인하며 비밀번호와 업무 행을 결과에 넣지 않습니다. 아직 DB 자동 가져오기 단계는 아니며 실제 회사 DB 접속은 버튼 실행 결과로 확인해야 합니다. 결과는 ERP-db-check.json으로 직접 내려받습니다. 최근 ERP 엑셀에서 빠진 품목은 페이지 아래 별도 목록으로 분리하고 기존 작업 기록을 유지합니다. [진단 범위와 사용법](https://github.com/swsgood79-beep/Tool/blob/recovery-v2.39.1/recovery/server-v2.39.1/ERP-DB-PROBE.md)
 
