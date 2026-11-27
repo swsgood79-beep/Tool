@@ -121,6 +121,10 @@ type Ticket struct {
 	Next    string
 }
 type App struct {
+	erpDBContext               context.Context
+	erpDBBusy                  bool
+	erpDBReport                *ERPDBReport
+	erpDBProbe                 func(context.Context, string) ERPDBReport
 	machiningBridgeDone        chan struct{}
 	machiningBridgeSetup       bool
 	machiningBridgeSetting     bool

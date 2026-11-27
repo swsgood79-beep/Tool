@@ -1,8 +1,8 @@
 {
-  "version": "1.4.109",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.109.zip",
-  "sha256": "044de61fd0cff8bbaa32717df6261303b0a139513328ca19a3c4d08a28b46cab",
-  "exe_sha256": "4af156636a5ee6374216742c36ab1d9469156af20771f017c50da780de6af1ba",
-  "bytes": 38615890,
-  "notes": "절단·가공 1차·가공 2차 분리 · 기존 가공 이력 보존 · 휴대폰 팝업 크기 유지 · APK 유지"
+  "version": "1.4.110",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.110.zip",
+  "sha256": "672b7842ef18077cfbbc1a345e209bf6bb86a14df13cedbdd602718cd70a6a78",
+  "exe_sha256": "cc18044b7e019790e72f8b564b8d07cf1356eabca34c82b29e742a18a64e437a",
+  "bytes": 38634407,
+  "notes": "DB 연결·구조 진단 버튼 · ERP 제외 품목 아래 목록으로 분리 · 기존 기록 유지 · APK 유지"
 }

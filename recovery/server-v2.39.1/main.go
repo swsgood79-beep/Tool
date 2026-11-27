@@ -518,6 +518,7 @@ func run() error {
 	}
 	a.startPumps(ctx)
 	a.startInternetAuto(ctx)
+	a.erpDBContext = ctx
 	a.startMachiningBridge(ctx)
 	defer func() { stop(); a.waitManagedERP() }()
 

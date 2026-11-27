@@ -40,6 +40,9 @@ func (a *App) machiningHTTP(w http.ResponseWriter, r *http.Request, s Session) b
 	if path != "/machining" && !strings.HasPrefix(path, "/machining/") && path != "/machining-admin" && !strings.HasPrefix(path, "/machining-admin/") {
 		return false
 	}
+	if a.erpDBHTTP(w, r, s) {
+		return true
+	}
 	machine := machiningSession(&a.state, s)
 	if purchasingSession(&a.state, s) || (machine && strings.HasPrefix(path, "/machining-admin")) {
 		http.Error(w, "관리자 권한이 필요합니다", 403)
