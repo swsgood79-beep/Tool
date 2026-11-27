@@ -1,8 +1,8 @@
 {
-  "version": "1.4.111",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.111.zip",
-  "sha256": "c2da9c128e2ac2efbba776f6a306f36a32adeafa7c60a96ebaceb42ac1284c30",
-  "exe_sha256": "425f62b59ec99656dbd84dd3fb27874b81df3b08cdcceb91994af74b15daf9ab",
-  "bytes": 38635775,
-  "notes": "DB 설정 읽기 오류 수정 · 설정 형식/연결 옵션 단계 구분 · ERP 설정 변경 없음 · APK 유지"
+  "version": "1.4.112",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.112.zip",
+  "sha256": "c9bf26da58a4d43794f0ef3f618fcdaa308e447b48cbe2b6546c15ff426ced89",
+  "exe_sha256": "9a382bb924770b2125f277e5e8261859d949151f4d7f86a3ada6a24a95e11714",
+  "bytes": 38640910,
+  "notes": "DB 발주 미리보기 · 가공사업부/입고예정일 제한 · 작업목록 미반영 검증용 · APK 유지"
 }

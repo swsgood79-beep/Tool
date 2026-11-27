@@ -28,6 +28,9 @@ type ERPDBForeignKey struct {
 	RefColumn string `json:"ref_column"`
 }
 type ERPDBReport struct {
+	PurchaseRows []ERPDBPurchase   `json:"purchase_rows,omitempty"`
+	DateFrom     string            `json:"date_from,omitempty"`
+	DateTo       string            `json:"date_to,omitempty"`
 	ConfigReason string            `json:"config_reason,omitempty"`
 	Stage        string            `json:"stage,omitempty"`
 	Version      string            `json:"program_version"`
@@ -47,6 +50,8 @@ type ERPDBView struct {
 
 func dbProbeMessage(r ERPDBReport) string {
 	switch r.Status {
+	case "purchase_preview":
+		return fmt.Sprintf("가공사업부 발주 미리보기 %d행 조회 완료 · 실제 작업 목록에는 반영하지 않았습니다", len(r.PurchaseRows))
 	case "ok":
 		if len(r.Columns) == 0 {
 			return "DB 연결 성공 · 조회 가능한 테이블·열이 없습니다. 구조 조회 권한을 확인해 주세요"
@@ -81,6 +86,9 @@ func dbProbeMessage(r ERPDBReport) string {
 	case "tls_failed":
 		return "DB 암호화 연결을 완료하지 못했습니다. 서버 연결 설정 확인이 필요합니다"
 	case "metadata_failed":
+		if r.Stage == "purchase_preview" {
+			return "DB에는 연결됐지만 발주 미리보기 조회를 완료하지 못했습니다"
+		}
 		return "DB에는 연결됐지만 구조 조회를 완료하지 못했습니다"
 	default:
 		return "DB 진단에 실패했습니다. 결과 파일의 오류 코드를 확인해 주세요"
@@ -97,14 +105,18 @@ func decodeDBProbe(raw []byte) ERPDBReport {
 		r.ConfigReason = ""
 	}
 	switch r.Stage {
-	case "config_path", "config_read", "config_parse", "connection_options", "connect", "columns", "relations", "done":
+	case "purchase_preview", "config_path", "config_read", "config_parse", "connection_options", "connect", "columns", "relations", "done":
 	default:
 		r.Stage = ""
 	}
 	switch r.Status {
-	case "ok", "config_missing", "ambiguous", "config_invalid", "timeout", "unsupported", "login_failed", "database_denied", "tls_failed", "metadata_failed", "failed":
+	case "purchase_preview", "ok", "config_missing", "ambiguous", "config_invalid", "timeout", "unsupported", "login_failed", "database_denied", "tls_failed", "metadata_failed", "failed":
 	default:
 		r.Status = "failed"
+	}
+	if len(r.PurchaseRows) > 2000 {
+		r.PurchaseRows = r.PurchaseRows[:2000]
+		r.Truncated = true
 	}
 	if len(r.Columns) > 20000 {
 		r.Columns = r.Columns[:20000]
@@ -129,6 +141,9 @@ func validERPFolder(s string) bool {
 }
 func (a *App) dbProbeView() ERPDBView {
 	if a.erpDBBusy {
+		if a.erpDBPreview {
+			return ERPDBView{Busy: true, Message: "가공사업부 발주 미리보기 조회 중… 작업 목록에는 반영하지 않습니다"}
+		}
 		return ERPDBView{Busy: true, Message: "DB 연결 및 구조 확인 중… 업무 행은 조회하지 않습니다"}
 	}
 	if a.erpDBReport == nil {
@@ -174,11 +189,27 @@ func (a *App) erpDBHTTP(w http.ResponseWriter, r *http.Request, s Session) bool 
 		if parent == nil {
 			parent = context.Background()
 		}
+		mode := r.FormValue("mode")
+		if mode != "" && mode != "preview" {
+			http.Error(w, "지원하지 않는 진단 방식입니다", 400)
+			return true
+		}
+		var preview erpDBPreviewRange
+		if mode == "preview" {
+			var e error
+			preview, e = erpDBPreviewDates(r.FormValue("from"), r.FormValue("to"))
+			if e != nil {
+				http.Error(w, e.Error(), 400)
+				return true
+			}
+			parent = context.WithValue(parent, erpDBPreviewKey{}, preview)
+		}
 		ctx, cancel := context.WithTimeout(parent, 45*time.Second)
 		probe := a.erpDBProbe
 		if probe == nil {
 			probe = platformERPDBProbe
 		}
+		a.erpDBPreview = mode == "preview"
 		a.erpDBBusy = true
 		go func() {
 			defer cancel()
@@ -187,6 +218,10 @@ func (a *App) erpDBHTTP(w http.ResponseWriter, r *http.Request, s Session) bool 
 				result = ERPDBReport{Status: "timeout"}
 			}
 			result = decodeDBProbe(jsonRaw(result))
+			if mode == "preview" {
+				result.DateFrom = preview.From
+				result.DateTo = preview.To
+			}
 			result.Version = releaseVersion
 			result.At = time.Now()
 			a.mu.Lock()

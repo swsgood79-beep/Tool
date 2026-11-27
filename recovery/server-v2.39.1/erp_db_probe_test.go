@@ -132,3 +132,56 @@ func TestERPDBBuilderUsesCLRAccessors(t *testing.T) {
 		t.Fatal("unknown reason leaked")
 	}
 }
+
+func TestERPDBPurchasePreviewRangeAndScope(t *testing.T) {
+	if _, e := erpDBPreviewDates("2026-11-01", "2026-12-31"); e != nil {
+		t.Fatal(e)
+	}
+	for _, p := range [][2]string{{"2026-12-01", "2026-11-01"}, {"2020-01-01", "2026-12-31"}, {"';DELETE", "2026-12-31"}} {
+		if _, e := erpDBPreviewDates(p[0], p[1]); e == nil {
+			t.Fatal("unbounded or invalid preview period")
+		}
+	}
+	b, _ := os.ReadFile("erp-db-probe.ps1")
+	q := regexp.MustCompile(`(?s)\$purchaseSql=@'\s*(.*?)\s*'@`).FindStringSubmatch(string(b))
+	if len(q) != 2 {
+		t.Fatal("preview query absent")
+	}
+	for _, token := range []string{"TOP (2001)", "m.CST_CD=@Customer", "BETWEEN @From AND @To", "h.PURORD_SEQ", "i.PARTS_TYPE=h.PARTS_TYPE"} {
+		if !strings.Contains(q[1], token) {
+			t.Fatal("missing scope or composite join", token)
+		}
+	}
+	if regexp.MustCompile(`(?i)\b(INSERT|UPDATE|DELETE|EXEC|MERGE|CREATE|ALTER|DROP|TOT_MONEY|UNIT_COST|CST_CEO|TEL_NO)\b`).MatchString(q[1]) {
+		t.Fatal("preview includes writes or unrelated sensitive fields")
+	}
+	a := fixture(t)
+	owner := adminCookie(a)
+	csrf := a.sessions[hashToken(owner.Value)].CSRF
+	called := false
+	a.erpDBProbe = func(ctx context.Context, folder string) ERPDBReport {
+		dates, ok := erpDBPreviewOptions(ctx)
+		called = ok && dates.From == "2026-11-01" && dates.To == "2026-12-31"
+		return ERPDBReport{Status: "purchase_preview", Connected: true, PurchaseRows: []ERPDBPurchase{{Purchase: "TEST-PO", Quantity: 2}}}
+	}
+	f := url.Values{"csrf": {csrf}, "mode": {"preview"}, "from": {"2026-11-01"}, "to": {"2026-12-31"}}
+	before := string(jsonRaw(a.state.MachiningJobs))
+	if w := call(a, "POST", "/machining-admin/db-check", f, owner); w.Code != 202 {
+		t.Fatal(w.Code)
+	}
+	for until := time.Now().Add(2 * time.Second); ; {
+		a.mu.Lock()
+		busy := a.erpDBBusy
+		a.mu.Unlock()
+		if !busy {
+			break
+		}
+		if time.Now().After(until) {
+			t.Fatal("preview timed out")
+		}
+		time.Sleep(time.Millisecond)
+	}
+	if !called || a.erpDBReport.Status != "purchase_preview" || len(a.erpDBReport.PurchaseRows) != 1 || before != string(jsonRaw(a.state.MachiningJobs)) {
+		t.Fatal("preview scope or non-apply violated")
+	}
+}

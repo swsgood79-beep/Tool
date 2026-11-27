@@ -31,7 +31,7 @@ func TestMachiningBrowser(t *testing.T) {
 	srv := httptest.NewServer(a)
 	defer srv.Close()
 	cfg := map[string]any{"worker": map[string]string{"name": worker.Name, "value": worker.Value}, "admin": map[string]string{"name": owner.Name, "value": owner.Value}, "file": file}
-	cmd := exec.Command("node", "audit/browser-machining-v1.4.111.cjs", srv.URL, string(jsonRaw(cfg)))
+	cmd := exec.Command("node", "audit/browser-machining-v1.4.112.cjs", srv.URL, string(jsonRaw(cfg)))
 	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
 	if e := cmd.Run(); e != nil {
 		t.Fatal(e)
@@ -52,13 +52,17 @@ func TestMachiningMissingAndDBBrowser(t *testing.T) {
 	if e := a.importMachining(machiningDraft(t, rows[:2]), MachiningActor{}); e != nil {
 		t.Fatal(e)
 	}
-	a.erpDBProbe = func(context.Context, string) ERPDBReport {
+	a.erpDBProbe = func(ctx context.Context, folder string) ERPDBReport {
+		if _, ok := erpDBPreviewOptions(ctx); ok {
+			return ERPDBReport{Status: "purchase_preview", Connected: true, PurchaseRows: []ERPDBPurchase{{Purchase: "TEST-PO", Quantity: 2}}}
+		}
+
 		return ERPDBReport{Status: "ok", Connected: true, Columns: []ERPDBColumn{{Schema: "dbo", Object: "TEST_ORDER", Column: "PART", Type: "nvarchar"}, {Schema: "dbo", Object: "TEST_ORDER", Column: "QUANTITY", Type: "int"}}}
 	}
 	srv := httptest.NewServer(a)
 	defer srv.Close()
 	cfg := map[string]any{"worker": map[string]string{"name": worker.Name, "value": worker.Value}, "admin": map[string]string{"name": owner.Name, "value": owner.Value}}
-	cmd := exec.Command("node", "audit/browser-machining-missing-db-v1.4.111.cjs", srv.URL, string(jsonRaw(cfg)))
+	cmd := exec.Command("node", "audit/browser-machining-missing-db-v1.4.112.cjs", srv.URL, string(jsonRaw(cfg)))
 	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
 	if e := cmd.Run(); e != nil {
 		t.Fatal(e)

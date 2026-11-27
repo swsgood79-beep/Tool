@@ -122,6 +122,7 @@ type Ticket struct {
 }
 type App struct {
 	erpDBContext               context.Context
+	erpDBPreview               bool
 	erpDBBusy                  bool
 	erpDBReport                *ERPDBReport
 	erpDBProbe                 func(context.Context, string) ERPDBReport

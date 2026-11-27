@@ -19,7 +19,11 @@ import (
 var erpDBScript string
 
 func platformERPDBProbe(ctx context.Context, folder string) ERPDBReport {
-	script := "$ERPFolder='" + strings.ReplaceAll(folder, "'", "''") + "'\n" + erpDBScript
+	prefix := "$PurchasePreview=$false\n"
+	if dates, ok := erpDBPreviewOptions(ctx); ok {
+		prefix = "$PurchasePreview=$true\n$DateFrom='" + strings.ReplaceAll(dates.From, "-", "") + "'\n$DateTo='" + strings.ReplaceAll(dates.To, "-", "") + "'\n"
+	}
+	script := prefix + "$ERPFolder='" + strings.ReplaceAll(folder, "'", "''") + "'\n" + erpDBScript
 	u := utf16.Encode([]rune(script))
 	b := make([]byte, len(u)*2)
 	for i, v := range u {

@@ -1,7 +1,7 @@
 $ErrorActionPreference='Stop'
 $ProgressPreference='SilentlyContinue'
 [Console]::OutputEncoding=New-Object Text.UTF8Encoding($false)
-$report=[ordered]@{status='failed';stage='config_path';config_reason='';connected=$false;error_code=0;columns=@();foreign_keys=@();truncated=$false}
+$report=[ordered]@{status='failed';stage='config_path';config_reason='';connected=$false;error_code=0;columns=@();foreign_keys=@();purchase_rows=@();truncated=$false}
 $conn=$null
 try {
  Add-Type -AssemblyName System.Data
@@ -47,6 +47,26 @@ try {
  $report.status='failed'
  $report.stage='connect'
  $conn.Open();$report.connected=$true
+ if($PurchasePreview){
+  $report.stage='purchase_preview'
+  $purchaseSql=@'
+SELECT TOP (2001) h.UNT_CD,h.PURORD_DATE,h.PURORD_NO,h.PURORD_SEQ,m.RCVORD_NO,m.PROJECT,
+ h.ITM_CD,h.PARTS_TYPE,h.ITM_SIZE,h.BOM_CODE,h.SCH_DATE,ISNULL(h.PUR_QTY,0),ISNULL(h.IN_QTY,0),h.WHS_STS,
+ i.ITM_NM,i.ITM_SIZE,i.PART_NO
+FROM dbo.PURORD_MST m JOIN dbo.PURORD_HIS h
+ ON h.UNT_CD=m.UNT_CD AND h.PURORD_DATE=m.PURORD_DATE AND h.PURORD_NO=m.PURORD_NO
+LEFT JOIN dbo.ITMMST_INFO i ON i.ITM_CD=h.ITM_CD AND i.PARTS_TYPE=h.PARTS_TYPE
+WHERE m.CST_CD=@Customer AND LEFT(REPLACE(REPLACE(REPLACE(LTRIM(RTRIM(h.SCH_DATE)),'-',''),'/',''),'.',''),8) BETWEEN @From AND @To
+ORDER BY h.UNT_CD,h.PURORD_DATE,h.PURORD_NO,h.PURORD_SEQ
+'@
+  $cmd=$conn.CreateCommand();$cmd.CommandText=$purchaseSql;$cmd.CommandTimeout=12
+  [void]$cmd.Parameters.Add('@Customer',[Data.SqlDbType]::VarChar,20);$cmd.Parameters['@Customer'].Value='00530'
+  [void]$cmd.Parameters.Add('@From',[Data.SqlDbType]::VarChar,8);$cmd.Parameters['@From'].Value=$DateFrom
+  [void]$cmd.Parameters.Add('@To',[Data.SqlDbType]::VarChar,8);$cmd.Parameters['@To'].Value=$DateTo
+  $rd=$cmd.ExecuteReader();$rows=New-Object 'Collections.Generic.List[object]'
+  try{while($rd.Read()){if($rows.Count -ge 2000){$report.truncated=$true;break};$rows.Add([ordered]@{unit=[string]$rd[0];purchase_date=[string]$rd[1];purchase=[string]$rd[2];sequence=[int]$rd[3];order=[string]$rd[4];project=[string]$rd[5];item=[string]$rd[6];parts_type=[string]$rd[7];line_size=[string]$rd[8];bom=[string]$rd[9];due=[string]$rd[10];quantity=[int]$rd[11];received=[int]$rd[12];warehouse_status=[string]$rd[13];item_name=[string]$rd[14];master_size=[string]$rd[15];part_no=[string]$rd[16]})}}finally{$rd.Close();$cmd.Dispose()}
+  $report.purchase_rows=@($rows.ToArray());$report.status='purchase_preview';$report.stage='done'
+ }else{
  $report.stage='columns'
  $columnSql=@'
 SELECT TOP (20001) s.name AS schema_name,o.name AS object_name,o.type AS object_kind,
@@ -74,6 +94,7 @@ ORDER BY ps.name,po.name,pc.name
  $rd=$cmd.ExecuteReader();$keys=New-Object 'Collections.Generic.List[object]'
  try{while($rd.Read()){if($keys.Count -ge 5000){$report.truncated=$true;break};$keys.Add([ordered]@{schema=[string]$rd[0];object=[string]$rd[1];column=[string]$rd[2];ref_schema=[string]$rd[3];ref_object=[string]$rd[4];ref_column=[string]$rd[5]})}}finally{$rd.Close();$cmd.Dispose()}
  $report.foreign_keys=@($keys.ToArray());$report.status='ok';$report.stage='done'
+ }
 }catch{
  if($report.status -eq 'failed'){
   $ex=$_.Exception;while($ex.InnerException -and !($ex -is [Data.SqlClient.SqlException])){$ex=$ex.InnerException}
