@@ -1,0 +1,9 @@
+# ERP receipt registration recovery
+
+User explicitly authorizes building Alpha outstanding checkbox→receipt registration matching observed ERP behavior. This supersedes earlier read-only-only scope for this feature; existing query features remain read-only. Production122 unchanged. Branch work-erp-receipt-registration.
+
+Completed first core: exact business-unit/purchase-date/purchase-number/sequence identity, distinct same-part rows preserved, duplicate row rejection, integer positive finite quantities bounded by remaining, single customer/business unit per document. Tests TestERPReceiptPlan pass. Files erp_receipt_plan.go and test. Not connected to actual ERP execution or UI yet.
+
+Observed private trace confirmed header UPDATE2→4 detail UPDATE calls→AMT_UPDATE and related purchase, demand, order progress/plan and inventory statements. Raw trace, business IDs, employee codes and company values must NEVER enter public repository. No production ERP writes performed by assistant.
+
+Next: extend read-only outstanding query with exact keys and source pricing/classification, owner-authenticated preview/revalidation, ERP actor mapping (no password upload), immutable operation ID/private DPAPI journal, parameterized existing stored-procedure executor with scoped locks and explicit transaction/rollback behavior verified in isolated database, postcommit readback and uncertain-result reconciliation (no blind retries), synthetic UI/mobile screenshots/tests, source+memo checkpoints. Do not expose live write until concrete implementation has been reviewed/tested. Need actual procedure definitions/transaction semantics for partial/update branches; one normal trace does not prove those. Existing ERP may create header before item selection, but Alpha must only create after confirmation. Public updater and APK unchanged until validated release. Earlier machining XLSX request still outstanding separately.
