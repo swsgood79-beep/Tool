@@ -1,0 +1,25 @@
+{
+  "version": "1.4.122",
+  "release_commit": "cc681f0",
+  "verified_at_utc": "2026-11-27T23:30:56.884777+00:00",
+  "manifest_verified": true,
+  "source_rebuild_verified": true,
+  "downloads": [
+    {
+      "file": "AlphaWorkComplete-Recovered-Windows-x64-v1.4.122.zip",
+      "bytes": 38691472,
+      "sha256": "5e2ea63d197f6faab08f595141b11d71fac853041fe8be93149e4d7bd95bc72e",
+      "verified": true
+    },
+    {
+      "file": "AlphaWorkComplete-Recovered-source-PC-v1.4.122-App-v1.0.11.zip",
+      "bytes": 35988807,
+      "sha256": "41138a25091b2d06e3c1dfffd5c23a9066460a02bce39244eba20203a0b76aa9",
+      "verified": true
+    }
+  ],
+  "field_verification_pending": [
+    "Native company SQL certificate lookup",
+    "ERP menu row count/part/serial first comparison"
+  ]
+}
