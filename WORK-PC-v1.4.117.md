@@ -31,3 +31,9 @@ README.md/START-HERE.md/CHANGELOG.md/audit/RECOVERY-V1.4.117.md를 갱신하고 
 ## 최종 검증 통과
 
 전체 go test ./... (68.490초), 관련 race (5.493초), Linux/Windows vet, Windows GUI 교차 빌드와 실제 Chromium 5개 사례가 통과했습니다. 로그를 audit/*v1.4.117.txt에 저장했습니다. 실행파일은 /workspace/work/AlphaWorkComplete-Recovered-v1.4.117.exe입니다. 신규 코드 변경 없이 패키징 및 ZIP 소스 동일 재빌드를 진행합니다. 정식 브랜치의 공개 업데이트는 아직 v1.4.116입니다.
+
+## 패키징과 소스 일치 확인
+
+Windows ZIP과 전체 추적 소스 ZIP을 생성했고, ZIP의 SHA256SUMS 전체 확인, Windows 실행파일 동일 해시 재빌드, 내장 ERP 도우미 동일 재빌드, APK v1.0.11 기존 해시 확인이 통과했습니다. 과거 선택 실행 브라우저 테스트 스크립트도 소스 ZIP에 포함했습니다. 아직 공식 브랜치 공개 다운로드 확인 전입니다.
+
+다음 단계는 공식 브랜치가 여전히 4cb6830인지 확인하고, work-pc-v1.4.117의 검증된 커밋을 fast-forward 반영하는 것입니다. 기존 버전 파일을 수정하지 않고 새 1.4.117 ZIP/해시/증빙과 pc-update.json을 함께 푸시한 후 두 공개 ZIP을 전체 다운로드하여 검증해야 합니다. 업데이트 후 회사 ERP 거래처명 현장 대조는 필요합니다.

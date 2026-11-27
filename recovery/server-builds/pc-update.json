@@ -1,8 +1,8 @@
 {
-  "version": "1.4.116",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.116.zip",
-  "sha256": "2b8cc3d57abea9b08078f66ac4cc58b5e379f0abb649012ec48b30b38c507c53",
-  "exe_sha256": "56d67bd8edfd8096d44bcaf83e2a743e832074931599d517c6a28301c501d510",
-  "bytes": 38641770,
-  "notes": "대표 관리자 가공 테스트 기록 초기화 · 보호 백업·미리보기 · 수주 전체 거래처 미입고 조회 · APK 1.0.11"
+  "version": "1.4.117",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.117.zip",
+  "sha256": "a941d1403f00d11bfa50d4caba7fdc1cdb857da7ef04621982ed6ef798932fe2",
+  "exe_sha256": "7ef2a715a9c8eccf721974ba4c91a94956ab4c00b4599c96634b06d4c878acfe",
+  "bytes": 38643772,
+  "notes": "미입고 거래처명 연결 보완 · 행별 거래처 우선·공통 마스터 확인 · 기존 기록·설정 유지 · APK 1.0.11"
 }
