@@ -15,3 +15,9 @@ recovery/server-v2.39.1/erp_db_powershell.go, erp_db_probe_windows.go, erp_db_pr
 ## 남은 작업과 다음 단계
 
 현재는 구현 소스 중간 저장 단계입니다. 실제 크기 스크립트/한글 경로/각 조회 모드/Windows 인자 길이/표준입력 전달 회귀 테스트, 합성 Chromium 실패/회복 화면, 전체 Go 테스트/race/vet/Windows 교차 빌드, 소스 ZIP 재빌드, 공개 다운로드/업데이트 검증이 남았습니다. 기존 운영 자료와 DB 설정을 변경하거나 실제 회사 DB에 연결하지 않았습니다. 공개 업데이트는 아직 v1.4.117입니다.
+
+## 실행 방식 회귀 검증 통과 및 화면 보완
+
+진단/기간 미리보기/자동 반영/수주별 미입고 4개 모드에서 전체 스크립트는 기존 한도보다 크지만 실행 인자는 2,048자 미만이며 동일한 고정 부트스트랩만 사용함을 확인했습니다. 한글/따옴표 경로와 수주값, 전체 표준입력 자식 프로세스 전달, 시작 오류 206 및 각 실패 단계 디코딩, 기존 자동 반영/수주 조회 회귀 테스트가 통과했습니다.
+
+신규 테스트 파일은 erp_db_powershell_test.go입니다. 실패 상태를 녹색 정상 표시와 혼동하지 않도록 경고색을 추가하고, 실제 Chromium 합성 오류/복구 테스트를 release118_browser_test.go와 audit/browser-erp-launch-v1.4.118.cjs에 준비했습니다. 신규 화면 자산은 extras/erp-db-check-v1.4.118.js, extras/erp-db-status-v1.4.118.css이며 extras/machining.html에서 사용합니다. 다음 단계는 화면과 전체 검증 및 새 버전 패키징입니다.
