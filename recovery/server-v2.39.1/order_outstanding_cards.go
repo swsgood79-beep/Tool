@@ -209,7 +209,7 @@ func (a *App) orderOutstandingCardsMarkup(page, name string) string {
 	if name != "work.html" && name != "admin.html" {
 		return page
 	}
-	assets := `<link rel="stylesheet" href="/order-outstanding-v1.4.116.css"><link rel="stylesheet" href="/order-outstanding-cards-v1.4.119.css"><script defer src="/order-outstanding-cards-v1.4.119.js"></script>`
+	assets := `<link rel="stylesheet" href="/order-outstanding-v1.4.116.css"><link rel="stylesheet" href="/order-outstanding-cards-v1.4.119.css"><script defer src="/order-outstanding-cards-v1.4.123.js"></script>`
 	marker := `<div id="order-outstanding-config" hidden data-endpoint="/order-outstanding/` + template.HTMLEscapeString(a.state.Board) + `"></div>`
 	page = strings.Replace(page, "</head>", assets+"</head>", 1)
 	return strings.Replace(page, "</body>", marker+"</body>", 1)
