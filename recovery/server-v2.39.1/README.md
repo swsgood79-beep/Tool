@@ -1,19 +1,27 @@
-# 알파작업완료확인 · PC v1.4.118 / 앱 v1.0.11
+# 알파작업완료확인 · PC v1.4.119 / 앱 v1.0.11
 
 직교로봇 제작 현장의 **수주 확인 → 작업자 검사 신청 → 관리자 검사 → 출하사진 등록 → 기록 보관**을 관리하는 프로그램입니다. 회사 PC에서 서버를 실행하고 작업자·관리자는 휴대폰과 다른 PC에서 같은 자료를 확인합니다.
 
 | 다운로드·안내 | 링크 |
 |---|---|
-| **회사 PC 프로그램 v1.4.118** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.118.zip) |
+| **회사 PC 프로그램 v1.4.119** | [Windows ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.119.zip) |
 | **관리자 Android 앱 v1.0.11** | [APK 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaAdmin-Android-v1.0.11.apk) |
-| **현재 전체 소스 · PC 1.4.118 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.118-App-v1.0.11.zip) |
+| **현재 전체 소스 · PC 1.4.119 / 앱 1.0.11 / 작업자 웹 1.4.101** | [소스 ZIP 다운로드](https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-source-PC-v1.4.119-App-v1.0.11.zip) |
 | 처음 설치·업데이트 | [빠른 시작](START-HERE.md) |
 | 관리자 앱·Firebase 설정 | [관리자 앱 설정 안내](ANDROID-ADMIN-SETUP.md) |
 | 버전별 변경 내용 | [변경 이력](CHANGELOG.md) |
 
 현재 개발 자료는 **`recovery-v2.39.1` 브랜치의 `recovery/server-v2.39.1`**에 있습니다. [소스 보기](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-v2.39.1) · [버전별 다운로드 목록](https://github.com/swsgood79-beep/Tool/tree/recovery-v2.39.1/recovery/server-builds). PC 프로그램과 APK는 버전 번호를 따로 사용합니다.
 
-## 이번 업데이트 · PC 1.4.118 · ERP 조회 실행 복구
+## 이번 업데이트 · PC 1.4.119 · 기본 수주카드 미입고 현황
+
+기존 프로그램의 **PC 업데이트 확인**으로 설치합니다. 일반 작업자·관리자의 기본 수주카드에서 **검사 화면 열기 왼쪽**에 **미입고 현황 보기**를 제공합니다. 카드를 펼치지 않고 누르면 해당 수주의 모든 거래처·품목을 로봇품번별로 조회합니다. 로봇품번은 전체 폭에서 줄바꿈하고 품명/잔량/거래처/입고예정일을 4열로 표시합니다. 새로고침과 조회 시각을 제공합니다.
+
+정상 조회 결과가 0건이면 버튼을 숨깁니다. 조회 중과 실패·잘림은 구분하여 표시합니다. 조회 결과는 메모리에만 1분간 재사용하고 팝업 새로고침으로 즉시 다시 조회합니다. 출하기록·엑셀에는 미입고 내용을 추가하지 않습니다. 기존 가공팀 화면의 미입고 버튼은 제거했습니다. 기존 검사·구매팀 호출과 계정/권한/운영 자료/DB 설정을 유지합니다. 관리자 수정·펼치기 조작은 조회/검사 버튼 행의 바로 윗줄에 배치합니다.
+
+합성 자료로 실제 Chromium 화면과 저장 제외, 권한·동시 변경 및 Windows 빌드를 검증합니다. 회사 ERP 실제 결과와 실제 Windows·휴대폰 동작은 현장 확인 대상입니다. APK v1.0.11입니다.
+
+## 이전 업데이트 · PC 1.4.118 · ERP 조회 실행 복구
 
 기존 프로그램의 **PC 업데이트 확인**으로 설치합니다. v1.4.117에서 전체 ERP 스크립트를 Windows 실행 인자로 인코딩하면 명령 길이 한도를 넘겨 DB 조회 프로그램이 시작되지 않는 회귀를 수정했습니다. 짧은 고정 실행 인자와 UTF-8 표준입력으로 스크립트를 전달합니다. 기존 INI와 저장된 DB 설정을 재사용하며 같은 화면에서 **설정 적용 · 지금 갱신**으로 조회할 수 있습니다.
 

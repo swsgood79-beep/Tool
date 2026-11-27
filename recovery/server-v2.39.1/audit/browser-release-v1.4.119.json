@@ -1,0 +1,163 @@
+{
+  "scope": "Actual Chromium implementation with synthetic order/ERP data, worker public-board and authenticated administrator entry points. Company ERP/physical Windows/Android remain field checks.",
+  "results": [
+    {
+      "role": "worker",
+      "width": 320,
+      "theme": "light",
+      "result": "pass",
+      "scope": "Actual basic card: adjacent buttons, verified zero hidden, independent keyboard popup, full robot text and four columns, no overflow, existing inspection and purchase-call actions"
+    },
+    {
+      "role": "worker",
+      "width": 320,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "Actual basic card: adjacent buttons, verified zero hidden, independent keyboard popup, full robot text and four columns, no overflow, existing inspection and purchase-call actions"
+    },
+    {
+      "role": "worker",
+      "width": 360,
+      "theme": "light",
+      "result": "pass",
+      "scope": "Actual basic card: adjacent buttons, verified zero hidden, independent keyboard popup, full robot text and four columns, no overflow, existing inspection and purchase-call actions"
+    },
+    {
+      "role": "worker",
+      "width": 360,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "Actual basic card: adjacent buttons, verified zero hidden, independent keyboard popup, full robot text and four columns, no overflow, existing inspection and purchase-call actions"
+    },
+    {
+      "role": "worker",
+      "width": 390,
+      "theme": "light",
+      "result": "pass",
+      "scope": "Actual basic card: adjacent buttons, verified zero hidden, independent keyboard popup, full robot text and four columns, no overflow, existing inspection and purchase-call actions"
+    },
+    {
+      "role": "worker",
+      "width": 390,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "Actual basic card: adjacent buttons, verified zero hidden, independent keyboard popup, full robot text and four columns, no overflow, existing inspection and purchase-call actions"
+    },
+    {
+      "role": "worker",
+      "width": 430,
+      "theme": "light",
+      "result": "pass",
+      "scope": "Actual basic card: adjacent buttons, verified zero hidden, independent keyboard popup, full robot text and four columns, no overflow, existing inspection and purchase-call actions"
+    },
+    {
+      "role": "worker",
+      "width": 430,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "Actual basic card: adjacent buttons, verified zero hidden, independent keyboard popup, full robot text and four columns, no overflow, existing inspection and purchase-call actions"
+    },
+    {
+      "role": "worker",
+      "width": 1100,
+      "theme": "light",
+      "result": "pass",
+      "scope": "Actual basic card: adjacent buttons, verified zero hidden, independent keyboard popup, full robot text and four columns, no overflow, existing inspection and purchase-call actions"
+    },
+    {
+      "role": "worker",
+      "width": 1100,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "Actual basic card: adjacent buttons, verified zero hidden, independent keyboard popup, full robot text and four columns, no overflow, existing inspection and purchase-call actions"
+    },
+    {
+      "role": "admin",
+      "width": 320,
+      "theme": "light",
+      "result": "pass",
+      "scope": "Actual basic card: adjacent buttons, verified zero hidden, independent keyboard popup, full robot text and four columns, no overflow, existing inspection and purchase-call actions"
+    },
+    {
+      "role": "admin",
+      "width": 320,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "Actual basic card: adjacent buttons, verified zero hidden, independent keyboard popup, full robot text and four columns, no overflow, existing inspection and purchase-call actions"
+    },
+    {
+      "role": "admin",
+      "width": 360,
+      "theme": "light",
+      "result": "pass",
+      "scope": "Actual basic card: adjacent buttons, verified zero hidden, independent keyboard popup, full robot text and four columns, no overflow, existing inspection and purchase-call actions"
+    },
+    {
+      "role": "admin",
+      "width": 360,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "Actual basic card: adjacent buttons, verified zero hidden, independent keyboard popup, full robot text and four columns, no overflow, existing inspection and purchase-call actions"
+    },
+    {
+      "role": "admin",
+      "width": 390,
+      "theme": "light",
+      "result": "pass",
+      "scope": "Actual basic card: adjacent buttons, verified zero hidden, independent keyboard popup, full robot text and four columns, no overflow, existing inspection and purchase-call actions"
+    },
+    {
+      "role": "admin",
+      "width": 390,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "Actual basic card: adjacent buttons, verified zero hidden, independent keyboard popup, full robot text and four columns, no overflow, existing inspection and purchase-call actions"
+    },
+    {
+      "role": "admin",
+      "width": 430,
+      "theme": "light",
+      "result": "pass",
+      "scope": "Actual basic card: adjacent buttons, verified zero hidden, independent keyboard popup, full robot text and four columns, no overflow, existing inspection and purchase-call actions"
+    },
+    {
+      "role": "admin",
+      "width": 430,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "Actual basic card: adjacent buttons, verified zero hidden, independent keyboard popup, full robot text and four columns, no overflow, existing inspection and purchase-call actions"
+    },
+    {
+      "role": "admin",
+      "width": 1100,
+      "theme": "light",
+      "result": "pass",
+      "scope": "Actual basic card: adjacent buttons, verified zero hidden, independent keyboard popup, full robot text and four columns, no overflow, existing inspection and purchase-call actions"
+    },
+    {
+      "role": "admin",
+      "width": 1100,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "Actual basic card: adjacent buttons, verified zero hidden, independent keyboard popup, full robot text and four columns, no overflow, existing inspection and purchase-call actions"
+    },
+    {
+      "role": "worker",
+      "width": 390,
+      "result": "pass",
+      "scope": "Truncated query remains retryable, confirmed zero hides button, normal recovery and polled-card replacement retain one working popup button"
+    },
+    {
+      "role": "worker",
+      "width": 390,
+      "result": "pass",
+      "scope": "Existing classic design preference retains independent basic-card popup"
+    },
+    {
+      "role": "admin",
+      "width": 390,
+      "result": "pass",
+      "scope": "Existing classic design preference retains independent basic-card popup"
+    }
+  ]
+}
