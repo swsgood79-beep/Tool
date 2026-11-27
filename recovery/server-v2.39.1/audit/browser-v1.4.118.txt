@@ -1,0 +1,5 @@
+=== RUN   TestRelease118ERPLaunchBrowser
+ERP launch browser checks passed 5
+--- PASS: TestRelease118ERPLaunchBrowser (6.68s)
+PASS
+ok  	wanryotalk-reconstructed-server	6.989s

@@ -27,3 +27,7 @@ recovery/server-v2.39.1/erp_db_powershell.go, erp_db_probe_windows.go, erp_db_pr
 합성 Windows 시작 오류 206을 사용하는 실제 Chromium 320/390/430/1100px 4개 경고 화면과 정상 재시도 1개 사례가 통과했습니다. 가로 넘침, 오류 상세 표시, 기존 수주/수량/설정 보존과 정상 경고색 해제를 확인했습니다. 5장 캡처는 모두 합성 자료입니다.
 
 README.md, START-HERE.md, CHANGELOG.md, audit/RECOVERY-V1.4.118.md 및 패키징/소스 동일 재빌드 스크립트를 준비했습니다. 루트 AGENTS.md의 최신 복구 메모도 1.4.118로 갱신했습니다. 전체 Go 테스트와 최종 빌드 검증 진행 후 결과를 저장하고 패키징합니다. 공개 업데이트는 아직 v1.4.117입니다.
+
+## 최종 검증 통과
+
+전체 go test ./... (63.588초), 관련 race (11.032초), Linux/Windows vet, Windows GUI 교차 빌드, 실제 Chromium 5개 사례가 모두 통과했습니다. 로그는 audit/*v1.4.118.txt에 저장했습니다. 실행파일은 /workspace/work/AlphaWorkComplete-Recovered-v1.4.118.exe입니다. 신규 코드 변경 없이 전체 추적 소스 파일을 패키징하고 Windows 실행파일 동일 해시 재빌드를 진행합니다. 실제 회사 Windows PowerShell/DB 실행은 현장 확인 대상입니다. 공개 업데이트는 아직 v1.4.117입니다.
