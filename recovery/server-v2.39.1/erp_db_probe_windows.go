@@ -26,9 +26,6 @@ func platformERPDBProbe(ctx context.Context, folder string) ERPDBReport {
 	if syncOnly, _ := ctx.Value(erpDBSyncKey{}).(bool); syncOnly {
 		prefix += "$SyncOnly=$true\n"
 	}
-	if order, ok := ctx.Value(erpOrderOutstandingKey{}).(string); ok {
-		prefix += "$OutstandingOrder='" + strings.ReplaceAll(order, "'", "''") + "'\n"
-	}
 	script := prefix + "$ERPFolder='" + strings.ReplaceAll(folder, "'", "''") + "'\n" + erpDBScript
 	u := utf16.Encode([]rune(script))
 	b := make([]byte, len(u)*2)

@@ -1,7 +1,7 @@
 $ErrorActionPreference='Stop'
 $ProgressPreference='SilentlyContinue'
 [Console]::OutputEncoding=New-Object Text.UTF8Encoding($false)
-$report=[ordered]@{status='failed';stage='config_path';config_reason='';connected=$false;error_code=0;columns=@();foreign_keys=@();purchase_rows=@();outstanding_rows=@();truncated=$false}
+$report=[ordered]@{status='failed';stage='config_path';config_reason='';connected=$false;error_code=0;columns=@();foreign_keys=@();purchase_rows=@();truncated=$false}
 $conn=$null
 try {
  Add-Type -AssemblyName System.Data
@@ -47,44 +47,7 @@ try {
  $report.status='failed'
  $report.stage='connect'
  $conn.Open();$report.connected=$true
- if($OutstandingOrder){
-  $report.stage='order_outstanding'
-  # Discover optional line-level order and unit keys. Schema mismatch fails the
-  # query rather than returning an empty success or falling back to BASE rows.
-  $schema=$conn.CreateCommand()
-  $schema.CommandText="SELECT COL_LENGTH('dbo.PURORD_HIS','RCVORD_NO'),COL_LENGTH('dbo.CSTMST_INFO','UNT_CD')"
-  $reader=$schema.ExecuteReader();[void]$reader.Read()
-  $lineOrder=!$reader.IsDBNull(0);$customerUnit=!$reader.IsDBNull(1)
-  $reader.Close();$schema.Dispose()
-  $orderExpr='m.RCVORD_NO'
-  if($lineOrder){$orderExpr="COALESCE(NULLIF(LTRIM(RTRIM(h.RCVORD_NO)),''),m.RCVORD_NO)"}
-  $customerJoin='c.CST_CD=m.CST_CD'
-  if($customerUnit){$customerJoin+=' AND c.UNT_CD=m.UNT_CD'}
-  $sql=@'
-SELECT TOP (2001)
- CASE WHEN robot.matches=1 THEN robot.MITM_CD ELSE '' END AS robot,
- i.ITM_NM,ISNULL(h.PUR_QTY,0)-ISNULL(h.IN_QTY,0) AS outstanding,
- c.CST_NM,h.SCH_DATE
-FROM dbo.PURORD_MST m JOIN dbo.PURORD_HIS h
- ON h.UNT_CD=m.UNT_CD AND h.PURORD_DATE=m.PURORD_DATE AND h.PURORD_NO=m.PURORD_NO
-LEFT JOIN dbo.ITMMST_INFO i ON i.ITM_CD=h.ITM_CD AND i.PARTS_TYPE=h.PARTS_TYPE
-LEFT JOIN dbo.CSTMST_INFO c ON CUSTOMER_JOIN
-OUTER APPLY (SELECT MIN(d.MITM_CD) AS MITM_CD,COUNT(DISTINCT NULLIF(LTRIM(RTRIM(d.MITM_CD)),'')) AS matches
- FROM dbo.DEMREQ_HIS d
- WHERE d.UNT_CD=h.UNT_CD AND d.DEMREQ_DATE=h.DEMREQ_DATE AND d.DEMREQ_NO=h.DEMREQ_NO AND d.DEMREQ_SEQ=h.DEMREQ_SEQ
- AND d.TITM_CD=h.ITM_CD AND d.PARTS_TYPE=h.PARTS_TYPE AND d.RCVORD_NO=ORDER_EXPR) robot
-WHERE ORDER_EXPR=@Order AND ISNULL(h.PUR_QTY,0)>ISNULL(h.IN_QTY,0)
-ORDER BY h.UNT_CD,h.PURORD_DATE,h.PURORD_NO,h.PURORD_SEQ
-'@
-  $cmd=$conn.CreateCommand();$cmd.CommandText=$sql.Replace('CUSTOMER_JOIN',$customerJoin).Replace('ORDER_EXPR',$orderExpr);$cmd.CommandTimeout=20
-  [void]$cmd.Parameters.Add('@Order',[Data.SqlDbType]::NVarChar,100);$cmd.Parameters['@Order'].Value=$OutstandingOrder
-  $rd=$cmd.ExecuteReader();$rows=New-Object 'Collections.Generic.List[object]'
-  try{while($rd.Read()){
-   if($rows.Count -ge 2000){$report.truncated=$true;break}
-   $rows.Add([ordered]@{robot=[string]$rd[0];item=[string]$rd[1];quantity=[decimal]$rd[2];customer=[string]$rd[3];due=[string]$rd[4]})
-  }}finally{$rd.Close();$cmd.Dispose()}
-  $report.outstanding_rows=@($rows.ToArray());$report.status='order_outstanding';$report.stage='done'
- }elseif($PurchasePreview){
+ if($PurchasePreview){
   $report.stage='purchase_preview'
   $purchaseSql=@'
 SELECT TOP (2001) h.UNT_CD,h.PURORD_DATE,h.PURORD_NO,h.PURORD_SEQ,m.RCVORD_NO,m.PROJECT,

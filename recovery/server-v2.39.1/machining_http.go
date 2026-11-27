@@ -40,7 +40,7 @@ func (a *App) machiningHTTP(w http.ResponseWriter, r *http.Request, s Session) b
 	if path != "/machining" && !strings.HasPrefix(path, "/machining/") && path != "/machining-admin" && !strings.HasPrefix(path, "/machining-admin/") {
 		return false
 	}
-	if a.machiningResetHTTP(w, r, s) || a.orderOutstandingHTTP(w, r, s) {
+	if a.machiningResetHTTP(w, r, s) {
 		return true
 	}
 	if a.erpDBSyncHTTP(w, r, s) {

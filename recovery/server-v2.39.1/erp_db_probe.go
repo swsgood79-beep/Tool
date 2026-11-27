@@ -28,20 +28,19 @@ type ERPDBForeignKey struct {
 	RefColumn string `json:"ref_column"`
 }
 type ERPDBReport struct {
-	OutstandingRows []OrderOutstandingRow `json:"outstanding_rows,omitempty"`
-	PurchaseRows    []ERPDBPurchase       `json:"purchase_rows,omitempty"`
-	DateFrom        string                `json:"date_from,omitempty"`
-	DateTo          string                `json:"date_to,omitempty"`
-	ConfigReason    string                `json:"config_reason,omitempty"`
-	Stage           string                `json:"stage,omitempty"`
-	Version         string                `json:"program_version"`
-	At              time.Time             `json:"at"`
-	Status          string                `json:"status"`
-	Connected       bool                  `json:"connected"`
-	ErrorCode       int                   `json:"error_code,omitempty"`
-	Columns         []ERPDBColumn         `json:"columns"`
-	ForeignKeys     []ERPDBForeignKey     `json:"foreign_keys"`
-	Truncated       bool                  `json:"truncated"`
+	PurchaseRows []ERPDBPurchase   `json:"purchase_rows,omitempty"`
+	DateFrom     string            `json:"date_from,omitempty"`
+	DateTo       string            `json:"date_to,omitempty"`
+	ConfigReason string            `json:"config_reason,omitempty"`
+	Stage        string            `json:"stage,omitempty"`
+	Version      string            `json:"program_version"`
+	At           time.Time         `json:"at"`
+	Status       string            `json:"status"`
+	Connected    bool              `json:"connected"`
+	ErrorCode    int               `json:"error_code,omitempty"`
+	Columns      []ERPDBColumn     `json:"columns"`
+	ForeignKeys  []ERPDBForeignKey `json:"foreign_keys"`
+	Truncated    bool              `json:"truncated"`
 }
 type ERPDBView struct {
 	Busy     bool   `json:"busy"`
@@ -111,13 +110,9 @@ func decodeDBProbe(raw []byte) ERPDBReport {
 		r.Stage = ""
 	}
 	switch r.Status {
-	case "order_outstanding", "purchase_preview", "ok", "config_missing", "ambiguous", "config_invalid", "timeout", "unsupported", "login_failed", "database_denied", "tls_failed", "metadata_failed", "failed":
+	case "purchase_preview", "ok", "config_missing", "ambiguous", "config_invalid", "timeout", "unsupported", "login_failed", "database_denied", "tls_failed", "metadata_failed", "failed":
 	default:
 		r.Status = "failed"
-	}
-	if len(r.OutstandingRows) > 2000 {
-		r.OutstandingRows = r.OutstandingRows[:2000]
-		r.Truncated = true
 	}
 	if len(r.PurchaseRows) > 2000 {
 		r.PurchaseRows = r.PurchaseRows[:2000]
