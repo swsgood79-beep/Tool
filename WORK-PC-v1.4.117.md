@@ -21,3 +21,9 @@ recovery/server-v2.39.1/erp-db-probe.ps1, erp_db_probe.go, order_outstanding.go,
 ## 회귀 검증과 실제 화면 테스트 준비
 
 코드/동일 사업장/공통 사업장/다른 이름 충돌/빈 이름/중복 마스터/앞자리 0 보존의 12개 회귀 사례와 ERP JSON 디코딩→실제 HTTP 이름 반환, 조회 수주 범위 및 읽기 전용 테스트가 통과했습니다. 코드의 대소문자나 선행 0을 임의 통합하지 않습니다. 신규 파일은 order_outstanding_customers_test.go, release117_browser_test.go, audit/browser-supplier-v1.4.117.cjs입니다. 다음 단계는 합성 ERP 코드와 마스터 후보로 실제 Chromium 320~430px/PC 화면을 촬영하고 전체 검증 후 새 버전을 패키징하는 것입니다.
+
+## 화면 검증 통과 및 패키징 준비
+
+실제 Chromium 320/360/390/430/1100px 5개 사례가 통과했습니다. 가상 원본 코드/마스터 후보를 ERP JSON 디코더와 실제 HTTP로 처리한 이름이 화면에 표시됩니다. 공통/동일 사업장 이름, 충돌 시 확인 불가, 소수 수량/행 수 보존, 가로 넘침 없음, 새로고침을 확인했습니다. 5장 스크린샷은 모두 합성 자료입니다.
+
+README.md/START-HERE.md/CHANGELOG.md/audit/RECOVERY-V1.4.117.md를 갱신하고 패키징/동일 소스 재빌드 스크립트를 준비했습니다. 전체 Go 테스트, race, Linux/Windows vet와 Windows 교차 빌드가 진행 중입니다. 공개 업데이트는 아직 v1.4.116입니다.
