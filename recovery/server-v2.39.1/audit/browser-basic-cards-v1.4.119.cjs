@@ -34,6 +34,12 @@ const config = JSON.parse(raw);
    assert.ok(position.x + position.width <= target.x + 1, JSON.stringify({role,width,position,target}));
    assert.ok(Math.abs(position.y-target.y)<2, JSON.stringify({role,width,position,target}));
    assert.ok(Math.abs(position.height-target.height)<2);
+   if (role==='admin') {
+    const edit=await card.locator(':scope > summary > .order-edit').boundingBox();
+    assert.ok(edit && edit.y+edit.height<=position.y,JSON.stringify({role,width,edit,position}));
+    const metadata=await card.locator('.design-order-meta').boundingBox();
+    assert.ok(metadata.y+metadata.height<=edit.y+1,JSON.stringify({role,width,edit,metadata}));
+   }
    assert.equal(await empty.locator('.order-outstanding-button').isVisible(),false);
    const overflow = await card.evaluate(element => ({page:document.documentElement.scrollWidth>innerWidth,card:element.scrollWidth>element.clientWidth+1}));
    assert.deepEqual(overflow,{page:false,card:false});

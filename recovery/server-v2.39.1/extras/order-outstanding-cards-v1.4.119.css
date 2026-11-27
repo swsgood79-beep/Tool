@@ -58,3 +58,14 @@ html[data-alpha-design=modern] .e-card.has-order-outstanding .e-action {
     padding: 6px 8px;
   }
 }
+
+/* Preserve the existing admin edit/expand controls above the query/action row. */
+html[data-alpha-design=modern] .admin-project.e-card.has-order-outstanding .e-admin-footer {
+  padding-top: 40px;
+}
+html[data-alpha-design=modern] .admin-project.e-card.has-order-outstanding > summary > .order-edit {
+  bottom: 52px;
+}
+html[data-alpha-design=modern] .admin-project.e-card.has-order-outstanding > summary > .admin-chevron {
+  bottom: 57px;
+}
