@@ -149,7 +149,16 @@ func (a *App) renderTemplate(w http.ResponseWriter, t *template.Template, name s
 	}
 	if name == "purchasing.html" || name == "machining.html" || name == "machining-import.html" || machiningAccount {
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
-		w.Write(b.Bytes())
+		page := b.String()
+		if data, ok := v.(map[string]any); ok && data["Admin"] == true {
+			for _, ss := range a.sessions {
+				if equal(ss.CSRF, fmt.Sprint(data["CSRF"])) && validAccountSession(&a.state, ss) {
+					page = a.teamMarkup(page, ss)
+					break
+				}
+			}
+		}
+		w.Write([]byte(page))
 		return
 	}
 	s := b.String()
@@ -256,7 +265,7 @@ func (a *App) renderTemplate(w http.ResponseWriter, t *template.Template, name s
 	s = a.purchasingWorkerMarkup(s, name)
 	s = a.accountMarkup(s, name, v)
 	if name == "admin.html" {
-		s = strings.Replace(s, "</body>", `<script defer src="/machining-admin-link-v1.4.103.js"></script></body>`, 1)
+		s = strings.Replace(s, "</body>", `</body>`, 1)
 	}
 	s = a.workerAppMarkup(s, name, v)
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
@@ -515,6 +524,7 @@ func run() error {
 		}
 		defer closeDesktop()
 		desktopStarted = started
+		a.teamNativeDesktop = started
 	}
 	a.startPumps(ctx)
 	a.startInternetAuto(ctx)
@@ -718,6 +728,9 @@ func (a *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 	s, ok := a.admin(w, r)
 	if !ok {
+		return
+	}
+	if a.teamHTTP(w, r, s) || a.teamAlertsHTTP(w, r, s) {
 		return
 	}
 	if a.machiningHTTP(w, r, s) {

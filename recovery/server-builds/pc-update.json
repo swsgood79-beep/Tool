@@ -1,8 +1,8 @@
 {
-  "version": "1.4.114",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.114.zip",
-  "sha256": "41905d594276419d47d28f37c01524f24c39dab9d0f5a066711b67fabc7781a6",
-  "exe_sha256": "f0fdcca9509a4f9a4d9a5c1d13b569e197939c1225b5ec8efa608204a164c152",
-  "bytes": 38661642,
-  "notes": "가공 완료 시 실제 수량 입력 · 부분 완료·잔여 수량 · 시작·완료 기록 보존 · DB 자동 연결 유지"
+  "version": "1.4.115",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.115.zip",
+  "sha256": "7ca04cd5f2dea47607dd824a9e47caa5f580341b59f8b58b0e0fb04605d9287f",
+  "exe_sha256": "aae52a251e43d09ce3c03495d0b7b15f31895d563124b5c4fb7a08148b0a4cb2",
+  "bytes": 38682764,
+  "notes": "관리자별 팀 메뉴 권한 · 2차 부분 완료 PC·휴대폰 알림 · 기존 관리자 계정·로그인 유지 · DB 연결 유지"
 }

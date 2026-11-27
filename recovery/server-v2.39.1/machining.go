@@ -246,6 +246,7 @@ func (a *App) actMachining(session Session, id, phase, action, runID string, rev
 			}
 			active.Completed = &now
 			active.CompletedBy = &actor
+			machiningCompletionNotice(s, j, phase, *active, now)
 		default:
 			return errors.New("작업 요청을 확인해 주세요")
 		}

@@ -326,7 +326,7 @@ func copyBackup(ctx context.Context, w io.Writer, r io.Reader, limit int64) (int
 	}
 }
 func backupEmpty(s State) bool {
-	return len(s.MachiningJobs) == 0 && len(s.MachiningImports) == 0 && len(s.MachiningAdjustments) == 0 && len(s.Manuals) == 0 && len(s.PurchasingCalls) == 0 && len(s.AdminAccounts) == 0 && len(s.ShippingRecords) == 0 && len(s.Community) == 0 && len(s.Announcements) == 0 && len(s.Projects) == 0 && len(s.Events) == 0 && len(s.Designers) == 0 && len(s.ClientNotes) == 0 && len(s.NativeAdminLogins) == 0 && (s.NativeAdminPush == nil || len(s.NativeAdminPush.Devices) == 0) && s.Integration.Phone.Subscription == nil
+	return len(s.TeamNotices) == 0 && len(s.MachiningJobs) == 0 && len(s.MachiningImports) == 0 && len(s.MachiningAdjustments) == 0 && len(s.Manuals) == 0 && len(s.PurchasingCalls) == 0 && len(s.AdminAccounts) == 0 && len(s.ShippingRecords) == 0 && len(s.Community) == 0 && len(s.Announcements) == 0 && len(s.Projects) == 0 && len(s.Events) == 0 && len(s.Designers) == 0 && len(s.ClientNotes) == 0 && len(s.NativeAdminLogins) == 0 && (s.NativeAdminPush == nil || len(s.NativeAdminPush.Devices) == 0) && s.Integration.Phone.Subscription == nil
 }
 func (a *App) applyVerifiedPortable(v verifiedPortable) error {
 	if !backupEmpty(a.state) {

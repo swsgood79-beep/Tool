@@ -1,0 +1,11 @@
+const {chromium}=require('playwright'),assert=require('assert/strict'),fs=require('fs');const [origin,raw]=process.argv.slice(2),cfg=JSON.parse(raw);
+(async()=>{const b=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox']});try{
+ const c=await b.newContext({viewport:{width:1100,height:1000},locale:'ko-KR'});await c.addCookies([{...cfg.admin,url:origin}]);const p=await c.newPage();await p.goto(origin+'/machining-admin');
+ await p.locator('#erp-db-sync-status').filter({hasText:'꺼짐'}).waitFor();await p.locator('#erp-db-sync-form input[name=from]').fill('2026-11-01');await p.locator('#erp-db-sync-form input[name=to]').fill('2026-12-31');await p.locator('#erp-db-sync-start').click();await p.locator('#erp-db-sync-status').filter({hasText:'1품목 / 32개'}).waitFor();
+ const jobs=await (await c.request.get(origin+'/machining/status')).json();assert.equal(jobs.jobs.length,1);assert.equal(jobs.jobs[0].Required,32);assert.equal(jobs.jobs[0].Sources.length,2);assert.equal(jobs.jobs[0].Sources[0].Robot,'TEST-ROBOT-A');
+ await p.reload();assert.equal(await p.locator('#erp-db-sync-form input[name=from]').inputValue(),'2026-11-01');await p.locator('#erp-db-sync-status').filter({hasText:'정상'}).waitFor();
+ await p.locator('section.import-box').first().screenshot({path:'audit/machining-db-sync-admin-v1.4.115.png'});
+ await p.setViewportSize({width:390,height:844});await p.screenshot({path:'audit/machining-db-sync-phone-v1.4.115.png',fullPage:true});assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+ await p.locator('#erp-db-sync-stop').click();await p.locator('#erp-db-sync-status').filter({hasText:'꺼짐'}).waitFor();assert.equal((await (await c.request.get(origin+'/machining/status')).json()).jobs.length,1);
+ fs.writeFileSync('audit/browser-db-sync-v1.4.115.json',JSON.stringify({result:'pass',scope:'Synthetic SQL fixture; async auto import, 16+16=32 aggregation, robot codes, persistent date settings, disable preserves records, mobile no overflow. Actual company robot join requires Windows field run.'},null,2)+'\n');console.log('DB sync browser passed');await c.close();
+}finally{await b.close()}})().catch(e=>{console.error(e);process.exit(1)});

@@ -81,6 +81,12 @@ func (a *App) desktopSnapshot() desktopView {
 			history = append(history, line)
 		}
 	}
+	for _, n := range a.state.TeamNotices {
+		if !containsAccount(n.ReadBy, "") {
+			v.Unread++
+			v.Events = append(v.Events, teamNoticeDesktop(n))
+		}
+	}
 	sort.Slice(v.Events, func(i, j int) bool { return v.Events[i].ID < v.Events[j].ID })
 	v.History = strings.Join(history, "\r\n\r\n")
 	return v

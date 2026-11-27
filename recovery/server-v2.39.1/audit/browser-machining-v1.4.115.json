@@ -1,0 +1,57 @@
+{
+  "scope": "temporary synthetic app/Chromium; real Android/Windows runtime pending",
+  "results": [
+    {
+      "viewport": 360,
+      "theme": "light",
+      "result": "pass",
+      "scope": "dedicated role redirect, order modal table, robot/part codes, no horizontal overflow, search keyboard blur and own account menu"
+    },
+    {
+      "viewport": 360,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "dedicated role redirect, order modal table, robot/part codes, no horizontal overflow, search keyboard blur and own account menu"
+    },
+    {
+      "viewport": 390,
+      "theme": "light",
+      "result": "pass",
+      "scope": "dedicated role redirect, order modal table, robot/part codes, no horizontal overflow, search keyboard blur and own account menu"
+    },
+    {
+      "viewport": 390,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "dedicated role redirect, order modal table, robot/part codes, no horizontal overflow, search keyboard blur and own account menu"
+    },
+    {
+      "viewport": 430,
+      "theme": "light",
+      "result": "pass",
+      "scope": "dedicated role redirect, order modal table, robot/part codes, no horizontal overflow, search keyboard blur and own account menu"
+    },
+    {
+      "viewport": 430,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "dedicated role redirect, order modal table, robot/part codes, no horizontal overflow, search keyboard blur and own account menu"
+    },
+    {
+      "result": "pass",
+      "scope": "one-tap start without quantity dialog; blank inline completion quantity; actual 12/32 complete, remaining 20, three stages, active run survives reload, worker timestamps hidden"
+    },
+    {
+      "result": "pass",
+      "scope": "admin receipt acknowledgement, XLSX preview/import and repeat import preserves work/receipt"
+    },
+    {
+      "result": "pass",
+      "scope": "existing native app role routing and own password screen has no administrator navigation"
+    },
+    {
+      "result": "pass",
+      "scope": "owner bridge toggle and worker preview with disabled start buttons and returns to admin management"
+    }
+  ]
+}

@@ -25,6 +25,7 @@ const nativeAndroidPackage = "com.alpharobotics.admin"
 
 type NativeFirebasePublic struct{ ProjectID, ApplicationID, SenderID, APIKey string }
 type NativeAdminDevice struct {
+	TeamDelivered                                       int64 `json:",omitempty"`
 	ID, Name, AccountID, Token, SecretHash, SessionHash string
 	Role                                                string `json:",omitempty"`
 	AccountRevision, OwnerRevision, Delivered           int64
@@ -228,7 +229,7 @@ func (a *App) nativeAdminHTTP(w http.ResponseWriter, r *http.Request, session Se
 		if account := adminAccount(&a.state, session.AccountID); account != nil {
 			username = account.Username
 		}
-		jsonReply(w, map[string]any{"account_role": nativeSessionRole(&a.state, session), "worker_view_supported": !purchase && !machine, "worker_view": nativeWorkerView(r, a.sessionCookie()), "account_username": username, "persistent_login": persistent, "cookie_name": a.sessionCookie(), "registered": registered, "ready": public != nil, "config": public, "csrf": session.CSRF, "release": releaseVersion, "account_key": session.AccountID, "account_label": nativeAccountLabel(&a.state, session.AccountID), "owner": session.AccountID == ""})
+		jsonReply(w, map[string]any{"account_role": nativeSessionRole(&a.state, session), "worker_view_supported": !purchase && !machine && adminMenus(&a.state, session).Production, "worker_view": nativeWorkerView(r, a.sessionCookie()), "account_username": username, "persistent_login": persistent, "cookie_name": a.sessionCookie(), "registered": registered, "ready": public != nil, "config": public, "csrf": session.CSRF, "release": releaseVersion, "account_key": session.AccountID, "account_label": nativeAccountLabel(&a.state, session.AccountID), "owner": session.AccountID == ""})
 		return true
 	}
 	if path == "/native-admin/register" && r.Method == "POST" {
@@ -259,8 +260,10 @@ func (a *App) nativeAdminHTTP(w http.ResponseWriter, r *http.Request, session Se
 		err := a.commitAnnouncement(func(s *State) error {
 			d := nativeDevice(s, id)
 			delivered := s.NextID
+			teamDelivered := s.NextID
 			if d != nil && d.AccountID == session.AccountID && d.AccountRevision == session.AccountRevision {
 				delivered = d.Delivered
+				teamDelivered = d.TeamDelivered
 			}
 			appKind := ""
 			if machine {
@@ -269,7 +272,7 @@ func (a *App) nativeAdminHTTP(w http.ResponseWriter, r *http.Request, session Se
 			if purchase {
 				appKind = "purchasing"
 			}
-			next := NativeAdminDevice{Role: appKind, ID: id, Name: name, AccountID: session.AccountID, AccountRevision: session.AccountRevision, OwnerRevision: s.Integration.Revision, Token: value, SecretHash: hashToken(secret), SessionHash: hashToken(session.CSRF), Enabled: true, Delivered: delivered, LastStatus: "앱 연결 완료"}
+			next := NativeAdminDevice{TeamDelivered: teamDelivered, Role: appKind, ID: id, Name: name, AccountID: session.AccountID, AccountRevision: session.AccountRevision, OwnerRevision: s.Integration.Revision, Token: value, SecretHash: hashToken(secret), SessionHash: hashToken(session.CSRF), Enabled: true, Delivered: delivered, LastStatus: "앱 연결 완료"}
 			for i := range s.NativeAdminPush.Devices {
 				if s.NativeAdminPush.Devices[i].Token == value && s.NativeAdminPush.Devices[i].ID != id {
 					s.NativeAdminPush.Devices[i].Enabled = false
@@ -517,6 +520,7 @@ func (a *App) sendNativeData(ctx context.Context, c NativeAdminPushConfig, d Nat
 	return false, nil
 }
 func (a *App) pumpNativeAdmin(ctx context.Context) {
+	defer a.pumpNativeMachining(ctx)
 	a.mu.Lock()
 	if a.testMode || !nativePushReady(a.state.NativeAdminPush) {
 		a.mu.Unlock()
@@ -558,7 +562,10 @@ func (a *App) pumpNativeAdmin(ctx context.Context) {
 				if e.ID <= delivered {
 					continue
 				}
-				if notifyEvent(e) && (e.BatchID == 0 || e.BatchID == e.ID) {
+				a.mu.Lock()
+				productionAllowed := adminMenus(&a.state, Session{AccountID: d.AccountID}).Production
+				a.mu.Unlock()
+				if productionAllowed && notifyEvent(e) && (e.BatchID == 0 || e.BatchID == e.ID) {
 					bad, err := a.sendNativeAdmin(ctx, cfg, d, e, false)
 					if err != nil {
 						disable = bad

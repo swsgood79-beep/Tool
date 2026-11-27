@@ -14,13 +14,18 @@ import (
 
 type AdminAccount struct {
 	ID, Username, Name, PasswordHash string
-	Role                             string `json:",omitempty"`
+	Menus                            *AdminMenus `json:",omitempty"`
+	MenuRevision                     int64       `json:",omitempty"`
+	Role                             string      `json:",omitempty"`
 	Enabled                          bool
 	Revision                         int64
 }
 type AdminAccountView struct {
 	ID, Username, Name string
 	Role               string
+	Menus              AdminMenus
+	MenuRevision       int64
+	Manager            bool
 	Enabled            bool
 	Revision           int64
 }
@@ -160,6 +165,16 @@ func (a *App) manageAdminAccount(r *http.Request) error {
 	if u.Revision != number(r.FormValue("revision")) {
 		return errors.New("계정 정보가 변경되었습니다. 화면을 다시 확인해 주세요.")
 	}
+	if action == "menus" {
+		if u.Role != "" && u.Role != "admin" {
+			return errors.New("전용 작업 계정의 역할은 변경하지 않습니다")
+		}
+		if u.MenuRevision != number(r.FormValue("menu_revision")) {
+			return errors.New("메뉴 권한이 다른 화면에서 변경됐습니다. 새로고침해 주세요")
+		}
+		menus := AdminMenus{Purchasing: r.FormValue("menu_purchasing") == "1", Production: r.FormValue("menu_production") == "1", Machining: r.FormValue("menu_machining") == "1"}
+		return a.commitAnnouncement(func(st *State) error { v := adminAccount(st, u.ID); v.Menus = &menus; v.MenuRevision++; return nil })
+	}
 	id := u.ID
 	hash := ""
 	if action == "reset" {
@@ -257,7 +272,7 @@ func (a *App) accountHTTP(w http.ResponseWriter, r *http.Request, session Sessio
 	v["AccountError"], v["AccountMessage"], v["PasswordOnly"], v["AccountOwner"] = problem, message, path == "/my-password", session.AccountID == ""
 	rows := []AdminAccountView{}
 	for _, u := range a.state.AdminAccounts {
-		rows = append(rows, AdminAccountView{u.ID, u.Username, u.Name, u.Role, u.Enabled, u.Revision})
+		rows = append(rows, AdminAccountView{ID: u.ID, Username: u.Username, Name: u.Name, Role: u.Role, Enabled: u.Enabled, Revision: u.Revision, Menus: adminMenus(&a.state, Session{AccountID: u.ID}), MenuRevision: u.MenuRevision, Manager: u.Role == "" || u.Role == "admin"})
 	}
 	v["OwnerName"], v["OwnerOriginal"] = ownerDisplayName(&a.state), a.state.OwnerName
 	v["Accounts"] = rows
@@ -301,5 +316,5 @@ func (a *App) accountMarkup(s, name string, value any) string {
 	}
 	marker := `<div id="admin-account-config" hidden data-owner="` + map[bool]string{true: "true", false: "false"}[owner] + `" data-label="` + template.HTMLEscapeString(label) + `" data-username="` + template.HTMLEscapeString(username) + `"></div>`
 	s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/admin-accounts-v1.4.54.css"></head>`, 1)
-	return strings.Replace(s, "</body>", marker+"</body>", 1)
+	return a.teamMarkup(strings.Replace(s, "</body>", marker+"</body>", 1), session)
 }

@@ -40,6 +40,10 @@ func (a *App) nativeAdminPresentation(w http.ResponseWriter, r *http.Request) (h
 	if !ok {
 		return w, false
 	}
+	if managerAccount(&a.state, session) && !adminMenus(&a.state, session).Production && (nativeAdminWorkerPath(r.URL.Path) || (r.URL.Path == "/native-admin/view" && r.URL.Query().Get("mode") == "worker")) {
+		http.Error(w, "생산팀 메뉴 권한이 없습니다", 403)
+		return w, true
+	}
 	// This cookie changes presentation only. Authentication/permissions still
 	// come exclusively from the administrator session on every request.
 	if r.URL.Path == "/native-admin/view" {

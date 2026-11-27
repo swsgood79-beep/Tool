@@ -52,6 +52,9 @@ func (a *App) admin(w http.ResponseWriter, r *http.Request) (Session, bool) {
 		http.Error(w, "이 설정은 대표 관리자 계정에서 관리합니다.", 403)
 		return s, false
 	}
+	if !a.teamPermissionCheck(w, r, s) {
+		return s, false
+	}
 	if r.Method == "POST" && !equal(r.FormValue("csrf"), s.CSRF) {
 		http.Error(w, "관리자 요청 검증 실패", 403)
 		return s, false

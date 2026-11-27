@@ -74,6 +74,7 @@ type Event struct {
 	RequestedAt, Completed                                   *time.Time
 }
 type State struct {
+	TeamNotices               []TeamNotice                 `json:",omitempty"`
 	MachiningJobs             []MachiningJob               `json:",omitempty"`
 	MachiningImports          []MachiningImport            `json:",omitempty"`
 	MachiningAdjustments      []MachiningAdjustment        `json:",omitempty"`
@@ -121,6 +122,7 @@ type Ticket struct {
 	Next    string
 }
 type App struct {
+	teamNativeDesktop          bool
 	erpDBSyncDone              chan struct{}
 	erpDBSyncMessage           string
 	erpDBSyncNow               bool
