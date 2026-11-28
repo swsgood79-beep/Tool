@@ -12,6 +12,9 @@ import (
 	"unicode/utf16"
 )
 
+//go:embed erp-receipt-contract.ps1
+var erpReceiptContractScript string
+
 //go:embed erp-certificates.ps1
 var erpCertificateScript string
 
@@ -64,9 +67,13 @@ func erpDBPowerShellCommand(ctx context.Context, folder string) *exec.Cmd {
 	if order, ok := ctx.Value(erpCertificateKey{}).(string); ok {
 		prefix += "$CertificateOrder='" + strings.ReplaceAll(order, "'", "''") + "'\n"
 	}
+	if contract, _ := ctx.Value(erpReceiptContractKey{}).(bool); contract {
+		prefix += "$ReceiptContract=$true\n"
+	}
 	script := prefix + "$ERPFolder='" + strings.ReplaceAll(folder, "'", "''") + "'\n" + strings.Replace(strings.Replace(erpDBScript, "# RECEIPT_METADATA_SCRIPT", erpReceiptMetadataScript, 1), "# OBSERVATION_ACCESS_SCRIPT", erpObservationAccessScript, 1)
 	script = strings.Replace(script, "# OBSERVATION_SCRIPT", erpObservationScript, 1)
 	script = strings.Replace(script, "# CERTIFICATE_SCRIPT", erpCertificateScript, 1)
+	script = strings.Replace(script, "# RECEIPT_CONTRACT_SCRIPT", erpReceiptContractScript, 1)
 	units := utf16.Encode([]rune(erpDBBootstrap))
 	encoded := make([]byte, len(units)*2)
 	for i, unit := range units {

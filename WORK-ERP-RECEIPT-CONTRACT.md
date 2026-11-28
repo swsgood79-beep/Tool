@@ -1,0 +1,5 @@
+# Read-only receipt contract inspection
+
+User has only the operational ERP DB. Actual receipt write integration remains a separate draft branch until full stored-procedure bodies, transaction behavior and actor/money mappings can be verified. This completed diagnostic increment collects ONLY the three observed stored-procedure definitions from system catalogs, never executes them or queries business rows. Known credential patterns cause omission; output is confidential and manually downloaded, never publicly uploaded. Existing owner/CSRF/process bounds reused. New mode receipt-contract, filename ERP-receipt-contract.json. Exact SELECT TOP3 allowlist, size cap, visibility/redaction flags. This is an inspection tool, not the requested live writer.
+
+Files erp-receipt-contract.ps1, erp_db_probe.go, erp_db_powershell.go, erp-db-probe.ps1, transport test, contract tests, extras/machining.html and erp-db-check-v1.4.123.js. Related tests pass0.697s. Native SQL execution still pending. Release separately from unfinished checkbox/write branch so public users do not receive an unfinished write button. Version/public metadata not yet changed at this checkpoint.
