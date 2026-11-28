@@ -1,0 +1,24 @@
+{
+  "version": "1.4.132",
+  "release_commit": "c3f3968",
+  "verified_at_utc": "2026-11-28T06:37:01.981504+00:00",
+  "manifest_verified": true,
+  "source_rebuild_verified": true,
+  "downloads": [
+    {
+      "file": "AlphaWorkComplete-Recovered-Windows-x64-v1.4.132.zip",
+      "bytes": 38714790,
+      "sha256": "a5d3757bef8bdf62169a3389f992e192560474eb1e854c697880bb5bc82a6d40",
+      "verified": true
+    },
+    {
+      "file": "AlphaWorkComplete-Recovered-source-PC-v1.4.132-App-v1.0.11.zip",
+      "bytes": 36588102,
+      "sha256": "e378ecb413ef465202d3cc0b65e0b60887babcca5809d45c56f35ee84c76daa2",
+      "verified": true
+    }
+  ],
+  "field_verification_pending": [
+    "Live ERP result reconciliation remains on company network; synthetic per-item mapping and UI verified. ERP input/helper canceled and removed, no native helper verification to resume"
+  ]
+}
