@@ -263,7 +263,7 @@ func (a *App) renderTemplate(w http.ResponseWriter, t *template.Template, name s
 		s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/inspection-inspector-v1.4.90.css"></head>`, 1)
 	}
 	s = a.purchasingWorkerMarkup(s, name)
-	s = a.orderOutstandingCardsMarkup(s, name)
+	s = a.orderOutstandingCardsMarkup(s, name, v)
 	s = a.accountMarkup(s, name, v)
 	if name == "admin.html" {
 		s = strings.Replace(s, "</body>", `</body>`, 1)
@@ -732,6 +732,9 @@ func (a *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 	s, ok := a.admin(w, r)
 	if !ok {
+		return
+	}
+	if a.receiptHelperHTTP(w, r, s) {
 		return
 	}
 	if a.teamHTTP(w, r, s) || a.teamAlertsHTTP(w, r, s) {

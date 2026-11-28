@@ -17,12 +17,13 @@ type orderOutstandingEntry struct {
 	At, Expires         time.Time
 }
 type orderOutstandingView struct {
-	Number string                `json:"number"`
-	State  string                `json:"state"`
-	Count  int                   `json:"count"`
-	At     *time.Time            `json:"at,omitempty"`
-	Error  string                `json:"error,omitempty"`
-	Rows   []OrderOutstandingRow `json:"rows,omitempty"`
+	Number   string                `json:"number"`
+	Snapshot string                `json:"snapshot,omitempty"`
+	State    string                `json:"state"`
+	Count    int                   `json:"count"`
+	At       *time.Time            `json:"at,omitempty"`
+	Error    string                `json:"error,omitempty"`
+	Rows     []OrderOutstandingRow `json:"rows,omitempty"`
 }
 
 func (a *App) outstandingScope() string {
@@ -145,6 +146,7 @@ func (a *App) orderOutstandingCardsHTTP(w http.ResponseWriter, r *http.Request) 
 			}
 			if detail && entry.State == "ready" {
 				view.Rows = entry.Rows
+				view.Snapshot = receiptHelperSnapshot(entry)
 			}
 		}
 		views[id] = view
@@ -179,6 +181,7 @@ func (a *App) fetchOutstandingCards(parent context.Context, orders []string, sco
 				break
 			}
 			row.Order = ""
+			row.Key = receiptRowKey(row)
 			grouped[order] = append(grouped[order], row)
 		}
 	}
@@ -205,12 +208,23 @@ func (a *App) fetchOutstandingCards(parent context.Context, orders []string, sco
 		a.outstandingCards[order] = entry
 	}
 }
-func (a *App) orderOutstandingCardsMarkup(page, name string) string {
+func (a *App) orderOutstandingCardsMarkup(page, name string, value any) string {
 	if name != "work.html" && name != "admin.html" {
 		return page
 	}
-	assets := `<link rel="stylesheet" href="/order-outstanding-v1.4.116.css"><link rel="stylesheet" href="/order-outstanding-cards-v1.4.119.css"><script defer src="/order-outstanding-cards-v1.4.119.js"></script>`
-	marker := `<div id="order-outstanding-config" hidden data-endpoint="/order-outstanding/` + template.HTMLEscapeString(a.state.Board) + `"></div>`
+	assets := `<link rel="stylesheet" href="/order-outstanding-v1.4.116.css"><link rel="stylesheet" href="/order-outstanding-cards-v1.4.119.css"><script defer src="/order-outstanding-cards-v1.4.128.js"></script>`
+	helper := ""
+	if root, ok := value.(map[string]any); ok {
+		if csrf, ok := root["CSRF"].(string); ok {
+			for _, session := range a.sessions {
+				if equal(session.CSRF, csrf) && validAccountSession(&a.state, session) && receiptHelperAllowed(&a.state, session) {
+					helper = ` data-helper-csrf="` + template.HTMLEscapeString(csrf) + `"`
+				}
+			}
+		}
+	}
+	assets += `<link rel="stylesheet" href="/erp-receipt-helper-v1.4.128.css">`
+	marker := `<div id="order-outstanding-config" hidden data-endpoint="/order-outstanding/` + template.HTMLEscapeString(a.state.Board) + `"` + helper + `></div>`
 	page = strings.Replace(page, "</head>", assets+"</head>", 1)
 	return strings.Replace(page, "</body>", marker+"</body>", 1)
 }
