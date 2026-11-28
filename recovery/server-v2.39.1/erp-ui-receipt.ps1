@@ -30,7 +30,7 @@ try {
    # Password controls and their subtrees are excluded before reading Name/Value.
    if($cur.IsPassword){$report.password_excluded++;continue}
    $index=$items.Count
-   $item=[ordered]@{index=$index;parent=[int]$entry.parent;depth=[int]$entry.depth;type=$cur.ControlType.ProgrammaticName;class=$cur.ClassName;automation_id=$cur.AutomationId;name='';value='';patterns=@();enabled=$cur.IsEnabled;offscreen=$cur.IsOffscreen;row=-1;column=-1;grid_rows=-1;grid_columns=-1;toggle='';selected=$false}
+   $item=[ordered]@{index=$index;parent=[int]$entry.parent;depth=[int]$entry.depth;type=$cur.ControlType.ProgrammaticName;class=$cur.ClassName;automation_id=$cur.AutomationId;name='';value='';patterns=@();enabled=$cur.IsEnabled;offscreen=$cur.IsOffscreen;row=-1;column=-1;grid_rows=-1;grid_columns=-1;toggle='';selected=$false;legacy_role=0;legacy_state=0;legacy_child_id=0}
    if(!$cur.IsOffscreen){$item.name=[string]$cur.Name}
    $item.patterns=@($element.GetSupportedPatterns()|ForEach-Object{$_.ProgrammaticName})
    foreach($field in @('name','class','automation_id')){if($item[$field].Length -gt 1500){$item[$field]=$item[$field].Substring(0,1500);$report.truncated=$true}}
@@ -47,6 +47,13 @@ try {
    try{if($element.TryGetCurrentPattern([System.Windows.Automation.TogglePattern]::Pattern,[ref]$pattern)){$item.toggle=[string]$pattern.Current.ToggleState}}catch{$report.read_errors++}
    $pattern=$null
    try{if($element.TryGetCurrentPattern([System.Windows.Automation.SelectionItemPattern]::Pattern,[ref]$pattern)){$item.selected=[bool]$pattern.Current.IsSelected}}catch{$report.read_errors++}
+   $pattern=$null
+   try{if($element.TryGetCurrentPattern([System.Windows.Automation.LegacyIAccessiblePattern]::Pattern,[ref]$pattern)){
+    $legacy=$pattern.Current
+    $item.legacy_role=[uint32]$legacy.Role;$item.legacy_state=[uint32]$legacy.State;$item.legacy_child_id=[int]$legacy.ChildId
+    if(!$cur.IsOffscreen){if(!$item.name){$item.name=[string]$legacy.Name};if(!$item.value){$item.value=[string]$legacy.Value}}
+   }}catch{$report.read_errors++}
+   foreach($field in @('name','value')){if($item[$field].Length -gt 1500){$item[$field]=$item[$field].Substring(0,1500);$report.truncated=$true}}
    $items.Add($item)
    if($entry.depth -ge 18){$report.truncated=$true;continue}
    $child=$walker.GetFirstChild($element);$siblings=0

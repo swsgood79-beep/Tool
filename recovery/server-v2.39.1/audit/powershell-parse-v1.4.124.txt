@@ -1,1 +1,1 @@
-UIA receipt script PowerShell7 AST parse pass; native Windows UIA execution pending
+UIA receipt PowerShell7 AST parse pass, including read-only LegacyIAccessible metadata; native Windows pending

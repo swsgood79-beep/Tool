@@ -8,6 +8,10 @@ import (
 
 type erpUIReceiptKey struct{}
 type ERPUIReceiptElement struct {
+	LegacyRole    uint32 `json:"legacy_role"`
+	LegacyState   uint32 `json:"legacy_state"`
+	LegacyChildID int    `json:"legacy_child_id"`
+
 	Index        int      `json:"index"`
 	Parent       int      `json:"parent"`
 	Depth        int      `json:"depth"`
