@@ -1,0 +1,1252 @@
+{
+  "results": [
+    {
+      "width": 320,
+      "theme": "light",
+      "contrast": [
+        {
+          "fg": ".receipt-helper p",
+          "contrast": 10.892392802666782,
+          "background": [
+            232,
+            241,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-helper button:disabled",
+          "contrast": 6.69328574741916,
+          "background": [
+            233,
+            238,
+            245
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-choice label",
+          "contrast": 16.33330548507808,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-controls small",
+          "contrast": 5.205689765563644,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-part td",
+          "contrast": 11.134993841333577,
+          "background": [
+            240,
+            243,
+            247
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "tbody tr:not(.receipt-part):not(.receipt-controls) td",
+          "contrast": 12.392955612752752,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "thead th",
+          "contrast": 14.675373790398547,
+          "background": [
+            240,
+            243,
+            247
+          ],
+          "opacity": "1"
+        }
+      ],
+      "result": "pass",
+      "scope": "Actual Alpha theme/contrast/disabled button/selection/prepare, long codes and no horizontal overflow; synthetic data and mocked native launch"
+    },
+    {
+      "width": 320,
+      "theme": "system-dark",
+      "contrast": [
+        {
+          "fg": ".receipt-helper p",
+          "contrast": 10.159935116931589,
+          "background": [
+            32,
+            53,
+            82
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-helper button:disabled",
+          "contrast": 8.852870001912,
+          "background": [
+            36,
+            46,
+            62
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-choice label",
+          "contrast": 14.444493831848428,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-controls small",
+          "contrast": 8.462369843821971,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-part td",
+          "contrast": 11.043767608789018,
+          "background": [
+            37,
+            47,
+            63
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "tbody tr:not(.receipt-part):not(.receipt-controls) td",
+          "contrast": 12.932022092677824,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "thead th",
+          "contrast": 12.33539750878112,
+          "background": [
+            37,
+            47,
+            63
+          ],
+          "opacity": "1"
+        }
+      ],
+      "result": "pass",
+      "scope": "Actual Alpha theme/contrast/disabled button/selection/prepare, long codes and no horizontal overflow; synthetic data and mocked native launch"
+    },
+    {
+      "width": 320,
+      "theme": "app-dark",
+      "contrast": [
+        {
+          "fg": ".receipt-helper p",
+          "contrast": 10.159935116931589,
+          "background": [
+            32,
+            53,
+            82
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-helper button:disabled",
+          "contrast": 8.852870001912,
+          "background": [
+            36,
+            46,
+            62
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-choice label",
+          "contrast": 14.444493831848428,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-controls small",
+          "contrast": 8.462369843821971,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-part td",
+          "contrast": 11.043767608789018,
+          "background": [
+            37,
+            47,
+            63
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "tbody tr:not(.receipt-part):not(.receipt-controls) td",
+          "contrast": 12.932022092677824,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "thead th",
+          "contrast": 12.33539750878112,
+          "background": [
+            37,
+            47,
+            63
+          ],
+          "opacity": "1"
+        }
+      ],
+      "result": "pass",
+      "scope": "Actual Alpha theme/contrast/disabled button/selection/prepare, long codes and no horizontal overflow; synthetic data and mocked native launch"
+    },
+    {
+      "width": 320,
+      "theme": "light-on-dark",
+      "contrast": [
+        {
+          "fg": ".receipt-helper p",
+          "contrast": 10.892392802666782,
+          "background": [
+            232,
+            241,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-helper button:disabled",
+          "contrast": 6.69328574741916,
+          "background": [
+            233,
+            238,
+            245
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-choice label",
+          "contrast": 16.33330548507808,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-controls small",
+          "contrast": 5.205689765563644,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-part td",
+          "contrast": 11.134993841333577,
+          "background": [
+            240,
+            243,
+            247
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "tbody tr:not(.receipt-part):not(.receipt-controls) td",
+          "contrast": 12.392955612752752,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "thead th",
+          "contrast": 14.675373790398547,
+          "background": [
+            240,
+            243,
+            247
+          ],
+          "opacity": "1"
+        }
+      ],
+      "result": "pass",
+      "scope": "Actual Alpha theme/contrast/disabled button/selection/prepare, long codes and no horizontal overflow; synthetic data and mocked native launch"
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "contrast": [
+        {
+          "fg": ".receipt-helper p",
+          "contrast": 10.892392802666782,
+          "background": [
+            232,
+            241,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-helper button:disabled",
+          "contrast": 6.69328574741916,
+          "background": [
+            233,
+            238,
+            245
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-choice label",
+          "contrast": 16.33330548507808,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-controls small",
+          "contrast": 5.205689765563644,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-part td",
+          "contrast": 11.134993841333577,
+          "background": [
+            240,
+            243,
+            247
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "tbody tr:not(.receipt-part):not(.receipt-controls) td",
+          "contrast": 12.392955612752752,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "thead th",
+          "contrast": 14.675373790398547,
+          "background": [
+            240,
+            243,
+            247
+          ],
+          "opacity": "1"
+        }
+      ],
+      "result": "pass",
+      "scope": "Actual Alpha theme/contrast/disabled button/selection/prepare, long codes and no horizontal overflow; synthetic data and mocked native launch"
+    },
+    {
+      "width": 390,
+      "theme": "system-dark",
+      "contrast": [
+        {
+          "fg": ".receipt-helper p",
+          "contrast": 10.159935116931589,
+          "background": [
+            32,
+            53,
+            82
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-helper button:disabled",
+          "contrast": 8.852870001912,
+          "background": [
+            36,
+            46,
+            62
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-choice label",
+          "contrast": 14.444493831848428,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-controls small",
+          "contrast": 8.462369843821971,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-part td",
+          "contrast": 11.043767608789018,
+          "background": [
+            37,
+            47,
+            63
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "tbody tr:not(.receipt-part):not(.receipt-controls) td",
+          "contrast": 12.932022092677824,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "thead th",
+          "contrast": 12.33539750878112,
+          "background": [
+            37,
+            47,
+            63
+          ],
+          "opacity": "1"
+        }
+      ],
+      "result": "pass",
+      "scope": "Actual Alpha theme/contrast/disabled button/selection/prepare, long codes and no horizontal overflow; synthetic data and mocked native launch"
+    },
+    {
+      "width": 390,
+      "theme": "app-dark",
+      "contrast": [
+        {
+          "fg": ".receipt-helper p",
+          "contrast": 10.159935116931589,
+          "background": [
+            32,
+            53,
+            82
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-helper button:disabled",
+          "contrast": 8.852870001912,
+          "background": [
+            36,
+            46,
+            62
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-choice label",
+          "contrast": 14.444493831848428,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-controls small",
+          "contrast": 8.462369843821971,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-part td",
+          "contrast": 11.043767608789018,
+          "background": [
+            37,
+            47,
+            63
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "tbody tr:not(.receipt-part):not(.receipt-controls) td",
+          "contrast": 12.932022092677824,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "thead th",
+          "contrast": 12.33539750878112,
+          "background": [
+            37,
+            47,
+            63
+          ],
+          "opacity": "1"
+        }
+      ],
+      "result": "pass",
+      "scope": "Actual Alpha theme/contrast/disabled button/selection/prepare, long codes and no horizontal overflow; synthetic data and mocked native launch"
+    },
+    {
+      "width": 390,
+      "theme": "light-on-dark",
+      "contrast": [
+        {
+          "fg": ".receipt-helper p",
+          "contrast": 10.892392802666782,
+          "background": [
+            232,
+            241,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-helper button:disabled",
+          "contrast": 6.69328574741916,
+          "background": [
+            233,
+            238,
+            245
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-choice label",
+          "contrast": 16.33330548507808,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-controls small",
+          "contrast": 5.205689765563644,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-part td",
+          "contrast": 11.134993841333577,
+          "background": [
+            240,
+            243,
+            247
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "tbody tr:not(.receipt-part):not(.receipt-controls) td",
+          "contrast": 12.392955612752752,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "thead th",
+          "contrast": 14.675373790398547,
+          "background": [
+            240,
+            243,
+            247
+          ],
+          "opacity": "1"
+        }
+      ],
+      "result": "pass",
+      "scope": "Actual Alpha theme/contrast/disabled button/selection/prepare, long codes and no horizontal overflow; synthetic data and mocked native launch"
+    },
+    {
+      "width": 430,
+      "theme": "light",
+      "contrast": [
+        {
+          "fg": ".receipt-helper p",
+          "contrast": 10.892392802666782,
+          "background": [
+            232,
+            241,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-helper button:disabled",
+          "contrast": 6.69328574741916,
+          "background": [
+            233,
+            238,
+            245
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-choice label",
+          "contrast": 16.33330548507808,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-controls small",
+          "contrast": 5.205689765563644,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-part td",
+          "contrast": 11.134993841333577,
+          "background": [
+            240,
+            243,
+            247
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "tbody tr:not(.receipt-part):not(.receipt-controls) td",
+          "contrast": 12.392955612752752,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "thead th",
+          "contrast": 14.675373790398547,
+          "background": [
+            240,
+            243,
+            247
+          ],
+          "opacity": "1"
+        }
+      ],
+      "result": "pass",
+      "scope": "Actual Alpha theme/contrast/disabled button/selection/prepare, long codes and no horizontal overflow; synthetic data and mocked native launch"
+    },
+    {
+      "width": 430,
+      "theme": "system-dark",
+      "contrast": [
+        {
+          "fg": ".receipt-helper p",
+          "contrast": 10.159935116931589,
+          "background": [
+            32,
+            53,
+            82
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-helper button:disabled",
+          "contrast": 8.852870001912,
+          "background": [
+            36,
+            46,
+            62
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-choice label",
+          "contrast": 14.444493831848428,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-controls small",
+          "contrast": 8.462369843821971,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-part td",
+          "contrast": 11.043767608789018,
+          "background": [
+            37,
+            47,
+            63
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "tbody tr:not(.receipt-part):not(.receipt-controls) td",
+          "contrast": 12.932022092677824,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "thead th",
+          "contrast": 12.33539750878112,
+          "background": [
+            37,
+            47,
+            63
+          ],
+          "opacity": "1"
+        }
+      ],
+      "result": "pass",
+      "scope": "Actual Alpha theme/contrast/disabled button/selection/prepare, long codes and no horizontal overflow; synthetic data and mocked native launch"
+    },
+    {
+      "width": 430,
+      "theme": "app-dark",
+      "contrast": [
+        {
+          "fg": ".receipt-helper p",
+          "contrast": 10.159935116931589,
+          "background": [
+            32,
+            53,
+            82
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-helper button:disabled",
+          "contrast": 8.852870001912,
+          "background": [
+            36,
+            46,
+            62
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-choice label",
+          "contrast": 14.444493831848428,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-controls small",
+          "contrast": 8.462369843821971,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-part td",
+          "contrast": 11.043767608789018,
+          "background": [
+            37,
+            47,
+            63
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "tbody tr:not(.receipt-part):not(.receipt-controls) td",
+          "contrast": 12.932022092677824,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "thead th",
+          "contrast": 12.33539750878112,
+          "background": [
+            37,
+            47,
+            63
+          ],
+          "opacity": "1"
+        }
+      ],
+      "result": "pass",
+      "scope": "Actual Alpha theme/contrast/disabled button/selection/prepare, long codes and no horizontal overflow; synthetic data and mocked native launch"
+    },
+    {
+      "width": 430,
+      "theme": "light-on-dark",
+      "contrast": [
+        {
+          "fg": ".receipt-helper p",
+          "contrast": 10.892392802666782,
+          "background": [
+            232,
+            241,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-helper button:disabled",
+          "contrast": 6.69328574741916,
+          "background": [
+            233,
+            238,
+            245
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-choice label",
+          "contrast": 16.33330548507808,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-controls small",
+          "contrast": 5.205689765563644,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-part td",
+          "contrast": 11.134993841333577,
+          "background": [
+            240,
+            243,
+            247
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "tbody tr:not(.receipt-part):not(.receipt-controls) td",
+          "contrast": 12.392955612752752,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "thead th",
+          "contrast": 14.675373790398547,
+          "background": [
+            240,
+            243,
+            247
+          ],
+          "opacity": "1"
+        }
+      ],
+      "result": "pass",
+      "scope": "Actual Alpha theme/contrast/disabled button/selection/prepare, long codes and no horizontal overflow; synthetic data and mocked native launch"
+    },
+    {
+      "width": 1100,
+      "theme": "light",
+      "contrast": [
+        {
+          "fg": ".receipt-helper p",
+          "contrast": 10.892392802666782,
+          "background": [
+            232,
+            241,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-helper button:disabled",
+          "contrast": 6.69328574741916,
+          "background": [
+            233,
+            238,
+            245
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-choice label",
+          "contrast": 16.33330548507808,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-controls small",
+          "contrast": 5.205689765563644,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-part td",
+          "contrast": 11.134993841333577,
+          "background": [
+            240,
+            243,
+            247
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "tbody tr:not(.receipt-part):not(.receipt-controls) td",
+          "contrast": 12.392955612752752,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "thead th",
+          "contrast": 14.675373790398547,
+          "background": [
+            240,
+            243,
+            247
+          ],
+          "opacity": "1"
+        }
+      ],
+      "result": "pass",
+      "scope": "Actual Alpha theme/contrast/disabled button/selection/prepare, long codes and no horizontal overflow; synthetic data and mocked native launch"
+    },
+    {
+      "width": 1100,
+      "theme": "system-dark",
+      "contrast": [
+        {
+          "fg": ".receipt-helper p",
+          "contrast": 10.159935116931589,
+          "background": [
+            32,
+            53,
+            82
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-helper button:disabled",
+          "contrast": 8.852870001912,
+          "background": [
+            36,
+            46,
+            62
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-choice label",
+          "contrast": 14.444493831848428,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-controls small",
+          "contrast": 8.462369843821971,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-part td",
+          "contrast": 11.043767608789018,
+          "background": [
+            37,
+            47,
+            63
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "tbody tr:not(.receipt-part):not(.receipt-controls) td",
+          "contrast": 12.932022092677824,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "thead th",
+          "contrast": 12.33539750878112,
+          "background": [
+            37,
+            47,
+            63
+          ],
+          "opacity": "1"
+        }
+      ],
+      "result": "pass",
+      "scope": "Actual Alpha theme/contrast/disabled button/selection/prepare, long codes and no horizontal overflow; synthetic data and mocked native launch"
+    },
+    {
+      "width": 1100,
+      "theme": "app-dark",
+      "contrast": [
+        {
+          "fg": ".receipt-helper p",
+          "contrast": 10.159935116931589,
+          "background": [
+            32,
+            53,
+            82
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-helper button:disabled",
+          "contrast": 8.852870001912,
+          "background": [
+            36,
+            46,
+            62
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-choice label",
+          "contrast": 14.444493831848428,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-controls small",
+          "contrast": 8.462369843821971,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-part td",
+          "contrast": 11.043767608789018,
+          "background": [
+            37,
+            47,
+            63
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "tbody tr:not(.receipt-part):not(.receipt-controls) td",
+          "contrast": 12.932022092677824,
+          "background": [
+            27,
+            35,
+            48
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "thead th",
+          "contrast": 12.33539750878112,
+          "background": [
+            37,
+            47,
+            63
+          ],
+          "opacity": "1"
+        }
+      ],
+      "result": "pass",
+      "scope": "Actual Alpha theme/contrast/disabled button/selection/prepare, long codes and no horizontal overflow; synthetic data and mocked native launch"
+    },
+    {
+      "width": 1100,
+      "theme": "light-on-dark",
+      "contrast": [
+        {
+          "fg": ".receipt-helper p",
+          "contrast": 10.892392802666782,
+          "background": [
+            232,
+            241,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-helper button:disabled",
+          "contrast": 6.69328574741916,
+          "background": [
+            233,
+            238,
+            245
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-choice label",
+          "contrast": 16.33330548507808,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-controls small",
+          "contrast": 5.205689765563644,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": ".receipt-part td",
+          "contrast": 11.134993841333577,
+          "background": [
+            240,
+            243,
+            247
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "tbody tr:not(.receipt-part):not(.receipt-controls) td",
+          "contrast": 12.392955612752752,
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "opacity": "1"
+        },
+        {
+          "fg": "thead th",
+          "contrast": 14.675373790398547,
+          "background": [
+            240,
+            243,
+            247
+          ],
+          "opacity": "1"
+        }
+      ],
+      "result": "pass",
+      "scope": "Actual Alpha theme/contrast/disabled button/selection/prepare, long codes and no horizontal overflow; synthetic data and mocked native launch"
+    }
+  ]
+}
