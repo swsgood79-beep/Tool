@@ -12,6 +12,9 @@ import (
 	"unicode/utf16"
 )
 
+//go:embed erp-ui-msaa.cs
+var erpUIReceiptMSAASource string
+
 //go:embed erp-ui-receipt.ps1
 var erpUIReceiptScript string
 
@@ -79,7 +82,7 @@ func erpDBPowerShellCommand(ctx context.Context, folder string) *exec.Cmd {
 	script = strings.Replace(script, "# RECEIPT_CONTRACT_SCRIPT", erpReceiptContractScript, 1)
 	uiOnly, _ := ctx.Value(erpUIReceiptKey{}).(bool)
 	if uiOnly {
-		script = erpUIReceiptScript
+		script = strings.Replace(erpUIReceiptScript, "# MSAA_READER_SOURCE", erpUIReceiptMSAASource, 1)
 	}
 	units := utf16.Encode([]rune(erpDBBootstrap))
 	encoded := make([]byte, len(units)*2)

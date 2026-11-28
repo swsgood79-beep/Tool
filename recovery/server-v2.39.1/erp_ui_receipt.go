@@ -39,7 +39,30 @@ type ERPUIWindowDiscovery struct {
 	Class   string `json:"class"`
 	Visible bool   `json:"visible"`
 }
+type ERPMSAAElement struct {
+	Index    int    `json:"index"`
+	Parent   int    `json:"parent"`
+	Depth    int    `json:"depth"`
+	ChildID  int    `json:"child_id"`
+	Role     uint32 `json:"role"`
+	State    uint32 `json:"state"`
+	Name     string `json:"name"`
+	Value    string `json:"value"`
+	Children int    `json:"children"`
+}
+type ERPMSAAReport struct {
+	Reason           string           `json:"reason"`
+	Elements         []ERPMSAAElement `json:"elements"`
+	Truncated        bool             `json:"truncated"`
+	ReadErrors       int              `json:"read_errors"`
+	PasswordExcluded int              `json:"password_excluded"`
+	ErrorCode        int              `json:"error_code"`
+}
 type ERPUIReceiptReport struct {
+	ProxyStatus            string         `json:"proxy_status"`
+	LegacyManagedAvailable bool           `json:"legacy_managed_available"`
+	MSAA                   *ERPMSAAReport `json:"msaa,omitempty"`
+
 	Discovery          []ERPUIWindowDiscovery `json:"discovery,omitempty"`
 	NativeWindows      int                    `json:"native_windows"`
 	UIAVisited         int                    `json:"uia_visited"`
@@ -56,6 +79,21 @@ type ERPUIReceiptReport struct {
 }
 
 func sanitizeUIReceiptReport(report *ERPUIReceiptReport) {
+	if report.MSAA != nil {
+		if len(report.MSAA.Elements) > 800 {
+			report.MSAA.Elements = report.MSAA.Elements[:800]
+			report.MSAA.Truncated = true
+		}
+		for index := range report.MSAA.Elements {
+			element := &report.MSAA.Elements[index]
+			for _, field := range []*string{&element.Name, &element.Value} {
+				if len(*field) > 2000 {
+					*field = (*field)[:2000]
+					report.MSAA.Truncated = true
+				}
+			}
+		}
+	}
 	if len(report.Discovery) > 100 {
 		report.Discovery = report.Discovery[:100]
 		report.DiscoveryTruncated = true
@@ -89,7 +127,14 @@ func uiReceiptMessage(report *ERPUIReceiptReport) string {
 	switch report.Reason {
 	case "captured":
 		message := fmt.Sprintf("ERP 화면 인식 확인 완료 · %d개 요소 · 자동 체크 가능 범위는 결과 분석 후 확인합니다", len(report.Elements))
-		if report.Truncated || report.ReadErrors > 0 {
+		if report.MSAA != nil {
+			if report.MSAA.Reason == "captured" {
+				message += fmt.Sprintf(" · 구형 접근성 %d개", len(report.MSAA.Elements))
+			} else {
+				message += " · 구형 접근성 읽기 제한"
+			}
+		}
+		if report.Truncated || report.ReadErrors > 0 || (report.MSAA != nil && (report.MSAA.Truncated || report.MSAA.ReadErrors > 0)) {
 			message += " · 일부 요소 잘림/읽기 제한 있음"
 		}
 		return message

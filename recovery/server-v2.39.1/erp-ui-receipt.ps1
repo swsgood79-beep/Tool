@@ -1,11 +1,18 @@
 $ErrorActionPreference='Stop'
 $ProgressPreference='SilentlyContinue'
 [Console]::OutputEncoding=New-Object Text.UTF8Encoding($false)
-$result=[ordered]@{status='ui_receipt';stage='ui_receipt';connected=$false;ui_receipt=[ordered]@{reason='failed';window='';elements=@();truncated=$false;read_errors=0;password_excluded=0;saved=$false;discovery=@();native_windows=0;uia_visited=0;discovery_method='';discovery_truncated=$false}}
+$result=[ordered]@{status='ui_receipt';stage='ui_receipt';connected=$false;ui_receipt=[ordered]@{reason='failed';window='';elements=@();truncated=$false;read_errors=0;password_excluded=0;saved=$false;discovery=@();native_windows=0;uia_visited=0;discovery_method='';discovery_truncated=$false;proxy_status='not_attempted';legacy_managed_available=$false;msaa=@{reason='not_attempted';elements=@();truncated=$false;read_errors=0;password_excluded=0;error_code=0}}}
 $report=$result.ui_receipt
 try {
  Add-Type -AssemblyName UIAutomationClient
  Add-Type -AssemblyName UIAutomationTypes
+ try{
+  $proxy=[Reflection.Assembly]::Load('UIAutomationClientsideProviders, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35')
+  [System.Windows.Automation.ClientSettings]::RegisterClientSideProviderAssembly($proxy.GetName())
+  $report.proxy_status='registered'
+ }catch{$report.proxy_status='unavailable'}
+ $legacyType=[System.Windows.Automation.AutomationElement].Assembly.GetType('System.Windows.Automation.LegacyIAccessiblePattern',$false)
+ $report.legacy_managed_available=($null -ne $legacyType)
  $erp=@(Get-Process -Name PrimeXAR -ErrorAction SilentlyContinue)
  if($erp.Count -eq 0){$report.reason='erp_missing';throw 'stop'}
  if($erp.Count -ne 1){$report.reason='erp_ambiguous';throw 'stop'}
@@ -134,7 +141,7 @@ public static class AlphaReceiptWindows {
    $pattern=$null
    try{if($element.TryGetCurrentPattern([System.Windows.Automation.SelectionItemPattern]::Pattern,[ref]$pattern)){$item.selected=[bool]$pattern.Current.IsSelected}}catch{$report.read_errors++}
    $pattern=$null
-   try{if($element.TryGetCurrentPattern([System.Windows.Automation.LegacyIAccessiblePattern]::Pattern,[ref]$pattern)){
+   try{if($legacyType -and $element.TryGetCurrentPattern($legacyType.GetField('Pattern').GetValue($null),[ref]$pattern)){
     $legacy=$pattern.Current
     $item.legacy_role=[uint32]$legacy.Role;$item.legacy_state=[uint32]$legacy.State;$item.legacy_child_id=[int]$legacy.ChildId
     if(!$cur.IsOffscreen){if(!$item.name){$item.name=[string]$legacy.Name};if(!$item.value){$item.value=[string]$legacy.Value}}
@@ -151,6 +158,20 @@ public static class AlphaReceiptWindows {
  }
  if($queue.Count -gt 0){$report.truncated=$true}
  $report.elements=@($items.ToArray());$report.reason='captured'
+ try {
+  Add-Type -AssemblyName Accessibility
+  Add-Type -TypeDefinition @'
+# MSAA_READER_SOURCE
+'@ -ReferencedAssemblies @('System.dll','System.Core.dll',[Accessibility.IAccessible].Assembly.Location)
+  $targetHandle=[long]$root.Current.NativeWindowHandle
+  $legacyReport=[AlphaReceiptMsaa]::Read($targetHandle,[int]$erp[0].Id)
+  $legacyElements=New-Object 'Collections.Generic.List[object]'
+  foreach($legacyElement in $legacyReport.Elements){
+   $legacyElements.Add([ordered]@{index=$legacyElement.Index;parent=$legacyElement.Parent;depth=$legacyElement.Depth;child_id=$legacyElement.ChildId;role=$legacyElement.Role;state=$legacyElement.State;name=$legacyElement.Name;value=$legacyElement.Value;children=$legacyElement.Children})
+  }
+  $report.msaa=[ordered]@{reason=$legacyReport.Reason;elements=@($legacyElements.ToArray());truncated=$legacyReport.Truncated;read_errors=$legacyReport.ReadErrors;password_excluded=$legacyReport.PasswordExcluded;error_code=$legacyReport.ErrorCode}
+ }catch{$report.msaa.reason='unavailable';$report.msaa.error_code=[int]$_.Exception.HResult}
+
 }catch{}
 $result.stage='done'
 ConvertTo-Json -InputObject $result -Depth 8 -Compress

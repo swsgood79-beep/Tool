@@ -24,7 +24,7 @@ func syntheticUIReceipt() ERPDBReport {
 }
 
 func TestERPUIReceiptReadOnlySTAAndNoDatabase(t *testing.T) {
-	script := erpUIReceiptScript
+	script := strings.Replace(erpUIReceiptScript, "# MSAA_READER_SOURCE", erpUIReceiptMSAASource, 1)
 	for _, required := range []string{"PG03F2120", "ProcessId", "IsPassword", "password_excluded", "GridItemPattern", "TogglePattern", "SelectionItemPattern", "1200", "IsOffscreen"} {
 		if !strings.Contains(script, required) {
 			t.Fatal(required)
