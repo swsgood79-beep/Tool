@@ -1,0 +1,25 @@
+{
+  "version": "1.4.128",
+  "release_commit": "b7c41d5",
+  "verified_at_utc": "2026-11-28T05:06:21.389074+00:00",
+  "manifest_verified": true,
+  "source_rebuild_verified": true,
+  "downloads": [
+    {
+      "file": "AlphaWorkComplete-Recovered-Windows-x64-v1.4.128.zip",
+      "bytes": 38729539,
+      "sha256": "d78f0d00a09f54470130bb889ef575fd8ac808199574bdff1111883456ef2025",
+      "verified": true
+    },
+    {
+      "file": "AlphaWorkComplete-Recovered-source-PC-v1.4.128-App-v1.0.11.zip",
+      "bytes": 36356888,
+      "sha256": "b157294ae9bdc88dcabe2c271ed7d812f64157e633b608d345b3850c28889df1",
+      "verified": true
+    }
+  ],
+  "field_verification_pending": [
+    "Native company Windows helper launch, labelled purchase input and toolbar Search after update",
+    "Automatic vendor/row/quantity/final-save are not implemented; no repeated diagnostic upload requested"
+  ]
+}
