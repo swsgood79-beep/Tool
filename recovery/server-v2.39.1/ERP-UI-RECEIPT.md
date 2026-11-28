@@ -27,3 +27,7 @@
 ### PC127 bounded cell samples
 
 Read-only diagnostic prioritizes descendants of the first8 accessible row objects instead of exhausting800 nodes on row summaries. sampled_rows/skipped_rows/row_limit explicitly distinguish partial samples from full lists. ordinal is accessibility child order, NOT ERP purchase sequence. Optional default_action is a description only, never executed. Password guard and node/depth/queue caps remain. Real checkbox recognition/action capability and exact duplicate business-row identity still require company report; no automation action enabled.
+
+### PC128 usable preparation helper
+
+Authorized manager with machining menu uses basic order-card outstanding popup selection/quantities→prepare→Windows topmost helper. Full business row identity, grouped supplier/unit/PO.20-minute memory-only helper task; source scripts contain no business values. User manually sets ERP vendor/opens Data-load popup and confirms vendor. Optional labelled native EDIT input and unique shallow toolbar Search only, otherwise copy. No automatic vendor/row/quantity/final-save or direct DB write. Native company helper/filters pending field use. Refresh outstanding after manual ERP save. No repeated diagnostic upload required.

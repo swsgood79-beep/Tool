@@ -62,6 +62,9 @@ public static class AlphaReceiptFilter {
     if((state&(0x20000000u|0x1u|0x8000u|0x10000u))!=0)continue;
     uint role=Convert.ToUInt32(e.Node.get_accRole(e.Child),CultureInfo.InvariantCulture);
     if(role==24||role==28||role==29)continue;
+    // The known popup toolbar is shallow. Do not explore grid clients or
+    // unrelated editors while looking for its Search command.
+    if(!e.Toolbar&&role!=22&&e.Depth>=3)continue;
     string name=(e.Node.get_accName(e.Child)??"").Replace("&","").Trim();
     if(e.Toolbar&&role==43&&name=="검색")found.Add(e);
     if(e.Child!=0||e.Depth>=12)continue;
