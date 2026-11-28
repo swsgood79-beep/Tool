@@ -1,0 +1,25 @@
+{
+  "version": "1.4.131",
+  "release_commit": "8601f17",
+  "verified_at_utc": "2026-11-28T06:18:07.354573+00:00",
+  "manifest_verified": true,
+  "source_rebuild_verified": true,
+  "downloads": [
+    {
+      "file": "AlphaWorkComplete-Recovered-Windows-x64-v1.4.131.zip",
+      "bytes": 38737278,
+      "sha256": "0a28d192e3d6af177337d55b38fd4d159c3ee00cc95cf36276b5b62123c4c1f5",
+      "verified": true
+    },
+    {
+      "file": "AlphaWorkComplete-Recovered-source-PC-v1.4.131-App-v1.0.11.zip",
+      "bytes": 38622225,
+      "sha256": "6b236b36854350c54c29c196e90529e2d008dca4b0f41822a1f97b2efc1fe935",
+      "verified": true
+    }
+  ],
+  "field_verification_pending": [
+    "Company Windows helper actual display after removal of GUI HideWindow flag; native HWND checks source-tested and cross-built, not physically run here",
+    "Existing exact ERP row/quantity/final-save automation not implemented; manual workflow remains"
+  ]
+}
