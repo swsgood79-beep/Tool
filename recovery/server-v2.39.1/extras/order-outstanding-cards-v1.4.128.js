@@ -184,6 +184,7 @@
       const body = node('tbody');
       for (const item of items) {
         const row = node('tr');
+        let controlsRow;
         for (const value of [item.item || '확인 불가', item.quantity.toLocaleString('ko-KR'), item.customer || '확인 불가', date(item.due)]) row.append(node('td', value));
         if (config.dataset.helperCsrf) {
           const controls = node('div'); controls.className = 'receipt-choice';
@@ -196,11 +197,12 @@
           function syncChoice() {quantity.disabled=!checkbox.checked; if(checkbox.checked) choices.set(item.key,Number(quantity.value)); else choices.delete(item.key); changed();}
           checkbox.addEventListener('change',syncChoice); quantity.addEventListener('input',syncChoice);
           controls.append(label, quantity);
-          if(item.part) row.firstElementChild.append(node('small',item.part));
-          row.firstElementChild.append(controls);
-          if (!item.key) row.firstElementChild.append(node('small','발주 정보 확인 후 선택 가능'));
+          if(item.part) {const partRow=node('tr');partRow.className='receipt-part';const cell=node('td',item.part);cell.colSpan=4;partRow.append(cell);body.append(partRow);}
+          controlsRow=node('tr');const controlsCell=node('td');controlsCell.colSpan=4;controlsCell.append(controls);controlsRow.append(controlsCell);
+          if (!item.key) controlsCell.append(node('small','발주 정보 확인 후 선택 가능'));
         }
         body.append(row);
+        if (controlsRow) body.append(controlsRow);
       }
       table.append(head, body);
       section.append(heading, table);

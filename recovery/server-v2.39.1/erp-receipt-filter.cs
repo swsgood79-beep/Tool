@@ -9,7 +9,7 @@ using Accessibility;
 // No row selection, quantity editing or final receipt save is performed.
 public static class AlphaReceiptFilter {
  public struct Box {public int Left,Top,Right,Bottom;}
- public sealed class Control {public long Handle,Parent;public string Name="",Class="";public Box Bounds;}
+ public sealed class Control {public long Handle,Parent;public bool Protected;public string Name="",Class="";public Box Bounds;}
  private delegate bool EnumProc(IntPtr hwnd,IntPtr arg);
  [DllImport("user32.dll")] private static extern bool EnumWindows(EnumProc callback,IntPtr arg);
  [DllImport("user32.dll")] private static extern bool EnumChildWindows(IntPtr root,EnumProc callback,IntPtr arg);
@@ -20,6 +20,7 @@ public static class AlphaReceiptFilter {
  [DllImport("user32.dll")] private static extern uint GetWindowThreadProcessId(IntPtr hwnd,out uint process);
  [DllImport("user32.dll",CharSet=CharSet.Unicode)] private static extern int GetWindowText(IntPtr hwnd,StringBuilder text,int capacity);
  [DllImport("user32.dll",CharSet=CharSet.Unicode)] private static extern int GetClassName(IntPtr hwnd,StringBuilder text,int capacity);
+ [DllImport("user32.dll",EntryPoint="GetWindowLongW")] private static extern int GetWindowLong(IntPtr hwnd,int index);
  [DllImport("user32.dll")] private static extern bool GetWindowRect(IntPtr hwnd,out Box box);
  [DllImport("user32.dll",CharSet=CharSet.Unicode)] private static extern IntPtr SendMessageTimeout(IntPtr hwnd,uint message,IntPtr wParam,string text,uint flags,uint timeout,out UIntPtr result);
  [DllImport("oleacc.dll")] private static extern int AccessibleObjectFromWindow(IntPtr window,uint objectId,ref Guid iid,[MarshalAs(UnmanagedType.Interface)] out object accessible);
@@ -30,7 +31,7 @@ public static class AlphaReceiptFilter {
  private static List<Control> Controls(IntPtr popup,int pid){
   var items=new List<Control>();bool exceeded=false;
   EnumChildWindows(popup,delegate(IntPtr h,IntPtr arg){if(items.Count>=800){exceeded=true;return false;}if(!Owned(h,pid))return true;
-   string cls=Class(h);Box b;if(GetWindowRect(h,out b))items.Add(new Control{Handle=h.ToInt64(),Parent=GetParent(h).ToInt64(),Name=cls.ToUpperInvariant().Contains("STATIC")?Text(h):"",Class=cls,Bounds=b});return true;
+   string cls=Class(h);Box b;if(GetWindowRect(h,out b))items.Add(new Control{Handle=h.ToInt64(),Parent=GetParent(h).ToInt64(),Name=cls.ToUpperInvariant().Contains("STATIC")?Text(h):"",Class=cls,Protected=cls.ToUpperInvariant().Contains("EDIT")&&(GetWindowLong(h,-16)&0x20)!=0,Bounds=b});return true;
   },IntPtr.Zero);return exceeded?new List<Control>():items;
  }
  // Relative control bounds identify the labelled input; no coordinate clicks.
@@ -38,7 +39,7 @@ public static class AlphaReceiptFilter {
   var labels=controls.FindAll(delegate(Control c){return c.Name.Trim()=="발주번호";});if(labels.Count!=1)return 0;
   var label=labels[0];var edits=new List<Control>();
   foreach(var c in controls){
-   if(c.Parent!=label.Parent||!c.Class.ToUpperInvariant().Contains("EDIT"))continue;
+   if(c.Protected||c.Parent!=label.Parent||!c.Class.ToUpperInvariant().Contains("EDIT"))continue;
    long center=((long)c.Bounds.Top+c.Bounds.Bottom)/2;
    if(c.Bounds.Left<label.Bounds.Right||center<label.Bounds.Top||center>label.Bounds.Bottom)continue;
    bool intervening=false;
@@ -81,7 +82,7 @@ public static class AlphaReceiptFilter {
   if(String.IsNullOrWhiteSpace(purchase)||purchase.Length>40)return "발주번호를 확인할 수 없습니다";
   foreach(char c in purchase)if(!Char.IsLetterOrDigit(c)&&c!='-'&&c!='_')return "발주번호 형식을 확인해 주세요";
   var matches=new HashSet<long>();
-  EnumProc test=delegate(IntPtr h,IntPtr arg){if(Owned(h,pid)&&Text(h).Trim().EndsWith("PG03F2120",StringComparison.Ordinal))matches.Add(h.ToInt64());return true;};
+  EnumProc test=delegate(IntPtr h,IntPtr arg){if(Owned(h,pid)&&!Class(h).ToUpperInvariant().Contains("EDIT")&&!Class(h).ToUpperInvariant().Contains("TEXTBOX")&&Text(h).Trim().EndsWith("PG03F2120",StringComparison.Ordinal))matches.Add(h.ToInt64());return true;};
   EnumWindows(delegate(IntPtr h,IntPtr arg){uint owner;GetWindowThreadProcessId(h,out owner);if(owner==(uint)pid){test(h,arg);EnumChildWindows(h,test,arg);}return true;},IntPtr.Zero);
   if(matches.Count!=1)return "ERP Data 불러오기 창 한 개를 열어 주세요. 발주번호 복사로도 검색할 수 있습니다";
   long target=0;foreach(long h in matches)target=h;IntPtr popup=new IntPtr(target);
@@ -89,7 +90,7 @@ public static class AlphaReceiptFilter {
   if(editHandle==0)return "발주번호 입력칸을 고유하게 찾지 못했습니다. 발주번호 복사로 직접 검색해 주세요";
   var search=SearchButton(popup);if(search==null)return "검색 버튼을 고유하게 확인하지 못했습니다. 발주번호 복사로 직접 검색해 주세요";
   IntPtr edit=new IntPtr(editHandle);
-  if(!Owned(popup,pid)||!Owned(edit,pid)||!IsChild(popup,edit))return "ERP 창이 변경됐습니다. 다시 확인해 주세요";
+  if(!Owned(popup,pid)||!Owned(edit,pid)||!IsChild(popup,edit)||FindPurchaseEdit(Controls(popup,pid))!=editHandle)return "ERP 창이 변경됐습니다. 다시 확인해 주세요";
   UIntPtr result;
   if(SendMessageTimeout(edit,0x000C,IntPtr.Zero,purchase,0x0002,2000,out result)==IntPtr.Zero||Text(edit)!=purchase)return "발주번호 입력을 확인하지 못했습니다. ERP 입력칸을 확인해 주세요";
   if(!Owned(popup,pid)||(search.Node.get_accName(search.Child)??"").Replace("&","").Trim()!="검색")return "ERP 검색 대상을 다시 확인해 주세요";

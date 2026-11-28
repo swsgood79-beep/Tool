@@ -41,7 +41,12 @@ func outstandingReportRows(report ERPDBReport) ([]OrderOutstandingRow, error) {
 			return nil, fmt.Errorf("미입고 수량을 확인할 수 없습니다")
 		}
 	}
-	return resolveOutstandingCustomers(report.OutstandingRows, report.Customers), nil
+	rows := resolveOutstandingCustomers(report.OutstandingRows, report.Customers)
+	for i := range rows {
+		rows[i].Unit = report.OutstandingRows[i].Unit
+		rows[i].CustomerCode = report.OutstandingRows[i].CustomerCode
+	}
+	return rows, nil
 }
 
 // The caller holds App.mu. Cache entries are memory-only and never enter State,
@@ -145,8 +150,22 @@ func (a *App) orderOutstandingCardsHTTP(w http.ResponseWriter, r *http.Request) 
 				view.At = &at
 			}
 			if detail && entry.State == "ready" {
-				view.Rows = entry.Rows
-				view.Snapshot = receiptHelperSnapshot(entry)
+				view.Rows = append([]OrderOutstandingRow{}, entry.Rows...)
+				session, authenticated := a.session(r)
+				if authenticated && receiptHelperAllowed(&a.state, session) {
+					view.Snapshot = receiptHelperSnapshot(entry)
+				} else {
+					for i := range view.Rows {
+						view.Rows[i].Unit = ""
+						view.Rows[i].CustomerCode = ""
+						view.Rows[i].Key = ""
+						view.Rows[i].Purchase = ""
+						view.Rows[i].PurchaseDate = ""
+						view.Rows[i].Sequence = 0
+						view.Rows[i].Part = ""
+						view.Rows[i].ItemCode = ""
+					}
+				}
 			}
 		}
 		views[id] = view
