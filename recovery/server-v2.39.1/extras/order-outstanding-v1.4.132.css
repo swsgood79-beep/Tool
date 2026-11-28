@@ -1,0 +1,7 @@
+/* Read-only item/purchase details. Match the existing system/app palette. */
+.outstanding-dialog table tbody tr td{background:var(--ui-surface,#fff);color:var(--ui-text,#293547)}
+.outstanding-dialog table thead th{background:var(--ui-subtle,#f0f3f7);color:var(--ui-ink,#172030)}
+.outstanding-dialog table tr.outstanding-purchase>td{background:var(--ui-subtle,#f0f3f7);color:var(--ui-text,#293547);padding:10px 8px 7px;overflow-wrap:anywhere;word-break:break-word;white-space:normal}
+.outstanding-dialog .outstanding-purchase strong{font-size:13px;font-weight:650}
+.outstanding-dialog .outstanding-purchase small{font-size:12px;color:var(--ui-muted,#5e6e83);white-space:normal;overflow-wrap:anywhere}
+.outstanding-dialog .outstanding-error{color:var(--ui-red-ink,#b72b43)}

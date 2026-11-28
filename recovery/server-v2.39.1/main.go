@@ -712,6 +712,12 @@ func (a *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if a.talkReadHTTP(w, r) {
 		return
 	}
+	// Retire old clients as well: no preparation or desktop process can run.
+	if r.URL.Path == "/erp-receipt-helper/prepare" {
+		w.Header().Set("Cache-Control", "no-store")
+		http.Error(w, "ERP 입력 도우미 기능은 제거했습니다. 미입고 현황에서 품목별 발주번호를 확인해 주세요", http.StatusGone)
+		return
+	}
 	if a.orderOutstandingCardsHTTP(w, r) {
 		return
 	}
@@ -732,9 +738,6 @@ func (a *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 	s, ok := a.admin(w, r)
 	if !ok {
-		return
-	}
-	if a.receiptHelperHTTP(w, r, s) {
 		return
 	}
 	if a.teamHTTP(w, r, s) || a.teamAlertsHTTP(w, r, s) {

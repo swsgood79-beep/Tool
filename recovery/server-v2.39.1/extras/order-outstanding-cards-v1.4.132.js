@@ -124,7 +124,7 @@
   let controller;
   let detailTimer;
   const date = value => /^\d{8}$/.test(value) ? `${value.slice(0,4)}-${value.slice(4,6)}-${value.slice(6)}` : value || '확인 불가';
-  function render(rows, snapshot) {
+  function render(rows) {
     const groups = new Map();
     for (const row of rows) {
       const robot = row.robot || '로봇품번 확인 불가';
@@ -132,48 +132,6 @@
       groups.get(robot).push(row);
     }
     content.replaceChildren();
-    const choices = new Map();
-    let preview = null;
-    const helper = node('section');
-    helper.className = 'receipt-helper';
-    const prepare = node('button', '선택 품목 ERP 입력 준비');
-    const launch = node('button', '회사 PC 도우미 열기');
-    const helperStatus = node('p', '입고된 품목과 수량을 선택해 주세요. ERP 저장은 직접 누릅니다.');
-    const previewArea = node('div');
-    prepare.type = launch.type = 'button';
-    prepare.disabled = true; launch.hidden = true;
-    const changed = () => {preview = null; launch.hidden = true; previewArea.replaceChildren(); prepare.disabled = choices.size === 0;};
-    if (config.dataset.helperCsrf) {
-      helper.append(node('h3', 'ERP 입고 입력 도우미'), helperStatus, prepare, launch, previewArea);
-      content.append(helper);
-    }
-    async function requestHelper(start) {
-      const values = [...choices].map(([key, quantity]) => ({key, quantity}));
-      if (start && preview !== JSON.stringify(values)) {changed(); return;}
-      prepare.disabled = launch.disabled = true;
-      try {
-        const response = await fetch('/erp-receipt-helper/prepare', {method: 'POST', body: new URLSearchParams({csrf:config.dataset.helperCsrf, project:selected.id, snapshot, selections:JSON.stringify(values), launch:start?'1':'0'})});
-        if (!response.ok) throw Error(await response.text());
-        const result = await response.json();
-        if (!result.ok) throw Error('입력 준비를 완료하지 못했습니다');
-        previewArea.replaceChildren();
-        for (const group of result.task.groups) {
-          const section = node('section');
-          section.append(node('h4', `${group.customer} · 발주 ${group.purchase}`));
-          for (const line of group.lines) {
-            section.append(node('p', `${line.part || '품번 확인 불가'} /  ${line.item} · ${line.quantity}개 · 발주 행 ${line.sequence}`));
-            if (!line.part && line.item_code) section.append(node('p',`ERP 품목 코드: ${line.item_code}`));
-          }
-          previewArea.append(section);
-        }
-        preview = JSON.stringify(values);
-        launch.hidden = false;
-        helperStatus.textContent = start ? '회사 PC 도우미가 열렸습니다. ERP에서 거래처를 확인한 뒤 발주 검색을 진행해 주세요. 체크·수량 입력·최종 저장은 직접 합니다.' : `${values.length}품목 준비 · 내용을 확인한 뒤 회사 PC 도우미를 열어 주세요.`;
-      } catch(error) {helperStatus.textContent = error.message || '입력 준비에 실패했습니다';}
-      finally {prepare.disabled = choices.size === 0; launch.disabled = false;}
-    }
-    prepare.addEventListener('click',()=>requestHelper(false));
-    launch.addEventListener('click',()=>requestHelper(true));
     for (const [robot, items] of groups) {
       const section = node('section');
       const heading = node('h3', robot);
@@ -184,28 +142,14 @@
       head.append(labels);
       const body = node('tbody');
       for (const item of items) {
-        const row = node('tr');
-        let controlsRow;
+        const purchaseRow = node('tr'); purchaseRow.className = 'outstanding-purchase';
+        const purchaseCell = node('td'); purchaseCell.colSpan = 4;
+        purchaseCell.append(node('strong', item.purchase ? `발주번호 ${item.purchase}` : '발주번호 확인 불가'));
+        if (item.purchase && (item.sequence_known || item.sequence > 0)) purchaseCell.append(node('small', ` · 발주 행 ${item.sequence ?? 0}`));
+        purchaseRow.append(purchaseCell); body.append(purchaseRow);
+        const row = node('tr');row.className='outstanding-item';
         for (const value of [item.item || '확인 불가', item.quantity.toLocaleString('ko-KR'), item.customer || '확인 불가', date(item.due)]) row.append(node('td', value));
-        if (config.dataset.helperCsrf) {
-          const controls = node('div'); controls.className = 'receipt-choice';
-          const label = node('label');
-          const checkbox = node('input'); checkbox.type = 'checkbox'; checkbox.disabled = !item.key || !item.customer_code || !item.customer;
-          checkbox.setAttribute('aria-label', `${item.part || item.item} 입고 선택`);
-          label.append(checkbox, document.createTextNode('입고 선택'));
-          const quantity = node('input'); quantity.type='number'; quantity.min='0.000001'; quantity.step='any'; quantity.max=String(item.quantity); quantity.value=String(item.quantity); quantity.disabled=true;
-          quantity.setAttribute('aria-label', `${item.part || item.item} 입고 수량`);
-          function syncChoice() {quantity.disabled=!checkbox.checked; if(checkbox.checked) choices.set(item.key,Number(quantity.value)); else choices.delete(item.key); changed();}
-          checkbox.addEventListener('change',syncChoice); quantity.addEventListener('input',syncChoice);
-          controls.append(label, quantity);
-          if(item.part) {const partRow=node('tr');partRow.className='receipt-part';const cell=node('td',item.part);cell.colSpan=4;partRow.append(cell);body.append(partRow);}
-          controlsRow=node('tr');const controlsCell=node('td');controlsCell.colSpan=4;controlsCell.append(controls);controlsRow.append(controlsCell);
-          if (!item.key) controlsCell.append(node('small',item.prepare_block || '발주 행을 확인할 수 없어 선택할 수 없습니다'));
-          else if (!item.customer_code || !item.customer) controlsCell.append(node('small','거래처 정보를 확인할 수 없어 선택할 수 없습니다'));
-          if (!item.part && item.item_code) {const codeRow=node('tr');codeRow.className='receipt-part';const cell=node('td',`ERP 품목 코드: ${item.item_code} · 표시용 품번 미등록`);cell.colSpan=4;codeRow.append(cell);body.append(codeRow);}
-        }
         body.append(row);
-        if (controlsRow) body.append(controlsRow);
       }
       table.append(head, body);
       section.append(heading, table);
@@ -251,7 +195,7 @@
       const rows = value.rows || [];
       status.textContent = rows.length ? `${rows.length}품목` : '미입고 없음';
       stamp.textContent = '조회 시각 ' + new Date(value.at).toLocaleString('ko-KR', {timeZone: 'Asia/Seoul'});
-      render(rows, value.snapshot);
+      render(rows);
       refresh.disabled = false;
     } catch (error) {
       if (current !== generation || error.name === 'AbortError') return;

@@ -131,8 +131,6 @@ type App struct {
 
 	outstandingCards           map[string]orderOutstandingEntry
 	outstandingBusy            bool
-	receiptHelperLaunch        func(receiptHelperTask) error
-	receiptHelperLast          time.Time
 	teamNativeDesktop          bool
 	erpDBSyncDone              chan struct{}
 	erpDBSyncMessage           string

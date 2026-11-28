@@ -17,13 +17,12 @@ type orderOutstandingEntry struct {
 	At, Expires         time.Time
 }
 type orderOutstandingView struct {
-	Number   string                `json:"number"`
-	Snapshot string                `json:"snapshot,omitempty"`
-	State    string                `json:"state"`
-	Count    int                   `json:"count"`
-	At       *time.Time            `json:"at,omitempty"`
-	Error    string                `json:"error,omitempty"`
-	Rows     []OrderOutstandingRow `json:"rows,omitempty"`
+	Number string                `json:"number"`
+	State  string                `json:"state"`
+	Count  int                   `json:"count"`
+	At     *time.Time            `json:"at,omitempty"`
+	Error  string                `json:"error,omitempty"`
+	Rows   []OrderOutstandingRow `json:"rows,omitempty"`
 }
 
 func (a *App) outstandingScope() string {
@@ -41,12 +40,7 @@ func outstandingReportRows(report ERPDBReport) ([]OrderOutstandingRow, error) {
 			return nil, fmt.Errorf("미입고 수량을 확인할 수 없습니다")
 		}
 	}
-	rows := resolveOutstandingCustomers(report.OutstandingRows, report.Customers)
-	for i := range rows {
-		rows[i].Unit = report.OutstandingRows[i].Unit
-		rows[i].CustomerCode = report.OutstandingRows[i].CustomerCode
-	}
-	return rows, nil
+	return resolveOutstandingCustomers(report.OutstandingRows, report.Customers), nil
 }
 
 // The caller holds App.mu. Cache entries are memory-only and never enter State,
@@ -151,23 +145,6 @@ func (a *App) orderOutstandingCardsHTTP(w http.ResponseWriter, r *http.Request) 
 			}
 			if detail && entry.State == "ready" {
 				view.Rows = append([]OrderOutstandingRow{}, entry.Rows...)
-				session, authenticated := a.session(r)
-				if authenticated && receiptHelperAllowed(&a.state, session) {
-					view.Snapshot = receiptHelperSnapshot(entry)
-				} else {
-					for i := range view.Rows {
-						view.Rows[i].Unit = ""
-						view.Rows[i].CustomerCode = ""
-						view.Rows[i].Key = ""
-						view.Rows[i].Purchase = ""
-						view.Rows[i].PurchaseDate = ""
-						view.Rows[i].Sequence = 0
-						view.Rows[i].Part = ""
-						view.Rows[i].ItemCode = ""
-						view.Rows[i].PrepareBlock = ""
-						view.Rows[i].SequenceKnown = false
-					}
-				}
 			}
 		}
 		views[id] = view
@@ -202,8 +179,6 @@ func (a *App) fetchOutstandingCards(parent context.Context, orders []string, sco
 				break
 			}
 			row.Order = ""
-			row.Key = receiptRowKey(row)
-			row.PrepareBlock = receiptRowBlockReason(row)
 			grouped[order] = append(grouped[order], row)
 		}
 	}
@@ -234,19 +209,10 @@ func (a *App) orderOutstandingCardsMarkup(page, name string, value any) string {
 	if name != "work.html" && name != "admin.html" {
 		return page
 	}
-	assets := `<link rel="stylesheet" href="/order-outstanding-v1.4.116.css"><link rel="stylesheet" href="/order-outstanding-cards-v1.4.119.css"><script defer src="/order-outstanding-cards-v1.4.130.js"></script>`
-	helper := ""
-	if root, ok := value.(map[string]any); ok {
-		if csrf, ok := root["CSRF"].(string); ok {
-			for _, session := range a.sessions {
-				if equal(session.CSRF, csrf) && validAccountSession(&a.state, session) && receiptHelperAllowed(&a.state, session) {
-					helper = ` data-helper-csrf="` + template.HTMLEscapeString(csrf) + `"`
-				}
-			}
-		}
-	}
-	assets += `<link rel="stylesheet" href="/erp-receipt-helper-v1.4.130.css"><link rel="stylesheet" href="/admin-card-layout-v1.4.131.css">`
-	marker := `<div id="order-outstanding-config" hidden data-endpoint="/order-outstanding/` + template.HTMLEscapeString(a.state.Board) + `"` + helper + `></div>`
+	assets := `<link rel="stylesheet" href="/order-outstanding-v1.4.116.css"><link rel="stylesheet" href="/order-outstanding-cards-v1.4.119.css"><script defer src="/order-outstanding-cards-v1.4.132.js"></script>`
+	assets += `<link rel="stylesheet" href="/order-outstanding-v1.4.132.css"><link rel="stylesheet" href="/admin-card-layout-v1.4.131.css">`
+	marker := `<div id="order-outstanding-config" hidden data-endpoint="/order-outstanding/` + template.HTMLEscapeString(a.state.Board) + `"></div>`
+
 	page = strings.Replace(page, "</head>", assets+"</head>", 1)
 	return strings.Replace(page, "</body>", marker+"</body>", 1)
 }

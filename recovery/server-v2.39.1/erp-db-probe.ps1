@@ -87,7 +87,7 @@ try {
 SELECT TOP (2001)
  CASE WHEN robot.matches=1 THEN robot.MITM_CD ELSE '' END AS robot,
  i.ITM_NM,ISNULL(h.PUR_QTY,0)-ISNULL(h.IN_QTY,0) AS outstanding,
- CAST('' AS nvarchar(1)) AS customer,h.SCH_DATE,CUSTOMER_EXPR,h.UNT_CD,ORDER_EXPR AS order_number, h.PURORD_DATE,h.PURORD_NO,h.PURORD_SEQ,h.ITM_CD,i.PART_NO
+ CAST('' AS nvarchar(1)) AS customer,h.SCH_DATE,CUSTOMER_EXPR,h.UNT_CD,ORDER_EXPR AS order_number, h.PURORD_NO,h.PURORD_SEQ
 FROM dbo.PURORD_MST m JOIN dbo.PURORD_HIS h
  ON h.UNT_CD=m.UNT_CD AND h.PURORD_DATE=m.PURORD_DATE AND h.PURORD_NO=m.PURORD_NO
 LEFT JOIN dbo.ITMMST_INFO i ON i.ITM_CD=h.ITM_CD AND i.PARTS_TYPE=h.PARTS_TYPE
@@ -103,7 +103,7 @@ ORDER BY h.UNT_CD,h.PURORD_DATE,h.PURORD_NO,h.PURORD_SEQ
   $rd=$cmd.ExecuteReader();$rows=New-Object 'Collections.Generic.List[object]'
   try{while($rd.Read()){
    if($rows.Count -ge 2000){$report.truncated=$true;break}
-   $rows.Add([ordered]@{robot=[string]$rd[0];item=[string]$rd[1];quantity=[decimal]$rd[2];customer=[string]$rd[3];due=[string]$rd[4];customer_code=[string]$rd[5];unit=[string]$rd[6];order=[string]$rd[7];purchase_date=[string]$rd[8];purchase=[string]$rd[9];sequence=[int]$rd[10];sequence_known=(!$rd.IsDBNull(10));item_code=[string]$rd[11];part=[string]$rd[12]})
+   $rows.Add([ordered]@{robot=[string]$rd[0];item=[string]$rd[1];quantity=[decimal]$rd[2];customer=[string]$rd[3];due=[string]$rd[4];customer_code=[string]$rd[5];unit=[string]$rd[6];order=[string]$rd[7];purchase=[string]$rd[8];sequence=$(if($rd.IsDBNull(9)){-1}else{[int]$rd[9]});sequence_known=(!$rd.IsDBNull(9))})
   }}finally{$rd.Close();$cmd.Dispose()}
   $report.outstanding_rows=@($rows.ToArray())
   # Restrict master candidates to supplier codes on this order's outstanding
