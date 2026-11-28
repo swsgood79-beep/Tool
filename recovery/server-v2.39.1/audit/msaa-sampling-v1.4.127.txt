@@ -1,0 +1,1 @@
+PASS: production traversal1000 duplicate-looking rows;8 complete row samples,8 checkboxes,192 cells, ordinals, checked state, optional action description, protected exclusion and partial-result flags. Native COM calls replaced only; no real UI action verified.

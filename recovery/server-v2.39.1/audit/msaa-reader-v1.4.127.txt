@@ -1,0 +1,1 @@
+PASS: missing-managed-type guard on24 synthetic elements has zero false errors. MSAA C# compiled against official Accessibility contract. Windows native calls not executed.

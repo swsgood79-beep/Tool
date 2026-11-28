@@ -67,3 +67,37 @@ func TestERPMSAABrowser126(t *testing.T) {
 		t.Fatal(err)
 	}
 }
+
+func TestERPMSAASampledRowsMessage127(t *testing.T) {
+	report := &ERPUIReceiptReport{Saved: true, Reason: "captured", MSAA: &ERPMSAAReport{Reason: "captured", SampledRows: 8, SkippedRows: 792, RowLimit: 8, Truncated: true, Elements: []ERPMSAAElement{{Ordinal: 24, DefaultAction: strings.Repeat("x", 2100)}}}}
+	sanitizeUIReceiptReport(report)
+	if !strings.Contains(uiReceiptMessage(report), "품목 8행의 셀 우선 확인(전체 목록 아님)") || len(report.MSAA.Elements[0].DefaultAction) != 2000 {
+		t.Fatal("sample scope/capability bound lost")
+	}
+}
+
+func TestERPMSAABrowser127(t *testing.T) {
+	if os.Getenv("ALPHA127_BROWSER") != "1" {
+		t.Skip("optional Chromium")
+	}
+	app := fixture(t)
+	owner := adminCookie(app)
+	app.erpDBProbe = func(context.Context, string) ERPDBReport {
+		report := syntheticUIReceipt()
+		report.UIReceipt.ProxyStatus = "registered"
+		report.UIReceipt.MSAA = &ERPMSAAReport{Reason: "captured", SampledRows: 1, SkippedRows: 999, RowLimit: 8, Truncated: true, Elements: []ERPMSAAElement{
+			{Index: 0, Parent: -1, Role: 10, Name: "가상 입고 검색"},
+			{Index: 1, Parent: 0, Role: 28, Name: "TEST-PO / 12행"},
+			{Index: 2, Parent: 1, Role: 29, Name: "가상 SIDE COVER", Value: "1"},
+			{Index: 3, Parent: 1, Role: 44, State: 16, Name: "가상 선택"},
+		}}
+		return report
+	}
+	server := httptest.NewServer(http.HandlerFunc(app.ServeHTTP))
+	defer server.Close()
+	command := exec.Command("node", "audit/browser-ui-msaa-v1.4.127.cjs", server.URL, string(jsonRaw(map[string]string{"name": owner.Name, "value": owner.Value})))
+	command.Stdout, command.Stderr = os.Stdout, os.Stderr
+	if err := command.Run(); err != nil {
+		t.Fatal(err)
+	}
+}

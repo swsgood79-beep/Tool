@@ -23,3 +23,7 @@
 구현 참고는 Microsoft의 client-side provider 등록 문서와 MSAA/IAccessible 접근성 인터페이스입니다.
 - https://learn.microsoft.com/en-us/dotnet/framework/ui-automation/register-a-client-side-provider-assembly
 - https://learn.microsoft.com/en-us/windows/win32/winauto/uiauto-accessingmsaaservers
+
+### PC127 bounded cell samples
+
+Read-only diagnostic prioritizes descendants of the first8 accessible row objects instead of exhausting800 nodes on row summaries. sampled_rows/skipped_rows/row_limit explicitly distinguish partial samples from full lists. ordinal is accessibility child order, NOT ERP purchase sequence. Optional default_action is a description only, never executed. Password guard and node/depth/queue caps remain. Real checkbox recognition/action capability and exact duplicate business-row identity still require company report; no automation action enabled.
