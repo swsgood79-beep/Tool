@@ -1,8 +1,8 @@
 {
-  "version": "1.4.125",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.125.zip",
-  "sha256": "1ae6d303e5a0acd460da49a6e8b5e89e80eddc47d56ebbb3f71ab519628ff778",
-  "exe_sha256": "f74d1f53e9d60d6a094f6146d851bac35feaf197a4649ccb42853c4c97052e89",
-  "bytes": 38702731,
-  "notes": "ERP 불러오기 창 내부/하위창 인식 보완 · APK1.0.11"
+  "version": "1.4.126",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.126.zip",
+  "sha256": "58657844f365a5fd34eea2df9f3f500a132a208e9cd00314d0bccebfaadff895",
+  "exe_sha256": "f49e8f8725b42b41cb24b7dec4438e3f16f4ccb7a7045f5ab89e053fd377c576",
+  "bytes": 38707301,
+  "notes": "ERP 구형 표 접근성 인식 보완 · MSAA 읽기 추가 · APK1.0.11"
 }
