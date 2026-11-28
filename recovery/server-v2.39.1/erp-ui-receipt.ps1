@@ -43,7 +43,7 @@ public static class AlphaReceiptWindows {
    if(owner==(uint)process) {read(window,state);EnumChildWindows(window,read,IntPtr.Zero);}
    return entries.Count<2000;
   },IntPtr.Zero);
-  return new ScanResult{Entries=entries.ToArray(),Truncated=truncated};
+  return new ScanResult{Entries=entries.ToArray(),Truncated=truncated || entries.Count>=2000};
  }
 }
 '@

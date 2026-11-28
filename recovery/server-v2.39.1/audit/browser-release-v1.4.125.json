@@ -1,0 +1,29 @@
+{
+  "results": [
+    {
+      "width": 320,
+      "result": "pass",
+      "scope": "synthetic nested native-window report in actual browser; physical Windows pending"
+    },
+    {
+      "width": 390,
+      "result": "pass",
+      "scope": "synthetic nested native-window report in actual browser; physical Windows pending"
+    },
+    {
+      "width": 430,
+      "result": "pass",
+      "scope": "synthetic nested native-window report in actual browser; physical Windows pending"
+    },
+    {
+      "width": 1100,
+      "result": "pass",
+      "scope": "synthetic nested native-window report in actual browser; physical Windows pending"
+    },
+    {
+      "width": 390,
+      "result": "pass",
+      "scope": "missing window retains protected discovery diagnostics without reusing prior success"
+    }
+  ]
+}

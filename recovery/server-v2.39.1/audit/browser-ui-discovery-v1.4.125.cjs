@@ -1,0 +1,45 @@
+const {chromium}=require('playwright');
+const fs=require('fs');
+const assert=require('assert');
+(async()=>{
+ const [origin,raw]=process.argv.slice(2);
+ const cookie=JSON.parse(raw);
+ const browser=await chromium.launch({executablePath:'/usr/bin/chromium',headless:true,args:['--no-sandbox']});
+ const results=[];
+ for(const width of [320,390,430,1100]){
+  const context=await browser.newContext({viewport:{width,height:1100}});
+  await context.addCookies([{...cookie,url:origin}]);
+  const page=await context.newPage();
+  const errors=[];page.on('pageerror',error=>errors.push(error.message));
+  await page.goto(origin+'/machining-admin');
+  await page.locator('.erp-db-panel>summary').click();
+  await page.getByRole('button',{name:'ERP 화면 인식 확인',exact:true}).click();
+  await page.locator('#erp-db-check-status').filter({hasText:'ERP 화면 인식 확인 완료'}).waitFor();
+  const response=await context.request.get(origin+'/machining-admin/db-check/download');
+  assert.equal(response.status(),200);
+  const data=await response.json();
+  assert.equal(data.ui_receipt.discovery_method,'win32');
+  assert.equal(data.ui_receipt.discovery[0].parent,'1');
+  assert.equal(errors.length,0);
+  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  await page.locator('.erp-db-panel').screenshot({path:`audit/ui-discovery-${width}-v1.4.125.png`});
+  results.push({width,result:'pass',scope:'synthetic nested native-window report in actual browser; physical Windows pending'});
+  await context.close();
+ }
+ const context=await browser.newContext({viewport:{width:390,height:1000}});
+ await context.addCookies([{...cookie,url:origin}]);
+ await context.request.get(origin+'/synthetic-ui-missing');
+ const page=await context.newPage();
+ await page.goto(origin+'/machining-admin');
+ await page.locator('.erp-db-panel>summary').click();
+ await page.getByRole('button',{name:'ERP 화면 인식 확인',exact:true}).click();
+ await page.locator('#erp-db-check-status').filter({hasText:'ERP 내부 창 17개 확인'}).waitFor();
+ const failure=await (await context.request.get(origin+'/machining-admin/db-check/download')).json();
+ assert.equal(failure.ui_receipt.reason,'window_missing');
+ assert.equal((failure.ui_receipt.elements||[]).length,0);
+ assert.equal(failure.ui_receipt.discovery.length,1);
+ await page.locator('.erp-db-panel').screenshot({path:'audit/ui-discovery-missing-390-v1.4.125.png'});
+ results.push({width:390,result:'pass',scope:'missing window retains protected discovery diagnostics without reusing prior success'});
+ await context.close();await browser.close();
+ fs.writeFileSync('audit/browser-release-v1.4.125.json',JSON.stringify({results},null,2)+'\n');
+})().catch(error=>{console.error(error);process.exit(1)});

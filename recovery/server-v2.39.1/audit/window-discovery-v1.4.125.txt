@@ -1,0 +1,1 @@
+PASS: PowerShell AST and actual C# compile; synthetic nested HWND/process/hidden/dedup/ambiguity regression. Native Windows enumeration remains field verification.
