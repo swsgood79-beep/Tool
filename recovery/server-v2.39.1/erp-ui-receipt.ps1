@@ -1,7 +1,7 @@
 $ErrorActionPreference='Stop'
 $ProgressPreference='SilentlyContinue'
 [Console]::OutputEncoding=New-Object Text.UTF8Encoding($false)
-$result=[ordered]@{status='ui_receipt';stage='ui_receipt';connected=$false;ui_receipt=[ordered]@{reason='failed';window='';elements=@();truncated=$false;read_errors=0;password_excluded=0;saved=$false}}
+$result=[ordered]@{status='ui_receipt';stage='ui_receipt';connected=$false;ui_receipt=[ordered]@{reason='failed';window='';elements=@();truncated=$false;read_errors=0;password_excluded=0;saved=$false;discovery=@();native_windows=0;uia_visited=0;discovery_method='';discovery_truncated=$false}}
 $report=$result.ui_receipt
 try {
  Add-Type -AssemblyName UIAutomationClient
@@ -9,11 +9,97 @@ try {
  $erp=@(Get-Process -Name PrimeXAR -ErrorAction SilentlyContinue)
  if($erp.Count -eq 0){$report.reason='erp_missing';throw 'stop'}
  if($erp.Count -ne 1){$report.reason='erp_ambiguous';throw 'stop'}
- $pidCondition=New-Object System.Windows.Automation.PropertyCondition([System.Windows.Automation.AutomationElement]::ProcessIdProperty,[int]$erp[0].Id)
- $windows=[System.Windows.Automation.AutomationElement]::RootElement.FindAll([System.Windows.Automation.TreeScope]::Children,$pidCondition)
+ # Enumerate native child windows as well as top-level windows. Classic MDI
+ # dialogs may be omitted from UIA's desktop Children view or have blank Name.
+ Add-Type -TypeDefinition @'
+using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Text;
+public static class AlphaReceiptWindows {
+ public sealed class Entry { public long Handle; public long Parent; public int Process; public bool Visible; public string Class; public string Title; }
+ public sealed class ScanResult { public Entry[] Entries; public bool Truncated; }
+ private delegate bool Callback(IntPtr window, IntPtr state);
+ [DllImport("user32.dll")] private static extern bool EnumWindows(Callback callback, IntPtr state);
+ [DllImport("user32.dll")] private static extern bool EnumChildWindows(IntPtr parent, Callback callback, IntPtr state);
+ [DllImport("user32.dll")] private static extern uint GetWindowThreadProcessId(IntPtr window, out uint process);
+ [DllImport("user32.dll")] private static extern bool IsWindowVisible(IntPtr window);
+ [DllImport("user32.dll")] private static extern IntPtr GetParent(IntPtr window);
+ [DllImport("user32.dll",CharSet=CharSet.Unicode)] private static extern int GetWindowText(IntPtr window,StringBuilder value,int length);
+ [DllImport("user32.dll",CharSet=CharSet.Unicode)] private static extern int GetClassName(IntPtr window,StringBuilder value,int length);
+ public static ScanResult Scan(int process) {
+  var entries=new List<Entry>(); var seen=new HashSet<long>(); bool truncated=false;
+  Callback read=delegate(IntPtr window,IntPtr state) {
+   uint owner; GetWindowThreadProcessId(window,out owner);
+   if(owner!=(uint)process || !seen.Add(window.ToInt64())) return true;
+   if(entries.Count>=2000) {truncated=true;return false;}
+   var name=new StringBuilder(512); GetClassName(window,name,name.Capacity); string cls=name.ToString();
+   var title=new StringBuilder(512);
+   if(!System.Text.RegularExpressions.Regex.IsMatch(cls,"edit|textbox|password",System.Text.RegularExpressions.RegexOptions.IgnoreCase)) GetWindowText(window,title,title.Capacity);
+   entries.Add(new Entry {Handle=window.ToInt64(),Parent=GetParent(window).ToInt64(),Process=(int)owner,Visible=IsWindowVisible(window),Class=cls,Title=title.ToString()});return true;
+  };
+  EnumWindows(delegate(IntPtr window,IntPtr state) {
+   uint owner;GetWindowThreadProcessId(window,out owner);
+   if(owner==(uint)process) {read(window,state);EnumChildWindows(window,read,IntPtr.Zero);}
+   return entries.Count<2000;
+  },IntPtr.Zero);
+  return new ScanResult{Entries=entries.ToArray(),Truncated=truncated};
+ }
+}
+'@
+ function Select-ReceiptNativeWindow($entries,[int]$process) {
+  $seen=New-Object 'Collections.Generic.HashSet[long]'
+  foreach($entry in $entries){
+   if($entry.Process -eq $process -and $entry.Visible -and $entry.Title -match 'PG03F2120' -and $seen.Add([long]$entry.Handle)){$entry}
+  }
+ }
+ $scan=[AlphaReceiptWindows]::Scan([int]$erp[0].Id)
+ $report.discovery_truncated=$scan.Truncated
+ $report.native_windows=$scan.Entries.Count
+ $discovery=New-Object 'Collections.Generic.List[object]'
+ foreach($entry in $scan.Entries){
+  # Diagnostic titles are reduced to module codes/fixed labels. Never collect
+  # arbitrary text from other ERP modules during window discovery.
+  $code=[regex]::Match($entry.Title,'(?i)PG[0-9A-Z]{5,20}').Value
+  $label=if($entry.Title -match '입고등록'){'입고등록'}else{''}
+  if($entry.Visible -and ($code -or $label -or $entry.Parent -eq 0) -and $discovery.Count -lt 100){
+   $discovery.Add([ordered]@{source='win32';handle=[string]$entry.Handle;parent=[string]$entry.Parent;module=$code;label=$label;class=$entry.Class;visible=$entry.Visible})
+  }
+ }
+ $report.discovery=@($discovery.ToArray())
+ $nativeTargets=@(Select-ReceiptNativeWindow $scan.Entries ([int]$erp[0].Id))
  $targets=New-Object 'Collections.Generic.List[object]'
- for($i=0;$i -lt $windows.Count;$i++) {
-  try{if($windows[$i].Current.Name -match 'PG03F2120' -and !$windows[$i].Current.IsOffscreen){$targets.Add($windows[$i])}}catch{$report.read_errors++}
+ if($nativeTargets.Count -gt 1){$report.reason='window_ambiguous';throw 'stop'}
+ if($nativeTargets.Count -eq 1){
+  $targets.Add([System.Windows.Automation.AutomationElement]::FromHandle([IntPtr]$nativeTargets[0].Handle));$report.discovery_method='win32'
+ }else{
+  $pidCondition=New-Object System.Windows.Automation.PropertyCondition([System.Windows.Automation.AutomationElement]::ProcessIdProperty,[int]$erp[0].Id)
+  $windows=[System.Windows.Automation.AutomationElement]::RootElement.FindAll([System.Windows.Automation.TreeScope]::Children,$pidCondition)
+  $walk=[System.Windows.Automation.TreeWalker]::RawViewWalker
+  $pending=New-Object 'Collections.Generic.Queue[object]'
+  for($i=0;$i -lt $windows.Count;$i++){$pending.Enqueue(@{element=$windows[$i];depth=0})}
+  $seen=New-Object 'Collections.Generic.HashSet[string]';$visited=0
+  while($pending.Count -gt 0 -and $visited -lt 1200){
+   $entry=$pending.Dequeue();$visited++
+   try{
+    $element=$entry.element;$cur=$element.Current
+    if($cur.ProcessId -ne $erp[0].Id -or $cur.IsPassword){continue}
+    $type=$cur.ControlType.ProgrammaticName
+    if($type -match '(Window|Pane|Custom)$' -and $cur.Name -match 'PG03F2120' -and !$cur.IsOffscreen){
+     $identity=if($cur.NativeWindowHandle -ne 0){[string]$cur.NativeWindowHandle}else{[string]::Join(',', $element.GetRuntimeId())}
+     if($seen.Add($identity)){$targets.Add($element)}
+     continue
+    }
+    if($entry.depth -lt 10 -and $type -notmatch '(Edit|DataGrid|Table|DataItem|ListItem|Document|Text)$'){
+     $child=$walk.GetFirstChild($element);$siblings=0
+     while($null -ne $child -and $siblings -lt 300 -and $pending.Count -lt 1800){$pending.Enqueue(@{element=$child;depth=$entry.depth+1});$siblings++;$child=$walk.GetNextSibling($child)}
+     if($null -ne $child){$report.discovery_truncated=$true}
+    }
+   }catch{$report.read_errors++}
+  }
+  $report.uia_visited=$visited
+  if($pending.Count -gt 0){$report.discovery_truncated=$true}
+  if($targets.Count -gt 0){$report.discovery_method='uia_descendants'}
  }
  if($targets.Count -eq 0){$report.reason='window_missing';throw 'stop'}
  if($targets.Count -ne 1){$report.reason='window_ambiguous';throw 'stop'}

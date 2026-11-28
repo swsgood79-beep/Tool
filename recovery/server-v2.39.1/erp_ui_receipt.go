@@ -30,7 +30,22 @@ type ERPUIReceiptElement struct {
 	Toggle       string   `json:"toggle,omitempty"`
 	Selected     bool     `json:"selected"`
 }
+type ERPUIWindowDiscovery struct {
+	Source  string `json:"source"`
+	Handle  string `json:"handle"`
+	Parent  string `json:"parent"`
+	Module  string `json:"module"`
+	Label   string `json:"label"`
+	Class   string `json:"class"`
+	Visible bool   `json:"visible"`
+}
 type ERPUIReceiptReport struct {
+	Discovery          []ERPUIWindowDiscovery `json:"discovery,omitempty"`
+	NativeWindows      int                    `json:"native_windows"`
+	UIAVisited         int                    `json:"uia_visited"`
+	DiscoveryMethod    string                 `json:"discovery_method"`
+	DiscoveryTruncated bool                   `json:"discovery_truncated"`
+
 	Reason           string                `json:"reason"`
 	Window           string                `json:"window"`
 	Elements         []ERPUIReceiptElement `json:"elements"`
@@ -41,6 +56,10 @@ type ERPUIReceiptReport struct {
 }
 
 func sanitizeUIReceiptReport(report *ERPUIReceiptReport) {
+	if len(report.Discovery) > 100 {
+		report.Discovery = report.Discovery[:100]
+		report.DiscoveryTruncated = true
+	}
 	if len(report.Elements) > 1200 {
 		report.Elements = report.Elements[:1200]
 		report.Truncated = true
@@ -79,7 +98,7 @@ func uiReceiptMessage(report *ERPUIReceiptReport) string {
 	case "erp_ambiguous":
 		return "ERP가 여러 개 실행 중입니다. 작업할 ERP 한 개를 남겨 주세요"
 	case "window_missing":
-		return "ERP 입고등록 → Data 불러오기 창(PG03F2120)을 열고 다시 확인해 주세요"
+		return fmt.Sprintf("입고 발주 검색 창을 식별하지 못했습니다 · ERP 내부 창 %d개 확인 · 결과 파일을 내려받아 주세요", report.NativeWindows)
 	case "window_ambiguous":
 		return "입고 발주 검색 창이 여러 개입니다. 한 개를 남겨 주세요"
 	case "timeout":
