@@ -132,3 +132,75 @@ func TestReceiptHelperBrowser128(t *testing.T) {
 		t.Fatal("UI changed operating state")
 	}
 }
+
+func TestReceiptOptionalDisplayPartAndExplicitZeroSequence129(t *testing.T) {
+	rows := syntheticReceiptRows()
+	rows[0].Part = ""
+	rows[0].ItemCode = "TEST-ERP-ITEM-CODE"
+	if receiptRowKey(rows[0]) == "" {
+		t.Fatal("optional display part blocks complete purchase identity")
+	}
+	task, err := buildReceiptHelper("TEST-001", rows, []receiptHelperSelection{{receiptRowKey(rows[0]), 5}})
+	if err != nil || task.Groups[0].Lines[0].Part != "" || task.Groups[0].Lines[0].ItemCode != "TEST-ERP-ITEM-CODE" {
+		t.Fatal("missing display part invented or lost item code", err)
+	}
+	row := rows[0]
+	row.Sequence = 0
+	if receiptRowKey(row) != "" {
+		t.Fatal("unknown zero sequence accepted")
+	}
+	row.SequenceKnown = true
+	if receiptRowKey(row) == "" {
+		t.Fatal("explicit ERP zero sequence blocked")
+	}
+	row.Unit = ""
+	row.Purchase = ""
+	reason := receiptRowBlockReason(row)
+	if !strings.Contains(reason, "사업장") || !strings.Contains(reason, "발주번호") || strings.Contains(reason, "품번") {
+		t.Fatal(reason)
+	}
+}
+func TestReceiptHelperBrowser129(t *testing.T) {
+	if os.Getenv("ALPHA129_BROWSER") != "1" {
+		t.Skip("optional Chromium")
+	}
+	a, id, _ := cardOutstandingFixture(t)
+	owner := adminCookie(a)
+	before := string(jsonRaw(a.state))
+	a.erpDBProbe = func(ctx context.Context, _ string) ERPDBReport {
+		orders, _ := ctx.Value(erpOrderOutstandingBatchKey{}).([]string)
+		report := ERPDBReport{Status: "order_outstanding", Connected: true, Customers: []ERPDBCustomer{{Code: "TEST-A", Unit: "SYNTH01", Name: "가상 거래처 A"}, {Code: "TEST-B", Unit: "SYNTH01", Name: "가상 거래처 B"}}}
+		for _, order := range orders {
+			if order == "TEST-001" {
+				rows := syntheticReceiptRows()
+				rows[0].Part = ""
+				rows[0].ItemCode = "TEST-ERP-ITEM-CODE-NO-DISPLAY-PART"
+				rows[1].Sequence = 0
+				rows[1].SequenceKnown = true
+				blocked := rows[2]
+				blocked.Unit = ""
+				blocked.Purchase = ""
+				blocked.Sequence = 0
+				blocked.SequenceKnown = false
+				blocked.Item = "가상 발주 정보 누락 품목"
+				report.OutstandingRows = append(rows, blocked)
+			}
+		}
+		return report
+	}
+	a.receiptHelperLaunch = func(task receiptHelperTask) error { return nil }
+	server := httptest.NewServer(http.HandlerFunc(a.ServeHTTP))
+	defer server.Close()
+	options := map[string]any{"owner": map[string]string{"name": owner.Name, "value": owner.Value}, "id": id, "board": a.state.Board}
+	command := exec.Command("node", "audit/browser-receipt-helper-v1.4.129.cjs", server.URL, string(jsonRaw(options)))
+	command.Stdout = os.Stdout
+	command.Stderr = os.Stderr
+	if err := command.Run(); err != nil {
+		t.Fatal(err)
+	}
+	a.mu.Lock()
+	defer a.mu.Unlock()
+	if before != string(jsonRaw(a.state)) {
+		t.Fatal("operating state mutation")
+	}
+}

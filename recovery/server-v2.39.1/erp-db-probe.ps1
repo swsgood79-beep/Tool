@@ -103,7 +103,7 @@ ORDER BY h.UNT_CD,h.PURORD_DATE,h.PURORD_NO,h.PURORD_SEQ
   $rd=$cmd.ExecuteReader();$rows=New-Object 'Collections.Generic.List[object]'
   try{while($rd.Read()){
    if($rows.Count -ge 2000){$report.truncated=$true;break}
-   $rows.Add([ordered]@{robot=[string]$rd[0];item=[string]$rd[1];quantity=[decimal]$rd[2];customer=[string]$rd[3];due=[string]$rd[4];customer_code=[string]$rd[5];unit=[string]$rd[6];order=[string]$rd[7];purchase_date=[string]$rd[8];purchase=[string]$rd[9];sequence=[int]$rd[10];item_code=[string]$rd[11];part=[string]$rd[12]})
+   $rows.Add([ordered]@{robot=[string]$rd[0];item=[string]$rd[1];quantity=[decimal]$rd[2];customer=[string]$rd[3];due=[string]$rd[4];customer_code=[string]$rd[5];unit=[string]$rd[6];order=[string]$rd[7];purchase_date=[string]$rd[8];purchase=[string]$rd[9];sequence=[int]$rd[10];sequence_known=(!$rd.IsDBNull(10));item_code=[string]$rd[11];part=[string]$rd[12]})
   }}finally{$rd.Close();$cmd.Dispose()}
   $report.outstanding_rows=@($rows.ToArray())
   # Restrict master candidates to supplier codes on this order's outstanding

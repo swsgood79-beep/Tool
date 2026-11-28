@@ -16,6 +16,7 @@ type receiptHelperSelection struct {
 	Quantity float64 `json:"quantity"`
 }
 type receiptHelperLine struct {
+	ItemCode     string  `json:"item_code,omitempty"`
 	Order        string  `json:"order"`
 	Unit         string  `json:"unit"`
 	PurchaseDate string  `json:"purchase_date"`
@@ -43,8 +44,29 @@ type receiptHelperTask struct {
 func receiptHelperAllowed(s *State, session Session) bool {
 	return managerAccount(s, session) && adminMenus(s, session).Machining
 }
+
+// Display PART_NO is optional and is not part of the purchase-line identity.
+func receiptRowBlockReason(row OrderOutstandingRow) string {
+	missing := []string{}
+	if strings.TrimSpace(row.Unit) == "" {
+		missing = append(missing, "사업장")
+	}
+	if strings.TrimSpace(row.PurchaseDate) == "" {
+		missing = append(missing, "발주일")
+	}
+	if strings.TrimSpace(row.Purchase) == "" {
+		missing = append(missing, "발주번호")
+	}
+	if row.Sequence < 0 || row.Sequence == 0 && !row.SequenceKnown {
+		missing = append(missing, "발주 행 번호")
+	}
+	if len(missing) > 0 {
+		return "ERP에서 " + strings.Join(missing, "·") + "를 확인할 수 없어 선택할 수 없습니다"
+	}
+	return ""
+}
 func receiptRowKey(row OrderOutstandingRow) string {
-	if row.Unit == "" || row.PurchaseDate == "" || row.Purchase == "" || row.Sequence <= 0 || row.Part == "" {
+	if receiptRowBlockReason(row) != "" {
 		return ""
 	}
 	return digest(jsonRaw([]any{row.Unit, row.PurchaseDate, row.Purchase, row.Sequence}))
@@ -86,7 +108,7 @@ func buildReceiptHelper(order string, rows []OrderOutstandingRow, selections []r
 			group = &receiptHelperGroup{Customer: row.Customer, CustomerCode: row.CustomerCode, Unit: row.Unit, Purchase: row.Purchase}
 			groups[key] = group
 		}
-		group.Lines = append(group.Lines, receiptHelperLine{Order: order, Unit: row.Unit, PurchaseDate: row.PurchaseDate, Purchase: row.Purchase, Sequence: row.Sequence, Part: row.Part, Item: row.Item, Quantity: choice.Quantity, Remaining: row.Quantity})
+		group.Lines = append(group.Lines, receiptHelperLine{ItemCode: row.ItemCode, Order: order, Unit: row.Unit, PurchaseDate: row.PurchaseDate, Purchase: row.Purchase, Sequence: row.Sequence, Part: row.Part, Item: row.Item, Quantity: choice.Quantity, Remaining: row.Quantity})
 	}
 	keys := []string{}
 	for k := range groups {

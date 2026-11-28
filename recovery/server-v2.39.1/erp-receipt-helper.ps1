@@ -39,7 +39,7 @@ $groups.Add_SelectedIndexChanged({
  $group=$task.groups[$groups.SelectedIndex];$vendor.Text=$group.customer+' (코드 '+$group.customer_code+') / 사업장 '+$group.unit
  $confirmed.Checked=$false
  $text=New-Object 'Collections.Generic.List[string]'
- foreach($line in $group.lines){$text.Add($line.part);$text.Add($line.item+' · 입고할 수량 '+$line.quantity+' / 잔량 '+$line.remaining);$text.Add('수주 '+$line.order+' / 발주일 '+$line.purchase_date+' / 발주 행 '+$line.sequence);$text.Add('')}
+ foreach($line in $group.lines){if($line.part){$text.Add([string]$line.part)}else{$text.Add('표시용 품번 미등록')};if($line.item_code){$text.Add('ERP 품목 코드: '+$line.item_code)};$text.Add($line.item+' · 입고할 수량 '+$line.quantity+' / 잔량 '+$line.remaining);$text.Add('수주 '+$line.order+' / 발주일 '+$line.purchase_date+' / 발주 행 '+$line.sequence);$text.Add('')}
  $lines.Text=$text -join "`r`n"
 })
 $copyVendor.Add_Click({[Windows.Forms.Clipboard]::SetText([string]$task.groups[$groups.SelectedIndex].customer_code)})

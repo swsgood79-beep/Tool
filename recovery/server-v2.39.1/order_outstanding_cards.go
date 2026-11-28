@@ -164,6 +164,8 @@ func (a *App) orderOutstandingCardsHTTP(w http.ResponseWriter, r *http.Request) 
 						view.Rows[i].Sequence = 0
 						view.Rows[i].Part = ""
 						view.Rows[i].ItemCode = ""
+						view.Rows[i].PrepareBlock = ""
+						view.Rows[i].SequenceKnown = false
 					}
 				}
 			}
@@ -201,6 +203,7 @@ func (a *App) fetchOutstandingCards(parent context.Context, orders []string, sco
 			}
 			row.Order = ""
 			row.Key = receiptRowKey(row)
+			row.PrepareBlock = receiptRowBlockReason(row)
 			grouped[order] = append(grouped[order], row)
 		}
 	}
@@ -231,7 +234,7 @@ func (a *App) orderOutstandingCardsMarkup(page, name string, value any) string {
 	if name != "work.html" && name != "admin.html" {
 		return page
 	}
-	assets := `<link rel="stylesheet" href="/order-outstanding-v1.4.116.css"><link rel="stylesheet" href="/order-outstanding-cards-v1.4.119.css"><script defer src="/order-outstanding-cards-v1.4.128.js"></script>`
+	assets := `<link rel="stylesheet" href="/order-outstanding-v1.4.116.css"><link rel="stylesheet" href="/order-outstanding-cards-v1.4.119.css"><script defer src="/order-outstanding-cards-v1.4.129.js"></script>`
 	helper := ""
 	if root, ok := value.(map[string]any); ok {
 		if csrf, ok := root["CSRF"].(string); ok {
