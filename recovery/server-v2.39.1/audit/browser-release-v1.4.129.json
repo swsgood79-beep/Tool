@@ -1,0 +1,24 @@
+{
+  "results": [
+    {
+      "width": 320,
+      "result": "pass",
+      "scope": "Actual Alpha optional display-part blank remains selectable; explicit zero business sequence accepted; genuinely missing keys blocked with reasons; native launch mocked"
+    },
+    {
+      "width": 390,
+      "result": "pass",
+      "scope": "Actual Alpha optional display-part blank remains selectable; explicit zero business sequence accepted; genuinely missing keys blocked with reasons; native launch mocked"
+    },
+    {
+      "width": 430,
+      "result": "pass",
+      "scope": "Actual Alpha optional display-part blank remains selectable; explicit zero business sequence accepted; genuinely missing keys blocked with reasons; native launch mocked"
+    },
+    {
+      "width": 1100,
+      "result": "pass",
+      "scope": "Actual Alpha optional display-part blank remains selectable; explicit zero business sequence accepted; genuinely missing keys blocked with reasons; native launch mocked"
+    }
+  ]
+}
