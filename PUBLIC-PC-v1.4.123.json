@@ -1,0 +1,26 @@
+{
+  "version": "1.4.123",
+  "release_commit": "6446968",
+  "verified_at_utc": "2026-11-28T00:06:44.809983+00:00",
+  "manifest_verified": true,
+  "source_rebuild_verified": true,
+  "downloads": [
+    {
+      "file": "AlphaWorkComplete-Recovered-Windows-x64-v1.4.123.zip",
+      "bytes": 38694712,
+      "sha256": "14369ad42f0e9e25858e1b6f1a08c8a9a795b798191d0a09537ad1bc107ebec7",
+      "verified": true
+    },
+    {
+      "file": "AlphaWorkComplete-Recovered-source-PC-v1.4.123-App-v1.0.11.zip",
+      "bytes": 36036045,
+      "sha256": "5a8680f05889dc4835da3c8391542069597893d54dd5ed5520be9a78c42d58a1",
+      "verified": true
+    }
+  ],
+  "field_verification_pending": [
+    "Native SQL procedure-source read",
+    "Isolated transaction validation and actor mapping",
+    "Live ERP writer not implemented or shipped"
+  ]
+}
