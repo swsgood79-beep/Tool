@@ -42,7 +42,7 @@ manifest = {
     'apk_changed': False,
     'apk_sha256': apk_hash,
     'source_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=root, text=True).strip(),
-    'change': 'Remove GUI HideWindow startup flag; validate live visible child HWND before reporting opened, expose allowlisted failure stages, lazy-load optional filter so base GUI opens independently. Native company outcome pending.',
+    'change': 'Fix GUI helper HideWindow/visible-HWND verification and admin edit-worker overlap with normal-flow separate rows. Optional filter lazy; native company outcome pending.',
     'go_test_all': 'pass',
     'go_race_related': 'pass',
     'go_vet_linux': 'pass',
@@ -105,6 +105,6 @@ current = {
     'sha256': sha(windows.read_bytes()),
     'exe_sha256': sha(binary),
     'bytes': windows.stat().st_size,
-    'notes': 'PC 도우미 창 숨김 설정 수정 · 실제 창 표시 확인 후 안내 · APK1.0.11',
+    'notes': 'PC 도우미 창 표시 보완 · 관리자 수정·작업자 겹침 수정 · APK1.0.11',
 }
 (out / 'pc-update.json').write_text(json.dumps(current, ensure_ascii=False, indent=2) + '\n')

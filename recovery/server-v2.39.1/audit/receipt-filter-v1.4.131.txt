@@ -1,0 +1,1 @@
+PASS: actual labelled-control selector, duplicate label/input rejection, wrong parent/row exclusion, intervening-label rejection; official Accessibility compile and helper PowerShell AST. No native Windows calls/UI actions executed.

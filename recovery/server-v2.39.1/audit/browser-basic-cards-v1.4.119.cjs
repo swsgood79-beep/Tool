@@ -36,7 +36,7 @@ const config = JSON.parse(raw);
    assert.ok(Math.abs(position.height-target.height)<2);
    if (role==='admin') {
     const edit=await card.locator(':scope > summary > .order-edit').boundingBox();
-    assert.ok(edit && edit.y+edit.height<=position.y,JSON.stringify({role,width,edit,position}));
+    assert.ok(edit && edit.y>=Math.max(position.y+position.height,target.y+target.height)+6,JSON.stringify({role,width,edit,position,target}));
     const metadata=await card.locator('.design-order-meta').boundingBox();
     assert.ok(metadata.y+metadata.height<=edit.y+1,JSON.stringify({role,width,edit,metadata}));
    }
