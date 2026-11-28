@@ -1,8 +1,8 @@
 {
-  "version": "1.4.124",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.124.zip",
-  "sha256": "de5d9107ff6d0b6b8d6550d435a41ba490773de970a392ca8c8906b65600b52e",
-  "exe_sha256": "62d3009a2dcc0c7eee8af58fdb93f8582d100aef154b941583ca5e1eb61aefac",
-  "bytes": 38699930,
-  "notes": "ERP 입고 화면 인식 확인 · 반자동 연동 준비 · APK1.0.11"
+  "version": "1.4.125",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.125.zip",
+  "sha256": "1ae6d303e5a0acd460da49a6e8b5e89e80eddc47d56ebbb3f71ab519628ff778",
+  "exe_sha256": "f74d1f53e9d60d6a094f6146d851bac35feaf197a4649ccb42853c4c97052e89",
+  "bytes": 38702731,
+  "notes": "ERP 불러오기 창 내부/하위창 인식 보완 · APK1.0.11"
 }
