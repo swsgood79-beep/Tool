@@ -1,8 +1,8 @@
 {
-  "version": "1.4.130",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.130.zip",
-  "sha256": "7b3f721f717173010bc1068c7bbd1f0bc9af856b15054c743c3f83904fbb5422",
-  "exe_sha256": "a97824611f2e9a3fc5aa56a02804011cfc06384ea2432edec4f2a4d7f97e590d",
-  "bytes": 38731134,
-  "notes": "미입고 입력 도우미 다크모드 색상·가독성 수정 · APK1.0.11"
+  "version": "1.4.131",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.131.zip",
+  "sha256": "0a28d192e3d6af177337d55b38fd4d159c3ee00cc95cf36276b5b62123c4c1f5",
+  "exe_sha256": "4a6681f09a737167f9c91aae2a0bde7e177d2fb44a9bcd7708248acdb92fbee9",
+  "bytes": 38737278,
+  "notes": "PC 도우미 창 표시 보완 · 관리자 수정·작업자 겹침 수정 · APK1.0.11"
 }
