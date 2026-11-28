@@ -23,6 +23,7 @@ func resolveOutstandingCustomers(rows []OrderOutstandingRow, customers []ERPDBCu
 	}
 	result := make([]OrderOutstandingRow, len(rows))
 	for i, row := range rows {
+		row.Purchase = strings.TrimSpace(row.Purchase)
 		code := strings.TrimSpace(row.CustomerCode)
 		if code != "" {
 			names := map[string]bool{}

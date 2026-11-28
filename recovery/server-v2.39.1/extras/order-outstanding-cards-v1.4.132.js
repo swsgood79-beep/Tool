@@ -145,7 +145,6 @@
         const purchaseRow = node('tr'); purchaseRow.className = 'outstanding-purchase';
         const purchaseCell = node('td'); purchaseCell.colSpan = 4;
         purchaseCell.append(node('strong', item.purchase ? `발주번호 ${item.purchase}` : '발주번호 확인 불가'));
-        if (item.purchase && (item.sequence_known || item.sequence > 0)) purchaseCell.append(node('small', ` · 발주 행 ${item.sequence ?? 0}`));
         purchaseRow.append(purchaseCell); body.append(purchaseRow);
         const row = node('tr');row.className='outstanding-item';
         for (const value of [item.item || '확인 불가', item.quantity.toLocaleString('ko-KR'), item.customer || '확인 불가', date(item.due)]) row.append(node('td', value));
