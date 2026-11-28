@@ -234,7 +234,7 @@ func (a *App) orderOutstandingCardsMarkup(page, name string, value any) string {
 	if name != "work.html" && name != "admin.html" {
 		return page
 	}
-	assets := `<link rel="stylesheet" href="/order-outstanding-v1.4.116.css"><link rel="stylesheet" href="/order-outstanding-cards-v1.4.119.css"><script defer src="/order-outstanding-cards-v1.4.129.js"></script>`
+	assets := `<link rel="stylesheet" href="/order-outstanding-v1.4.116.css"><link rel="stylesheet" href="/order-outstanding-cards-v1.4.119.css"><script defer src="/order-outstanding-cards-v1.4.130.js"></script>`
 	helper := ""
 	if root, ok := value.(map[string]any); ok {
 		if csrf, ok := root["CSRF"].(string); ok {
@@ -245,7 +245,7 @@ func (a *App) orderOutstandingCardsMarkup(page, name string, value any) string {
 			}
 		}
 	}
-	assets += `<link rel="stylesheet" href="/erp-receipt-helper-v1.4.128.css">`
+	assets += `<link rel="stylesheet" href="/erp-receipt-helper-v1.4.130.css">`
 	marker := `<div id="order-outstanding-config" hidden data-endpoint="/order-outstanding/` + template.HTMLEscapeString(a.state.Board) + `"` + helper + `></div>`
 	page = strings.Replace(page, "</head>", assets+"</head>", 1)
 	return strings.Replace(page, "</body>", marker+"</body>", 1)
