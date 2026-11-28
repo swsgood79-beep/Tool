@@ -179,7 +179,7 @@ func (a *App) receiptHelperHTTP(w http.ResponseWriter, r *http.Request, s Sessio
 			launch = platformReceiptHelper
 		}
 		if err = launch(task); err != nil {
-			http.Error(w, "PC 도우미를 열지 못했습니다. 회사 PC에서 Alpha가 실행 중인지 확인해 주세요", 503)
+			http.Error(w, receiptHelperLaunchMessage(err), 503)
 			return true
 		}
 		a.receiptHelperLast = time.Now()

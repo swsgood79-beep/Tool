@@ -1,18 +1,25 @@
 $ErrorActionPreference='Stop'
+$stage='desktop'
+try {
+if(-not [Environment]::UserInteractive -or [Diagnostics.Process]::GetCurrentProcess().SessionId -eq 0){throw 'interactive desktop required'}
+$stage='assemblies'
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
-Add-Type -AssemblyName Accessibility
 $filterSource=@'
 # FILTER_SOURCE
 '@
-Add-Type -TypeDefinition $filterSource -ReferencedAssemblies @('System.dll','System.Core.dll',[Accessibility.IAccessible].Assembly.Location)
+$script:filterReady=$false
+$stage='task'
 $task=[Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($TaskBase64))|ConvertFrom-Json
 if([DateTimeOffset]::Parse($task.expires) -le [DateTimeOffset]::Now){throw 'expired'}
+$stage='form'
 $form=New-Object Windows.Forms.Form
 $form.Text='Alpha · ERP 입고 입력 도우미'
 $form.Size=New-Object Drawing.Size(540,700)
 $form.MinimumSize=New-Object Drawing.Size(430,500)
 $form.TopMost=$true
+$form.ShowInTaskbar=$true
+$form.WindowState='Normal'
 $form.StartPosition='CenterScreen'
 $form.Font=New-Object Drawing.Font('맑은 고딕',10)
 $layout=New-Object Windows.Forms.TableLayoutPanel
@@ -51,13 +58,26 @@ $search.Add_Click({
   if([DateTimeOffset]::Parse($task.expires) -le [DateTimeOffset]::Now){$status.Text='준비 목록이 만료됐습니다. Alpha에서 새로고침 후 다시 준비해 주세요';return}
   $processes=@(Get-Process -Name PrimeXAR -ErrorAction SilentlyContinue)
   if($processes.Count -ne 1){$status.Text='ERP 한 개만 실행해 주세요. 발주번호 복사는 계속 사용할 수 있습니다';return}
+  if(-not $script:filterReady){Add-Type -AssemblyName Accessibility;Add-Type -TypeDefinition $filterSource -ReferencedAssemblies @('System.dll','System.Core.dll',[Accessibility.IAccessible].Assembly.Location);$script:filterReady=$true}
   $status.Text=[AlphaReceiptFilter]::Apply([int]$processes[0].Id,[string]$task.groups[$groups.SelectedIndex].purchase)
  }catch{$status.Text='자동 검색을 완료하지 못했습니다. 발주번호 복사로 ERP에서 직접 검색해 주세요'}
  finally{$search.Enabled=$confirmed.Checked}
 })
 $timer=New-Object Windows.Forms.Timer;$timer.Interval=30000
 $timer.Add_Tick({if([DateTimeOffset]::Parse($task.expires) -le [DateTimeOffset]::Now){$form.Close()}})
-$form.Add_Shown({[Console]::WriteLine('ALPHA_HELPER_READY');[Console]::Out.Flush();$timer.Start()})
+$form.Add_Shown({
+ $form.BringToFront();[void]$form.Activate()
+ if($form.Visible -and $form.IsHandleCreated){[Console]::WriteLine('ALPHA_HELPER_READY:'+$form.Handle.ToInt64());[Console]::Out.Flush();$timer.Start()}
+})
+$stage='content'
 $groups.SelectedIndex=0
+$stage='show'
 [Windows.Forms.Application]::Run($form)
 $timer.Dispose();$form.Dispose()
+
+}catch{
+ # Fixed stage code only. Never expose ERP data, paths, source or raw exceptions.
+ [Console]::Error.WriteLine('ALPHA_HELPER_FAILED:'+$stage)
+ [Console]::Error.Flush()
+ exit 1
+}
