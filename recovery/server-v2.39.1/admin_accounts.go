@@ -317,6 +317,9 @@ func (a *App) accountMarkup(s, name string, value any) string {
 	if owner && name == "admin.html" {
 		s = strings.Replace(s, "<main>", `<main><nav aria-label="ERP 자료 조회" style="margin:12px 0"><a class="button quiet" href="/machining-admin/certificates">ERP 검사성적서 엑셀</a></nav>`, 1)
 	}
+	if owner && name == "admin.html" {
+		s = strings.Replace(s, "</body>", `<div id="erp-receipt-config" hidden data-csrf="`+template.HTMLEscapeString(csrf)+`"></div></body>`, 1)
+	}
 	marker := `<div id="admin-account-config" hidden data-owner="` + map[bool]string{true: "true", false: "false"}[owner] + `" data-label="` + template.HTMLEscapeString(label) + `" data-username="` + template.HTMLEscapeString(username) + `"></div>`
 	s = strings.Replace(s, "</head>", `<link rel="stylesheet" href="/admin-accounts-v1.4.54.css"></head>`, 1)
 	return a.teamMarkup(strings.Replace(s, "</body>", marker+"</body>", 1), session)

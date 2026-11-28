@@ -10,6 +10,8 @@ import (
 )
 
 type erpReceiptSelection struct {
+	RowID string
+
 	Key      ERPReceiptKey
 	Quantity float64
 }
@@ -42,11 +44,25 @@ func receiptPlanFromReport(report ERPDBReport, order string, selection []erpRece
 	}
 	lines := []ERPReceiptLine{}
 	for _, s := range selection {
-		r, ok := rows[s.Key]
+		key := s.Key
+		if s.RowID != "" {
+			found := false
+			for k := range rows {
+				if digest(jsonRaw(k)) == s.RowID {
+					key = k
+					found = true
+					break
+				}
+			}
+			if !found {
+				return ERPReceiptPlan{}, fmt.Errorf("선택한 발주 행이 변경됐습니다")
+			}
+		}
+		r, ok := rows[key]
 		if !ok {
 			return ERPReceiptPlan{}, fmt.Errorf("선택한 발주 행이 변경되거나 입고되어 다시 조회해야 합니다")
 		}
-		lines = append(lines, ERPReceiptLine{Key: s.Key, Item: r.ItemCode, CustomerCode: r.CustomerCode, Remaining: r.Quantity, Quantity: s.Quantity})
+		lines = append(lines, ERPReceiptLine{Key: key, Item: r.ItemCode, CustomerCode: r.CustomerCode, Remaining: r.Quantity, Quantity: s.Quantity})
 	}
 	return buildERPReceiptPlan(lines)
 }

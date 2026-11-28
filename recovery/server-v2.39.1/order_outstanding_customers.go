@@ -43,7 +43,10 @@ func resolveOutstandingCustomers(rows []OrderOutstandingRow, customers []ERPDBCu
 				}
 			}
 		}
-		// Internal matching keys are not needed by the popup response.
+		if row.Unit != "" && row.PurchaseDate != "" && row.Purchase != "" && row.Sequence > 0 && row.ItemCode != "" {
+			row.ReceiptID = digest(jsonRaw(receiptRowKey(row)))
+		}
+		// Keep internal matching keys private; the owner preview resolves opaque IDs against a fresh query.
 		row.CustomerCode = ""
 		row.Unit = ""
 		result[i] = row

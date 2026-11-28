@@ -128,10 +128,10 @@
  const receiptOwner=document.getElementById('admin-account-config')?.dataset.owner==='true';
  const previewButton=node('button','입고 내용 확인');previewButton.type='button';previewButton.hidden=true;toolbar.prepend(previewButton);
  previewButton.addEventListener('click',async()=>{
- const lines=receiptSelections.filter(x=>x.check.checked).map(x=>({Key:{Unit:x.item.unit,PurchaseDate:x.item.purchase_date,Purchase:x.item.purchase,Sequence:x.item.sequence},Quantity:Number(x.quantity.value)}));
+ const lines=receiptSelections.filter(x=>x.check.checked).map(x=>({RowID:x.item.receipt_id,Quantity:Number(x.quantity.value)}));
  if(!lines.length){status.textContent='입고된 품목을 선택해 주세요';return;}
  previewButton.disabled=true;
- try{const csrf=document.querySelector('input[name="csrf"]')?.value;if(!csrf)throw Error('로그인을 다시 확인해 주세요');
+ try{const csrf=document.getElementById('erp-receipt-config')?.dataset.csrf;if(!csrf)throw Error('로그인을 다시 확인해 주세요');
  const response=await fetch('/machining-admin/receipt-preview',{method:'POST',body:new URLSearchParams({csrf,order:selected.number,lines:JSON.stringify(lines)})});if(!response.ok)throw Error(await response.text());const result=await response.json();
  const d=node('dialog');d.className='outstanding-dialog';const h=node('h2','입고 내용 확인');d.append(h,node('p',result.message));
  for(const line of result.plan.Lines)d.append(node('p',`${line.Item} · ${line.Quantity}개 · 발주 ${line.Key.Purchase} / ${line.Key.Sequence}행`));
@@ -157,14 +157,14 @@
       head.append(labels);
       const body = node('tbody');
       for (const item of items) {
-        const row = node('tr');
+        const row = node('tr');let controls;
         for (const value of [item.item || '확인 불가', item.quantity.toLocaleString('ko-KR'), item.customer || '확인 불가', date(item.due)]) row.append(node('td', value));
-        if(receiptOwner&&item.purchase&&item.purchase_date&&item.sequence&&item.item_code){
+        if(receiptOwner&&item.receipt_id&&item.purchase&&item.purchase_date&&item.sequence&&item.item_code){
  const check=node('input');check.type='checkbox';check.setAttribute('aria-label',`${item.item} 발주 ${item.purchase} ${item.sequence}행 선택`);
- const label=node('label',` 선택 · 발주 ${item.purchase} / ${item.sequence}행`);label.prepend(check);row.cells[0].append(label);
- const quantity=node('input');quantity.type='number';quantity.min='1';quantity.max=String(item.quantity);quantity.step='1';quantity.value=String(item.quantity);quantity.disabled=true;quantity.style.width='100%';quantity.style.minWidth='0';quantity.style.boxSizing='border-box';quantity.setAttribute('aria-label',`${item.item} 입고 수량`);check.onchange=()=>quantity.disabled=!check.checked;row.cells[1].append(quantity);receiptSelections.push({item,check,quantity});
+ controls=node('tr');const controlCell=node('td');controlCell.colSpan=4;controls.append(controlCell);const box=node('div');box.style.cssText='display:flex;flex-wrap:wrap;gap:12px;align-items:center';controlCell.append(box);const label=node('label',` 입고 선택 · 발주 ${item.purchase} / ${item.sequence}행`);label.prepend(check);box.append(label);
+ const quantity=node('input');quantity.type='number';quantity.min='1';quantity.max=String(item.quantity);quantity.step='1';quantity.value=String(item.quantity);quantity.disabled=true;quantity.style.width='80px';quantity.style.minWidth='60px';quantity.style.boxSizing='border-box';quantity.setAttribute('aria-label',`${item.item} 입고 수량`);check.onchange=()=>quantity.disabled=!check.checked;const quantityLabel=node('label','입고 수량 ');quantityLabel.append(quantity);box.append(quantityLabel);receiptSelections.push({item,check,quantity});
  }
- body.append(row);
+ body.append(row);if(controls)body.append(controls);
       }
       table.append(head, body);
       section.append(heading, table);
