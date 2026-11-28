@@ -48,7 +48,7 @@ public static class AlphaReceiptMsaa
     private static extern int AccessibleChildren(
         [MarshalAs(UnmanagedType.Interface)] IAccessible container,
         int start, int count,
-        [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 2)] object[] children,
+        [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct, SizeParamIndex = 2)] object[] children,
         out int obtained);
 
     private static string ReadText(Func<string> getter, Report report)
@@ -182,6 +182,7 @@ public static class AlphaReceiptMsaa
                 report.ReadErrors++;
                 continue;
             }
+            if (obtained < count) report.Truncated = true;
             for (int index = 0; index < Math.Min(obtained, children.Length); index++)
             {
                 IAccessible child = children[index] as IAccessible;
@@ -194,8 +195,14 @@ public static class AlphaReceiptMsaa
                 }
                 else if (children[index] is int && (int)children[index] > 0)
                 {
+                    int childId = (int)children[index];
+                    IAccessible childObject = null;
+                    try { childObject = accessible.get_accChild(childId) as IAccessible; }
+                    catch { /* Simple child IDs need not expose a child object. */ }
+                    if (Object.ReferenceEquals(childObject, accessible)) childObject = null;
                     pending.Enqueue(new Pending {
-                        Accessible = accessible, Child = (int)children[index],
+                        Accessible = childObject ?? accessible,
+                        Child = childObject == null ? childId : 0,
                         Parent = element.Index, Depth = entry.Depth + 1
                     });
                 }

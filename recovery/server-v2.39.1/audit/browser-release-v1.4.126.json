@@ -1,0 +1,24 @@
+{
+  "results": [
+    {
+      "width": 320,
+      "result": "pass",
+      "scope": "synthetic MSAA cell/check-state report; actual browser/protected save/download. Native Windows MSAA pending."
+    },
+    {
+      "width": 390,
+      "result": "pass",
+      "scope": "synthetic MSAA cell/check-state report; actual browser/protected save/download. Native Windows MSAA pending."
+    },
+    {
+      "width": 430,
+      "result": "pass",
+      "scope": "synthetic MSAA cell/check-state report; actual browser/protected save/download. Native Windows MSAA pending."
+    },
+    {
+      "width": 1100,
+      "result": "pass",
+      "scope": "synthetic MSAA cell/check-state report; actual browser/protected save/download. Native Windows MSAA pending."
+    }
+  ]
+}

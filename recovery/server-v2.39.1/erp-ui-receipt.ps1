@@ -163,7 +163,7 @@ public static class AlphaReceiptWindows {
   Add-Type -TypeDefinition @'
 # MSAA_READER_SOURCE
 '@ -ReferencedAssemblies @('System.dll','System.Core.dll',[Accessibility.IAccessible].Assembly.Location)
-  $targetHandle=[long]$root.Current.NativeWindowHandle
+  $targetHandle=if($nativeTargets.Count -eq 1){[long]$nativeTargets[0].Handle}else{[long]$root.Current.NativeWindowHandle -band 0xffffffffL}
   $legacyReport=[AlphaReceiptMsaa]::Read($targetHandle,[int]$erp[0].Id)
   $legacyElements=New-Object 'Collections.Generic.List[object]'
   foreach($legacyElement in $legacyReport.Elements){
