@@ -59,6 +59,8 @@ type ERPReceiptDefinition struct {
 	Redacted   bool   `json:"redacted"`
 }
 type ERPDBReport struct {
+	UIReceipt *ERPUIReceiptReport `json:"ui_receipt,omitempty"`
+
 	ReceiptDefinitions []ERPReceiptDefinition `json:"receipt_definitions,omitempty"`
 
 	Certificates []ERPCertificateRow `json:"certificates,omitempty"`
@@ -95,6 +97,8 @@ type ERPDBView struct {
 
 func dbProbeMessage(r ERPDBReport) string {
 	switch r.Status {
+	case "ui_receipt":
+		return uiReceiptMessage(r.UIReceipt)
 	case "receipt_contract":
 		if r.Truncated || len(r.ReceiptDefinitions) != 3 {
 			return "입고 저장 로직을 모두 확인하지 못했습니다. 결과 파일을 확인해 주세요"
@@ -184,12 +188,12 @@ func decodeDBProbe(raw []byte) ERPDBReport {
 		r.ConfigReason = ""
 	}
 	switch r.Stage {
-	case "process_job", "process_start", "process_attach", "process_wait", "process_exit", "response_decode", "order_outstanding", "purchase_preview", "config_path", "config_read", "config_parse", "connection_options", "connect", "columns", "relations", "receipt_metadata", "observation_access", "observation", "certificates", "receipt_contract", "done":
+	case "process_job", "process_start", "process_attach", "process_wait", "process_exit", "response_decode", "order_outstanding", "purchase_preview", "config_path", "config_read", "config_parse", "connection_options", "connect", "columns", "relations", "receipt_metadata", "observation_access", "observation", "certificates", "receipt_contract", "ui_receipt", "done":
 	default:
 		r.Stage = ""
 	}
 	switch r.Status {
-	case "receipt_contract", "certificates", "observation", "observation_access", "receipt_metadata", "order_outstanding", "purchase_preview", "ok", "config_missing", "ambiguous", "config_invalid", "timeout", "unsupported", "login_failed", "database_denied", "tls_failed", "metadata_failed", "failed":
+	case "ui_receipt", "receipt_contract", "certificates", "observation", "observation_access", "receipt_metadata", "order_outstanding", "purchase_preview", "ok", "config_missing", "ambiguous", "config_invalid", "timeout", "unsupported", "login_failed", "database_denied", "tls_failed", "metadata_failed", "failed":
 	default:
 		r.Status = "failed"
 	}
@@ -200,6 +204,9 @@ func decodeDBProbe(raw []byte) ERPDBReport {
 	if len(r.Certificates) > 5000 {
 		r.Certificates = r.Certificates[:5000]
 		r.Truncated = true
+	}
+	if r.UIReceipt != nil {
+		sanitizeUIReceiptReport(r.UIReceipt)
 	}
 	if len(r.ReceiptDefinitions) > 3 {
 		r.ReceiptDefinitions = r.ReceiptDefinitions[:3]
@@ -273,12 +280,15 @@ func (a *App) erpDBHTTP(w http.ResponseWriter, r *http.Request, s Session) bool 
 	case r.URL.Path == "/machining-admin/db-check" && r.Method == "GET":
 		jsonReply(w, a.dbProbeView())
 	case r.URL.Path == "/machining-admin/db-check/download" && r.Method == "GET":
-		if a.erpDBReport == nil || a.erpDBBusy {
+		if a.erpDBReport == nil || a.erpDBBusy || (a.erpDBReport.UIReceipt != nil && !a.erpDBReport.UIReceipt.Saved) {
 			http.Error(w, "진단 완료 후 내려받을 수 있습니다", 409)
 			return true
 		}
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
 		filename := "ERP-db-check.json"
+		if a.erpDBReport.UIReceipt != nil {
+			filename = "ERP-ui-receipt-check.json"
+		}
 		if a.erpDBReport.Status == "receipt_contract" {
 			filename = "ERP-receipt-contract.json"
 		}
@@ -306,9 +316,12 @@ func (a *App) erpDBHTTP(w http.ResponseWriter, r *http.Request, s Session) bool 
 			parent = context.Background()
 		}
 		mode := r.FormValue("mode")
-		if mode != "" && mode != "preview" && mode != "receipt" && mode != "observe-access" && mode != "receipt-contract" {
+		if mode != "" && mode != "preview" && mode != "receipt" && mode != "observe-access" && mode != "receipt-contract" && mode != "ui-receipt" {
 			http.Error(w, "지원하지 않는 진단 방식입니다", 400)
 			return true
+		}
+		if mode == "ui-receipt" {
+			parent = context.WithValue(parent, erpUIReceiptKey{}, true)
 		}
 		if mode == "receipt-contract" {
 			parent = context.WithValue(parent, erpReceiptContractKey{}, true)
@@ -348,8 +361,22 @@ func (a *App) erpDBHTTP(w http.ResponseWriter, r *http.Request, s Session) bool 
 				result.DateTo = preview.To
 			}
 			result.ReceiptRequested = mode == "receipt"
+			if mode == "ui-receipt" && result.UIReceipt == nil {
+				reason := "failed"
+				if result.Status == "unsupported" {
+					reason = "unsupported"
+				}
+				if result.Status == "timeout" {
+					reason = "timeout"
+				}
+				result.UIReceipt = &ERPUIReceiptReport{Reason: reason}
+				result.Status = "ui_receipt"
+			}
 			result.Version = releaseVersion
 			result.At = time.Now()
+			if result.UIReceipt != nil {
+				saveUIReceiptReport(a.dir, &result)
+			}
 			a.mu.Lock()
 			a.erpDBReport = &result
 			a.erpDBBusy = false

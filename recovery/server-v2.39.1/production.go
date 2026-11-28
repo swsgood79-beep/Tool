@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-const releaseVersion = "1.4.123"
+const releaseVersion = "1.4.124"
 const productionFolderName = "AlphaWorkCompleteRecovered"
 const productionListen = "127.0.0.1:18791"
 const productionMarker = ".alpha-recovered-production-v1"

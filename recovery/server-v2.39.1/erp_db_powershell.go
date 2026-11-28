@@ -12,6 +12,9 @@ import (
 	"unicode/utf16"
 )
 
+//go:embed erp-ui-receipt.ps1
+var erpUIReceiptScript string
+
 //go:embed erp-receipt-contract.ps1
 var erpReceiptContractScript string
 
@@ -74,12 +77,19 @@ func erpDBPowerShellCommand(ctx context.Context, folder string) *exec.Cmd {
 	script = strings.Replace(script, "# OBSERVATION_SCRIPT", erpObservationScript, 1)
 	script = strings.Replace(script, "# CERTIFICATE_SCRIPT", erpCertificateScript, 1)
 	script = strings.Replace(script, "# RECEIPT_CONTRACT_SCRIPT", erpReceiptContractScript, 1)
+	uiOnly, _ := ctx.Value(erpUIReceiptKey{}).(bool)
+	if uiOnly {
+		script = erpUIReceiptScript
+	}
 	units := utf16.Encode([]rune(erpDBBootstrap))
 	encoded := make([]byte, len(units)*2)
 	for i, unit := range units {
 		binary.LittleEndian.PutUint16(encoded[i*2:], unit)
 	}
 	command := exec.CommandContext(ctx, filepath.Join(os.Getenv("SystemRoot"), "System32", "WindowsPowerShell", "v1.0", "powershell.exe"), "-NoLogo", "-NoProfile", "-NonInteractive", "-EncodedCommand", base64.StdEncoding.EncodeToString(encoded))
+	if uiOnly {
+		command.Args = append([]string{command.Args[0], "-STA"}, command.Args[1:]...)
+	}
 	command.Stdin = strings.NewReader(script)
 	return command
 }
