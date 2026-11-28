@@ -1,0 +1,25 @@
+{
+  "version": "1.4.129",
+  "release_commit": "6e84b6f",
+  "verified_at_utc": "2026-11-28T05:17:34.350790+00:00",
+  "manifest_verified": true,
+  "source_rebuild_verified": true,
+  "downloads": [
+    {
+      "file": "AlphaWorkComplete-Recovered-Windows-x64-v1.4.129.zip",
+      "bytes": 38730021,
+      "sha256": "6912de3bfa4675325d4b07b2db0752f3cbd9684474307dec8070b3cbef26e82b",
+      "verified": true
+    },
+    {
+      "file": "AlphaWorkComplete-Recovered-source-PC-v1.4.129-App-v1.0.11.zip",
+      "bytes": 36377133,
+      "sha256": "176fcf28ff09b2c0fb1ea606859ae50a1f5f1ec0ce11153afcdf3d72426abd59",
+      "verified": true
+    }
+  ],
+  "field_verification_pending": [
+    "Actual user row metadata not inspected; optional display-part code defect fixed and true missing keys now explained. Existing native company helper/filter field verification pending",
+    "Automatic vendor/row/quantity/final-save are not implemented; no repeated diagnostic upload requested"
+  ]
+}
