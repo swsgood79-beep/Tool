@@ -3,8 +3,11 @@ package main
 import (
 	"context"
 	"io"
+	"net/http"
+	"net/http/httptest"
 	"net/url"
 	"os"
+	"os/exec"
 	"regexp"
 	"strings"
 	"testing"
@@ -81,6 +84,18 @@ func TestERPReceiptContractOwnerDownload(t *testing.T) {
 }
 func TestERPReceiptContractBrowser123(t *testing.T) {
 	if os.Getenv("ALPHA_CONTRACT_BROWSER") != "1" {
-		t.Skip("browser separate harness")
+		t.Skip("optional Chromium")
+	}
+	a := fixture(t)
+	owner := adminCookie(a)
+	a.erpDBProbe = func(ctx context.Context, _ string) ERPDBReport {
+		return ERPDBReport{Status: "receipt_contract", Connected: true, ReceiptDefinitions: []ERPReceiptDefinition{{Name: "SYNTH-HEADER", Definition: "SELECT 1", Visible: true}, {Name: "SYNTH-LINE", Definition: "SELECT 2", Visible: true}, {Name: "SYNTH-TOTAL", Definition: "SELECT 3", Visible: true}}}
+	}
+	server := httptest.NewServer(http.HandlerFunc(a.ServeHTTP))
+	defer server.Close()
+	cmd := exec.Command("node", "audit/browser-contract-v1.4.123.cjs", server.URL, string(jsonRaw(map[string]string{"name": owner.Name, "value": owner.Value})))
+	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
+	if e := cmd.Run(); e != nil {
+		t.Fatal(e)
 	}
 }
