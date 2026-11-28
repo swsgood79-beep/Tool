@@ -1,8 +1,8 @@
 {
-  "version": "1.4.122",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.122.zip",
-  "sha256": "5e2ea63d197f6faab08f595141b11d71fac853041fe8be93149e4d7bd95bc72e",
-  "exe_sha256": "850ef04b3a17f0144af55b3796e2a6b93383489c71ca602fd00ab58257c0f225",
-  "bytes": 38691472,
-  "notes": "수주별 ERP 검사성적서 목록 조회·엑셀 저장 · 대표 관리자 · APK1.0.11"
+  "version": "1.4.123",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.123.zip",
+  "sha256": "14369ad42f0e9e25858e1b6f1a08c8a9a795b798191d0a09537ad1bc107ebec7",
+  "exe_sha256": "dde7cbcc9d67bbade4832a7bbf85fdc02530d0376a5a8c554ed7a0565e2b397e",
+  "bytes": 38694712,
+  "notes": "입고 저장 로직 읽기 전용 확인 · 실제 입고등록 없음 · APK1.0.11"
 }
