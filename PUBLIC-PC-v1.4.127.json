@@ -1,0 +1,25 @@
+{
+  "version": "1.4.127",
+  "release_commit": "612f2b6",
+  "verified_at_utc": "2026-11-28T04:37:34.269030+00:00",
+  "manifest_verified": true,
+  "source_rebuild_verified": true,
+  "downloads": [
+    {
+      "file": "AlphaWorkComplete-Recovered-Windows-x64-v1.4.127.zip",
+      "bytes": 38708082,
+      "sha256": "0d8d8b88a8775fbeda340cbf72e0ff987e2a6fbbd8fd5b3b4ae2fd6c03181f87",
+      "verified": true
+    },
+    {
+      "file": "AlphaWorkComplete-Recovered-source-PC-v1.4.127-App-v1.0.11.zip",
+      "bytes": 36254027,
+      "sha256": "9223ff05f776409504e564e12980eded3a10199592b4d5c02e10508206f8c075",
+      "verified": true
+    }
+  ],
+  "field_verification_pending": [
+    "Native company first8 row cell/check-state/default-action inspection after update",
+    "Exact row recognition and semi-auto preparation still require private UI report"
+  ]
+}
