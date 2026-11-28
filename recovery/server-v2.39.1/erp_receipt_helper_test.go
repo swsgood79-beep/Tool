@@ -249,3 +249,55 @@ func TestReceiptHelperBrowser130(t *testing.T) {
 		t.Fatal("operating state mutation")
 	}
 }
+
+func TestReceiptHelperBrowser131(t *testing.T) {
+	if os.Getenv("ALPHA131_BROWSER") != "1" {
+		t.Skip("optional Chromium")
+	}
+	a, id, _ := cardOutstandingFixture(t)
+	owner := adminCookie(a)
+	before := string(jsonRaw(a.state))
+	a.erpDBProbe = func(ctx context.Context, _ string) ERPDBReport {
+		orders, _ := ctx.Value(erpOrderOutstandingBatchKey{}).([]string)
+		report := ERPDBReport{Status: "order_outstanding", Connected: true, Customers: []ERPDBCustomer{{Code: "TEST-A", Unit: "SYNTH01", Name: "가상 거래처 A"}, {Code: "TEST-B", Unit: "SYNTH01", Name: "가상 거래처 B"}}}
+		for _, order := range orders {
+			if order == "TEST-001" {
+				rows := syntheticReceiptRows()
+				rows[0].Part = ""
+				rows[0].ItemCode = "TEST-ERP-ITEM-CODE-NO-DISPLAY-PART"
+				rows[1].Sequence = 0
+				rows[1].SequenceKnown = true
+				blocked := rows[2]
+				blocked.Unit = ""
+				blocked.Purchase = ""
+				blocked.Sequence = 0
+				blocked.SequenceKnown = false
+				blocked.Item = "가상 발주 정보 누락 품목"
+				report.OutstandingRows = append(rows, blocked)
+			}
+		}
+		return report
+	}
+	launches := 0
+	a.receiptHelperLaunch = func(task receiptHelperTask) error {
+		launches++
+		if launches == 1 {
+			return receiptHelperLaunchError{Stage: "visibility"}
+		}
+		return nil
+	}
+	server := httptest.NewServer(http.HandlerFunc(a.ServeHTTP))
+	defer server.Close()
+	options := map[string]any{"owner": map[string]string{"name": owner.Name, "value": owner.Value}, "id": id, "board": a.state.Board}
+	command := exec.Command("node", "audit/browser-receipt-helper-v1.4.131.cjs", server.URL, string(jsonRaw(options)))
+	command.Stdout = os.Stdout
+	command.Stderr = os.Stderr
+	if err := command.Run(); err != nil {
+		t.Fatal(err)
+	}
+	a.mu.Lock()
+	defer a.mu.Unlock()
+	if before != string(jsonRaw(a.state)) {
+		t.Fatal("operating state mutation")
+	}
+}
