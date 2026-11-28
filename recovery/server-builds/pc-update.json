@@ -1,8 +1,8 @@
 {
-  "version": "1.4.131",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.131.zip",
-  "sha256": "0a28d192e3d6af177337d55b38fd4d159c3ee00cc95cf36276b5b62123c4c1f5",
-  "exe_sha256": "4a6681f09a737167f9c91aae2a0bde7e177d2fb44a9bcd7708248acdb92fbee9",
-  "bytes": 38737278,
-  "notes": "PC 도우미 창 표시 보완 · 관리자 수정·작업자 겹침 수정 · APK1.0.11"
+  "version": "1.4.132",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.132.zip",
+  "sha256": "a5d3757bef8bdf62169a3389f992e192560474eb1e854c697880bb5bc82a6d40",
+  "exe_sha256": "3dec195fd44ba1b22419378ca8ef1ca797d95213e4e7fdb0c7caa315cfd1922a",
+  "bytes": 38714790,
+  "notes": "ERP 입력 도우미 제거 · 미입고 품목별 발주번호 바로 표시 · APK1.0.11"
 }
