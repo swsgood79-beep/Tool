@@ -1,8 +1,8 @@
 {
-  "version": "1.4.126",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.126.zip",
-  "sha256": "58657844f365a5fd34eea2df9f3f500a132a208e9cd00314d0bccebfaadff895",
-  "exe_sha256": "f49e8f8725b42b41cb24b7dec4438e3f16f4ccb7a7045f5ab89e053fd377c576",
-  "bytes": 38707301,
-  "notes": "ERP 구형 표 접근성 인식 보완 · MSAA 읽기 추가 · APK1.0.11"
+  "version": "1.4.127",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.127.zip",
+  "sha256": "0d8d8b88a8775fbeda340cbf72e0ff987e2a6fbbd8fd5b3b4ae2fd6c03181f87",
+  "exe_sha256": "0d7f964cf142446c496d223ea4a449c232310196b90086bbfe42aaf70726e084",
+  "bytes": 38708082,
+  "notes": "ERP 표의 품목 셀·체크 상태 우선 진단 · 부분 조회 명시 · APK1.0.11"
 }
