@@ -47,7 +47,9 @@ try {
  $report.status='failed'
  $report.stage='connect'
  $conn.Open();$report.connected=$true
- if($CertificateOrder){
+ if($ReceiptContract){
+ # RECEIPT_CONTRACT_SCRIPT
+ }elseif($CertificateOrder){
  # CERTIFICATE_SCRIPT
  }elseif($Observe){
  # OBSERVATION_SCRIPT
