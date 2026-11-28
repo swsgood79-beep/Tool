@@ -13,3 +13,13 @@
 ## PC125 창 탐색 보완
 
 최상위 UIA 목록에서 찾지 못하더라도 같은 ERP 프로세스의 네이티브 하위창/MDI를 함께 조사합니다. 정확한 PG03F2120 제목 후보를 HWND로 중복 제거하고, 없으면 구조 컨테이너를 제한된 깊이/개수로 탐색합니다. 여러 후보는 자동 선택하지 않습니다. 미검출 결과에도 발견한 모듈 코드/창 종류/부모 관계와 개수/탐색제한을 남기므로 결과파일로 원인을 분석할 수 있습니다. 다른 ERP 창의 임의 입력값/전체 제목은 탐색정보에 포함하지 않습니다.
+
+## PC126 구형 접근성 읽기
+
+식별한 입고 팝업에 대해 UIA와 MSAA를 함께 읽습니다. UIA 제공자 등록 결과와 관리형 Legacy API 지원 여부를 기록합니다. MSAA는 같은 PID의 확인된 HWND에서 OBJID_CLIENT를 얻어 accName/accValue/accRole/accState와 children을 읽습니다. protected 상태인 요소/하위트리는 텍스트 읽기 전에 제외하며800노드·깊이16·텍스트1500문자 등으로 제한합니다. 결과 ui_receipt.msaa에는 노드의 부모관계/child ID/role/state/값과 제한·오류가 담깁니다. 구형 방식에서 역할·상태를 얻었다는 사실만으로 자동 체크 가능한 행 식별이 입증되는 것은 아닙니다.
+
+상태 표시의 ‘구형 접근성 N개’는 실제 ERP를 읽은 JSON 결과에서 확인해야 합니다. 공개 스크린샷과 브라우저 검증에는 합성 자료만 사용합니다. 사용자 파일에는 실제 업무 내용이 있으므로 공개 저장소에 올리지 않습니다.
+
+구현 참고는 Microsoft의 client-side provider 등록 문서와 MSAA/IAccessible 접근성 인터페이스입니다.
+- https://learn.microsoft.com/en-us/dotnet/framework/ui-automation/register-a-client-side-provider-assembly
+- https://learn.microsoft.com/en-us/windows/win32/winauto/uiauto-accessingmsaaservers
