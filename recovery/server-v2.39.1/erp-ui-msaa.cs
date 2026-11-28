@@ -14,6 +14,8 @@ public static class AlphaReceiptMsaa
         public int Parent;
         public int Depth;
         public int ChildId;
+        public int Ordinal;
+        public string DefaultAction = "";
         public uint Role;
         public uint State;
         public string Name = "";
@@ -29,12 +31,17 @@ public static class AlphaReceiptMsaa
         public int ReadErrors;
         public int PasswordExcluded;
         public int ErrorCode;
+        public int SampledRows;
+        public int SkippedRows;
+        public int RowLimit = 8;
     }
 
     private sealed class Pending
     {
         public IAccessible Accessible;
         public int Child;
+        public int Ordinal = -1;
+        public bool Priority;
         public int Parent;
         public int Depth;
     }
@@ -101,15 +108,16 @@ public static class AlphaReceiptMsaa
         }
 
         Queue<Pending> pending = new Queue<Pending>();
+        Queue<Pending> priority = new Queue<Pending>();
         pending.Enqueue(new Pending {
             Accessible = (IAccessible)rootObject, Child = 0, Parent = -1, Depth = 0
         });
         List<Element> elements = new List<Element>();
         HashSet<string> visited = new HashSet<string>();
 
-        while (pending.Count > 0 && elements.Count < 800)
+        while ((priority.Count > 0 || pending.Count > 0) && elements.Count < 800)
         {
-            Pending entry = pending.Dequeue();
+            Pending entry = priority.Count > 0 ? priority.Dequeue() : pending.Dequeue();
             IAccessible accessible = entry.Accessible;
             IntPtr identity = IntPtr.Zero;
             string key;
@@ -149,13 +157,36 @@ public static class AlphaReceiptMsaa
 
             Element element = new Element {
                 Index = elements.Count, Parent = entry.Parent, Depth = entry.Depth,
-                ChildId = entry.Child, State = state
+                ChildId = entry.Child, Ordinal = entry.Ordinal, State = state
             };
             try
             {
                 element.Role = Convert.ToUInt32(accessible.get_accRole(entry.Child), CultureInfo.InvariantCulture);
             }
             catch { report.ReadErrors++; }
+            // Sample a few complete row subtrees instead of exhausting the
+            // bounded report on hundreds of row summaries before any cells.
+            if (element.Role == 28)
+            {
+                if (report.SampledRows >= report.RowLimit)
+                {
+                    report.SkippedRows++;
+                    report.Truncated = true;
+                    continue;
+                }
+                report.SampledRows++;
+            }
+            if (element.Role == 44 || element.Role == 29)
+            {
+                // Optional capability description only; never invoke it.
+                try { element.DefaultAction = accessible.get_accDefaultAction(entry.Child) ?? ""; }
+                catch { }
+                if (element.DefaultAction.Length > 1500)
+                {
+                    element.DefaultAction = element.DefaultAction.Substring(0, 1500);
+                    report.Truncated = true;
+                }
+            }
             element.Name = ReadText(delegate { return accessible.get_accName(entry.Child); }, report);
             element.Value = ReadText(delegate { return accessible.get_accValue(entry.Child); }, report);
             elements.Add(element);
@@ -166,13 +197,13 @@ public static class AlphaReceiptMsaa
             catch { report.ReadErrors++; continue; }
             element.Children = childCount;
             if (childCount <= 0) continue;
-            if (entry.Depth >= 16 || pending.Count >= 1600)
+            if (entry.Depth >= 16 || pending.Count + priority.Count >= 1600)
             {
                 report.Truncated = true;
                 continue;
             }
 
-            int count = Math.Min(childCount, Math.Min(800, 1600 - pending.Count));
+            int count = Math.Min(childCount, Math.Min(800, 1600 - pending.Count - priority.Count));
             if (count < childCount) report.Truncated = true;
             object[] children = new object[count];
             int obtained;
@@ -185,11 +216,13 @@ public static class AlphaReceiptMsaa
             if (obtained < count) report.Truncated = true;
             for (int index = 0; index < Math.Min(obtained, children.Length); index++)
             {
+                bool prioritize = entry.Priority || element.Role == 28;
+                Queue<Pending> destination = prioritize ? priority : pending;
                 IAccessible child = children[index] as IAccessible;
                 if (child != null)
                 {
-                    pending.Enqueue(new Pending {
-                        Accessible = child, Child = 0,
+                    destination.Enqueue(new Pending {
+                        Ordinal = index, Priority = prioritize, Accessible = child, Child = 0,
                         Parent = element.Index, Depth = entry.Depth + 1
                     });
                 }
@@ -200,15 +233,15 @@ public static class AlphaReceiptMsaa
                     try { childObject = accessible.get_accChild(childId) as IAccessible; }
                     catch { /* Simple child IDs need not expose a child object. */ }
                     if (Object.ReferenceEquals(childObject, accessible)) childObject = null;
-                    pending.Enqueue(new Pending {
-                        Accessible = childObject ?? accessible,
+                    destination.Enqueue(new Pending {
+                        Ordinal = index, Priority = prioritize, Accessible = childObject ?? accessible,
                         Child = childObject == null ? childId : 0,
                         Parent = element.Index, Depth = entry.Depth + 1
                     });
                 }
             }
         }
-        if (pending.Count > 0) report.Truncated = true;
+        if (pending.Count > 0 || priority.Count > 0) report.Truncated = true;
         report.Elements = elements.ToArray();
         report.Reason = elements.Count > 0 ? "captured" : "unreadable";
         return report;

@@ -40,17 +40,22 @@ type ERPUIWindowDiscovery struct {
 	Visible bool   `json:"visible"`
 }
 type ERPMSAAElement struct {
-	Index    int    `json:"index"`
-	Parent   int    `json:"parent"`
-	Depth    int    `json:"depth"`
-	ChildID  int    `json:"child_id"`
-	Role     uint32 `json:"role"`
-	State    uint32 `json:"state"`
-	Name     string `json:"name"`
-	Value    string `json:"value"`
-	Children int    `json:"children"`
+	Index         int    `json:"index"`
+	Parent        int    `json:"parent"`
+	Depth         int    `json:"depth"`
+	ChildID       int    `json:"child_id"`
+	Ordinal       int    `json:"ordinal"`
+	DefaultAction string `json:"default_action,omitempty"`
+	Role          uint32 `json:"role"`
+	State         uint32 `json:"state"`
+	Name          string `json:"name"`
+	Value         string `json:"value"`
+	Children      int    `json:"children"`
 }
 type ERPMSAAReport struct {
+	SampledRows      int              `json:"sampled_rows"`
+	SkippedRows      int              `json:"skipped_rows"`
+	RowLimit         int              `json:"row_limit"`
 	Reason           string           `json:"reason"`
 	Elements         []ERPMSAAElement `json:"elements"`
 	Truncated        bool             `json:"truncated"`
@@ -86,7 +91,7 @@ func sanitizeUIReceiptReport(report *ERPUIReceiptReport) {
 		}
 		for index := range report.MSAA.Elements {
 			element := &report.MSAA.Elements[index]
-			for _, field := range []*string{&element.Name, &element.Value} {
+			for _, field := range []*string{&element.Name, &element.Value, &element.DefaultAction} {
 				if len(*field) > 2000 {
 					*field = (*field)[:2000]
 					report.MSAA.Truncated = true
@@ -130,6 +135,9 @@ func uiReceiptMessage(report *ERPUIReceiptReport) string {
 		if report.MSAA != nil {
 			if report.MSAA.Reason == "captured" {
 				message += fmt.Sprintf(" · 구형 접근성 %d개", len(report.MSAA.Elements))
+				if report.MSAA.SampledRows > 0 {
+					message += fmt.Sprintf(" · 품목 %d행의 셀 우선 확인(전체 목록 아님)", report.MSAA.SampledRows)
+				}
 			} else {
 				message += " · 구형 접근성 읽기 제한"
 			}

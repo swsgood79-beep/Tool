@@ -167,9 +167,9 @@ public static class AlphaReceiptWindows {
   $legacyReport=[AlphaReceiptMsaa]::Read($targetHandle,[int]$erp[0].Id)
   $legacyElements=New-Object 'Collections.Generic.List[object]'
   foreach($legacyElement in $legacyReport.Elements){
-   $legacyElements.Add([ordered]@{index=$legacyElement.Index;parent=$legacyElement.Parent;depth=$legacyElement.Depth;child_id=$legacyElement.ChildId;role=$legacyElement.Role;state=$legacyElement.State;name=$legacyElement.Name;value=$legacyElement.Value;children=$legacyElement.Children})
+   $legacyElements.Add([ordered]@{index=$legacyElement.Index;parent=$legacyElement.Parent;depth=$legacyElement.Depth;child_id=$legacyElement.ChildId;ordinal=$legacyElement.Ordinal;default_action=$legacyElement.DefaultAction;role=$legacyElement.Role;state=$legacyElement.State;name=$legacyElement.Name;value=$legacyElement.Value;children=$legacyElement.Children})
   }
-  $report.msaa=[ordered]@{reason=$legacyReport.Reason;elements=@($legacyElements.ToArray());truncated=$legacyReport.Truncated;read_errors=$legacyReport.ReadErrors;password_excluded=$legacyReport.PasswordExcluded;error_code=$legacyReport.ErrorCode}
+  $report.msaa=[ordered]@{reason=$legacyReport.Reason;sampled_rows=$legacyReport.SampledRows;skipped_rows=$legacyReport.SkippedRows;row_limit=$legacyReport.RowLimit;elements=@($legacyElements.ToArray());truncated=$legacyReport.Truncated;read_errors=$legacyReport.ReadErrors;password_excluded=$legacyReport.PasswordExcluded;error_code=$legacyReport.ErrorCode}
  }catch{$report.msaa.reason='unavailable';$report.msaa.error_code=[int]$_.Exception.HResult}
 
 }catch{}
