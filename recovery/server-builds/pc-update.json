@@ -1,8 +1,8 @@
 {
-  "version": "1.4.128",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.128.zip",
-  "sha256": "d78f0d00a09f54470130bb889ef575fd8ac808199574bdff1111883456ef2025",
-  "exe_sha256": "9b20b9fda1d85414ef9be7d965482ee7f0350a92e7601b37daad340d13f8a742",
-  "bytes": 38729539,
-  "notes": "관리자 미입고 품목 선택 · ERP 입력 도우미·발주 검색 지원 · APK1.0.11"
+  "version": "1.4.129",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.129.zip",
+  "sha256": "6912de3bfa4675325d4b07b2db0752f3cbd9684474307dec8070b3cbef26e82b",
+  "exe_sha256": "3aac6f4573da6b5c7b442a2f06082092fddcc44eb2fa1362046ba62f4d95426e",
+  "bytes": 38730021,
+  "notes": "미입고 선택 차단 조건 수정 · 발주 정보 누락 항목 안내 · APK1.0.11"
 }
