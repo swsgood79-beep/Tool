@@ -245,7 +245,7 @@ func (a *App) orderOutstandingCardsMarkup(page, name string, value any) string {
 			}
 		}
 	}
-	assets += `<link rel="stylesheet" href="/erp-receipt-helper-v1.4.130.css">`
+	assets += `<link rel="stylesheet" href="/erp-receipt-helper-v1.4.130.css"><link rel="stylesheet" href="/admin-card-layout-v1.4.131.css">`
 	marker := `<div id="order-outstanding-config" hidden data-endpoint="/order-outstanding/` + template.HTMLEscapeString(a.state.Board) + `"` + helper + `></div>`
 	page = strings.Replace(page, "</head>", assets+"</head>", 1)
 	return strings.Replace(page, "</body>", marker+"</body>", 1)

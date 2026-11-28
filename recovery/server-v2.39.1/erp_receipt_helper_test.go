@@ -256,6 +256,9 @@ func TestReceiptHelperBrowser131(t *testing.T) {
 	}
 	a, id, _ := cardOutstandingFixture(t)
 	owner := adminCookie(a)
+	completed := time.Now()
+	a.state.Projects[0].Setting.Completed = &completed
+	a.state.Projects[0].Setting.Worker = "가상 작업자 가나다 · 가상 작업자 라마바사 · 가상 작업자 아자차카"
 	before := string(jsonRaw(a.state))
 	a.erpDBProbe = func(ctx context.Context, _ string) ERPDBReport {
 		orders, _ := ctx.Value(erpOrderOutstandingBatchKey{}).([]string)

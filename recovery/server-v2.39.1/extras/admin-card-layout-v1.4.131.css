@@ -1,0 +1,7 @@
+/* Keep edit/disclosure in their own normal-flow row, below order actions. */
+html[data-alpha-design=modern] .admin-project.e-card>summary{display:grid!important;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center}
+html[data-alpha-design=modern] .admin-project.e-card>summary>div:first-child{grid-column:1/-1;grid-row:1;min-width:0}
+html[data-alpha-design=modern] .admin-project.e-card>summary>.order-edit{position:static!important;grid-column:1;grid-row:2;justify-self:start;margin:0;min-height:36px}
+html[data-alpha-design=modern] .admin-project.e-card>summary>.admin-chevron{position:static!important;grid-column:2;grid-row:2;justify-self:end;align-self:center;margin:0}
+html[data-alpha-design=modern] .admin-project.e-card .e-admin-footer{padding-top:0!important;padding-left:0!important;flex-wrap:wrap;gap:8px}
+html[data-alpha-design=modern] .admin-project.e-card .e-admin-workers{flex:0 0 100%;order:-1;min-width:0;max-width:100%;margin:0;white-space:normal;overflow-wrap:anywhere;word-break:break-word}

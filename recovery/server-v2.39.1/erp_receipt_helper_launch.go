@@ -23,7 +23,7 @@ func receiptHelperLaunchMessage(err error) string {
 		case "task", "content":
 			return "PC 도우미의 준비 목록을 표시하지 못했습니다. 미입고 목록을 새로고침하고 다시 준비해 주세요 (도우미 단계: 준비 목록)"
 		case "form", "show", "visibility":
-			return "PC 도우미 창의 실제 표시를 확인하지 못했습니다. Windows 작업 표시줄에서 Alpha 도우미를 확인해 주세요 (도우미 단계: 창 표시)"
+			return "PC 도우미 창의 실제 표시를 확인하지 못했습니다. 도우미 실행을 중단했습니다. Windows 바탕화면에서 Alpha를 실행한 뒤 다시 열어 주세요 (도우미 단계: 창 표시)"
 		case "start":
 			return "Windows 도우미 프로세스를 실행하지 못했습니다 (도우미 단계: 실행)"
 		case "timeout":
