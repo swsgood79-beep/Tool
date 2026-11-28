@@ -1,8 +1,8 @@
 {
-  "version": "1.4.123",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.123.zip",
-  "sha256": "14369ad42f0e9e25858e1b6f1a08c8a9a795b798191d0a09537ad1bc107ebec7",
-  "exe_sha256": "dde7cbcc9d67bbade4832a7bbf85fdc02530d0376a5a8c554ed7a0565e2b397e",
-  "bytes": 38694712,
-  "notes": "입고 저장 로직 읽기 전용 확인 · 실제 입고등록 없음 · APK1.0.11"
+  "version": "1.4.124",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.124.zip",
+  "sha256": "de5d9107ff6d0b6b8d6550d435a41ba490773de970a392ca8c8906b65600b52e",
+  "exe_sha256": "62d3009a2dcc0c7eee8af58fdb93f8582d100aef154b941583ca5e1eb61aefac",
+  "bytes": 38699930,
+  "notes": "ERP 입고 화면 인식 확인 · 반자동 연동 준비 · APK1.0.11"
 }
