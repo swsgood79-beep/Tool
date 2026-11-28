@@ -1,0 +1,25 @@
+{
+  "version": "1.4.126",
+  "release_commit": "0f1ce82",
+  "verified_at_utc": "2026-11-28T04:24:50.196655+00:00",
+  "manifest_verified": true,
+  "source_rebuild_verified": true,
+  "downloads": [
+    {
+      "file": "AlphaWorkComplete-Recovered-Windows-x64-v1.4.126.zip",
+      "bytes": 38707301,
+      "sha256": "58657844f365a5fd34eea2df9f3f500a132a208e9cd00314d0bccebfaadff895",
+      "verified": true
+    },
+    {
+      "file": "AlphaWorkComplete-Recovered-source-PC-v1.4.126-App-v1.0.11.zip",
+      "bytes": 36210686,
+      "sha256": "24f78a69479896d1562fd3b7d608f095fd8f3f1501ce245b7d0c9041bf14f245",
+      "verified": true
+    }
+  ],
+  "field_verification_pending": [
+    "Native company MSAA cell/check-state recognition after update",
+    "Exact row recognition and semi-auto preparation still require private UI report"
+  ]
+}
