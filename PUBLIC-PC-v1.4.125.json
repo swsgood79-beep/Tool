@@ -1,0 +1,25 @@
+{
+  "version": "1.4.125",
+  "release_commit": "278b9c1",
+  "verified_at_utc": "2026-11-28T01:53:19.655437+00:00",
+  "manifest_verified": true,
+  "source_rebuild_verified": true,
+  "downloads": [
+    {
+      "file": "AlphaWorkComplete-Recovered-Windows-x64-v1.4.125.zip",
+      "bytes": 38702731,
+      "sha256": "1ae6d303e5a0acd460da49a6e8b5e89e80eddc47d56ebbb3f71ab519628ff778",
+      "verified": true
+    },
+    {
+      "file": "AlphaWorkComplete-Recovered-source-PC-v1.4.125-App-v1.0.11.zip",
+      "bytes": 36308405,
+      "sha256": "7c04f491b161bbab828da279747cdb13d8c056fbd7370c0c5fad7cf27dc9fdc1",
+      "verified": true
+    }
+  ],
+  "field_verification_pending": [
+    "Native company nested/MDI receipt window discovery after update",
+    "Exact row recognition and semi-auto preparation still require private UI report"
+  ]
+}
