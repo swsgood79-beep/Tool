@@ -1,0 +1,1 @@
+UIA receipt script PowerShell7 AST parse pass; native Windows UIA execution pending
