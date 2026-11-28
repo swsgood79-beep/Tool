@@ -1,0 +1,116 @@
+{
+  "results": [
+    {
+      "role": "worker",
+      "width": 320,
+      "theme": "light",
+      "result": "pass",
+      "scope": "Actual read-only popup, exact purchase numbers per duplicate-named item, missing PO not guessed; no input/helper, full-width mobile lines, refresh/close"
+    },
+    {
+      "role": "worker",
+      "width": 320,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "Actual read-only popup, exact purchase numbers per duplicate-named item, missing PO not guessed; no input/helper, full-width mobile lines, refresh/close"
+    },
+    {
+      "role": "worker",
+      "width": 390,
+      "theme": "light",
+      "result": "pass",
+      "scope": "Actual read-only popup, exact purchase numbers per duplicate-named item, missing PO not guessed; no input/helper, full-width mobile lines, refresh/close"
+    },
+    {
+      "role": "worker",
+      "width": 390,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "Actual read-only popup, exact purchase numbers per duplicate-named item, missing PO not guessed; no input/helper, full-width mobile lines, refresh/close"
+    },
+    {
+      "role": "worker",
+      "width": 430,
+      "theme": "light",
+      "result": "pass",
+      "scope": "Actual read-only popup, exact purchase numbers per duplicate-named item, missing PO not guessed; no input/helper, full-width mobile lines, refresh/close"
+    },
+    {
+      "role": "worker",
+      "width": 430,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "Actual read-only popup, exact purchase numbers per duplicate-named item, missing PO not guessed; no input/helper, full-width mobile lines, refresh/close"
+    },
+    {
+      "role": "worker",
+      "width": 1100,
+      "theme": "light",
+      "result": "pass",
+      "scope": "Actual read-only popup, exact purchase numbers per duplicate-named item, missing PO not guessed; no input/helper, full-width mobile lines, refresh/close"
+    },
+    {
+      "role": "worker",
+      "width": 1100,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "Actual read-only popup, exact purchase numbers per duplicate-named item, missing PO not guessed; no input/helper, full-width mobile lines, refresh/close"
+    },
+    {
+      "role": "admin",
+      "width": 320,
+      "theme": "light",
+      "result": "pass",
+      "scope": "Actual read-only popup, exact purchase numbers per duplicate-named item, missing PO not guessed; no input/helper, full-width mobile lines, refresh/close"
+    },
+    {
+      "role": "admin",
+      "width": 320,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "Actual read-only popup, exact purchase numbers per duplicate-named item, missing PO not guessed; no input/helper, full-width mobile lines, refresh/close"
+    },
+    {
+      "role": "admin",
+      "width": 390,
+      "theme": "light",
+      "result": "pass",
+      "scope": "Actual read-only popup, exact purchase numbers per duplicate-named item, missing PO not guessed; no input/helper, full-width mobile lines, refresh/close"
+    },
+    {
+      "role": "admin",
+      "width": 390,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "Actual read-only popup, exact purchase numbers per duplicate-named item, missing PO not guessed; no input/helper, full-width mobile lines, refresh/close"
+    },
+    {
+      "role": "admin",
+      "width": 430,
+      "theme": "light",
+      "result": "pass",
+      "scope": "Actual read-only popup, exact purchase numbers per duplicate-named item, missing PO not guessed; no input/helper, full-width mobile lines, refresh/close"
+    },
+    {
+      "role": "admin",
+      "width": 430,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "Actual read-only popup, exact purchase numbers per duplicate-named item, missing PO not guessed; no input/helper, full-width mobile lines, refresh/close"
+    },
+    {
+      "role": "admin",
+      "width": 1100,
+      "theme": "light",
+      "result": "pass",
+      "scope": "Actual read-only popup, exact purchase numbers per duplicate-named item, missing PO not guessed; no input/helper, full-width mobile lines, refresh/close"
+    },
+    {
+      "role": "admin",
+      "width": 1100,
+      "theme": "dark",
+      "result": "pass",
+      "scope": "Actual read-only popup, exact purchase numbers per duplicate-named item, missing PO not guessed; no input/helper, full-width mobile lines, refresh/close"
+    }
+  ]
+}
