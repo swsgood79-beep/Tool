@@ -1,8 +1,8 @@
 {
-  "version": "1.4.127",
-  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.127.zip",
-  "sha256": "0d8d8b88a8775fbeda340cbf72e0ff987e2a6fbbd8fd5b3b4ae2fd6c03181f87",
-  "exe_sha256": "0d7f964cf142446c496d223ea4a449c232310196b90086bbfe42aaf70726e084",
-  "bytes": 38708082,
-  "notes": "ERP 표의 품목 셀·체크 상태 우선 진단 · 부분 조회 명시 · APK1.0.11"
+  "version": "1.4.128",
+  "url": "https://raw.githubusercontent.com/swsgood79-beep/Tool/recovery-v2.39.1/recovery/server-builds/AlphaWorkComplete-Recovered-Windows-x64-v1.4.128.zip",
+  "sha256": "d78f0d00a09f54470130bb889ef575fd8ac808199574bdff1111883456ef2025",
+  "exe_sha256": "9b20b9fda1d85414ef9be7d965482ee7f0350a92e7601b37daad340d13f8a742",
+  "bytes": 38729539,
+  "notes": "관리자 미입고 품목 선택 · ERP 입력 도우미·발주 검색 지원 · APK1.0.11"
 }
