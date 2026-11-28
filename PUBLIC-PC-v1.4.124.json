@@ -1,0 +1,25 @@
+{
+  "version": "1.4.124",
+  "release_commit": "84db52a",
+  "verified_at_utc": "2026-11-28T01:21:19.924455+00:00",
+  "manifest_verified": true,
+  "source_rebuild_verified": true,
+  "downloads": [
+    {
+      "file": "AlphaWorkComplete-Recovered-Windows-x64-v1.4.124.zip",
+      "bytes": 38699930,
+      "sha256": "de5d9107ff6d0b6b8d6550d435a41ba490773de970a392ca8c8906b65600b52e",
+      "verified": true
+    },
+    {
+      "file": "AlphaWorkComplete-Recovered-source-PC-v1.4.124-App-v1.0.11.zip",
+      "bytes": 35716774,
+      "sha256": "6416a9d24eeb182efd215ed5c9bea47c411d613928049dc2204862d3527e7e91",
+      "verified": true
+    }
+  ],
+  "field_verification_pending": [
+    "Physical company Windows UIA receipt window capture",
+    "Exact row recognition and semi-automatic ERP preparation pending actual UI report"
+  ]
+}
