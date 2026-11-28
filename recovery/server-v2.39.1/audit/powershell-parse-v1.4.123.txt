@@ -1,0 +1,1 @@
+Expanded PowerShell7 AST pass; native Windows/SQL pending

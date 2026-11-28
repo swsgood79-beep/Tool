@@ -1,2 +1,4 @@
 
 Synthetic owner/CSRF/read-only allowlist/size redaction/filename tests and Chromium320/390/430/1100 pass4.663s. Actual company SQL not executed. This release worktree starts from production122 and includes only the contract diagnostic; receipt selection/preview/native execution draft remains solely work-erp-receipt-registration. Preparing PC123 diagnostic release to obtain missing source without modifying company business rows.
+
+Release123 validation: wholeGo93.011s, related race13.843s, vetLinux/Windows pass, WindowsGUI cross-build pass; expanded PowerShell7 AST parse pass. Actual synthetic Chromium4 widths4.663s pass. Native company SQL lookup not executed. Pending package/sourceZIP rebuild/public verification. Existing APK1.0.11 preserved. Draft preview remains separate; no live write capability shipped.
